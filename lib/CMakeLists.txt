@@ -153,6 +153,7 @@ elseif(ANDROID)
 		json-c
 		GIT_REPOSITORY https://github.com/json-c/json-c.git
 		GIT_TAG json-c-0.16-20220414
+        GIT_SHALLOW TRUE
 	)
 	set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 	set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
@@ -199,6 +200,7 @@ if(CHIAKI_ENABLE_RUDP)
 			miniupnpc
 			GIT_REPOSITORY https://github.com/miniupnp/miniupnp.git
 			GIT_TAG miniupnpc_2_2_5
+            GIT_SHALLOW TRUE
 			SOURCE_SUBDIR miniupnpc
 		)
 		set(UPNPC_BUILD_STATIC ON CACHE BOOL "" FORCE)

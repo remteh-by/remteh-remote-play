@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.metallic.chiaki.common.AppDatabase
 import com.metallic.chiaki.common.MacAddress
+import com.metallic.chiaki.common.ManualHost
+import com.metallic.chiaki.lan.LanRules
 import com.metallic.chiaki.common.RegisteredHost
 import com.metallic.chiaki.common.ext.toLiveData
 import com.metallic.chiaki.lib.*
@@ -31,7 +33,7 @@ class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
 	private val _state = MutableLiveData<State>(State.IDLE)
 	val state: LiveData<State> get() = _state
 
-	private val log = ChiakiRxLog(ChiakiLog.Level.ALL.value/* and ChiakiLog.Level.VERBOSE.value.inv()*/)
+	private val log = ChiakiRxLog(ChiakiLog.Level.ALL.value and ChiakiLog.Level.VERBOSE.value.inv())
 	private var regist: Regist? = null
 
 	val logText: LiveData<String> = log.logText.toLiveData()
@@ -42,6 +44,7 @@ class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
 		private set
 
 	private var assignManualHostId: Long? = null
+	private var manualAddress: String? = null
 
 	fun start(info: RegistInfo, assignManualHostId: Long?)
 	{
@@ -49,8 +52,9 @@ class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
 			return
 		try
 		{
-			regist = Regist(info, log.log, this::registEvent)
 			this.assignManualHostId = assignManualHostId
+			manualAddress = info.host.takeIf { !info.broadcast && LanRules.isPrivateIpv4(it) }
+			regist = Regist(info, log.log, this::registEvent)
 			_state.value = State.RUNNING
 		}
 		catch(error: CreateError)
@@ -95,6 +99,7 @@ class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
 	{
 		val host = host ?: return
 		val assignManualHostId = assignManualHostId
+		val address = manualAddress
 		val dao = database.registeredHostDao()
 		val manualHostDao = database.manualHostDao()
 		val registeredHost = RegisteredHost(host)
@@ -105,15 +110,26 @@ class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
 					it.flatMapCompletable { registeredHostId ->
 						manualHostDao.assignRegisteredHost(assignManualHostId, registeredHostId)
 					}
+				else if (address != null)
+					it.flatMapCompletable { registeredHostId ->
+						manualHostDao.getByHost(address).flatMapCompletable { rows ->
+							val existing = rows.firstOrNull()
+							if (existing == null) manualHostDao.insert(ManualHost(host = address, registeredHost = registeredHostId))
+							else manualHostDao.update(existing.copy(registeredHost = registeredHostId))
+						}
+					}
 				else
 					it.ignoreElement()
 			}
 			.subscribeOn(Schedulers.io())
 			.observeOn(AndroidSchedulers.mainThread())
-			.subscribe {
+			.subscribe({
 				Log.i("RegistExecute", "Registered Host saved in db")
 				_state.value = State.SUCCESSFUL
-			}
+			}, {
+                log.log.e("Could not save the registered console locally")
+                _state.value = State.FAILED
+            })
 			.addTo(disposable)
 	}
 

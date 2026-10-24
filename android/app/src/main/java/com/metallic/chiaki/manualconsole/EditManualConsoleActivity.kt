@@ -42,6 +42,7 @@ class EditManualConsoleActivity: AppCompatActivity(), RevealActivity
 		super.onCreate(savedInstanceState)
 		binding = ActivityEditManualBinding.inflate(layoutInflater)
 		setContentView(binding.root)
+        com.metallic.chiaki.lan.SafeInsets.apply(binding.root)
 		handleReveal()
 
 		viewModel = ViewModelProvider(this, viewModelFactory {

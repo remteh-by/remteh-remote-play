@@ -143,7 +143,11 @@ class StreamInput(val context: Context, val preferences: Preferences)
 
 		val buttonMask: UInt = when(keyCode)
 		{
-			preferences.mappingCross -> ControllerState.BUTTON_CROSS
+			KeyEvent.KEYCODE_DPAD_UP -> ControllerState.BUTTON_DPAD_UP
+            KeyEvent.KEYCODE_DPAD_DOWN -> ControllerState.BUTTON_DPAD_DOWN
+            KeyEvent.KEYCODE_DPAD_LEFT -> ControllerState.BUTTON_DPAD_LEFT
+            KeyEvent.KEYCODE_DPAD_RIGHT -> ControllerState.BUTTON_DPAD_RIGHT
+            preferences.mappingCross -> ControllerState.BUTTON_CROSS
 			preferences.mappingCircle -> ControllerState.BUTTON_MOON
 			preferences.mappingSquare -> ControllerState.BUTTON_BOX
 			preferences.mappingTriangle -> ControllerState.BUTTON_PYRAMID

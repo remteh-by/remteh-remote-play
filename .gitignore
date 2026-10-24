@@ -39,3 +39,13 @@ chiaki.conf
 .cache/
 *.vscode
 site/
+
+# RemTeh local build and private signing files
+.buildenv/
+dist/
+build-logs/
+ps5-companion/*.elf
+ps5-companion/companion-host
+*.keystore
+
+.build-tools/

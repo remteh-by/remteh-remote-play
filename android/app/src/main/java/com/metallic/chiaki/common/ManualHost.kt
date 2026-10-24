@@ -33,6 +33,9 @@ interface ManualHostDao
 	@Query("SELECT * FROM manual_host WHERE id = :id")
 	fun getById(id: Long): Single<ManualHost>
 
+	@Query("SELECT * FROM manual_host WHERE host = :host ORDER BY id LIMIT 1")
+	fun getByHost(host: String): Single<List<ManualHost>>
+
 	@Query("""SELECT
 			manual_host.id as manual_host_id,
 			manual_host.host as manual_host_host,

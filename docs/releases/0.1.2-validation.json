@@ -1,0 +1,36 @@
+{
+  "version": "0.1.2",
+  "versionCode": 3,
+  "timestamp": "2026-10-24T10:45:06.446104+00:00",
+  "scope": "Hide PS and Touch quick controls in the existing stream overlay; retain press/release and hold.",
+  "release_build": "PASS :app:assembleRelease",
+  "lint": {
+    "Warning": 145
+  },
+  "apk_signature_and_alignment": "PASS; same signing certificate as installed 0.1.1",
+  "artifact_sha256": {
+    "RemTeh-Remote-Play-0.1.2-arm64.apk": "6c0cace60e4b457f67757adf8d6cd03bd8554b324a1dd222936e9183cdab1374"
+  },
+  "physical_device": {
+    "model": "Switch OLED",
+    "android": "15",
+    "package_readback": "0.1.2 / 3",
+    "in_place_install": "PASS: registration retained after updating 0.1.1 to 0.1.2",
+    "live_ps5_video": "PASS: PS5 menu visible on Switch OLED",
+    "initial_quick_buttons_hidden": "PASS",
+    "bottom_edge_reveals_panel": "PASS",
+    "panel_auto_hides": "PASS",
+    "short_ps_press": "PASS: opened PS5 control center",
+    "long_ps_press": "PASS: returned home; panel remained visible during 3.2 second hold",
+    "after_release": "PASS: panel hides again",
+    "touchpad_press_in_game": "not retested",
+    "gamesir_full_sweep": "not retested; mappings unchanged"
+  },
+  "prior_checks": "Native decoder/helper and protocol tests were performed for earlier releases; not rerun for this UI patch. Companion remains 0.1.0.",
+  "known_open_items": [
+    "Reconnect after a stream error can leave a black image; leave the session and connect from the console list",
+    "Long gameplay, WAN, rest mode and full gamepad axes/buttons have not been validated",
+    "Console-side WebKit stability is outside the Android UI patch"
+  ],
+  "public_artifact_note": "APK bytes are unchanged from the tested build. Source archive adds public documentation and license files; runtime source is unchanged."
+}

@@ -37,9 +37,16 @@ class MainActivity : AppCompatActivity()
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
+        com.metallic.chiaki.lan.SafeInsets.apply(binding.root)
 
-		title = ""
+		title = "RemTeh Remote Play"
 		setSupportActionBar(binding.toolbar)
+        val setupPrefs = getSharedPreferences("remteh_lan", MODE_PRIVATE)
+        if (!setupPrefs.getBoolean("initialized", false)) {
+            com.metallic.chiaki.lan.SwitchProfile.apply(Preferences(this))
+            setupPrefs.edit().putBoolean("initialized", true).apply()
+            startActivity(Intent(this, com.metallic.chiaki.lan.LanSetupActivity::class.java))
+        }
 
 		binding.floatingActionButton.setOnClickListener {
 			expandFloatingActionButton(!binding.floatingActionButton.isExpanded)
@@ -133,8 +140,12 @@ class MainActivity : AppCompatActivity()
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId)
 	{
-		R.id.action_discover ->
-		{
+		R.id.action_lan_setup -> {
+            startActivity(Intent(this, com.metallic.chiaki.lan.LanSetupActivity::class.java))
+            true
+        }
+        R.id.action_discover ->
+        {
 			viewModel.discoveryManager.active = !(viewModel.discoveryActive.value ?: false)
 			true
 		}

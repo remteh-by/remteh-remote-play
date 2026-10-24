@@ -2,6 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/action_lan_setup" android:title="Настроить Switch" app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_discover"
         android:icon="@drawable/ic_discover_on"

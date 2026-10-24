@@ -1,0 +1,25 @@
+{
+  "upstream": "https://github.com/SalamiTheMan/chiaki-ng-android-extended",
+  "commits": {
+    ".": "478a20eab9e55651ae77035764cf3138bd14084b",
+    "third-party/nanopb": "cad3c18ef15a663e30e3e43e3a752b66378adec1",
+    "third-party/curl": "b1ef0e1a01c0bb6ee5367bd9c186a603bde3615a",
+    "third-party/jerasure": "505ccb4bc69eee8d7ea40a6089a056b99671134f",
+    "third-party/gf-complete": "fa54a4670a5705c84abf6c24b92b0cd479625478",
+    "android/app/src/main/cpp/oboe": "0ab5b12a5bc3630a3d6c83b20eed2a669ebf7a24",
+    "fetchcontent/miniupnpc": "58837ef586278d18cbebee50be758835ed4be79a",
+    "fetchcontent/json-c": "2f2ddc1f2dbca56c874e8f9c31b5b963202d80e7",
+    "fetchcontent/mbedtls": "2fc8413bfcb51354c8e679141b17b3f1a5942561"
+  },
+  "toolchain": {
+    "jdk": "17.0.18",
+    "gradle": "8.14.6",
+    "agp": "8.13.2",
+    "kotlin": "1.9.22",
+    "ndk": "30.0.16248370",
+    "cmake": "4.4.4",
+    "python": "3.14",
+    "protobuf": "7.34.2",
+    "protoc": "34.1"
+  }
+}

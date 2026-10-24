@@ -4,6 +4,7 @@
 #define CHIAKI_JNI_VIDEO_DECODER_H
 
 #include <jni.h>
+#include <stdatomic.h>
 
 #include <chiaki/log.h>
 #include <chiaki/thread.h>
@@ -18,7 +19,8 @@ typedef struct android_chiaki_video_decoder_t {
   ANativeWindow *window;
   uint64_t timestamp_cur;
   ChiakiThread output_thread;
-  bool shutdown_output;
+  atomic_bool shutdown_output;
+  bool output_thread_started;
   int32_t target_width;
   int32_t target_height;
   ChiakiCodec target_codec;

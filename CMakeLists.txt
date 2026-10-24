@@ -71,7 +71,8 @@ if(CHIAKI_LIB_ENABLE_MBEDTLS)
 		FetchContent_Declare(
 			mbedtls
 			GIT_REPOSITORY https://github.com/Mbed-TLS/mbedtls.git
-			GIT_TAG 8b3f26a5ac38d4fdccbc5c5366229f3e01dafcc0 # v2.28.0
+			GIT_TAG v2.28.10 # annotated tag f2f9399769ac5dafb75d9da7f6895b7b0da50efd
+            GIT_SHALLOW TRUE
 			GIT_PROGRESS TRUE
 		)
 		set(MBEDTLS_FATAL_WARNINGS OFF CACHE BOOL "" FORCE)

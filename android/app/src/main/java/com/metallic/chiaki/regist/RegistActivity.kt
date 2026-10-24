@@ -21,7 +21,8 @@ class RegistActivity: AppCompatActivity(), RevealActivity
 {
 	companion object
 	{
-		const val EXTRA_HOST = "regist_host"
+		const val EXTRA_ACCOUNT_ID = "remteh_account_id"
+        const val EXTRA_HOST = "regist_host"
 		const val EXTRA_BROADCAST = "regist_broadcast"
 		const val EXTRA_ASSIGN_MANUAL_HOST_ID = "assign_manual_host_id"
 
@@ -42,6 +43,7 @@ class RegistActivity: AppCompatActivity(), RevealActivity
 		super.onCreate(savedInstanceState)
 		binding = ActivityRegistBinding.inflate(layoutInflater)
 		setContentView(binding.root)
+        com.metallic.chiaki.lan.SafeInsets.apply(binding.root)
 		handleReveal()
 
 		viewModel = ViewModelProvider(this).get(RegistViewModel::class.java)
@@ -49,7 +51,11 @@ class RegistActivity: AppCompatActivity(), RevealActivity
 		binding.hostEditText.setText(intent.getStringExtra(EXTRA_HOST) ?: "255.255.255.255")
 		binding.broadcastCheckBox.isChecked = intent.getBooleanExtra(EXTRA_BROADCAST, true)
 
-		binding.registButton.setOnClickListener { doRegist() }
+		binding.psnIdEditText.setText(intent.getStringExtra(EXTRA_ACCOUNT_ID) ?: "")
+        binding.psnIdEditText.isSaveEnabled = false
+        binding.pinEditText.isSaveEnabled = false
+
+        binding.registButton.setOnClickListener { doRegist() }
 
 		binding.ps4VersionRadioGroup.check(when(viewModel.ps4Version.value ?: RegistViewModel.ConsoleVersion.PS5) {
 			RegistViewModel.ConsoleVersion.PS5 -> R.id.ps5RadioButton
@@ -104,7 +110,7 @@ class RegistActivity: AppCompatActivity(), RevealActivity
 
 
 		val pin = binding.pinEditText.text.toString()
-		val pinValid = pin.length == PIN_LENGTH
+		val pinValid = com.metallic.chiaki.lan.LanRules.isEightDigitCode(pin)
 
 		binding.hostEditText.error = if(!hostValid) getString(R.string.entered_host_invalid) else null
 		binding.psnIdEditText.error =

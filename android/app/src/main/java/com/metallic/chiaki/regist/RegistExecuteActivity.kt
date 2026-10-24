@@ -38,6 +38,7 @@ class RegistExecuteActivity: AppCompatActivity()
 		super.onCreate(savedInstanceState)
 		binding = ActivityRegistExecuteBinding.inflate(layoutInflater)
 		setContentView(binding.root)
+        com.metallic.chiaki.lan.SafeInsets.apply(binding.root)
 
 		viewModel = ViewModelProvider(this, viewModelFactory { RegistExecuteViewModel(getDatabase(this)) })
 			.get(RegistExecuteViewModel::class.java)

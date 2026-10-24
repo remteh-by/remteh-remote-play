@@ -66,6 +66,7 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 		binding = ActivityStreamBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		window.decorView.setOnSystemUiVisibilityChangeListener(this)
+        setupQuickButtons()
 
 		viewModel.onScreenControlsEnabled.observe(this, Observer {
 			if(binding.onScreenControlsSwitch.isChecked != it)
@@ -144,11 +145,50 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 		}
 	}
 
+    private val quickControllerState = com.metallic.chiaki.lib.ControllerState()
+    private fun setupQuickButtons() {
+        listOf(binding.quickPsButton to com.metallic.chiaki.lib.ControllerState.BUTTON_PS,
+               binding.quickTouchButton to com.metallic.chiaki.lib.ControllerState.BUTTON_TOUCHPAD).forEach { (button, mask) ->
+            var touchInProgress = false
+            button.setOnClickListener {
+                // Accessibility clicks have no touch down/up events.
+                if (!touchInProgress) {
+                    quickControllerState.buttons = quickControllerState.buttons or mask
+                    updateCombinedTouchState()
+                    uiVisibilityHandler.postDelayed({
+                        quickControllerState.buttons = quickControllerState.buttons and mask.inv()
+                        updateCombinedTouchState()
+                    }, 100L)
+                    showOverlay()
+                }
+            }
+            button.setOnTouchListener { v, event ->
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_DOWN -> {
+                        touchInProgress = true
+                        v.isPressed = true
+                        uiVisibilityHandler.removeCallbacks(hideSystemUIRunnable)
+                        quickControllerState.buttons = quickControllerState.buttons or mask
+                    }
+                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                        quickControllerState.buttons = quickControllerState.buttons and mask.inv()
+                        v.isPressed = false
+                        if (event.actionMasked == MotionEvent.ACTION_UP) v.performClick()
+                        touchInProgress = false
+                        showOverlay()
+                    }
+                }
+                updateCombinedTouchState()
+                true
+            }
+        }
+    }
+
 	private var lastFragmentControllerState = com.metallic.chiaki.lib.ControllerState()
 	private var lastStreamTouchpadControllerState = com.metallic.chiaki.lib.ControllerState()
 
 	private fun updateCombinedTouchState() {
-		viewModel.input.touchControllerState = lastFragmentControllerState or lastStreamTouchpadControllerState
+		viewModel.input.touchControllerState = lastFragmentControllerState or lastStreamTouchpadControllerState or quickControllerState
 	}
 
 	private val controlsDisposable = CompositeDisposable()
@@ -181,6 +221,9 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 	override fun onPause()
 	{
 		super.onPause()
+        uiVisibilityHandler.removeCallbacksAndMessages(null)
+        quickControllerState.buttons = 0U
+        updateCombinedTouchState()
 		if (Preferences(this).debandingEnabled) {
 			binding.debandSurfaceView.onPause()
 		}
@@ -212,6 +255,7 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 
 	private fun showOverlay()
 	{
+		binding.overlay.animate().setListener(null).cancel()
 		binding.overlay.isVisible = true
 		binding.overlay.animate()
 			.alpha(1.0f)
@@ -228,6 +272,10 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 
 	private fun hideOverlay()
 	{
+		uiVisibilityHandler.removeCallbacks(hideSystemUIRunnable)
+		quickControllerState.buttons = 0U
+		updateCombinedTouchState()
+		binding.overlay.animate().setListener(null).cancel()
 		binding.overlay.animate()
 			.alpha(0.0f)
 			.setListener(object: AnimatorListenerAdapter()

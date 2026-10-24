@@ -1,64 +1,72 @@
-# Chiaki for Android (NG)
+# RemTeh Remote Play
 
-> [!WARNING]
-> This fork has been **completely vibecoded** with the assistance of AI. Use at your own risk. I am absolutely not an expert in video processing stuff.
+Android Remote Play client for Nintendo Switch OLED running Android, maintained as a fork of **Chiaki / chiaki-ng Android Extended**.
 
-Chiaki is a free and open-source PlayStation Remote Play client for Android. This is a specialized fork focused on providing the best possible experience on Android devices, with enhanced features and performance.
+Это наша модификация открытого клиента, основанная на [SalamiTheMan/chiaki-ng-android-extended](https://github.com/SalamiTheMan/chiaki-ng-android-extended), который продолжает работу Chiaki и chiaki-ng. Протокол Remote Play, видеопередача, звук и большая часть управления взяты из исходных проектов. Наши изменения перечислены ниже. Исходное описание сохранено в [docs/UPSTREAM-README.md](docs/UPSTREAM-README.md).
 
-My main issue with all of the android remote play apps is that they do not support any debanding filters, which is a dealbreaker for me. Only time when gradients are smooth is when HDR is enabled but this is not a good solution for most of android devices due to reduced brightness and some other weird behaviors. So I thought why not spend some time on implementing debanding filters myself and learn more about AI Agent-driven development.
-Basically debanding is already implemented in chiaki-ng for Steam Deck and Windows through libplacebo, but libplacebo is really really not easy to implement for Android, so I decided to try another lightweight approach which is based on GLES Custom Shader. So I spent few evenings to debug and optimize the shader code and finally I got it working! It means now you can play your favorite PS games with smooth gradients and great brightness on your android device!
+**Первый публичный выпуск: [0.1.2, предварительная версия](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.1.2).** Android `versionCode` — 3. Это та же подписанная APK, которая проверена на нашем Switch; приложение всё ещё экспериментальное.
 
-## Key Features
+## Наши изменения
 
-- **PS4 & PS5 Support**: Connect to your PlayStation 4 or PlayStation 5 from anywhere.
-- **Enhanced Video Quality**:
-  - **Dynamic Bitrate**: Manually set your bitrate up to **100,000 kbps** for ultra-clear streaming.
-  - **Post-processing Filters**: Integrated specialized **Debanding** to reduce color artifacts.
-- **Advanced Controls**:
-  - **Touchpad Emulation**: Use your touchscreen as a DualShock 4 / DualSense touchpad.
-  - **Interactive Button Remapping**: Easily remap any button on your physical controller by pressing the button you want to assign.
-  - **Motion Sensors**: Use your Android device's gyroscope and accelerometer for motion-controlled games.
-  - **Haptic Feedback**: Support for rumble and touch haptics.
-- **Performance Optimized**: Low-latency streaming optimized for Android NDK.
+- Локальный мастер настройки PS5: проверка адреса, доступности Remote Play и декодера H.264.
+- Необязательный помощник PS5 для чтения Account ID текущего пользователя при первой привязке. Он действует пять минут, требует одноразовый код и не изменяет аккаунт.
+- Профиль Switch OLED и экран настройки расположения кнопок стандартного Android-геймпада.
+- Отдельное приложение `by.remteh.remoteplay`, собственная подпись и версии.
+- Исправление завершения нативного декодера; две исправленные ссылки CoordinatorLayout после изменения applicationId.
+- В 0.1.2 экранные PS и Touch перенесены из постоянных белых кнопок в автоматически скрываемую панель.
 
-## Getting Started
+## Что проверено
 
-### Prerequisites
+Switch OLED, Android 15, GameSir G8+ в синем режиме: изображение меню PS5, звук и базовое управление. Для 0.1.2 дополнительно проверены обновление поверх 0.1.1 без потери регистрации, открытие/скрытие панели, короткая и длинная PS. Полный набор кнопок, аналоговые курки в игре и длительная игровая сессия не прошли полную приёмку.
 
-- A PlayStation 4 or PlayStation 5 console connected to your network.
-- Your PSN Account ID (you can find it using the provided script).
+APK — только **arm64-v8a**, заявленный минимум Android 8 (API 26). Другие устройства и версии Android в этом форке отдельно не проверялись. Перед установкой Android на Switch требуется собственная подготовленная система; это приложение не устанавливает Android и не меняет загрузчик консоли.
 
-### Installation
+## Установка и подключение
 
-1. Download the latest APK from the [Releases](https://github.com/SalamiTheMan/chiaki-ng-android-extended/releases) page.
-2. Install the APK on your Android device.
-3. Open Chiaki and follow the instructions to register your console.
+1. Скачайте `RemTeh-Remote-Play-0.1.2-arm64.apk` из [Releases](https://github.com/remteh-by/remteh-remote-play/releases).
+2. Установите APK на Android. Для следующей нашей версии устанавливайте обновление поверх прежней: не удаляйте приложение и не очищайте его данные.
+3. Подключите PS5 и Android к одной локальной сети. На PS5 включите дистанционное воспроизведение. Предпочтительны Wi-Fi 5 ГГц и проводное подключение PS5 к роутеру, если оно доступно.
+4. Откройте «Настроить Switch», укажите **свой IP-адрес PS5**. Предзаполненный адрес — пример, его нужно изменить под свою сеть.
+5. Введите существующий PSN Account ID нужного профиля вручную или получите его через необязательный помощник, описанный ниже.
+6. На PS5 откройте «Настройки → Система → Дистанционное воспроизведение → Привязать устройство». Введите полученный системный код в форму регистрации клиента.
+7. Выберите зарегистрированную консоль. Для обычных следующих подключений повторная привязка не нужна.
 
-### Obtaining your PSN Account ID
+Сам Remote Play использует встроенную службу PS5. Находящийся рядом компьютер и дополнительный видеосервер для локальной игры не нужны. Помощник не участвует в передаче видео.
 
-To register your console, you need your 8-byte PSN Account ID (Base64). You can use the helper script provided in this repository:
+### Необязательный помощник PS5
 
-```bash
-python3 scripts/psn-account-id.py
-```
+Нужна возможность запускать собственные ELF-программы на своей PS5. Клиент также поддерживает ручной ввод Account ID без помощника.
 
-## Build Instructions (Developers)
+- `remteh-pair-helper.elf` предоставляется в релизе и встроен в APK. Его исходники находятся в [ps5-companion](ps5-companion).
+- Мастер приложения может отправить помощник в уже запущенный ELF Loader в вашей локальной сети. Альтернатива с компьютера: `python3 scripts/send-helper.py --host <IP_PS5> --file remteh-pair-helper.elf`.
+- Помощник показывает отдельный восьмизначный код на PS5. Введите его в мастер для получения ID активного профиля.
+- **Код помощника и системный код Remote Play — разные коды.** После получения ID откройте системную привязку и используйте её новый код.
+- Помощник завершает работу через пять минут или после успешной выдачи ID; допускает не более пяти неправильных кодов. Он не активирует аккаунты, не записывает реестр, не создаёт системный PIN и не читает сохранения.
+- Не открывайте порт помощника 38080 в интернет. Работайте только в доверенной локальной сети.
 
-To build the project yourself:
+## Управление
 
-1. Clone the repository with submodules:
-   ```bash
-   git clone --recursive https://github.com/SalamiTheMan/chiaki-ng-android-extended.git
-   ```
-2. Open the `android/` directory in Android Studio.
-3. Ensure you have the Android NDK and CMake installed.
-4. Build the project using Gradle.
+- Подключите GameSir G8+ к Android по Bluetooth. Синий режим проверен на нашем устройстве; Android показывает его как Wireless Controller Touchpad.
+- Экран «Проверить и настроить Joy-Con» также читает стандартные Android-геймпады, включая G8+. Название экрана пока не переименовано.
+- Для PS и нажатия тачпада **сделайте короткий свайп вверх от нижнего края**. Панель исчезает через две секунды бездействия; удержание PS останавливает таймер.
+- Сенсорный экран также может работать как тачпад. Выход из видеосессии не выключает PS5 и не закрывает игру: предварительно сохраните прогресс.
 
-## Upcoming Features (TBD)
+## Ограничения
 
-- **AMD FidelityFX FSR 1.0**: High-quality upscaling and sharpening (logic integrated into the renderer, UI toggle coming soon).
-- **Customizable Overlays**: More layouts for on-screen controls.
+- Этот выпуск рассчитан на одну локальную сеть. Доступ через интернет, VPN, пробуждение из режима покоя и длительные игровые сеансы не подтверждены.
+- После ошибки кнопка Reconnect иногда оставляет чёрный экран. Вернитесь в список консолей и начните новое подключение.
+- В существующей базе Android Lint остаётся 145 предупреждений; ошибок в проверке 0.1.2 нет.
+- Клиент не исправляет WebKit/ядро PS5, не обновляет её прошивку и не настраивает блокировку обновлений Sony.
+- Автоматического обновления приложения через GitHub пока нет: APK устанавливается вручную из Releases.
 
-## Disclaimer
+## Исходники, сборка и выпуски
 
-This project is not endorsed or certified by Sony Interactive Entertainment LLC. PlayStation, DualShock, and DualSense are trademarks of Sony Interactive Entertainment LLC.
+[BUILDING.md](BUILDING.md) · [CHANGELOG.md](CHANGELOG.md) · [RELEASING.md](RELEASING.md) · [UPSTREAM-LOCK.json](UPSTREAM-LOCK.json)
+
+Каждой опубликованной версии соответствуют тег Git, подписанная APK, архив исходников с зависимостями, контрольные суммы SHA-256 и отчёт проверки. Версии 0.1.0 и 0.1.1 были внутренними сборками и отдельно не публикуются.
+
+## Авторство и лицензии
+
+Основной клиент сохраняет **GNU AGPL v3 с дополнительным разрешением для OpenSSL**, как в [COPYING](COPYING). Собственные изменения клиента распространяются на этих же условиях. Отдельный помощник PS5 имеет **GPL-3.0-or-later**; полный текст находится в [ps5-companion/COPYING](ps5-companion/COPYING). Зависимости сохраняют свои лицензии. Подробнее: [ATTRIBUTION.md](ATTRIBUTION.md).
+
+Проект не связан с Sony Interactive Entertainment или Nintendo и не является их официальным приложением. Названия и товарные знаки принадлежат соответствующим владельцам.
