@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'desktop/linux'))
 from session import VERSION
 from upgrade import FILES
+from build_meta import BUILD
 
 
 def metadata(path, platform, build):
@@ -36,6 +37,8 @@ def main():
     parser.add_argument('--build', type=int, required=True)
     parser.add_argument('--signing-key', type=Path, required=True)
     args = parser.parse_args()
+    if args.build != BUILD:raise SystemExit('Public package build must equal source BUILD')
+    subprocess.run([sys.executable,str(ROOT/'scripts/generate-support.py'),'--check'],check=True)
     dist = ROOT / 'dist'
     dist.mkdir(exist_ok=True)
     packages = []
@@ -46,8 +49,8 @@ def main():
         info = plistlib.loads(info_path.read_bytes())
         if info.get('CFBundleIdentifier') != 'by.remteh.deckivo' or info.get('CFBundleShortVersionString') != VERSION:
             raise SystemExit('Staged app does not match this source version.')
-        if args.build <= int(info['CFBundleVersion']):
-            raise SystemExit('Use a build newer than the staging bundle.')
+        if args.build != int(info['CFBundleVersion']):
+            raise SystemExit('Staging bundle build must equal source BUILD.')
         info['CFBundleVersion'] = str(args.build)
         info_path.write_bytes(plistlib.dumps(info))
         shutil.copytree(ROOT / 'LICENSES', stage / 'Contents/Resources/licenses', dirs_exist_ok=True)
@@ -69,10 +72,7 @@ def main():
     target = dist / f'Deckivo-Linux-{VERSION}-b{args.build}-source.zip'
     with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED) as archive:
         for name in FILES + ('upgrade.py',):
-            if name == 'build_meta.py':
-                archive.writestr('desktop/linux/' + name, 'BUILD = ' + str(args.build) + '\n')
-            else:
-                archive.write(ROOT / 'desktop/linux' / name, 'desktop/linux/' + name)
+            archive.write(ROOT / 'desktop/linux' / name, 'desktop/linux/' + name)
     packages.append(metadata(target, 'linux-switch-arm64', args.build))
     feed = ROOT / 'website/updates'
     feed.mkdir(exist_ok=True)

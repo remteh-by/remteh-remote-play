@@ -55,3 +55,6 @@ ps5-companion/companion-host
 __pycache__/
 *.pyc
 .DS_Store
+
+# Local sanitized test debug bundles
+*.dSYM/

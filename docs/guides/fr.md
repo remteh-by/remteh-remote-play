@@ -1,18 +1,18 @@
 # Deckivo — installation et jeu
 
-Deckivo **0.6.0 preview** · 2026-10-25
+Deckivo **0.6.1 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Avant de commencer
 
-La version 0.6.0 est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils.
+La version 0.6.1 est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils.
 
 ## Android
 
 Téléchargez l’APK arm64 du release. Android 8+ requis ; tests physiques sur Switch OLED avec Android 15. Autorisez uniquement la source choisie. Installez par-dessus l’ancienne version sans supprimer ses données. Choisissez la langue, l’assistant de connexion et associez la manette Bluetooth dans Android. Ne désactivez pas Play Protect.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1)
 
 <a id="macos"></a>
 
@@ -20,7 +20,7 @@ Téléchargez l’APK arm64 du release. Android 8+ requis ; tests physiques sur 
 
 Apple Silicon uniquement. Installez chiaki-ng séparément, enregistrez la PS5 et fermez son flux. Décompressez le ZIP Mac et placez Deckivo.app dans ~/Applications. Application non notariée : macOS peut demander « Ouvrir quand même » dans Confidentialité et sécurité. Ne désactivez pas Gatekeeper. Importez l’enregistrement chiaki-ng dans Deckivo et renseignez l’IP.
 
-[Mac ZIP · 0.6.0 b9](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-macos-0.6.0-b9.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.6.1 b10](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +37,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux technical requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-sources.zip)
+[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-sources.zip)
 
 ## Associer la console
 
@@ -57,14 +57,20 @@ Android consulte GitHub avec l’application ouverte, généralement toutes les 
 
 En cas d’échec, vérifiez IP, profil, Account ID, nouveau code et isolation réseau. Écran noir : fermez les autres clients et reconnectez-vous. Consultez la matrice exacte ci-dessous. Internet/VPN, longues sessions et toutes les fonctions des manettes ne sont pas certifiés. Windows, Intel Mac et Linux x64 sont prévus. Deckivo ne répare pas WebKit sur PS5.
 
-[Device / version / scope](../TESTED.md) · [Technical reference (English)](../TECHNICAL.md)
+[Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 
-## Soutenir le projet
+<!-- SUPPORT:START -->
+## Aidez Deckivo à grandir
 
-Le soutien Ko-fi RemTeh est facultatif. Aucun déblocage payant ni promesse d’assistance individuelle.
+Deckivo est gratuit et open source. Votre soutien finance les plateformes et les tests sur appareils.
+
+- Apple Developer ID ($99/yr) — signature et notarisation Mac
+- Version Windows
+- Plus de matériel : PS5 Pro et consoles portables
 
 [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
 
----
+<img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="Scannez avec votre téléphone">
 
-Developed by [RemTeh.by](https://remteh.by/). [Chiaki / chiaki-ng / Android Extended](../../ATTRIBUTION.md). [AGPL v3 + OpenSSL permission](../../COPYING).
+Tout reste gratuit. Le soutien est facultatif.
+<!-- SUPPORT:END -->

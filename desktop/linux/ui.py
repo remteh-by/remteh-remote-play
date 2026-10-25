@@ -1,6 +1,7 @@
-"""Deckivo native interface with an original Sony product image and local input UI."""
+"""Deckivo native interface with an original neutral illustration and local input UI."""
 import math
 from pathlib import Path
+from PyQt5.QtSvg import QSvgRenderer
 from PyQt5.QtCore import Qt, QRectF, QPointF, QSize
 from PyQt5.QtGui import (QPainter, QColor, QPen, QBrush, QLinearGradient,
                          QRadialGradient, QPainterPath, QIcon, QPixmap, QPolygonF)
@@ -100,7 +101,7 @@ class Hero(QFrame):
     def __init__(self):
         super().__init__()
         self.setMinimumSize(480, 330)
-        self.console_image=QPixmap(str(Path(__file__).resolve().parent/'assets/ps5-console.png'))
+        self.console_image=QSvgRenderer(str(Path(__file__).resolve().parent/'assets/play-space.svg'))
 
     def paintEvent(self, event):
         p=QPainter(self); p.setRenderHint(QPainter.Antialiasing)
@@ -112,13 +113,12 @@ class Hero(QFrame):
         glow=QRadialGradient(art.center(),art.height()*.65)
         glow.setColorAt(0,QColor(125,139,180,36));glow.setColorAt(1,QColor(125,139,180,0))
         p.fillPath(path,glow)
-        if not self.console_image.isNull():
-            # Display the untouched official product shot with its natural aspect
-            # ratio. The console is never redrawn, sheared, rotated or stretched.
-            size=QRectF(self.console_image.rect()).size().scaled(art.size(),Qt.KeepAspectRatio)
+        if self.console_image.isValid():
+            # Own screen/gamepad illustration, not a Sony product photograph.
+            size=self.console_image.viewBoxF().size().scaled(art.size(),Qt.KeepAspectRatio)
             target=QRectF(art.center().x()-size.width()/2,art.center().y()-size.height()/2,size.width(),size.height())
             p.setRenderHint(QPainter.SmoothPixmapTransform)
-            p.drawPixmap(target,self.console_image,QRectF(self.console_image.rect()))
+            self.console_image.render(p,target)
         p.setPen(QPen(QColor('#3F4944'),1));p.setBrush(Qt.NoBrush);p.drawPath(path)
 
 

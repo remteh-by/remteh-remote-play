@@ -89,7 +89,8 @@ class MacDeckivo(Deckivo):
         if 'Session has quit' in tail and not self.stop_requested:self.message='error'
 
     def about(self):
-        QMessageBox.information(self,'Deckivo',f'Deckivo {VERSION} · macOS Apple Silicon\nDeveloped by RemTeh.by\n\nShared native Deckivo UI, chiaki-ng 1.10.0 streaming engine.\nVideoToolbox decoding. Keyboard and SDL gamepad input.\nAGPL-3.0-only with upstream OpenSSL exception.\nIndependent project; not affiliated with Sony or Nintendo.\nExperimental preview. Internet play is not validated.')
+        from support import supporters_text
+        QMessageBox.information(self,'Deckivo',f'Deckivo {VERSION} · macOS Apple Silicon\nDeveloped by RemTeh.by\n\nShared native Deckivo UI, chiaki-ng 1.10.0 streaming engine.\nVideoToolbox decoding. Keyboard and SDL gamepad input.\nAGPL-3.0-only with upstream OpenSSL exception.\nIndependent project; not affiliated with Sony or Nintendo.\nExperimental preview. Internet play is not validated.'+supporters_text(self))
 
 
 def main():
@@ -107,6 +108,8 @@ def main():
     try:w=MacDeckivo()
     except RuntimeError:return 0
     w.setWindowTitle('Deckivo · PS5 Remote Play');w.show()
+    import update_ui
+    QTimer.singleShot(0,lambda:update_ui.acknowledge(w))
     app.aboutToQuit.connect(w.shutdown_threads)
     return app.exec()
 

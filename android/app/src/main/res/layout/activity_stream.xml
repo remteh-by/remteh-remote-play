@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/controlsFragment"
         android:name="com.metallic.chiaki.touchcontrols.DefaultTouchControlsFragment"
         android:layout_width="match_parent"

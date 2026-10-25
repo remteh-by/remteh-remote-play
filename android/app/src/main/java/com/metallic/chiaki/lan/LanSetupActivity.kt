@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: LicenseRef-AGPL-3.0-only-OpenSSL
 package com.metallic.chiaki.lan
 
+import androidx.core.content.edit
 import com.metallic.chiaki.R
 import android.content.Intent
 import com.metallic.chiaki.design.DeckivoUi
@@ -36,7 +37,7 @@ class LanSetupActivity : DeckivoActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title = "Switch OLED → PS5"
+        title = getString(R.string.dv_setup)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val content = DeckivoUi.screen(this, getString(R.string.dv_setup), getString(R.string.dv_setup_intro))
         panel = DeckivoUi.section(content, getString(R.string.dv_setup_find))
@@ -88,7 +89,7 @@ class LanSetupActivity : DeckivoActivity() {
             host.error = getString(R.string.dv_ip_required)
             return null
         }
-        localPrefs.edit().putString("host", ip).apply()
+        localPrefs.edit { putString("host", ip) }
         return ip
     }
 
@@ -96,7 +97,7 @@ class LanSetupActivity : DeckivoActivity() {
         val ip = checkedHost() ?: return
         if (requestInFlight) return
         requestInFlight = true
-        status.text = "Checking Remote Play TCP and available decoders…"
+        status.text = getString(R.string.dv_diag_checking)
         lifecycleScope.launch {
             try {
                 val report = withContext(Dispatchers.IO) {
@@ -110,14 +111,14 @@ class LanSetupActivity : DeckivoActivity() {
                     val codecs = MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
                         .filter { !it.isEncoder && it.supportedTypes.any { type -> type.equals("video/avc", true) } }
                         .joinToString { it.name }
-                    val network = if (samples.isEmpty()) "PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi client isolation."
-                        else "Remote Play responds: ${samples.size}/3, TCP ${"%.1f".format(samples.average())} ms. This checks connectivity, not video latency."
-                    "$network\nH.264 decoder: ${codecs.ifEmpty { "not found" }}\nAn open port does not confirm registration or streaming."
+                    val network = if (samples.isEmpty()) getString(R.string.dv_diag_offline)
+                        else getString(R.string.dv_diag_online, samples.size, samples.average())
+                    getString(R.string.dv_diag_report, network, codecs.ifEmpty { getString(R.string.dv_diag_none) })
                 }
                 status.text = report
             } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) throw e
-                status.text = "Check incomplete: ${e.message ?: "unknown error"}"
+                status.text = getString(R.string.dv_diag_failed)
             } finally { requestInFlight = false }
         }
     }
@@ -125,10 +126,10 @@ class LanSetupActivity : DeckivoActivity() {
     private fun fetchAccount() {
         val ip = checkedHost() ?: return
         val token = code.text.toString().trim()
-        if (!LanRules.isEightDigitCode(token)) { code.error = "Enter 8 digits from the PS5 companion notification"; return }
+        if (!LanRules.isEightDigitCode(token)) { code.error = getString(R.string.dv_helper_invalid_code); return }
         if (requestInFlight) return
         requestInFlight = true
-        status.text = "Connecting to PS5 companion…"
+        status.text = getString(R.string.dv_helper_connecting)
         lifecycleScope.launch {
             try {
                 val payload = withContext(Dispatchers.IO) {
@@ -155,10 +156,10 @@ class LanSetupActivity : DeckivoActivity() {
                     } finally { connection.disconnect() }
                 }
                 account.setText(payload.getString("accountId")); code.text.clear()
-                status.text = "ID received. On PS5, open Remote Play → Link Device, then complete step 3 here. Keep the same PS5 profile active."
+                status.text = getString(R.string.dv_helper_id_received)
             } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) throw e
-                status.text = e.message ?: "Companion unreachable. Launch its ELF on PS5 or enter Account ID manually."
+                status.text = getString(R.string.dv_helper_failed)
             } finally { requestInFlight = false }
         }
     }
@@ -184,7 +185,7 @@ class LanSetupActivity : DeckivoActivity() {
         val ip = checkedHost() ?: return
         if (requestInFlight) return
         requestInFlight = true
-        status.text = "Connecting to PS5 ELF Loader…"
+        status.text = getString(R.string.dv_helper_loading)
         lifecycleScope.launch {
             try {
                 val running = withContext(Dispatchers.IO) {
@@ -201,11 +202,11 @@ class LanSetupActivity : DeckivoActivity() {
                         ready
                     }
                 }
-                status.text = if (running) "Companion ready. Enter the code from the PS5 notification below."
-                    else "ELF sent, but the companion has not responded yet. Check PS5 notifications. Do not resend if a code is already displayed."
+                status.text = if (running) getString(R.string.dv_helper_ready)
+                    else getString(R.string.dv_helper_waiting)
             } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) throw e
-                status.text = "Could not start companion. Open WebKit / Payload Manager on PS5 and check ELF Loader (port 9021). ${e.message ?: ""}"
+                status.text = getString(R.string.dv_helper_launch_failed)
             } finally { requestInFlight = false }
         }
     }

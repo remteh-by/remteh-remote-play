@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: LicenseRef-AGPL-3.0-only-OpenSSL
 package com.metallic.chiaki.updates
 
+import com.metallic.chiaki.R
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import java.io.ByteArrayOutputStream
@@ -60,10 +61,9 @@ internal class UpdateHttp {
                     val location = connection.getHeaderField("Location") ?: error("Missing redirect location")
                     url = URL(URL(url), location).toString()
                 } else {
-                    check(status == HttpURLConnection.HTTP_OK) {
-                        if (status == 403 || status == 429) "GitHub rate limit reached. Try again later."
-                        else "Update server returned HTTP " + status
-                    }
+                    if (status != HttpURLConnection.HTTP_OK) throw UpdateFailure(
+                        if (status == 403 || status == 429) UpdateText(R.string.dv_up_rate_limit)
+                        else UpdateText(R.string.dv_up_http_error, listOf(status)))
                     val length = connection.contentLengthLong
                     require(length <= maxBytes) { "File exceeds size limit" }
                     var total = 0L

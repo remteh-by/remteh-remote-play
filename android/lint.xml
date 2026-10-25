@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- A PS5 ELF uploaded over LAN, never loaded/executed by Android. -->
+    <issue id="UnsafeNativeCodeLocation"><ignore path="app/src/main/assets/remteh-pair-helper.elf" /></issue>
+</lint>

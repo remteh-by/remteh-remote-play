@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: LicenseRef-AGPL-3.0-only-OpenSSL
 package com.metallic.chiaki.design
 
+import androidx.core.content.edit
+import android.annotation.SuppressLint
 import android.app.Application
 import android.app.LocaleManager
 import android.os.Build
@@ -28,6 +30,8 @@ class DeckivoApplication : Application() {
     }
 }
 
+// All locales are in this universal APK; no Play dynamic language modules exist.
+@SuppressLint("AppBundleLocaleChanges")
 object LanguagePicker {
     val languages = linkedMapOf("en" to "English", "ru" to "Русский", "uk" to "Українська", "pl" to "Polski", "de" to "Deutsch", "fr" to "Français", "es" to "Español", "it" to "Italiano", "pt" to "Português", "tr" to "Türkçe", "zh" to "简体中文", "ja" to "日本語", "ko" to "한국어", "ar" to "العربية", "hi" to "हिन्दी", "id" to "Bahasa Indonesia")
     fun code(context: Context): String = context.getSharedPreferences("deckivo_locale", Context.MODE_PRIVATE).getString("language", "en")?.takeIf { it == "auto" || it in languages } ?: "en"
@@ -43,6 +47,8 @@ object LanguagePicker {
         config.setLocales(LocaleList.forLanguageTags(effective(context)))
         return context.createConfigurationContext(config)
     }
+    // Universal sideload APK contains every locale; there are no Play language splits.
+    @SuppressLint("AppBundleLocaleChanges")
     fun apply(context: Context): Boolean {
         val language = effective(context)
         // API 33+ must use LocaleManager before any Activity delegate exists.
@@ -65,7 +71,7 @@ object LanguagePicker {
             .setTitle(activity.getString(R.string.dv_language) + " / Language")
             .setSingleChoiceItems(labels, codes.indexOf(code(activity))) { dialog, index ->
                 val tag = codes[index]
-                activity.getSharedPreferences("deckivo_locale", Context.MODE_PRIVATE).edit().putString("language", tag).apply()
+                activity.getSharedPreferences("deckivo_locale", Context.MODE_PRIVATE).edit { putString("language", tag) }
                 dialog.dismiss()
                 apply(activity)
                 // Our localized base context must be reattached for a new choice.
@@ -78,7 +84,7 @@ object LanguagePicker {
     }
     fun addToToolbar(activity: AppCompatActivity, toolbar: MaterialToolbar) {
         toolbar.menu.add(label(activity)).apply {
-            setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+            setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
             contentDescription = activity.getString(R.string.dv_language)
             setOnMenuItemClickListener { show(activity); true }
         }

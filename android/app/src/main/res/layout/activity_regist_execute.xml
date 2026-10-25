@@ -9,8 +9,7 @@
     android:padding="8dp"
     tools:context=".regist.RegistExecuteActivity">
 
-    <ImageView
-        android:id="@+id/iconImageView"
+    <ImageView android:importantForAccessibility="no"         android:id="@+id/iconImageView"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:src="@drawable/ic_deckivo"
@@ -61,6 +60,7 @@
         app:layout_constraintEnd_toStartOf="@id/shareLogButton"
         android:gravity="center_vertical"
         android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:layout_marginEnd="8dp"
         tools:text="Tried, but failed miserably" />
 

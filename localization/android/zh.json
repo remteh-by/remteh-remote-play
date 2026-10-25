@@ -126,7 +126,7 @@
   "dv_account_required": "输入来自配套设备或 LinkDev 的帐户 ID（Base64 中的 8 个字节）。",
   "dv_setup_done": "注册完成后，返回家并选择PS5。本地播放已准备就绪；此版本未配置互联网访问。",
   "dv_console_list": "返回控制台",
-  "dv_setup_credit": "基于 Chiaki / chiaki-ng Android 扩展 (AGPL-3.0) 构建。套件中包含相应的来源。一个独立的客户端，而不是索尼应用程序。",
+  "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "输入私有 IPv4 地址，例如 192.168.1.10，不带 http 或端口。",
   "dv_controller_intro": "测试 GameSir、Joy-Con 或其他控制器上的按钮和摇杆。",
   "dv_no_controller": "未找到控制器。在 Android 蓝牙设置中连接它。",

@@ -14,6 +14,7 @@ import platform
 import shutil
 import socket
 import subprocess
+import sys
 import tempfile
 from session import VERSION
 
@@ -21,10 +22,26 @@ HERE=Path(__file__).resolve().parent
 DEST=Path.home()/'.local/share/deckivo'
 PRIVATE=Path.home()/'.config/deckivo'
 FILES=('deckivo.py','launcher.py','storage.py','session.py','controller.py','ui.py','ui_theme.py',
-       'updater.py','update_ui.py','install_update.py','build_meta.py','pair.py',
+       'support.py','support_policy.py','updater.py','rsa_verify.py','update_ui.py','install_update.py','build_meta.py','pair.py',
        'deckivo.svg','README.md','UPSTREAM.json','native/tegra-decoder.c',
-       'assets/ps5-console.png','assets/source.json','assets/NOTICE.txt',
-       'assets/fonts/IBMPlexSans.ttf','assets/fonts/OFL.txt','assets/update-public.der')
+       'assets/play-space.svg',
+       'assets/fonts/IBMPlexSans.ttf','assets/fonts/OFL.txt','assets/update-public.der','assets/support.json')+tuple('assets/support/'+p.name for p in (HERE/'assets/support').glob('*.svg'))
+REMOVED=('assets/ps5-console.png','assets/source.json','assets/NOTICE.txt')
+
+
+def restore_backup(backup):
+    backup=Path(backup).resolve()
+    backup.relative_to((DEST.parent/'deckivo-backups').resolve())
+    receipt=json.loads((backup/'receipt.json').read_text())
+    for name in receipt['files']+receipt.get('removed',[]):
+        path=Path(name)
+        if path.is_absolute() or '..' in path.parts or name=='registration.json' or path.parts[0] in ('runtime','private'):
+            raise ValueError('Invalid rollback path')
+        target=DEST/path;saved=backup/path
+        if name in receipt['previous']:
+            if not saved.is_file():raise ValueError('Incomplete rollback backup')
+            target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(saved,target)
+        elif target.is_file():target.unlink()
 
 
 def main():
@@ -57,29 +74,38 @@ def main():
             subprocess.run(['gcc','-Wall','-Wextra','-O2','-fPIC','-shared',
                 '-I'+str(runtime/'usr/include/aarch64-linux-gnu'),
                 str(HERE/'native/tegra-decoder.c'),'-ldl','-o',str(library)],check=True)
-            installed=[]
+            installed=[];previous=[];removed=[]
             try:
                 for name in FILES+('native/libdeckivo-tegra.so',):
                     source=library if name.endswith('.so') else HERE/name
                     target=DEST/name;saved=backup/name
                     saved.parent.mkdir(parents=True,exist_ok=True)
-                    if target.exists():shutil.copy2(target,saved)
+                    if target.exists():shutil.copy2(target,saved);previous.append(name)
                     target.parent.mkdir(parents=True,exist_ok=True)
                     staging=target.with_name(target.name+'.upgrade-new')
                     shutil.copy2(source,staging);staging.replace(target);installed.append(name)
+                for name in REMOVED:
+                    target=DEST/name;saved=backup/name
+                    if target.is_file():
+                        saved.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(target,saved)
+                        target.unlink();previous.append(name);removed.append(name)
                 if digest is not None and digest!=hashlib.sha256(registration.read_bytes()).hexdigest():
                     raise RuntimeError('Registration changed unexpectedly.')
             except BaseException:
-                for name in reversed(installed):
+                for name in reversed(installed+removed):
                     saved,target=backup/name,DEST/name
                     if saved.exists():shutil.copy2(saved,target)
                     else:target.unlink(missing_ok=True)
                 raise
-        (backup/'receipt.json').write_text(json.dumps({'upgraded_to':VERSION,
-            'files':list(installed),'pairing_retained':True},indent=2))
-        print('Deckivo '+VERSION+' installed. Pairing and preferences retained.')
-        print('Rollback files:',backup)
-        print('Open Deckivo and test video, sound, GameSir, disconnect and reconnect.')
+        receipt={'upgraded_to':VERSION,'files':list(installed),'removed':removed,
+            'previous':previous,'pairing_retained':True}
+        (backup/'receipt.json').write_text(json.dumps(receipt,indent=2))
+        if '--json' not in sys.argv:
+            print('Deckivo '+VERSION+' installed. Pairing and preferences retained.')
+            print('Rollback files:',backup)
+        return {'backup':str(backup),'version':VERSION,'pairing_retained':True}
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    result=main()
+    if '--json' in sys.argv:print(json.dumps(result))

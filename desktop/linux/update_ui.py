@@ -19,14 +19,27 @@ def initialize(window):
     window.update_timer=QTimer(window);window.update_timer.timeout.connect(lambda:check(window));window.update_timer.start(5*60*1000)
     window.update_apply_timer=QTimer(window);window.update_apply_timer.timeout.connect(lambda:install_when_idle(window));window.update_apply_timer.start(10000)
     QTimer.singleShot(4000,lambda:check(window))
-    QTimer.singleShot(2000,lambda:acknowledge(window))
 
 
 def acknowledge(window):
-    if window.is_closing:return
+    if window.is_closing or not window.isVisible():return
+    if not startup_ready(window):return
     receipt=load_json(PRIVATE/'update-receipt.json',{})
     if receipt.get('version')==VERSION and receipt.get('build')==BUILD:
         private_json(PRIVATE/'update-ack.json',{'version':VERSION,'build':BUILD,'transaction':receipt.get('transaction'),'pid':os.getpid()})
+
+
+def startup_ready(window):
+    from storage import DATA
+    registration=(PRIVATE if sys.platform=='darwin' else DATA)/'registration.json'
+    try:
+        for path in (CONFIG,registration):
+            if path.exists() and not isinstance(json.loads(path.read_text()),dict):return False
+        if sys.platform=='darwin':
+            from macos_engine import ENGINE
+            return ENGINE.is_file()
+        return (DATA/'runtime/usr/bin/chiaki').is_file()
+    except (OSError,ValueError):return False
 
 
 def check(window,manual=False):

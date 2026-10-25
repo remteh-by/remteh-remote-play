@@ -1,0 +1,679 @@
+{
+  "method": "Sum of fetched old response body bytes and built first-load HTML/CSS/JS/font/hero payload; no video, no headers. gzip values are estimates, not measured wire totals.",
+  "before_bytes": 1033723,
+  "before_gzip_estimate": 748877,
+  "after": [
+    {
+      "locale": "ar",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "index.html": 21441
+      },
+      "uncompressed_bytes": 58452,
+      "gzip_estimate": 31338
+    },
+    {
+      "locale": "de",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19771
+      },
+      "uncompressed_bytes": 225726,
+      "gzip_estimate": 197957
+    },
+    {
+      "locale": "es",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19471
+      },
+      "uncompressed_bytes": 225426,
+      "gzip_estimate": 197840
+    },
+    {
+      "locale": "fr",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19952
+      },
+      "uncompressed_bytes": 225907,
+      "gzip_estimate": 197980
+    },
+    {
+      "locale": "hi",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "index.html": 25461
+      },
+      "uncompressed_bytes": 62472,
+      "gzip_estimate": 31490
+    },
+    {
+      "locale": "id",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19507
+      },
+      "uncompressed_bytes": 225462,
+      "gzip_estimate": 197793
+    },
+    {
+      "locale": "en",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 21660
+      },
+      "uncompressed_bytes": 227615,
+      "gzip_estimate": 198226
+    },
+    {
+      "locale": "it",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19362
+      },
+      "uncompressed_bytes": 225317,
+      "gzip_estimate": 197799
+    },
+    {
+      "locale": "ja",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "index.html": 21100
+      },
+      "uncompressed_bytes": 58111,
+      "gzip_estimate": 31512
+    },
+    {
+      "locale": "ko",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "index.html": 20555
+      },
+      "uncompressed_bytes": 57566,
+      "gzip_estimate": 31359
+    },
+    {
+      "locale": "pl",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19511
+      },
+      "uncompressed_bytes": 225466,
+      "gzip_estimate": 197993
+    },
+    {
+      "locale": "pt",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19346
+      },
+      "uncompressed_bytes": 225301,
+      "gzip_estimate": 197842
+    },
+    {
+      "locale": "ru",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 27893
+      },
+      "uncompressed_bytes": 233848,
+      "gzip_estimate": 199148
+    },
+    {
+      "locale": "tr",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19666
+      },
+      "uncompressed_bytes": 225621,
+      "gzip_estimate": 197916
+    },
+    {
+      "locale": "uk",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 22854
+      },
+      "uncompressed_bytes": 228809,
+      "gzip_estimate": 198379
+    },
+    {
+      "locale": "zh",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "index.html": 19587
+      },
+      "uncompressed_bytes": 56598,
+      "gzip_estimate": 31418
+    }
+  ],
+  "responsive": [
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "en",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 325.09375,
+      "width": 390
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "en",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 654.703125,
+      "width": 768
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "en",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 1240.6875,
+      "width": 1440
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "en",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 1659.25,
+      "width": 1920
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "en",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 2217.328125,
+      "width": 2560
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "en",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 3333.484375,
+      "width": 3840
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ru",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 325.09375,
+      "width": 390
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ru",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 654.703125,
+      "width": 768
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ru",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 1240.6875,
+      "width": 1440
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ru",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 1659.25,
+      "width": 1920
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ru",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 2217.328125,
+      "width": 2560
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ru",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 3333.484375,
+      "width": 3840
+    },
+    {
+      "broken": [],
+      "dir": "rtl",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ar",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 325.09375,
+      "width": 390
+    },
+    {
+      "broken": [],
+      "dir": "rtl",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ar",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 654.703125,
+      "width": 768
+    },
+    {
+      "broken": [],
+      "dir": "rtl",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ar",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 1240.6875,
+      "width": 1440
+    },
+    {
+      "broken": [],
+      "dir": "rtl",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ar",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 1659.25,
+      "width": 1920
+    },
+    {
+      "broken": [],
+      "dir": "rtl",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ar",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 2217.328125,
+      "width": 2560
+    },
+    {
+      "broken": [],
+      "dir": "rtl",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ar",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 3333.484375,
+      "width": 3840
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ja",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 325.09375,
+      "width": 390
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ja",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 654.703125,
+      "width": 768
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ja",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 1240.6875,
+      "width": 1440
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ja",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 1659.25,
+      "width": 1920
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ja",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 2217.328125,
+      "width": 2560
+    },
+    {
+      "broken": [],
+      "dir": "ltr",
+      "h1": 1,
+      "hreflang": 17,
+      "lang": "ja",
+      "overflow": false,
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage"
+      ],
+      "tableWidth": 3333.484375,
+      "width": 3840
+    }
+  ],
+  "no_js": [
+    {
+      "autoBanner": false,
+      "body": 5418,
+      "headings": 6,
+      "lang": "en",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play for Nintendo Switch (Android), Android & Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 5497,
+      "headings": 6,
+      "lang": "ru",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play для Nintendo Switch (Android), Android и Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4170,
+      "headings": 6,
+      "lang": "uk",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play для Nintendo Switch (Android), Android і Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4144,
+      "headings": 6,
+      "lang": "pl",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play na Nintendo Switch (Android), Android i Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4357,
+      "headings": 6,
+      "lang": "de",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play für Nintendo Switch (Android), Android und Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4441,
+      "headings": 6,
+      "lang": "fr",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play sur Nintendo Switch (Android), Android et Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4202,
+      "headings": 6,
+      "lang": "es",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play para Nintendo Switch (Android), Android y Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4163,
+      "headings": 6,
+      "lang": "it",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play per Nintendo Switch (Android), Android e Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4095,
+      "headings": 6,
+      "lang": "pt",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play para Nintendo Switch (Android), Android e Mac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4090,
+      "headings": 6,
+      "lang": "tr",
+      "links": 16,
+      "title": "Deckivo — Nintendo Switch (Android), Android ve Mac için PS5 Remote Play"
+    },
+    {
+      "autoBanner": false,
+      "body": 2659,
+      "headings": 6,
+      "lang": "zh",
+      "links": 16,
+      "title": "Deckivo — 适用于 Nintendo Switch (Android)、Android 和 Mac 的 PS5 Remote Play"
+    },
+    {
+      "autoBanner": false,
+      "body": 2933,
+      "headings": 6,
+      "lang": "ja",
+      "links": 16,
+      "title": "Deckivo — Nintendo Switch (Android)・Android・Mac 用 PS5 Remote Play"
+    },
+    {
+      "autoBanner": false,
+      "body": 3035,
+      "headings": 6,
+      "lang": "ko",
+      "links": 16,
+      "title": "Deckivo — Nintendo Switch (Android), Android, Mac용 PS5 Remote Play"
+    },
+    {
+      "autoBanner": false,
+      "body": 3748,
+      "headings": 6,
+      "lang": "ar",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play على Nintendo Switch (Android) وAndroid وMac"
+    },
+    {
+      "autoBanner": false,
+      "body": 4049,
+      "headings": 6,
+      "lang": "hi",
+      "links": 16,
+      "title": "Deckivo — Nintendo Switch (Android), Android और Mac के लिए PS5 Remote Play"
+    },
+    {
+      "autoBanner": false,
+      "body": 4223,
+      "headings": 6,
+      "lang": "id",
+      "links": 16,
+      "title": "Deckivo — PS5 Remote Play untuk Nintendo Switch (Android), Android dan Mac"
+    }
+  ],
+  "font_note": "Modified web subset renamed Deckivo Sans Subset, including variable-instance PostScript names, retaining original OFL/copyright."
+}

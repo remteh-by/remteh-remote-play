@@ -13,11 +13,13 @@ import com.metallic.chiaki.session.StreamInput
 
 class StreamViewModel(val application: Application, val connectInfo: ConnectInfo): ViewModel()
 {
-	val preferences = Preferences(application)
-	val logManager = LogManager(application)
+    val preferences = Preferences(application)
+    val logManager = LogManager(application)
 
-	val input = StreamInput(application, preferences)
-	val session = StreamSession(connectInfo, logManager, preferences.logVerbose, input)
+    val input = StreamInput(application, preferences)
+    val session = StreamSession(connectInfo, logManager, preferences.logVerbose, input)
+    private var userExitRequested = false
+    fun requestUserExit() { userExitRequested = session.state.value is com.metallic.chiaki.session.StreamStateConnected }
     private var historyStarted = 0L
     private var historyMonotonic = 0L
     private fun finishHistory() {
@@ -25,6 +27,8 @@ class StreamViewModel(val application: Application, val connectInfo: ConnectInfo
         com.metallic.chiaki.design.SessionHistory.append(application,historyStarted,
             (android.os.SystemClock.elapsedRealtime()-historyMonotonic)/1000,
             preferences.resolution.value + " · " + preferences.fps.value + " FPS")
+        com.metallic.chiaki.design.SupportNudges.complete(application, (android.os.SystemClock.elapsedRealtime()-historyMonotonic)/1000, userExitRequested)
+        userExitRequested=false
         historyStarted=0L
     }
     private val historyObserver=Observer<com.metallic.chiaki.session.StreamState> { state ->
@@ -34,21 +38,21 @@ class StreamViewModel(val application: Application, val connectInfo: ConnectInfo
     }
     init { session.state.observeForever(historyObserver) }
 
-	private var _onScreenControlsEnabled = MutableLiveData<Boolean>(preferences.onScreenControlsEnabled)
-	val onScreenControlsEnabled: LiveData<Boolean> get() = _onScreenControlsEnabled
+    private var _onScreenControlsEnabled = MutableLiveData<Boolean>(preferences.onScreenControlsEnabled)
+    val onScreenControlsEnabled: LiveData<Boolean> get() = _onScreenControlsEnabled
 
 
-	override fun onCleared()
-	{
-		super.onCleared()
+    override fun onCleared()
+    {
+        super.onCleared()
         finishHistory();session.state.removeObserver(historyObserver)
-		session.shutdown()
-	}
+        session.shutdown()
+    }
 
-	fun setOnScreenControlsEnabled(enabled: Boolean)
-	{
-		preferences.onScreenControlsEnabled = enabled
-		_onScreenControlsEnabled.value = enabled
-	}
+    fun setOnScreenControlsEnabled(enabled: Boolean)
+    {
+        preferences.onScreenControlsEnabled = enabled
+        _onScreenControlsEnabled.value = enabled
+    }
 
 }

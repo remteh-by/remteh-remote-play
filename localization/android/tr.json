@@ -126,7 +126,7 @@
   "dv_account_required": "Tamamlayıcıdan veya LinkDev'den bir Hesap Kimliği girin (Base64'te 8 bayt).",
   "dv_setup_done": "Kayıttan sonra eve dönün ve PS5'i seçin. Yerel oyun hazır; İnternet erişimi bu sürüm tarafından yapılandırılmamış.",
   "dv_console_list": "Konsollara geri dön",
-  "dv_setup_credit": "Chiaki / chiaki-ng Android Extended (AGPL-3.0) üzerine kurulmuştur. İlgili kaynak kite dahildir. Bağımsız bir müşteri, bir Sony uygulaması değil.",
+  "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "http veya bağlantı noktası olmadan 192.168.1.10 gibi özel bir IPv4 adresi girin.",
   "dv_controller_intro": "GameSir, Joy-Con veya başka bir kontrol cihazındaki düğmeleri ve çubukları test edin.",
   "dv_no_controller": "Denetleyici bulunamadı. Android Bluetooth ayarlarında bağlayın.",

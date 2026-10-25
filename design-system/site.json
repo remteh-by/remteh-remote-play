@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "site": {
+    "base_url": "https://remteh-by.github.io/remteh-remote-play/",
+    "analytics": {
+      "goatcounter": ""
+    }
+  }
+}

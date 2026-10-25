@@ -8,9 +8,9 @@ import java.util.Base64
 
 class PrivateChannelTest {
     @Test fun privateAssetsCannotChangeOriginOrTraverse() {
-        val base = "http://192.168.31.160/private/"
+        val base = "http://10.0.0.10/private/"
         assertTrue(PrivateChannel.sameOriginAsset(base, base + "index.json"))
-        assertFalse(PrivateChannel.sameOriginAsset(base, "http://192.168.31.161/private/index.json"))
+        assertFalse(PrivateChannel.sameOriginAsset(base, "http://192.168.0.161/private/index.json"))
         assertFalse(PrivateChannel.sameOriginAsset(base, base + "../index.json"))
         assertFalse(PrivateChannel.sameOriginAsset(base, base + "%2e%2e/index.json"))
         assertFalse(PrivateChannel.sameOriginAsset(base, base + "index.json?redirect=1"))

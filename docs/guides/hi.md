@@ -1,18 +1,18 @@
 # Deckivo — स्थापना और खेलने की मार्गदर्शिका
 
-Deckivo **0.6.0 preview** · 2026-10-25
+Deckivo **0.6.1 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## शुरू करने से पहले
 
-0.6.0 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।
+0.6.1 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।
 
 ## Android
 
 रिलीज़ से arm64 APK डाउनलोड करें। Android 8+ आवश्यक है; वास्तविक परीक्षण Switch OLED और Android 15 पर हुआ। केवल चुने हुए स्रोत को स्थापना की अनुमति दें। पुराना ऐप या डेटा हटाए बिना ऊपर से इंस्टॉल करें। भाषा और कनेक्शन विज़ार्ड चुनें तथा Android Bluetooth में गेमपैड जोड़ें। Play Protect बंद न करें।
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1)
 
 <a id="macos"></a>
 
@@ -20,7 +20,7 @@ Deckivo **0.6.0 preview** · 2026-10-25
 
 केवल Apple Silicon। आधिकारिक chiaki-ng अलग से इंस्टॉल करें, PS5 पंजीकृत करें और उसकी स्ट्रीम बंद करें। Mac ZIP खोलकर Deckivo.app को ~/Applications में रखें। ऐप notarized नहीं है; गोपनीयता और सुरक्षा में “Open Anyway” आवश्यक हो सकता है। Gatekeeper पूरी तरह बंद न करें। Deckivo में chiaki-ng पंजीकरण आयात करके कंसोल का IP भरें।
 
-[Mac ZIP · 0.6.0 b9](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-macos-0.6.0-b9.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.6.1 b10](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +37,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux technical requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-sources.zip)
+[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-sources.zip)
 
 ## कंसोल जोड़ना
 
@@ -57,14 +57,20 @@ Android खुली होम/अपडेट स्क्रीन पर आ�
 
 त्रुटि पर IP, प्रोफ़ाइल, Account ID, नया PIN और नेटवर्क अलगाव जाँचें। काली स्क्रीन पर दूसरे क्लाइंट बंद करके पुनः जोड़ें। सटीक परीक्षण संस्करण नीचे हैं। इंटरनेट/VPN, स्लीप से जागना, लंबे सत्र और सभी कंट्रोलर फ़ंक्शन प्रमाणित नहीं हैं। Windows, Intel Mac और Linux x64 योजनाबद्ध हैं। Deckivo PS5 WebKit ठीक नहीं करता।
 
-[Device / version / scope](../TESTED.md) · [Technical reference (English)](../TECHNICAL.md)
+[Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 
-## परियोजना का समर्थन
+<!-- SUPPORT:START -->
+## Deckivo को आगे बढ़ाएँ
 
-Ko-fi RemTeh समर्थन स्वैच्छिक है। कोई भुगतान वाली सुविधा या व्यक्तिगत सेटअप सेवा का वादा नहीं है। ऐप मुफ्त और खुला स्रोत रहेगा।
+Deckivo मुफ्त और खुला स्रोत है। आपका समर्थन नए प्लेटफ़ॉर्म और असली उपकरणों के परीक्षण में मदद करता है।
+
+- Apple Developer ID ($99/yr) — Mac हस्ताक्षर और नोटराइज़ेशन
+- Windows संस्करण
+- और परीक्षण उपकरण: PS5 Pro और हैंडहेल्ड
 
 [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
 
----
+<img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="फ़ोन से स्कैन करें">
 
-Developed by [RemTeh.by](https://remteh.by/). [Chiaki / chiaki-ng / Android Extended](../../ATTRIBUTION.md). [AGPL v3 + OpenSSL permission](../../COPYING).
+सब कुछ मुफ्त रहेगा। समर्थन वैकल्पिक है।
+<!-- SUPPORT:END -->

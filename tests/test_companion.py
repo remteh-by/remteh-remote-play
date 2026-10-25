@@ -59,6 +59,24 @@ def request(port, code="12345678", **extra):
         c.close()
 
 
+def rejected(port, code="12345678", **extra):
+    """Early rejection can close unread TCP bytes with RST on macOS.
+
+    Accept 400 or reset before headers, never a successful/other status. Valid
+    account requests still require a complete JSON body in request().
+    """
+    c = http.client.HTTPConnection("127.0.0.1", port, timeout=3)
+    try:
+        c.request("POST", "/v1/account", code, {"Content-Type": "text/plain", "X-RemTeh-Client": "1", **extra})
+        try:
+            response = c.getresponse()
+        except ConnectionResetError:
+            return True
+        return response.status == 400
+    finally:
+        c.close()
+
+
 class CompanionProtocol(unittest.TestCase):
     def test_one_time_success_and_base64(self):
         with server() as (port, p):
@@ -88,14 +106,14 @@ class CompanionProtocol(unittest.TestCase):
 
     def test_origin_and_missing_client_rejected(self):
         with server() as (port, _):
-            self.assertEqual(request(port, Origin="http://example.org")[0], 400)
-            self.assertEqual(request(port, **{"X-RemTeh-Client": "0"})[0], 400)
+            self.assertTrue(rejected(port, Origin="http://example.org"))
+            self.assertTrue(rejected(port, **{"X-RemTeh-Client": "0"}))
             self.assertEqual(request(port)[0], 200)
 
     def test_malformed_sizes_and_paths(self):
         with server() as (port, _):
-            self.assertEqual(request(port, "1" * 100)[0], 400)
-            self.assertEqual(request(port, "12abcdef")[0], 400)
+            self.assertTrue(rejected(port, "1" * 100))
+            self.assertTrue(rejected(port, "12abcdef"))
             with socket.create_connection(("127.0.0.1", port), timeout=3) as s:
                 s.sendall(b"POST /v1/account HTTP/1.1\r\nContent-Length: 8\r\nContent-Length: 8\r\nX-RemTeh-Client: 1\r\nContent-Type: text/plain\r\n\r\n12345678")
                 self.assertIn(b"400", s.recv(512))

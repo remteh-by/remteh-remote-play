@@ -30,7 +30,7 @@ class ControllerTestActivity : DeckivoActivity() {
         status = DeckivoUi.label(DeckivoUi.section(root, getString(R.string.dv_input_test)), getString(R.string.dv_waiting_input), 18f, true)
         val setup = DeckivoUi.section(root, getString(R.string.dv_button_layout))
         DeckivoUi.button(setup, getString(R.string.dv_calibrate), true) {
-            captured.clear(); step = 0; status.text = getString(R.string.dv_press) + positions[step]
+            captured.clear(); step = 0; status.text = getString(R.string.dv_press_position, positions[step])
         }
         DeckivoUi.button(setup, getString(R.string.dv_cancel_calibration)) { step = -1; captured.clear(); status.text = getString(R.string.dv_changes_cancelled) }
 
@@ -40,20 +40,20 @@ class ControllerTestActivity : DeckivoActivity() {
             event.keyCode in KeyEvent.KEYCODE_BUTTON_A..KeyEvent.KEYCODE_BUTTON_MODE
         if (gamepad && ::status.isInitialized) {
             if (event.action == KeyEvent.ACTION_UP && step >= 0) {
-                if (event.keyCode in captured) { status.text = "Button already mapped. Press ${positions[step]}"; return true }
+                if (event.keyCode in captured) { status.text = getString(R.string.dv_button_duplicate, positions[step]); return true }
                 captured.add(event.keyCode); step++
                 if (step == positions.size) {
                     Preferences(this).apply { mappingCross = captured[0]; mappingCircle = captured[1]; mappingSquare = captured[2]; mappingTriangle = captured[3] }
                     step = -1; status.text = getString(R.string.dv_layout_saved)
-                } else status.text = "Press ${positions[step]}"
-            } else if (step < 0) status.text = "${event.device?.name}: ${KeyEvent.keyCodeToString(event.keyCode)} · ${if(event.action == KeyEvent.ACTION_DOWN) getString(R.string.dv_pressed) else getString(R.string.dv_released)}"
+                } else status.text = getString(R.string.dv_press_position, positions[step])
+            } else if (step < 0) status.text = getString(R.string.dv_key_event, event.device?.name.orEmpty(), KeyEvent.keyCodeToString(event.keyCode), if(event.action == KeyEvent.ACTION_DOWN) getString(R.string.dv_pressed) else getString(R.string.dv_released))
             return true
         }
         return super.dispatchKeyEvent(event)
     }
     override fun onGenericMotionEvent(event: MotionEvent): Boolean {
         if (event.source and InputDevice.SOURCE_JOYSTICK == InputDevice.SOURCE_JOYSTICK) {
-            if (step < 0) status.text = "Left: %.2f / %.2f · Right: %.2f / %.2f · ZL/ZR: %.2f / %.2f".format(
+            if (step < 0) status.text = getString(R.string.dv_axes_event,
                 event.getAxisValue(MotionEvent.AXIS_X), event.getAxisValue(MotionEvent.AXIS_Y),
                 event.getAxisValue(MotionEvent.AXIS_Z), event.getAxisValue(MotionEvent.AXIS_RZ),
                 event.getAxisValue(MotionEvent.AXIS_LTRIGGER), event.getAxisValue(MotionEvent.AXIS_RTRIGGER))

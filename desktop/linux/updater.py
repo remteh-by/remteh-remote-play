@@ -1,15 +1,12 @@
 """Pinned RSA signatures, bounded downloads and platform/build selection."""
-import base64
 import hashlib
 import ipaddress
 import json
 import os
 from pathlib import Path
 import re
-import subprocess
 import ssl
 import sys
-import tempfile
 import urllib.parse
 import urllib.request
 
@@ -17,6 +14,7 @@ from PyQt5.QtCore import QThread,pyqtSignal
 
 MAX_PACKAGE=150*1024*1024
 DEFAULT_CHANNEL='https://remteh-by.github.io/remteh-remote-play/updates/'
+FUTURE_CHANNEL='https://deckivo.remteh.by/updates/'
 RELEASE_ROOT='https://github.com/remteh-by/remteh-remote-play/releases/download/'
 
 
@@ -43,12 +41,26 @@ def valid_base(url):
     if u.username or u.password or u.query or u.fragment or not u.path.endswith('/'):return False
     if u.scheme=='https':return bool(u.hostname)
     if u.scheme!='http':return False
-    try:return ipaddress.ip_address(u.hostname).is_private
+    try:
+        address=ipaddress.ip_address(u.hostname)
+        return address.is_loopback or any(address in ipaddress.ip_network(net) for net in (('10.0.0.0/8','172.16.0.0/12','192.168.0.0/16') if address.version==4 else ('fc00::/7',)))
     except ValueError:return False
 
 
 class UpdateCancelled(Exception):
     pass
+
+
+def allowed_redirect(original, destination):
+    target=urllib.parse.urlsplit(destination)
+    if target.scheme!='https' or target.username or target.password or target.fragment or target.port not in (None,443):return False
+    if original.startswith(RELEASE_ROOT):
+        return target.hostname in ('github.com','release-assets.githubusercontent.com','objects.githubusercontent.com')
+    # Only the two metadata files may migrate to the exact owned channel.
+    for name in ('index.json','index.sig'):
+        if original==DEFAULT_CHANNEL+name:
+            return destination==FUTURE_CHANNEL+name
+    return False
 
 
 def cancelled(cancel):
@@ -59,10 +71,7 @@ def fetch(url,limit,cancel=None):
     class SafeRedirect(urllib.request.HTTPRedirectHandler):
         max_redirections=5
         def redirect_request(self,request,fp,code,message,headers,newurl):
-            target=urllib.parse.urlsplit(newurl)
-            if not (url.startswith(RELEASE_ROOT) and target.scheme=='https' and target.hostname in
-                ('github.com','release-assets.githubusercontent.com','objects.githubusercontent.com') and
-                not target.username and not target.password and target.port in (None,443)):
+            if not allowed_redirect(url,newurl):
                 raise ValueError('Untrusted update redirect')
             return super().redirect_request(request,fp,code,message,headers,newurl)
     request=urllib.request.Request(url,headers={'User-Agent':'Deckivo-Updater','Accept':'application/octet-stream'})
@@ -81,12 +90,8 @@ def fetch(url,limit,cancel=None):
 
 
 def verify_signature(data,encoded,public_key):
-    signature=base64.b64decode(encoded,validate=True)
-    with tempfile.TemporaryDirectory(prefix='deckivo-verify-') as name:
-        root=Path(name);(root/'payload').write_bytes(data);(root/'signature').write_bytes(signature)
-        r=subprocess.run(['openssl','dgst','-sha256','-keyform','DER','-verify',str(public_key),
-            '-signature',str(root/'signature'),str(root/'payload')],capture_output=True)
-        if r.returncode:raise ValueError('Update signature is invalid')
+    from rsa_verify import verify
+    verify(data,encoded,Path(public_key).read_bytes())
 
 
 def candidate(index,platform,current_version,current_build):

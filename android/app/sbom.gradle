@@ -1,0 +1,33 @@
+// CycloneDX for the exact resolved release runtime, not declared dependency guesses.
+tasks.register('deckivoSbom') {
+    dependsOn 'verifySupportConfig'
+    doLast {
+        def sha = { f -> java.security.MessageDigest.getInstance('SHA-256').digest(f.bytes).encodeHex().toString() }
+        def artifacts = configurations.releaseRuntimeClasspath.resolvedConfiguration.resolvedArtifacts
+        def refs = [:]; def components = []
+        artifacts.sort { it.moduleVersion.id.toString() }.each { artifact ->
+            def id=artifact.moduleVersion.id
+            def purl="pkg:maven/${id.group}/${id.name}@${id.version}"
+            refs[id.toString()]=purl
+            components << [type:'library', group:id.group, name:id.name, version:id.version,
+                'bom-ref':purl, purl:purl, hashes:[[alg:'SHA-256',content:sha(artifact.file)]]]
+        }
+        def dependencies=[]
+        configurations.releaseRuntimeClasspath.incoming.resolutionResult.allComponents.each { component ->
+            def key=component.moduleVersion?.toString()
+            if(refs[key]) dependencies << [ref:refs[key],dependsOn:component.dependencies.findAll { it instanceof org.gradle.api.artifacts.result.ResolvedDependencyResult }.collect { refs[it.selected.moduleVersion?.toString()] }.findAll { it }.unique().sort()]
+        }
+        def lock=new groovy.json.JsonSlurper().parse(rootProject.file('../UPSTREAM-LOCK.json'))
+        lock.commits.findAll { k,v -> k!='.' }.each { path,revision ->
+            def name=path.tokenize('/').last();def ref='native:'+path+'@'+revision
+            components << [type:'library',name:name,version:revision,'bom-ref':ref,properties:[[name:'deckivo:source-path',value:path]]]
+        }
+        def output=rootProject.file("../dist/Deckivo-${android.defaultConfig.versionName}-android.cdx.json")
+        output.parentFile.mkdirs()
+        output.text=groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson([
+            bomFormat:'CycloneDX',specVersion:'1.6',version:1,
+            metadata:[component:[type:'application',name:'Deckivo',version:android.defaultConfig.versionName,'bom-ref':'deckivo:android',purl:"pkg:generic/Deckivo@${android.defaultConfig.versionName}?platform=android",licenses:[[expression:'LicenseRef-AGPL-3.0-only-OpenSSL']]]],
+            components:components,dependencies:dependencies]))+'\n'
+        println("CycloneDX: ${components.size()} resolved JVM/native components -> ${output.name}")
+    }
+}

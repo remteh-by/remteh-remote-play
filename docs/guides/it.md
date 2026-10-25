@@ -1,18 +1,18 @@
 # Deckivo — installazione e gioco
 
-Deckivo **0.6.0 preview** · 2026-10-25
+Deckivo **0.6.1 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Prima di iniziare
 
-0.6.0 è un’anteprima sperimentale. Collega PS5 e client alla stessa rete domestica. Su PS5 scegli il profilo corretto: Impostazioni → Sistema → Riproduzione remota → Abilita. Mantieni la console accesa per la prima associazione. Preferisci Wi-Fi 5 GHz; le reti ospiti possono isolare i dispositivi.
+0.6.1 è un’anteprima sperimentale. Collega PS5 e client alla stessa rete domestica. Su PS5 scegli il profilo corretto: Impostazioni → Sistema → Riproduzione remota → Abilita. Mantieni la console accesa per la prima associazione. Preferisci Wi-Fi 5 GHz; le reti ospiti possono isolare i dispositivi.
 
 ## Android
 
 Scarica l’APK arm64 dal rilascio. Richiede Android 8+; test fisici su Switch OLED con Android 15. Autorizza soltanto la sorgente scelta. Installa sopra la vecchia versione senza cancellare dati. Seleziona lingua e procedura di connessione; associa il controller Bluetooth in Android. Non disattivare Play Protect.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1)
 
 <a id="macos"></a>
 
@@ -20,7 +20,7 @@ Scarica l’APK arm64 dal rilascio. Richiede Android 8+; test fisici su Switch O
 
 Solo Apple Silicon. Installa chiaki-ng separatamente, registra PS5 e chiudi il suo flusso. Estrai lo ZIP Mac e sposta Deckivo.app in ~/Applications. App non notarizzata: macOS può richiedere «Apri comunque» in Privacy e sicurezza. Non disattivare Gatekeeper. Importa la registrazione chiaki-ng in Deckivo e inserisci l’IP.
 
-[Mac ZIP · 0.6.0 b9](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-macos-0.6.0-b9.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.6.1 b10](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +37,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux technical requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-sources.zip)
+[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-sources.zip)
 
 ## Associazione
 
@@ -57,14 +57,20 @@ Android controlla GitHub con l’app aperta, normalmente ogni sei ore, e può sc
 
 In caso di errore controlla IP, profilo, Account ID, nuovo PIN e isolamento di rete. Schermo nero: chiudi altri client e riconnetti. La matrice sotto riporta le versioni precise. Internet/VPN, sessioni lunghe e ogni funzione dei controller non sono certificati. Windows, Intel Mac e Linux x64 sono previsti. Deckivo non ripara WebKit PS5.
 
-[Device / version / scope](../TESTED.md) · [Technical reference (English)](../TECHNICAL.md)
+[Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 
-## Sostieni il progetto
+<!-- SUPPORT:START -->
+## Aiuta Deckivo a crescere
 
-Il sostegno su Ko-fi RemTeh è facoltativo. Nessuna funzione a pagamento o promessa di assistenza individuale.
+Deckivo è gratuito e open source. Il sostegno aiuta nuove piattaforme e test reali.
+
+- Apple Developer ID ($99/yr) — firma e notarizzazione Mac
+- Versione Windows
+- Più dispositivi: PS5 Pro e console portatili
 
 [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
 
----
+<img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="Scansiona con il telefono">
 
-Developed by [RemTeh.by](https://remteh.by/). [Chiaki / chiaki-ng / Android Extended](../../ATTRIBUTION.md). [AGPL v3 + OpenSSL permission](../../COPYING).
+Tutto resta gratuito. Il sostegno è facoltativo.
+<!-- SUPPORT:END -->
