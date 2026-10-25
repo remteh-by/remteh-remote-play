@@ -1,10 +1,10 @@
 [
   {
-    "title": "Deckivo / Chiaki \u2014 AGPL-3.0 with OpenSSL permission",
+    "title": "Deckivo / Chiaki — AGPL-3.0 with OpenSSL permission",
     "file": "AGPL-OpenSSL.txt"
   },
   {
-    "title": "Optional PS5 helper \u2014 GPL-3.0-or-later",
+    "title": "Optional PS5 helper — GPL-3.0-or-later",
     "file": "PS5-helper-GPL.txt"
   },
   {
@@ -24,7 +24,7 @@
     "file": "nanopb.txt"
   },
   {
-    "title": "Oboe \u2014 Apache-2.0",
+    "title": "Oboe — Apache-2.0",
     "file": "Oboe-Apache.txt"
   },
   {
@@ -40,7 +40,7 @@
     "file": "MiniUPnPc.txt"
   },
   {
-    "title": "AndroidX / Material / Kotlin / Rx / Moshi \u2014 Apache-2.0",
+    "title": "AndroidX / Material / Kotlin / Rx / Moshi — Apache-2.0",
     "file": "Android-JVM-Apache.txt"
   },
   {
@@ -52,11 +52,15 @@
     "file": "ZXing-NOTICE.txt"
   },
   {
-    "title": "IBM Plex Sans \u2014 SIL OFL",
+    "title": "IBM Plex Sans — SIL OFL",
     "file": "IBM-Plex-Sans-OFL.txt"
   },
   {
-    "title": "Reactive Streams \u2014 CC0",
+    "title": "Reactive Streams — CC0",
     "file": "reactive-streams.txt"
+  },
+  {
+    "title": "DualShock Tools / Sony USB protocol — MIT",
+    "file": "DualShockTools-MIT.txt"
   }
 ]

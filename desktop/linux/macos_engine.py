@@ -45,7 +45,9 @@ PROFILE='Deckivo'
 def configure(registration,quality):
     q=QSettings('Chiaki','Chiaki-'+PROFILE)
     q.setValue('version',2)
-    height,fps,rate=(1080,60,15000) if quality==0 else (720,60,10000) if quality==1 else (720,30,7000)
+    from session import PRESETS
+    preset=PRESETS[max(0,min(len(PRESETS)-1,quality))]
+    height,fps,rate=preset.height,preset.fps,preset.bitrate
     values={'resolution_local_ps5':f'{height}p','fps_local_ps5':fps,'bitrate_local_ps5':rate,
         'codec_local_ps5':'h264','hw_decoder':'auto','disconnect_action':'nothing',
         'remote_play_ask':False,'log_verbose':False,'log_sanitize':True}
@@ -54,7 +56,7 @@ def configure(registration,quality):
     for key,value in registration.items():
         q.setValue(key,QByteArray(bytes.fromhex(value)) if key in ('server_mac','rp_key','rp_regist_key') else value)
     q.endArray();q.sync();Path(q.fileName()).chmod(0o600)
-    return 1920 if height==1080 else 1280,height
+    return preset.width,height
 
 
 def quit_owned_engine(pid):

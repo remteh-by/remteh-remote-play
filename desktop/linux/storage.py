@@ -39,11 +39,10 @@ def load_json(path, fallback):
 
 
 def apply_engine_settings(preferences):
-    dimensions = [(1280, 720, 60, 10000, 'tegra'),
-                  (1280, 720, 30, 7000, 'tegra'),
-                  (960, 540, 30, 5000, 'software')]
-    index = min(2, max(0, int(preferences.get('quality', 0))))
-    width, height, fps, bitrate, decoder = dimensions[index]
+    from session import PRESETS
+    index=min(len(PRESETS)-1,max(0,int(preferences.get('quality',0))))
+    preset=PRESETS[index]
+    width,height,fps,bitrate,decoder=preset.width,preset.height,preset.fps,preset.bitrate,preset.decoder
     ENGINE_CONFIG.parent.mkdir(parents=True, exist_ok=True)
     ENGINE_CONFIG.parent.chmod(0o700)
     q = QSettings(str(ENGINE_CONFIG), QSettings.IniFormat)

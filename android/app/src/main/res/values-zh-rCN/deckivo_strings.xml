@@ -62,7 +62,8 @@
     <string name="dv_controller">控制器</string>
     <string name="dv_controller_check">测试控制器</string>
     <string name="dv_controller_help">按下按钮并移动操纵杆。 PS 和触摸板控件位于隐藏的游戏覆盖层中。</string>
-    <string name="dv_controller_intro">测试 GameSir、Joy-Con 或其他控制器上的按钮和摇杆。</string>
+    <string name="dv_controller_intro">Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.</string>
+    <string name="dv_controller_lab">Full controller diagnostics</string>
     <string name="dv_data">数据</string>
     <string name="dv_developer_credit">Developed by RemTeh.by ↗</string>
     <string name="dv_diag_checking">Checking Remote Play and H.264 decoders…</string>
@@ -93,8 +94,11 @@
     <string name="dv_input_test">输入测试</string>
     <string name="dv_install">安装更新</string>
     <string name="dv_install_permission">允许 Deckivo 在 Android 设置中安装来自此来源的应用程序。</string>
+    <string name="dv_invert_mouse_y">Invert mouse Y axis</string>
     <string name="dv_ip_required">输入私有 IPv4 地址，例如 192.168.1.10，不带 http 或端口。</string>
     <string name="dv_key_event">%1$s: %2$s · %3$s</string>
+    <string name="dv_keyboard_help">F8 captures input; Esc releases it. WASD moves, mouse aims, left/right click = R2/L2. Space: Cross, C: Circle, R: Square, F: Triangle, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Hold this button for sensitivity.</string>
+    <string name="dv_keyboard_mouse">Keyboard + mouse</string>
     <string name="dv_language">语言</string>
     <string name="dv_layout_saved">映射已保存。下×，右○，左□，上△。</string>
     <string name="dv_left_button">左按钮(□)</string>
@@ -104,6 +108,7 @@
     <string name="dv_legacy_use_the_stream_area_as_a_touchpad">将流区域用作触摸板</string>
     <string name="dv_licenses">许可证与源码</string>
     <string name="dv_manual_ip">手动输入 IP</string>
+    <string name="dv_mouse_sensitivity">Mouse sensitivity</string>
     <string name="dv_my_console">我的主机</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">未找到控制器。在 Android 蓝牙设置中连接它。</string>
@@ -118,6 +123,7 @@
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">PS5 IP 地址</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
+    <string name="dv_quality_sharp">Sharp · 1080p / 60</string>
     <string name="dv_register_console">注册主机</string>
     <string name="dv_register_profile">注册 PS5 / PS4 用户</string>
     <string name="dv_registered_unknown">●  已注册 · 状态未知</string>
@@ -134,7 +140,7 @@
     <string name="dv_searching">正在搜索本地网络。你也可以添加 IP 地址。</string>
     <string name="dv_settings">设置</string>
     <string name="dv_setup">连接</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1</string>
+    <string name="dv_setup_credit">Development build 0.7.0. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">注册完成后，返回家并选择PS5。本地播放已准备就绪；此版本未配置互联网访问。</string>
     <string name="dv_setup_enable">在 PS5 上，启用设置 → 系统 → 远程游戏。</string>
     <string name="dv_setup_find">01 · 找到你的控制台</string>
@@ -143,6 +149,7 @@
     <string name="dv_setup_profile">02 · 你的 PS5 个人资料</string>
     <string name="dv_setup_register">输入远程播放 PIN 码并注册</string>
     <string name="dv_source">源码与致谢 ↗</string>
+    <string name="dv_source_development">Development build %1$s. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_source_exact">Source code for this exact version: %1$s</string>
     <string name="dv_stretch">拉伸</string>
     <string name="dv_support">帮助 Deckivo 成长</string>
@@ -184,6 +191,8 @@
     <string name="dv_update_ready">更新已就绪 — 打开</string>
     <string name="dv_updates">更新</string>
     <string name="dv_updates_intro">Deckivo 打开时检查更新，并通过不限流量的 Wi-Fi 下载。Android 可能要求确认安装。主机注册信息和设置会保留。</string>
+    <string name="dv_usb_choose">Choose your USB controller</string>
+    <string name="dv_usb_sony_missing">Connect a supported Sony controller with a USB data cable. Ordinary Bluetooth controllers use the input test.</string>
     <string name="dv_version_build">%1$s\n#%2$d</string>
     <string name="dv_video">视频</string>
     <string name="dv_waiting_input">等待输入…</string>

@@ -62,7 +62,8 @@
     <string name="dv_controller">Геймпад</string>
     <string name="dv_controller_check">Проверить геймпад</string>
     <string name="dv_controller_help">Нажимайте кнопки и двигайте стики. PS и тачпад доступны в скрываемой панели во время игры.</string>
-    <string name="dv_controller_intro">GameSir, Joy-Con или другой контроллер — проверяйте кнопки и стики здесь.</string>
+    <string name="dv_controller_intro">Проверь DualSense, DualShock, Xbox или другой совместимый геймпад.</string>
+    <string name="dv_controller_lab">Полная диагностика геймпада</string>
     <string name="dv_data">Данные</string>
     <string name="dv_developer_credit">Developed by RemTeh.by ↗</string>
     <string name="dv_diag_checking">Проверяем Remote Play и декодеры H.264…</string>
@@ -93,8 +94,11 @@
     <string name="dv_input_test">Проверка ввода</string>
     <string name="dv_install">Установить обновление</string>
     <string name="dv_install_permission">Откройте настройки Android и разрешите Deckivo установку приложений из этого источника.</string>
+    <string name="dv_invert_mouse_y">Инвертировать ось Y мыши</string>
     <string name="dv_ip_required">Укажи локальный IPv4, например 192.168.1.50. Без http и порта.</string>
     <string name="dv_key_event">%1$s: %2$s · %3$s</string>
+    <string name="dv_keyboard_help">F8 захватывает ввод, Esc отпускает. WASD — движение, мышь — прицел, левая/правая кнопка — R2/L2. Пробел: крест, C: круг, R: квадрат, F: треугольник, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Удерживай эту кнопку для настройки чувствительности.</string>
+    <string name="dv_keyboard_mouse">Клавиатура + мышь</string>
     <string name="dv_language">Язык</string>
     <string name="dv_layout_saved">Раскладка сохранена. Снизу — ×, справа — ○, слева — □, сверху — △.</string>
     <string name="dv_left_button">левую кнопку (□)</string>
@@ -104,6 +108,7 @@
     <string name="dv_legacy_use_the_stream_area_as_a_touchpad">Используйте область потока в качестве сенсорной панели</string>
     <string name="dv_licenses">Лицензии и исходники</string>
     <string name="dv_manual_ip">Ввести IP вручную</string>
+    <string name="dv_mouse_sensitivity">Чувствительность мыши</string>
     <string name="dv_my_console">Моя консоль</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">Геймпад пока не обнаружен. Подключите его в настройках Bluetooth Android.</string>
@@ -118,6 +123,7 @@
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">IP-адрес PS5</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
+    <string name="dv_quality_sharp">Чёткий · 1080p / 60</string>
     <string name="dv_register_console">Привязать консоль</string>
     <string name="dv_register_profile">Привязать профиль PS5 / PS4</string>
     <string name="dv_registered_unknown">●  Привязана · статус неизвестен</string>
@@ -134,7 +140,7 @@
     <string name="dv_searching">Ищем консоли в вашей сети. Также можно добавить IP вручную.</string>
     <string name="dv_settings">Настройки</string>
     <string name="dv_setup">Подключение</string>
-    <string name="dv_setup_credit">Исходники именно этой версии: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1</string>
+    <string name="dv_setup_credit">Тестовая сборка 0.7.0. Соответствующие исходники приложены к пакету для проверки. Открыть проект.</string>
     <string name="dv_setup_done">После привязки вернись на главный экран приложения и выбери PS5. Для этой версии достаточно локальной сети; доступ через интернет пока не настроен.</string>
     <string name="dv_setup_enable">На PS5 включите «Настройки → Система → Дистанционное воспроизведение».</string>
     <string name="dv_setup_find">01  ·  Найти консоль</string>
@@ -143,6 +149,7 @@
     <string name="dv_setup_profile">02  ·  Ваш профиль PS5</string>
     <string name="dv_setup_register">Ввести код Remote Play и подключить</string>
     <string name="dv_source">Исходники и авторы ↗</string>
+    <string name="dv_source_development">Тестовая сборка %1$s. Соответствующие исходники приложены к пакету для проверки. Открыть проект.</string>
     <string name="dv_source_exact">Исходники именно этой версии: %1$s</string>
     <string name="dv_stretch">Растянуть</string>
     <string name="dv_support">Помоги Deckivo расти</string>
@@ -184,6 +191,8 @@
     <string name="dv_update_ready">Обновление готово — открыть</string>
     <string name="dv_updates">Обновления</string>
     <string name="dv_updates_intro">Проверяем GitHub при открытии, раз в 6 часов. Установку подтверждает Android. Регистрация PS5 и настройки сохраняются.</string>
+    <string name="dv_usb_choose">Выбери USB-геймпад</string>
+    <string name="dv_usb_sony_missing">Подключи поддерживаемый Sony по USB-кабелю с данными. Для Bluetooth-геймпадов доступен обычный тест ввода.</string>
     <string name="dv_version_build">%1$s\n#%2$d</string>
     <string name="dv_video">Видео</string>
     <string name="dv_waiting_input">Ожидаю нажатия…</string>

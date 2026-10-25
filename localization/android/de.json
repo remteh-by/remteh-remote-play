@@ -128,7 +128,7 @@
   "dv_console_list": "Zurück zu den Konsolen",
   "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "Geben Sie eine private IPv4-Adresse ein, z. B. 192.168.1.10, ohne http oder Port.",
-  "dv_controller_intro": "Testen Sie Tasten und Sticks auf GameSir, Joy-Con oder einem anderen Controller.",
+  "dv_controller_intro": "Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.",
   "dv_no_controller": "Kein Controller gefunden. Verbinden Sie es in den Bluetooth-Einstellungen von Android.",
   "dv_controller_help": "Drücken Sie Knöpfe und bewegen Sie die Stöcke. PS- und Touchpad-Steuerung befinden sich im versteckten Spiel-Overlay.",
   "dv_bottom_button": "untere Taste (× auf PS5)",

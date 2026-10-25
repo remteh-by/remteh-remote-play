@@ -60,14 +60,14 @@ class MainActivity : DeckivoActivity() {
         binding.navUpdates.setOnClickListener { open(com.metallic.chiaki.design.SessionHistoryActivity::class.java) }
         binding.updatesButton.setOnClickListener { open(UpdatesActivity::class.java) }
         binding.controllerTestButton.setOnClickListener { open(ControllerTestActivity::class.java) }
-        listOf(binding.qualityFast,binding.qualityBalanced,binding.qualitySafe).forEachIndexed { index, control ->
+        listOf(binding.qualityFast,binding.qualityBalanced,binding.qualitySafe,binding.qualitySharp).forEachIndexed { index, control ->
             control.isCheckable = true
             control.setOnClickListener {
                 val p = Preferences(this)
-                p.resolution = if(index == 2) Preferences.Resolution.RES_540P else Preferences.Resolution.RES_720P
-                p.fps = if(index == 0) Preferences.FPS.FPS_60 else Preferences.FPS.FPS_30
-                p.bitrate = listOf(10000,7000,5000)[index]
-                listOf(binding.qualityFast,binding.qualityBalanced,binding.qualitySafe).forEachIndexed { i,b -> b.isChecked = i == index }
+                p.resolution = when(index) { 2 -> Preferences.Resolution.RES_540P;3 -> Preferences.Resolution.RES_1080P;else -> Preferences.Resolution.RES_720P }
+                p.fps = if(index == 0 || index == 3) Preferences.FPS.FPS_60 else Preferences.FPS.FPS_30
+                p.bitrate = listOf(10000,7000,5000,15000)[index]
+                listOf(binding.qualityFast,binding.qualityBalanced,binding.qualitySafe,binding.qualitySharp).forEachIndexed { i,b -> b.isChecked = i == index }
             }
         }
         binding.updateStatus.setOnClickListener { open(UpdatesActivity::class.java) }

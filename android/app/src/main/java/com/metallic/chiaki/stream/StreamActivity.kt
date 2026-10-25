@@ -11,6 +11,7 @@ import android.os.*
 import android.view.*
 import android.widget.EditText
 import com.metallic.chiaki.design.DeckivoActivity
+import androidx.core.content.edit
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -68,6 +69,7 @@ class StreamActivity : DeckivoActivity(), View.OnSystemUiVisibilityChangeListene
         setContentView(binding.root)
         window.decorView.setOnSystemUiVisibilityChangeListener(this)
         setupQuickButtons()
+        setupKeyboardMouse()
         onBackPressedDispatcher.addCallback(this) { viewModel.requestUserExit(); finish() }
 
         viewModel.onScreenControlsEnabled.observe(this, Observer {
@@ -187,7 +189,7 @@ class StreamActivity : DeckivoActivity(), View.OnSystemUiVisibilityChangeListene
     private var lastStreamTouchpadControllerState = com.metallic.chiaki.lib.ControllerState()
 
     private fun updateCombinedTouchState() {
-        viewModel.input.touchControllerState = lastFragmentControllerState or lastStreamTouchpadControllerState or quickControllerState
+        viewModel.input.touchControllerState = lastFragmentControllerState or lastStreamTouchpadControllerState or quickControllerState or keyboardMouse.state(SystemClock.uptimeMillis())
     }
 
     private val controlsDisposable = CompositeDisposable()
@@ -221,6 +223,7 @@ class StreamActivity : DeckivoActivity(), View.OnSystemUiVisibilityChangeListene
     {
         super.onPause()
         uiVisibilityHandler.removeCallbacksAndMessages(null)
+        releaseKeyboardMouse()
         quickControllerState.buttons = 0U
         updateCombinedTouchState()
         if (Preferences(this).debandingEnabled) {
@@ -289,8 +292,7 @@ class StreamActivity : DeckivoActivity(), View.OnSystemUiVisibilityChangeListene
     override fun onWindowFocusChanged(hasFocus: Boolean)
     {
         super.onWindowFocusChanged(hasFocus)
-        if(hasFocus)
-            hideSystemUI()
+        if(hasFocus) hideSystemUI() else if(::binding.isInitialized) releaseKeyboardMouse()
     }
 
     private fun hideSystemUI()
@@ -427,8 +429,67 @@ class StreamActivity : DeckivoActivity(), View.OnSystemUiVisibilityChangeListene
 
     private fun adjustStreamViewAspect() = adjustSurfaceViewAspect()
 
-    override fun dispatchKeyEvent(event: KeyEvent) = viewModel.input.dispatchKeyEvent(event) || super.dispatchKeyEvent(event)
+    private val keyboardMouse=KeyboardMouseState()
+    private var keyboardCaptured=false
+    private val keyboardTick=object: Runnable { override fun run() { if(keyboardCaptured) { updateCombinedTouchState();uiVisibilityHandler.postDelayed(this,16) } } }
+    private fun setupKeyboardMouse() {
+        binding.mainStreamLayout.isFocusableInTouchMode=true
+        binding.mainStreamLayout.onCaptureLost={releaseKeyboardMouse()}
+        binding.keyboardMouseButton.setOnClickListener { if(keyboardCaptured) releaseKeyboardMouse() else captureKeyboardMouse() }
+        binding.keyboardMouseButton.setOnLongClickListener {
+            releaseKeyboardMouse()
+            val slider=com.google.android.material.slider.Slider(this).apply { valueFrom=.001f;valueTo=.2f;value=keyboardMouse.sensitivity }
+            val invert=android.widget.CheckBox(this).apply { text=getString(R.string.dv_invert_mouse_y);isChecked=keyboardMouse.invertY }
+            val column=android.widget.LinearLayout(this).apply { orientation=android.widget.LinearLayout.VERTICAL;setPadding(24,20,24,20);addView(slider);addView(invert) }
+            MaterialAlertDialogBuilder(this).setTitle(R.string.dv_mouse_sensitivity).setView(column).setMessage(R.string.dv_keyboard_help).setPositiveButton(android.R.string.ok) { _,_ ->
+                keyboardMouse.sensitivity=slider.value;keyboardMouse.invertY=invert.isChecked
+                getSharedPreferences("deckivo_input",MODE_PRIVATE).edit { putFloat("sensitivity",slider.value);putBoolean("invert_y",invert.isChecked) }
+            }.setNegativeButton(android.R.string.cancel,null).show()
+            true
+        }
+        val input=getSharedPreferences("deckivo_input",MODE_PRIVATE)
+        keyboardMouse.sensitivity=input.getFloat("sensitivity",.025f);keyboardMouse.invertY=input.getBoolean("invert_y",false)
+        binding.mainStreamLayout.setOnCapturedPointerListener { _,event ->
+            if(!keyboardCaptured) return@setOnCapturedPointerListener false
+            if(event.actionMasked==MotionEvent.ACTION_MOVE) keyboardMouse.move(event.x,event.y,SystemClock.uptimeMillis())
+            keyboardMouse.leftMouse=event.buttonState and MotionEvent.BUTTON_PRIMARY!=0
+            keyboardMouse.rightMouse=event.buttonState and MotionEvent.BUTTON_SECONDARY!=0
+            keyboardMouse.middleMouse=event.buttonState and MotionEvent.BUTTON_TERTIARY!=0
+            updateCombinedTouchState();true
+        }
+    }
+    private fun captureKeyboardMouse() {
+        if(!hasWindowFocus()) return
+        keyboardMouse.reset();keyboardCaptured=true
+        binding.mainStreamLayout.requestFocus();binding.mainStreamLayout.requestPointerCapture()
+        uiVisibilityHandler.removeCallbacks(keyboardTick);uiVisibilityHandler.post(keyboardTick)
+        android.widget.Toast.makeText(this,R.string.dv_keyboard_help,android.widget.Toast.LENGTH_LONG).show()
+    }
+    private fun releaseKeyboardMouse() {
+        keyboardCaptured=false;uiVisibilityHandler.removeCallbacks(keyboardTick);keyboardMouse.reset()
+        if(::binding.isInitialized) { binding.mainStreamLayout.releasePointerCapture();updateCombinedTouchState() }
+    }
+    private fun keyboardName(key: Int): String = when(key) {
+        KeyEvent.KEYCODE_SPACE -> "Space";KeyEvent.KEYCODE_CTRL_LEFT,KeyEvent.KEYCODE_CTRL_RIGHT -> "Ctrl"
+        KeyEvent.KEYCODE_ALT_LEFT,KeyEvent.KEYCODE_ALT_RIGHT -> "Alt";KeyEvent.KEYCODE_ENTER -> "Return"
+        KeyEvent.KEYCODE_TAB -> "Tab";KeyEvent.KEYCODE_F2 -> "F2";KeyEvent.KEYCODE_1 -> "1"
+        KeyEvent.KEYCODE_DPAD_UP -> "Up";KeyEvent.KEYCODE_DPAD_DOWN -> "Down";KeyEvent.KEYCODE_DPAD_LEFT -> "Left";KeyEvent.KEYCODE_DPAD_RIGHT -> "Right"
+        in KeyEvent.KEYCODE_A..KeyEvent.KEYCODE_Z -> ('A'.code+key-KeyEvent.KEYCODE_A).toChar().toString()
+        else -> ""
+    }
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        val keyboard=event.source and InputDevice.SOURCE_KEYBOARD==InputDevice.SOURCE_KEYBOARD
+        if(keyboard && event.keyCode==KeyEvent.KEYCODE_F8) {
+            if(event.action==KeyEvent.ACTION_DOWN && event.repeatCount==0) { if(keyboardCaptured) releaseKeyboardMouse() else captureKeyboardMouse() };return true
+        }
+        if(keyboardCaptured && keyboard) {
+            if(event.keyCode==KeyEvent.KEYCODE_ESCAPE) { releaseKeyboardMouse();return true }
+            if(keyboardMouse.key(keyboardName(event.keyCode),event.action==KeyEvent.ACTION_DOWN)) { updateCombinedTouchState();return true }
+        }
+        return viewModel.input.dispatchKeyEvent(event) || super.dispatchKeyEvent(event)
+    }
     override fun onGenericMotionEvent(event: MotionEvent) = viewModel.input.onGenericMotionEvent(event) || super.onGenericMotionEvent(event)
+
 }
 
 enum class TransformMode

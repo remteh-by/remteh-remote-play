@@ -13,8 +13,8 @@ class LicensesActivity : DeckivoActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val root = DeckivoUi.screen(this, getString(R.string.dv_licenses), getString(R.string.dv_attribution))
-        val source = "https://github.com/remteh-by/remteh-remote-play/releases/tag/v${BuildConfig.VERSION_NAME}"
-        DeckivoUi.button(root, getString(R.string.dv_source_exact, source)) { LinkUi.openLinkOrShowQr(this, source) }
+        val source = if(BuildConfig.SOURCE_RELEASED) "https://github.com/remteh-by/remteh-remote-play/releases/tag/v${BuildConfig.VERSION_NAME}" else "https://github.com/remteh-by/remteh-remote-play"
+        DeckivoUi.button(root, if(BuildConfig.SOURCE_RELEASED) getString(R.string.dv_source_exact, source) else getString(R.string.dv_source_development, BuildConfig.VERSION_NAME)) { LinkUi.openLinkOrShowQr(this, source) }
         val rows = JSONArray(assets.open("licenses/index.json").bufferedReader().use { it.readText() })
         for (i in 0 until rows.length()) {
             val row = rows.getJSONObject(i)

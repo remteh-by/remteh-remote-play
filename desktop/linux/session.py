@@ -1,10 +1,11 @@
 """Private, bounded session data. No registration or raw logs in exports."""
 import ipaddress
 import math
+import sys
 import re
 from dataclasses import dataclass
 
-VERSION = '0.6.1'
+VERSION = '0.7.0'
 
 
 @dataclass(frozen=True)
@@ -21,13 +22,15 @@ PRESETS = (
     Preset('smooth', 1280, 720, 60, 10000, 'tegra'),
     Preset('balanced', 1280, 720, 30, 7000, 'tegra'),
     Preset('rescue', 960, 540, 30, 5000, 'software'),
+    Preset('sharp', 1920, 1080, 60, 15000, 'tegra'),
+    Preset('sharp30', 1920, 1080, 30, 12000, 'tegra'),
 )
 
 
 def preferences(value):
     result = {'language': 'en', 'host': '', 'quality': 0,
               'fullscreen': True, 'controller_navigation': True,
-              'disconnect_chord': True, 'history': True, 'automatic_updates': True}
+              'disconnect_chord': True, 'history': True, 'automatic_updates': True, 'keyboard_mouse': False, 'mouse_sensitivity': .025, 'invert_mouse_y':False, 'quality_schema':2}
     if not isinstance(value, dict):
         return result
     for key in ('language', 'host'):
@@ -38,11 +41,14 @@ def preferences(value):
     except ValueError:
         result['host'] = ''
     index = value.get('quality')
+    if sys.platform=='darwin' and value.get('quality_schema')!=2 and type(index) is int:index={0:3,1:0,2:1}.get(index,index)
     if type(index) is int and 0 <= index < len(PRESETS):
         result['quality'] = index
-    for key in ('fullscreen', 'controller_navigation', 'disconnect_chord', 'history','automatic_updates'):
+    for key in ('fullscreen', 'controller_navigation', 'disconnect_chord', 'history','automatic_updates','keyboard_mouse','invert_mouse_y'):
         if type(value.get(key)) is bool:
             result[key] = value[key]
+    sensitivity=value.get('mouse_sensitivity',.025)
+    if type(sensitivity) in (int,float) and math.isfinite(sensitivity):result['mouse_sensitivity']=max(.001,min(.2,sensitivity))
     return result
 
 
@@ -76,7 +82,7 @@ def telemetry(value):
 def session_record(started_at, seconds, preset_index, metrics, reason):
     safe = telemetry(metrics)
     return {'started_at': str(started_at)[:32], 'seconds': max(0, int(seconds)),
-            'quality': max(0, min(2, int(preset_index))),
+            'quality': max(0, min(len(PRESETS)-1, int(preset_index))),
             'frames': safe.get('frames', 0), 'decoder': safe.get('decoder', ''),
             'average_decode_fps': round(safe.get('frames', 0) * 1000 /
                                         max(1, safe.get('elapsed_ms', 0)), 1),
@@ -85,7 +91,7 @@ def session_record(started_at, seconds, preset_index, metrics, reason):
 
 def safe_report(state, prefs, metrics, controller_connected, session_count):
     p = PRESETS[preferences(prefs)['quality']]
-    return {'application': 'Deckivo', 'version': VERSION, 'platform': 'Switchroot Ubuntu ARM64',
+    return {'application': 'Deckivo', 'version': VERSION, 'platform': 'macOS Apple Silicon' if sys.platform=='darwin' else 'Switchroot Ubuntu ARM64',
             'session_state': state, 'preset': p.name,
             'requested': {'width': p.width, 'height': p.height,
                           'fps': p.fps, 'bitrate_kbps': p.bitrate},

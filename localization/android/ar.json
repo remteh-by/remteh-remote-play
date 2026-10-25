@@ -128,7 +128,7 @@
   "dv_console_list": "العودة إلى وحدات التحكم",
   "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "أدخل عنوان IPv4 خاصًا، مثل 192.168.1.10، بدون http أو منفذ.",
-  "dv_controller_intro": "اختبر الأزرار والعصي على GameSir أو Joy-Con أو وحدة تحكم أخرى.",
+  "dv_controller_intro": "Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.",
   "dv_no_controller": "لم يتم العثور على وحدة تحكم. قم بتوصيله في إعدادات Android Bluetooth.",
   "dv_controller_help": "اضغط على الأزرار وحرك العصي. توجد عناصر تحكم PS ولوحة اللمس في تراكب اللعبة المخفية.",
   "dv_bottom_button": "الزر السفلي (× على PS5)",

@@ -128,7 +128,7 @@
   "dv_console_list": "Назад до консолей",
   "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "Введіть приватну адресу IPv4, наприклад 192.168.1.10, без http або порту.",
-  "dv_controller_intro": "Перевірте кнопки та стики на GameSir, Joy-Con чи іншому контролері.",
+  "dv_controller_intro": "Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.",
   "dv_no_controller": "Контролер не знайдено. Підключіть його в налаштуваннях Android Bluetooth.",
   "dv_controller_help": "Натискайте кнопки і рухайте палички. Елементи керування PS і сенсорною панеллю знаходяться в прихованій ігровій накладці.",
   "dv_bottom_button": "нижня кнопка (× на PS5)",

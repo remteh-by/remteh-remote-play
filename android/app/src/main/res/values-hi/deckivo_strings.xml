@@ -62,7 +62,8 @@
     <string name="dv_controller">कंट्रोलर</string>
     <string name="dv_controller_check">कंट्रोलर जाँचें</string>
     <string name="dv_controller_help">बटन दबाएँ और लाठियाँ हिलाएँ। पीएस और टचपैड नियंत्रण छिपे हुए गेम ओवरले में हैं।</string>
-    <string name="dv_controller_intro">गेमसिर, जॉय-कॉन या किसी अन्य नियंत्रक पर बटन और स्टिक का परीक्षण करें।</string>
+    <string name="dv_controller_intro">Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.</string>
+    <string name="dv_controller_lab">Full controller diagnostics</string>
     <string name="dv_data">डेटा</string>
     <string name="dv_developer_credit">Developed by RemTeh.by ↗</string>
     <string name="dv_diag_checking">Checking Remote Play and H.264 decoders…</string>
@@ -93,8 +94,11 @@
     <string name="dv_input_test">इनपुट जाँच</string>
     <string name="dv_install">अपडेट इंस्टॉल करें</string>
     <string name="dv_install_permission">एंड्रॉइड सेटिंग्स में डेकिवो को इस स्रोत से ऐप्स इंस्टॉल करने की अनुमति दें।</string>
+    <string name="dv_invert_mouse_y">Invert mouse Y axis</string>
     <string name="dv_ip_required">एक निजी IPv4 पता दर्ज करें, जैसे कि 192.168.1.10, बिना http या पोर्ट के।</string>
     <string name="dv_key_event">%1$s: %2$s · %3$s</string>
+    <string name="dv_keyboard_help">F8 captures input; Esc releases it. WASD moves, mouse aims, left/right click = R2/L2. Space: Cross, C: Circle, R: Square, F: Triangle, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Hold this button for sensitivity.</string>
+    <string name="dv_keyboard_mouse">Keyboard + mouse</string>
     <string name="dv_language">भाषा</string>
     <string name="dv_layout_saved">मैपिंग सहेजी गई. नीचे ×, दाएँ ○, बाएँ □, ऊपर △।</string>
     <string name="dv_left_button">बायां बटन (□)</string>
@@ -104,6 +108,7 @@
     <string name="dv_legacy_use_the_stream_area_as_a_touchpad">स्ट्रीम क्षेत्र का उपयोग टचपैड के रूप में करें</string>
     <string name="dv_licenses">लाइसेंस और स्रोत</string>
     <string name="dv_manual_ip">IP मैन्युअल रूप से दर्ज करें</string>
+    <string name="dv_mouse_sensitivity">Mouse sensitivity</string>
     <string name="dv_my_console">मेरा कंसोल</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">कोई नियंत्रक नहीं मिला. इसे एंड्रॉइड ब्लूटूथ सेटिंग्स में कनेक्ट करें।</string>
@@ -118,6 +123,7 @@
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">PS5 आईपी पता</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
+    <string name="dv_quality_sharp">Sharp · 1080p / 60</string>
     <string name="dv_register_console">कंसोल पंजीकृत करें</string>
     <string name="dv_register_profile">PS5 / PS4 प्रोफ़ाइल पंजीकृत करें</string>
     <string name="dv_registered_unknown">●  पंजीकृत · स्थिति अज्ञात</string>
@@ -134,7 +140,7 @@
     <string name="dv_searching">आपके नेटवर्क में खोज रहे हैं। आप IP पता भी जोड़ सकते हैं।</string>
     <string name="dv_settings">सेटिंग</string>
     <string name="dv_setup">कनेक्ट करें</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1</string>
+    <string name="dv_setup_credit">Development build 0.7.0. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">पंजीकरण के बाद, घर लौटें और PS5 चुनें। स्थानीय नाटक तैयार है; इस संस्करण द्वारा इंटरनेट एक्सेस कॉन्फ़िगर नहीं किया गया है।</string>
     <string name="dv_setup_enable">PS5 पर, सेटिंग्स → सिस्टम → रिमोट प्ले सक्षम करें।</string>
     <string name="dv_setup_find">01 · अपना कंसोल ढूंढें</string>
@@ -143,6 +149,7 @@
     <string name="dv_setup_profile">02 · आपका PS5 प्रोफ़ाइल</string>
     <string name="dv_setup_register">रिमोट प्ले पिन दर्ज करें और रजिस्टर करें</string>
     <string name="dv_source">सोर्स और श्रेय ↗</string>
+    <string name="dv_source_development">Development build %1$s. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_source_exact">Source code for this exact version: %1$s</string>
     <string name="dv_stretch">खींचें</string>
     <string name="dv_support">Deckivo को आगे बढ़ाएँ</string>
@@ -184,6 +191,8 @@
     <string name="dv_update_ready">अपडेट तैयार है — खोलें</string>
     <string name="dv_updates">अपडेट</string>
     <string name="dv_updates_intro">Deckivo खुला होने पर अपडेट जाँचता है और असीमित वाई-फ़ाई पर डाउनलोड करता है। Android इंस्टॉलेशन की अनुमति माँग सकता है। कंसोल पंजीकरण और सेटिंग्स सुरक्षित रहती हैं।</string>
+    <string name="dv_usb_choose">Choose your USB controller</string>
+    <string name="dv_usb_sony_missing">Connect a supported Sony controller with a USB data cable. Ordinary Bluetooth controllers use the input test.</string>
     <string name="dv_version_build">%1$s\n#%2$d</string>
     <string name="dv_video">वीडियो</string>
     <string name="dv_waiting_input">इनपुट का इंतज़ार है…</string>

@@ -60,7 +60,7 @@ def main():
     source = source_dir / 'chiaki-v2.2.0/lib'
     native = DEST / 'native'
     native.mkdir(exist_ok=True)
-    for name in ('register.c', 'tegra-decoder.c'):
+    for name in ('register.c', 'tegra-decoder.c','kbm-bridge.c'):
         shutil.copy2(HERE / 'native' / name, native / name)
     include = native / 'include/chiaki'
     include.mkdir(parents=True, exist_ok=True)
@@ -95,11 +95,10 @@ def main():
     run('gcc', '-O2', '-fPIC', '-shared',
         '-I' + str(runtime / 'usr/include/aarch64-linux-gnu'),
         native / 'tegra-decoder.c', '-ldl', '-o', native / 'libdeckivo-tegra.so')
-    for name in ('deckivo.py', 'launcher.py', 'storage.py', 'session.py',
-                 'controller.py', 'ui.py', 'ui_theme.py', 'updater.py', 'update_ui.py',
-                 'install_update.py', 'build_meta.py', 'pair.py', 'deckivo.svg', 'README.md'):
-        shutil.copy2(HERE / name, DEST / name)
-    shutil.copytree(HERE / 'assets', DEST / 'assets', dirs_exist_ok=True)
+    run('gcc','-Wall','-Wextra','-Werror','-O2','-fPIC','-shared',native/'kbm-bridge.c','-ldl','-o',native/'libdeckivo-input.so')
+    from upgrade import FILES
+    for name in FILES:
+        target=DEST/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(HERE/name,target)
     languages = PROJECT / 'localization'
     if languages.is_dir():
         shutil.copytree(languages, DEST / 'localization', dirs_exist_ok=True)

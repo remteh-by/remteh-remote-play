@@ -25,8 +25,9 @@ android {
         applicationId "by.remteh.remoteplay"
         minSdk 26
         targetSdk 35
-        versionCode 25
-        versionName "0.6.1"
+        versionCode 26
+        versionName "0.7.0"
+        buildConfigField 'boolean', 'SOURCE_RELEASED', (System.getenv('DECKIVO_PUBLIC_BUILD') == '1' ? 'true' : 'false')
         buildConfigField 'String', 'PRIVATE_UPDATE_URL', '"' + (System.getenv('DECKIVO_UPDATE_FEED') ?: '') + '"'
         ndk { abiFilters "arm64-v8a" }
         externalNativeBuild {
@@ -55,6 +56,7 @@ android {
     }
     bundle { language { enableSplit = false } }
     lint { baseline = file('../lint-baseline.xml') }
+    sourceSets { main.assets.srcDir '../../desktop/linux/assets/controller-lab' }
     buildFeatures {
         viewBinding true
         buildConfig true
@@ -144,3 +146,10 @@ tasks.register('verifySupportConfig', Exec) {
 tasks.named('preBuild').configure { dependsOn 'verifySupportConfig' }
 
 apply from: 'sbom.gradle'
+
+// Controller photographs are immutable; wrappers and masks are versioned locally.
+tasks.register('verifyControllerLab', Exec) {
+    workingDir rootProject.file('..')
+    commandLine(System.getenv('DECKIVO_BUILD_PYTHON') ?: 'python3', 'scripts/validate-controller-lab.py', '--check')
+}
+tasks.named('preBuild') { dependsOn 'verifyControllerLab' }

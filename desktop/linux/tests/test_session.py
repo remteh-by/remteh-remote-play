@@ -11,11 +11,11 @@ class SessionSafety(unittest.TestCase):
     def test_corrupt_preferences_cannot_select_arbitrary_profile(self):
         for bad in (None,[],{'quality':999},{'quality':'0'},{'quality':True}):
             self.assertEqual(preferences(bad)['quality'],0)
-        self.assertEqual(preferences({'quality':2})['quality'],2)
+        self.assertEqual(preferences({'quality':2,'quality_schema':2})['quality'],2)
         self.assertEqual(preferences({'host':'$(touch /tmp/bad)'})['host'],'')
 
     def test_existing_owner_preferences_survive_migration(self):
-        old={'host':'192.0.2.10','language':'auto','quality':1}
+        old={'host':'192.0.2.10','language':'auto','quality':1,'quality_schema':2}
         migrated=preferences(old)
         self.assertTrue(all(migrated[k]==v for k,v in old.items()))
         self.assertTrue(migrated['fullscreen'])

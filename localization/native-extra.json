@@ -296,8 +296,8 @@
     "ru": "Геймпад"
   },
   "controller_intro": {
-    "en": "Test buttons and sticks on GameSir, Joy-Con or another controller.",
-    "ru": "GameSir, Joy-Con или другой контроллер — проверяйте кнопки и стики здесь."
+    "en": "Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.",
+    "ru": "Проверь DualSense, DualShock, Xbox или другой совместимый геймпад."
   },
   "connected_devices": {
     "en": "Connected devices",
@@ -1195,5 +1195,45 @@
   "supporter_since": {
     "en": "%1$s · %2$s",
     "ru": "%1$s · %2$s"
+  },
+  "controller_lab": {
+    "en": "Full controller diagnostics",
+    "ru": "Полная диагностика геймпада"
+  },
+  "usb_sony_missing": {
+    "en": "Connect a supported Sony controller with a USB data cable. Ordinary Bluetooth controllers use the input test.",
+    "ru": "Подключи поддерживаемый Sony по USB-кабелю с данными. Для Bluetooth-геймпадов доступен обычный тест ввода."
+  },
+  "usb_choose": {
+    "en": "Choose your USB controller",
+    "ru": "Выбери USB-геймпад"
+  },
+  "keyboard_mouse": {
+    "en": "Keyboard + mouse",
+    "ru": "Клавиатура + мышь"
+  },
+  "keyboard_help": {
+    "en": "F8 captures input; Esc releases it. WASD moves, mouse aims, left/right click = R2/L2. Space: Cross, C: Circle, R: Square, F: Triangle, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Hold this button for sensitivity.",
+    "ru": "F8 захватывает ввод, Esc отпускает. WASD — движение, мышь — прицел, левая/правая кнопка — R2/L2. Пробел: крест, C: круг, R: квадрат, F: треугольник, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Удерживай эту кнопку для настройки чувствительности."
+  },
+  "mouse_sensitivity": {
+    "en": "Mouse sensitivity",
+    "ru": "Чувствительность мыши"
+  },
+  "invert_mouse_y": {
+    "en": "Invert mouse Y axis",
+    "ru": "Инвертировать ось Y мыши"
+  },
+  "quality_sharp": {
+    "en": "Sharp · 1080p / 60",
+    "ru": "Чёткий · 1080p / 60"
+  },
+  "quality_limit": {
+    "en": "Up to 1080p. This engine has no verified 4K mode. Resolution and FPS are requested targets.",
+    "ru": "До 1080p. В этом движке нет проверенного режима 4K. Разрешение и FPS — запрашиваемые значения."
+  },
+  "source_development": {
+    "en": "Development build %1$s. Corresponding source is included with this test package. Open the project.",
+    "ru": "Тестовая сборка %1$s. Соответствующие исходники приложены к пакету для проверки. Открыть проект."
   }
 }

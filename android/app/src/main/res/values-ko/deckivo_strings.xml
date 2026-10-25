@@ -62,7 +62,8 @@
     <string name="dv_controller">컨트롤러</string>
     <string name="dv_controller_check">컨트롤러 테스트</string>
     <string name="dv_controller_help">버튼을 누르고 스틱을 움직여보세요. PS 및 터치패드 컨트롤은 숨겨진 게임 오버레이에 있습니다.</string>
-    <string name="dv_controller_intro">GameSir, Joy-Con 또는 다른 컨트롤러의 버튼과 스틱을 테스트하세요.</string>
+    <string name="dv_controller_intro">Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.</string>
+    <string name="dv_controller_lab">Full controller diagnostics</string>
     <string name="dv_data">데이터</string>
     <string name="dv_developer_credit">Developed by RemTeh.by ↗</string>
     <string name="dv_diag_checking">Checking Remote Play and H.264 decoders…</string>
@@ -93,8 +94,11 @@
     <string name="dv_input_test">입력 테스트</string>
     <string name="dv_install">업데이트 설치</string>
     <string name="dv_install_permission">Deckivo가 Android 설정에서 이 소스의 앱을 설치할 수 있도록 허용하세요.</string>
+    <string name="dv_invert_mouse_y">Invert mouse Y axis</string>
     <string name="dv_ip_required">http나 포트 없이 192.168.1.10과 같은 개인 IPv4 주소를 입력하세요.</string>
     <string name="dv_key_event">%1$s: %2$s · %3$s</string>
+    <string name="dv_keyboard_help">F8 captures input; Esc releases it. WASD moves, mouse aims, left/right click = R2/L2. Space: Cross, C: Circle, R: Square, F: Triangle, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Hold this button for sensitivity.</string>
+    <string name="dv_keyboard_mouse">Keyboard + mouse</string>
     <string name="dv_language">언어</string>
     <string name="dv_layout_saved">매핑이 저장되었습니다. 하단 ×, 오른쪽 ○, 왼쪽 □, 상단 △.</string>
     <string name="dv_left_button">왼쪽 버튼(□)</string>
@@ -104,6 +108,7 @@
     <string name="dv_legacy_use_the_stream_area_as_a_touchpad">스트림 영역을 터치패드로 사용</string>
     <string name="dv_licenses">라이선스와 소스</string>
     <string name="dv_manual_ip">IP 직접 입력</string>
+    <string name="dv_mouse_sensitivity">Mouse sensitivity</string>
     <string name="dv_my_console">내 콘솔</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">컨트롤러를 찾을 수 없습니다. Android Bluetooth 설정에서 연결하세요.</string>
@@ -118,6 +123,7 @@
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">PS5 IP 주소</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
+    <string name="dv_quality_sharp">Sharp · 1080p / 60</string>
     <string name="dv_register_console">콘솔 등록</string>
     <string name="dv_register_profile">PS5 / PS4 프로필 등록</string>
     <string name="dv_registered_unknown">●  등록됨 · 상태 알 수 없음</string>
@@ -134,7 +140,7 @@
     <string name="dv_searching">네트워크에서 검색 중입니다. IP 주소를 추가할 수도 있습니다.</string>
     <string name="dv_settings">설정</string>
     <string name="dv_setup">연결</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1</string>
+    <string name="dv_setup_credit">Development build 0.7.0. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">등록 후 집으로 돌아와 PS5를 선택하십시오. 로컬 플레이가 준비되었습니다. 이 버전에서는 인터넷 액세스가 구성되지 않습니다.</string>
     <string name="dv_setup_enable">PS5에서는 설정 → 시스템 → 원격 플레이를 활성화하세요.</string>
     <string name="dv_setup_find">01 · 콘솔 찾기</string>
@@ -143,6 +149,7 @@
     <string name="dv_setup_profile">02 · 당신의 PS5 프로필</string>
     <string name="dv_setup_register">리모트 플레이 PIN을 입력하고 등록하세요</string>
     <string name="dv_source">소스 및 기여자 ↗</string>
+    <string name="dv_source_development">Development build %1$s. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_source_exact">Source code for this exact version: %1$s</string>
     <string name="dv_stretch">늘이기</string>
     <string name="dv_support">Deckivo의 성장을 도와주세요</string>
@@ -184,6 +191,8 @@
     <string name="dv_update_ready">업데이트 준비 완료 — 열기</string>
     <string name="dv_updates">업데이트</string>
     <string name="dv_updates_intro">Deckivo가 열려 있을 때 업데이트를 확인하고 무제한 Wi-Fi로 다운로드합니다. Android에서 설치 승인을 요청할 수 있습니다. 콘솔 등록과 설정은 유지됩니다.</string>
+    <string name="dv_usb_choose">Choose your USB controller</string>
+    <string name="dv_usb_sony_missing">Connect a supported Sony controller with a USB data cable. Ordinary Bluetooth controllers use the input test.</string>
     <string name="dv_version_build">%1$s\n#%2$d</string>
     <string name="dv_video">영상</string>
     <string name="dv_waiting_input">입력을 기다리는 중…</string>

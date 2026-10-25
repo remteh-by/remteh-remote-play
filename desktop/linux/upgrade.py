@@ -21,12 +21,13 @@ from session import VERSION
 HERE=Path(__file__).resolve().parent
 DEST=Path.home()/'.local/share/deckivo'
 PRIVATE=Path.home()/'.config/deckivo'
-FILES=('deckivo.py','launcher.py','storage.py','session.py','controller.py','ui.py','ui_theme.py',
+FILES=('deckivo.py','keyboard_mouse.py','input_overlay.py','controller_lab.py','launcher.py','storage.py','session.py','controller.py','ui.py','ui_theme.py',
        'support.py','support_policy.py','updater.py','rsa_verify.py','update_ui.py','install_update.py','build_meta.py','pair.py',
-       'deckivo.svg','README.md','UPSTREAM.json','native/tegra-decoder.c',
-       'assets/play-space.svg',
+       'deckivo.svg','README.md','UPSTREAM.json','native/tegra-decoder.c','native/kbm-bridge.c',
+       'assets/play-space.svg','assets/ps5-console.png','assets/source.json',
        'assets/fonts/IBMPlexSans.ttf','assets/fonts/OFL.txt','assets/update-public.der','assets/support.json')+tuple('assets/support/'+p.name for p in (HERE/'assets/support').glob('*.svg'))
-REMOVED=('assets/ps5-console.png','assets/source.json','assets/NOTICE.txt')
+FILES+=tuple(str(p.relative_to(HERE)) for p in sorted((HERE/'assets/controller-lab').rglob('*')) if p.is_file())
+REMOVED=()
 
 
 def restore_backup(backup):
@@ -74,10 +75,12 @@ def main():
             subprocess.run(['gcc','-Wall','-Wextra','-O2','-fPIC','-shared',
                 '-I'+str(runtime/'usr/include/aarch64-linux-gnu'),
                 str(HERE/'native/tegra-decoder.c'),'-ldl','-o',str(library)],check=True)
+            input_library=Path(temp)/'libdeckivo-input.so'
+            subprocess.run(['gcc','-Wall','-Wextra','-Werror','-O2','-fPIC','-shared',str(HERE/'native/kbm-bridge.c'),'-ldl','-o',str(input_library)],check=True)
             installed=[];previous=[];removed=[]
             try:
-                for name in FILES+('native/libdeckivo-tegra.so',):
-                    source=library if name.endswith('.so') else HERE/name
+                for name in FILES+('native/libdeckivo-tegra.so','native/libdeckivo-input.so'):
+                    source=input_library if name.endswith('libdeckivo-input.so') else library if name.endswith('libdeckivo-tegra.so') else HERE/name
                     target=DEST/name;saved=backup/name
                     saved.parent.mkdir(parents=True,exist_ok=True)
                     if target.exists():shutil.copy2(target,saved);previous.append(name)

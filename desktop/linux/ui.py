@@ -1,10 +1,10 @@
-"""Deckivo native interface with an original neutral illustration and local input UI."""
+"""Deckivo native interface with genuine model photography and local input UI."""
 import math
 from pathlib import Path
 from PyQt5.QtSvg import QSvgRenderer
 from PyQt5.QtCore import Qt, QRectF, QPointF, QSize
 from PyQt5.QtGui import (QPainter, QColor, QPen, QBrush, QLinearGradient,
-                         QRadialGradient, QPainterPath, QIcon, QPixmap, QPolygonF)
+                         QRadialGradient, QPainterPath, QIcon, QPixmap, QPolygonF, QTransform)
 from PyQt5.QtWidgets import (QWidget, QFrame, QLabel, QPushButton, QVBoxLayout,
                             QHBoxLayout, QSizePolicy)
 
@@ -101,7 +101,7 @@ class Hero(QFrame):
     def __init__(self):
         super().__init__()
         self.setMinimumSize(480, 330)
-        self.console_image=QSvgRenderer(str(Path(__file__).resolve().parent/'assets/play-space.svg'))
+        self.console_image=QPixmap(str(Path(__file__).resolve().parent/'assets/ps5-console.png'))
 
     def paintEvent(self, event):
         p=QPainter(self); p.setRenderHint(QPainter.Antialiasing)
@@ -113,40 +113,63 @@ class Hero(QFrame):
         glow=QRadialGradient(art.center(),art.height()*.65)
         glow.setColorAt(0,QColor(125,139,180,36));glow.setColorAt(1,QColor(125,139,180,0))
         p.fillPath(path,glow)
-        if self.console_image.isValid():
-            # Own screen/gamepad illustration, not a Sony product photograph.
-            size=self.console_image.viewBoxF().size().scaled(art.size(),Qt.KeepAspectRatio)
+        if not self.console_image.isNull():
+            # Preserve the genuine product photo: contain, no crop or distortion.
+            size=QSize(self.console_image.width(),self.console_image.height()).scaled(art.size().toSize(),Qt.KeepAspectRatio)
             target=QRectF(art.center().x()-size.width()/2,art.center().y()-size.height()/2,size.width(),size.height())
             p.setRenderHint(QPainter.SmoothPixmapTransform)
-            self.console_image.render(p,target)
+            p.drawPixmap(target,self.console_image,QRectF(self.console_image.rect()))
         p.setPen(QPen(QColor('#3F4944'),1));p.setBrush(Qt.NoBrush);p.drawPath(path)
 
 
 class PadCanvas(QWidget):
+    """Actual model photograph; unknown controllers never borrow another model."""
+    PHOTOS = {
+        'dualsense': 'v20261011/tools/gamepad-test/artwork/dualsense-front.png',
+        'ds4': 'ds4-20261011a/tools/gamepad-test/artwork/dualshock-4-front.png',
+        'xbox-series': 'xbox-20261011a/tools/gamepad-test/artwork/xbox-series-front.png',
+    }
     def __init__(self, monitor):
         super().__init__()
         self.monitor=monitor
+        self.model='auto'
+        import json
+        self.photo_masks=json.loads((Path(__file__).resolve().parent/'assets/controller-lab/photo-masks.json').read_text())
         self.setMinimumSize(360,220)
+        self.photos={k:QPixmap(str(Path(__file__).resolve().parent/'assets/controller-lab/media/remteh-gamepad'/v)) for k,v in self.PHOTOS.items()}
         monitor.changed.connect(self.update)
 
+    def set_model(self, model):
+        self.model=model
+        self.update()
+
+    def actual_model(self):
+        import re
+        if self.model!='auto':return self.model
+        name=self.monitor.name.lower()
+        if re.search(r'edge|elite|adaptive',name):return ''
+        if re.search(r'dualsense|054c.*0ce6',name):return 'dualsense'
+        if re.search(r'dualshock|\bds4\b|054c.*(?:05c4|09cc)',name):return 'ds4'
+        if re.search(r'xbox.*series|045e.*0b1[23]',name):return 'xbox-series'
+        return ''
+
     def paintEvent(self,event):
-        p=QPainter(self);p.setRenderHint(QPainter.Antialiasing)
-        p.translate(self.width()/2,self.height()/2);s=min(self.width()/500,self.height()/280);p.scale(s,s)
-        body=QPainterPath(QPointF(-110,-70));body.cubicTo(-190,-100,-233,149,-158,110)
-        body.lineTo(-95,62);body.cubicTo(-65,78,65,78,95,62);body.lineTo(158,110)
-        body.cubicTo(233,149,190,-100,110,-70);body.closeSubpath()
-        p.setPen(QPen(QColor('#566070'),2));p.setBrush(QColor('#232A34'));p.drawPath(body)
-        for x,key in ((-105,'L1'),(105,'R1')):
-            p.setBrush(QColor(LIME if self.monitor.buttons.get(key) else '#3D4655'));p.drawRoundedRect(QRectF(x-27,-86,54,17),6,6)
-        axes=self.monitor.axes
-        for x,y,ax,ay in ((-103,-19,0,1),(58,37,3,4)):
-            p.setBrush(QColor('#13171D'));p.setPen(QPen(QColor('#536070'),2));p.drawEllipse(QPointF(x,y),29,29)
-            p.setPen(Qt.NoPen);p.setBrush(QColor(LIME));p.drawEllipse(QPointF(x+axes.get(ax,0)*15,y+axes.get(ay,0)*15),16,16)
-        for x,y,key,txt in ((118,-42,'north','Y'),(145,-15,'east','B'),(118,12,'south','A'),(91,-15,'west','X')):
-            p.setPen(QPen(QColor('#6C7787'),1));p.setBrush(QColor(LIME if self.monitor.buttons.get(key) else '#161C23'));p.drawEllipse(QPointF(x,y),13,13)
-            p.setPen(QColor('#101216' if self.monitor.buttons.get(key) else '#CBD3DF'));p.drawText(QRectF(x-12,y-12,24,24),Qt.AlignCenter,txt)
-        for dx,dy,key,axis,sign in ((0,-15,'up',17,-1),(15,0,'right',16,1),(0,15,'down',17,1),(-15,0,'left',16,-1)):
-            pressed=self.monitor.buttons.get(key) or axes.get(axis,0)*sign>.5
-            p.setPen(Qt.NoPen);p.setBrush(QColor(LIME if pressed else '#667181'));p.drawRoundedRect(QRectF(-56+dx-7,36+dy-7,14,14),3,3)
-        for x,key in ((-25,'select'),(25,'start')):
-            p.setBrush(QColor(LIME if self.monitor.buttons.get(key) else '#6C7787'));p.drawRoundedRect(QRectF(x-6,-28,12,5),2,2)
+        p=QPainter(self);p.setRenderHint(QPainter.SmoothPixmapTransform)
+        model=self.actual_model()
+        models=[model] if model in self.photos else list(self.photos)
+        width=self.width()/len(models)
+        for i,key in enumerate(models):
+            photo=self.photos[key]
+            if photo.isNull():continue
+            area=QRectF(i*width,0,width,self.height()-32)
+            content=QRectF(*{'ds4':(415,208,775,488),'dualsense':(50,216,1153,807),'xbox-series':(41,211,1171,824)}[key])
+            height=min(area.height(),width*.55)
+            size=QSize(round(height*content.width()/content.height()),round(height))
+            target=QRectF(area.center().x()-size.width()/2,area.center().y()-size.height()/2,size.width(),size.height())
+            p.save()
+            if key in self.photo_masks:
+                clip=QPainterPath();points=self.photo_masks[key]['points'];clip.moveTo(*points[0])
+                for point in points[1:]:clip.lineTo(*point)
+                clip.closeSubpath();transform=QTransform();transform.translate(target.x(),target.y());transform.scale(target.width()/content.width(),target.height()/content.height());transform.translate(-content.x(),-content.y());p.setClipPath(transform.map(clip),Qt.IntersectClip)
+            p.drawPixmap(target,photo,content);p.restore()
+            p.setPen(QColor(TEXT));p.drawText(QRectF(i*width,self.height()-30,width,28),Qt.AlignCenter,{'dualsense':'DualSense','ds4':'DualShock 4','xbox-series':'Xbox Series'}[key])

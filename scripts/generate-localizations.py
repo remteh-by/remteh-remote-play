@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compile reviewed catalog sources into native Android resources and the static site."""
 from pathlib import Path
-import json, re, html
+import json, re, html, os
 ROOT = Path(__file__).resolve().parents[1]
 LANGUAGES = {'en':'English','ru':'Русский','uk':'Українська','pl':'Polski','de':'Deutsch','fr':'Français','es':'Español','it':'Italiano','pt':'Português','tr':'Türkçe','zh':'简体中文','ja':'日本語','ko':'한국어','ar':'العربية','hi':'हिन्दी','id':'Bahasa Indonesia'}
 base = json.loads((ROOT/'localization/en.json').read_text())
@@ -38,6 +38,7 @@ for code,name in LANGUAGES.items():
     native.update({f'dv_{key}':value for key,value in catalog.items()})
     version=re.search(r'versionName\s+"([^"]+)"',(ROOT/'android/app/build.gradle').read_text()).group(1)
     native['dv_setup_credit']=extra['source_exact'].get(code,extra['source_exact']['en']).replace('%1$s','https://github.com/remteh-by/remteh-remote-play/releases/tag/v'+version)
+    if os.getenv('DECKIVO_PUBLIC_BUILD')!='1':native['dv_setup_credit']=extra['source_development'].get(code,extra['source_development']['en']).replace('%1$s',version)
     native.update({key:catalog[value].rstrip(' · ') if key=='preferences_registered_hosts_title' else catalog[value] for key,value in aliases.items()})
     qualifier={'id':'in','zh':'zh-rCN'}.get(code,code)
     directory=ROOT/'android/app/src/main/res'/('values' if code=='en' else f'values-{qualifier}')

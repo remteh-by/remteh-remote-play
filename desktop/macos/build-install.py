@@ -8,7 +8,7 @@ PRIVATE=DATA/'private'
 RUNTIME=DATA/'python'
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--build',type=int,default=10);parser.add_argument('--stage-only',action='store_true');parser.add_argument('--private-preview',action='store_true');parser.add_argument('--output-dir',type=Path);parser.add_argument('--no-install-deps',action='store_true');args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--build',type=int,default=14);parser.add_argument('--stage-only',action='store_true');parser.add_argument('--private-preview',action='store_true');parser.add_argument('--output-dir',type=Path);parser.add_argument('--no-install-deps',action='store_true');args=parser.parse_args()
  if sys.platform!='darwin' or platform.machine()!='arm64':raise SystemExit('This package targets the current Apple Silicon Mac.')
  os.umask(0o077)
  if not args.stage_only:PRIVATE.mkdir(parents=True,exist_ok=True);PRIVATE.chmod(0o700)
@@ -16,6 +16,7 @@ def main():
   subprocess.run([sys.executable,'-m','venv',str(RUNTIME)],check=True)
  if not args.no_install_deps:subprocess.run([str(RUNTIME/'bin/python'),'-m','pip','install','--disable-pip-version-check','-r',str(ROOT/'desktop/macos/requirements.txt')],check=True)
  subprocess.run([str(RUNTIME/'bin/python'),'-c','import PyInstaller'],check=True)
+ subprocess.run([sys.executable,str(ROOT/'scripts/validate-controller-lab.py'),'--check'],check=True)
  shared=ROOT/'desktop/linux';sys.path.insert(0,str(shared))
  from session import VERSION
  package=args.output_dir or DATA/'packaging';package.mkdir(parents=True,exist_ok=True)
@@ -24,11 +25,18 @@ def main():
  subprocess.run([str(RUNTIME/'bin/python'),'-c',render,str(shared/'deckivo.svg'),str(iconset)],env={**os.environ,'QT_QPA_PLATFORM':'offscreen'},check=True)
  icon=package/'Deckivo.icns'
  subprocess.run(['iconutil','-c','icns',str(iconset),'-o',str(icon)],check=True)
+ bridge=package/'libdeckivo-input.dylib'
+ native_object=package/'input-core.o';mac_object=package/'native-input.o'
+ subprocess.run(['clang','-Wall','-Wextra','-Werror','-O2','-mmacosx-version-min=13.0','-c',str(shared/'native/kbm-bridge.c'),'-o',str(native_object)],check=True)
+ subprocess.run(['clang','-Wall','-Wextra','-Werror','-O2','-fobjc-arc','-mmacosx-version-min=13.0','-c',str(ROOT/'desktop/macos/native-input.m'),'-o',str(mac_object)],check=True)
+ subprocess.run(['clang','-dynamiclib','-undefined','dynamic_lookup','-mmacosx-version-min=13.0','-framework','Cocoa','-framework','ApplicationServices',str(native_object),str(mac_object),'-o',str(bridge)],check=True)
+
  command=[str(RUNTIME/'bin/python'),'-m','PyInstaller','--noconfirm','--clean','--windowed',
      '--name','Deckivo','--osx-bundle-identifier','by.remteh.deckivo','--icon',str(icon),
      '--distpath',str(package/'frozen'),'--workpath',str(package/'work'),'--specpath',str(package),
      '--paths',str(shared),'--add-data',str(shared/'assets')+':assets',
      '--add-binary','/opt/homebrew/opt/sdl2/lib/libSDL2.dylib:assets/macos',
+     '--add-binary',str(bridge)+':assets/macos',
      '--add-data','/opt/homebrew/opt/sdl2/LICENSE.txt:licenses/SDL2',
      '--add-data',str(shared/'deckivo.svg')+':.','--add-data',str(ROOT/'LICENSES')+':licenses']
  # The external helper runtime needs real source files after the GUI is frozen.

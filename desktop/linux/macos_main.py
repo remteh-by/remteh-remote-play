@@ -38,22 +38,17 @@ class MacDeckivo(Deckivo):
 
     def t(self,key):
         ru=self.language=='ru' or self.language=='auto' and launcher.QLocale.system().name().startswith('ru')
-        variants={'smooth':('Sharp · 1080p / 60','Чёткий · 1080p / 60'),
-            'balanced':('Smooth · 720p / 60','Плавный · 720p / 60'),
-            'rescue':('Balanced · 720p / 30','Стабильный · 720p / 30'),
-            'smooth_note':('15 Mb/s · VideoToolbox','15 Мбит/с · VideoToolbox'),
-            'balanced_note':('10 Mb/s · VideoToolbox','10 Мбит/с · VideoToolbox'),
-            'rescue_note':('7 Mb/s · VideoToolbox','7 Мбит/с · VideoToolbox'),
-            'pad_tip':('Connect a Bluetooth or USB gamepad to this Mac.','Подключи Bluetooth- или USB-геймпад к Mac.'),
-            'shortcut_text':('Keyboard and gamepad input are handled by the macOS engine. Ctrl+Q ends a stream.','Клавиатура и геймпад работают через движок macOS. Ctrl+Q завершает сеанс.'),
-            'playing':('Remote Play connected','Remote Play подключён')}
+        variants={'smooth_note':('10 Mb/s · automatic decoder','10 Мбит/с · автоматический декодер'),'balanced_note':('7 Mb/s · automatic decoder','7 Мбит/с · автоматический декодер'),'rescue_note':('5 Mb/s · compatibility','5 Мбит/с · совместимый режим'),'sharp_note':('15 Mb/s · 1080p target','15 Мбит/с · цель 1080p'),'sharp30_note':('12 Mb/s · 1080p target','12 Мбит/с · цель 1080p'),'shortcut_text':('PS / Home → PS menu\nTouchpad click → touchpad\nCtrl+Q in the stream ends the session\nKeyboard/mouse capture: Esc releases input', 'PS / Home → меню PS\nНажатие тачпада → тачпад\nCtrl+Q в окне трансляции завершает сеанс\nЗахват клавиатуры/мыши: Esc отпускает ввод'),
+            'pad_tip':('Connect your controller by USB or Bluetooth. DualSense USB enables extra diagnostics.','Подключи геймпад по USB или Bluetooth. USB DualSense открывает дополнительные тесты.') }
         return variants[key][1 if ru else 0] if key in variants else super().t(key)
 
     def start(self):
         if self.active() or not self.registration:return False
         if not ENGINE.is_file():
             QMessageBox.warning(self,'Deckivo','Install chiaki-ng in /Applications first.');return False
+        self.close_controller_lab()
         configure(self.registration,self.preferences['quality']);private_json(CONFIG,self.preferences)
+        (PRIVATE/'metrics.json').unlink(missing_ok=True)
         self.metrics={};self.saw_video=False;self.stop_requested=False;self.finalized=False;self.stream_id+=1
         self.started_mono=time.monotonic();self.started_at=launcher.datetime.datetime.now().astimezone().isoformat(timespec='seconds')
         self.quality_at_start=self.preferences['quality'];self.phase='connecting';self.message='ready'
@@ -66,11 +61,32 @@ class MacDeckivo(Deckivo):
         p.setProcessChannelMode(QProcess.MergedChannels);p.setStandardOutputFile(str(log))
         p.finished.connect(lambda code,status:self.finish(code,status,p))
         p.errorOccurred.connect(lambda error:self.finish(-1,0,p) if error==QProcess.FailedToStart else None)
+        self.session_label.setText(self.t('connecting'))
         self.primary.setText(self.t('disconnect'));self.primary.setEnabled(True);self.progress.show()
         self.set_preferences_enabled(False);self.switch_page(0)
         if getattr(sys,'frozen',False):p.start(sys.executable,['--internal-engine'])
         else:p.start(sys.executable,[str(HERE/'macos_supervisor.py')])
         return True
+
+    def capture_keyboard_mouse(self):
+        if not self.active() or not self.saw_video or not self.preferences.get('keyboard_mouse',False):return
+        import socket
+        try:
+            with socket.socket(socket.AF_UNIX,socket.SOCK_DGRAM) as control:control.sendto(b'grab',str(PRIVATE/'adapter.sock'))
+        except OSError:pass
+
+    def release_keyboard_mouse(self):
+        import socket
+        try:
+            with socket.socket(socket.AF_UNIX,socket.SOCK_DGRAM) as control:control.sendto(b'drop',str(PRIVATE/'adapter.sock'))
+        except OSError:pass
+
+    def finish(self,code,status,process):
+        try:tail=(DATA/'stream-private.log').read_text(errors='replace')[-100000:]
+        except OSError:tail=''
+        if '[Deckivo] user-ended stream' in tail:self.stop_requested=True
+        elif not self.stop_requested and ('Remote disconnected from StreamConnection' in tail or 'Session has quit' in tail):self.message='error'
+        super().finish(code,status,process)
 
     def tick(self):
         if not self.active():return
@@ -79,14 +95,20 @@ class MacDeckivo(Deckivo):
             with (DATA/'stream-private.log').open('rb') as file:
                 file.seek(0,2);size=file.tell();file.seek(max(0,size-65536));tail=file.read().decode(errors='replace')
         except OSError:return
-        # Mac's installed engine has no external frame counter. Keep FPS blank
-        # rather than confusing the requested rate with a measured display rate.
-        connected='Audio Device' in tail and 'Session request successful' in tail
+        from session import telemetry
+        from storage import load_json
+        import re
+        match=re.search(r'\[Deckivo\] engine_pid=(\d+)',tail)
+        measured=telemetry(load_json(PRIVATE/'metrics.json',{}))
+        if match and measured.get('pid')==int(match.group(1)):self.metrics=measured
+        connected=self.metrics.get('frames',0)>0
         if connected and not self.saw_video:
             self.saw_video=True;self.first_frame_mono=time.monotonic();self.phase='connected'
-            self.progress.hide();self.session_label.setText(self.t('playing'));self.showMinimized()
+            self.progress.hide();self.session_label.setText(self.t('playing'));self.showMinimized();self.capture_button.setEnabled(self.preferences['keyboard_mouse']);self.capture_keyboard_mouse()
+        self.stat_values['frames'].setText(str(self.metrics.get('frames','—')))
         if self.saw_video:self.stat_values['time'].setText(launcher.duration(time.monotonic()-self.first_frame_mono))
-        if 'Session has quit' in tail and not self.stop_requested:self.message='error'
+        if ('Session has quit' in tail or (not self.saw_video and time.monotonic()-self.started_mono>45)) and not self.stop_requested:
+            self.message='error';self.stop()
 
     def about(self):
         from support import supporters_text

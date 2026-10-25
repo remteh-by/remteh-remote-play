@@ -128,7 +128,7 @@
   "dv_console_list": "返回控制台",
   "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "输入私有 IPv4 地址，例如 192.168.1.10，不带 http 或端口。",
-  "dv_controller_intro": "测试 GameSir、Joy-Con 或其他控制器上的按钮和摇杆。",
+  "dv_controller_intro": "Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.",
   "dv_no_controller": "未找到控制器。在 Android 蓝牙设置中连接它。",
   "dv_controller_help": "按下按钮并移动操纵杆。 PS 和触摸板控件位于隐藏的游戏覆盖层中。",
   "dv_bottom_button": "底部按钮（PS5 上为 ×）",

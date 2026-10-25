@@ -128,7 +128,7 @@
   "dv_console_list": "콘솔로 돌아가기",
   "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "http나 포트 없이 192.168.1.10과 같은 개인 IPv4 주소를 입력하세요.",
-  "dv_controller_intro": "GameSir, Joy-Con 또는 다른 컨트롤러의 버튼과 스틱을 테스트하세요.",
+  "dv_controller_intro": "Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.",
   "dv_no_controller": "컨트롤러를 찾을 수 없습니다. Android Bluetooth 설정에서 연결하세요.",
   "dv_controller_help": "버튼을 누르고 스틱을 움직여보세요. PS 및 터치패드 컨트롤은 숨겨진 게임 오버레이에 있습니다.",
   "dv_bottom_button": "하단 버튼(PS5의 경우 ×)",

@@ -16,7 +16,7 @@ from PyQt5.QtNetwork import QLocalServer, QLocalSocket
 from PyQt5.QtWidgets import (QApplication, QWidget, QFrame, QLabel, QPushButton,
     QVBoxLayout, QHBoxLayout, QGridLayout, QStackedWidget, QComboBox, QLineEdit,
     QCheckBox, QScrollArea, QFileDialog, QMessageBox, QProgressBar, QShortcut, QDialog,
-    QSystemTrayIcon, QMenu, QSizePolicy)
+    QSystemTrayIcon, QMenu, QSizePolicy, QDoubleSpinBox)
 
 from session import VERSION, PRESETS, preferences, telemetry, duration, session_record, safe_report, log_stage, history_records
 from build_meta import BUILD
@@ -53,18 +53,23 @@ WORDS = {
     'smooth_note': ('10 Mb/s · Tegra hardware', '10 Мбит/с · Tegra'),
     'balanced_note': ('7 Mb/s · lower network load', '7 Мбит/с · меньше нагрузка на сеть'),
     'rescue_note': ('5 Mb/s · software decoder', '5 Мбит/с · программный декодер'),
-    'preset_hint': ('Resolution and FPS are requested targets.', 'Разрешение и FPS — запрашиваемые значения.'),
+    'preset_hint': ('Up to 1080p. This Remote Play engine has no verified 4K mode. Resolution/FPS are requested targets.', 'До 1080p. Проверенного режима 4K в этом движке нет. Разрешение/FPS — запрашиваемые значения.'),
+    'sharp': ('Sharp · 1080p / 60', 'Чёткий · 1080p / 60'), 'sharp30': ('Sharp · 1080p / 30', 'Чёткий · 1080p / 30'),
+    'sharp_note': ('15 Mb/s · hardware decoder target','15 Мбит/с · аппаратный декодер'), 'sharp30_note': ('12 Mb/s · lower frame-rate target','12 Мбит/с · 30 FPS'),
+    'keyboard_mouse': ('Keyboard + mouse → gamepad (Esc releases)', 'Клавиатура + мышь → геймпад (Esc отпускает)'),
+    'invert_mouse_y': ('Invert mouse Y axis','Инвертировать ось Y мыши'),
+    'capture_input': ('Capture keyboard and mouse','Захватить клавиатуру и мышь'),
     'controller': ('Your controller', 'Твой геймпад'),
-    'pad_ready': ('GameSir / Pro Controller ready', 'GameSir / Pro Controller подключён'),
-    'pad_none': ('Connect GameSir over Bluetooth', 'Подключи GameSir по Bluetooth'),
+    'pad_ready': ('Controller connected', 'Геймпад подключён'),
+    'pad_none': ('Connect your controller by USB or Bluetooth', 'Подключи геймпад по USB или Bluetooth'),
     'test_pad': ('Test inputs', 'Проверить управление'),
-    'pad_help': ('Move both sticks and press buttons. Highlights show real Linux input.', 'Двигай стиками и нажимай кнопки. Подсветка показывает реальный ввод Linux.'),
-    'pad_tip': ('If inputs are silent: L1+R1, then L2+R2 to select in joycond.', 'Если ввода нет: L1+R1, затем L2+R2 для выбора в joycond.'),
+    'pad_help': ('Move both sticks and press buttons. Measurements use the connected controller.', 'Двигай стиками и нажимай кнопки. Проверяется подключённый геймпад.'),
+    'pad_tip': ('USB provides extra features on supported Sony controllers. Availability depends on model and OS.', 'USB открывает дополнительные функции поддерживаемых Sony. Возможности зависят от модели и ОС.'),
     'pad_capture': ('During streaming, only the PS5 receives this gamepad.', 'Во время трансляции геймпад захватывает движок PS5.'),
-    'pad_labels': ('Diagram uses Xbox positions: A=south, B=east. GameSir in Switch mode may have different printed labels.', 'Схема по позициям Xbox: A — снизу, B — справа. Надписи GameSir в режиме Switch могут отличаться.'),
+    'pad_labels': ('Choose the actual model if its name is unavailable. Button names follow that model.', 'Если модель не определилась, выбери её вручную. Обозначения соответствуют выбранной модели.'),
     'shortcuts': ('YOUR SHORTCUTS', 'БЫСТРОЕ УПРАВЛЕНИЕ'),
     'shortcut_text': ('Home → PS menu\nCapture → touchpad click\nHold + and − for 1.5 s → end stream\nCtrl+Q → end stream', 'Home → меню PS\nCapture → нажатие тачпада\nУдержать + и − 1,5 с → завершить сеанс\nCtrl+Q → завершить сеанс'),
-    'nav_hint': ('D-pad / stick: navigate    A: choose    B: back    L1 / R1: pages', 'Крестовина / стик: выбор    A: открыть    B: назад    L1 / R1: разделы'),
+    'nav_hint': ('D-pad / stick: navigate · south button: choose · east button: back · shoulders: pages', 'Крестовина / стик: выбор · нижняя кнопка: открыть · правая: назад · бамперы: разделы'),
     'network': ('Local network', 'Локальная сеть'),
     'rtt_label': ('Discovery response', 'Отклик обнаружения'),
     'rtt_hint': ('Not the video or input latency', 'Это не задержка видео или управления'),
@@ -222,10 +227,10 @@ class Deckivo(QWidget):
         right=QVBoxLayout();right.setSpacing(16)
         box,q=card(margins=18,spacing=8);q.addWidget(label(self.t('quality'),'heading'))
         self.preset_buttons=[]
-        for i,p in enumerate(PRESETS):
-            b=button(self.t(p.name),lambda checked=False,index=i:self.set_quality(index),'preset')
-            b.setCheckable(True);b.setChecked(i==self.preferences['quality']);b.setMinimumHeight(35)
-            b.setToolTip(self.t(p.name+'_note'));q.addWidget(b);self.preset_buttons.append(b)
+        self.profile_choice=QComboBox()
+        for preset in PRESETS:self.profile_choice.addItem(self.t(preset.name))
+        self.profile_choice.setCurrentIndex(self.preferences['quality']);self.profile_choice.currentIndexChanged.connect(self.set_quality)
+        q.addWidget(self.profile_choice)
         q.addWidget(label(self.t('preset_hint'),'small',True));right.addWidget(box)
         box,c=card(margins=18,spacing=8);c.addWidget(label(self.t('controller'),'heading'))
         self.pad_label=label('','accent',True);c.addWidget(self.pad_label)
@@ -237,21 +242,53 @@ class Deckivo(QWidget):
             column=QVBoxLayout();column.setSpacing(2);column.addWidget(label(self.t(key),'small'))
             value=label('—','value');column.addWidget(value);stats.addLayout(column,1);self.stat_values[key]=value
         v.addWidget(snap)
+        self.capture_button=button(self.t('capture_input'),self.capture_keyboard_mouse,'ghost');self.capture_button.setEnabled(False);v.addWidget(self.capture_button)
         v.addWidget(label(self.t('nav_hint'),'small'))
         return page
 
     def controller_page(self):
+        viewport=QScrollArea();viewport.setWidgetResizable(True);viewport.setFrameShape(QFrame.NoFrame)
         page=QWidget();v=QVBoxLayout(page);v.setContentsMargins(0,0,0,0);v.setSpacing(15)
         v.addWidget(label(self.t('pad_help'),'muted',True));row=QHBoxLayout();row.setSpacing(18)
         box,c=card(margins=22);self.pad_name=label('','heading',True);c.addWidget(self.pad_name)
         self.pad_canvas=PadCanvas(self.pad);c.addWidget(self.pad_canvas,1)
+        self.model_choice=QComboBox();self.model_choice.addItem('Auto', 'auto')
+        for key,title in (('dualsense','DualSense'),('ds4','DualShock 4'),('xbox-series','Xbox Series')):self.model_choice.addItem(title,key)
+        self.model_choice.currentIndexChanged.connect(lambda:self.pad_canvas.set_model(self.model_choice.currentData()));c.addWidget(self.model_choice)
+        c.addWidget(button('Полная диагностика USB / Bluetooth' if self.language=='ru' else 'Full USB / Bluetooth diagnostics',self.open_controller_lab,'primary'))
         self.pad_raw=label('—','muted',True);self.pad_raw.setMinimumHeight(45);c.addWidget(self.pad_raw)
         c.addWidget(label(self.t('pad_labels'),'small',True));row.addWidget(box,2)
         box,r=card(margins=24);r.addWidget(label(self.t('shortcuts'),'eyebrow'))
         r.addWidget(label(self.t('shortcut_text'),'heading',True));r.addSpacing(15)
         r.addWidget(label(self.t('pad_capture'),'muted',True));r.addStretch();r.addWidget(label(self.t('pad_tip'),'small',True))
         row.addWidget(box,1);v.addLayout(row,1)
-        return page
+        viewport.setWidget(page);return viewport
+
+    def open_controller_lab(self):
+        if self.active():
+            QMessageBox.information(self,'Deckivo',self.t('active_pad'));return
+        try:
+            from controller_lab import ControllerLab
+            if not getattr(self,'controller_lab',None):self.controller_lab=ControllerLab()
+            self.pad.suspend(True)
+            self.controller_lab.open(self.language)
+        except (OSError,RuntimeError) as error:QMessageBox.warning(self,'Deckivo',str(error))
+
+    def close_controller_lab(self):
+        lab=getattr(self,'controller_lab',None)
+        if lab:lab.close();self.controller_lab=None;self.pad.suspend(False)
+
+    def capture_keyboard_mouse(self):
+        if not self.active() or not self.saw_video or not self.preferences.get('keyboard_mouse',False):return
+        from input_overlay import KeyboardMouseOverlay
+        old=getattr(self,'input_overlay',None)
+        if old:old.release();old.deleteLater()
+        self.input_overlay=KeyboardMouseOverlay(PRIVATE/'input.sock',on_release=self.show_dashboard,sensitivity=self.preferences['mouse_sensitivity'],invert_y=self.preferences['invert_mouse_y'])
+        self.input_overlay.capture()
+
+    def release_keyboard_mouse(self):
+        overlay=getattr(self,'input_overlay',None)
+        if overlay:overlay.release();overlay.deleteLater();self.input_overlay=None
 
     def history_page(self):
         page=QWidget();v=QVBoxLayout(page);v.setContentsMargins(0,0,0,0);v.setSpacing(16)
@@ -270,13 +307,14 @@ class Deckivo(QWidget):
             box=QFrame();box.setObjectName('card');row=QHBoxLayout(box);row.setContentsMargins(20,13,20,13)
             timestamp=str(record.get('started_at',''))[:19].replace('T','  ')
             row.addWidget(label(timestamp,'muted'),2)
-            row.addWidget(label(self.t(PRESETS[max(0,min(2,int(record.get('quality',0))))].name),'heading'),2)
+            row.addWidget(label(self.t(PRESETS[max(0,min(len(PRESETS)-1,int(record.get('quality',0))))].name),'heading'),2)
             row.addWidget(label(duration(record.get('seconds',0)),'value'),1)
             row.addWidget(label(f"{int(record.get('frames',0)):,} "+self.t('frames').lower(),'small'),2)
             v.addWidget(box)
         v.addStretch();self.history_scroll.setWidget(content)
 
     def settings_page(self):
+        viewport=QScrollArea();viewport.setWidgetResizable(True);viewport.setFrameShape(QFrame.NoFrame)
         page=QWidget();v=QVBoxLayout(page);v.setContentsMargins(0,0,0,0);v.setSpacing(14)
         row=QHBoxLayout();row.setSpacing(18)
         box,c=card(margins=22,spacing=11);c.addWidget(label(self.t('network'),'heading'))
@@ -290,15 +328,20 @@ class Deckivo(QWidget):
         c.addWidget(label('Other languages use English for new Linux features.','small',True))
         c.addStretch();c.addWidget(button(self.t('save'),self.save_settings,'primary'));row.addWidget(box,1)
         box,s=card(margins=22,spacing=8);s.addWidget(label(self.t('settings'),'heading'));self.options={}
-        for key,text in (('fullscreen','fullscreen'),('controller_navigation','navigation'),('disconnect_chord','chord'),('history','remember')):
+        for key,text in (('fullscreen','fullscreen'),('controller_navigation','navigation'),('disconnect_chord','chord'),('history','remember'),('keyboard_mouse','keyboard_mouse'),('invert_mouse_y','invert_mouse_y')):
+            if sys.platform=='darwin' and key=='disconnect_chord':continue
             check=QCheckBox(self.t(text));check.setChecked(self.preferences[key]);s.addWidget(check);self.options[key]=check
+        s.addWidget(label('Mouse sensitivity' if self.language!='ru' else 'Чувствительность мыши','muted'))
+        self.sensitivity=QDoubleSpinBox();self.sensitivity.setRange(.001,.2);self.sensitivity.setDecimals(3);self.sensitivity.setSingleStep(.005);self.sensitivity.setValue(self.preferences['mouse_sensitivity']);s.addWidget(self.sensitivity)
+        s.addWidget(label('WASD · mouse → right stick · LMB/RMB → R2/L2\nSpace ✕ · C ○ · R □ · F △ · Q/E L1/R1 · Ctrl L3 · Alt R3\nEnter Options · 1 Share · Tab Touch · F2 PS · Esc release','small',True))
         s.addStretch();s.addWidget(label(self.t('locked'),'small',True));row.addWidget(box,1);v.addLayout(row,1)
         self.settings_notice=label('','accent',True);v.addWidget(self.settings_notice)
-        return page
+        viewport.setWidget(page);return viewport
 
     def set_quality(self,index):
         if self.active():return
         self.preferences['quality']=index;private_json(CONFIG,self.preferences)
+        if self.profile_choice.currentIndex()!=index:self.profile_choice.setCurrentIndex(index)
         for i,b in enumerate(self.preset_buttons):b.setChecked(i==index)
 
     def save_settings(self):
@@ -307,6 +350,7 @@ class Deckivo(QWidget):
         except ValueError:self.settings_notice.setText(self.t('invalid'));return
         self.preferences.update(host=host,language=self.languages.currentData())
         for key,check in self.options.items():self.preferences[key]=check.isChecked()
+        self.preferences['mouse_sensitivity']=self.sensitivity.value()
         private_json(CONFIG,self.preferences);self.language=self.preferences['language'];self.build()
         self.settings_notice.setText(self.t('saved'));self.refresh()
 
@@ -379,6 +423,7 @@ class Deckivo(QWidget):
 
     def start(self):
         if self.active() or (PRIVATE/'maintenance').exists() or not self.registration:return False
+        self.close_controller_lab()
         width,height,decoder=apply_engine_settings(self.preferences)
         self.metrics={};self.saw_video=False;self.stop_requested=False;self.finalized=False;self.stream_id+=1
         self.started_mono=time.monotonic();self.started_at=datetime.datetime.now().astimezone().isoformat(timespec='seconds')
@@ -388,8 +433,9 @@ class Deckivo(QWidget):
         self.process=QProcess(self);process=self.process
         environment=QProcessEnvironment.systemEnvironment()
         values=dict(XDG_CONFIG_HOME=str(PRIVATE/'engine'),LD_LIBRARY_PATH=str(DATA/'runtime/usr/lib/aarch64-linux-gnu'),
-            LD_PRELOAD=str(DATA/'native/libdeckivo-tegra.so'),DECKIVO_VIDEO_WIDTH=str(width),DECKIVO_VIDEO_HEIGHT=str(height),
+            LD_PRELOAD=str(DATA/'native/libdeckivo-input.so')+':'+str(DATA/'native/libdeckivo-tegra.so'),DECKIVO_VIDEO_WIDTH=str(width),DECKIVO_VIDEO_HEIGHT=str(height),
             DECKIVO_DECODER_MODE=decoder,DECKIVO_METRICS=str(PRIVATE/'metrics.json'),DECKIVO_CONTROL=str(PRIVATE/'engine.sock'),
+            DECKIVO_INPUT_SOCKET=str(PRIVATE/'input.sock'),DECKIVO_OWNED_STREAM='1',DECKIVO_KBM='1' if self.preferences['keyboard_mouse'] else '0',
             DECKIVO_DISCONNECT_CHORD='1' if self.preferences['disconnect_chord'] else '0',
             SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS='1',SDL_JOYSTICK_HIDAPI_SWITCH='0',SDL_JOYSTICK_HIDAPI_PS4='0',SDL_GAMECONTROLLER_USE_BUTTON_LABELS='0')
         for key,value in values.items():environment.insert(key,value)
@@ -430,10 +476,11 @@ class Deckivo(QWidget):
             return False
 
     def set_preferences_enabled(self,enabled):
-        for widget in self.preset_buttons+[self.host_edit,self.languages]+list(self.options.values()):widget.setEnabled(enabled)
+        for widget in self.preset_buttons+[self.profile_choice,self.host_edit,self.languages,self.sensitivity]+list(self.options.values()):widget.setEnabled(enabled)
 
     def stop(self):
         if not self.active():return
+        self.release_keyboard_mouse()
         self.stop_requested=True;self.phase='stopping';self.session_label.setText(self.t('stopping'));self.primary.setEnabled(False)
         if not self.send_stop():
             self.primary.setEnabled(True);self.session_label.setText(self.t('no_stop'))
@@ -447,10 +494,12 @@ class Deckivo(QWidget):
     def finish(self,code,status,process):
         if process is not self.process or self.finalized:return
         self.finalized=True
+        self.capture_button.setEnabled(False)
+        self.release_keyboard_mouse()
         if self.connecting_dialog:
             self.connecting_dialog.hide();self.connecting_dialog.deleteLater();self.connecting_dialog=None
         support_clean=self.stop_requested and self.saw_video and code==0 and int(status)==0 and self.message!='error'
-        reason='busy' if code==73 else 'cancelled' if self.stop_requested and not self.saw_video else 'finished' if self.stop_requested or (code==0 and self.saw_video) else 'error'
+        reason='busy' if code==73 else 'error' if self.message=='error' else 'cancelled' if self.stop_requested and not self.saw_video else 'finished' if self.stop_requested or (code==0 and self.saw_video) else 'error'
         self.message='ended' if reason in ('finished','cancelled') else reason
         if self.preferences['history'] and self.started_at and code!=73:
             seconds=time.monotonic()-self.first_frame_mono if self.saw_video else 0
@@ -474,7 +523,7 @@ class Deckivo(QWidget):
             self.saw_video=True;self.first_frame_mono=time.monotonic();self.phase='playing'
             if self.connecting_dialog:
                 self.connecting_dialog.hide();self.connecting_dialog.deleteLater();self.connecting_dialog=None
-            self.progress.hide();self.session_label.setText(self.t('playing'));self.showMinimized()
+            self.progress.hide();self.session_label.setText(self.t('playing'));self.showMinimized();self.capture_button.setEnabled(self.preferences['keyboard_mouse']);self.capture_keyboard_mouse()
         self.stat_values['decode_fps'].setText(f"{self.metrics['decode_fps']:.1f}" if 'decode_fps' in self.metrics else '—')
         self.stat_values['decode_fps'].setToolTip(self.t('decode_hint'))
         self.stat_values['frames'].setText(f"{self.metrics.get('frames',0):,}" if self.saw_video else '—')
@@ -559,6 +608,7 @@ class Deckivo(QWidget):
                     thread.finished.connect(self.close_after_worker)
                     thread.setProperty('deckivo_close_connected',True)
             event.ignore();return
+        self.close_controller_lab();self.release_keyboard_mouse()
         self.pad.timer.stop();self.pad.disconnect_device();self.tray.hide();self.socket.close();self.lock.unlock();event.accept()
 
 

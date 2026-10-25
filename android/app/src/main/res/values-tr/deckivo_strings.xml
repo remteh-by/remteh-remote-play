@@ -62,7 +62,8 @@
     <string name="dv_controller">Oyun kumandası</string>
     <string name="dv_controller_check">Kumandayı test et</string>
     <string name="dv_controller_help">Düğmelere basın ve çubukları hareket ettirin. PS ve dokunmatik yüzey kontrolleri gizli oyun arayüzündedir.</string>
-    <string name="dv_controller_intro">GameSir, Joy-Con veya başka bir kontrol cihazındaki düğmeleri ve çubukları test edin.</string>
+    <string name="dv_controller_intro">Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.</string>
+    <string name="dv_controller_lab">Full controller diagnostics</string>
     <string name="dv_data">Veriler</string>
     <string name="dv_developer_credit">Developed by RemTeh.by ↗</string>
     <string name="dv_diag_checking">Checking Remote Play and H.264 decoders…</string>
@@ -93,8 +94,11 @@
     <string name="dv_input_test">Giriş testi</string>
     <string name="dv_install">Güncellemeyi yükle</string>
     <string name="dv_install_permission">Android ayarlarında Deckivo\'nun bu kaynaktan uygulamalar yüklemesine izin verin.</string>
+    <string name="dv_invert_mouse_y">Invert mouse Y axis</string>
     <string name="dv_ip_required">http veya bağlantı noktası olmadan 192.168.1.10 gibi özel bir IPv4 adresi girin.</string>
     <string name="dv_key_event">%1$s: %2$s · %3$s</string>
+    <string name="dv_keyboard_help">F8 captures input; Esc releases it. WASD moves, mouse aims, left/right click = R2/L2. Space: Cross, C: Circle, R: Square, F: Triangle, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Hold this button for sensitivity.</string>
+    <string name="dv_keyboard_mouse">Keyboard + mouse</string>
     <string name="dv_language">Dil</string>
     <string name="dv_layout_saved">Haritalama kaydedildi. Alt ×, sağ ○, sol □, üst △.</string>
     <string name="dv_left_button">sol düğme (□)</string>
@@ -104,6 +108,7 @@
     <string name="dv_legacy_use_the_stream_area_as_a_touchpad">Akış alanını dokunmatik yüzey olarak kullanın</string>
     <string name="dv_licenses">Lisanslar ve kaynak</string>
     <string name="dv_manual_ip">IP adresini elle gir</string>
+    <string name="dv_mouse_sensitivity">Mouse sensitivity</string>
     <string name="dv_my_console">Konsolum</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">Denetleyici bulunamadı. Android Bluetooth ayarlarında bağlayın.</string>
@@ -118,6 +123,7 @@
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">PS5 IP adresi</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
+    <string name="dv_quality_sharp">Sharp · 1080p / 60</string>
     <string name="dv_register_console">Konsolu kaydet</string>
     <string name="dv_register_profile">PS5 / PS4 profilini kaydet</string>
     <string name="dv_registered_unknown">●  Kayıtlı · durum bilinmiyor</string>
@@ -134,7 +140,7 @@
     <string name="dv_searching">Ağında aranıyor. Bir IP adresi de ekleyebilirsin.</string>
     <string name="dv_settings">Ayarlar</string>
     <string name="dv_setup">Bağlan</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1</string>
+    <string name="dv_setup_credit">Development build 0.7.0. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">Kayıttan sonra eve dönün ve PS5\'i seçin. Yerel oyun hazır; İnternet erişimi bu sürüm tarafından yapılandırılmamış.</string>
     <string name="dv_setup_enable">PS5\'te Ayarlar → Sistem → Uzaktan Oynatma\'yı etkinleştirin.</string>
     <string name="dv_setup_find">01 · Konsolunuzu bulun</string>
@@ -143,6 +149,7 @@
     <string name="dv_setup_profile">02 · PS5 profiliniz</string>
     <string name="dv_setup_register">Uzaktan Oynatma PIN\'ini girin ve kaydolun</string>
     <string name="dv_source">Kaynak kodu ve katkılar ↗</string>
+    <string name="dv_source_development">Development build %1$s. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_source_exact">Source code for this exact version: %1$s</string>
     <string name="dv_stretch">Esnet</string>
     <string name="dv_support">Deckivo büyüsün</string>
@@ -184,6 +191,8 @@
     <string name="dv_update_ready">Güncelleme hazır — aç</string>
     <string name="dv_updates">Güncellemeler</string>
     <string name="dv_updates_intro">Deckivo açıkken güncellemeleri denetler ve sınırsız Wi-Fi üzerinden indirir. Android kurulum onayı isteyebilir. Konsol kayıtları ve ayarlar korunur.</string>
+    <string name="dv_usb_choose">Choose your USB controller</string>
+    <string name="dv_usb_sony_missing">Connect a supported Sony controller with a USB data cable. Ordinary Bluetooth controllers use the input test.</string>
     <string name="dv_version_build">%1$s\n#%2$d</string>
     <string name="dv_video">Video</string>
     <string name="dv_waiting_input">Giriş bekleniyor…</string>

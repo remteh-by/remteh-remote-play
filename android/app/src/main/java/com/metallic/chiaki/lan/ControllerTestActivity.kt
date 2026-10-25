@@ -27,6 +27,7 @@ class ControllerTestActivity : DeckivoActivity() {
             .joinToString { it.name }
         DeckivoUi.label(layout, names.ifEmpty { getString(R.string.dv_no_controller) }, 17f, true)
         DeckivoUi.label(layout, getString(R.string.dv_controller_help))
+        DeckivoUi.button(layout, getString(R.string.dv_controller_lab), true) { startActivity(android.content.Intent(this, ControllerLabActivity::class.java)) }
         status = DeckivoUi.label(DeckivoUi.section(root, getString(R.string.dv_input_test)), getString(R.string.dv_waiting_input), 18f, true)
         val setup = DeckivoUi.section(root, getString(R.string.dv_button_layout))
         DeckivoUi.button(setup, getString(R.string.dv_calibrate), true) {

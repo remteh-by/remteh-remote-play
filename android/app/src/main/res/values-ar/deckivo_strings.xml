@@ -62,7 +62,8 @@
     <string name="dv_controller">وحدة التحكم</string>
     <string name="dv_controller_check">اختبار وحدة التحكم</string>
     <string name="dv_controller_help">اضغط على الأزرار وحرك العصي. توجد عناصر تحكم PS ولوحة اللمس في تراكب اللعبة المخفية.</string>
-    <string name="dv_controller_intro">اختبر الأزرار والعصي على GameSir أو Joy-Con أو وحدة تحكم أخرى.</string>
+    <string name="dv_controller_intro">Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.</string>
+    <string name="dv_controller_lab">Full controller diagnostics</string>
     <string name="dv_data">البيانات</string>
     <string name="dv_developer_credit">Developed by RemTeh.by ↗</string>
     <string name="dv_diag_checking">Checking Remote Play and H.264 decoders…</string>
@@ -93,8 +94,11 @@
     <string name="dv_input_test">اختبار الإدخال</string>
     <string name="dv_install">تثبيت التحديث</string>
     <string name="dv_install_permission">اسمح لـ Deckivo بتثبيت التطبيقات من هذا المصدر في إعدادات Android.</string>
+    <string name="dv_invert_mouse_y">Invert mouse Y axis</string>
     <string name="dv_ip_required">أدخل عنوان IPv4 خاصًا، مثل 192.168.1.10، بدون http أو منفذ.</string>
     <string name="dv_key_event">%1$s: %2$s · %3$s</string>
+    <string name="dv_keyboard_help">F8 captures input; Esc releases it. WASD moves, mouse aims, left/right click = R2/L2. Space: Cross, C: Circle, R: Square, F: Triangle, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Hold this button for sensitivity.</string>
+    <string name="dv_keyboard_mouse">Keyboard + mouse</string>
     <string name="dv_language">اللغة</string>
     <string name="dv_layout_saved">تم حفظ التعيين. أسفل ×، يمين ○، يسار □، أعلى △.</string>
     <string name="dv_left_button">الزر الأيسر (□)</string>
@@ -104,6 +108,7 @@
     <string name="dv_legacy_use_the_stream_area_as_a_touchpad">استخدم منطقة الدفق كلوحة اللمس</string>
     <string name="dv_licenses">التراخيص والمصدر</string>
     <string name="dv_manual_ip">إدخال IP يدويًا</string>
+    <string name="dv_mouse_sensitivity">Mouse sensitivity</string>
     <string name="dv_my_console">جهازي</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">لم يتم العثور على وحدة تحكم. قم بتوصيله في إعدادات Android Bluetooth.</string>
@@ -118,6 +123,7 @@
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">عنوان IP لجهاز PS5</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
+    <string name="dv_quality_sharp">Sharp · 1080p / 60</string>
     <string name="dv_register_console">تسجيل الجهاز</string>
     <string name="dv_register_profile">تسجيل ملف PS5 / PS4</string>
     <string name="dv_registered_unknown">●  مسجّل · الحالة غير معروفة</string>
@@ -134,7 +140,7 @@
     <string name="dv_searching">نبحث في شبكتك. يمكنك أيضًا إضافة عنوان IP.</string>
     <string name="dv_settings">الإعدادات</string>
     <string name="dv_setup">اتصال</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1</string>
+    <string name="dv_setup_credit">Development build 0.7.0. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">بعد التسجيل، عد إلى المنزل واختر PS5. اللعب المحلي جاهز. لم يتم تكوين الوصول إلى الإنترنت بواسطة هذا الإصدار.</string>
     <string name="dv_setup_enable">على جهاز PS5، قم بتمكين الإعدادات → النظام → اللعب عن بُعد.</string>
     <string name="dv_setup_find">01 · ابحث عن وحدة التحكم الخاصة بك</string>
@@ -143,6 +149,7 @@
     <string name="dv_setup_profile">02 · ملفك الشخصي على PS5</string>
     <string name="dv_setup_register">أدخل رقم التعريف الشخصي للعب عن بعد وقم بالتسجيل</string>
     <string name="dv_source">المصدر والمساهمون ↗</string>
+    <string name="dv_source_development">Development build %1$s. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_source_exact">Source code for this exact version: %1$s</string>
     <string name="dv_stretch">تمديد</string>
     <string name="dv_support">ساعد Deckivo على النمو</string>
@@ -184,6 +191,8 @@
     <string name="dv_update_ready">التحديث جاهز — فتح</string>
     <string name="dv_updates">التحديثات</string>
     <string name="dv_updates_intro">يتحقق من التحديثات أثناء فتح Deckivo وينزّلها عبر شبكة Wi-Fi غير محدودة. قد يطلب Android الموافقة على التثبيت. يتم الاحتفاظ بتسجيلات الأجهزة والإعدادات.</string>
+    <string name="dv_usb_choose">Choose your USB controller</string>
+    <string name="dv_usb_sony_missing">Connect a supported Sony controller with a USB data cable. Ordinary Bluetooth controllers use the input test.</string>
     <string name="dv_version_build">%1$s\n#%2$d</string>
     <string name="dv_video">الفيديو</string>
     <string name="dv_waiting_input">بانتظار الإدخال…</string>
