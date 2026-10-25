@@ -33,19 +33,19 @@
     "packages": [
       {
         "build": 18,
-        "bytes": 31861806,
+        "bytes": 31863025,
         "filename": "Deckivo-macos-0.8.2-b18.zip",
         "platform": "macos-arm64",
-        "sha256": "610a52126ef35d444957b61bfb2d08c08f05b810911dc9d28e8da2b9960824ea",
+        "sha256": "e0c4e5bd9a2fcb5b18592938a45e97be3a9e8d7973a286da200ce77cf47fe0a9",
         "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-macos-0.8.2-b18.zip",
         "version": "0.8.2"
       },
       {
         "build": 18,
-        "bytes": 3572891,
+        "bytes": 3573041,
         "filename": "Deckivo-Linux-0.8.2-b18-source.zip",
         "platform": "linux-switch-arm64",
-        "sha256": "b5eb218de09b529de50485e12e4a234cf8c761603de158860af077c9caec0fa9",
+        "sha256": "d44e739df60a47943ea5b8e15f836c36ff73e68e2f3551840dcd2316aef0e61a",
         "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-Linux-0.8.2-b18-source.zip",
         "version": "0.8.2"
       }
