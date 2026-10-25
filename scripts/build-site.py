@@ -42,7 +42,7 @@ def main():
   soup.head.append(tag('link',{'rel':'canonical','href':address(code)}))
   for lang in NAMES:soup.head.append(tag('link',{'rel':'alternate','hreflang':lang,'href':address(lang)}))
   soup.head.append(tag('link',{'rel':'alternate','hreflang':'x-default','href':base}))
-  if code not in SYSTEM_FONT:soup.head.append(tag('link',{'rel':'preload','as':'font','type':'font/woff2','crossorigin':'','href':prefix+'assets/Plex-Latin-Cyrillic.woff2'}))
+  if code not in SYSTEM_FONT:soup.head.append(tag('link',{'rel':'preload','as':'font','type':'font/woff2','crossorigin':'','href':prefix+'assets/DeckivoSans-Latin-Cyrillic.woff2'}))
   picker=soup.select_one('.language');picker.name='details';picker.clear();picker.append(tag('summary',{'aria-label':copy['language']},NAMES[code]+' ▾'))
   choices=tag('div',{'class':'language-menu'})
   for lang,name in NAMES.items():choices.append(tag('a',{'href':prefix+('' if lang=='en' else lang+'/') or './','lang':lang,'hreflang':lang,**({'aria-current':'page'} if lang==code else {})},name))

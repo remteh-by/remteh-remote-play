@@ -26,7 +26,7 @@ The upstream support link in `.github/FUNDING.yml` is retained for the upstream 
 - IBM Plex Sans: SIL Open Font License, included with the font.
 - Screen/gamepad illustration: original Deckivo vector in `design-system/assets/play-space.svg`, under the project license.
 - Website hero and cover: an actual Qt setup-screen capture produced by `scripts/capture-preview.py` using isolated temporary data. No owner pairing, names or IP addresses are included.
-- Website WOFF2: Latin/Cyrillic subset of IBM Plex Sans under the same included OFL. System fonts serve CJK, Arabic and Hindi.
+- Website WOFF2: Latin/Cyrillic subset of IBM Plex Sans, renamed Deckivo Sans Subset to respect the reserved font name under the same included OFL. System fonts serve CJK, Arabic and Hindi.
 - 0.6.1 no longer distributes the earlier Sony press photograph in its active assets; old release/tag artifacts remain unchanged.
 
 RemTeh's voluntary project support is [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats).

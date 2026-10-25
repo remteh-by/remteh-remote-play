@@ -18,7 +18,7 @@ Artwork: actual isolated Qt setup UI, AVIF with WebP fallback; cover is composed
 from that capture. The neutral vector is our own. No Sony press image remains.
 To refresh the capture, use `scripts/capture-preview.py` with a Qt-capable Python,
 then `scripts/build-site-assets.py` with the documented build dependencies.
-The WOFF2 is a Latin/Cyrillic IBM Plex Sans subset under the included OFL. CJK,
+The WOFF2 is a Latin/Cyrillic IBM Plex Sans subset renamed Deckivo Sans Subset under the included OFL. CJK,
 Arabic and Hindi use system fonts and do not preload the web font.
 
 Only enabled owner-supplied support methods are rendered. Empty raised amounts

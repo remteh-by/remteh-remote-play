@@ -6,7 +6,12 @@ from PIL import Image,ImageDraw,ImageFont
 R=Path(__file__).resolve().parents[1];font=R/'design-system/assets/fonts/IBMPlexSans.ttf';assets=R/'website/assets'
 options=subset.Options();options.flavor='woff2';options.layout_features=['*']
 f=subset.load_font(str(font),options);sub=subset.Subsetter(options=options)
-sub.populate(unicodes=list(range(0x250))+list(range(0x400,0x530))+list(range(0x1e00,0x1f00))+list(range(0x2000,0x2070)));sub.subset(f);subset.save_font(f,str(assets/'Plex-Latin-Cyrillic.woff2'),options)
+sub.populate(unicodes=list(range(0x250))+list(range(0x400,0x530))+list(range(0x1e00,0x1f00))+list(range(0x2000,0x2070)));sub.subset(f)
+# OFL Reserved Font Name Plex: modified subset uses a distinct primary name.
+renames={1:'Deckivo Sans Subset',3:'DeckivoSansSubset-0.6.1',4:'Deckivo Sans Subset',6:'DeckivoSansSubset-Regular',16:'Deckivo Sans Subset',25:'DeckivoSansSubset'}
+for record in f['name'].names:
+ if record.nameID in renames:record.string=renames[record.nameID].encode(record.getEncoding())
+subset.save_font(f,str(assets/'DeckivoSans-Latin-Cyrillic.woff2'),options)
 im=Image.open(R/'build/deckivo-ui.png').convert('RGB');im.save(assets/'deckivo-ui.webp',quality=84,method=6);im.save(assets/'deckivo-ui.avif',quality=65)
 cover=Image.new('RGB',(1200,630),'#101216');d=ImageDraw.Draw(cover)
 d.text((54,32),'deckivo',font=ImageFont.truetype(str(font),68),fill='#DAF975');small=ImageFont.truetype(str(font),23)
