@@ -25,6 +25,16 @@ def qr_widget(method,side=260):
     widget.setAccessibleName('QR');return widget
 
 
+def open_support_url(url,status,fallback):
+    try:opened=QDesktopServices.openUrl(QUrl(url))
+    except Exception:opened=False
+    if not opened:
+        status.setText(fallback);status.show()
+    else:
+        status.clear();status.hide()
+    return opened
+
+
 def show(window):
     if window.active():return
     config=configuration();copy=texts(window)
@@ -45,7 +55,11 @@ def show(window):
         value=method.get('url') or method['address']
         text=label(value,'muted',True);text.setTextInteractionFlags(Qt.TextSelectableByMouse);layout.addWidget(text)
         if method.get('network'):layout.addWidget(label(method['network'],'small'))
-        if method.get('url'):layout.addWidget(button(copy['support_link'],lambda url=value:QDesktopServices.openUrl(QUrl(url))))
+        if method.get('url'):
+            status=label('','small',True);status.hide()
+            fallback=copy['scan_phone']+'. '+copy['support_note']
+            layout.addWidget(button(copy['support_link'],lambda checked=False,url=value,status=status,fallback=fallback:open_support_url(url,status,fallback)))
+            layout.addWidget(status)
     layout.addWidget(label(copy['support_note'],'muted',True))
     for supporter in config['supporters']:layout.addWidget(label(supporter['name']+' · '+supporter['since'],'muted'))
     outer.addWidget(button('OK',dialog.accept));dialog.exec()
@@ -68,7 +82,7 @@ def maybe_thank(window):
     choice={'value':'later'}
     def finish(value):choice['value']=value;dialog.accept()
     for key,value in (('support_link','support'),('thanks_later','later'),('thanks_never','never')):
-        layout.addWidget(button(copy[key],lambda v=value:finish(v)))
+        layout.addWidget(button(copy[key],lambda checked=False,v=value:finish(v)))
     dialog.exec();private_json(path,support_policy.action(load_json(path,{}),choice['value'],time.time()))
     if choice['value']=='support':show(window)
 

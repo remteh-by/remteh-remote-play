@@ -1,5 +1,7 @@
 # 0.8.2 · project links and clearer downloads · 2026-10-25
 
+- Fix a macOS/Ubuntu crash when clicking the donation link and preserve the
+  support reminder choices; a failed browser launch keeps the QR fallback open.
 - Visible GitHub and RemTeh.by links in Android, macOS and Ubuntu clients.
 - RemTeh links identify Android, macOS, Ubuntu, GitHub or the Deckivo website
   using source-specific UTM parameters when the user opens a link.

@@ -24,7 +24,7 @@
     "physical_acceptance": "not tested: device running Ubuntu"
   },
   "native": {
-    "unit_tests": 74,
+    "unit_tests": 79,
     "unit_failures": 0,
     "macos_build": 18,
     "linux_build": 18,
@@ -50,7 +50,12 @@
         "version": "0.8.2"
       }
     ],
-    "physical_update_acceptance": "pending public-channel rollout"
+    "physical_update_acceptance": "pending public-channel rollout",
+    "donation_regression": {
+      "old_callback_reproduced": "QUrl(bool) TypeError",
+      "actual_qt_clicks": "success, failed browser, exception, three reminder choices passed",
+      "android": "separate Kotlin browser/QR path reviewed; no Qt callback"
+    }
   },
   "links": {
     "repository": "https://github.com/remteh-by/remteh-remote-play",
