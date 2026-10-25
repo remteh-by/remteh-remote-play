@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dv_github_link" translatable="false">GitHub ↗</string>
+    <string name="dv_remteh_link" translatable="false">RemTeh.by ↗</string>
+</resources>

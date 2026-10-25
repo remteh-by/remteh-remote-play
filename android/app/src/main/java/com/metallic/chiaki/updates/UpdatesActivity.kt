@@ -52,7 +52,8 @@ class UpdatesActivity : DeckivoActivity() {
         val content = DeckivoUi.screen(this, getString(R.string.dv_about), getString(R.string.dv_tagline))
         panel = DeckivoUi.section(content, getString(R.string.dv_named_version, BuildConfig.VERSION_NAME))
         label(getString(R.string.dv_build_details, BuildConfig.VERSION_CODE, getString(R.string.dv_build_suffix)), 14f)
-        button(getString(R.string.dv_developer_credit)) { openLink("https://remteh.by/") }
+        button(getString(R.string.dv_developer_credit)) { openLink(com.metallic.chiaki.design.LinkUi.REMTEH_URL) }
+        button(getString(R.string.dv_github_link)) { openLink(com.metallic.chiaki.design.LinkUi.GITHUB_URL) }
         label(getString(R.string.dv_attribution), 14f)
         button(getString(R.string.dv_source)) { openLink(UpdatePolicy.REPO_URL + "/blob/main/ATTRIBUTION.md") }
         button(getString(R.string.dv_licenses)) { startActivity(Intent(this, com.metallic.chiaki.design.LicensesActivity::class.java)) }

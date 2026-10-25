@@ -206,8 +206,15 @@ class Deckivo(QWidget):
         self.stack=QStackedWidget();self.stack.addWidget(self.home_page());self.stack.addWidget(self.controller_page())
         self.stack.addWidget(self.history_page());self.stack.addWidget(self.settings_page());self.stack.setCurrentIndex(self.page)
         main.addWidget(self.stack,1)
-        footer=QHBoxLayout();credit=QLabel('<a style="color:#B6C295;text-decoration:none" href="https://remteh.by">Developed by RemTeh.by ↗</a>')
-        credit.setOpenExternalLinks(True);footer.addWidget(credit);footer.addStretch()
+        footer=QHBoxLayout();footer.setSpacing(18)
+        source='deckivo_macos' if sys.platform=='darwin' else 'deckivo_linux'
+        links=(('Developed by RemTeh.by ↗','https://remteh.by/?utm_source='+source+'&amp;utm_medium=app&amp;utm_campaign=deckivo'),
+               ('GitHub ↗','https://github.com/remteh-by/remteh-remote-play'))
+        for text,url in links:
+            link=QLabel('<a style="color:#B6C295;text-decoration:none" href="'+url+'">'+text+'</a>')
+            link.setOpenExternalLinks(True);link.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.LinksAccessibleByKeyboard)
+            link.setFocusPolicy(Qt.StrongFocus);link.setAccessibleName(text);footer.addWidget(link)
+        footer.addStretch()
         footer.addWidget(label(self.t('private')+' · '+VERSION+' · b'+str(BUILD),'small'));main.addLayout(footer)
         self.update_status(self.online,self.rtt);self.update_pad()
         self.primary.setFocus()

@@ -51,5 +51,7 @@ class SupportActivity : DeckivoActivity() {
         }
         DeckivoUi.label(root, getString(R.string.dv_support_note))
         DeckivoUi.button(root, getString(R.string.dv_licenses)) { startActivity(Intent(this, LicensesActivity::class.java)) }
+        DeckivoUi.button(root, getString(R.string.dv_github_link)) { LinkUi.openLinkOrShowQr(this, LinkUi.GITHUB_URL) }
+        DeckivoUi.button(root, getString(R.string.dv_remteh_link)) { LinkUi.openLinkOrShowQr(this, LinkUi.REMTEH_URL) }
     }
 }

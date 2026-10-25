@@ -72,7 +72,10 @@ class MainActivity : DeckivoActivity() {
         }
         binding.updateStatus.setOnClickListener { open(UpdatesActivity::class.java) }
         binding.developerCredit.setOnClickListener {
-            com.metallic.chiaki.design.LinkUi.openLinkOrShowQr(this, "https://remteh.by/")
+            com.metallic.chiaki.design.LinkUi.openLinkOrShowQr(this, com.metallic.chiaki.design.LinkUi.REMTEH_URL)
+        }
+        binding.githubButton.setOnClickListener {
+            com.metallic.chiaki.design.LinkUi.openLinkOrShowQr(this, com.metallic.chiaki.design.LinkUi.GITHUB_URL)
         }
         binding.supportButton.setOnClickListener { open(com.metallic.chiaki.design.SupportActivity::class.java) }
         binding.addConsoleButton.setOnClickListener {

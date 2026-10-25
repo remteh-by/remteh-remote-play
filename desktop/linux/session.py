@@ -5,7 +5,7 @@ import sys
 import re
 from dataclasses import dataclass
 
-VERSION = '0.8.1'
+VERSION = '0.8.2'
 
 
 @dataclass(frozen=True)

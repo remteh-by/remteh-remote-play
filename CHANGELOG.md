@@ -1,3 +1,13 @@
+# 0.8.2 · project links and clearer downloads · 2026-10-25
+
+- Visible GitHub and RemTeh.by links in Android, macOS and Ubuntu clients.
+- RemTeh links identify Android, macOS, Ubuntu, GitHub or the Deckivo website
+  using source-specific UTM parameters when the user opens a link.
+- Simpler device-based download choices and constrained responsive layouts on
+  the public website; genuine current-version application imagery is retained.
+- Desktop build 18 and Android build 27 retain existing registrations and update
+  identities. Android device acceptance remains separate from build checks.
+
 # 0.8.1 · Linux updater fix · 2026-10-25
 
 - Linux build 17 fixes the missing installed upgrade helper in clean 0.6.1

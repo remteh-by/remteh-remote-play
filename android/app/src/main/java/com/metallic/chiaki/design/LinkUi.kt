@@ -17,6 +17,9 @@ import com.metallic.chiaki.R
 
 /** Browser-independent local QR fallback. Console credentials never enter links. */
 object LinkUi {
+    const val GITHUB_URL = "https://github.com/remteh-by/remteh-remote-play"
+    const val REMTEH_URL = "https://remteh.by/?utm_source=deckivo_android&utm_medium=app&utm_campaign=deckivo"
+
     fun qr(value: String, size: Int = 360): Bitmap {
         require(value.length in 1..2048)
         val bits = QRCodeWriter().encode(value, BarcodeFormat.QR_CODE, size, size,
