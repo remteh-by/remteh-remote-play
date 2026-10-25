@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "version": "0.8.1",
+  "build": 17,
+  "platform": "linux-switch-arm64",
+  "source_commit": "ba711138d35d547cd42f4956d2146ac420a87f70",
+  "public_signed_download": "passed from build Mac with Linux-equivalent stdlib TLS context",
+  "linux_package_sha256": "f476d4a3f3bc8668ba15dcaccedef20bf31d09f578f096521d9c0d40105530ac",
+  "macos_feed_entry": "unchanged 0.6.1 build 10",
+  "android_feed_selection": "Linux-only release has no update.json and is skipped by Android client",
+  "pages_deployment_run": 40224260771,
+  "physical_device_update": "pending: Switch lost USB and Wi-Fi connectivity",
+  "physical_wifi_fix": "pending administrative authentication and device connectivity",
+  "gameplay_test": "not performed",
+  "old_client_source_commit": "47b088d5aa60ced0ec6ecdf0da24cdebbf4df42b",
+  "old_client_download": "exact v0.6.1 updater.py and rsa_verify.py passed signed public 0.8.1 download on Mac with Linux-equivalent TLS context"
+}

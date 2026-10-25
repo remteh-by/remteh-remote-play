@@ -105,3 +105,7 @@ Switch, firmware update, jailbreak reliability or game compatibility certificati
 - Physical public-channel 0.6.1 → 0.8.1 transition is **pending**. USB and Wi-Fi
   became unavailable before installation. Neither staging/build success nor the
   updated UI screenshot is a gameplay or device-update acceptance result.
+
+[0.8.1 public-channel readback](releases/0.8.1-public-channel-validation.json)
+records the verified public download separately from the still-pending physical
+installation. No new device acceptance is inferred from that download.
