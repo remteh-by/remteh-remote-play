@@ -3,6 +3,8 @@
 import argparse
 import hashlib
 import json
+import re
+import shutil
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont,ImageOps
 
@@ -53,7 +55,11 @@ def main():
  preview_box=(780,439);preview=ImageOps.contain(image,preview_box,Image.Resampling.LANCZOS);preview_position=(365+(preview_box[0]-preview.width)//2,172+(preview_box[1]-preview.height)//2)
  draw.text((54,32),'deckivo',font=large,fill='#DAF975');draw.text((56,116),'Your PS5. Your play space.',font=small,fill='#F3F5F7');cover.paste(preview,preview_position);draw.text((55,202),'Open source\nAndroid\nApple Silicon\nSwitchroot',font=small,fill='#A4ACBA',spacing=18);draw.text((55,548),f"Development preview · {metadata['version']} b{metadata['build']}",font=caption,fill='#DAF975');draw.text((55,580),'Actual Deckivo UI · unpaired',font=caption,fill='#A4ACBA');cover.save(cover_path,quality=87,method=6)
  manifest={'schema':1,'version':metadata['version'],'build':metadata['build'],'source_commit':metadata['source_commit'],'source_dirty':metadata.get('source_dirty',False),'ui_source_sha256':metadata['ui_source_sha256'],'capture_state':'unpaired','development_preview':True,'captured_at':metadata['captured_at'],'images':{path.name:file_record(path) for path in (preview_webp,preview_avif,cover_path)}}
+ versioned_cover=args.assets/f"github-cover-{metadata['version']}-b{metadata['build']}-{manifest['images']['github-cover.webp']['sha256'][:12]}.webp"
+ shutil.copyfile(cover_path,versioned_cover);manifest['readme_cover']=versioned_cover.name
  (args.assets/'screenshot.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+ if args.assets.resolve()==(ROOT/'website/assets').resolve():
+  readme=ROOT/'README.md';text=readme.read_text();text=re.sub(r'(?<=src=")website/assets/github-cover[^" ]*', 'website/assets/'+versioned_cover.name,text);readme.write_text(text)
  print(f"Real Deckivo {manifest['version']} b{manifest['build']} capture assets generated; font {'unchanged' if args.capture_only else 'generated'}.")
 
 
