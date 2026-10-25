@@ -6,6 +6,7 @@ No personal registration files, account identifiers or raw device logs are publi
 
 | Platform / hardware | Software | Verified on that exact configuration | Still open |
 |---|---|---|---|
+| Apple Silicon MacBook, macOS 27.0.1 | Deckivo 0.8.0 #16 → 0.8.2 #18 | Public signed auto-update, all 415 installed ZIP entries match, codesign verified, startup acknowledged, pairing retained; native donation button opens the correct RemTeh Ko-fi page and app stays alive | Sustained gameplay/controller acceptance; Android/Ubuntu 0.8.2 physical tests are separate |
 | Switch OLED, Android 15 / API 35, ARM64 | Deckivo 0.5.1 #18 → #19 → #20 | Native PackageInstaller self-update, same package/certificate, installer identified as Deckivo itself; original install timestamp and encrypted-data directory retained; app returned to dashboard with saved console | Sustained gameplay and every controller function in the redesigned frontend |
 | Apple Silicon MacBook, macOS 27.0.1 | Deckivo 0.5.1 #3 → #4 → #5 | Signed updater, bundle verification, replacement/relaunch, startup acknowledgment, registration hash unchanged; no new Deckivo/Python crash report during this check | Sustained new-frontend play/controller acceptance; Developer ID/notarization |
 | Switch OLED, Switchroot Ubuntu 24.04.4 ARM64, KDE/X11 | Deckivo 0.6.1 #10 → 0.8.1 #17 | Signed public update installed and relaunched; all 80 installer files match the public package; matching receipt/startup acknowledgment and live version readback; registration retained; exact timer units enabled and natural closed-app background checks reported current before and after a full Ubuntu reboot; Wi-Fi autoconnected with KWallet closed | Sustained redesigned-frontend gameplay/controller acceptance |
@@ -121,3 +122,18 @@ The same Ubuntu device was subsequently fully rebooted: its saved Wi-Fi profile
 autoconnected while KWallet remained closed, and the Deckivo timer checked the
 public channel again. The Wi-Fi change is owner-device configuration, not a
 feature that modifies networks in the distributed application.
+
+## 0.8.2 public update and donation verification
+
+The installed Mac updated from 0.8.0 build 16 to 0.8.2 build 18 using the public
+signed feed and release ZIP. All 415 installed entries matched, the startup
+acknowledgment belonged to the live process, and pairing was retained. The
+native support dialog and its donation button were clicked after installation:
+Chrome loaded **Support RemTeh** at `https://ko-fi.com/pavelzayats`, while
+Deckivo stayed alive. No payment was submitted.
+
+The shared Mac/Ubuntu callback regression is covered by actual Qt button-click
+tests. Android uses a separate Kotlin browser/QR path. Physical Android and
+Ubuntu 0.8.2 tests remain pending because the Switch was unavailable.
+
+[Public acceptance receipt](releases/0.8.2-public-channel-validation.json).

@@ -1,6 +1,6 @@
 # Deckivo · Русская инструкция
 
-[Подробная установка и игра](docs/guides/ru.md) · [Скачать 0.6.0 preview](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0) · [Сайт](https://remteh-by.github.io/remteh-remote-play/)
+[Подробная установка и игра](docs/guides/ru.md) · [Скачать 0.8.2 preview](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2) · [Сайт](https://remteh-by.github.io/remteh-remote-play/)
 
 Это экспериментальный открытый клиент Remote Play. Не удаляйте старое приложение
 для обновления: устанавливайте поверх, сохраняя регистрацию PS5 и настройки.

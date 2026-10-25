@@ -1,22 +1,178 @@
 {
   "schema": 1,
   "repository": "remteh-by/remteh-remote-play",
-  "snapshot_at": "2026-10-25T20:15:06Z",
+  "snapshot_at": "2026-10-25T20:42:54Z",
   "releases": [
+    {
+      "release_id": 423646218,
+      "tag": "v0.8.2",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2",
+      "published_at": "2026-10-25T20:34:24Z",
+      "prerelease": true,
+      "captured_at": "2026-10-25T20:42:54Z",
+      "assets": [
+        {
+          "asset_id": 676056608,
+          "name": "0.8.2-validation.json",
+          "size_bytes": 3024,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676056603,
+          "name": "Deckivo-0.8.2-android.cdx.json",
+          "size_bytes": 92433,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676056602,
+          "name": "Deckivo-0.8.2-arm64.apk",
+          "size_bytes": 9444938,
+          "download_count": 0,
+          "category": "android",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676056605,
+          "name": "Deckivo-0.8.2-desktop.cdx.json",
+          "size_bytes": 2524,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676056600,
+          "name": "Deckivo-0.8.2-kit.zip",
+          "size_bytes": 47659416,
+          "download_count": 0,
+          "category": "bundle",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676057061,
+          "name": "Deckivo-0.8.2-sources.zip",
+          "size_bytes": 41996558,
+          "download_count": 0,
+          "category": "source",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676057104,
+          "name": "Deckivo-Linux-0.8.2-b18-source.zip",
+          "size_bytes": 3573041,
+          "download_count": 0,
+          "category": "linux",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676057116,
+          "name": "Deckivo-macos-0.8.2-b18.zip",
+          "size_bytes": 31863025,
+          "download_count": 0,
+          "category": "macos",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676057590,
+          "name": "index.json",
+          "size_bytes": 643,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676057604,
+          "name": "index.sig",
+          "size_bytes": 512,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676057573,
+          "name": "SHA256SUMS.txt",
+          "size_bytes": 1065,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676057577,
+          "name": "SOURCE-REVISION.json",
+          "size_bytes": 2044652,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 676057606,
+          "name": "update.json",
+          "size_bytes": 291,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        }
+      ]
+    },
     {
       "release_id": 423600706,
       "tag": "v0.8.1",
       "url": "https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.1",
       "published_at": "2026-10-25T19:03:43Z",
       "prerelease": true,
-      "captured_at": "2026-10-25T20:15:06Z",
+      "captured_at": "2026-10-25T20:42:54Z",
       "assets": [
-        {"asset_id": 675862483, "name": "Deckivo-0.8.1-validation.json", "size_bytes": 1087, "download_count": 0, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675862480, "name": "Deckivo-Linux-0.8.1-b17-source.zip", "size_bytes": 3572449, "download_count": 3, "category": "linux", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675862481, "name": "Deckivo-Linux-0.8.1-b17-sources.zip", "size_bytes": 3790423, "download_count": 0, "category": "source", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675862482, "name": "index.json", "size_bytes": 643, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675862484, "name": "index.sig", "size_bytes": 512, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675862567, "name": "SHA256SUMS-0.8.1.txt", "size_bytes": 452, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"}
+        {
+          "asset_id": 675862483,
+          "name": "Deckivo-0.8.1-validation.json",
+          "size_bytes": 1087,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675862480,
+          "name": "Deckivo-Linux-0.8.1-b17-source.zip",
+          "size_bytes": 3572449,
+          "download_count": 4,
+          "category": "linux",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675862481,
+          "name": "Deckivo-Linux-0.8.1-b17-sources.zip",
+          "size_bytes": 3790423,
+          "download_count": 0,
+          "category": "source",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675862482,
+          "name": "index.json",
+          "size_bytes": 643,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675862484,
+          "name": "index.sig",
+          "size_bytes": 512,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675862567,
+          "name": "SHA256SUMS-0.8.1.txt",
+          "size_bytes": 452,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        }
       ]
     },
     {
@@ -25,24 +181,136 @@
       "url": "https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1",
       "published_at": "2026-10-25T13:35:21Z",
       "prerelease": true,
-      "captured_at": "2026-10-25T20:15:06Z",
+      "captured_at": "2026-10-25T20:42:54Z",
       "assets": [
-        {"asset_id": 675310676, "name": "0.6.1-public-channel-validation.json", "size_bytes": 1962, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675161582, "name": "0.6.1-site-validation.json", "size_bytes": 15321, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675127548, "name": "0.6.1-validation.json", "size_bytes": 1837, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675127554, "name": "Deckivo-0.6.1-android.cdx.json", "size_bytes": 92433, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675127577, "name": "Deckivo-0.6.1-arm64.apk", "size_bytes": 6257253, "download_count": 4, "category": "android", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675127552, "name": "Deckivo-0.6.1-desktop.cdx.json", "size_bytes": 2206, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675161587, "name": "Deckivo-0.6.1-kit.zip", "size_bytes": 39839445, "download_count": 1, "category": "bundle", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675161585, "name": "Deckivo-0.6.1-sources.zip", "size_bytes": 37743508, "download_count": 1, "category": "source", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675131785, "name": "Deckivo-Linux-0.6.1-b10-source.zip", "size_bytes": 350638, "download_count": 3, "category": "linux", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675132000, "name": "Deckivo-macos-0.6.1-b10.zip", "size_bytes": 28550692, "download_count": 4, "category": "macos", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675133177, "name": "index.json", "size_bytes": 642, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675133202, "name": "index.sig", "size_bytes": 512, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675133205, "name": "remteh-pair-helper.elf", "size_bytes": 112672, "download_count": 1, "category": "other", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675310674, "name": "SHA256-PUBLIC-CHECKS.txt", "size_bytes": 103, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675161586, "name": "SHA256SUMS.txt", "size_bytes": 1160, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 675133209, "name": "update.json", "size_bytes": 291, "download_count": 3, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"}
+        {
+          "asset_id": 675310676,
+          "name": "0.6.1-public-channel-validation.json",
+          "size_bytes": 1962,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675161582,
+          "name": "0.6.1-site-validation.json",
+          "size_bytes": 15321,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675127548,
+          "name": "0.6.1-validation.json",
+          "size_bytes": 1837,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675127554,
+          "name": "Deckivo-0.6.1-android.cdx.json",
+          "size_bytes": 92433,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675127577,
+          "name": "Deckivo-0.6.1-arm64.apk",
+          "size_bytes": 6257253,
+          "download_count": 5,
+          "category": "android",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675127552,
+          "name": "Deckivo-0.6.1-desktop.cdx.json",
+          "size_bytes": 2206,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675161587,
+          "name": "Deckivo-0.6.1-kit.zip",
+          "size_bytes": 39839445,
+          "download_count": 1,
+          "category": "bundle",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675161585,
+          "name": "Deckivo-0.6.1-sources.zip",
+          "size_bytes": 37743508,
+          "download_count": 1,
+          "category": "source",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675131785,
+          "name": "Deckivo-Linux-0.6.1-b10-source.zip",
+          "size_bytes": 350638,
+          "download_count": 3,
+          "category": "linux",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675132000,
+          "name": "Deckivo-macos-0.6.1-b10.zip",
+          "size_bytes": 28550692,
+          "download_count": 5,
+          "category": "macos",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675133177,
+          "name": "index.json",
+          "size_bytes": 642,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675133202,
+          "name": "index.sig",
+          "size_bytes": 512,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675133205,
+          "name": "remteh-pair-helper.elf",
+          "size_bytes": 112672,
+          "download_count": 1,
+          "category": "other",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675310674,
+          "name": "SHA256-PUBLIC-CHECKS.txt",
+          "size_bytes": 103,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675161586,
+          "name": "SHA256SUMS.txt",
+          "size_bytes": 1160,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 675133209,
+          "name": "update.json",
+          "size_bytes": 291,
+          "download_count": 3,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        }
       ]
     },
     {
@@ -51,20 +319,104 @@
       "url": "https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0",
       "published_at": "2026-10-25T10:15:44Z",
       "prerelease": true,
-      "captured_at": "2026-10-25T20:15:06Z",
+      "captured_at": "2026-10-25T20:42:54Z",
       "assets": [
-        {"asset_id": 674739652, "name": "0.6.0-public-channel-validation.json", "size_bytes": 1283, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674718822, "name": "0.6.0-validation.json", "size_bytes": 2181, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674718826, "name": "Deckivo-0.6.0-arm64.apk", "size_bytes": 6616471, "download_count": 2, "category": "android", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674718823, "name": "Deckivo-0.6.0-sources.zip", "size_bytes": 39908816, "download_count": 1, "category": "source", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674718824, "name": "Deckivo-Linux-0.6.0-b9-source.zip", "size_bytes": 775078, "download_count": 1, "category": "linux", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674718825, "name": "Deckivo-macos-0.6.0-b9.zip", "size_bytes": 28877339, "download_count": 2, "category": "macos", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674719968, "name": "index.json", "size_bytes": 636, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674719962, "name": "index.sig", "size_bytes": 512, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674719967, "name": "remteh-pair-helper.elf", "size_bytes": 112672, "download_count": 1, "category": "other", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674739653, "name": "SHA256SUMS-public-checks.txt", "size_bytes": 103, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674719764, "name": "SHA256SUMS.txt", "size_bytes": 783, "download_count": 1, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 674719966, "name": "update.json", "size_bytes": 291, "download_count": 3, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"}
+        {
+          "asset_id": 674739652,
+          "name": "0.6.0-public-channel-validation.json",
+          "size_bytes": 1283,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674718822,
+          "name": "0.6.0-validation.json",
+          "size_bytes": 2181,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674718826,
+          "name": "Deckivo-0.6.0-arm64.apk",
+          "size_bytes": 6616471,
+          "download_count": 2,
+          "category": "android",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674718823,
+          "name": "Deckivo-0.6.0-sources.zip",
+          "size_bytes": 39908816,
+          "download_count": 1,
+          "category": "source",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674718824,
+          "name": "Deckivo-Linux-0.6.0-b9-source.zip",
+          "size_bytes": 775078,
+          "download_count": 1,
+          "category": "linux",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674718825,
+          "name": "Deckivo-macos-0.6.0-b9.zip",
+          "size_bytes": 28877339,
+          "download_count": 2,
+          "category": "macos",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674719968,
+          "name": "index.json",
+          "size_bytes": 636,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674719962,
+          "name": "index.sig",
+          "size_bytes": 512,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674719967,
+          "name": "remteh-pair-helper.elf",
+          "size_bytes": 112672,
+          "download_count": 1,
+          "category": "other",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674739653,
+          "name": "SHA256SUMS-public-checks.txt",
+          "size_bytes": 103,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674719764,
+          "name": "SHA256SUMS.txt",
+          "size_bytes": 783,
+          "download_count": 1,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 674719966,
+          "name": "update.json",
+          "size_bytes": 291,
+          "download_count": 3,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        }
       ]
     },
     {
@@ -73,13 +425,48 @@
       "url": "https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.1.2",
       "published_at": "2026-10-24T11:02:21Z",
       "prerelease": true,
-      "captured_at": "2026-10-25T20:15:06Z",
+      "captured_at": "2026-10-25T20:42:54Z",
       "assets": [
-        {"asset_id": 672036437, "name": "remteh-pair-helper-0.1.0.elf", "size_bytes": 112672, "download_count": 0, "category": "other", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 672036439, "name": "RemTeh-Remote-Play-0.1.2-arm64.apk", "size_bytes": 5521708, "download_count": 0, "category": "android", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 672036436, "name": "RemTeh-Remote-Play-0.1.2-sources.zip", "size_bytes": 35935178, "download_count": 0, "category": "source", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 672036440, "name": "SHA256SUMS.txt", "size_bytes": 381, "download_count": 0, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"},
-        {"asset_id": 672036438, "name": "validation.json", "size_bytes": 1816, "download_count": 0, "category": "metadata", "captured_at": "2026-10-25T20:15:06Z"}
+        {
+          "asset_id": 672036437,
+          "name": "remteh-pair-helper-0.1.0.elf",
+          "size_bytes": 112672,
+          "download_count": 0,
+          "category": "other",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 672036439,
+          "name": "RemTeh-Remote-Play-0.1.2-arm64.apk",
+          "size_bytes": 5521708,
+          "download_count": 0,
+          "category": "android",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 672036436,
+          "name": "RemTeh-Remote-Play-0.1.2-sources.zip",
+          "size_bytes": 35935178,
+          "download_count": 0,
+          "category": "source",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 672036440,
+          "name": "SHA256SUMS.txt",
+          "size_bytes": 381,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        },
+        {
+          "asset_id": 672036438,
+          "name": "validation.json",
+          "size_bytes": 1816,
+          "download_count": 0,
+          "category": "metadata",
+          "captured_at": "2026-10-25T20:42:54Z"
+        }
       ]
     }
   ]

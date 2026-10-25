@@ -11,9 +11,10 @@
 
 **Deckivo 0.8.2 packages are experimental previews, not a finished 1.0
 product.** The release set is Android ARM64 build 27 plus desktop build 18 for
-Apple Silicon macOS and Switchroot Ubuntu ARM64. Real-device gameplay and update
-acceptance for 0.8.2 remain pending. Historical public-updater acceptance belongs
-to Linux 0.8.1 b17: the Switch OLED / Ubuntu 24.04.4 ARM64 update from 0.6.1 b10
+Apple Silicon macOS and Switchroot Ubuntu ARM64. The Mac public updater and
+native Donate navigation are accepted for 0.8.2; Android and Linux 0.8.2 physical
+acceptance, plus current-release gameplay, remain pending. Historical public-updater
+acceptance belongs to Linux 0.8.1 b17: the Switch OLED / Ubuntu 24.04.4 ARM64 update from 0.6.1 b10
 matched all 80 public-ZIP files, retained pairing, acknowledged the live process
 and fetched the public feed through the enabled systemd user timer with the GUI
 closed. The guides separate exact tested builds from current downloads and
@@ -51,7 +52,7 @@ subscription or new Deckivo account is required for local play.
 | Hardware / OS | Exact build | Confirmed scope |
 |---|---|---|
 | Switch OLED / Android 15 | 0.6.0 #24 | Public self-update 23 → 24; exact release APK verified; saved console retained |
-| Apple Silicon Mac / macOS 27.0.1 | 0.6.0 #9 | Public HTTPS self-update 8 → 9, relaunch and registration retained |
+| Apple Silicon Mac / macOS 27.0.1 | 0.8.2 b18 | Public signed update 0.8.0 b16 → 0.8.2 b18; all 415 ZIP entries matched the installed app; code signing and startup acknowledgment passed; registration was retained and Deckivo returned idle. Native Donate opened the RemTeh Ko-fi page in Chrome and Deckivo stayed alive; no payment was submitted |
 | Switch OLED / Ubuntu 24.04.4 ARM64 | 0.8.1 #17 | Public update 0.6.1 b10 → 0.8.1 b17; 80/80 installer files matched the public ZIP; startup acknowledgment matched the live process; pairing retained; enabled systemd user timer fetched the public feed with the GUI closed; gameplay pending separately |
 | Earlier gameplay | Android 0.1.x; Ubuntu 0.3.0; Mac chiaki-ng 1.10.0 engine | Owner-confirmed local picture and sound; GameSir input on Switch |
 

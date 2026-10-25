@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "version": "0.8.2",
+  "release_commit": "7b0d6e6795ab79f567bd2c3a34e696108f5bba8f",
+  "checked_at": "2026-10-25T20:39:21.627186+00:00",
+  "public_release_assets": {
+    "count": 13,
+    "all_github_size_and_digest_matches": true
+  },
+  "macos": {
+    "before_version": "0.8.0",
+    "before_build": 16,
+    "version": "0.8.2",
+    "build": 18,
+    "source": "public signed update feed and GitHub Releases",
+    "receipt_ack_match": true,
+    "pid_alive": true,
+    "registration_retained": true,
+    "package_entries_matched": 415,
+    "codesign_verified": true,
+    "idle": true,
+    "donation_actual_native_click": "Ko-fi page Support RemTeh loaded at https://ko-fi.com/pavelzayats; app remained alive; no payment submitted"
+  },
+  "ubuntu_0_8_2": "not tested physically: offline; 0.8.1 updater/Wi-Fi/reboot acceptance remains valid",
+  "android_0_8_2": "release build verified; physical installation not tested",
+  "website": {
+    "live_pages_commit": "7b0d6e6795ab79f567bd2c3a34e696108f5bba8f",
+    "viewports": [
+      390,
+      1466,
+      1920,
+      2560,
+      3840
+    ],
+    "clipped_visible_elements": 0,
+    "console_errors": 0,
+    "guide_anchors_and_utm_links": "passed",
+    "russian_language_switch": "passed"
+  },
+  "limits": [
+    "No sustained Remote Play gameplay test in0.8.2",
+    "No payment submitted or receipt/withdrawal verification"
+  ]
+}
