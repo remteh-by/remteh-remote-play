@@ -68,3 +68,27 @@ Switch, firmware update, jailbreak reliability or game compatibility certificati
 - All twelve v0.6.0 asset IDs, names, sizes and digests still match the pre-work snapshot.
 
 [0.6.1 physical receipt](releases/0.6.1-public-channel-validation.json).
+
+## 0.7.0 local development preview
+
+- MacBook Apple Silicon / macOS 27.0.1: build 14 installed locally with a rollback
+  bundle and unchanged registration hash. The owned streaming child decoded 210
+  actual PS5 frames. A normal window close stopped the session and returned to idle
+  in 0.69 seconds. Earlier build 13 exposed a shutdown ordering bug; its result is
+  not relabelled as a pass. This is a short stream/stop check, not sustained play.
+- The final native SDL adapter passed a standalone input probe: button, left stick,
+  trigger and timeout neutralization. No game input was sent to the console by it.
+- Android 0.7.0 #26 is built and signed with the existing certificate, but has not
+  been installed on the Switch. Ubuntu remains at its last physical test version.
+- 37 Android release unit tests and 46 desktop tests passed. Android Lint reports
+  no new findings with 96 upstream baseline warnings. Controller lab EN/RU layouts
+  passed 12 width cases from 390 to 3840 px without horizontal overflow. Controller
+  photographs have equal body height and no artificial floor shadow.
+- Physical Sony USB calibration, controller-specific motors/sensors/audio,
+  keyboard/mouse aiming in a game, sustained 1080p and Internet play remain open.
+  4K is not exposed because the retained Remote Play engine supports up to 1080p.
+- Existing signed update verification remains intact. No 0.7.0 tag, public release
+  or update feed has been published; this local preview is not a new OTA test.
+
+[Development receipt](releases/0.7.0-development-validation.json) ·
+[Controller features and input guide](CONTROLLERS.md).

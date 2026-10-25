@@ -1,6 +1,6 @@
 # Deckivo — panduan instalasi dan bermain
 
-Deckivo **0.6.1 preview** · 2026-10-25
+Deckivo **0.7.0 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
@@ -12,7 +12,7 @@ Deckivo **0.6.1 preview** · 2026-10-25
 
 Unduh APK arm64 dari rilis. Memerlukan Android 8+; pengujian fisik memakai Switch OLED dengan Android 15. Izinkan instalasi hanya dari sumber yang dipilih. Pasang di atas versi lama tanpa menghapus aplikasi atau data. Pilih bahasa dan panduan koneksi, lalu pasangkan kontroler Bluetooth di Android. Jangan matikan Play Protect.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-0.7.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.7.0)
 
 <a id="macos"></a>
 
@@ -20,7 +20,7 @@ Unduh APK arm64 dari rilis. Memerlukan Android 8+; pengujian fisik memakai Switc
 
 Hanya Apple Silicon. Instal chiaki-ng secara terpisah, daftarkan PS5 dan tutup streaming-nya. Ekstrak ZIP Mac dan pindahkan Deckivo.app ke ~/Applications. Belum dinotarisasi: macOS dapat meminta “Open Anyway” di Privasi & Keamanan. Jangan matikan Gatekeeper secara global. Impor pendaftaran chiaki-ng dalam Deckivo dan masukkan IP konsol.
 
-[Mac ZIP · 0.6.1 b10](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.7.0 b11](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-macos-0.7.0-b11.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +37,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-sources.zip)
+[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-0.7.0-sources.zip)
 
 ## Memasangkan konsol
 

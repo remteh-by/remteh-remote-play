@@ -1,6 +1,6 @@
 # Deckivo — インストールとプレイガイド
 
-Deckivo **0.6.1 preview** · 2026-10-25
+Deckivo **0.7.0 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
@@ -12,7 +12,7 @@ Deckivo **0.6.1 preview** · 2026-10-25
 
 リリースから arm64 APK を取得します。Android 8 以上が必要で、実機テストは Switch OLED / Android 15 です。選択した提供元だけにインストールを許可し、旧版を削除せず上書きします。データを消さず、言語と接続ウィザードを選択します。Bluetooth コントローラーは Android で接続してください。Play Protect は無効化しません。
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-0.7.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.7.0)
 
 <a id="macos"></a>
 
@@ -20,7 +20,7 @@ Deckivo **0.6.1 preview** · 2026-10-25
 
 Apple Silicon のみです。公式 chiaki-ng を別途インストールし、PS5 を登録して配信を終了します。Mac ZIP を展開し Deckivo.app を ~/Applications に移します。未公証のため macOS のプライバシーとセキュリティで「このまま開く」が必要な場合があります。Gatekeeper 全体を無効化しないでください。Deckivo で chiaki-ng の登録を読み込み、PS5 の IP を入力します。
 
-[Mac ZIP · 0.6.1 b10](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.7.0 b11](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-macos-0.7.0-b11.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +37,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-sources.zip)
+[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-0.7.0-sources.zip)
 
 ## ペアリング
 

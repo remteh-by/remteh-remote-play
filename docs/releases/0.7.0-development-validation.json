@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "version": "0.7.0",
+  "channel": "local-development-preview",
+  "date": "2026-10-25",
+  "public_release_created": false,
+  "android": {
+    "packageName": "by.remteh.remoteplay",
+    "versionCode": 26,
+    "unit_tests": 37,
+    "unit_failures": 0,
+    "lint_new_findings": 0,
+    "upstream_baseline": 96,
+    "build": "assembleRelease and lintRelease passed",
+    "installed_on_switch": false,
+    "certificate_sha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "apk_sha256": "ee3b4906bc6af3fe3bedb95b48ba7d6b663e276ae5c892914c149461dcf9fef4"
+  },
+  "desktop": {
+    "unit_tests": 46,
+    "unit_failures": 0,
+    "macos": {
+      "version": "0.7.0",
+      "build": 14,
+      "method": "local compiled bundle, normal app quit, rollback bundle retained; not public OTA",
+      "registration_hash_retained": true,
+      "codesign_verified": true
+    },
+    "stream": {
+      "version": "0.7.0",
+      "build": 14,
+      "decoded_frames": 210,
+      "decoded_frames_owned_pid": 83506,
+      "normal_stop_requested": true,
+      "normal_stop_marker": true,
+      "stop_wait_seconds": 0.69,
+      "state_after_stop": "idle",
+      "engine_stopped": true,
+      "method": "owned engine PID matched decoded frame metrics; window close stops the session before Qt exits; no synthetic game inputs",
+      "remaining_acceptance": [
+        "sustained game play/audio/physical controllers",
+        "keyboard/mouse live aiming",
+        "new Switch Android/Ubuntu build"
+      ]
+    },
+    "native_input_probe": {
+      "SDL_virtual_controller_initialized": true,
+      "pressed_button_axis_trigger_observed": true,
+      "timeout_neutralization": true,
+      "process_exit": 0,
+      "adapter": "final macOS build14 library",
+      "scope": "standalone SDL harness; no console inputs"
+    },
+    "ubuntu_hardware": "not updated; source upgrade pack prepared"
+  },
+  "controller_lab": {
+    "languages": [
+      "en",
+      "ru"
+    ],
+    "viewport_widths": [
+      390,
+      768,
+      1280,
+      1920,
+      2560,
+      3840
+    ],
+    "responsive_cases": 12,
+    "horizontal_overflow": 0,
+    "artificial_floor_shadows": 0,
+    "gallery_height_difference_css_pixels_max": 0.02,
+    "original_photograph_hashes_verified": true,
+    "physical_USB_calibration_performed": false,
+    "capability_gates": "synthetic model selection never grants USB calibration capability"
+  },
+  "stream_quality": {
+    "maximum_supported_height": 1080,
+    "supports_4k": false,
+    "presets_are_requested_not_measured": true
+  },
+  "limitations": [
+    "physical controller USB/Bluetooth features and calibration require device acceptance",
+    "keyboard/mouse aiming not yet accepted in a live game",
+    "sustained audio/video/latency not certified",
+    "this build not installed on Switch Android or Ubuntu",
+    "Windows and Intel Mac builds not provided",
+    "public 0.6.1 update feed retained; no 0.7 OTA distribution claim"
+  ]
+}
