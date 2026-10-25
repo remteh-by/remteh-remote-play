@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Deckivo / Chiaki \u2014 AGPL-3.0 with OpenSSL permission",
+    "file": "AGPL-OpenSSL.txt"
+  },
+  {
+    "title": "Optional PS5 helper \u2014 GPL-3.0-or-later",
+    "file": "PS5-helper-GPL.txt"
+  },
+  {
+    "title": "curl",
+    "file": "curl.txt"
+  },
+  {
+    "title": "Jerasure",
+    "file": "Jerasure.txt"
+  },
+  {
+    "title": "gf-complete",
+    "file": "gf-complete.txt"
+  },
+  {
+    "title": "nanopb",
+    "file": "nanopb.txt"
+  },
+  {
+    "title": "Oboe \u2014 Apache-2.0",
+    "file": "Oboe-Apache.txt"
+  },
+  {
+    "title": "Mbed-TLS",
+    "file": "Mbed-TLS.txt"
+  },
+  {
+    "title": "json-c",
+    "file": "json-c.txt"
+  },
+  {
+    "title": "MiniUPnPc",
+    "file": "MiniUPnPc.txt"
+  },
+  {
+    "title": "AndroidX / Material / Kotlin / Rx / Moshi \u2014 Apache-2.0",
+    "file": "Android-JVM-Apache.txt"
+  },
+  {
+    "title": "ZXing-LICENSE",
+    "file": "ZXing-LICENSE.txt"
+  },
+  {
+    "title": "ZXing-NOTICE",
+    "file": "ZXing-NOTICE.txt"
+  },
+  {
+    "title": "IBM Plex Sans \u2014 SIL OFL",
+    "file": "IBM-Plex-Sans-OFL.txt"
+  },
+  {
+    "title": "Reactive Streams \u2014 CC0",
+    "file": "reactive-streams.txt"
+  }
+]

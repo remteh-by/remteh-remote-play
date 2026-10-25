@@ -25,8 +25,8 @@ android {
         applicationId "by.remteh.remoteplay"
         minSdk 26
         targetSdk 35
-        versionCode 24
-        versionName "0.6.0"
+        versionCode 25
+        versionName "0.6.1"
         buildConfigField 'String', 'PRIVATE_UPDATE_URL', '"' + (System.getenv('DECKIVO_UPDATE_FEED') ?: '') + '"'
         ndk { abiFilters "arm64-v8a" }
         externalNativeBuild {
@@ -53,6 +53,8 @@ android {
             }
         }
     }
+    bundle { language { enableSplit = false } }
+    lint { baseline = file('../lint-baseline.xml') }
     buildFeatures {
         viewBinding true
         buildConfig true
@@ -107,6 +109,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 
 dependencies {
+    implementation 'com.google.zxing:core:3.5.4'
     testImplementation 'junit:junit:4.13.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -132,3 +135,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.7.0"
 }
+
+
+tasks.register('verifySupportConfig', Exec) {
+    workingDir rootProject.projectDir.parentFile
+    commandLine(System.getenv('DECKIVO_BUILD_PYTHON') ?: 'python3', 'scripts/generate-support.py', '--check')
+}
+tasks.named('preBuild').configure { dependsOn 'verifySupportConfig' }
+
+apply from: 'sbom.gradle'

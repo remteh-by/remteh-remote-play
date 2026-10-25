@@ -14,8 +14,7 @@
             android:padding="28dp"
             android:animateLayoutChanges="true">
 
-            <ImageView
-                android:id="@+id/iconImageView"
+            <ImageView android:importantForAccessibility="no"                 android:id="@+id/iconImageView"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:src="@drawable/ic_deckivo"

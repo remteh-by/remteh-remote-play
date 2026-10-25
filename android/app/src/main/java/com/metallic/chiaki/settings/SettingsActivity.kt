@@ -18,20 +18,20 @@ import com.metallic.chiaki.databinding.ActivitySettingsBinding
 
 interface TitleFragment
 {
-	fun getTitle(resources: Resources): String
+    fun getTitle(resources: Resources): String
 }
 
 class SettingsActivity: DeckivoActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback
 {
-	private lateinit var binding: ActivitySettingsBinding
+    private lateinit var binding: ActivitySettingsBinding
 
-	override fun onCreate(savedInstanceState: Bundle?)
-	{
-		super.onCreate(savedInstanceState)
-		binding = ActivitySettingsBinding.inflate(layoutInflater)
-		setContentView(binding.root)
-		title = ""
-		setSupportActionBar(binding.toolbar)
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        super.onCreate(savedInstanceState)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        title = ""
+        setSupportActionBar(binding.toolbar)
         SafeInsets.apply(binding.root)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         listOf(R.string.dv_settings, R.string.dv_video, R.string.dv_button_layout, R.string.dv_data).forEach { binding.settingsTabs.addTab(binding.settingsTabs.newTab().setText(it)) }
@@ -41,15 +41,15 @@ class SettingsActivity: DeckivoActivity(), PreferenceFragmentCompat.OnPreference
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
-		val rootFragment = SettingsFragment()
-		if (savedInstanceState == null) replaceFragment(rootFragment, false)
-		supportFragmentManager.addOnBackStackChangedListener {
-			binding.settingsTabs.visibility = if(supportFragmentManager.backStackEntryCount == 0) View.VISIBLE else View.GONE
+        val rootFragment = SettingsFragment()
+        if (savedInstanceState == null) replaceFragment(rootFragment, false)
+        supportFragmentManager.addOnBackStackChangedListener {
+            binding.settingsTabs.visibility = if(supportFragmentManager.backStackEntryCount == 0) View.VISIBLE else View.GONE
             val titleFragment = supportFragmentManager.findFragmentById(R.id.settingsFragment) as? TitleFragment ?: return@addOnBackStackChangedListener
-			binding.titleTextView.text = titleFragment.getTitle(resources)
-		}
-		binding.titleTextView.text = rootFragment.getTitle(resources)
-	}
+            binding.titleTextView.text = titleFragment.getTitle(resources)
+        }
+        binding.titleTextView.text = rootFragment.getTitle(resources)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
@@ -58,25 +58,25 @@ class SettingsActivity: DeckivoActivity(), PreferenceFragmentCompat.OnPreference
         return true
     }
 
-	override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference) = when(pref.fragment)
-	{
-		SettingsRegisteredHostsFragment::class.java.canonicalName -> {
-			replaceFragment(SettingsRegisteredHostsFragment(), true)
-			true
-		}
-		SettingsLogsFragment::class.java.canonicalName -> { replaceFragment(SettingsLogsFragment(), true); true }
+    override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference) = when(pref.fragment)
+    {
+        SettingsRegisteredHostsFragment::class.java.canonicalName -> {
+            replaceFragment(SettingsRegisteredHostsFragment(), true)
+            true
+        }
+        SettingsLogsFragment::class.java.canonicalName -> { replaceFragment(SettingsLogsFragment(), true); true }
         else -> false
-	}
+    }
 
-	private fun replaceFragment(fragment: Fragment, addToBackStack: Boolean)
-	{
-		supportFragmentManager.beginTransaction()
-			.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-			.replace(R.id.settingsFragment, fragment)
-			.also {
-				if(addToBackStack)
-					it.addToBackStack(null)
-			}
-			.commit()
-	}
+    private fun replaceFragment(fragment: Fragment, addToBackStack: Boolean)
+    {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            .replace(R.id.settingsFragment, fragment)
+            .also {
+                if(addToBackStack)
+                    it.addToBackStack(null)
+            }
+            .commit()
+    }
 }

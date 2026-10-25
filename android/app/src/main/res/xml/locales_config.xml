@@ -14,5 +14,5 @@
     <locale android:name="ko" />
     <locale android:name="ar" />
     <locale android:name="hi" />
-    <locale android:name="id" />
+    <locale android:name="in" />
 </locale-config>

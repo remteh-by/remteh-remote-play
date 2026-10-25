@@ -1,20 +1,14 @@
 <resources>
-    <color name="primary">#1A1E24</color>
-    <color name="primary_dark">#101216</color>
     <color name="accent">#DAF975</color>
     <color name="deckivo_bg">#101216</color>
     <color name="deckivo_surface">#1A1E24</color>
-    <color name="deckivo_raised">#222730</color>
     <color name="deckivo_border">#303640</color>
     <color name="deckivo_text">#F3F5F7</color>
     <color name="deckivo_muted">#A4ACBA</color>
     <color name="deckivo_ink">#17200A</color>
     <color name="deckivo_warning">#F0C17A</color>
-    <color name="deckivo_secondary">#AAA0F5</color>
     <color name="deckivo_rail">#15181D</color>
     <color name="stream_text">#F3F5F7</color>
-    <color name="floating_action_button_speed_dial_background">#1A1E24</color>
-    <color name="floating_action_button_speed_dial_tint">#DAF975</color>
     <color name="stream_background">#000000</color>
     <color name="stream_overlay_background">#EB1A1E24</color>
     <color name="control_primary">#22DAF975</color>

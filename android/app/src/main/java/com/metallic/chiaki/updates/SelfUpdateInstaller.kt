@@ -1,5 +1,6 @@
 package com.metallic.chiaki.updates
 
+import androidx.core.content.edit
 import android.app.Activity
 import android.app.PendingIntent
 import android.content.Intent
@@ -26,7 +27,6 @@ object SelfUpdateInstaller {
 
     @RequiresApi(31)
     suspend fun install(activity: Activity, file: File) = withContext(Dispatchers.IO) {
-        require(Build.VERSION.SDK_INT >= 31)
         require(activity.packageManager.canRequestPackageInstalls())
         if (pending(activity)) return@withContext
         val manager = activity.packageManager.packageInstaller
@@ -44,7 +44,7 @@ object SelfUpdateInstaller {
                         input.copyTo(output);session.fsync(output)
                     }
                 }
-                UpdateRepository.prefs(activity).edit().putInt("install_session", id).putString(NONCE, nonce).commit()
+                UpdateRepository.prefs(activity).edit(commit = true) { putInt("install_session", id); putString(NONCE, nonce) }
                 val result = Intent(activity, UpdatesActivity::class.java).apply {
                     action = RESULT
                     putExtra(NONCE, nonce)
@@ -56,7 +56,7 @@ object SelfUpdateInstaller {
             }
         } catch (failure: Throwable) {
             runCatching { manager.abandonSession(id) }
-            UpdateRepository.prefs(activity).edit().remove("install_session").remove(NONCE).apply()
+            UpdateRepository.prefs(activity).edit { remove("install_session"); remove(NONCE) }
             throw failure
         }
     }
@@ -74,14 +74,14 @@ object SelfUpdateInstaller {
                 if (confirmation != null) activity.startActivity(confirmation)
             }
             PackageInstaller.STATUS_SUCCESS -> {
-                prefs.edit().remove("install_session").remove(NONCE).apply()
+                prefs.edit { remove("install_session"); remove(NONCE) }
                 activity.startActivity(Intent(activity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 activity.finish()
             }
             else -> {
-                prefs.edit().remove("install_session").remove(NONCE).apply()
+                prefs.edit { remove("install_session"); remove(NONCE) }
                 AlertDialog.Builder(activity).setTitle(R.string.dv_updates)
-                    .setMessage(activity.getString(R.string.dv_install_failed) + status)
+                    .setMessage(activity.getString(R.string.dv_up_install_status, status))
                     .setPositiveButton(android.R.string.ok, null).show()
             }
         }

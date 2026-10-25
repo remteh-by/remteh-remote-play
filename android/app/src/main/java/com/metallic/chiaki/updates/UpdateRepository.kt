@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: LicenseRef-AGPL-3.0-only-OpenSSL
 package com.metallic.chiaki.updates
 
+import androidx.core.content.edit
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -9,6 +10,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.AtomicFile
 import com.metallic.chiaki.BuildConfig
+import com.metallic.chiaki.R
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import kotlinx.coroutines.CancellationException
@@ -23,7 +25,7 @@ import java.io.File
 import java.security.MessageDigest
 
 data class UpdateState(
-    val message: String = "Updates have not been checked yet.",
+    val message: UpdateText = UpdateText(R.string.dv_up_not_checked),
     val candidate: UpdateCandidate? = null, val ready: Boolean = false,
     val busy: Boolean = false, val percent: Int? = null
 )
@@ -52,8 +54,8 @@ object UpdateRepository {
         val elapsed = now - settings.getLong("last_attempt", 0)
         val interval = if(PrivateChannel.enabled) 5 * 60 * 1000L else INTERVAL
         if (manual || elapsed < 0 || elapsed >= interval) {
-            settings.edit().putLong("last_attempt", now).apply()
-            mutable.value = mutable.value.copy(message = "Checking Deckivo releases…", busy = true)
+            settings.edit { putLong("last_attempt", now) }
+            mutable.value = mutable.value.copy(message = UpdateText(R.string.dv_up_checking), busy = true)
             val feed = if(PrivateChannel.enabled) emptyList() else releasesAdapter.fromJson(UpdateHttp().text(UpdatePolicy.API_URL, 2 * 1024 * 1024L)) ?: error("Invalid release list")
             val candidates = mutableListOf<UpdateCandidate>()
             if(PrivateChannel.enabled && previewAllowed(context)) PrivateChannel.latest(context)?.let { candidates += it }
@@ -72,7 +74,7 @@ object UpdateRepository {
             val candidate = candidates.maxByOrNull { it.manifest.versionCode }
             if (candidate == null) {
                 clear(context)
-                mutable.value = UpdateState("No newer compatible release. Installed: " + BuildConfig.VERSION_NAME + " (build " + BuildConfig.VERSION_CODE + ").")
+                mutable.value = UpdateState(UpdateText(R.string.dv_up_current, listOf(BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)))
                 return@operation
             }
             if (candidate != mutable.value.candidate) {
@@ -86,7 +88,7 @@ object UpdateRepository {
         if (!mutable.value.ready && settings.getBoolean("download_wifi", true) && unmeteredWifi(context)) {
             downloadInside(context, candidate)
         } else if (!mutable.value.ready) {
-            mutable.value = mutable.value.copy(message = "Available: " + candidate.manifest.versionName + ". Download below or wait for Wi-Fi.")
+            mutable.value = mutable.value.copy(message = UpdateText(R.string.dv_up_available, listOf(candidate.manifest.versionName)))
         }
     }
 
@@ -107,7 +109,7 @@ object UpdateRepository {
     }
 
     fun channelChanged(context: Context) {
-        prefs(context).edit().putLong("last_attempt", 0).apply()
+        prefs(context).edit { putLong("last_attempt", 0) }
     }
 
     private suspend fun operation(context: Context, block: suspend () -> Unit) = withContext(Dispatchers.IO) {
@@ -115,15 +117,10 @@ object UpdateRepository {
         try {
             block()
         } catch (cancelled: CancellationException) {
-            mutable.value = mutable.value.copy(message = if (mutable.value.ready) "Update ready to install." else "Check or download paused. Return to the home screen to continue.")
+            mutable.value = mutable.value.copy(message = UpdateText(if (mutable.value.ready) R.string.dv_up_ready else R.string.dv_up_paused))
             throw cancelled
         } catch (failure: Exception) {
-            val detail = when (failure) {
-                is java.net.UnknownHostException -> "Cannot reach the update server. Check your network and DNS."
-                is java.net.SocketTimeoutException -> "Server timed out. Try again later."
-                is IllegalArgumentException, is IllegalStateException -> failure.message ?: "Update verification failed."
-                else -> "Could not check or download the update. Try again later."
-            }
+            val detail = updateFailure(failure)
             mutable.value = mutable.value.copy(message = detail)
             // Automatic checks back off even on failure. Manual retry remains available.
         } finally {
@@ -168,8 +165,8 @@ object UpdateRepository {
             catch (failure: Exception) { apk(context).delete() }
         }
         mutable.value = UpdateState(
-            if (ready) "Version " + candidate.manifest.versionName + " downloaded and verified. Android will confirm installation."
-            else "Available version: " + candidate.manifest.versionName + ".", candidate, ready
+            if (ready) UpdateText(R.string.dv_up_downloaded, listOf(candidate.manifest.versionName))
+            else UpdateText(R.string.dv_up_available, listOf(candidate.manifest.versionName)), candidate, ready
         )
     }
 
@@ -177,12 +174,12 @@ object UpdateRepository {
         if (mutable.value.ready) return
         val part = File(context.filesDir, "updates/download.part")
         check(part.parentFile!!.mkdirs() || part.parentFile!!.isDirectory)
-        mutable.value = UpdateState("Downloading Deckivo " + candidate.manifest.versionName + "…", candidate, busy = true, percent = 0)
+        mutable.value = UpdateState(UpdateText(R.string.dv_up_downloading, listOf(candidate.manifest.versionName)), candidate, busy = true, percent = 0)
         UpdateHttp().download(candidate, part) { progress -> mutable.value = mutable.value.copy(percent = progress) }
         validateApk(context, candidate, part)
         currentCoroutineContext().ensureActive()
         check(part.renameTo(apk(context))) { "Could not save APK" }
-        mutable.value = UpdateState("Downloaded. Size, SHA-256, version and signing certificate verified.", candidate, ready = true)
+        mutable.value = UpdateState(UpdateText(R.string.dv_up_verified), candidate, ready = true)
     }
 
     @Suppress("DEPRECATION")

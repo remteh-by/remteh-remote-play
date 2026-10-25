@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: LicenseRef-AGPL-3.0-only-OpenSSL
 package com.metallic.chiaki.main
 
+import androidx.core.content.edit
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
@@ -46,9 +47,9 @@ class MainActivity : DeckivoActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         SafeInsets.apply(binding.root)
-        title = "Deckivo"
+        title = getString(R.string.app_name)
         binding.root.findViewById<android.widget.TextView>(R.id.buildVersion)?.text =
-            com.metallic.chiaki.BuildConfig.VERSION_NAME + "\n#" + com.metallic.chiaki.BuildConfig.VERSION_CODE
+            getString(R.string.dv_version_build, com.metallic.chiaki.BuildConfig.VERSION_NAME, com.metallic.chiaki.BuildConfig.VERSION_CODE)
         binding.languageButton.text = com.metallic.chiaki.design.LanguagePicker.label(this)
         binding.languageButton.setOnClickListener { com.metallic.chiaki.design.LanguagePicker.show(this) }
         binding.navPlay.isEnabled = false
@@ -71,7 +72,7 @@ class MainActivity : DeckivoActivity() {
         }
         binding.updateStatus.setOnClickListener { open(UpdatesActivity::class.java) }
         binding.developerCredit.setOnClickListener {
-            runCatching { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://remteh.by/"))) }
+            com.metallic.chiaki.design.LinkUi.openLinkOrShowQr(this, "https://remteh.by/")
         }
         binding.supportButton.setOnClickListener { open(com.metallic.chiaki.design.SupportActivity::class.java) }
         binding.addConsoleButton.setOnClickListener {
@@ -110,7 +111,7 @@ class MainActivity : DeckivoActivity() {
         val setupPrefs = getSharedPreferences("remteh_lan", MODE_PRIVATE)
         if (!setupPrefs.getBoolean("initialized", false)) {
             com.metallic.chiaki.lan.SwitchProfile.apply(Preferences(this))
-            setupPrefs.edit().putBoolean("initialized", true).apply()
+            setupPrefs.edit { putBoolean("initialized", true) }
             open(LanSetupActivity::class.java)
         }
     }
@@ -121,7 +122,7 @@ class MainActivity : DeckivoActivity() {
         if (!prefs.getBoolean("automatic", true) || updatePrompt != null) return
         val code = candidate.manifest.versionCode
         if (prefs.getLong("prompted_build", 0) == code && System.currentTimeMillis() - prefs.getLong("prompted_at", 0) < 24*60*60*1000L) return
-        fun remember() { prefs.edit().putLong("prompted_build", code).putLong("prompted_at", System.currentTimeMillis()).apply() }
+        fun remember() { prefs.edit { putLong("prompted_build", code); putLong("prompted_at", System.currentTimeMillis()) } }
         if (android.os.Build.VERSION.SDK_INT >= 31 && packageManager.canRequestPackageInstalls() &&
             !com.metallic.chiaki.updates.SelfUpdateInstaller.pending(this)) {
             remember();requestingInstall = true
@@ -149,6 +150,7 @@ class MainActivity : DeckivoActivity() {
     override fun onResume() {
         super.onResume()
         requestingInstall = com.metallic.chiaki.updates.SelfUpdateInstaller.pending(this)
+        binding.root.post { if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED) && !requestingInstall && !UpdateRepository.state.value.ready) com.metallic.chiaki.design.SupportNudges.showIfDue(this) }
     }
     override fun onStop() {
         updatePrompt?.dismiss()
@@ -161,74 +163,74 @@ class MainActivity : DeckivoActivity() {
         // Reinflate the compact or wide shell while retaining console data and preferences.
         recreate()
     }
-	private fun hostTriggered(host: DisplayHost)
-	{
-		if (requestingInstall) return
-		val registeredHost = host.registeredHost
-		if(registeredHost != null)
-		{
-			fun connect() {
-				val connectInfo = ConnectInfo(host.isPS5, host.host, registeredHost.rpRegistKey, registeredHost.rpKey, Preferences(this).videoProfile)
-				Intent(this, StreamActivity::class.java).let {
-					it.putExtra(StreamActivity.EXTRA_CONNECT_INFO, connectInfo)
-					startActivity(it)
-				}
-			}
+    private fun hostTriggered(host: DisplayHost)
+    {
+        if (requestingInstall) return
+        val registeredHost = host.registeredHost
+        if(registeredHost != null)
+        {
+            fun connect() {
+                val connectInfo = ConnectInfo(host.isPS5, host.host, registeredHost.rpRegistKey, registeredHost.rpKey, Preferences(this).videoProfile)
+                Intent(this, StreamActivity::class.java).let {
+                    it.putExtra(StreamActivity.EXTRA_CONNECT_INFO, connectInfo)
+                    startActivity(it)
+                }
+            }
 
-			if(host is DiscoveredDisplayHost && host.discoveredHost.state == DiscoveryHost.State.STANDBY)
-			{
-				MaterialAlertDialogBuilder(this)
-					.setMessage(R.string.alert_message_standby_wakeup)
-					.setPositiveButton(R.string.action_wakeup) { _, _ ->
-						wakeupHost(host)
-					}
-					.setNeutralButton(R.string.action_connect_immediately) { _, _ ->
-						connect()
-					}
-					.setNegativeButton(R.string.action_connect_cancel_connect) { _, _ -> }
-					.create()
-					.show()
-			}
-			else
-				connect()
-		}
-		else
-		{
-			Intent(this, RegistActivity::class.java).let {
-				it.putExtra(RegistActivity.EXTRA_HOST, host.host)
-				it.putExtra(RegistActivity.EXTRA_BROADCAST, false)
-				if(host is ManualDisplayHost)
-					it.putExtra(RegistActivity.EXTRA_ASSIGN_MANUAL_HOST_ID, host.manualHost.id)
-				startActivity(it)
-			}
-		}
-	}
+            if(host is DiscoveredDisplayHost && host.discoveredHost.state == DiscoveryHost.State.STANDBY)
+            {
+                MaterialAlertDialogBuilder(this)
+                    .setMessage(R.string.alert_message_standby_wakeup)
+                    .setPositiveButton(R.string.action_wakeup) { _, _ ->
+                        wakeupHost(host)
+                    }
+                    .setNeutralButton(R.string.action_connect_immediately) { _, _ ->
+                        connect()
+                    }
+                    .setNegativeButton(R.string.action_connect_cancel_connect) { _, _ -> }
+                    .create()
+                    .show()
+            }
+            else
+                connect()
+        }
+        else
+        {
+            Intent(this, RegistActivity::class.java).let {
+                it.putExtra(RegistActivity.EXTRA_HOST, host.host)
+                it.putExtra(RegistActivity.EXTRA_BROADCAST, false)
+                if(host is ManualDisplayHost)
+                    it.putExtra(RegistActivity.EXTRA_ASSIGN_MANUAL_HOST_ID, host.manualHost.id)
+                startActivity(it)
+            }
+        }
+    }
 
-	private fun wakeupHost(host: DisplayHost)
-	{
-		val registeredHost = host.registeredHost ?: return
-		viewModel.discoveryManager.sendWakeup(host.host, registeredHost.rpRegistKey, registeredHost.target.isPS5)
-	}
+    private fun wakeupHost(host: DisplayHost)
+    {
+        val registeredHost = host.registeredHost ?: return
+        viewModel.discoveryManager.sendWakeup(host.host, registeredHost.rpRegistKey, registeredHost.target.isPS5)
+    }
 
-	private fun editHost(host: DisplayHost)
-	{
-		val manualHost = host.manualHost ?: return
-		Intent(this, EditManualConsoleActivity::class.java).also {
-			it.putExtra(EditManualConsoleActivity.EXTRA_MANUAL_HOST_ID, manualHost.id)
-			startActivity(it)
-		}
-	}
+    private fun editHost(host: DisplayHost)
+    {
+        val manualHost = host.manualHost ?: return
+        Intent(this, EditManualConsoleActivity::class.java).also {
+            it.putExtra(EditManualConsoleActivity.EXTRA_MANUAL_HOST_ID, manualHost.id)
+            startActivity(it)
+        }
+    }
 
-	private fun deleteHost(host: DisplayHost)
-	{
-		val manualHost = host.manualHost ?: return
-		MaterialAlertDialogBuilder(this)
-			.setMessage(getString(R.string.alert_message_delete_manual_host, manualHost.host))
-			.setPositiveButton(R.string.action_delete) { _, _ ->
-				viewModel.deleteManualHost(manualHost)
-			}
-			.setNegativeButton(R.string.action_keep) { _, _ -> }
-			.create()
-			.show()
-	}
+    private fun deleteHost(host: DisplayHost)
+    {
+        val manualHost = host.manualHost ?: return
+        MaterialAlertDialogBuilder(this)
+            .setMessage(getString(R.string.alert_message_delete_manual_host, manualHost.host))
+            .setPositiveButton(R.string.action_delete) { _, _ ->
+                viewModel.deleteManualHost(manualHost)
+            }
+            .setNegativeButton(R.string.action_keep) { _, _ -> }
+            .create()
+            .show()
+    }
 }

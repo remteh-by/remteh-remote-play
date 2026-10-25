@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='utf-8'?>
+<issues format="6" by="lint 8.13.2" type="baseline" client="gradle" dependencies="false" name="AGP" variant="all" version="8.13.2">
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_analog_stick_base.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_analog_stick_handle.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_box.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_box_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_cross.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_cross_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_home.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_home_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_l1.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_l1_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_l2.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_l2_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_l3.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_l3_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_moon.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_moon_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_options.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_options_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_pyramid.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_pyramid_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_r1.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_r1_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_r2.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_r2_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_r3.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_r3_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_share.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;256dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_button_share_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_dpad_idle.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_dpad_left.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/control_dpad_left_up.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;1920dp&quot;" errorLine2="                   ~~~~~~">
+    <location file="app/src/main/res/drawable/control_touchpad.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;1920dp&quot;" errorLine2="                   ~~~~~~">
+    <location file="app/src/main/res/drawable/control_touchpad_pressed.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;505dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_add_manual.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_console.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_console_ps5.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_console_ps5_ready.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_console_ps5_standby.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_console_ready.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_console_standby.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_regist_console.xml" line="2" column="20" />
+  </issue>
+  <issue id="VectorRaster" message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more" errorLine1="    android:width=&quot;512dp&quot;" errorLine2="                   ~~~~~">
+    <location file="app/src/main/res/drawable/ic_triangle.xml" line="2" column="20" />
+  </issue>
+  <issue id="UseCompatLoadingForDrawables" message="Use `AppCompatResources.getDrawable()`" errorLine1=" private val backgroundDrawable = context.getDrawable(R.color.item_delete_background)" errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/settings/ItemTouchSwipeCallback.kt" line="15" column="35" />
+  </issue>
+  <issue id="UseCompatLoadingForDrawables" message="Use `AppCompatResources.getDrawable()`" errorLine1=" private val icon = context.getDrawable(R.drawable.ic_delete_row)" errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/settings/ItemTouchSwipeCallback.kt" line="16" column="21" />
+  </issue>
+  <issue id="NotifyDataSetChanged" message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort." errorLine1="   notifyDataSetChanged()" errorLine2="   ~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/settings/SettingsLogsAdapter.kt" line="29" column="4" />
+  </issue>
+  <issue id="NotifyDataSetChanged" message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort." errorLine1="   notifyDataSetChanged()" errorLine2="   ~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/settings/SettingsRegisteredHostsAdapter.kt" line="19" column="4" />
+  </issue>
+  <issue id="ObsoleteSdkInt" message="Unnecessary; `SDK_INT` is always &gt;= 26" errorLine1="  if(Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O)" errorLine2="     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/touchcontrols/ButtonHaptics.kt" line="19" column="6" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.array.mapping_button_entries` appears to be unused" errorLine1="    &lt;string-array name=&quot;mapping_button_entries&quot;&gt;" errorLine2="                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/res/values/arrays.xml" line="3" column="19" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.array.mapping_button_values` appears to be unused" errorLine1="    &lt;string-array name=&quot;mapping_button_values&quot;&gt;" errorLine2="                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/res/values/arrays.xml" line="26" column="19" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_add_manual` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_add_manual.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_console` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_console.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_console_ps5` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_console_ps5.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_console_ps5_ready` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_console_ps5_ready.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_console_ps5_standby` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_console_ps5_standby.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_console_ready` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_console_ready.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_console_standby` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_console_standby.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_discovered_on_secondary` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_discovered_on_secondary.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.mipmap.ic_launcher` appears to be unused">
+    <location file="app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.color.ic_launcher_background` appears to be unused" errorLine1="    &lt;color name=&quot;ic_launcher_background&quot;&gt;#CFFF0D&lt;/color&gt;" errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/res/values/ic_launcher_background.xml" line="3" column="12" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_launcher_foreground` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_launcher_foreground.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.mipmap.ic_launcher_round` appears to be unused">
+    <location file="app/src/main/res/mipmap-hdpi/ic_launcher_round.png" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_regist_console` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_regist_console.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.drawable.ic_triangle` appears to be unused" errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;" errorLine2="^">
+    <location file="app/src/main/res/drawable/ic_triangle.xml" line="1" column="1" />
+  </issue>
+  <issue id="UnusedResources" message="The resource `R.color.mage_text_input_box_stroke` appears to be unused" errorLine1="&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;" errorLine2="^">
+    <location file="app/src/main/res/color/mage_text_input_box_stroke.xml" line="2" column="1" />
+  </issue>
+  <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="    &lt;EditText" errorLine2="     ~~~~~~~~">
+    <location file="app/src/main/res/layout/dialog_login_pin.xml" line="8" column="6" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(discoveryEnabledKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="64" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(onScreenControlsEnabledKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="69" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(rumbleEnabledKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="75" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(motionEnabledKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="80" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(buttonHapticEnabledKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="85" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(logVerboseKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="90" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(swapCrossMoonKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="95" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(debandingEnabledKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="100" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putBoolean(touchscreenTouchpadEnabledKey, value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="105" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  sharedPreferences.edit().putString(getMappingKey(buttonName), value.toString()).apply()" errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="115" column="3" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putInt(sharpnessIntensityKey, (value * 100f).toInt()).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="173" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putString(resolutionKey, value.value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="181" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putString(fpsKey, value.value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="188" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putInt(bitrateKey, if(value != null) validateBitrate(value) else 0).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="194" column="16" />
+  </issue>
+  <issue id="UseKtx" message="Use the KTX extension function `SharedPreferences.edit` instead?" errorLine1="  set(value) { sharedPreferences.edit().putString(codecKey, value.value).apply() }" errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/common/Preferences.kt" line="204" column="16" />
+  </issue>
+  <issue id="ClickableViewAccessibility" message="Custom view `AnalogStickView` overrides `onTouchEvent` but not `performClick`" errorLine1=" override fun onTouchEvent(event: MotionEvent): Boolean" errorLine2="              ~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/touchcontrols/AnalogStickView.kt" line="117" column="15" />
+  </issue>
+  <issue id="ClickableViewAccessibility" message="Custom view `ButtonView` overrides `onTouchEvent` but not `performClick`" errorLine1=" override fun onTouchEvent(event: MotionEvent): Boolean" errorLine2="              ~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/touchcontrols/ButtonView.kt" line="77" column="15" />
+  </issue>
+  <issue id="ClickableViewAccessibility" message="Custom view `ControlsBackgroundView` overrides `onTouchEvent` but not `performClick`" errorLine1=" override fun onTouchEvent(event: MotionEvent) = true" errorLine2="              ~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/touchcontrols/ControlsBackgroundView.kt" line="14" column="15" />
+  </issue>
+  <issue id="ClickableViewAccessibility" message="Custom view `DPadView` overrides `onTouchEvent` but not `performClick`" errorLine1=" override fun onTouchEvent(event: MotionEvent): Boolean" errorLine2="              ~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/touchcontrols/DPadView.kt" line="126" column="15" />
+  </issue>
+  <issue id="ClickableViewAccessibility" message="Custom view `TouchpadView` overrides `onTouchEvent` but not `performClick`" errorLine1=" override fun onTouchEvent(event: MotionEvent): Boolean" errorLine2="              ~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/touchcontrols/TouchpadView.kt" line="106" column="15" />
+  </issue>
+  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image" errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+    <location file="app/src/main/res/layout/fragment_settings_logs.xml" line="14" column="6" />
+  </issue>
+  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image" errorLine1="    &lt;com.google.android.material.floatingactionbutton.FloatingActionButton" errorLine2="     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/res/layout/fragment_settings_registered_hosts.xml" line="15" column="6" />
+  </issue>
+  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image" errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+    <location file="app/src/main/res/layout/fragment_settings_registered_hosts.xml" line="25" column="6" />
+  </issue>
+  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image" errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+    <location file="app/src/main/res/layout/item_log_file.xml" line="14" column="6" />
+  </issue>
+  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image" errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+    <location file="app/src/main/res/layout/item_registered_host.xml" line="14" column="6" />
+  </issue>
+  <issue id="LabelFor" message="Missing accessibility label: provide either a view with an `android:labelFor` that references this view or provide an `android:hint`" errorLine1="    &lt;EditText" errorLine2="     ~~~~~~~~">
+    <location file="app/src/main/res/layout/dialog_login_pin.xml" line="8" column="6" />
+  </issue>
+  <issue id="SetTextI18n" message="Do not concatenate text displayed with `setText`. Use resource string with placeholders." errorLine1="  holder.binding.nameTextView.text = &quot;${dateFormat.format(logFile.date)} ${timeFormat.format(logFile.date)}&quot;" errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/settings/SettingsLogsAdapter.kt" line="40" column="38" />
+  </issue>
+  <issue id="SetTextI18n" message="Do not concatenate text displayed with `setText`. Use resource string with placeholders." errorLine1="  holder.binding.nameTextView.text = &quot;${host.serverNickname} (${if(host.target.isPS5) &quot;PS5&quot; else &quot;PS4&quot;})&quot;" errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/java/com/metallic/chiaki/settings/SettingsRegisteredHostsAdapter.kt" line="30" column="38" />
+  </issue>
+  <issue id="RtlSymmetry" message="When you define `paddingEnd` you should probably also define `paddingStart` for right-to-left symmetry" errorLine1="    android:paddingEnd=&quot;?android:attr/scrollbarSize&quot;" errorLine2="    ~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/res/layout/item_log_file.xml" line="9" column="5" />
+  </issue>
+  <issue id="RtlSymmetry" message="When you define `paddingEnd` you should probably also define `paddingStart` for right-to-left symmetry" errorLine1="    android:paddingEnd=&quot;?android:attr/scrollbarSize&quot;" errorLine2="    ~~~~~~~~~~~~~~~~~~">
+    <location file="app/src/main/res/layout/item_registered_host.xml" line="9" column="5" />
+  </issue>
+  <issue id="ObsoleteSdkInt" message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`.">
+    <location file="app/src/main/res/mipmap-anydpi-v26" />
+  </issue>
+</issues>

@@ -1,5 +1,6 @@
 package com.metallic.chiaki.design
 
+import androidx.core.content.edit
 import android.content.Context
 import org.json.JSONArray
 import org.json.JSONObject
@@ -13,6 +14,6 @@ object SessionHistory {
         val old=read(context);val rows=JSONArray()
         rows.put(JSONObject().put("started",started).put("seconds",seconds.coerceAtLeast(0)).put("profile",profile))
         for(i in 0 until minOf(old.length(),39)) rows.put(old.getJSONObject(i))
-        context.getSharedPreferences("deckivo_sessions",Context.MODE_PRIVATE).edit().putString("rows",rows.toString()).apply()
+        context.getSharedPreferences("deckivo_sessions",Context.MODE_PRIVATE).edit { putString("rows",rows.toString()) }
     }
 }

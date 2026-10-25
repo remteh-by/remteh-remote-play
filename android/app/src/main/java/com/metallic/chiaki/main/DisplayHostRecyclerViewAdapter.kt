@@ -22,43 +22,43 @@ import com.metallic.chiaki.lib.DiscoveryHost
 
 class DisplayHostDiffCallback(val old: List<DisplayHost>, val new: List<DisplayHost>): DiffUtil.Callback()
 {
-	override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) = (old[oldItemPosition] == new[newItemPosition])
-	override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) = (old[oldItemPosition] == new[newItemPosition])
-	override fun getOldListSize() = old.size
-	override fun getNewListSize() = new.size
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) = (old[oldItemPosition] == new[newItemPosition])
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) = (old[oldItemPosition] == new[newItemPosition])
+    override fun getOldListSize() = old.size
+    override fun getNewListSize() = new.size
 }
 
 class DisplayHostRecyclerViewAdapter(
-	val clickCallback: (DisplayHost) -> Unit,
-	val wakeupCallback: (DisplayHost) -> Unit,
-	val editCallback: (DisplayHost) -> Unit,
-	val deleteCallback: (DisplayHost) -> Unit
+    val clickCallback: (DisplayHost) -> Unit,
+    val wakeupCallback: (DisplayHost) -> Unit,
+    val editCallback: (DisplayHost) -> Unit,
+    val deleteCallback: (DisplayHost) -> Unit
 ): RecyclerView.Adapter<DisplayHostRecyclerViewAdapter.ViewHolder>()
 {
-	var hosts: List<DisplayHost> = listOf()
-		set(value)
-		{
-			val diff = DiffUtil.calculateDiff(DisplayHostDiffCallback(field, value))
-			field = value
-			diff.dispatchUpdatesTo(this)
-		}
+    var hosts: List<DisplayHost> = listOf()
+        set(value)
+        {
+            val diff = DiffUtil.calculateDiff(DisplayHostDiffCallback(field, value))
+            field = value
+            diff.dispatchUpdatesTo(this)
+        }
 
-	class ViewHolder(val binding: ItemDisplayHostBinding): RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemDisplayHostBinding): RecyclerView.ViewHolder(binding.root)
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-		= ViewHolder(ItemDisplayHostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
+        = ViewHolder(ItemDisplayHostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
-	override fun getItemCount() = hosts.count()
+    override fun getItemCount() = hosts.count()
 
-	override fun onBindViewHolder(holder: ViewHolder, position: Int)
-	{
-		val context = holder.itemView.context
-		val host = hosts[position]
-		holder.binding.also {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int)
+    {
+        val context = holder.itemView.context
+        val host = hosts[position]
+        holder.binding.also {
             it.nameTextView.text = host.name?.takeIf { name -> name.isNotBlank() } ?: it.root.context.getString(R.string.dv_my_console)
-            it.hostTextView.text = it.root.context.getString(R.string.dv_address) + " " + host.host
-            it.modelText.text = if(host.isPS5) "PLAYSTATION 5" else if(host.isRegistered) "PLAYSTATION 4" else "REMOTE PLAY"
-            it.consoleImage.setImageResource(if(host.isPS5) R.drawable.ps5_console else R.drawable.ic_deckivo)
+            it.hostTextView.text = it.root.context.getString(R.string.dv_console_address, host.host)
+            it.modelText.text = it.root.context.getString(if(host.isPS5) R.string.dv_ps5_model else if(host.isRegistered) R.string.dv_ps4_model else R.string.dv_remote_model)
+            it.consoleImage.setImageResource(if(host.isPS5) R.drawable.play_space else R.drawable.ic_deckivo)
             val state = (host as? DiscoveredDisplayHost)?.discoveredHost?.state
             it.statusText.text = when {
                 state == DiscoveryHost.State.READY -> it.root.context.getString(R.string.dv_online)
@@ -68,41 +68,41 @@ class DisplayHostRecyclerViewAdapter(
             }
             it.statusText.setTextColor(context.getColor(if(state == DiscoveryHost.State.STANDBY) R.color.deckivo_warning else R.color.accent))
             val app = (host as? DiscoveredDisplayHost)?.discoveredHost?.runningAppName
-            it.bottomInfoTextView.text = app?.takeIf { name -> name.isNotBlank() }?.let { name -> it.root.context.getString(R.string.dv_running) + " " + name } ?: ""
+            it.bottomInfoTextView.text = app?.takeIf { name -> name.isNotBlank() }?.let { name -> it.root.context.getString(R.string.dv_running_app, name) } ?: ""
             it.bottomInfoTextView.visibility = if(it.bottomInfoTextView.text.isEmpty()) View.GONE else View.VISIBLE
             it.playButton.text = if(host.isRegistered) { if(state == DiscoveryHost.State.STANDBY) it.root.context.getString(R.string.dv_wake_play) else it.root.context.getString(R.string.dv_play) } else it.root.context.getString(R.string.dv_register_console)
             it.playButton.setOnClickListener { clickCallback(host) }
             it.root.setOnClickListener { clickCallback(host) }
 
-			val canWakeup = host.registeredHost != null
-			val canEditDelete = host.manualHost != null
-			if(canWakeup || canEditDelete)
-			{
-				it.menuButton.isVisible = true
-				it.menuButton.setOnClickListener { _ ->
-					val menu = PopupMenu(context, it.menuButton)
-					menu.menuInflater.inflate(R.menu.display_host, menu.menu)
-					menu.menu.findItem(R.id.action_wakeup).isVisible = canWakeup
-					menu.menu.findItem(R.id.action_edit).isVisible = canEditDelete
-					menu.menu.findItem(R.id.action_delete).isVisible = canEditDelete
-					menu.setOnMenuItemClickListener { menuItem ->
-						when(menuItem.itemId)
-						{
-							R.id.action_wakeup -> wakeupCallback(host)
-							R.id.action_edit -> editCallback(host)
-							R.id.action_delete -> deleteCallback(host)
-							else -> return@setOnMenuItemClickListener false
-						}
-						true
-					}
-					menu.show()
-				}
-			}
-			else
-			{
-				it.menuButton.isGone = true
-				it.menuButton.setOnClickListener(null)
-			}
-		}
-	}
+            val canWakeup = host.registeredHost != null
+            val canEditDelete = host.manualHost != null
+            if(canWakeup || canEditDelete)
+            {
+                it.menuButton.isVisible = true
+                it.menuButton.setOnClickListener { _ ->
+                    val menu = PopupMenu(context, it.menuButton)
+                    menu.menuInflater.inflate(R.menu.display_host, menu.menu)
+                    menu.menu.findItem(R.id.action_wakeup).isVisible = canWakeup
+                    menu.menu.findItem(R.id.action_edit).isVisible = canEditDelete
+                    menu.menu.findItem(R.id.action_delete).isVisible = canEditDelete
+                    menu.setOnMenuItemClickListener { menuItem ->
+                        when(menuItem.itemId)
+                        {
+                            R.id.action_wakeup -> wakeupCallback(host)
+                            R.id.action_edit -> editCallback(host)
+                            R.id.action_delete -> deleteCallback(host)
+                            else -> return@setOnMenuItemClickListener false
+                        }
+                        true
+                    }
+                    menu.show()
+                }
+            }
+            else
+            {
+                it.menuButton.isGone = true
+                it.menuButton.setOnClickListener(null)
+            }
+        }
+    }
 }

@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+    <!-- StreamInput requests 4000 us (250 Hz) motion samples for Remote Play. -->
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" tools:ignore="HighSamplingRate" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
@@ -14,9 +15,11 @@
     <uses-permission android:name="android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION" />
     <application
         android:name=".design.DeckivoApplication"
+        tools:targetApi="tiramisu"
         android:localeConfig="@xml/locales_config"
         android:allowBackup="false"
-        android:fullBackupContent="false"
+        android:fullBackupContent="@xml/backup_rules"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:usesCleartextTraffic="true"
         android:icon="@drawable/ic_remteh_launcher"
         android:label="@string/app_name"
@@ -37,10 +40,11 @@
         </provider>
 
         <activity android:name=".design.SupportActivity" android:exported="false" />
+        <activity android:name=".design.LicensesActivity" android:exported="false" />
         <activity android:name=".design.SessionHistoryActivity" android:exported="false" />
         <activity android:name=".updates.UpdatesActivity" android:exported="false" />
-        <activity android:name=".lan.LanSetupActivity" android:exported="false" android:screenOrientation="userLandscape" />
-        <activity android:name=".lan.ControllerTestActivity" android:exported="false" android:screenOrientation="userLandscape" />
+        <activity android:name=".lan.LanSetupActivity" android:exported="false" />
+        <activity android:name=".lan.ControllerTestActivity" android:exported="false" />
         <activity android:name=".main.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:exported="true">
@@ -54,7 +58,7 @@
             android:name=".stream.StreamActivity"
             android:theme="@style/StreamTheme"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:screenOrientation="userLandscape"/>
+           />
 
         <activity
             android:name=".settings.SettingsActivity" />

@@ -1,21 +1,102 @@
 <resources>
-<style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
-<item name="colorPrimary">@color/accent</item><item name="colorPrimaryDark">@color/deckivo_bg</item><item name="colorPrimarySurface">@color/deckivo_surface</item><item name="colorAccent">@color/accent</item><item name="colorSecondary">@color/accent</item><item name="colorOnSecondary">@color/deckivo_ink</item><item name="colorOnPrimary">@color/deckivo_ink</item><item name="colorSurface">@color/deckivo_surface</item><item name="colorOnSurface">@color/deckivo_text</item><item name="colorOnBackground">@color/deckivo_text</item><item name="android:colorBackground">@color/deckivo_bg</item><item name="android:windowBackground">@drawable/deckivo_background</item><item name="android:textColorPrimary">@color/deckivo_text</item><item name="android:textColorSecondary">@color/deckivo_muted</item><item name="android:textColor">@color/deckivo_text</item><item name="android:fontFamily">@font/ibm_plex_sans</item><item name="android:statusBarColor">@color/deckivo_bg</item><item name="android:navigationBarColor">@color/deckivo_bg</item><item name="android:windowLightStatusBar">false</item><item name="android:colorControlHighlight">#33DAF975</item><item name="colorControlNormal">@color/deckivo_muted</item><item name="colorControlActivated">@color/accent</item><item name="materialButtonStyle">@style/Deckivo.Button</item><item name="textInputStyle">@style/MageTheme.TextInputStyle</item><item name="materialAlertDialogTheme">@style/AppTheme.AlertDialog</item><item name="alertDialogTheme">@style/AppTheme.AlertDialog.NonMaterial</item><item name="android:windowActivityTransitions">true</item><item name="elevationOverlayEnabled">false</item>
-</style>
-<style name="AppTheme.Toolbar" parent="AppTheme"><item name="android:textColorSecondary">@color/deckivo_text</item></style>
-<style name="Deckivo.Button" parent="Widget.MaterialComponents.Button"><item name="android:textAllCaps">false</item><item name="android:textSize">15sp</item><item name="android:fontFamily">@font/ibm_plex_sans</item><item name="android:letterSpacing">0</item><item name="android:minHeight">52dp</item><item name="android:insetTop">0dp</item><item name="android:insetBottom">0dp</item><item name="cornerRadius">14dp</item><item name="backgroundTint">@color/deckivo_button_bg</item><item name="android:textColor">@color/deckivo_ink</item><item name="iconTint">@color/deckivo_ink</item><item name="strokeColor">@color/deckivo_focus_stroke</item><item name="strokeWidth">2dp</item><item name="android:paddingStart">18dp</item><item name="android:paddingEnd">18dp</item></style>
-<style name="Deckivo.Button.Secondary" parent="Deckivo.Button"><item name="backgroundTint">@color/deckivo_secondary_bg</item><item name="android:textColor">@color/deckivo_text</item><item name="iconTint">@color/deckivo_text</item><item name="strokeWidth">1dp</item></style>
-<style name="Deckivo.Button.Nav" parent="Deckivo.Button.Secondary"><item name="android:gravity">start|center_vertical</item><item name="android:textSize">14sp</item><item name="cornerRadius">12dp</item></style>
-<style name="AppTheme.FloatingActionButtonSpeedDial" parent="Deckivo.Button.Secondary"/>
-<style name="AppTheme.AlertDialog" parent="Theme.MaterialComponents.Dialog.Alert"><item name="colorSurface">@color/deckivo_surface</item><item name="colorPrimary">@color/accent</item><item name="colorSecondary">@color/accent</item><item name="colorOnSurface">@color/deckivo_text</item><item name="android:textColorPrimary">@color/deckivo_text</item><item name="android:textColorSecondary">@color/deckivo_muted</item><item name="android:windowBackground">@drawable/deckivo_panel</item><item name="buttonBarPositiveButtonStyle">@style/AppTheme.AlertDialog.Button</item><item name="buttonBarNegativeButtonStyle">@style/AppTheme.AlertDialog.Button</item><item name="buttonBarNeutralButtonStyle">@style/AppTheme.AlertDialog.Button</item></style>
-<style name="AppTheme.AlertDialog.NonMaterial" parent="Theme.AppCompat.Dialog.Alert"><item name="android:windowBackground">@drawable/deckivo_panel</item><item name="android:textColorPrimary">@color/deckivo_text</item><item name="android:textColorSecondary">@color/deckivo_muted</item><item name="colorAccent">@color/accent</item></style>
-<style name="AppTheme.AlertDialog.Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog"><item name="android:textColor">@color/accent</item><item name="android:textAllCaps">false</item></style>
-<style name="MageTheme" parent="AppTheme"/>
-<style name="MageTheme.Translucent" parent="MageTheme"><item name="android:windowIsTranslucent">true</item></style>
-<style name="MageTheme.TextAppearanceHeadline1" parent="TextAppearance.MaterialComponents.Headline1"><item name="fontFamily">sans-serif-medium</item></style>
-<style name="MageTheme.TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox"><item name="hintTextColor">@color/deckivo_muted</item><item name="boxCornerRadiusTopStart">14dp</item><item name="boxCornerRadiusTopEnd">14dp</item><item name="boxCornerRadiusBottomStart">14dp</item><item name="boxCornerRadiusBottomEnd">14dp</item><item name="boxStrokeColor">@color/accent</item><item name="boxBackgroundColor">@color/deckivo_surface</item><item name="endIconTint">@color/deckivo_muted</item></style>
-<style name="MageTheme.TextInputStyle.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"><item name="hintTextColor">@color/deckivo_muted</item><item name="boxBackgroundColor">@color/deckivo_surface</item><item name="boxCornerRadiusTopStart">14dp</item><item name="boxCornerRadiusTopEnd">14dp</item><item name="boxCornerRadiusBottomStart">14dp</item><item name="boxCornerRadiusBottomEnd">14dp</item></style>
-<style name="MageTheme.Button" parent="Deckivo.Button"/>
-<style name="MageTheme.TextAppearanceButton" parent="TextAppearance.MaterialComponents.Button"><item name="android:textAllCaps">false</item></style>
-<style name="StreamTheme" parent="AppTheme"><item name="android:windowBackground">@color/stream_background</item><item name="android:windowTranslucentStatus">true</item><item name="android:windowTranslucentNavigation">true</item></style>
+  <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/accent</item>
+    <item name="colorPrimaryDark">@color/deckivo_bg</item>
+    <item name="colorPrimarySurface">@color/deckivo_surface</item>
+    <item name="colorAccent">@color/accent</item>
+    <item name="colorSecondary">@color/accent</item>
+    <item name="colorOnSecondary">@color/deckivo_ink</item>
+    <item name="colorOnPrimary">@color/deckivo_ink</item>
+    <item name="colorSurface">@color/deckivo_surface</item>
+    <item name="colorOnSurface">@color/deckivo_text</item>
+    <item name="colorOnBackground">@color/deckivo_text</item>
+    <item name="android:colorBackground">@color/deckivo_bg</item>
+    <item name="android:windowBackground">@drawable/deckivo_background</item>
+    <item name="android:textColorPrimary">@color/deckivo_text</item>
+    <item name="android:textColorSecondary">@color/deckivo_muted</item>
+    <item name="android:textColor">@color/deckivo_text</item>
+    <item name="android:fontFamily">@font/ibm_plex_sans</item>
+    <item name="android:statusBarColor">@color/deckivo_bg</item>
+    <item name="android:navigationBarColor">@color/deckivo_bg</item>
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:colorControlHighlight">#33DAF975</item>
+    <item name="colorControlNormal">@color/deckivo_muted</item>
+    <item name="colorControlActivated">@color/accent</item>
+    <item name="materialButtonStyle">@style/Deckivo.Button</item>
+    <item name="textInputStyle">@style/MageTheme.TextInputStyle</item>
+    <item name="materialAlertDialogTheme">@style/AppTheme.AlertDialog</item>
+    <item name="alertDialogTheme">@style/AppTheme.AlertDialog.NonMaterial</item>
+    <item name="android:windowActivityTransitions">true</item>
+    <item name="elevationOverlayEnabled">false</item>
+  </style>
+  <style name="Deckivo.Button" parent="Widget.MaterialComponents.Button">
+    <item name="android:textAllCaps">false</item>
+    <item name="android:textSize">15sp</item>
+    <item name="android:fontFamily">@font/ibm_plex_sans</item>
+    <item name="android:letterSpacing">0</item>
+    <item name="android:minHeight">52dp</item>
+    <item name="android:insetTop">0dp</item>
+    <item name="android:insetBottom">0dp</item>
+    <item name="cornerRadius">14dp</item>
+    <item name="backgroundTint">@color/deckivo_button_bg</item>
+    <item name="android:textColor">@color/deckivo_ink</item>
+    <item name="iconTint">@color/deckivo_ink</item>
+    <item name="strokeColor">@color/deckivo_focus_stroke</item>
+    <item name="strokeWidth">2dp</item>
+    <item name="android:paddingStart">18dp</item>
+    <item name="android:paddingEnd">18dp</item>
+  </style>
+  <style name="Deckivo.Button.Secondary" parent="Deckivo.Button">
+    <item name="backgroundTint">@color/deckivo_secondary_bg</item>
+    <item name="android:textColor">@color/deckivo_text</item>
+    <item name="iconTint">@color/deckivo_text</item>
+    <item name="strokeWidth">1dp</item>
+  </style>
+  <style name="AppTheme.AlertDialog" parent="Theme.MaterialComponents.Dialog.Alert">
+    <item name="colorSurface">@color/deckivo_surface</item>
+    <item name="colorPrimary">@color/accent</item>
+    <item name="colorSecondary">@color/accent</item>
+    <item name="colorOnSurface">@color/deckivo_text</item>
+    <item name="android:textColorPrimary">@color/deckivo_text</item>
+    <item name="android:textColorSecondary">@color/deckivo_muted</item>
+    <item name="android:windowBackground">@drawable/deckivo_panel</item>
+    <item name="buttonBarPositiveButtonStyle">@style/AppTheme.AlertDialog.Button</item>
+    <item name="buttonBarNegativeButtonStyle">@style/AppTheme.AlertDialog.Button</item>
+    <item name="buttonBarNeutralButtonStyle">@style/AppTheme.AlertDialog.Button</item>
+  </style>
+  <style name="AppTheme.AlertDialog.NonMaterial" parent="Theme.AppCompat.Dialog.Alert">
+    <item name="android:windowBackground">@drawable/deckivo_panel</item>
+    <item name="android:textColorPrimary">@color/deckivo_text</item>
+    <item name="android:textColorSecondary">@color/deckivo_muted</item>
+    <item name="colorAccent">@color/accent</item>
+  </style>
+  <style name="AppTheme.AlertDialog.Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+    <item name="android:textColor">@color/accent</item>
+    <item name="android:textAllCaps">false</item>
+  </style>
+  <style name="MageTheme" parent="AppTheme" />
+  <style name="MageTheme.TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <item name="hintTextColor">@color/deckivo_muted</item>
+    <item name="boxCornerRadiusTopStart">14dp</item>
+    <item name="boxCornerRadiusTopEnd">14dp</item>
+    <item name="boxCornerRadiusBottomStart">14dp</item>
+    <item name="boxCornerRadiusBottomEnd">14dp</item>
+    <item name="boxStrokeColor">@color/accent</item>
+    <item name="boxBackgroundColor">@color/deckivo_surface</item>
+    <item name="endIconTint">@color/deckivo_muted</item>
+  </style>
+  <style name="MageTheme.TextInputStyle.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <item name="hintTextColor">@color/deckivo_muted</item>
+    <item name="boxBackgroundColor">@color/deckivo_surface</item>
+    <item name="boxCornerRadiusTopStart">14dp</item>
+    <item name="boxCornerRadiusTopEnd">14dp</item>
+    <item name="boxCornerRadiusBottomStart">14dp</item>
+    <item name="boxCornerRadiusBottomEnd">14dp</item>
+  </style>
+  <style name="MageTheme.Button" parent="Deckivo.Button" />
+  <style name="StreamTheme" parent="AppTheme">
+    <item name="android:windowBackground">@color/stream_background</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowTranslucentNavigation">true</item>
+  </style>
 </resources>
