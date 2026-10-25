@@ -1,12 +1,12 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover.png" alt="Deckivo — Your PS5. Your play space." width="100%"></a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover.webp" alt="Deckivo — Your PS5. Your play space." width="100%"></a></p>
 
-<p align="center"><strong>Open-source PS5 Remote Play for Android, Apple Silicon and Switchroot Ubuntu.</strong><br>Developed by <a href="https://remteh.by/">RemTeh.by</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
+<p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/">RemTeh.by</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0">Download 0.6.0 preview</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="https://ko-fi.com/pavelzayats">♥ Support on Ko-fi</a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1">Download 0.6.1 preview</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
 
 [English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)
 
-**0.6.0 is an experimental prerelease, not a finished 1.0 product.** The guides
+**0.6.1 is an experimental prerelease, not a finished 1.0 product.** The guides
 separate tested hardware/builds from planned support. Local play has been tested;
 Internet/VPN play and sustained sessions are not certified. No subscription or
 new Deckivo account is required for local play.
@@ -15,14 +15,14 @@ new Deckivo account is required for local play.
 
 | Platform | Delivery | Start here |
 |---|---|---|
-| Android ARM64 | APK, Android 8+; tested device uses Android 15 | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-arm64.apk) |
+| Android ARM64 | APK, Android 8+; tested device uses Android 15 | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) |
 | macOS Apple Silicon | Native Qt preview, separate chiaki-ng engine required; ad-hoc signed, not notarized | [Mac guide](docs/guides/en.md#macos) |
 | Switchroot Ubuntu ARM64 | Developer preview for Ubuntu 24.04 / KDE X11 / Switchroot FFmpeg 6.1 | [Linux guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
 | Windows, Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
 ### Made for your own play space
 
-- A graphite, lime and lavender interface, with the original PS5 product photo.
+- A graphite, lime and lavender interface, with a real Qt setup capture and our own screen/gamepad illustration.
 - Visible language selection: English default, optional system detection and
   16 guide languages. New desktop-specific controls currently have English and
   Russian translations; technical test notes remain English.
@@ -33,9 +33,9 @@ new Deckivo account is required for local play.
   the actual test history; this is not a claim that every controller is tested.
 - Verified updates: Android checks package identity, version, size, SHA-256 and
   its existing APK certificate. Desktop checks RSA-signed metadata and hashes,
-  defers installation during streaming and retains a rollback copy.
-- Optional **[Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)** in the app, site
-  and GitHub. No paid feature unlock, priority support or individual setup service.
+  defers installation during streaming and waits up to 120 seconds for a matching startup acknowledgment and rolls back on failure.
+- Optional **[project support](#help-deckivo-grow)** in the app, site
+  and GitHub. Support funds signing, new platforms and tests on real devices.
 
 ### What was actually tested
 
@@ -69,6 +69,22 @@ new frontend feature.
 [English guide](docs/guides/en.md) · [Русская инструкция](docs/guides/ru.md) ·
 [Updates](docs/UPDATES.md) · [Troubleshooting](docs/TECHNICAL.md)
 
+<!-- SUPPORT:START -->
+### Help Deckivo grow
+
+Deckivo is free and open source. Your support helps fund signing, new platforms and real-device testing.
+
+- Apple Developer ID ($99/yr) — signing and notarization for Mac
+- Windows build
+- More test hardware: PS5 Pro and handhelds
+
+[Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
+
+<img src="website/assets/support/kofi.svg" alt="Scan Ko-fi · RemTeh" width="180" height="180">
+
+Everything stays free. Supporting is optional.
+<!-- SUPPORT:END -->
+
 ### Source and credits
 
 Deckivo is a modified distribution of
@@ -81,8 +97,7 @@ we preserve upstream history and notices. [Original README](docs/UPSTREAM-README
 [Release process](RELEASING.md) · [Attribution](ATTRIBUTION.md)
 
 Client license: **AGPL v3 with the retained OpenSSL permission**, [COPYING](COPYING).
-The separate optional PS5 helper is GPL-3.0-or-later. Dependencies and the Sony
-product photo retain their own notices. Complete corresponding project source,
+The separate optional PS5 helper is GPL-3.0-or-later. Dependencies and the bundled font retain their own notices. Complete corresponding project source,
 including initialized native dependencies, accompanies the release; the tiny
 GitHub-generated source ZIP does not expand submodules.
 

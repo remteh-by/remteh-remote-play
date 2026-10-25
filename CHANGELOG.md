@@ -1,3 +1,7 @@
+# 0.6.1 · 2026-10-25
+
+Shared support/QR and bounded thank-you policy; offline licenses; Android updater localization and Lint corrections; strict pure-Python RSA verification; native 120-second startup rollback; static 16-language site, own UI imagery and release SBOMs. See [release notes](docs/releases/0.6.1.md).
+
 # 0.6.0 · experimental public preview · 2026-10-25
 
 - New GitHub presentation and responsive graphite/lime website, using the real

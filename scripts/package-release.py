@@ -9,6 +9,8 @@ import shutil
 import zipfile
 
 root = Path(__file__).resolve().parents[1]
+import subprocess
+subprocess.run([os.environ.get('DECKIVO_BUILD_PYTHON','python3'),str(root/'scripts/generate-support.py'),'--check'],check=True)
 dist = root / "dist"
 app_version = re.search(r'versionName\s+"([0-9]+\.[0-9]+\.[0-9]+)"', (root / "android/app/build.gradle").read_text()).group(1)
 version = f"Deckivo-{app_version}"

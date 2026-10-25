@@ -1,0 +1,20 @@
+{
+  "source": "Android CMake flags and used FetchContent/submodule sources",
+  "bundled": [
+    "Chiaki",
+    "curl",
+    "Mbed TLS",
+    "json-c",
+    "MiniUPnPc",
+    "Jerasure",
+    "gf-complete",
+    "nanopb",
+    "Oboe"
+  ],
+  "opus": {
+    "bundled": false,
+    "reason": "CHIAKI_LIB_ENABLE_OPUS=OFF; Android platform audio path"
+  },
+  "jvm": "Resolved Gradle runtime components are listed in release SBOM",
+  "qr": "ZXing core 3.5.4 \u2014 Apache-2.0"
+}

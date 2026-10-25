@@ -1,18 +1,18 @@
 # Deckivo — встановлення та гра
 
-Deckivo **0.6.0 preview** · 2026-10-25
+Deckivo **0.6.1 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Перед початком
 
-Це експериментальна версія 0.6.0. Під’єднайте PS5 і клієнт до однієї домашньої мережі. На PS5 увійдіть у потрібний профіль: Налаштування → Система → Дистанційна гра → Увімкнути. Для першого підключення залиште консоль увімкненою. Гостьова мережа може ізолювати пристрої; бажано використовувати 5 ГГц.
+Це експериментальна версія 0.6.1. Під’єднайте PS5 і клієнт до однієї домашньої мережі. На PS5 увійдіть у потрібний профіль: Налаштування → Система → Дистанційна гра → Увімкнути. Для першого підключення залиште консоль увімкненою. Гостьова мережа може ізолювати пристрої; бажано використовувати 5 ГГц.
 
 ## Android
 
 Завантажте arm64 APK з випуску. Потрібен Android 8+; перевірено Switch OLED з Android 15. Дозвольте встановлення лише вибраному джерелу. Встановлюйте поверх старої версії без видалення даних. Виберіть мову, відкрийте майстер підключення та під’єднайте Bluetooth-контролер у налаштуваннях Android. Не вимикайте Play Protect.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1)
 
 <a id="macos"></a>
 
@@ -20,7 +20,7 @@ Deckivo **0.6.0 preview** · 2026-10-25
 
 Лише Apple Silicon. Окремо встановіть chiaki-ng, прив’яжіть PS5 та закрийте його трансляцію. Розпакуйте ZIP Mac і перенесіть Deckivo.app до ~/Applications. Програма не має нотаризації: macOS може вимагати «Усе одно відкрити» у налаштуваннях безпеки. Не вимикайте Gatekeeper. У Deckivo імпортуйте реєстрацію chiaki-ng і вкажіть IP консолі.
 
-[Mac ZIP · 0.6.0 b9](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-macos-0.6.0-b9.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.6.1 b10](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +37,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux technical requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-sources.zip)
+[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-sources.zip)
 
 ## Прив’язування
 
@@ -57,14 +57,20 @@ Android перевіряє GitHub за відкритої програми, за
 
 За помилки перевірте IP, профіль, Account ID, свіжий PIN та ізоляцію мережі. За чорного екрана закрийте інші клієнти й під’єднайтеся знову. Точні перевірені версії наведено нижче. Інтернет/VPN, довгі сеанси та всі контролери не перевірені. Windows, Intel Mac і Linux x64 заплановані. Deckivo не виправляє WebKit PS5.
 
-[Device / version / scope](../TESTED.md) · [Technical reference (English)](../TECHNICAL.md)
+[Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 
-## Підтримка
+<!-- SUPPORT:START -->
+## Допоможи Deckivo зростати
 
-Добровільний донат через Ko-fi RemTeh підтримує відкриту розробку. Платних функцій та обіцянок індивідуальної допомоги немає.
+Deckivo безкоштовний і відкритий. Підтримка допомагає розвивати платформи та перевіряти справжні пристрої.
+
+- Apple Developer ID ($99/yr) — підпис і нотаризація Mac
+- Збірка для Windows
+- Більше пристроїв: PS5 Pro та портативні консолі
 
 [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
 
----
+<img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="Скануй телефоном">
 
-Developed by [RemTeh.by](https://remteh.by/). [Chiaki / chiaki-ng / Android Extended](../../ATTRIBUTION.md). [AGPL v3 + OpenSSL permission](../../COPYING).
+Усе залишається безкоштовним. Підтримка добровільна.
+<!-- SUPPORT:END -->

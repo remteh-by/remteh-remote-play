@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "version": "0.6.1",
+  "channel": "experimental-prerelease",
+  "date": "2026-10-25",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.6.1",
+    "versionCode": 25,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.6.1-arm64.apk",
+    "apkBytes": 6257253,
+    "sha256": "afcbfc059e69b78429fa518297b970ccfb9970483fef440e024906172ead0edc",
+    "unit_tests": 31,
+    "unit_failures": 0,
+    "lint": {
+      "Error": 0,
+      "Warning": 0,
+      "upstream_baseline": 96
+    },
+    "existing_certificate": true,
+    "cleartext_java_console_helper_retained": true
+  },
+  "native": {
+    "unit_tests": 38,
+    "unit_failures": 0,
+    "macos_build": 10,
+    "linux_build": 10,
+    "startup_ack_seconds": 120,
+    "runtime_signature_verifier": "strict pure Python RSA PKCS#1 v1.5 SHA-256",
+    "macos_notarized": false
+  },
+  "additional": {
+    "funding_config_tests": 4,
+    "host_helper_tests": 8,
+    "decoder_sanitized_cycles": 100
+  },
+  "website": {
+    "languages": 16,
+    "no_js_pages": 16,
+    "responsive_cases": 24,
+    "widths": [
+      390,
+      768,
+      1440,
+      1920,
+      2560,
+      3840
+    ],
+    "locales": [
+      "en",
+      "ru",
+      "ar",
+      "ja"
+    ],
+    "horizontal_overflow": 0,
+    "broken_images": 0,
+    "analytics_enabled": false,
+    "custom_domain_enabled": false,
+    "first_load": "See docs/releases/0.6.1-site-validation.json"
+  },
+  "physical_acceptance": "Run through the public OTA after publishing; recorded separately, not inferred from these build tests.",
+  "limits": [
+    "Ubuntu 0.6.1 on hardware pending",
+    "Real six-hour update timer pending",
+    "Real 10-minute/14-day thank-you timer pending",
+    "Sustained play and Internet/VPN pending",
+    "Payments and notarization not tested"
+  ]
+}

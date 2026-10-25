@@ -10,6 +10,8 @@ import secrets
 import subprocess
 
 root = Path(__file__).resolve().parents[1]
+import subprocess
+subprocess.run([os.environ.get('DECKIVO_BUILD_PYTHON','python3'),str(root/'scripts/generate-support.py'),'--check'],check=True)
 sdk = Path(os.environ.get("ANDROID_HOME", str(Path.home() / "Library/Android/sdk")))
 java = Path(os.environ.get("JAVA_HOME", "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"))
 signing = Path.home() / ".codex/private/remteh-remote-play"

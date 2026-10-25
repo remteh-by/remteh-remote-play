@@ -1,6 +1,6 @@
 # Deckivo updates
 
-## Public 0.6.0 channel
+## Public 0.6.1 channel
 
 The public release is experimental. Keep preview releases enabled if you want
 0.x updates. Install over the existing application; never clear registration data
@@ -11,7 +11,7 @@ release packages.
 |---|---|---|
 | Android ARM64 | GitHub Releases, home/update screen open, normally every six hours; manual check immediately; automatic download on unmetered Wi-Fi | Same package and certificate verified; Android 12+ native self-update after source permission, with system confirmation whenever Android requires it |
 | macOS Apple Silicon | RSA-signed index at the public Pages channel, automatic checks while Deckivo is open | Waits for idle dashboard, verifies bundle identity/build/codesign, replaces app and relaunches; startup acknowledgment or rollback |
-| Switchroot Ubuntu ARM64 | Same signed public metadata and exact archive hash | Waits for idle state; compiles adapter against installed headers; transactionally replaces client files, retains runtime/registration/settings/history |
+| Switchroot Ubuntu ARM64 | Same signed public metadata and exact archive hash | Waits for idle state; compiles adapter against installed headers; transactionally replaces client files, retains runtime/registration/settings/history; matching startup acknowledgment within 120 seconds or file rollback |
 
 Public native metadata:
 `https://remteh-by.github.io/remteh-remote-play/updates/`.
@@ -42,10 +42,18 @@ console-firmware or chiaki-ng engine update is silently installed by this update
 ### Verification and rollback
 
 Reject wrong platform/package, non-increasing builds, lower versions, untrusted
-URLs, oversized files, bad hashes/signatures and invalid archive paths. Mac bundle
-updates retain an old app and need a matching startup acknowledgment; a failed
-archive is quarantined. Linux keeps a versioned rollback directory and restores
-files on a failed replacement. Never publish a different APK under the same
+URLs, oversized files, bad hashes/signatures and invalid archive paths. Mac bundle updates retain an old app. In 0.6.1 both Mac and Linux require a
+matching transaction and new-process PID acknowledgment within 120 seconds.
+The acknowledgment comes from the shown main window's event loop after loading
+settings/registration and checking that the engine exists, not after a stream.
+A failed live child is terminated before restoring a bundle/files. If it cannot
+be stopped, restoration is refused to avoid mutating a running installation.
+Linux restores from the exact backup receipt, including removal of new files;
+pairing and runtime paths are outside the upgrade allowlist.
+0.6.0 Linux only rolled back a failed replacement, not a missing startup ack;
+0.6.0 Mac used 30 seconds. Those historical limitations were corrected in 0.6.1.
+RSA verification now uses strict pure Python SPKI/PKCS#1 v1.5 SHA-256, without
+calling external openssl. Signing tools used by maintainers are separate. Never publish a different APK under the same
 Android versionCode or move an existing release tag.
 
 The physical 0.5.1 transitions are in [TESTED.md](TESTED.md). Public release
@@ -58,3 +66,5 @@ Generate `update.json` from the actual signed APK with
 `scripts/package-public-release.py`; keep RSA/APK private keys outside Git and
 CI. Publish exact packages, complete corresponding source, validation and
 SHA256SUMS together. Never publish private channel URLs or device logs.
+
+The future custom domain is not active. See [domain migration](marketing/domain.md) before adding any CNAME.

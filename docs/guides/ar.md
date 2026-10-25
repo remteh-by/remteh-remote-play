@@ -1,18 +1,18 @@
 # Deckivo — دليل التثبيت واللعب
 
-Deckivo **0.6.0 preview** · 2026-10-25
+Deckivo **0.6.1 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## قبل البدء
 
-الإصدار 0.6.0 تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة.
+الإصدار 0.6.1 تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة.
 
 ## Android
 
 نزّل APK بمعمارية arm64 من الإصدار. يلزم Android 8 أو أحدث؛ الاختبار الفعلي على Switch OLED مع Android 15. اسمح بالتثبيت للمصدر المختار فقط. ثبّت فوق النسخة السابقة دون حذف التطبيق أو بياناته. اختر اللغة ومعالج الاتصال، واربط يد Bluetooth من إعدادات Android. لا تعطّل Play Protect.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1)
 
 <a id="macos"></a>
 
@@ -20,7 +20,7 @@ Deckivo **0.6.0 preview** · 2026-10-25
 
 Apple Silicon فقط. ثبّت chiaki-ng بشكل منفصل واربط PS5 ثم أغلق البث فيه. فك ZIP وانقل Deckivo.app إلى ~/Applications. التطبيق غير موثّق لدى Apple؛ قد يلزم «الفتح على أي حال» في الخصوصية والأمان. لا تعطّل Gatekeeper بالكامل. استورد تسجيل chiaki-ng في Deckivo وأدخل عنوان IP للجهاز.
 
-[Mac ZIP · 0.6.0 b9](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-macos-0.6.0-b9.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.6.1 b10](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +37,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux technical requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-sources.zip)
+[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-sources.zip)
 
 ## ربط الجهاز
 
@@ -57,14 +57,20 @@ python3 desktop/linux/upgrade.py
 
 عند الفشل تحقّق من IP والمستخدم وAccount ID ورمز جديد وعزل الشبكة. للشاشة السوداء أغلق العملاء الآخرين وأعد الاتصال. الإصدارات المختبرة موضحة أدناه. الإنترنت/VPN والاستيقاظ والجلسات الطويلة وكل وظائف التحكم غير معتمدة. Windows وIntel Mac وLinux x64 مخططة. لا يصلح Deckivo متصفح WebKit في PS5.
 
-[Device / version / scope](../TESTED.md) · [Technical reference (English)](../TECHNICAL.md)
+[Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 
-## دعم المشروع
+<!-- SUPPORT:START -->
+## ساعد Deckivo على النمو
 
-الدعم عبر Ko-fi RemTeh اختياري. لا توجد مزايا مدفوعة أو وعود بإعداد فردي. يبقى التطبيق مجانيًا ومفتوح المصدر.
+Deckivo مجاني ومفتوح المصدر. يساعد دعمك في المنصات الجديدة والاختبارات على أجهزة حقيقية.
+
+- Apple Developer ID ($99/yr) — توقيع وتوثيق Mac
+- إصدار Windows
+- أجهزة اختبار أكثر: PS5 Pro وأجهزة محمولة
 
 [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
 
----
+<img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="امسح بهاتفك">
 
-Developed by [RemTeh.by](https://remteh.by/). [Chiaki / chiaki-ng / Android Extended](../../ATTRIBUTION.md). [AGPL v3 + OpenSSL permission](../../COPYING).
+يبقى كل شيء مجانيًا. الدعم اختياري.
+<!-- SUPPORT:END -->
