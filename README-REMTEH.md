@@ -9,5 +9,5 @@
 Добровольная поддержка: [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats).
 Платных функций и обещаний индивидуальной настройки нет.
 
-Developed by [RemTeh.by](https://remteh.by/), на основе Chiaki / chiaki-ng /
+Developed by [RemTeh.by](https://remteh.by/?utm_source=github&utm_medium=referral&utm_campaign=deckivo), на основе Chiaki / chiaki-ng /
 Android Extended. [Авторство и лицензии](ATTRIBUTION.md).

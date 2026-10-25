@@ -35,7 +35,7 @@ Open Deckivo from the applications menu; choose a streaming preset and play.
 ## Existing installation
 
 With automatic updates enabled, existing public-channel clients receive Linux
-0.8.1 build 17 from GitHub. Leave Deckivo on its idle dashboard with Internet
+0.8.2 build 18 from GitHub. Leave Deckivo on its idle dashboard with Internet
 access. After this update, a user timer can download later signed updates while
 Deckivo is closed; installation waits for its next idle launch. Ubuntu must be
 awake and the user logged in. No Mac-based update server is required.

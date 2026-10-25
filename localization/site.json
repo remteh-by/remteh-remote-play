@@ -10,16 +10,21 @@
     "hero_lead": "Play your PS5 on Nintendo Switch OLED, Android devices and Apple Silicon Macs — open source, built on chiaki-ng.",
     "get": "Get Deckivo",
     "read": "Read the guide",
-    "stage": "Linux 0.8.1 b17 · Android & macOS 0.6.1",
+    "stage": "Deckivo 0.8.2 · desktop b18 · Android #27",
     "platform_limits": "See tested versions ↗",
     "pick": "Pick your screen.",
-    "pick_note": "Experimental builds. Choose the guide for your platform before installing.",
-    "android_note": "arm64 APK · Android 8+ · Switch OLED tested on Android 15",
+    "pick_note": "Install Deckivo on the device where you want to play. On your PS5, enable Remote Play.",
+    "existing_update": "Already installed? Download the update.",
+    "install_or_update": "Install or update Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 or newer) · macOS 13+",
+    "download_mac": "Download for Mac",
+    "first_install": "First installation: open the guide.",
+    "android_note": "0.8.2 #27 · arm64 APK · Android 8+",
     "download_apk": "Download APK",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Requires chiaki-ng · Not notarized",
+    "mac_note": "0.8.2 b18 · Requires chiaki-ng; follow the setup guide first",
     "mac_guide": "Mac setup guide",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Updater verified on Switch OLED · Gameplay pending",
-    "linux_guide": "Download Linux 0.8.1 b17",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Real-device acceptance pending",
+    "linux_guide": "Download Linux 0.8.2 b18",
     "planned": "Windows, Intel Mac and desktop Linux x64 are planned. No builds are offered for them yet.",
     "setup_title": "A little setup. A lot of play.",
     "full_guide": "Full setup guide ↗",
@@ -55,7 +60,7 @@
     "faq": [
       {
         "q": "Do both devices need the same network?",
-        "a": "Deckivo 0.6.1 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware."
+        "a": "Deckivo 0.8.2 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware."
       },
       {
         "q": "Which Account ID should I use?",
@@ -67,7 +72,7 @@
       },
       {
         "q": "Why does macOS show a security warning?",
-        "a": "Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-0.6.1-b10.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine."
+        "a": "Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-0.8.2-b18.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine."
       },
       {
         "q": "Is Deckivo free?",
@@ -79,7 +84,7 @@
       }
     ],
     "privacy_counter": "Cookie-free visit counter. Pairing data stays private; the counter server processes network requests.",
-    "screenshot_caption": "Actual desktop interface · development preview {version} · build {build}. Linux package: {linux}; Android and macOS: {released}."
+    "screenshot_caption": "Actual Deckivo {version} desktop interface."
   },
   "ru": {
     "nav_features": "Возможности",
@@ -92,7 +97,12 @@
     "get": "Скачать Deckivo",
     "read": "Читать инструкцию",
     "pick": "Выбери свой экран.",
-    "pick_note": "Экспериментальные сборки. Перед установкой открой инструкцию своей платформы.",
+    "pick_note": "Установи Deckivo на устройство, на котором будешь играть. На PS5 включи дистанционное воспроизведение.",
+    "existing_update": "Deckivo уже установлен? Скачай обновление.",
+    "install_or_update": "Установи или обнови Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 или новее) · macOS 13+",
+    "download_mac": "Скачать для Mac",
+    "first_install": "Первая установка: открой инструкцию.",
     "setup_title": "Немного настроек. Больше игры.",
     "step1": "Одна сеть.",
     "step1_body": "Подключи PS5 и свой экран к домашней сети. Включи дистанционное воспроизведение на PS5.",
@@ -111,14 +121,14 @@
     "source": "Исходники на GitHub ↗",
     "privacy": "Язык сохраняется только в этом браузере. На сайте нет аналитики, отслеживающих cookies или ключей привязки.",
     "language": "Язык",
-    "stage": "Linux 0.8.1 b17 · Android и macOS 0.6.1",
+    "stage": "Deckivo 0.8.2 · desktop b18 · Android #27",
     "platform_limits": "Проверенные версии ↗",
-    "android_note": "arm64 APK · Android 8+ · Тест на Switch OLED с Android 15",
+    "android_note": "0.8.2 #27 · arm64 APK · Android 8+",
     "download_apk": "Скачать APK",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Нужен chiaki-ng · Без нотарификации",
+    "mac_note": "0.8.2 b18 · Нужен chiaki-ng; сначала открой инструкцию",
     "mac_guide": "Установка на Mac",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Апдейтер проверен на Switch OLED · Геймплей ещё не проверен",
-    "linux_guide": "Скачать Linux 0.8.1 b17",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Проверка на реальном устройстве ещё не завершена",
+    "linux_guide": "Скачать Linux 0.8.2 b18",
     "planned": "Windows, Intel Mac и настольный Linux x64 запланированы. Проверенных сборок для них пока нет.",
     "full_guide": "Полная инструкция ↗",
     "device": "Устройство / ОС",
@@ -137,7 +147,7 @@
     "faq": [
       {
         "q": "Нужна ли общая сеть?",
-        "a": "Deckivo 0.6.1 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5."
+        "a": "Deckivo 0.8.2 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5."
       },
       {
         "q": "Какой Account ID вводить?",
@@ -149,7 +159,7 @@
       },
       {
         "q": "Почему macOS предупреждает о безопасности?",
-        "a": "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-0.6.1-b10.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотарифицировано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком."
+        "a": "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-0.8.2-b18.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотарифицировано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком."
       },
       {
         "q": "Deckivo бесплатный?",
@@ -161,7 +171,7 @@
       }
     ],
     "privacy_counter": "Счётчик посещений без cookies. Данные привязки остаются у тебя; сервер счётчика обрабатывает сетевые запросы.",
-    "screenshot_caption": "Настоящий интерфейс приложения · версия в разработке {version} · сборка {build}. Пакет Linux: {linux}; Android и macOS: {released}."
+    "screenshot_caption": "Настоящий интерфейс Deckivo {version} для компьютера."
   },
   "uk": {
     "nav_features": "Можливості",
@@ -174,7 +184,12 @@
     "get": "Завантажити Deckivo",
     "read": "Читати інструкцію",
     "pick": "Обери свій екран.",
-    "pick_note": "Експериментальні збірки. Спочатку прочитай інструкцію своєї платформи.",
+    "pick_note": "Установи Deckivo на пристрій, на якому гратимеш. На PS5 увімкни дистанційну гру.",
+    "existing_update": "Deckivo вже встановлено? Завантаж оновлення.",
+    "install_or_update": "Установи або онови Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 або новіший) · macOS 13+",
+    "download_mac": "Завантажити для Mac",
+    "first_install": "Перша установка: відкрий інструкцію.",
     "setup_title": "Трохи налаштувань. Більше гри.",
     "step1": "Одна мережа.",
     "step1_body": "Під’єднай PS5 та екран до домашньої мережі. Увімкни дистанційну гру на PS5.",
@@ -195,15 +210,15 @@
     "title": "Deckivo — PS5 Remote Play для Nintendo Switch (Android), Android і Mac",
     "description": "Грай на своїй PS5 з Nintendo Switch OLED, пристроїв Android і Mac з Apple Silicon. Відкритий код на основі chiaki-ng.",
     "faq_title": "Відповіді перед першою грою.",
-    "stage": "Linux 0.8.1 b17 · Android і macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Потрібен chiaki-ng · Без нотаризації",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Оновлювач перевірено на Switch OLED · Гру ще не перевірено",
+    "stage": "Deckivo 0.8.2 · desktop b18 · Android #27",
+    "mac_note": "0.8.2 b18 · Потрібен chiaki-ng; спочатку відкрий інструкцію",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Перевірка на реальному пристрої ще не завершена",
     "linux_test": "Публічний оновлювач перевірено на Switch OLED: 0.6.1 b10 → 0.8.1 b17; усі 80/80 файлів інсталятора збіглися з публічним ZIP, підтвердження запуску — з активним процесом, прив’язку збережено, а ввімкнений користувацький таймер systemd успішно отримав публічний фід із закритим інтерфейсом. Гру на 0.8.1 ще не перевірено; це окрема перевірка.",
-    "linux_guide": "Завантажити Linux 0.8.1 b17",
+    "linux_guide": "Завантажити Linux 0.8.2 b18",
     "faq": [
       {
         "q": "Чи потрібна спільна мережа?",
-        "a": "Це експериментальна версія 0.6.1. Під’єднайте PS5 і клієнт до однієї домашньої мережі. На PS5 увійдіть у потрібний профіль: Налаштування → Система → Дистанційна гра → Увімкнути. Для першого підключення залиште консоль увімкненою. Гостьова мережа може ізолювати пристрої; бажано використовувати 5 ГГц."
+        "a": "Це експериментальна версія 0.8.2. Під’єднайте PS5 і клієнт до однієї домашньої мережі. На PS5 увійдіть у потрібний профіль: Налаштування → Система → Дистанційна гра → Увімкнути. Для першого підключення залиште консоль увімкненою. Гостьова мережа може ізолювати пристрої; бажано використовувати 5 ГГц."
       },
       {
         "q": "Який Account ID вводити?",
@@ -227,7 +242,7 @@
       }
     ],
     "privacy_counter": "Лічильник відвідувань без cookies. Дані прив’язки залишаються у вас; сервер обробляє мережеві запити.",
-    "screenshot_caption": "Справжній інтерфейс програми · версія в розробці {version} · збірка {build}. Пакет Linux: {linux}; Android і macOS: {released}."
+    "screenshot_caption": "Справжній інтерфейс Deckivo {version} для комп’ютера."
   },
   "pl": {
     "nav_features": "Funkcje",
@@ -240,7 +255,12 @@
     "get": "Pobierz Deckivo",
     "read": "Przeczytaj poradnik",
     "pick": "Wybierz swój ekran.",
-    "pick_note": "Wersje eksperymentalne. Przed instalacją przeczytaj poradnik swojej platformy.",
+    "pick_note": "Zainstaluj Deckivo na urządzeniu, na którym chcesz grać. Na PS5 włącz Grę zdalną.",
+    "existing_update": "Masz już Deckivo? Pobierz aktualizację.",
+    "install_or_update": "Zainstaluj lub zaktualizuj Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 lub nowszy) · macOS 13+",
+    "download_mac": "Pobierz na Maca",
+    "first_install": "Pierwsza instalacja: otwórz poradnik.",
     "setup_title": "Chwila konfiguracji. Więcej gry.",
     "step1": "Ta sama sieć.",
     "step1_body": "Połącz PS5 i ekran z siecią domową. Włącz grę zdalną na PS5.",
@@ -261,15 +281,15 @@
     "title": "Deckivo — PS5 Remote Play na Nintendo Switch (Android), Android i Mac",
     "description": "Graj na swojej PS5 przez Nintendo Switch OLED, urządzenia Android i komputery Mac z Apple Silicon. Otwarty kod, oparty na chiaki-ng.",
     "faq_title": "Pytania i odpowiedzi.",
-    "stage": "Linux 0.8.1 b17 · Android i macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Wymaga chiaki-ng · Bez notaryzacji",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Aktualizator zweryfikowany na Switch OLED · Test rozgrywki jeszcze niewykonany",
+    "stage": "Deckivo 0.8.2 · desktop b18 · Android #27",
+    "mac_note": "0.8.2 b18 · Wymaga chiaki-ng; najpierw otwórz poradnik",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Odbiór na rzeczywistym urządzeniu w toku",
     "linux_test": "Publiczny aktualizator zweryfikowano na Switch OLED: 0.6.1 b10 → 0.8.1 b17; wszystkie 80/80 plików instalatora odpowiadało publicznemu ZIP-owi, potwierdzenie uruchomienia zgadzało się z aktywnym procesem, parowanie zachowano, a włączony timer użytkownika systemd pobrał publiczny kanał przy zamkniętym interfejsie. Test rozgrywki w 0.8.1 pozostaje osobnym testem do wykonania.",
-    "linux_guide": "Pobierz Linux 0.8.1 b17",
+    "linux_guide": "Pobierz Linux 0.8.2 b18",
     "faq": [
       {
         "q": "Czy oba urządzenia muszą być w tej samej sieci?",
-        "a": "Wersja 0.6.1 jest eksperymentalna. Połącz PS5 i klienta z tą samą siecią domową. Na PS5 wybierz właściwy profil i Ustawienia → System → Gra zdalna → Włącz grę zdalną. Konsola musi być włączona przy pierwszym parowaniu. Zalecane Wi-Fi 5 GHz; sieć gościnna może izolować urządzenia."
+        "a": "Wersja 0.8.2 jest eksperymentalna. Połącz PS5 i klienta z tą samą siecią domową. Na PS5 wybierz właściwy profil i Ustawienia → System → Gra zdalna → Włącz grę zdalną. Konsola musi być włączona przy pierwszym parowaniu. Zalecane Wi-Fi 5 GHz; sieć gościnna może izolować urządzenia."
       },
       {
         "q": "Którego Account ID użyć?",
@@ -293,7 +313,7 @@
       }
     ],
     "privacy_counter": "Licznik odwiedzin bez cookies. Dane parowania pozostają prywatne; serwer licznika przetwarza żądania sieciowe.",
-    "screenshot_caption": "Rzeczywisty interfejs aplikacji · wersja rozwojowa {version} · kompilacja {build}. Pakiet Linux: {linux}; Android i macOS: {released}."
+    "screenshot_caption": "Rzeczywisty interfejs komputerowy Deckivo {version}."
   },
   "de": {
     "nav_features": "Funktionen",
@@ -306,7 +326,12 @@
     "get": "Deckivo laden",
     "read": "Anleitung lesen",
     "pick": "Wähle deinen Bildschirm.",
-    "pick_note": "Experimentelle Builds. Lies vor der Installation die Plattformanleitung.",
+    "pick_note": "Installiere Deckivo auf dem Gerät, auf dem du spielen möchtest. Aktiviere Remote Play auf deiner PS5.",
+    "existing_update": "Deckivo ist schon installiert? Update herunterladen.",
+    "install_or_update": "Deckivo installieren oder aktualisieren.",
+    "mac_compatibility": "Apple Silicon (M1 oder neuer) · macOS 13+",
+    "download_mac": "Für Mac laden",
+    "first_install": "Erste Installation: Anleitung öffnen.",
     "setup_title": "Kurz einrichten. Lange spielen.",
     "step1": "Ein Netzwerk.",
     "step1_body": "Verbinde PS5 und Bildschirm mit dem Heimnetz. Aktiviere Remote Play auf der PS5.",
@@ -327,15 +352,15 @@
     "title": "Deckivo — PS5 Remote Play für Nintendo Switch (Android), Android und Mac",
     "description": "Spiele deine PS5 auf Nintendo Switch OLED, Android-Geräten und Apple Silicon Macs. Open Source, auf Basis von chiaki-ng.",
     "faq_title": "Fragen und Antworten.",
-    "stage": "Linux 0.8.1 b17 · Android und macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Benötigt chiaki-ng · Nicht notarisiert",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Updater auf Switch OLED verifiziert · Gameplay-Test ausstehend",
+    "stage": "Deckivo 0.8.2 · Desktop b18 · Android #27",
+    "mac_note": "0.8.2 b18 · Benötigt chiaki-ng; zuerst die Anleitung öffnen",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Abnahme auf realer Hardware ausstehend",
     "linux_test": "Der öffentliche Updater wurde auf Switch OLED verifiziert: 0.6.1 b10 → 0.8.1 b17; alle 80/80 Installationsdateien entsprachen der öffentlichen ZIP-Datei, die Startbestätigung stimmte mit dem laufenden Prozess überein, die Kopplung blieb erhalten und der aktivierte systemd-Benutzertimer rief bei geschlossener Oberfläche den öffentlichen Feed erfolgreich ab. Der Gameplay-Test für 0.8.1 steht separat noch aus.",
-    "linux_guide": "Linux 0.8.1 b17 herunterladen",
+    "linux_guide": "Linux 0.8.2 b18 herunterladen",
     "faq": [
       {
         "q": "Müssen beide Geräte im selben Netzwerk sein?",
-        "a": "0.6.1 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren."
+        "a": "0.8.2 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren."
       },
       {
         "q": "Welche Account ID brauche ich?",
@@ -359,7 +384,7 @@
       }
     ],
     "privacy_counter": "Besuchszähler ohne Cookies. Kopplungsdaten bleiben privat; der Zähler verarbeitet Netzwerkanfragen.",
-    "screenshot_caption": "Tatsächliche Desktop-Oberfläche · Entwicklungsvorschau {version} · Build {build}. Linux-Paket: {linux}; Android und macOS: {released}."
+    "screenshot_caption": "Tatsächliche Deckivo-{version}-Desktop-Oberfläche."
   },
   "fr": {
     "nav_features": "Fonctions",
@@ -372,7 +397,12 @@
     "get": "Obtenir Deckivo",
     "read": "Lire le guide",
     "pick": "Choisissez votre écran.",
-    "pick_note": "Versions expérimentales. Lisez le guide de votre plateforme avant l’installation.",
+    "pick_note": "Installez Deckivo sur l’appareil où vous voulez jouer. Activez Lecture à distance sur votre PS5.",
+    "existing_update": "Deckivo est déjà installé ? Téléchargez la mise à jour.",
+    "install_or_update": "Installez ou mettez à jour Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 ou ultérieur) · macOS 13+",
+    "download_mac": "Télécharger pour Mac",
+    "first_install": "Première installation : ouvrez le guide.",
     "setup_title": "Un peu de réglages. Beaucoup de jeu.",
     "step1": "Un même réseau.",
     "step1_body": "Connectez PS5 et écran au réseau domestique. Activez la lecture à distance sur PS5.",
@@ -393,15 +423,15 @@
     "title": "Deckivo — PS5 Remote Play sur Nintendo Switch (Android), Android et Mac",
     "description": "Jouez à votre PS5 sur Nintendo Switch OLED, Android et Mac Apple Silicon. Un projet open source basé sur chiaki-ng.",
     "faq_title": "Questions et réponses.",
-    "stage": "Linux 0.8.1 b17 · Android et macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Nécessite chiaki-ng · Non notarissé",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Outil de mise à jour vérifié sur Switch OLED · Test de jeu en attente",
+    "stage": "Deckivo 0.8.2 · bureau b18 · Android #27",
+    "mac_note": "0.8.2 b18 · Nécessite chiaki-ng ; ouvrez d’abord le guide",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Validation sur appareil réel en attente",
     "linux_test": "L’outil de mise à jour public a été vérifié sur Switch OLED : 0.6.1 b10 → 0.8.1 b17 ; les 80/80 fichiers d’installation correspondaient au ZIP public, l’accusé de démarrage correspondait au processus actif, l’appairage a été conservé et le minuteur utilisateur systemd activé a récupéré le flux public avec l’interface fermée. Le test de jeu de la version 0.8.1 reste un contrôle séparé en attente.",
-    "linux_guide": "Télécharger Linux 0.8.1 b17",
+    "linux_guide": "Télécharger Linux 0.8.2 b18",
     "faq": [
       {
         "q": "Les deux appareils doivent-ils partager le même réseau ?",
-        "a": "La version 0.6.1 est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils."
+        "a": "La version 0.8.2 est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils."
       },
       {
         "q": "Quel Account ID faut-il utiliser ?",
@@ -425,7 +455,7 @@
       }
     ],
     "privacy_counter": "Compteur de visites sans cookies. Les données d’association restent privées ; le serveur traite les requêtes réseau.",
-    "screenshot_caption": "Interface réelle de l’application · aperçu de développement {version} · build {build}. Paquet Linux : {linux} ; Android et macOS : {released}."
+    "screenshot_caption": "Interface de bureau réelle de Deckivo {version}."
   },
   "es": {
     "nav_features": "Funciones",
@@ -438,7 +468,12 @@
     "get": "Descargar Deckivo",
     "read": "Leer la guía",
     "pick": "Elige tu pantalla.",
-    "pick_note": "Versiones experimentales. Lee la guía de tu plataforma antes de instalar.",
+    "pick_note": "Instala Deckivo en el dispositivo donde quieras jugar. Activa Uso a distancia en tu PS5.",
+    "existing_update": "¿Ya tienes Deckivo? Descarga la actualización.",
+    "install_or_update": "Instala o actualiza Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 o posterior) · macOS 13+",
+    "download_mac": "Descargar para Mac",
+    "first_install": "Primera instalación: abre la guía.",
     "setup_title": "Un poco de ajustes. Mucho juego.",
     "step1": "La misma red.",
     "step1_body": "Conecta PS5 y pantalla a la red doméstica. Activa Uso a distancia en PS5.",
@@ -459,15 +494,15 @@
     "title": "Deckivo — PS5 Remote Play para Nintendo Switch (Android), Android y Mac",
     "description": "Juega a tu PS5 en Nintendo Switch OLED, dispositivos Android y Mac con Apple Silicon. Código abierto, basado en chiaki-ng.",
     "faq_title": "Preguntas y respuestas.",
-    "stage": "Linux 0.8.1 b17 · Android y macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Requiere chiaki-ng · Sin notarizar",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Actualizador verificado en Switch OLED · Juego pendiente de prueba",
+    "stage": "Deckivo 0.8.2 · escritorio b18 · Android #27",
+    "mac_note": "0.8.2 b18 · Requiere chiaki-ng; abre primero la guía",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Validación en dispositivo real pendiente",
     "linux_test": "El actualizador público se verificó en Switch OLED: 0.6.1 b10 → 0.8.1 b17; los 80/80 archivos del instalador coincidieron con el ZIP público, la confirmación de inicio coincidió con el proceso activo, se conservó el emparejamiento y el temporizador de usuario de systemd habilitado obtuvo el canal público con la interfaz cerrada. La prueba de juego de 0.8.1 sigue pendiente por separado.",
-    "linux_guide": "Descargar Linux 0.8.1 b17",
+    "linux_guide": "Descargar Linux 0.8.2 b18",
     "faq": [
       {
         "q": "¿Deben estar ambos dispositivos en la misma red?",
-        "a": "0.6.1 es una versión experimental. Conecta PS5 y cliente a la misma red doméstica. En PS5 selecciona el perfil correcto: Ajustes → Sistema → Uso a distancia → Activar. Mantén la consola encendida durante la primera vinculación. Es preferible Wi-Fi de 5 GHz; la red de invitados puede aislar dispositivos."
+        "a": "0.8.2 es una versión experimental. Conecta PS5 y cliente a la misma red doméstica. En PS5 selecciona el perfil correcto: Ajustes → Sistema → Uso a distancia → Activar. Mantén la consola encendida durante la primera vinculación. Es preferible Wi-Fi de 5 GHz; la red de invitados puede aislar dispositivos."
       },
       {
         "q": "¿Qué Account ID debo usar?",
@@ -491,7 +526,7 @@
       }
     ],
     "privacy_counter": "Contador de visitas sin cookies. Los datos de vinculación siguen siendo privados; el servidor procesa las solicitudes de red.",
-    "screenshot_caption": "Interfaz real de escritorio · versión en desarrollo {version} · compilación {build}. Paquete Linux: {linux}; Android y macOS: {released}."
+    "screenshot_caption": "Interfaz de escritorio real de Deckivo {version}."
   },
   "it": {
     "nav_features": "Funzioni",
@@ -504,7 +539,12 @@
     "get": "Scarica Deckivo",
     "read": "Leggi la guida",
     "pick": "Scegli il tuo schermo.",
-    "pick_note": "Build sperimentali. Leggi la guida della piattaforma prima di installare.",
+    "pick_note": "Installa Deckivo sul dispositivo su cui vuoi giocare. Attiva Riproduzione remota sulla PS5.",
+    "existing_update": "Deckivo è già installato? Scarica l’aggiornamento.",
+    "install_or_update": "Installa o aggiorna Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 o successivo) · macOS 13+",
+    "download_mac": "Scarica per Mac",
+    "first_install": "Prima installazione: apri la guida.",
     "setup_title": "Pochi passi. Tanto gioco.",
     "step1": "Stessa rete.",
     "step1_body": "Collega PS5 e schermo alla rete di casa. Abilita Riproduzione remota sulla PS5.",
@@ -525,15 +565,15 @@
     "title": "Deckivo — PS5 Remote Play per Nintendo Switch (Android), Android e Mac",
     "description": "Gioca con la tua PS5 su Nintendo Switch OLED, dispositivi Android e Mac Apple Silicon. Open source, basato su chiaki-ng.",
     "faq_title": "Domande e risposte.",
-    "stage": "Linux 0.8.1 b17 · Android e macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Richiede chiaki-ng · Non autenticato da Apple",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Programma di aggiornamento verificato su Switch OLED · Test di gioco in attesa",
+    "stage": "Deckivo 0.8.2 · desktop b18 · Android #27",
+    "mac_note": "0.8.2 b18 · Richiede chiaki-ng; apri prima la guida",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Convalida su dispositivo reale in attesa",
     "linux_test": "Il programma di aggiornamento pubblico è stato verificato su Switch OLED: 0.6.1 b10 → 0.8.1 b17; tutti gli 80/80 file di installazione corrispondevano allo ZIP pubblico, la conferma di avvio corrispondeva al processo attivo, l’associazione è rimasta intatta e il timer utente systemd abilitato ha recuperato il feed pubblico con l’interfaccia chiusa. Il test di gioco della versione 0.8.1 resta separato e in attesa.",
-    "linux_guide": "Scarica Linux 0.8.1 b17",
+    "linux_guide": "Scarica Linux 0.8.2 b18",
     "faq": [
       {
         "q": "I dispositivi devono essere sulla stessa rete?",
-        "a": "0.6.1 è un’anteprima sperimentale. Collega PS5 e client alla stessa rete domestica. Su PS5 scegli il profilo corretto: Impostazioni → Sistema → Riproduzione remota → Abilita. Mantieni la console accesa per la prima associazione. Preferisci Wi-Fi 5 GHz; le reti ospiti possono isolare i dispositivi."
+        "a": "0.8.2 è un’anteprima sperimentale. Collega PS5 e client alla stessa rete domestica. Su PS5 scegli il profilo corretto: Impostazioni → Sistema → Riproduzione remota → Abilita. Mantieni la console accesa per la prima associazione. Preferisci Wi-Fi 5 GHz; le reti ospiti possono isolare i dispositivi."
       },
       {
         "q": "Quale Account ID devo usare?",
@@ -557,7 +597,7 @@
       }
     ],
     "privacy_counter": "Contatore di visite senza cookie. I dati di associazione restano privati; il server elabora richieste di rete.",
-    "screenshot_caption": "Interfaccia desktop reale · anteprima di sviluppo {version} · build {build}. Pacchetto Linux: {linux}; Android e macOS: {released}."
+    "screenshot_caption": "Interfaccia desktop reale di Deckivo {version}."
   },
   "pt": {
     "nav_features": "Recursos",
@@ -570,7 +610,12 @@
     "get": "Obter Deckivo",
     "read": "Ler o guia",
     "pick": "Escolhe o teu ecrã.",
-    "pick_note": "Versões experimentais. Lê o guia da plataforma antes de instalar.",
+    "pick_note": "Instala o Deckivo no dispositivo onde queres jogar. Ativa a Reprodução remota na PS5.",
+    "existing_update": "Já tens o Deckivo? Transfere a atualização.",
+    "install_or_update": "Instala ou atualiza o Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 ou posterior) · macOS 13+",
+    "download_mac": "Transferir para Mac",
+    "first_install": "Primeira instalação: abre o guia.",
     "setup_title": "Pouca configuração. Muito jogo.",
     "step1": "A mesma rede.",
     "step1_body": "Liga a PS5 e o ecrã à rede doméstica. Ativa a Reprodução remota na PS5.",
@@ -591,15 +636,15 @@
     "title": "Deckivo — PS5 Remote Play para Nintendo Switch (Android), Android e Mac",
     "description": "Jogue na sua PS5 pelo Nintendo Switch OLED, dispositivos Android e Macs Apple Silicon. Código aberto, baseado no chiaki-ng.",
     "faq_title": "Perguntas e respostas.",
-    "stage": "Linux 0.8.1 b17 · Android e macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Requer chiaki-ng · Sem notarização",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Atualizador verificado no Switch OLED · Teste de jogo pendente",
+    "stage": "Deckivo 0.8.2 · desktop b18 · Android #27",
+    "mac_note": "0.8.2 b18 · Requer chiaki-ng; abre primeiro o guia",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Validação em dispositivo real pendente",
     "linux_test": "O atualizador público foi verificado no Switch OLED: 0.6.1 b10 → 0.8.1 b17; os 80/80 ficheiros do instalador coincidiram com o ZIP público, a confirmação de arranque coincidiu com o processo ativo, a associação foi mantida e o temporizador de utilizador systemd ativado obteve o feed público com a interface fechada. O teste de jogo da versão 0.8.1 continua pendente em separado.",
-    "linux_guide": "Transferir Linux 0.8.1 b17",
+    "linux_guide": "Transferir Linux 0.8.2 b18",
     "faq": [
       {
         "q": "Os dispositivos precisam estar na mesma rede?",
-        "a": "0.6.1 é uma versão experimental. Ligue a PS5 e o cliente à mesma rede doméstica. Na PS5 escolha o perfil correto: Definições → Sistema → Reprodução remota → Ativar. Mantenha a consola ligada no primeiro emparelhamento. Prefira Wi-Fi de 5 GHz; redes de convidados podem isolar dispositivos."
+        "a": "0.8.2 é uma versão experimental. Ligue a PS5 e o cliente à mesma rede doméstica. Na PS5 escolha o perfil correto: Definições → Sistema → Reprodução remota → Ativar. Mantenha a consola ligada no primeiro emparelhamento. Prefira Wi-Fi de 5 GHz; redes de convidados podem isolar dispositivos."
       },
       {
         "q": "Qual Account ID devo usar?",
@@ -623,7 +668,7 @@
       }
     ],
     "privacy_counter": "Contador de visitas sem cookies. Os dados de emparelhamento ficam privados; o servidor processa pedidos de rede.",
-    "screenshot_caption": "Interface real da aplicação · versão em desenvolvimento {version} · compilação {build}. Pacote Linux: {linux}; Android e macOS: {released}."
+    "screenshot_caption": "Interface de desktop real do Deckivo {version}."
   },
   "tr": {
     "nav_features": "Özellikler",
@@ -636,7 +681,12 @@
     "get": "Deckivo’yu indir",
     "read": "Kılavuzu oku",
     "pick": "Ekranını seç.",
-    "pick_note": "Deneysel sürümler. Kurmadan önce platform kılavuzunu okuyun.",
+    "pick_note": "Deckivo’yu oynamak istediğin cihaza kur. PS5’te Uzaktan Oynama’yı etkinleştir.",
+    "existing_update": "Deckivo kurulu mu? Güncellemeyi indir.",
+    "install_or_update": "Deckivo’yu kur veya güncelle.",
+    "mac_compatibility": "Apple Silicon (M1 veya sonrası) · macOS 13+",
+    "download_mac": "Mac için indir",
+    "first_install": "İlk kurulum: kılavuzu aç.",
     "setup_title": "Biraz kurulum. Bolca oyun.",
     "step1": "Aynı ağ.",
     "step1_body": "PS5 ve ekranı ev ağına bağlayın. PS5’te Uzaktan Oynama’yı açın.",
@@ -657,15 +707,15 @@
     "title": "Deckivo — Nintendo Switch (Android), Android ve Mac için PS5 Remote Play",
     "description": "PS5 oyunlarını Nintendo Switch OLED, Android cihazlar ve Apple Silicon Mac üzerinde oyna. chiaki-ng tabanlı, açık kaynak.",
     "faq_title": "Sorular ve yanıtlar.",
-    "stage": "Linux 0.8.1 b17 · Android ve macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng gerekir · Noter onayı yok",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Güncelleyici Switch OLED’de doğrulandı · Oynanış testi bekliyor",
+    "stage": "Deckivo 0.8.2 · masaüstü b18 · Android #27",
+    "mac_note": "0.8.2 b18 · chiaki-ng gerekir; önce kılavuzu aç",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Gerçek cihaz kabulü bekleniyor",
     "linux_test": "Genel güncelleyici Switch OLED’de doğrulandı: 0.6.1 b10 → 0.8.1 b17; 80/80 yükleyici dosyası genel ZIP ile eşleşti, başlatma onayı çalışan süreçle eşleşti, eşleştirme korundu ve etkin systemd kullanıcı zamanlayıcısı arayüz kapalıyken genel akışı başarıyla aldı. 0.8.1 oynanış testi ayrı olarak hâlâ bekliyor.",
-    "linux_guide": "Linux 0.8.1 b17'yi indir",
+    "linux_guide": "Linux 0.8.2 b18'i indir",
     "faq": [
       {
         "q": "İki cihaz aynı ağda mı olmalı?",
-        "a": "0.6.1 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir."
+        "a": "0.8.2 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir."
       },
       {
         "q": "Hangi Account ID kullanılmalı?",
@@ -689,7 +739,7 @@
       }
     ],
     "privacy_counter": "Çerez kullanmayan ziyaret sayacı. Eşleştirme bilgileri gizli kalır; sayaç sunucusu ağ isteklerini işler.",
-    "screenshot_caption": "Gerçek masaüstü arayüzü · geliştirme önizlemesi {version} · derleme {build}. Linux paketi: {linux}; Android ve macOS: {released}."
+    "screenshot_caption": "Gerçek Deckivo {version} masaüstü arayüzü."
   },
   "zh": {
     "nav_features": "功能",
@@ -702,7 +752,12 @@
     "get": "获取 Deckivo",
     "read": "阅读指南",
     "pick": "选择你的屏幕。",
-    "pick_note": "实验性构建。安装前请先阅读对应平台指南。",
+    "pick_note": "在你要用来游玩的设备上安装 Deckivo，并在 PS5 上启用远程游玩。",
+    "existing_update": "已安装 Deckivo？下载更新。",
+    "install_or_update": "安装或更新 Deckivo。",
+    "mac_compatibility": "Apple Silicon（M1 或更新款）· macOS 13+",
+    "download_mac": "下载 Mac 版",
+    "first_install": "首次安装：打开指南。",
     "setup_title": "简单设置，尽情游玩。",
     "step1": "同一网络。",
     "step1_body": "让 PS5 与屏幕连接同一家庭网络，并启用 PS5 远程游玩。",
@@ -723,15 +778,15 @@
     "title": "Deckivo — 适用于 Nintendo Switch (Android)、Android 和 Mac 的 PS5 Remote Play",
     "description": "在 Nintendo Switch OLED、Android 设备和 Apple Silicon Mac 上远程畅玩你的 PS5。基于 chiaki-ng 的开源项目。",
     "faq_title": "常见问题。",
-    "stage": "Linux 0.8.1 b17 · Android 和 macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · 需要 chiaki-ng · 未经公证",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · 已在 Switch OLED 验证更新器 · 游戏测试待完成",
+    "stage": "Deckivo 0.8.2 · 桌面版 b18 · Android #27",
+    "mac_note": "0.8.2 b18 · 需要 chiaki-ng；请先打开指南",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · 等待真实设备验收",
     "linux_test": "已在 Switch OLED 验证公开更新器：0.6.1 b10 → 0.8.1 b17；80/80 个安装文件与公开 ZIP 一致，启动确认与运行中的进程一致，配对得以保留；界面关闭时，已启用的 systemd 用户计时器也成功获取了公开更新源。0.8.1 的游戏测试仍作为独立项目待完成。",
-    "linux_guide": "下载 Linux 0.8.1 b17",
+    "linux_guide": "下载 Linux 0.8.2 b18",
     "faq": [
       {
         "q": "两台设备需要在同一网络吗？",
-        "a": "0.6.1 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。"
+        "a": "0.8.2 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。"
       },
       {
         "q": "应该使用哪个 Account ID？",
@@ -755,7 +810,7 @@
       }
     ],
     "privacy_counter": "不使用 Cookie 的访问计数器。配对数据保持私密；计数服务器会处理网络请求。",
-    "screenshot_caption": "实际桌面界面 · 开发预览版 {version} · 构建 {build}。Linux 软件包：{linux}；Android 和 macOS：{released}。"
+    "screenshot_caption": "真实的 Deckivo {version} 桌面界面。"
   },
   "ja": {
     "nav_features": "機能",
@@ -768,7 +823,12 @@
     "get": "Deckivo を入手",
     "read": "ガイドを読む",
     "pick": "画面を選ぼう。",
-    "pick_note": "実験的なビルドです。インストール前にプラットフォームのガイドをお読みください。",
+    "pick_note": "プレイに使う端末へ Deckivo をインストールし、PS5 でリモートプレイを有効にします。",
+    "existing_update": "Deckivo をインストール済みですか？更新をダウンロード。",
+    "install_or_update": "Deckivo をインストールまたは更新します。",
+    "mac_compatibility": "Apple Silicon（M1 以降）· macOS 13+",
+    "download_mac": "Mac 版をダウンロード",
+    "first_install": "初回インストール：ガイドを開く。",
     "setup_title": "少し設定。たっぷりプレイ。",
     "step1": "同じネットワーク。",
     "step1_body": "PS5 と画面を家庭内ネットワークに接続し、リモートプレイを有効にします。",
@@ -789,15 +849,15 @@
     "title": "Deckivo — Nintendo Switch (Android)・Android・Mac 用 PS5 Remote Play",
     "description": "Nintendo Switch OLED、Android 端末、Apple Silicon Mac で自分の PS5 をプレイ。chiaki-ng を基にしたオープンソース。",
     "faq_title": "よくある質問。",
-    "stage": "Linux 0.8.1 b17 · Android／macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng が必要 · 未公証",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Switch OLED で更新機能を確認済み · ゲームプレイ未検証",
+    "stage": "Deckivo 0.8.2 · デスクトップ b18 · Android #27",
+    "mac_note": "0.8.2 b18 · chiaki-ng が必要です。まずガイドを開いてください",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · 実機での受け入れ確認待ち",
     "linux_test": "公開アップデーターを Switch OLED で確認済み：0.6.1 b10 → 0.8.1 b17。インストーラーの全 80/80 ファイルが公開 ZIP と一致し、起動確認は実行中のプロセスと一致、ペアリングも保持されました。画面を閉じた状態でも、有効な systemd ユーザータイマーが公開フィードを正常に取得しました。0.8.1 のゲームプレイ検証は別項目として未完了です。",
-    "linux_guide": "Linux 0.8.1 b17 をダウンロード",
+    "linux_guide": "Linux 0.8.2 b18 をダウンロード",
     "faq": [
       {
         "q": "両方の機器を同じネットワークにつなぐ必要はありますか？",
-        "a": "0.6.1 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。"
+        "a": "0.8.2 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。"
       },
       {
         "q": "どの Account ID を使いますか？",
@@ -821,7 +881,7 @@
       }
     ],
     "privacy_counter": "Cookie を使わない訪問カウンター。ペアリング情報は非公開のままです。カウンターのサーバーは通信リクエストを処理します。",
-    "screenshot_caption": "実際のデスクトップ画面 · 開発プレビュー {version} · ビルド {build}。Linux パッケージ：{linux}、Android／macOS：{released}。"
+    "screenshot_caption": "実際の Deckivo {version} デスクトップ画面。"
   },
   "ko": {
     "nav_features": "기능",
@@ -834,7 +894,12 @@
     "get": "Deckivo 받기",
     "read": "가이드 읽기",
     "pick": "화면을 고르세요.",
-    "pick_note": "실험용 빌드입니다. 설치 전에 플랫폼 가이드를 읽으세요.",
+    "pick_note": "플레이할 기기에 Deckivo를 설치하고 PS5에서 리모트 플레이를 활성화하세요.",
+    "existing_update": "Deckivo가 설치되어 있나요? 업데이트를 다운로드하세요.",
+    "install_or_update": "Deckivo를 설치하거나 업데이트하세요.",
+    "mac_compatibility": "Apple Silicon(M1 이상) · macOS 13+",
+    "download_mac": "Mac용 다운로드",
+    "first_install": "처음 설치: 가이드를 여세요.",
     "setup_title": "간단한 설정. 더 많은 플레이.",
     "step1": "같은 네트워크.",
     "step1_body": "PS5와 화면을 가정 네트워크에 연결하고 리모트 플레이를 켜세요.",
@@ -855,15 +920,15 @@
     "title": "Deckivo — Nintendo Switch (Android), Android, Mac용 PS5 Remote Play",
     "description": "Nintendo Switch OLED, Android 기기, Apple Silicon Mac에서 내 PS5를 플레이하세요. chiaki-ng 기반 오픈 소스입니다.",
     "faq_title": "자주 묻는 질문.",
-    "stage": "Linux 0.8.1 b17 · Android 및 macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng 필요 · 공증되지 않음",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Switch OLED에서 업데이터 검증 완료 · 게임플레이 테스트 대기",
+    "stage": "Deckivo 0.8.2 · 데스크톱 b18 · Android #27",
+    "mac_note": "0.8.2 b18 · chiaki-ng 필요. 먼저 가이드를 여세요",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · 실제 기기 승인 대기",
     "linux_test": "공개 업데이터를 Switch OLED에서 검증했습니다: 0.6.1 b10 → 0.8.1 b17. 설치 파일 80/80개가 공개 ZIP과 일치했고, 시작 확인은 실행 중인 프로세스와 일치했으며 페어링도 유지되었습니다. GUI를 닫은 상태에서도 활성화된 systemd 사용자 타이머가 공개 피드를 정상적으로 가져왔습니다. 0.8.1 게임플레이 테스트는 별도 항목으로 아직 대기 중입니다.",
-    "linux_guide": "Linux 0.8.1 b17 다운로드",
+    "linux_guide": "Linux 0.8.2 b18 다운로드",
     "faq": [
       {
         "q": "두 기기를 같은 네트워크에 연결해야 하나요?",
-        "a": "0.6.1은 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다."
+        "a": "0.8.2는 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다."
       },
       {
         "q": "어떤 Account ID를 사용하나요?",
@@ -887,7 +952,7 @@
       }
     ],
     "privacy_counter": "쿠키 없는 방문 카운터입니다. 페어링 정보는 비공개로 유지되며, 카운터 서버는 네트워크 요청을 처리합니다.",
-    "screenshot_caption": "실제 데스크톱 화면 · 개발 미리보기 {version} · 빌드 {build}. Linux 패키지: {linux}; Android 및 macOS: {released}."
+    "screenshot_caption": "실제 Deckivo {version} 데스크톱 화면."
   },
   "ar": {
     "nav_features": "المزايا",
@@ -900,7 +965,12 @@
     "get": "تنزيل Deckivo",
     "read": "قراءة الدليل",
     "pick": "اختر شاشتك.",
-    "pick_note": "إصدارات تجريبية. اقرأ دليل منصتك قبل التثبيت.",
+    "pick_note": "ثبّت Deckivo على الجهاز الذي تريد اللعب عليه، ثم فعّل اللعب عن بُعد على PS5.",
+    "existing_update": "هل Deckivo مثبت بالفعل؟ نزّل التحديث.",
+    "install_or_update": "ثبّت Deckivo أو حدّثه.",
+    "mac_compatibility": "Apple Silicon ‏(M1 أو أحدث) · macOS 13+",
+    "download_mac": "تنزيل لنظام Mac",
+    "first_install": "التثبيت الأول: افتح الدليل.",
     "setup_title": "إعداد قليل. لعب كثير.",
     "step1": "الشبكة نفسها.",
     "step1_body": "صِل PS5 والشاشة بالشبكة المنزلية وفعّل اللعب عن بُعد.",
@@ -921,15 +991,15 @@
     "title": "Deckivo — PS5 Remote Play على Nintendo Switch (Android) وAndroid وMac",
     "description": "العب على PS5 الخاص بك من Nintendo Switch OLED وأجهزة Android وMac بمعالج Apple Silicon. مشروع مفتوح المصدر مبني على chiaki-ng.",
     "faq_title": "أسئلة وإجابات.",
-    "stage": "Linux 0.8.1 b17 · Android وmacOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · يتطلب chiaki-ng · غير موثّق",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · تم التحقق من المحدّث على Switch OLED · اختبار اللعب قيد الانتظار",
+    "stage": "Deckivo 0.8.2 · سطح المكتب b18 · Android #27",
+    "mac_note": "0.8.2 b18 · يتطلب chiaki-ng؛ افتح الدليل أولًا",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · قبول الجهاز الفعلي قيد الانتظار",
     "linux_test": "تم التحقق من المحدّث العام على Switch OLED: ‏0.6.1 b10 → 0.8.1 b17؛ تطابقت ملفات التثبيت 80/80 مع ملف ZIP العام، وتطابق تأكيد التشغيل مع العملية النشطة، وتم الاحتفاظ بالاقتران، كما جلب مؤقت مستخدم systemd المفعّل موجز التحديث العام بنجاح والواجهة مغلقة. يبقى اختبار اللعب للإصدار 0.8.1 اختبارًا منفصلًا معلّقًا.",
-    "linux_guide": "تنزيل Linux 0.8.1 b17",
+    "linux_guide": "تنزيل Linux 0.8.2 b18",
     "faq": [
       {
         "q": "هل يحتاج الجهازان إلى الشبكة نفسها؟",
-        "a": "الإصدار 0.6.1 تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة."
+        "a": "الإصدار 0.8.2 تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة."
       },
       {
         "q": "أي Account ID أستخدم؟",
@@ -953,7 +1023,7 @@
       }
     ],
     "privacy_counter": "عداد زيارات بدون ملفات تعريف ارتباط. تبقى بيانات الاقتران خاصة؛ يعالج خادم العداد طلبات الشبكة.",
-    "screenshot_caption": "واجهة سطح المكتب الفعلية · معاينة التطوير {version} · البناء {build}. حزمة Linux: {linux}؛ Android وmacOS: {released}."
+    "screenshot_caption": "واجهة سطح المكتب الفعلية لـ Deckivo {version}."
   },
   "hi": {
     "nav_features": "सुविधाएँ",
@@ -966,7 +1036,12 @@
     "get": "Deckivo पाएँ",
     "read": "मार्गदर्शिका पढ़ें",
     "pick": "अपनी स्क्रीन चुनें।",
-    "pick_note": "प्रयोगात्मक बिल्ड। स्थापना से पहले अपने प्लेटफ़ॉर्म की मार्गदर्शिका पढ़ें।",
+    "pick_note": "जिस डिवाइस पर खेलना है उस पर Deckivo इंस्टॉल करें। PS5 पर Remote Play चालू करें।",
+    "existing_update": "Deckivo पहले से इंस्टॉल है? अपडेट डाउनलोड करें।",
+    "install_or_update": "Deckivo इंस्टॉल या अपडेट करें।",
+    "mac_compatibility": "Apple Silicon (M1 या नया) · macOS 13+",
+    "download_mac": "Mac के लिए डाउनलोड करें",
+    "first_install": "पहली बार इंस्टॉल: गाइड खोलें।",
     "setup_title": "थोड़ा सेटअप। ढेर सारा खेल।",
     "step1": "एक ही नेटवर्क।",
     "step1_body": "PS5 और स्क्रीन को घरेलू नेटवर्क से जोड़ें। PS5 पर रिमोट प्ले चालू करें।",
@@ -987,15 +1062,15 @@
     "title": "Deckivo — Nintendo Switch (Android), Android और Mac के लिए PS5 Remote Play",
     "description": "Nintendo Switch OLED, Android डिवाइस और Apple Silicon Mac पर अपना PS5 खेलें। chiaki-ng पर आधारित ओपन सोर्स।",
     "faq_title": "सवाल और जवाब।",
-    "stage": "Linux 0.8.1 b17 · Android और macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng आवश्यक · नोटराइज़ नहीं",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Switch OLED पर अपडेटर सत्यापित · गेमप्ले परीक्षण लंबित",
+    "stage": "Deckivo 0.8.2 · डेस्कटॉप b18 · Android #27",
+    "mac_note": "0.8.2 b18 · chiaki-ng आवश्यक; पहले गाइड खोलें",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · वास्तविक डिवाइस स्वीकृति लंबित",
     "linux_test": "सार्वजनिक अपडेटर Switch OLED पर सत्यापित हुआ: 0.6.1 b10 → 0.8.1 b17; इंस्टॉलर की 80/80 फ़ाइलें सार्वजनिक ZIP से मेल खाईं, स्टार्टअप पुष्टि सक्रिय प्रक्रिया से मेल खाई, पेयरिंग सुरक्षित रही, और सक्षम systemd उपयोगकर्ता टाइमर ने GUI बंद रहते हुए सार्वजनिक फ़ीड सफलतापूर्वक प्राप्त की। 0.8.1 का गेमप्ले परीक्षण अलग से अभी लंबित है।",
-    "linux_guide": "Linux 0.8.1 b17 डाउनलोड करें",
+    "linux_guide": "Linux 0.8.2 b18 डाउनलोड करें",
     "faq": [
       {
         "q": "क्या दोनों डिवाइस एक ही नेटवर्क पर होने चाहिए?",
-        "a": "0.6.1 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।"
+        "a": "0.8.2 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।"
       },
       {
         "q": "कौन सा Account ID इस्तेमाल करें?",
@@ -1019,7 +1094,7 @@
       }
     ],
     "privacy_counter": "बिना कुकी वाला विज़िट काउंटर। पेयरिंग डेटा निजी रहता है; काउंटर सर्वर नेटवर्क अनुरोध प्रोसेस करता है।",
-    "screenshot_caption": "ऐप का वास्तविक डेस्कटॉप इंटरफ़ेस · विकास पूर्वावलोकन {version} · बिल्ड {build}। Linux पैकेज: {linux}; Android और macOS: {released}।"
+    "screenshot_caption": "Deckivo {version} का वास्तविक डेस्कटॉप इंटरफ़ेस।"
   },
   "id": {
     "nav_features": "Fitur",
@@ -1032,7 +1107,12 @@
     "get": "Dapatkan Deckivo",
     "read": "Baca panduan",
     "pick": "Pilih layarmu.",
-    "pick_note": "Build eksperimental. Baca panduan platform sebelum memasang.",
+    "pick_note": "Pasang Deckivo di perangkat yang akan digunakan untuk bermain. Aktifkan Remote Play di PS5.",
+    "existing_update": "Deckivo sudah terpasang? Unduh pembaruan.",
+    "install_or_update": "Pasang atau perbarui Deckivo.",
+    "mac_compatibility": "Apple Silicon (M1 atau lebih baru) · macOS 13+",
+    "download_mac": "Unduh untuk Mac",
+    "first_install": "Pemasangan pertama: buka panduan.",
     "setup_title": "Sedikit pengaturan. Banyak bermain.",
     "step1": "Jaringan yang sama.",
     "step1_body": "Hubungkan PS5 dan layar ke jaringan rumah. Aktifkan Remote Play di PS5.",
@@ -1053,15 +1133,15 @@
     "title": "Deckivo — PS5 Remote Play untuk Nintendo Switch (Android), Android dan Mac",
     "description": "Mainkan PS5 milikmu di Nintendo Switch OLED, perangkat Android, dan Mac Apple Silicon. Sumber terbuka, berbasis chiaki-ng.",
     "faq_title": "Pertanyaan dan jawaban.",
-    "stage": "Linux 0.8.1 b17 · Android dan macOS 0.6.1",
-    "mac_note": "0.6.1 b10 · Apple Silicon · Memerlukan chiaki-ng · Belum dinotarisasi",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Pemutakhir terverifikasi di Switch OLED · Uji permainan tertunda",
+    "stage": "Deckivo 0.8.2 · desktop b18 · Android #27",
+    "mac_note": "0.8.2 b18 · Memerlukan chiaki-ng; buka panduan lebih dahulu",
+    "linux_note": "0.8.2 b18 · Ubuntu 24.04.4 ARM64 · Penerimaan perangkat nyata tertunda",
     "linux_test": "Pemutakhir publik telah diverifikasi di Switch OLED: 0.6.1 b10 → 0.8.1 b17; 80/80 berkas pemasang cocok dengan ZIP publik, konfirmasi mulai cocok dengan proses aktif, penyandingan tetap tersimpan, dan timer pengguna systemd yang diaktifkan berhasil mengambil umpan publik saat antarmuka ditutup. Uji permainan 0.8.1 tetap menjadi pengujian terpisah yang masih tertunda.",
-    "linux_guide": "Unduh Linux 0.8.1 b17",
+    "linux_guide": "Unduh Linux 0.8.2 b18",
     "faq": [
       {
         "q": "Apakah kedua perangkat harus berada di jaringan yang sama?",
-        "a": "0.6.1 adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat."
+        "a": "0.8.2 adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat."
       },
       {
         "q": "Account ID mana yang harus digunakan?",
@@ -1085,6 +1165,6 @@
       }
     ],
     "privacy_counter": "Penghitung kunjungan tanpa cookie. Data pemasangan tetap pribadi; server penghitung memproses permintaan jaringan.",
-    "screenshot_caption": "Antarmuka desktop asli · pratinjau pengembangan {version} · build {build}. Paket Linux: {linux}; Android dan macOS: {released}."
+    "screenshot_caption": "Antarmuka desktop Deckivo {version} yang sebenarnya."
   }
 }

@@ -207,8 +207,8 @@
       "bytes": 4976
     },
     "deckivo.js": {
-      "sha256": "15859322d59d8e7babb40292787ed077d5e3b7165dd62f55b7fd27f93af42de1",
-      "bytes": 3646
+      "sha256": "bd04b554e62bec50cd44cf9a2d3d0cd6860817fe03d79a29381d3ac570ccc8cf",
+      "bytes": 4048
     },
     "en.json": {
       "sha256": "7c25096f88ebc2ffa9e820b9afbd4bfae143ddf4806abde97da61f2bc548eccb",
@@ -219,8 +219,8 @@
       "bytes": 326
     },
     "index.html": {
-      "sha256": "bcb1f23fb950ffa68914719b84e6a1f9a669a2423995aa30ec89c34c271cc0af",
-      "bytes": 1479
+      "sha256": "213d8fbea8ae63bf9810d92469cafadeac2a6d8981c1d955fcd3e5f8732cd28e",
+      "bytes": 1582
     },
     "media/remteh-gamepad/calibration-20261020b/calibration-backup-v1.js": {
       "sha256": "df99c4272c599f97e9bcf32406e21b4ce8d3c364c106eacc9dd97359307c5e5c",

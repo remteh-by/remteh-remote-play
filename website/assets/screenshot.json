@@ -1,32 +1,32 @@
 {
   "schema": 1,
-  "version": "0.8.1",
-  "build": 17,
-  "source_commit": "988f8a3d780e7404b7fd9fd66bd2d01ddfe80200",
+  "version": "0.8.2",
+  "build": 18,
+  "source_commit": "d67e430f67512b022eed844e0d4541f7df99dace",
   "source_dirty": true,
-  "ui_source_sha256": "646ada960d524ca9702b6070af8f9cdbebdb0f42b23b55888ee6f00c765b332f",
+  "ui_source_sha256": "743c899ad80c0c539ffaeef8ed42d56fddc094611f6a75bdd77bc9f847177692",
   "capture_state": "unpaired",
   "development_preview": true,
-  "captured_at": "2026-10-25T18:59:48Z",
+  "captured_at": "2026-10-25T20:11:54Z",
   "images": {
     "deckivo-ui.webp": {
-      "sha256": "0b3598d76ebea74041df8b9e6c19dda286e0a3438e5dd306d4b84ab94d79f5dc",
-      "bytes": 43184,
+      "sha256": "792c59f32e0e71e4e9a51282346df0b4977e618b415461e4a481c8d29a229a01",
+      "bytes": 43506,
       "width": 1600,
       "height": 900
     },
     "deckivo-ui.avif": {
-      "sha256": "250f34aacbb2a8a2f916053172cd7c8757df92261517b174d845535346e2b7b3",
-      "bytes": 25475,
+      "sha256": "a17bbcbdf99e1c2d22ae5e3089ddf665bce48b64adda3d2e20a69fde79059790",
+      "bytes": 25681,
       "width": 1600,
       "height": 900
     },
     "github-cover.webp": {
-      "sha256": "c95635aabd0e9ac937ec319a5c61e1453eb400017042814010f23103d132ef95",
-      "bytes": 30096,
+      "sha256": "2a4de3f4156f773357249132335d6c29d07282dfb5cf595f00fb858bd665dbe2",
+      "bytes": 30274,
       "width": 1200,
       "height": 630
     }
   },
-  "readme_cover": "github-cover-0.8.1-b17-c95635aabd0e.webp"
+  "readme_cover": "github-cover-0.8.2-b18-2a4de3f4156f.webp"
 }

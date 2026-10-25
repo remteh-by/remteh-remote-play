@@ -1,18 +1,20 @@
 # Deckivo — kurulum ve oyun kılavuzu
 
-Deckivo **0.7.0 preview** · 2026-10-25
+Deckivo **0.8.2 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Başlamadan önce
 
-0.6.1 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir.
+0.8.2 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir.
+
+<a id="android"></a>
 
 ## Android
 
 Sürümden arm64 APK dosyasını indirin. Android 8+ gerekir; fiziksel test Switch OLED ve Android 15 üzerinde yapıldı. Yalnızca seçtiğiniz kaynağa kurulum izni verin. Uygulamayı kaldırmadan ve verileri silmeden eski sürümün üzerine kurun. Dil ve bağlantı sihirbazını seçin, Bluetooth kontrolcüsünü Android’de eşleştirin. Play Protect’i kapatmayın.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-0.7.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.7.0)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-0.8.2-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2)
 
 <a id="macos"></a>
 
@@ -20,7 +22,7 @@ Sürümden arm64 APK dosyasını indirin. Android 8+ gerekir; fiziksel test Swit
 
 Yalnızca Apple Silicon. chiaki-ng’yi ayrıca kurup PS5’i kaydedin ve yayınını kapatın. Mac ZIP dosyasını açıp Deckivo.app’i ~/Applications içine taşıyın. Noter onayı yoktur; macOS Gizlilik ve Güvenlik bölümünde «Yine de Aç» isteyebilir. Gatekeeper’ı tamamen kapatmayın. Deckivo’da chiaki-ng kaydını içe aktarıp konsol IP’sini girin.
 
-[Mac ZIP · 0.7.0 b11](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-macos-0.7.0-b11.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.2 b18](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-macos-0.8.2-b18.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-0.7.0-sources.zip)
+[Linux update ZIP · 0.8.2 b18](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-Linux-0.8.2-b18-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-0.8.2-sources.zip)
 
 ## Konsolu eşleştirme
 

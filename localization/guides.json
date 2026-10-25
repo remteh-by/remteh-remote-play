@@ -14,9 +14,9 @@
       "Support the project"
     ],
     "p": [
-      "Deckivo 0.6.1 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware.",
+      "Deckivo {VERSION} is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware.",
       "Download the arm64 APK from the release linked below. Android 8 or newer is required; physical testing used Android 15 on Switch OLED. Allow installation for your chosen browser/file manager only when Android asks. Install over an existing Deckivo installation: do not uninstall or clear data. Open Deckivo, choose a language and use the connection wizard. Connect your Bluetooth gamepad in Android settings. Never disable Play Protect for this app.",
-      "Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-0.6.1-b10.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine.",
+      "Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-{VERSION}-b{BUILD}.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine.",
       "Switchroot Ubuntu 24.04 ARM64 with KDE/X11 and matching Switchroot FFmpeg 6.1 is the developer target. A new device needs the complete source kit, PyQt5, GCC, OpenSSL/SDL2 development dependencies and the initial runtime installer. Run the initial command below from the extracted source root, then run the interactive pairing command. The small Linux upgrade ZIP is only for an already installed runtime. Do not replace NVIDIA/FFmpeg drivers to force compatibility. If a pinned apt package is unavailable, stop and keep the working installation.",
       "Use the Account ID of the selected PS5 profile in Base64 form, not its nickname or email. Android accepts it in the wizard. The optional local PS5 helper can read it only on a console already capable of running the supplied ELF; it is not needed for ordinary Remote Play. Next open PS5 Settings → System → Remote Play → Link Device and enter the fresh eight-digit code before it expires. The helper code and Remote Play code are different. On Linux the interactive script reads credentials privately; on Mac import your own chiaki-ng registration. Never share registration files, PINs or keys.",
       "Start at 720p and lower bitrate/30 FPS if Wi-Fi is unstable. These are requested settings, not measured performance promises. GameSir G8+ was tested on Android in blue mode and in Ubuntu with its controller adapter. On Android swipe up briefly from the bottom edge to show the hidden PS/Touch controls. On Linux Home maps to PS and Capture to the touchpad; the +/− disconnect chord is optional. Verify both sticks, triggers, buttons and sound on your device. Save the game before ending a stream; disconnecting does not close the game.",
@@ -40,9 +40,9 @@
       "Поддержка проекта"
     ],
     "p": [
-      "Deckivo 0.6.1 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.",
+      "Deckivo {VERSION} — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.",
       "Скачайте arm64 APK из выпуска ниже. Минимум — Android 8; фактическая проверка проводилась на Switch OLED с Android 15. Когда Android попросит, разрешите установку только выбранному браузеру/файловому менеджеру. Устанавливайте поверх старого Deckivo, без удаления приложения и очистки данных: это сохраняет привязку. В приложении выберите язык и мастер подключения. GameSir подключите в настройках Bluetooth Android. Не отключайте Play Защиту.",
-      "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-0.6.1-b10.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотарифицировано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком.",
+      "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-{VERSION}-b{BUILD}.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотарифицировано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком.",
       "Целевая система разработческого выпуска — Switchroot Ubuntu 24.04 ARM64, KDE/X11, штатный Switchroot FFmpeg 6.1. Для новой установки нужны полный архив исходников, PyQt5, GCC, заголовки OpenSSL/SDL2 и начальная установка runtime. Из корня распакованных исходников выполните первую команду ниже, затем интерактивную привязку. Маленький Linux ZIP предназначен только для обновления уже установленного runtime. Не заменяйте драйверы NVIDIA/FFmpeg ради запуска. Если закреплённый apt-пакет недоступен, остановитесь и сохраните рабочую установку.",
       "Нужен Account ID именно выбранного профиля PS5 в формате Base64, а не ник или почта. Android принимает его в мастере. Необязательный локальный ELF-помощник может прочитать ID на уже подготовленной для запуска ELF консоли; обычному Remote Play он не нужен. На PS5 откройте Настройки → Система → Дистанционное воспроизведение → Привязать устройство и введите свежий восьмизначный код до истечения таймера. Код помощника и код Remote Play разные. Linux-скрипт запрашивает данные интерактивно, Mac импортирует вашу регистрацию chiaki-ng. Не публикуйте PIN, ключи и файлы регистрации.",
       "Начните с 720p. При нестабильном Wi-Fi снизьте битрейт или выберите 30 FPS. Это запрошенные параметры, а не обещание измеренного FPS. GameSir G8+ проверяли на Android в синем режиме и на Ubuntu с адаптером управления. На Android короткий свайп вверх от нижнего края показывает скрываемые PS/Touch. На Linux Home соответствует PS, Capture — нажатию тачпада; сочетание +/− для отключения можно выключить. Проверьте стики, курки, кнопки и звук на своём устройстве. Перед выходом сохраните игру: отключение трансляции не закрывает игру.",
@@ -66,7 +66,7 @@
       "Підтримка"
     ],
     "p": [
-      "Це експериментальна версія 0.6.1. Під’єднайте PS5 і клієнт до однієї домашньої мережі. На PS5 увійдіть у потрібний профіль: Налаштування → Система → Дистанційна гра → Увімкнути. Для першого підключення залиште консоль увімкненою. Гостьова мережа може ізолювати пристрої; бажано використовувати 5 ГГц.",
+      "Це експериментальна версія {VERSION}. Під’єднайте PS5 і клієнт до однієї домашньої мережі. На PS5 увійдіть у потрібний профіль: Налаштування → Система → Дистанційна гра → Увімкнути. Для першого підключення залиште консоль увімкненою. Гостьова мережа може ізолювати пристрої; бажано використовувати 5 ГГц.",
       "Завантажте arm64 APK з випуску. Потрібен Android 8+; перевірено Switch OLED з Android 15. Дозвольте встановлення лише вибраному джерелу. Встановлюйте поверх старої версії без видалення даних. Виберіть мову, відкрийте майстер підключення та під’єднайте Bluetooth-контролер у налаштуваннях Android. Не вимикайте Play Protect.",
       "Лише Apple Silicon. Окремо встановіть chiaki-ng, прив’яжіть PS5 та закрийте його трансляцію. Розпакуйте ZIP Mac і перенесіть Deckivo.app до ~/Applications. Програма не має нотаризації: macOS може вимагати «Усе одно відкрити» у налаштуваннях безпеки. Не вимикайте Gatekeeper. У Deckivo імпортуйте реєстрацію chiaki-ng і вкажіть IP консолі.",
       "Розробницька збірка для Switchroot Ubuntu 24.04 ARM64, KDE/X11 та FFmpeg 6.1. Для першого встановлення потрібні повні вихідні коди, PyQt5, GCC і залежності. Виконайте команди нижче. Малий ZIP — лише оновлення наявного runtime. Не замінюйте драйвери заради запуску.",
@@ -92,7 +92,7 @@
       "Wsparcie"
     ],
     "p": [
-      "Wersja 0.6.1 jest eksperymentalna. Połącz PS5 i klienta z tą samą siecią domową. Na PS5 wybierz właściwy profil i Ustawienia → System → Gra zdalna → Włącz grę zdalną. Konsola musi być włączona przy pierwszym parowaniu. Zalecane Wi-Fi 5 GHz; sieć gościnna może izolować urządzenia.",
+      "Wersja {VERSION} jest eksperymentalna. Połącz PS5 i klienta z tą samą siecią domową. Na PS5 wybierz właściwy profil i Ustawienia → System → Gra zdalna → Włącz grę zdalną. Konsola musi być włączona przy pierwszym parowaniu. Zalecane Wi-Fi 5 GHz; sieć gościnna może izolować urządzenia.",
       "Pobierz APK arm64 z wydania. Wymagany Android 8+; testowano Switch OLED z Androidem 15. Zezwól na instalację tylko wybranemu źródłu. Instaluj na poprzedniej wersji bez usuwania danych. Wybierz język, kreator połączenia i sparuj kontroler Bluetooth w Androidzie. Nie wyłączaj Play Protect.",
       "Tylko Apple Silicon. Zainstaluj osobno chiaki-ng, zarejestruj PS5 i zamknij jego transmisję. Rozpakuj ZIP i przenieś Deckivo.app do ~/Applications. Brak notaryzacji: macOS może wymagać „Otwórz mimo to” w ustawieniach prywatności i bezpieczeństwa. Nie wyłączaj Gatekeepera. Zaimportuj rejestrację chiaki-ng w Deckivo i podaj IP konsoli.",
       "Podgląd deweloperski: Switchroot Ubuntu 24.04 ARM64, KDE/X11 i FFmpeg 6.1. Pierwsza instalacja wymaga pełnych źródeł, PyQt5, GCC i zależności. Uruchom polecenia poniżej. Mały ZIP służy wyłącznie do aktualizacji istniejącego runtime. Nie zastępuj sterowników.",
@@ -118,7 +118,7 @@
       "Projekt unterstützen"
     ],
     "p": [
-      "0.6.1 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren.",
+      "{VERSION} ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren.",
       "Lade die arm64-APK aus dem Release. Android 8+ ist erforderlich; physisch getestet wurde Switch OLED mit Android 15. Erlaube die Installation nur der gewählten Quelle. Installiere über die vorhandene Version, ohne Daten zu löschen. Wähle Sprache und Verbindungsassistent; kopple den Bluetooth-Controller in Android. Play Protect nicht deaktivieren.",
       "Nur Apple Silicon. Installiere chiaki-ng separat, registriere die PS5 und beende dessen Stream. Entpacke das Mac-ZIP und verschiebe Deckivo.app nach ~/Applications. Die App ist nicht notarisiert; macOS kann „Dennoch öffnen“ unter Datenschutz & Sicherheit verlangen. Gatekeeper nicht global deaktivieren. Importiere in Deckivo die chiaki-ng-Registrierung und gib die Konsolen-IP ein.",
       "Entwicklervorschau für Switchroot Ubuntu 24.04 ARM64 mit KDE/X11 und FFmpeg 6.1. Eine Erstinstallation benötigt vollständige Quellen, PyQt5, GCC und Abhängigkeiten. Nutze die Befehle unten. Das kleine ZIP aktualisiert nur eine vorhandene Laufzeit. Keine NVIDIA-/FFmpeg-Treiber ersetzen.",
@@ -144,7 +144,7 @@
       "Soutenir le projet"
     ],
     "p": [
-      "La version 0.6.1 est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils.",
+      "La version {VERSION} est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils.",
       "Téléchargez l’APK arm64 du release. Android 8+ requis ; tests physiques sur Switch OLED avec Android 15. Autorisez uniquement la source choisie. Installez par-dessus l’ancienne version sans supprimer ses données. Choisissez la langue, l’assistant de connexion et associez la manette Bluetooth dans Android. Ne désactivez pas Play Protect.",
       "Apple Silicon uniquement. Installez chiaki-ng séparément, enregistrez la PS5 et fermez son flux. Décompressez le ZIP Mac et placez Deckivo.app dans ~/Applications. Application non notariée : macOS peut demander « Ouvrir quand même » dans Confidentialité et sécurité. Ne désactivez pas Gatekeeper. Importez l’enregistrement chiaki-ng dans Deckivo et renseignez l’IP.",
       "Aperçu développeur pour Switchroot Ubuntu 24.04 ARM64, KDE/X11 et FFmpeg 6.1. La première installation nécessite les sources complètes, PyQt5, GCC et les dépendances. Utilisez les commandes ci-dessous. Le petit ZIP ne met à jour qu’un runtime existant. Ne remplacez pas les pilotes NVIDIA/FFmpeg.",
@@ -170,7 +170,7 @@
       "Apoyar el proyecto"
     ],
     "p": [
-      "0.6.1 es una versión experimental. Conecta PS5 y cliente a la misma red doméstica. En PS5 selecciona el perfil correcto: Ajustes → Sistema → Uso a distancia → Activar. Mantén la consola encendida durante la primera vinculación. Es preferible Wi-Fi de 5 GHz; la red de invitados puede aislar dispositivos.",
+      "{VERSION} es una versión experimental. Conecta PS5 y cliente a la misma red doméstica. En PS5 selecciona el perfil correcto: Ajustes → Sistema → Uso a distancia → Activar. Mantén la consola encendida durante la primera vinculación. Es preferible Wi-Fi de 5 GHz; la red de invitados puede aislar dispositivos.",
       "Descarga el APK arm64 del lanzamiento. Requiere Android 8+; probado físicamente en Switch OLED con Android 15. Autoriza solo la fuente elegida. Instala sobre Deckivo anterior sin borrar datos. Elige idioma, asistente de conexión y empareja el mando Bluetooth en Android. No desactives Play Protect.",
       "Solo Apple Silicon. Instala chiaki-ng por separado, registra PS5 y cierra su transmisión. Extrae el ZIP Mac y mueve Deckivo.app a ~/Applications. No está notarizada: macOS puede pedir «Abrir igualmente» en Privacidad y seguridad. No desactives Gatekeeper globalmente. Importa el registro de chiaki-ng en Deckivo e introduce la IP.",
       "Vista previa para desarrolladores: Switchroot Ubuntu 24.04 ARM64, KDE/X11 y FFmpeg 6.1. La instalación inicial necesita fuentes completas, PyQt5, GCC y dependencias. Usa los comandos inferiores. El ZIP pequeño solo actualiza un runtime existente. No sustituyas controladores NVIDIA/FFmpeg.",
@@ -196,7 +196,7 @@
       "Sostieni il progetto"
     ],
     "p": [
-      "0.6.1 è un’anteprima sperimentale. Collega PS5 e client alla stessa rete domestica. Su PS5 scegli il profilo corretto: Impostazioni → Sistema → Riproduzione remota → Abilita. Mantieni la console accesa per la prima associazione. Preferisci Wi-Fi 5 GHz; le reti ospiti possono isolare i dispositivi.",
+      "{VERSION} è un’anteprima sperimentale. Collega PS5 e client alla stessa rete domestica. Su PS5 scegli il profilo corretto: Impostazioni → Sistema → Riproduzione remota → Abilita. Mantieni la console accesa per la prima associazione. Preferisci Wi-Fi 5 GHz; le reti ospiti possono isolare i dispositivi.",
       "Scarica l’APK arm64 dal rilascio. Richiede Android 8+; test fisici su Switch OLED con Android 15. Autorizza soltanto la sorgente scelta. Installa sopra la vecchia versione senza cancellare dati. Seleziona lingua e procedura di connessione; associa il controller Bluetooth in Android. Non disattivare Play Protect.",
       "Solo Apple Silicon. Installa chiaki-ng separatamente, registra PS5 e chiudi il suo flusso. Estrai lo ZIP Mac e sposta Deckivo.app in ~/Applications. App non notarizzata: macOS può richiedere «Apri comunque» in Privacy e sicurezza. Non disattivare Gatekeeper. Importa la registrazione chiaki-ng in Deckivo e inserisci l’IP.",
       "Anteprima sviluppatori per Switchroot Ubuntu 24.04 ARM64, KDE/X11 e FFmpeg 6.1. La prima installazione richiede sorgenti completi, PyQt5, GCC e dipendenze. Esegui i comandi seguenti. Lo ZIP piccolo aggiorna solo un runtime già presente. Non sostituire i driver NVIDIA/FFmpeg.",
@@ -222,7 +222,7 @@
       "Apoiar o projeto"
     ],
     "p": [
-      "0.6.1 é uma versão experimental. Ligue a PS5 e o cliente à mesma rede doméstica. Na PS5 escolha o perfil correto: Definições → Sistema → Reprodução remota → Ativar. Mantenha a consola ligada no primeiro emparelhamento. Prefira Wi-Fi de 5 GHz; redes de convidados podem isolar dispositivos.",
+      "{VERSION} é uma versão experimental. Ligue a PS5 e o cliente à mesma rede doméstica. Na PS5 escolha o perfil correto: Definições → Sistema → Reprodução remota → Ativar. Mantenha a consola ligada no primeiro emparelhamento. Prefira Wi-Fi de 5 GHz; redes de convidados podem isolar dispositivos.",
       "Transfira o APK arm64 do lançamento. Requer Android 8+; testado fisicamente na Switch OLED com Android 15. Autorize apenas a origem escolhida. Instale sobre a versão anterior sem apagar dados. Escolha idioma, assistente de ligação e emparelhe o comando Bluetooth no Android. Não desative o Play Protect.",
       "Apenas Apple Silicon. Instale chiaki-ng separadamente, registe a PS5 e feche a transmissão. Extraia o ZIP Mac e mova Deckivo.app para ~/Applications. Não tem notarização: o macOS pode pedir «Abrir mesmo assim» em Privacidade e segurança. Não desative o Gatekeeper. Importe o registo chiaki-ng no Deckivo e indique o IP.",
       "Prévia para programadores: Switchroot Ubuntu 24.04 ARM64, KDE/X11 e FFmpeg 6.1. A primeira instalação exige código-fonte completo, PyQt5, GCC e dependências. Execute os comandos abaixo. O ZIP pequeno só atualiza um runtime existente. Não substitua os controladores NVIDIA/FFmpeg.",
@@ -248,7 +248,7 @@
       "Projeyi destekleyin"
     ],
     "p": [
-      "0.6.1 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir.",
+      "{VERSION} deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir.",
       "Sürümden arm64 APK dosyasını indirin. Android 8+ gerekir; fiziksel test Switch OLED ve Android 15 üzerinde yapıldı. Yalnızca seçtiğiniz kaynağa kurulum izni verin. Uygulamayı kaldırmadan ve verileri silmeden eski sürümün üzerine kurun. Dil ve bağlantı sihirbazını seçin, Bluetooth kontrolcüsünü Android’de eşleştirin. Play Protect’i kapatmayın.",
       "Yalnızca Apple Silicon. chiaki-ng’yi ayrıca kurup PS5’i kaydedin ve yayınını kapatın. Mac ZIP dosyasını açıp Deckivo.app’i ~/Applications içine taşıyın. Noter onayı yoktur; macOS Gizlilik ve Güvenlik bölümünde «Yine de Aç» isteyebilir. Gatekeeper’ı tamamen kapatmayın. Deckivo’da chiaki-ng kaydını içe aktarıp konsol IP’sini girin.",
       "Geliştirici ön sürümü Switchroot Ubuntu 24.04 ARM64, KDE/X11 ve FFmpeg 6.1 içindir. İlk kurulum tam kaynak, PyQt5, GCC ve bağımlılıklar gerektirir. Aşağıdaki komutları kullanın. Küçük ZIP yalnızca mevcut çalışma ortamını günceller. NVIDIA/FFmpeg sürücülerini değiştirmeyin.",
@@ -274,7 +274,7 @@
       "支持项目"
     ],
     "p": [
-      "0.6.1 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。",
+      "{VERSION} 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。",
       "从下方版本页面下载 arm64 APK。最低需要 Android 8；实际设备测试为 Switch OLED / Android 15。仅为选定的安装来源授权。直接覆盖旧版，不要卸载或清除数据，以保留配对。选择语言并打开连接向导，在 Android 蓝牙设置中连接手柄。不要关闭 Play Protect。",
       "本预览版仅适用于 Apple Silicon。另行安装官方 chiaki-ng，在其中注册 PS5 并结束串流。解压 Mac ZIP，把 Deckivo.app 放入 ~/Applications。应用未经过公证，macOS 可能要求在隐私与安全性中选择“仍要打开”；不要全局关闭 Gatekeeper。在 Deckivo 设置中导入 chiaki-ng 注册信息并输入主机 IP。保留 chiaki-ng，它提供串流引擎。",
       "开发者预览针对 Switchroot Ubuntu 24.04 ARM64、KDE/X11 和 FFmpeg 6.1。首次安装需要完整源码、PyQt5、GCC 及依赖。请从源码根目录执行下方命令，再运行交互式配对。小型 Linux ZIP 只更新已有运行环境。不要替换 NVIDIA/FFmpeg 驱动；固定版本软件包不可用时应停止。",
@@ -300,7 +300,7 @@
       "開発を支援"
     ],
     "p": [
-      "0.6.1 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。",
+      "{VERSION} は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。",
       "リリースから arm64 APK を取得します。Android 8 以上が必要で、実機テストは Switch OLED / Android 15 です。選択した提供元だけにインストールを許可し、旧版を削除せず上書きします。データを消さず、言語と接続ウィザードを選択します。Bluetooth コントローラーは Android で接続してください。Play Protect は無効化しません。",
       "Apple Silicon のみです。公式 chiaki-ng を別途インストールし、PS5 を登録して配信を終了します。Mac ZIP を展開し Deckivo.app を ~/Applications に移します。未公証のため macOS のプライバシーとセキュリティで「このまま開く」が必要な場合があります。Gatekeeper 全体を無効化しないでください。Deckivo で chiaki-ng の登録を読み込み、PS5 の IP を入力します。",
       "Switchroot Ubuntu 24.04 ARM64、KDE/X11、FFmpeg 6.1 向け開発者プレビューです。初回は完全なソース、PyQt5、GCC と依存関係が必要です。下のコマンドをソースのルートで実行し、対話式登録を行います。小さい ZIP は既存ランタイムの更新専用です。NVIDIA/FFmpeg ドライバーを置き換えないでください。",
@@ -326,7 +326,7 @@
       "개발 후원"
     ],
     "p": [
-      "0.6.1은 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다.",
+      "{VERSION}은 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다.",
       "릴리스에서 arm64 APK를 받으세요. Android 8 이상이 필요하며 실기기 검증은 Switch OLED / Android 15입니다. 선택한 출처에만 설치 권한을 허용하세요. 기존 앱을 삭제하거나 데이터를 지우지 말고 덮어 설치합니다. 언어와 연결 마법사를 선택하고 Android Bluetooth에서 게임패드를 연결하세요. Play Protect를 끄지 마세요.",
       "Apple Silicon 전용입니다. 공식 chiaki-ng를 별도로 설치하고 PS5를 등록한 뒤 스트림을 닫으세요. Mac ZIP을 풀고 Deckivo.app을 ~/Applications로 옮깁니다. 공증되지 않은 앱이므로 개인정보 보호 및 보안에서 “확인 없이 열기”가 필요할 수 있습니다. Gatekeeper 전체를 끄지 마세요. Deckivo에서 chiaki-ng 등록을 가져오고 콘솔 IP를 입력합니다.",
       "Switchroot Ubuntu 24.04 ARM64, KDE/X11, FFmpeg 6.1용 개발자 미리 보기입니다. 처음 설치하려면 전체 소스, PyQt5, GCC와 의존성이 필요합니다. 소스 루트에서 아래 명령과 대화형 등록을 실행하세요. 작은 ZIP은 기존 런타임 업데이트 전용입니다. NVIDIA/FFmpeg 드라이버를 교체하지 마세요.",
@@ -352,7 +352,7 @@
       "دعم المشروع"
     ],
     "p": [
-      "الإصدار 0.6.1 تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة.",
+      "الإصدار {VERSION} تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة.",
       "نزّل APK بمعمارية arm64 من الإصدار. يلزم Android 8 أو أحدث؛ الاختبار الفعلي على Switch OLED مع Android 15. اسمح بالتثبيت للمصدر المختار فقط. ثبّت فوق النسخة السابقة دون حذف التطبيق أو بياناته. اختر اللغة ومعالج الاتصال، واربط يد Bluetooth من إعدادات Android. لا تعطّل Play Protect.",
       "Apple Silicon فقط. ثبّت chiaki-ng بشكل منفصل واربط PS5 ثم أغلق البث فيه. فك ZIP وانقل Deckivo.app إلى ~/Applications. التطبيق غير موثّق لدى Apple؛ قد يلزم «الفتح على أي حال» في الخصوصية والأمان. لا تعطّل Gatekeeper بالكامل. استورد تسجيل chiaki-ng في Deckivo وأدخل عنوان IP للجهاز.",
       "معاينة للمطورين على Switchroot Ubuntu 24.04 ARM64 مع KDE/X11 وFFmpeg 6.1. يحتاج التثبيت الأول إلى المصدر الكامل وPyQt5 وGCC والتبعيات. نفّذ الأوامر أدناه من جذر المصدر ثم الربط التفاعلي. ملف ZIP الصغير لتحديث بيئة موجودة فقط. لا تستبدل تعريفات NVIDIA/FFmpeg.",
@@ -378,7 +378,7 @@
       "परियोजना का समर्थन"
     ],
     "p": [
-      "0.6.1 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।",
+      "{VERSION} प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।",
       "रिलीज़ से arm64 APK डाउनलोड करें। Android 8+ आवश्यक है; वास्तविक परीक्षण Switch OLED और Android 15 पर हुआ। केवल चुने हुए स्रोत को स्थापना की अनुमति दें। पुराना ऐप या डेटा हटाए बिना ऊपर से इंस्टॉल करें। भाषा और कनेक्शन विज़ार्ड चुनें तथा Android Bluetooth में गेमपैड जोड़ें। Play Protect बंद न करें।",
       "केवल Apple Silicon। आधिकारिक chiaki-ng अलग से इंस्टॉल करें, PS5 पंजीकृत करें और उसकी स्ट्रीम बंद करें। Mac ZIP खोलकर Deckivo.app को ~/Applications में रखें। ऐप notarized नहीं है; गोपनीयता और सुरक्षा में “Open Anyway” आवश्यक हो सकता है। Gatekeeper पूरी तरह बंद न करें। Deckivo में chiaki-ng पंजीकरण आयात करके कंसोल का IP भरें।",
       "Switchroot Ubuntu 24.04 ARM64, KDE/X11 और FFmpeg 6.1 के लिए डेवलपर प्रीव्यू। पहली स्थापना को पूरा स्रोत, PyQt5, GCC और निर्भरताएँ चाहिए। स्रोत के मूल फ़ोल्डर में नीचे के आदेश चलाएँ, फिर संवादात्मक पेयरिंग करें। छोटा ZIP केवल मौजूदा runtime अपडेट करता है। NVIDIA/FFmpeg ड्राइवर न बदलें।",
@@ -404,7 +404,7 @@
       "Dukung proyek"
     ],
     "p": [
-      "0.6.1 adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat.",
+      "{VERSION} adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat.",
       "Unduh APK arm64 dari rilis. Memerlukan Android 8+; pengujian fisik memakai Switch OLED dengan Android 15. Izinkan instalasi hanya dari sumber yang dipilih. Pasang di atas versi lama tanpa menghapus aplikasi atau data. Pilih bahasa dan panduan koneksi, lalu pasangkan kontroler Bluetooth di Android. Jangan matikan Play Protect.",
       "Hanya Apple Silicon. Instal chiaki-ng secara terpisah, daftarkan PS5 dan tutup streaming-nya. Ekstrak ZIP Mac dan pindahkan Deckivo.app ke ~/Applications. Belum dinotarisasi: macOS dapat meminta “Open Anyway” di Privasi & Keamanan. Jangan matikan Gatekeeper secara global. Impor pendaftaran chiaki-ng dalam Deckivo dan masukkan IP konsol.",
       "Pratinjau pengembang untuk Switchroot Ubuntu 24.04 ARM64, KDE/X11 dan FFmpeg 6.1. Instalasi awal memerlukan sumber lengkap, PyQt5, GCC dan dependensi. Jalankan perintah di bawah dari akar sumber, lalu pemasangan interaktif. ZIP kecil hanya memperbarui runtime yang sudah ada. Jangan mengganti driver NVIDIA/FFmpeg.",

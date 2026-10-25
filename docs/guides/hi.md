@@ -1,18 +1,20 @@
 # Deckivo — स्थापना और खेलने की मार्गदर्शिका
 
-Deckivo **0.7.0 preview** · 2026-10-25
+Deckivo **0.8.2 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## शुरू करने से पहले
 
-0.6.1 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।
+0.8.2 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।
+
+<a id="android"></a>
 
 ## Android
 
 रिलीज़ से arm64 APK डाउनलोड करें। Android 8+ आवश्यक है; वास्तविक परीक्षण Switch OLED और Android 15 पर हुआ। केवल चुने हुए स्रोत को स्थापना की अनुमति दें। पुराना ऐप या डेटा हटाए बिना ऊपर से इंस्टॉल करें। भाषा और कनेक्शन विज़ार्ड चुनें तथा Android Bluetooth में गेमपैड जोड़ें। Play Protect बंद न करें।
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-0.7.0-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.7.0)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-0.8.2-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2)
 
 <a id="macos"></a>
 
@@ -20,7 +22,7 @@ Deckivo **0.7.0 preview** · 2026-10-25
 
 केवल Apple Silicon। आधिकारिक chiaki-ng अलग से इंस्टॉल करें, PS5 पंजीकृत करें और उसकी स्ट्रीम बंद करें। Mac ZIP खोलकर Deckivo.app को ~/Applications में रखें। ऐप notarized नहीं है; गोपनीयता और सुरक्षा में “Open Anyway” आवश्यक हो सकता है। Gatekeeper पूरी तरह बंद न करें। Deckivo में chiaki-ng पंजीकरण आयात करके कंसोल का IP भरें।
 
-[Mac ZIP · 0.7.0 b11](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-macos-0.7.0-b11.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.2 b18](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-macos-0.8.2-b18.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -37,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.7.0/Deckivo-0.7.0-sources.zip)
+[Linux update ZIP · 0.8.2 b18](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-Linux-0.8.2-b18-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-0.8.2-sources.zip)
 
 ## कंसोल जोड़ना
 

@@ -70,8 +70,29 @@ def release(release_id, tag, *, prerelease=False, draft=False, published="2026-1
     }
 
 
-def asset(asset_id, name, count):
-    return {"id": asset_id, "name": name, "download_count": count}
+def asset(asset_id, name, count, *, size=1234):
+    return {"id": asset_id, "name": name, "download_count": count, "size": size}
+
+
+def live_release(release_id, tag, assets, *, published="2026-10-25T10:00:00Z"):
+    owner, name = download_stats.parse_repository(download_stats.DEFAULT_REPOSITORY)
+    return {
+        "release_id": release_id,
+        "tag": tag,
+        "url": download_stats._release_url(owner, name, tag),
+        "published_at": published,
+        "prerelease": True,
+        "assets": [
+            {
+                "asset_id": item[0],
+                "name": item[1],
+                "download_count": item[2],
+                "size_bytes": item[3],
+                "category": download_stats.classify_asset(item[1]),
+            }
+            for item in assets
+        ],
+    }
 
 
 class DownloadStatistics(unittest.TestCase):
@@ -221,6 +242,142 @@ class DownloadStatistics(unittest.TestCase):
             download_stats.DownloadStatsError, "conflicting duplicate asset id"
         ):
             download_stats.collect_statistics(opener=api)
+
+    def test_history_overlap_uses_live_count_once_and_keeps_missing_asset(self):
+        captured = datetime(2026, 10, 25, 12, 0, 0, tzinfo=timezone.utc)
+        archived_live = live_release(7, "v7", [
+            (71, "Deckivo-v7.apk", 3, 1000),
+            (72, "Deckivo-v7-sources.zip", 7, 2000),
+        ])
+        history = download_stats.refresh_history_snapshot(
+            [archived_live], captured_at=captured
+        )
+        current = live_release(7, "v7", [
+            (71, "Deckivo-v7.apk", 5, 1000),
+        ])
+        result = download_stats.build_statistics(
+            [current],
+            history=history,
+            generated_at=datetime(2026, 10, 25, 13, 0, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(result["total_downloads"], 12)
+        self.assertEqual(result["package_total"], 5)
+        self.assertEqual(result["history_snapshot_at"], "2026-10-25T12:00:00Z")
+        release_row = result["releases"][0]
+        self.assertFalse(release_row["archived"])
+        assets = {item["name"]: item for item in release_row["assets"]}
+        self.assertEqual(assets["Deckivo-v7.apk"]["count"], 5)
+        self.assertFalse(assets["Deckivo-v7.apk"]["archived"])
+        self.assertEqual(assets["Deckivo-v7-sources.zip"]["count"], 7)
+        self.assertTrue(assets["Deckivo-v7-sources.zip"]["archived"])
+
+    def test_deleted_release_is_archived_without_dead_tag_url(self):
+        archived_live = live_release(8, "v8", [
+            (81, "Deckivo-macos-v8.zip", 4, 3000),
+            (82, "checksums.txt", 2, 200),
+        ])
+        history = download_stats.refresh_history_snapshot(
+            [archived_live],
+            captured_at=datetime(2026, 10, 25, 14, 0, 0, tzinfo=timezone.utc),
+        )
+        result = download_stats.build_statistics([], history=history)
+
+        self.assertEqual(result["package_total"], 4)
+        self.assertEqual(result["total_downloads"], 6)
+        release_row = result["releases"][0]
+        self.assertTrue(release_row["archived"])
+        self.assertEqual(
+            release_row["url"],
+            "https://github.com/remteh-by/remteh-remote-play/releases",
+        )
+        self.assertNotIn("/tag/v8", release_row["url"])
+        self.assertTrue(all(asset_row["archived"] for asset_row in release_row["assets"]))
+
+    def test_refresh_preserves_deleted_release_and_updates_live_counter(self):
+        first_capture = datetime(2026, 10, 25, 15, 0, 0, tzinfo=timezone.utc)
+        old_deleted = live_release(9, "v9", [(91, "Deckivo-v9.apk", 2, 1000)])
+        old_live = live_release(10, "v10", [(101, "Deckivo-v10.apk", 3, 1000)])
+        history = download_stats.refresh_history_snapshot(
+            [old_live, old_deleted], captured_at=first_capture
+        )
+        refreshed = download_stats.refresh_history_snapshot(
+            [live_release(10, "v10", [(101, "Deckivo-v10.apk", 6, 1000)])],
+            existing=history,
+            captured_at=datetime(2026, 10, 25, 16, 0, 0, tzinfo=timezone.utc),
+        )
+
+        by_tag = {release_row["tag"]: release_row for release_row in refreshed["releases"]}
+        self.assertEqual(by_tag["v10"]["assets"][0]["download_count"], 6)
+        self.assertEqual(by_tag["v10"]["assets"][0]["captured_at"], "2026-10-25T16:00:00Z")
+        self.assertEqual(by_tag["v9"]["assets"][0]["download_count"], 2)
+        self.assertEqual(by_tag["v9"]["assets"][0]["captured_at"], "2026-10-25T15:00:00Z")
+
+    def test_history_rejects_duplicate_ids_wrong_url_and_invalid_bounds(self):
+        original = download_stats.refresh_history_snapshot(
+            [live_release(11, "v11", [(111, "Deckivo-v11.apk", 1, 1000)])],
+            captured_at=datetime(2026, 10, 25, 17, 0, 0, tzinfo=timezone.utc),
+        )
+
+        duplicate = json.loads(json.dumps(original))
+        duplicate["releases"][0]["assets"].append(
+            dict(duplicate["releases"][0]["assets"][0])
+        )
+        with self.assertRaisesRegex(download_stats.DownloadStatsError, "duplicate asset id"):
+            download_stats.validate_history(duplicate)
+
+        wrong_url = json.loads(json.dumps(original))
+        wrong_url["releases"][0]["url"] = "https://github.com/attacker/repository/releases/tag/v11"
+        with self.assertRaisesRegex(download_stats.DownloadStatsError, "canonical repository URL"):
+            download_stats.validate_history(wrong_url)
+
+        invalid_size = json.loads(json.dumps(original))
+        invalid_size["releases"][0]["assets"][0]["size_bytes"] = download_stats.MAX_ASSET_BYTES + 1
+        with self.assertRaises(download_stats.DownloadStatsError):
+            download_stats.validate_history(invalid_size)
+
+        invalid_count = json.loads(json.dumps(original))
+        invalid_count["releases"][0]["assets"][0]["download_count"] = download_stats.MAX_DOWNLOAD_COUNT + 1
+        with self.assertRaises(download_stats.DownloadStatsError):
+            download_stats.validate_history(invalid_count)
+
+        with self.assertRaisesRegex(download_stats.DownloadStatsError, "count decreased"):
+            download_stats.build_statistics(
+                [live_release(11, "v11", [(111, "Deckivo-v11.apk", 0, 1000)])],
+                history=original,
+            )
+
+    def test_refresh_history_file_is_atomic_and_preserves_prior_archive(self):
+        archived = download_stats.refresh_history_snapshot(
+            [live_release(12, "v12", [(121, "Deckivo-v12.apk", 2, 1000)])],
+            captured_at=datetime(2026, 10, 25, 18, 0, 0, tzinfo=timezone.utc),
+        )
+        api = FixtureAPI({
+            ("/repos/remteh-by/remteh-remote-play/releases", "1"): page([
+                release(13, "v13")
+            ]),
+            ("/repos/remteh-by/remteh-remote-play/releases/13/assets", "1"): page([
+                asset(131, "Deckivo-v13.apk", 5, size=2000)
+            ]),
+        })
+        with tempfile.TemporaryDirectory() as directory:
+            history_path = Path(directory) / "download-history.json"
+            output = Path(directory) / "download-stats.json"
+            history_path.write_text(json.dumps(archived))
+            result = download_stats.generate(
+                output,
+                opener=api,
+                history_path=history_path,
+                refresh_history=True,
+                generated_at=datetime(2026, 10, 25, 19, 0, 0, tzinfo=timezone.utc),
+            )
+
+            stored = json.loads(history_path.read_text())
+            self.assertEqual(stored["snapshot_at"], "2026-10-25T19:00:00Z")
+            self.assertEqual({item["tag"] for item in stored["releases"]}, {"v12", "v13"})
+            self.assertEqual(result["package_total"], 7)
+            self.assertEqual(json.loads(output.read_text())["total_downloads"], 7)
+            self.assertFalse(list(Path(directory).glob("*.tmp")))
 
 
 if __name__ == "__main__":

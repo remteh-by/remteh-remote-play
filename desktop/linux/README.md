@@ -134,7 +134,7 @@ Play TCP control port. Discovery is limited to the configured host.
 
 ## Credits
 
-Developed by [RemTeh.by](https://remteh.by), using the work of Chiaki and
+Developed by [RemTeh.by](https://remteh.by/?utm_source=github&utm_medium=referral&utm_campaign=deckivo), using the work of Chiaki and
 Switchroot/FFmpeg. Preserve their authorship and licenses. This preview and the
 underlying engine remain subject to the repository's AGPL/OpenSSL licensing
 terms. Public 0.x versions are experimental prereleases; see the current [platform guide](../../docs/guides/en.md#ubuntu) and test matrix.

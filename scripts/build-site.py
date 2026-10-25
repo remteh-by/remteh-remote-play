@@ -11,12 +11,31 @@ NAMES={'en':'English','ru':'Русский','uk':'Українська','pl':'Po
 SYSTEM_FONT={'zh','ja','ko','ar','hi'}
 PLATFORM_KEYS=('android','macos','linux','bundle')
 ASSET_CATEGORIES={*PLATFORM_KEYS,'source','metadata','other'}
-ANDROID_VERSION='0.6.1'
-MAC_VERSION='0.6.1';MAC_BUILD=10
-LINUX_VERSION='0.8.1';LINUX_BUILD=17
+ANDROID_VERSION='0.8.2'
+ANDROID_BUILD=27
+MAC_VERSION='0.8.2';MAC_BUILD=18
+LINUX_VERSION='0.8.2';LINUX_BUILD=18
 ANDROID_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/Deckivo-{ANDROID_VERSION}-arm64.apk'
 MAC_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{MAC_VERSION}/Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip'
 LINUX_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{LINUX_VERSION}/Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip'
+ARCHIVE_COPY={
+ 'en':('Historical snapshot','Archived totals are frozen GitHub asset download counts captured before a release or file was removed. They are not unique users or installations.'),
+ 'ru':('Исторический снимок','Архивные итоги — это зафиксированные GitHub-счётчики загрузок файлов до удаления релиза или файла. Это не число уникальных пользователей или установок.'),
+ 'uk':('Історичний знімок','Архівні підсумки — це зафіксовані GitHub-лічильники завантажень файлів до видалення релізу або файла. Це не кількість унікальних користувачів чи встановлень.'),
+ 'pl':('Migawka historyczna','Archiwalne sumy to zamrożone liczniki pobrań plików GitHub sprzed usunięcia wydania lub pliku. Nie oznaczają unikalnych użytkowników ani instalacji.'),
+ 'de':('Historischer Stand','Archivierte Summen sind eingefrorene GitHub-Zähler für Datei-Downloads vor dem Entfernen eines Releases oder einer Datei. Sie entsprechen nicht eindeutigen Nutzern oder Installationen.'),
+ 'fr':('Instantané historique','Les totaux archivés sont des compteurs GitHub de téléchargements de fichiers figés avant la suppression d’une version ou d’un fichier. Ils ne représentent ni des utilisateurs uniques ni des installations.'),
+ 'es':('Instantánea histórica','Los totales archivados son contadores de descargas de archivos de GitHub congelados antes de eliminar una versión o un archivo. No representan usuarios únicos ni instalaciones.'),
+ 'it':('Istantanea storica','I totali archiviati sono contatori GitHub dei download dei file, bloccati prima della rimozione di una release o di un file. Non indicano utenti unici né installazioni.'),
+ 'pt':('Registo histórico','Os totais arquivados são contadores GitHub de transferências de ficheiros, fixados antes da remoção de uma versão ou ficheiro. Não representam utilizadores únicos nem instalações.'),
+ 'tr':('Tarihsel anlık görüntü','Arşivlenmiş toplamlar, bir sürüm veya dosya kaldırılmadan önce dondurulan GitHub dosya indirme sayaçlarıdır. Benzersiz kullanıcı veya kurulum sayısı değildir.'),
+ 'zh':('历史快照','归档总数是在版本或文件删除前冻结的 GitHub 文件下载计数，并不代表独立用户数或安装数。'),
+ 'ja':('履歴スナップショット','アーカイブ合計は、リリースまたはファイルが削除される前に保存された GitHub のファイルダウンロード数です。ユニークユーザー数やインストール数ではありません。'),
+ 'ko':('기록 스냅샷','보관 합계는 릴리스나 파일이 삭제되기 전에 저장된 GitHub 파일 다운로드 수입니다. 고유 사용자 수나 설치 수가 아닙니다.'),
+ 'ar':('لقطة تاريخية','الإجماليات المؤرشفة هي عدادات تنزيل ملفات GitHub مجمّدة قبل حذف إصدار أو ملف، ولا تمثل مستخدمين فريدين أو عمليات تثبيت.'),
+ 'hi':('ऐतिहासिक स्नैपशॉट','आर्काइव किए गए कुल, किसी रिलीज़ या फ़ाइल को हटाने से पहले सुरक्षित GitHub फ़ाइल डाउनलोड गणनाएँ हैं। ये विशिष्ट उपयोगकर्ताओं या इंस्टॉलेशन की संख्या नहीं हैं।'),
+ 'id':('Snapshot historis','Total arsip adalah hitungan unduhan berkas GitHub yang dibekukan sebelum rilis atau berkas dihapus. Angka ini bukan jumlah pengguna unik atau pemasangan.'),
+}
 
 
 def _non_negative_int(value,label):
@@ -56,6 +75,7 @@ def load_download_stats(path):
  repository=data.get('repository')
  if not isinstance(repository,str) or not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',repository):raise ValueError('Download statistics repository must be owner/name')
  _utc_timestamp(data.get('generated_at'),'generated_at')
+ if 'history_snapshot_at' in data:_utc_timestamp(data['history_snapshot_at'],'history_snapshot_at')
  package_total=_non_negative_int(data.get('package_total'),'package_total')
  total_downloads=_non_negative_int(data.get('total_downloads'),'total_downloads')
  platforms=_platform_totals(data.get('platforms'),'platforms')
@@ -74,6 +94,9 @@ def load_download_stats(path):
   _https_github_url(release.get('url'),f'{label}.url')
   _utc_timestamp(release.get('published_at'),f'{label}.published_at')
   if not isinstance(release.get('prerelease'),bool):raise ValueError(f'{label}.prerelease must be a boolean')
+  archived=release.get('archived',False)
+  if not isinstance(archived,bool):raise ValueError(f'{label}.archived must be a boolean')
+  if archived:_utc_timestamp(release.get('archived_snapshot_at'),f'{label}.archived_snapshot_at')
   release_package_total=_non_negative_int(release.get('package_total'),f'{label}.package_total')
   release_total=_non_negative_int(release.get('total_downloads'),f'{label}.total_downloads')
   release_platforms=_platform_totals(release.get('platforms'),f'{label}.platforms')
@@ -87,6 +110,9 @@ def load_download_stats(path):
    if not isinstance(asset.get('name'),str) or not asset['name'].strip():raise ValueError(f'{asset_label}.name must be a non-empty string')
    asset_total+=_non_negative_int(asset.get('count'),f'{asset_label}.count')
    if asset.get('category') not in ASSET_CATEGORIES:raise ValueError(f'{asset_label}.category is invalid')
+   asset_archived=asset.get('archived',False)
+   if not isinstance(asset_archived,bool):raise ValueError(f'{asset_label}.archived must be a boolean')
+   if asset_archived:_utc_timestamp(asset.get('archived_snapshot_at'),f'{asset_label}.archived_snapshot_at')
   if asset_total!=release_total:raise ValueError(f'{label}.total_downloads must equal its asset counts')
   if release_package_total>release_total:raise ValueError(f'{label}.package_total cannot exceed total_downloads')
  if sum(release['package_total'] for release in releases)!=package_total:raise ValueError('package_total must equal the release package totals')
@@ -127,10 +153,11 @@ def main():
   if hashlib.sha256(image_path.read_bytes()).hexdigest()!=record['sha256']:raise ValueError(f'Screenshot hash mismatch: {filename}; regenerate image and provenance together')
  def screenshot_url(filename):return 'assets/'+filename+'?v='+screenshot['images'][filename]['sha256'][:12]
  style_version=hashlib.sha256((ROOT/'website/style.css').read_bytes()).hexdigest()[:12]
+ app_version=hashlib.sha256((ROOT/'website/app.js').read_bytes()).hexdigest()[:12]
  template=(ROOT/'website/template.html').read_text();out=args.out
  if out.exists():shutil.rmtree(out)
  out.mkdir(parents=True)
- shutil.copytree(ROOT/'website/assets',out/'assets',ignore=shutil.ignore_patterns('*.ttf','*.png','NOTICE.txt','source.json'))
+ shutil.copytree(ROOT/'website/assets',out/'assets',ignore=shutil.ignore_patterns('*.ttf','*.png','NOTICE.txt','source.json','play-space.svg','github-cover-*.webp'))
  shutil.copytree(ROOT/'website/updates',out/'updates')
  for filename in ('style.css','app.js'):shutil.copy2(ROOT/'website'/filename,out/filename)
  snapshot=stats if stats is not None else {'schema':1,'available':False}
@@ -165,9 +192,9 @@ def main():
   picture=tag('picture');picture.append(tag('source',{'type':'image/avif','srcset':screenshot_url('deckivo-ui.avif')}));picture.append(tag('img',{'src':screenshot_url('deckivo-ui.webp'),'alt':{'ru':'Настоящий экран Deckivo до привязки консоли','en':'Real Deckivo setup screen before console pairing'}.get(code,'Deckivo · setup screen'),'width':str(screenshot['images']['deckivo-ui.webp']['width']),'height':str(screenshot['images']['deckivo-ui.webp']['height']),'fetchpriority':'high'}));hero.append(picture)
   hero.append(tag('p',{'class':'small screenshot-caption'},copy['screenshot_caption'].format(version=screenshot['version'],build=screenshot['build'],released=ANDROID_VERSION,linux=f'{LINUX_VERSION} b{LINUX_BUILD}')))
   for node in soup.select('.guide-link'):node['href']=f'https://github.com/remteh-by/remteh-remote-play/blob/main/docs/guides/{code}.md'+('#'+node['data-anchor'] if node.get('data-anchor') else '');node['data-event']='guide'
-  linux=soup.select_one('.download-row[data-anchor="ubuntu"]');linux['href']=LINUX_URL;linux['data-event']='download-linux'
-  linux_test=soup.select_one('[data-i="linux_test"]');linux_test.find_parent('tr').select('th,td')[1].string=f'{LINUX_VERSION} · #{LINUX_BUILD}'
-  apk=soup.select_one('.download-row:not(.guide-link)');apk['href']=ANDROID_URL;apk['data-event']='download-apk'
+  linux=soup.select_one('.package-link[data-platform="linux"]');linux['href']=LINUX_URL;linux['data-event']='download-linux'
+  apk=soup.select_one('.package-link[data-platform="android"]');apk['href']=ANDROID_URL;apk['data-event']='download-apk'
+  mac=soup.select_one('.package-link[data-platform="macos"]');mac['href']=MAC_URL;mac['data-event']='download-macos'
   stats_section=soup.select_one('#download-stats');stats_section.clear()
   stats_heading=tag('div',{'class':'section-heading'});stats_heading.append(tag('h2',{'id':'download-stats-title'},download_text['title']));stats_heading.append(tag('p',text=download_text['lead']));stats_section.append(stats_heading)
   if stats is None:
@@ -183,16 +210,27 @@ def main():
    generated=tag('p');generated.append(download_text['generated']+': ');generated.append(tag('time',{'datetime':stats['generated_at']},display_timestamp(stats['generated_at'])));metadata.append(generated)
    metadata.append(tag('a',{'href':f"https://github.com/{stats['repository']}/releases"},download_text['source']));stats_section.append(metadata)
   stats_section.append(tag('p',{'class':'stats-method'},download_text['methodology']))
+  if stats is not None and any(release.get('archived',False) for release in stats['releases']):
+   archive_label,archive_note=ARCHIVE_COPY[code];note=tag('p',{'class':'stats-archive-note'});note.append(tag('strong',text=archive_label+'. '));note.append(archive_note)
+   if stats.get('history_snapshot_at'):
+    note.append(' ');note.append(download_text['generated']+': ');note.append(tag('time',{'datetime':stats['history_snapshot_at']},display_timestamp(stats['history_snapshot_at'])))
+   stats_section.append(note)
   if stats is not None:
    releases_section=tag('div',{'class':'stats-releases','aria-labelledby':'download-stats-releases'});releases_heading=tag('h3',{'id':'download-stats-releases'},download_text['releases_heading']);releases_heading.append(tag('span',{'class':'sr-only'},f" · {download_text['release_count']}: {len(stats['releases'])}"));releases_section.append(releases_heading)
    for release in stats['releases']:
-    release_details=tag('details',{'class':'release-stat'});summary=tag('summary');summary.append(tag('strong',text=release['tag']));summary.append(tag('span',{'class':'release-summary-counts'},f"{download_text['package_label']}: {format_count(release['package_total'])} · {download_text['all_assets_label']}: {format_count(release['total_downloads'])}"));release_details.append(summary)
-    release_content=tag('div',{'class':'release-content'});release_meta=tag('p',{'class':'release-meta'});published=tag('span');published.append(download_text['published']+': ');published.append(tag('time',{'datetime':release['published_at']},display_timestamp(release['published_at'])));release_meta.append(published);release_meta.append(tag('span',text=download_text['prerelease'] if release['prerelease'] else download_text['stable']));release_meta.append(tag('a',{'href':release['url']},download_text['open_release']));release_content.append(release_meta)
+    archived=release.get('archived',False);release_details=tag('details',{'class':'release-stat archived-release' if archived else 'release-stat'});summary=tag('summary');summary.append(tag('strong',text=release['tag']));summary.append(tag('span',{'class':'release-summary-counts'},f"{download_text['package_label']}: {format_count(release['package_total'])} · {download_text['all_assets_label']}: {format_count(release['total_downloads'])}"));release_details.append(summary)
+    release_content=tag('div',{'class':'release-content'});release_meta=tag('p',{'class':'release-meta'});published=tag('span');published.append(download_text['published']+': ');published.append(tag('time',{'datetime':release['published_at']},display_timestamp(release['published_at'])));release_meta.append(published);release_meta.append(tag('span',text=download_text['prerelease'] if release['prerelease'] else download_text['stable']))
+    if archived:
+     archive_status=tag('span',{'class':'archived-label'},ARCHIVE_COPY[code][0]);archive_status.append(': ');archive_status.append(tag('time',{'datetime':release['archived_snapshot_at']},display_timestamp(release['archived_snapshot_at'])));release_meta.append(archive_status)
+    else:release_meta.append(tag('a',{'href':release['url']},download_text['open_release']))
+    release_content.append(release_meta)
     scroll=tag('div',{'class':'table-scroll','tabindex':'0','role':'region','aria-label':release['tag']+' · '+download_text['all_assets_label']});table=tag('table',{'class':'asset-table'});table.append(tag('caption',{'class':'sr-only'},release['tag']+' · '+download_text['all_assets_label']));thead=tag('thead');header_row=tag('tr')
     for heading in (download_text['asset'],download_text['category'],download_text['downloads']):header_row.append(tag('th',{'scope':'col'},heading))
     thead.append(header_row);table.append(thead);tbody=tag('tbody')
     for asset in release['assets']:
-     row=tag('tr');row.append(tag('th',{'scope':'row'},asset['name']));category_key='platform_'+asset['category'] if asset['category'] in PLATFORM_KEYS else 'cat_'+asset['category'];row.append(tag('td',text=download_text[category_key]));row.append(tag('td',text=format_count(asset['count'])));tbody.append(row)
+     asset_archived=asset.get('archived',False);row=tag('tr',{'class':'archived-asset'} if asset_archived else None);row.append(tag('th',{'scope':'row'},asset['name']));category_key='platform_'+asset['category'] if asset['category'] in PLATFORM_KEYS else 'cat_'+asset['category'];category_text=download_text[category_key]
+     if asset_archived:category_text+=' · '+ARCHIVE_COPY[code][0]
+     row.append(tag('td',text=category_text));row.append(tag('td',text=format_count(asset['count'])));tbody.append(row)
     table.append(tbody);scroll.append(table);release_content.append(scroll);release_details.append(release_content);releases_section.append(release_details)
    stats_section.append(releases_section)
   for table in soup.select('table'):
@@ -235,12 +273,12 @@ def main():
   else:privacy.decompose()
   for old in soup.select('footer p'):
    if 'PS5 product photo' in old.get_text():old.decompose()
-  soup.footer.append(tag('p',{'class':'small'}));soup.footer.select('p')[-1].append(tag('a',{'href':'https://remteh.by/'},'Ремонт PS5, Switch и гаджетов в Минске — RemTeh.by' if code=='ru' else 'Repairs for PS5, Switch and gadgets in Minsk — RemTeh.by'))
+  soup.footer.append(tag('p',{'class':'small'}));soup.footer.select('p')[-1].append(tag('a',{'href':'https://remteh.by/remont-konsoli?utm_source=deckivo_site&utm_medium=referral&utm_campaign=deckivo'},'Ремонт игровых приставок в Минске — RemTeh.by' if code=='ru' else 'Game console repair in Minsk — RemTeh.by'))
   schema=[{'@context':'https://schema.org','@type':'SoftwareApplication','name':'Deckivo','operatingSystem':'Android 8+','applicationCategory':'GameApplication','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'softwareVersion':ANDROID_VERSION,'downloadUrl':apk['href'],'license':f'https://github.com/remteh-by/remteh-remote-play/blob/v{ANDROID_VERSION}/COPYING','url':address(code)}, {'@context':'https://schema.org','@type':'SoftwareApplication','name':'Deckivo for Switchroot Ubuntu','operatingSystem':'Switchroot Ubuntu 24.04 ARM64','applicationCategory':'GameApplication','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'softwareVersion':LINUX_VERSION,'downloadUrl':LINUX_URL,'license':f'https://github.com/remteh-by/remteh-remote-play/blob/v{LINUX_VERSION}/COPYING','url':address(code)}, {'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':qa['q'],'acceptedAnswer':{'@type':'Answer','text':qa['a']}} for qa in copy['faq']]}]
   soup.head.append(tag('script',{'type':'application/ld+json'},json.dumps(schema,ensure_ascii=False).replace('</','<\\/')))
   runtime={'lang':code,'prefix':prefix,'languages':NAMES,'counter':counter}
   soup.body.append(tag('script',{'id':'page-config','type':'application/json'},json.dumps(runtime,ensure_ascii=False).replace('</','<\\/')))
-  soup.body.append(tag('script',{'src':'app.js?v=061','defer':''}))
+  soup.body.append(tag('script',{'src':'app.js?v='+app_version,'defer':''}))
   # All local assets are relative; moving the base URL never changes the template.
   for node in soup.select('[src],[srcset],link[href]'):
    for attr in ('src','srcset','href'):

@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "version": "0.8.2",
+  "channel": "experimental-prerelease",
+  "date": "2026-10-25",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.2",
+    "versionCode": 27,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.2-arm64.apk",
+    "apkBytes": 9444938,
+    "sha256": "6ab7d82de26abdcef9c57a5eb4def98511ed9cf308b8e52497f884fe46a3c2f5",
+    "unit_tests": 37,
+    "unit_failures": 0,
+    "release_assemble": "passed",
+    "lint": {
+      "new_findings": 0,
+      "existing_baseline": 96
+    },
+    "certificate_unchanged": true,
+    "physical_acceptance": "not tested: device running Ubuntu"
+  },
+  "native": {
+    "unit_tests": 74,
+    "unit_failures": 0,
+    "macos_build": 18,
+    "linux_build": 18,
+    "macos_codesign": "ad-hoc verification passed",
+    "macos_notarized": false,
+    "packages": [
+      {
+        "build": 18,
+        "bytes": 31861806,
+        "filename": "Deckivo-macos-0.8.2-b18.zip",
+        "platform": "macos-arm64",
+        "sha256": "610a52126ef35d444957b61bfb2d08c08f05b810911dc9d28e8da2b9960824ea",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-macos-0.8.2-b18.zip",
+        "version": "0.8.2"
+      },
+      {
+        "build": 18,
+        "bytes": 3572891,
+        "filename": "Deckivo-Linux-0.8.2-b18-source.zip",
+        "platform": "linux-switch-arm64",
+        "sha256": "b5eb218de09b529de50485e12e4a234cf8c761603de158860af077c9caec0fa9",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-Linux-0.8.2-b18-source.zip",
+        "version": "0.8.2"
+      }
+    ],
+    "physical_update_acceptance": "pending public-channel rollout"
+  },
+  "links": {
+    "repository": "https://github.com/remteh-by/remteh-remote-play",
+    "remteh_utm_sources": [
+      "deckivo_android",
+      "deckivo_macos",
+      "deckivo_linux",
+      "deckivo_site",
+      "github"
+    ],
+    "utm_campaign": "deckivo",
+    "personal_identifiers_in_urls": false,
+    "kofi_unchanged": true
+  },
+  "website": {
+    "languages": 16,
+    "purpose": "device-first downloads with responsive layout",
+    "validation": "passed local rendered acceptance",
+    "viewports": [
+      390,
+      1173,
+      1366,
+      1440,
+      1466,
+      1512,
+      1920,
+      2560,
+      3840
+    ],
+    "locales_tested": 16,
+    "clipped_visible_elements": 0,
+    "console_errors": 0,
+    "javascript_disabled_downloads": 3,
+    "download_statistics_tests": 9,
+    "public_acceptance": "pending deployment"
+  },
+  "limits": [
+    "No new Android physical installation test",
+    "No sustained gameplay/controller test on this release",
+    "Windows and Linux x64 remain unavailable"
+  ]
+}

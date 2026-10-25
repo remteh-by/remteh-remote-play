@@ -3,9 +3,21 @@
 Pages deploys `build/site`, generated from `website/template.html`,
 `localization/site.json`, `localization/downloads.json`, `design-system/site.json`
 and the shared support config.
+`website/template.html` is the single HTML source of truth; Pages uploads only
+the generated `build/site` directory. There is no separately maintained static
+`index.html`, service worker, or browser cache manifest that can serve an older
+hero or download chooser.
 The root is English; 15 native language URLs include full HTML, metadata,
 canonical/hreflang and visible FAQ content without JavaScript. Auto only suggests
 another URL. Arabic is RTL. No language redirect or local-storage dependency.
+
+The first screen explains that Deckivo is installed on the playback device and
+that Remote Play must be enabled on the PS5. It then separates Android, Apple
+Silicon Mac and Switch OLED / Ubuntu into three choices. Android and Mac present
+their packages as install-or-update downloads with a separate setup guide. Linux
+keeps the update and first-install paths explicit because its first installation
+has additional dependencies. Windows, Intel Mac and Linux x64 remain explicitly
+unavailable.
 
 ```sh
 python3 -m venv .build-tools
@@ -15,15 +27,16 @@ python3 -m venv .build-tools
 python3 -m http.server 8765 --bind 127.0.0.1 --directory build/site
 ```
 
-Public versions are platform-specific. Switchroot Ubuntu ARM64 is offered as
-`Deckivo-Linux-0.8.1-b17-source.zip`. Its public updater was verified on Switch
-OLED / Ubuntu 24.04.4 ARM64 from 0.6.1 b10 to 0.8.1 b17: all 80 installer files
-matched the public ZIP, the startup acknowledgment matched the live process,
-pairing was retained, and the enabled systemd user timer fetched the public feed
-with the GUI closed. Gameplay on 0.8.1 remains a separate pending test. Android
-remains `Deckivo-0.6.1-arm64.apk`, and Apple Silicon macOS remains
-`Deckivo-macos-0.6.1-b10.zip`. Never relabel the Android APK or Mac ZIP as 0.8.1,
-and never imply that one shared version applies to every platform.
+The 0.8.2 release set is `Deckivo-0.8.2-arm64.apk` (Android build 27),
+`Deckivo-macos-0.8.2-b18.zip` and
+`Deckivo-Linux-0.8.2-b18-source.zip` (desktop build 18). Real-device gameplay
+and update acceptance for 0.8.2 remain pending and must not be inferred from the
+package version. Historical public-updater acceptance belongs to Linux 0.8.1
+b17 on Switch OLED / Ubuntu 24.04.4 ARM64: all 80 installer files matched the
+public ZIP, startup acknowledgment matched the live process, pairing was
+retained, and the enabled systemd user timer fetched the public feed with the GUI
+closed. Gameplay on 0.8.1 remains a separate pending test. Keep the tested-build
+table exact when current packages advance.
 
 The optional `--download-stats PATH` argument accepts the validated snapshot
 produced by `scripts/download-stats.py`. A supplied malformed or inconsistent
@@ -49,6 +62,8 @@ then `scripts/build-site-assets.py --capture-only` with the documented build dep
 Use `--source-root /path/to/checkout` when capturing a separate development checkout.
 The Pages build validates image SHA-256 against the screenshot manifest and fails
 on mismatches. Inspect the actual image and version caption before publication.
+Generated CSS, JavaScript and both actual-UI image formats carry SHA-derived URL
+versions. Any content change therefore produces a new public cache key.
 The WOFF2 is a Latin/Cyrillic IBM Plex Sans subset renamed Deckivo Sans Subset under the included OFL. CJK,
 Arabic and Hindi use system fonts and do not preload the web font.
 

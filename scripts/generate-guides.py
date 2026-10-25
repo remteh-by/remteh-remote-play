@@ -10,11 +10,13 @@ links=' · '.join(f'[{x["name"]}]({code}.md)' for code,x in catalog.items())
 for code,copy in catalog.items():
  lines=['# '+copy['title'],'',f'Deckivo **{VERSION} preview** · 2026-10-25','',links,'']
  for i in range(8):
-  if i in (2,3):lines += [f'<a id="{"macos" if i==2 else "ubuntu"}"></a>','']
-  lines+=['## '+copy['heads'][i],'',copy['p'][i],'']
+  anchors={1:'android',2:'macos',3:'ubuntu'}
+  if i in anchors:lines += [f'<a id="{anchors[i]}"></a>','']
+  paragraph=copy['p'][i].replace('{VERSION}',VERSION).replace('{BUILD}',str(BUILD))
+  lines+=['## '+copy['heads'][i],'',paragraph,'']
   if i==1:lines += [f'[Android APK]({download}Deckivo-{VERSION}-arm64.apk) · [Release / SHA-256]({release})','']
   if i==2:lines += [f'[Mac ZIP · {VERSION} b{BUILD}]({download}Deckivo-macos-{VERSION}-b{BUILD}.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)','']
-  if i==3:lines += ['```sh','# Initial runtime (complete source kit)','python3 desktop/linux/build-install.py','# Interactive pairing','python3 desktop/linux/pair.py','# Upgrade an existing runtime only','python3 desktop/linux/upgrade.py','```','',f'[Linux requirements](../LINUX.md) · [Complete source kit]({download}Deckivo-{VERSION}-sources.zip)','']
+  if i==3:lines += ['```sh','# Initial runtime (complete source kit)','python3 desktop/linux/build-install.py','# Interactive pairing','python3 desktop/linux/pair.py','# Upgrade an existing runtime only','python3 desktop/linux/upgrade.py','```','',f'[Linux update ZIP · {VERSION} b{BUILD}]({download}Deckivo-Linux-{VERSION}-b{BUILD}-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit]({download}Deckivo-{VERSION}-sources.zip)','']
   if i==6:lines += ['[Update details](../UPDATES.md)','']
   if i==7:lines += ['[Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)','']
  text=support['texts'][code];lines += ['<!-- SUPPORT:START -->','## '+text['support'],'',text['support_body'],'']

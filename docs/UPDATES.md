@@ -1,6 +1,6 @@
 # Deckivo updates
 
-## Public channel: Linux 0.8.1, Android and macOS 0.6.1
+## Public channel: Deckivo 0.8.2
 
 The public release is experimental. Keep preview releases enabled if you want
 0.x updates. Install over the existing application; never clear registration data

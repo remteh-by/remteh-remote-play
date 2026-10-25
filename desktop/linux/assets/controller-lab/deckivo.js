@@ -1,6 +1,9 @@
 import tool from '/media/remteh-gamepad/v20261011/tools/gamepad-test/index.js';
 import {installAndroidBridge} from './native-bridge.js';
 installAndroidBridge();
+const attribution=document.querySelector('#remteh-attribution'),agent=navigator.userAgent||'';
+const attributionSource=/Android/i.test(agent)?'deckivo_android':/(Macintosh|Mac OS X)/i.test(agent)?'deckivo_macos':/(Linux|X11)/i.test(agent)?'deckivo_linux':null;
+if(attribution&&attributionSource)attribution.href=`https://remteh.by/?utm_source=${attributionSource}&utm_medium=app&utm_campaign=deckivo`;
 const language=new URLSearchParams(location.search).get('lang')==='ru'?'ru':'en';
 document.documentElement.lang=language;
 const picker=document.querySelector('#language');picker.value=language;picker.addEventListener('change',()=>{location.search='?lang='+picker.value;});
