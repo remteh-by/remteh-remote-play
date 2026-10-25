@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "version": "0.8.0",
+  "build": 16,
+  "source_commit": "f054919162a851f7cd9225cb127975835d7233c8",
+  "source_dirty": false,
+  "ui_source_sha256": "44a4422ecd99f34ea8a2649b8c5e92c4345f0959c643f7d261879aa1418e867a",
+  "capture_state": "unpaired",
+  "development_preview": true,
+  "captured_at": "2026-10-25T18:14:08Z",
+  "images": {
+    "deckivo-ui.webp": {
+      "sha256": "bd171ffb351ddc6ca6624ad302d2ce7511fcb59262be666391c25bb56e90b3c9",
+      "bytes": 38140,
+      "width": 1280,
+      "height": 720
+    },
+    "deckivo-ui.avif": {
+      "sha256": "e2598a3c8109ee94928cf583a9c4ec26256b8c48c73a9d2fd247d8dbe43e0371",
+      "bytes": 22931,
+      "width": 1280,
+      "height": 720
+    },
+    "github-cover.webp": {
+      "sha256": "5d000ef94551d67be22227cada23d3bf15251f365e047852139bc461e54d5dbf",
+      "bytes": 33684,
+      "width": 1200,
+      "height": 630
+    }
+  }
+}

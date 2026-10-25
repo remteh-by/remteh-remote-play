@@ -1,6 +1,6 @@
 # Publishing a version
 
-Pre-1.0 versions are experimental prereleases. Publication requires an explicit owner instruction, completed artifact checks, a truthful device/version test matrix, matching source and license notices. Do not present a prerelease as a stable 1.0 release. Preserve existing tags and release assets.
+Pre-1.0 versions are experimental prereleases. The owner’s standing instruction of 2026-10-25 is to publish ready Deckivo updates on GitHub and verify their delivery; a local build or install alone does not complete an update. Complete artifact checks, keep a truthful device/version test matrix, and include matching source and license notices. Do not present a prerelease as a stable 1.0 release. Preserve existing tags and release assets.
 
 Repository: `remteh-by/remteh-remote-play`. Release tags use `vX.Y.Z`.
 
@@ -22,3 +22,32 @@ gh release create vX.Y.Z --repo remteh-by/remteh-remote-play --verify-tag --draf
 ```
 
 After reviewing the actual draft assets, publish it with `gh release edit vX.Y.Z --repo remteh-by/remteh-remote-play --draft=false`. GitHub publication alone does not install the update on Android. Versions starting with 0.2.0 read the `update.json` asset from this repository. Generate it from the signed APK with `scripts/update-manifest.py`, publish it with the exact APK and source, and test both manual checks and installation. Never change the applicationId or signing key to rebrand the app. The repository slug stays stable for existing update feeds.
+
+## Completion includes delivery
+
+- Publish the tag, release notes, exact signed platform packages, corresponding
+  source and licenses, hashes and verification report together. Keep prerelease
+  status while the product is experimental.
+- Publish Android `update.json` and the signed desktop `updates/index.json` /
+  `index.sig` for the platforms actually released. The site and README must link
+  to those exact artifacts; do not advertise a nonexistent build for another OS.
+- Read back public versions, package sizes and SHA-256 values, verify signatures
+  and confirm the update candidate from each supported client. Publication and
+  actual on-device installation are separate checks.
+- An update with a concrete failing build/test/release blocker remains incomplete:
+  name the blocker and the last delivered version. Never silently leave the only
+  new version on the developer’s computer or claim unperformed hardware tests.
+- Download statistics refresh from GitHub release asset counters at site deploy,
+  release publication/edit, and the hourly scheduled Pages build. They count
+  repeated/automatic/verification downloads too; they are not unique users.
+
+## Red flag: screenshots must match the app
+
+An outdated GitHub or Pages screenshot is a release defect. Every UI-changing
+release must capture the actual app, refresh the README cover, Pages AVIF/WebP
+and relevant guide images, and verify the public rendered result. Keep real
+console/controller photographs; never replace the application view with a mockup.
+Use isolated empty profile storage to exclude account IDs, keys and personal data.
+Record the exact screenshot version/build, source revision and image hashes.
+A development preview shown before publication must be labelled explicitly;
+its caption must not imply that the older downloadable release contains that UI.
