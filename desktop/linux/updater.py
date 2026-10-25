@@ -9,6 +9,8 @@ import ssl
 import sys
 import urllib.parse
 import urllib.request
+from contextlib import contextmanager
+import fcntl
 
 from PyQt5.QtCore import QThread,pyqtSignal
 
@@ -49,6 +51,37 @@ def valid_base(url):
 
 class UpdateCancelled(Exception):
     pass
+
+
+class UpdateBusy(Exception):
+    pass
+
+
+@contextmanager
+def update_lock(cache,blocking=False):
+    """Serialize GUI, timer and installer access to the update cache."""
+    cache=Path(cache);cache.mkdir(parents=True,exist_ok=True);cache.chmod(0o700)
+    descriptor=os.open(cache/'.update.lock',os.O_CREAT|os.O_RDWR,0o600)
+    try:
+        flags=fcntl.LOCK_EX if blocking else fcntl.LOCK_EX|fcntl.LOCK_NB
+        try:fcntl.flock(descriptor,flags)
+        except BlockingIOError as error:raise UpdateBusy('Another update operation is in progress') from error
+        yield
+    finally:
+        os.close(descriptor)
+
+
+def private_bytes(path,data):
+    path=Path(path);path.parent.mkdir(parents=True,exist_ok=True);path.parent.chmod(0o700)
+    temporary=path.with_name(path.name+'.'+str(os.getpid())+'.part')
+    descriptor=os.open(temporary,os.O_CREAT|os.O_TRUNC|os.O_WRONLY,0o600)
+    try:
+        with os.fdopen(descriptor,'wb') as output:
+            output.write(data);output.flush();os.fsync(output.fileno())
+        temporary.replace(path);path.chmod(0o600)
+    except BaseException:
+        temporary.unlink(missing_ok=True)
+        raise
 
 
 def allowed_redirect(original, destination):
@@ -110,23 +143,49 @@ def candidate(index,platform,current_version,current_build):
     return max(result,key=lambda row:(version_key(row['version']),row['build']),default=None)
 
 
-def check_and_download(base,platform,current_version,current_build,cache,public_key,cancel=None):
+def _check_and_download(base,platform,current_version,current_build,cache,public_key,cancel=None):
     if not valid_base(base):raise ValueError('Invalid update channel')
     data=fetch(base+'index.json',65536,cancel);sig=fetch(base+'index.sig',1024,cancel)
     verify_signature(data,sig,public_key)
     cancelled(cancel)
-    cache.mkdir(parents=True,exist_ok=True);cache.chmod(0o700)
+    cache=Path(cache);digest=hashlib.sha256(data).hexdigest()
+    metadata=cache/'metadata'/digest
     for name,raw in (('index.json',data),('index.sig',sig)):
-        target=cache/name;target.write_bytes(raw);target.chmod(0o600)
+        target=metadata/name
+        if not target.is_file() or target.read_bytes()!=raw:private_bytes(target,raw)
     entry=candidate(json.loads(data),platform,current_version,current_build)
     if entry is None:return None
-    cache.mkdir(parents=True,exist_ok=True);cache.chmod(0o700);file=cache/entry['filename']
+    package=cache/'packages'/entry['sha256'];file=package/entry['filename']
     if not file.exists() or file.stat().st_size!=entry['bytes'] or hashlib.sha256(file.read_bytes()).hexdigest()!=entry['sha256']:
         raw=fetch(entry.get('url') or base+entry['filename'],entry['bytes'],cancel)
         if len(raw)!=entry['bytes'] or hashlib.sha256(raw).hexdigest()!=entry['sha256']:raise ValueError('Update file is incomplete or damaged')
         cancelled(cancel)
-        temporary=file.with_suffix(file.suffix+'.part');temporary.write_bytes(raw);temporary.chmod(0o600);temporary.replace(file)
-    return {'entry':entry,'file':str(file),'index':str(cache/'index.json'),'signature':str(cache/'index.sig')}
+        private_bytes(file,raw)
+    return {'entry':entry,'file':str(file),'index':str(metadata/'index.json'),
+        'signature':str(metadata/'index.sig'),'cache':str(cache.resolve())}
+
+
+def check_and_download(base,platform,current_version,current_build,cache,public_key,cancel=None,locked=False):
+    if locked:return _check_and_download(base,platform,current_version,current_build,cache,public_key,cancel)
+    with update_lock(cache):
+        return _check_and_download(base,platform,current_version,current_build,cache,public_key,cancel)
+
+
+def validate_staged(update,platform,current_version,current_build,cache,public_key):
+    """Revalidate a timer-staged descriptor without contacting the network."""
+    if not isinstance(update,dict) or not isinstance(update.get('entry'),dict):raise ValueError('Invalid staged update')
+    root=Path(cache).resolve()
+    paths={name:Path(update[name]).resolve() for name in ('file','index','signature')}
+    for path in paths.values():path.relative_to(root)
+    if paths['index'].stat().st_size>65536 or paths['signature'].stat().st_size>1024:raise ValueError('Invalid staged metadata')
+    data=paths['index'].read_bytes();signature=paths['signature'].read_bytes()
+    verify_signature(data,signature,public_key)
+    entry=update['entry'];expected=candidate(json.loads(data),platform,current_version,current_build)
+    if expected is None or entry!=expected:raise ValueError('Staged update is not the current candidate')
+    package=paths['file']
+    if package.name!=entry['filename'] or package.stat().st_size!=entry['bytes'] or hashlib.sha256(package.read_bytes()).hexdigest()!=entry['sha256']:
+        raise ValueError('Staged update file is incomplete or damaged')
+    return update
 
 
 class UpdateWorker(QThread):

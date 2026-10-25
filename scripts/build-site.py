@@ -11,6 +11,12 @@ NAMES={'en':'English','ru':'Русский','uk':'Українська','pl':'Po
 SYSTEM_FONT={'zh','ja','ko','ar','hi'}
 PLATFORM_KEYS=('android','macos','linux','bundle')
 ASSET_CATEGORIES={*PLATFORM_KEYS,'source','metadata','other'}
+ANDROID_VERSION='0.6.1'
+MAC_VERSION='0.6.1';MAC_BUILD=10
+LINUX_VERSION='0.8.1';LINUX_BUILD=17
+ANDROID_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/Deckivo-{ANDROID_VERSION}-arm64.apk'
+MAC_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{MAC_VERSION}/Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip'
+LINUX_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{LINUX_VERSION}/Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip'
 
 
 def _non_negative_int(value,label):
@@ -156,10 +162,11 @@ def main():
   links=soup.select_one('#language-links');links.clear()
   for lang,name in NAMES.items():links.append(tag('a',{'href':prefix+('' if lang=='en' else lang+'/') or './','lang':lang,'hreflang':lang,'class':'selected' if code==lang else ''},name))
   hero=soup.select_one('.hero-art');hero.clear();hero['aria-hidden']='false'
-  picture=tag('picture');picture.append(tag('source',{'type':'image/avif','srcset':screenshot_url('deckivo-ui.avif')}));picture.append(tag('img',{'src':screenshot_url('deckivo-ui.webp'),'alt':{'ru':'Настоящий экран Deckivo до привязки консоли','en':'Real Deckivo setup screen before console pairing'}.get(code,'Deckivo · setup screen'),'width':'1280','height':'720','fetchpriority':'high'}));hero.append(picture)
-  hero.append(tag('p',{'class':'small screenshot-caption'},copy['screenshot_caption'].format(version=screenshot['version'],build=screenshot['build'],released='0.6.1')))
+  picture=tag('picture');picture.append(tag('source',{'type':'image/avif','srcset':screenshot_url('deckivo-ui.avif')}));picture.append(tag('img',{'src':screenshot_url('deckivo-ui.webp'),'alt':{'ru':'Настоящий экран Deckivo до привязки консоли','en':'Real Deckivo setup screen before console pairing'}.get(code,'Deckivo · setup screen'),'width':str(screenshot['images']['deckivo-ui.webp']['width']),'height':str(screenshot['images']['deckivo-ui.webp']['height']),'fetchpriority':'high'}));hero.append(picture)
+  hero.append(tag('p',{'class':'small screenshot-caption'},copy['screenshot_caption'].format(version=screenshot['version'],build=screenshot['build'],released=ANDROID_VERSION,linux=f'{LINUX_VERSION} b{LINUX_BUILD}')))
   for node in soup.select('.guide-link'):node['href']=f'https://github.com/remteh-by/remteh-remote-play/blob/main/docs/guides/{code}.md'+('#'+node['data-anchor'] if node.get('data-anchor') else '');node['data-event']='guide'
-  apk=soup.select_one('.download-row:not(.guide-link)');apk['href']='https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk';apk['data-event']='download-apk'
+  linux=soup.select_one('.download-row[data-anchor="ubuntu"]');linux['href']=LINUX_URL;linux['data-event']='download-linux'
+  apk=soup.select_one('.download-row:not(.guide-link)');apk['href']=ANDROID_URL;apk['data-event']='download-apk'
   stats_section=soup.select_one('#download-stats');stats_section.clear()
   stats_heading=tag('div',{'class':'section-heading'});stats_heading.append(tag('h2',{'id':'download-stats-title'},download_text['title']));stats_heading.append(tag('p',text=download_text['lead']));stats_section.append(stats_heading)
   if stats is None:
@@ -228,7 +235,7 @@ def main():
   for old in soup.select('footer p'):
    if 'PS5 product photo' in old.get_text():old.decompose()
   soup.footer.append(tag('p',{'class':'small'}));soup.footer.select('p')[-1].append(tag('a',{'href':'https://remteh.by/'},'Ремонт PS5, Switch и гаджетов в Минске — RemTeh.by' if code=='ru' else 'Repairs for PS5, Switch and gadgets in Minsk — RemTeh.by'))
-  schema=[{'@context':'https://schema.org','@type':'SoftwareApplication','name':'Deckivo','operatingSystem':'Android 8+, macOS Apple Silicon, Switchroot Ubuntu 24.04 ARM64','applicationCategory':'GameApplication','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'softwareVersion':'0.6.1','downloadUrl':apk['href'],'license':'https://github.com/remteh-by/remteh-remote-play/blob/v0.6.1/COPYING','url':address(code)}, {'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':qa['q'],'acceptedAnswer':{'@type':'Answer','text':qa['a']}} for qa in copy['faq']]}]
+  schema=[{'@context':'https://schema.org','@type':'SoftwareApplication','name':'Deckivo','operatingSystem':'Android 8+','applicationCategory':'GameApplication','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'softwareVersion':ANDROID_VERSION,'downloadUrl':apk['href'],'license':f'https://github.com/remteh-by/remteh-remote-play/blob/v{ANDROID_VERSION}/COPYING','url':address(code)}, {'@context':'https://schema.org','@type':'SoftwareApplication','name':'Deckivo for Switchroot Ubuntu','operatingSystem':'Switchroot Ubuntu 24.04 ARM64','applicationCategory':'GameApplication','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'softwareVersion':LINUX_VERSION,'downloadUrl':LINUX_URL,'license':f'https://github.com/remteh-by/remteh-remote-play/blob/v{LINUX_VERSION}/COPYING','url':address(code)}, {'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':qa['q'],'acceptedAnswer':{'@type':'Answer','text':qa['a']}} for qa in copy['faq']]}]
   soup.head.append(tag('script',{'type':'application/ld+json'},json.dumps(schema,ensure_ascii=False).replace('</','<\\/')))
   runtime={'lang':code,'prefix':prefix,'languages':NAMES,'counter':counter}
   soup.body.append(tag('script',{'id':'page-config','type':'application/json'},json.dumps(runtime,ensure_ascii=False).replace('</','<\\/')))

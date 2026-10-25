@@ -11,7 +11,7 @@ import tempfile
 import time
 import zipfile
 import uuid
-from updater import verify_signature,candidate
+from updater import verify_signature,candidate,update_lock,validate_staged
 from storage import HERE,PRIVATE,private_json,load_json
 
 STARTUP_TIMEOUT=120
@@ -76,9 +76,14 @@ def extract(archive,directory):
             except (ValueError,RuntimeError):raise ValueError('Symbolic link escapes the update')
 
 
-def main(descriptor,parent):
+def _main(descriptor,parent):
     os.umask(0o077)
     update=json.loads(Path(descriptor).read_text());entry=update['entry'];archive=Path(update['file'])
+    from session import VERSION
+    from build_meta import BUILD
+    platform='macos-arm64' if sys.platform=='darwin' else 'linux-switch-arm64' if sys.platform.startswith('linux') else ''
+    if not platform or entry.get('platform')!=platform:raise ValueError('Wrong target platform')
+    validate_staged(update,platform,VERSION,BUILD,PRIVATE/'updates',HERE/'assets/update-public.der')
     payload=Path(update['index']).read_bytes();signature=Path(update['signature']).read_bytes()
     verify_signature(payload,signature,HERE/'assets/update-public.der')
     if entry not in json.loads(payload)['packages']:raise ValueError('Package is outside signed index')
@@ -112,8 +117,6 @@ def main(descriptor,parent):
         process=launch_mac()
         confirm_or_rollback(entry,transaction,process,restore_mac,launch_mac)
     elif entry['platform']=='linux-switch-arm64':
-        from session import VERSION
-        from build_meta import BUILD
         if candidate({'schema':1,'packages':[entry]},entry['platform'],VERSION,BUILD) is None:raise ValueError('Update is already installed or older')
         result=subprocess.run([sys.executable,str(staging/'desktop/linux/upgrade.py'),'--json'],check=True,capture_output=True,text=True)
         backup=Path(json.loads(result.stdout)['backup'])
@@ -124,7 +127,13 @@ def main(descriptor,parent):
         process=launch_linux()
         confirm_or_rollback(entry,transaction,process,lambda:restore_backup(backup),launch_linux)
     else:raise ValueError('Wrong target platform')
-    private_json(PRIVATE/'update-receipt.json',receipt);(PRIVATE/'update-error.json').unlink(missing_ok=True);shutil.rmtree(staging)
+    private_json(PRIVATE/'update-receipt.json',receipt);(PRIVATE/'update-error.json').unlink(missing_ok=True)
+    (PRIVATE/'updates/pending.json').unlink(missing_ok=True);shutil.rmtree(staging)
+
+
+def main(descriptor,parent):
+    with update_lock(PRIVATE/'updates',blocking=True):
+        return _main(descriptor,parent)
 
 
 if __name__=='__main__':

@@ -1,3 +1,17 @@
+# 0.8.1 · Linux updater fix · 2026-10-25
+
+- Linux build 17 fixes the missing installed upgrade helper in clean 0.6.1
+  installations, and adds signed background update staging through a systemd
+  user timer. Installation still waits until Deckivo is open and idle.
+- Immutable, hash-addressed update caches and a shared lock protect concurrent
+  GUI/background checks; staged packages survive temporary network failures.
+- Includes the shared controller lab and keyboard/mouse settings developed in
+  0.7/0.8. Their full hardware matrix is not certified by updater tests.
+- This release contains only the Switchroot Ubuntu ARM64 upgrade and source;
+  published Android and macOS packages remain at 0.6.1.
+
+See [release notes](docs/releases/0.8.1.md).
+
 # 0.6.1 · 2026-10-25
 
 Shared support/QR and bounded thank-you policy; offline licenses; Android updater localization and Lint corrections; strict pure-Python RSA verification; native 120-second startup rollback; static 16-language site, own UI imagery and release SBOMs. See [release notes](docs/releases/0.6.1.md).

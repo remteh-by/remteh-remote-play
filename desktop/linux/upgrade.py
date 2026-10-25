@@ -23,6 +23,7 @@ DEST=Path.home()/'.local/share/deckivo'
 PRIVATE=Path.home()/'.config/deckivo'
 FILES=('deckivo.py','keyboard_mouse.py','input_overlay.py','controller_lab.py','launcher.py','storage.py','session.py','controller.py','ui.py','ui_theme.py',
        'support.py','support_policy.py','updater.py','rsa_verify.py','update_ui.py','install_update.py','build_meta.py','pair.py',
+       'update_background.py','upgrade.py',
        'deckivo.svg','README.md','UPSTREAM.json','native/tegra-decoder.c','native/kbm-bridge.c',
        'assets/play-space.svg','assets/ps5-console.png','assets/source.json',
        'assets/fonts/IBMPlexSans.ttf','assets/fonts/OFL.txt','assets/update-public.der','assets/support.json')+tuple('assets/support/'+p.name for p in (HERE/'assets/support').glob('*.svg'))
@@ -102,6 +103,14 @@ def main():
                 raise
         receipt={'upgraded_to':VERSION,'files':list(installed),'removed':removed,
             'previous':previous,'pairing_retained':True}
+        (backup/'receipt.json').write_text(json.dumps(receipt,indent=2))
+        try:
+            from update_background import install_user_timer,automatic_enabled
+            receipt['background_timer_prepared']=install_user_timer(None if '--json' in sys.argv else automatic_enabled())
+        except Exception:
+            # Timer setup is repairable on the next launch and must never turn a
+            # completed client-file transaction into a half-reported failure.
+            receipt['background_timer_prepared']=False
         (backup/'receipt.json').write_text(json.dumps(receipt,indent=2))
         if '--json' not in sys.argv:
             print('Deckivo '+VERSION+' installed. Pairing and preferences retained.')

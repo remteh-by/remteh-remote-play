@@ -15,6 +15,12 @@ python3 -m venv .build-tools
 python3 -m http.server 8765 --bind 127.0.0.1 --directory build/site
 ```
 
+Public versions are platform-specific. Switchroot Ubuntu ARM64 is offered as
+`Deckivo-Linux-0.8.1-b17-source.zip`; its current physical acceptance is still
+pending. Android remains `Deckivo-0.6.1-arm64.apk`, and Apple Silicon macOS
+remains `Deckivo-macos-0.6.1-b10.zip`. Never relabel the Android APK or Mac ZIP
+as 0.8.1, and never imply that one shared version applies to every platform.
+
 The optional `--download-stats PATH` argument accepts the validated snapshot
 produced by `scripts/download-stats.py`. A supplied malformed or inconsistent
 snapshot stops the build; omitting it keeps local builds working and renders a

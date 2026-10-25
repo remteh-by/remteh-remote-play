@@ -1,5 +1,7 @@
 import importlib.util
 from pathlib import Path
+import os
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -9,7 +11,7 @@ import upgrade
 
 
 class UpgradeTransaction(unittest.TestCase):
-    def run_upgrade(self,fail=False):
+    def run_upgrade(self,fail=False,timer_fail=False):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);dest=root/'deckivo';private=root/'private'
             (dest/'runtime/usr/bin').mkdir(parents=True);(dest/'runtime/usr/bin/chiaki').write_text('engine')
@@ -21,7 +23,8 @@ class UpgradeTransaction(unittest.TestCase):
                     raise OSError('injected disk write failure')
                 return original_copy(source,target)
             def compile_adapter(args,check):Path(args[-1]).write_text('new native')
-            with patch.object(upgrade,'DEST',dest),patch.object(upgrade,'PRIVATE',private),\
+            timer=patch('update_background.install_user_timer',side_effect=OSError('injected timer failure')) if timer_fail else patch('update_background.install_user_timer',return_value=False)
+            with timer,patch.object(upgrade,'DEST',dest),patch.object(upgrade,'PRIVATE',private),\
                  patch.object(upgrade.platform,'machine',lambda:'aarch64'),\
                  patch.object(upgrade.subprocess,'run',compile_adapter),patch.object(upgrade.shutil,'copy2',copy):
                 if fail:
@@ -36,9 +39,15 @@ class UpgradeTransaction(unittest.TestCase):
                 self.assertEqual((dest/'registration.json').read_text(),'private pairing')
                 for path in (root/'deckivo-backups').rglob('*'):
                     self.assertNotEqual(path.name,'registration.json')
+            if not fail:
+                self.assertTrue((dest/'upgrade.py').is_file())
+                environment={**os.environ,'PYTHONPATH':str(dest)}
+                subprocess.run([sys.executable,'-c','from upgrade import restore_backup; assert callable(restore_backup)'],
+                    cwd=root,env=environment,check=True,capture_output=True)
 
     def test_upgrade_retains_pairing(self):self.run_upgrade()
     def test_mid_upgrade_failure_restores_old_files(self):self.run_upgrade(fail=True)
+    def test_timer_setup_failure_does_not_fail_completed_upgrade(self):self.run_upgrade(timer_fail=True)
 
 
 if __name__=='__main__':unittest.main()

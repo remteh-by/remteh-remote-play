@@ -118,7 +118,11 @@ def main():
         destination = folder / 'Deckivo.desktop'
         destination.write_text(entry)
         destination.chmod(0o755)
+    from update_background import install_user_timer,automatic_enabled
+    timer_requested=automatic_enabled();timer_applied=install_user_timer(timer_requested)
     print('Deckivo installed. Existing registration and settings were retained.')
+    timer_status='disabled by preference' if not timer_requested else 'enabled' if timer_applied else 'prepared; enable it after login'
+    print('Background update timer:',timer_status)
     print('Experimental preview. Pair with: python3 desktop/linux/pair.py')
     print('Audio, input and reconnect acceptance must be checked on your device.')
 

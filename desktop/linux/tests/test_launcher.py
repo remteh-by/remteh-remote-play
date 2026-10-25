@@ -86,6 +86,14 @@ class LauncherLifecycle(unittest.TestCase):
             spawn.assert_not_called()
         self.assertTrue(self.window.active())
 
+    def test_transient_check_failure_keeps_a_staged_update(self):
+        import update_ui
+        ready={'entry':{'version':'0.8.2','build':18,'sha256':'a'*64}}
+        self.window.update_ready=ready
+        update_ui.result(self.window,None,'network unavailable')
+        self.assertIs(self.window.update_ready,ready)
+        self.assertIn('network unavailable',self.window.update_message)
+
     def metrics(self,pid=142):
         (launcher.PRIVATE/'metrics.json').write_text(json.dumps({'pid':pid,'frames':120,
             'width':1280,'height':720,'decode_fps':57.5,'elapsed_ms':2100,'exclusive':True}))

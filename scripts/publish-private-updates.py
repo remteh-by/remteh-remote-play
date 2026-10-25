@@ -45,7 +45,7 @@ def main():
  if not args.only_android:
   file=dest/f'Deckivo-Linux-{VERSION}-b{args.desktop_build}-source.zip'
   with zipfile.ZipFile(file,'w',zipfile.ZIP_DEFLATED) as archive:
-   for name in FILES+('upgrade.py',):
+   for name in FILES:
     path=ROOT/'desktop/linux'/name
     if name=='build_meta.py':archive.writestr('desktop/linux/'+name,'BUILD = '+str(args.desktop_build)+'\n')
     else:archive.write(path,'desktop/linux/'+name)

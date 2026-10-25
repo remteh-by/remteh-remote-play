@@ -34,6 +34,14 @@ Open Deckivo from the applications menu; choose a streaming preset and play.
 
 ## Existing installation
 
+With automatic updates enabled, existing public-channel clients receive Linux
+0.8.1 build 17 from GitHub. Leave Deckivo on its idle dashboard with Internet
+access. After this update, a user timer can download later signed updates while
+Deckivo is closed; installation waits for its next idle launch. Ubuntu must be
+awake and the user logged in. No Mac-based update server is required.
+
+For a manual recovery only:
+
 Close the stream and Deckivo, extract the upgrade ZIP, then run from its root:
 
 ```sh
@@ -44,6 +52,12 @@ Runtime, registration and preferences are retained. Existing matching headers
 and GCC are required. The printed private backup directory supports rollback.
 There is no reason to reformat a card, delete saves or activate another profile
 for a client update.
+
+The user timer is `deckivo-update.timer`; check it with
+`systemctl --user status deckivo-update.timer`. It respects Deckivo's automatic
+updates setting. A failed check retries later instead of disabling updates.
+Wi-Fi credentials belong to Ubuntu/NetworkManager and are never included in
+Deckivo's release packages or changed by its updater.
 
 ## Private storage and controls
 

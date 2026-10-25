@@ -10,16 +10,16 @@
     "hero_lead": "Play your PS5 on Nintendo Switch OLED, Android devices and Apple Silicon Macs — open source, built on chiaki-ng.",
     "get": "Get Deckivo",
     "read": "Read the guide",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android & macOS 0.6.1",
     "platform_limits": "See tested versions ↗",
     "pick": "Pick your screen.",
     "pick_note": "Experimental builds. Choose the guide for your platform before installing.",
     "android_note": "arm64 APK · Android 8+ · Switch OLED tested on Android 15",
     "download_apk": "Download APK",
-    "mac_note": "Apple Silicon preview · Requires chiaki-ng · Not notarized",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Requires chiaki-ng · Not notarized",
     "mac_guide": "Mac setup guide",
-    "linux_note": "ARM64 developer preview · Ubuntu 24.04 · Initial setup required",
-    "linux_guide": "Linux setup guide",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch acceptance pending",
+    "linux_guide": "Download Linux 0.8.1 b17",
     "planned": "Windows, Intel Mac and desktop Linux x64 are planned. No builds are offered for them yet.",
     "setup_title": "A little setup. A lot of play.",
     "full_guide": "Full setup guide ↗",
@@ -79,7 +79,7 @@
       }
     ],
     "privacy_counter": "Cookie-free visit counter. Pairing data stays private; the counter server processes network requests.",
-    "screenshot_caption": "Actual desktop interface · development preview {version} · build {build}. Public download: {released}."
+    "screenshot_caption": "Actual desktop interface · development preview {version} · build {build}. Linux package: {linux}; Android and macOS: {released}."
   },
   "ru": {
     "nav_features": "Возможности",
@@ -111,14 +111,14 @@
     "source": "Исходники на GitHub ↗",
     "privacy": "Язык сохраняется только в этом браузере. На сайте нет аналитики, отслеживающих cookies или ключей привязки.",
     "language": "Язык",
-    "stage": "0.6.1 preview · Локальная игра проверена",
+    "stage": "Linux 0.8.1 b17 · Android и macOS 0.6.1",
     "platform_limits": "Проверенные версии ↗",
     "android_note": "arm64 APK · Android 8+ · Тест на Switch OLED с Android 15",
     "download_apk": "Скачать APK",
-    "mac_note": "Apple Silicon preview · Нужен chiaki-ng · Без нотарификации",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Нужен chiaki-ng · Без нотарификации",
     "mac_guide": "Установка на Mac",
-    "linux_note": "ARM64 для разработчиков · Ubuntu 24.04 · Нужна первичная настройка",
-    "linux_guide": "Установка на Linux",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Проверка на Switch ожидается",
+    "linux_guide": "Скачать Linux 0.8.1 b17",
     "planned": "Windows, Intel Mac и настольный Linux x64 запланированы. Проверенных сборок для них пока нет.",
     "full_guide": "Полная инструкция ↗",
     "device": "Устройство / ОС",
@@ -161,7 +161,7 @@
       }
     ],
     "privacy_counter": "Счётчик посещений без cookies. Данные привязки остаются у тебя; сервер счётчика обрабатывает сетевые запросы.",
-    "screenshot_caption": "Настоящий интерфейс приложения · версия в разработке {version} · сборка {build}. Опубликованная версия: {released}."
+    "screenshot_caption": "Настоящий интерфейс приложения · версия в разработке {version} · сборка {build}. Пакет Linux: {linux}; Android и macOS: {released}."
   },
   "uk": {
     "nav_features": "Можливості",
@@ -195,7 +195,10 @@
     "title": "Deckivo — PS5 Remote Play для Nintendo Switch (Android), Android і Mac",
     "description": "Грай на своїй PS5 з Nintendo Switch OLED, пристроїв Android і Mac з Apple Silicon. Відкритий код на основі chiaki-ng.",
     "faq_title": "Відповіді перед першою грою.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android і macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Потрібен chiaki-ng · Без нотаризації",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Перевірка на Switch очікується",
+    "linux_guide": "Завантажити Linux 0.8.1 b17",
     "faq": [
       {
         "q": "Чи потрібна спільна мережа?",
@@ -223,7 +226,7 @@
       }
     ],
     "privacy_counter": "Лічильник відвідувань без cookies. Дані прив’язки залишаються у вас; сервер обробляє мережеві запити.",
-    "screenshot_caption": "Справжній інтерфейс програми · версія в розробці {version} · збірка {build}. Опублікована версія: {released}."
+    "screenshot_caption": "Справжній інтерфейс програми · версія в розробці {version} · збірка {build}. Пакет Linux: {linux}; Android і macOS: {released}."
   },
   "pl": {
     "nav_features": "Funkcje",
@@ -257,7 +260,10 @@
     "title": "Deckivo — PS5 Remote Play na Nintendo Switch (Android), Android i Mac",
     "description": "Graj na swojej PS5 przez Nintendo Switch OLED, urządzenia Android i komputery Mac z Apple Silicon. Otwarty kod, oparty na chiaki-ng.",
     "faq_title": "Pytania i odpowiedzi.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android i macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Wymaga chiaki-ng · Bez notaryzacji",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Weryfikacja na Switchu oczekuje",
+    "linux_guide": "Pobierz Linux 0.8.1 b17",
     "faq": [
       {
         "q": "Czy oba urządzenia muszą być w tej samej sieci?",
@@ -285,7 +291,7 @@
       }
     ],
     "privacy_counter": "Licznik odwiedzin bez cookies. Dane parowania pozostają prywatne; serwer licznika przetwarza żądania sieciowe.",
-    "screenshot_caption": "Rzeczywisty interfejs aplikacji · wersja rozwojowa {version} · kompilacja {build}. Wersja publiczna: {released}."
+    "screenshot_caption": "Rzeczywisty interfejs aplikacji · wersja rozwojowa {version} · kompilacja {build}. Pakiet Linux: {linux}; Android i macOS: {released}."
   },
   "de": {
     "nav_features": "Funktionen",
@@ -319,7 +325,10 @@
     "title": "Deckivo — PS5 Remote Play für Nintendo Switch (Android), Android und Mac",
     "description": "Spiele deine PS5 auf Nintendo Switch OLED, Android-Geräten und Apple Silicon Macs. Open Source, auf Basis von chiaki-ng.",
     "faq_title": "Fragen und Antworten.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android und macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Benötigt chiaki-ng · Nicht notarisiert",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch-Abnahme ausstehend",
+    "linux_guide": "Linux 0.8.1 b17 herunterladen",
     "faq": [
       {
         "q": "Müssen beide Geräte im selben Netzwerk sein?",
@@ -347,7 +356,7 @@
       }
     ],
     "privacy_counter": "Besuchszähler ohne Cookies. Kopplungsdaten bleiben privat; der Zähler verarbeitet Netzwerkanfragen.",
-    "screenshot_caption": "Tatsächliche Desktop-Oberfläche · Entwicklungsvorschau {version} · Build {build}. Öffentlicher Download: {released}."
+    "screenshot_caption": "Tatsächliche Desktop-Oberfläche · Entwicklungsvorschau {version} · Build {build}. Linux-Paket: {linux}; Android und macOS: {released}."
   },
   "fr": {
     "nav_features": "Fonctions",
@@ -381,7 +390,10 @@
     "title": "Deckivo — PS5 Remote Play sur Nintendo Switch (Android), Android et Mac",
     "description": "Jouez à votre PS5 sur Nintendo Switch OLED, Android et Mac Apple Silicon. Un projet open source basé sur chiaki-ng.",
     "faq_title": "Questions et réponses.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android et macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Nécessite chiaki-ng · Non notarissé",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Validation sur Switch en attente",
+    "linux_guide": "Télécharger Linux 0.8.1 b17",
     "faq": [
       {
         "q": "Les deux appareils doivent-ils partager le même réseau ?",
@@ -409,7 +421,7 @@
       }
     ],
     "privacy_counter": "Compteur de visites sans cookies. Les données d’association restent privées ; le serveur traite les requêtes réseau.",
-    "screenshot_caption": "Interface réelle de l’application · aperçu de développement {version} · build {build}. Version publique : {released}."
+    "screenshot_caption": "Interface réelle de l’application · aperçu de développement {version} · build {build}. Paquet Linux : {linux} ; Android et macOS : {released}."
   },
   "es": {
     "nav_features": "Funciones",
@@ -443,7 +455,10 @@
     "title": "Deckivo — PS5 Remote Play para Nintendo Switch (Android), Android y Mac",
     "description": "Juega a tu PS5 en Nintendo Switch OLED, dispositivos Android y Mac con Apple Silicon. Código abierto, basado en chiaki-ng.",
     "faq_title": "Preguntas y respuestas.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android y macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Requiere chiaki-ng · Sin notarizar",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Validación en Switch pendiente",
+    "linux_guide": "Descargar Linux 0.8.1 b17",
     "faq": [
       {
         "q": "¿Deben estar ambos dispositivos en la misma red?",
@@ -471,7 +486,7 @@
       }
     ],
     "privacy_counter": "Contador de visitas sin cookies. Los datos de vinculación siguen siendo privados; el servidor procesa las solicitudes de red.",
-    "screenshot_caption": "Interfaz real de escritorio · versión en desarrollo {version} · compilación {build}. Versión pública: {released}."
+    "screenshot_caption": "Interfaz real de escritorio · versión en desarrollo {version} · compilación {build}. Paquete Linux: {linux}; Android y macOS: {released}."
   },
   "it": {
     "nav_features": "Funzioni",
@@ -505,7 +520,10 @@
     "title": "Deckivo — PS5 Remote Play per Nintendo Switch (Android), Android e Mac",
     "description": "Gioca con la tua PS5 su Nintendo Switch OLED, dispositivi Android e Mac Apple Silicon. Open source, basato su chiaki-ng.",
     "faq_title": "Domande e risposte.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android e macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Richiede chiaki-ng · Non autenticato da Apple",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Verifica su Switch in attesa",
+    "linux_guide": "Scarica Linux 0.8.1 b17",
     "faq": [
       {
         "q": "I dispositivi devono essere sulla stessa rete?",
@@ -533,7 +551,7 @@
       }
     ],
     "privacy_counter": "Contatore di visite senza cookie. I dati di associazione restano privati; il server elabora richieste di rete.",
-    "screenshot_caption": "Interfaccia desktop reale · anteprima di sviluppo {version} · build {build}. Versione pubblica: {released}."
+    "screenshot_caption": "Interfaccia desktop reale · anteprima di sviluppo {version} · build {build}. Pacchetto Linux: {linux}; Android e macOS: {released}."
   },
   "pt": {
     "nav_features": "Recursos",
@@ -567,7 +585,10 @@
     "title": "Deckivo — PS5 Remote Play para Nintendo Switch (Android), Android e Mac",
     "description": "Jogue na sua PS5 pelo Nintendo Switch OLED, dispositivos Android e Macs Apple Silicon. Código aberto, baseado no chiaki-ng.",
     "faq_title": "Perguntas e respostas.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android e macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Requer chiaki-ng · Sem notarização",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Validação no Switch pendente",
+    "linux_guide": "Transferir Linux 0.8.1 b17",
     "faq": [
       {
         "q": "Os dispositivos precisam estar na mesma rede?",
@@ -595,7 +616,7 @@
       }
     ],
     "privacy_counter": "Contador de visitas sem cookies. Os dados de emparelhamento ficam privados; o servidor processa pedidos de rede.",
-    "screenshot_caption": "Interface real da aplicação · versão em desenvolvimento {version} · compilação {build}. Versão pública: {released}."
+    "screenshot_caption": "Interface real da aplicação · versão em desenvolvimento {version} · compilação {build}. Pacote Linux: {linux}; Android e macOS: {released}."
   },
   "tr": {
     "nav_features": "Özellikler",
@@ -629,7 +650,10 @@
     "title": "Deckivo — Nintendo Switch (Android), Android ve Mac için PS5 Remote Play",
     "description": "PS5 oyunlarını Nintendo Switch OLED, Android cihazlar ve Apple Silicon Mac üzerinde oyna. chiaki-ng tabanlı, açık kaynak.",
     "faq_title": "Sorular ve yanıtlar.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android ve macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng gerekir · Noter onayı yok",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch doğrulaması bekleniyor",
+    "linux_guide": "Linux 0.8.1 b17'yi indir",
     "faq": [
       {
         "q": "İki cihaz aynı ağda mı olmalı?",
@@ -657,7 +681,7 @@
       }
     ],
     "privacy_counter": "Çerez kullanmayan ziyaret sayacı. Eşleştirme bilgileri gizli kalır; sayaç sunucusu ağ isteklerini işler.",
-    "screenshot_caption": "Gerçek masaüstü arayüzü · geliştirme önizlemesi {version} · derleme {build}. Genel sürüm: {released}."
+    "screenshot_caption": "Gerçek masaüstü arayüzü · geliştirme önizlemesi {version} · derleme {build}. Linux paketi: {linux}; Android ve macOS: {released}."
   },
   "zh": {
     "nav_features": "功能",
@@ -691,7 +715,10 @@
     "title": "Deckivo — 适用于 Nintendo Switch (Android)、Android 和 Mac 的 PS5 Remote Play",
     "description": "在 Nintendo Switch OLED、Android 设备和 Apple Silicon Mac 上远程畅玩你的 PS5。基于 chiaki-ng 的开源项目。",
     "faq_title": "常见问题。",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android 和 macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · 需要 chiaki-ng · 未经公证",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch 验收待完成",
+    "linux_guide": "下载 Linux 0.8.1 b17",
     "faq": [
       {
         "q": "两台设备需要在同一网络吗？",
@@ -719,7 +746,7 @@
       }
     ],
     "privacy_counter": "不使用 Cookie 的访问计数器。配对数据保持私密；计数服务器会处理网络请求。",
-    "screenshot_caption": "实际桌面界面 · 开发预览版 {version} · 构建 {build}。公开下载版本：{released}。"
+    "screenshot_caption": "实际桌面界面 · 开发预览版 {version} · 构建 {build}。Linux 软件包：{linux}；Android 和 macOS：{released}。"
   },
   "ja": {
     "nav_features": "機能",
@@ -753,7 +780,10 @@
     "title": "Deckivo — Nintendo Switch (Android)・Android・Mac 用 PS5 Remote Play",
     "description": "Nintendo Switch OLED、Android 端末、Apple Silicon Mac で自分の PS5 をプレイ。chiaki-ng を基にしたオープンソース。",
     "faq_title": "よくある質問。",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android／macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng が必要 · 未公証",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch での確認待ち",
+    "linux_guide": "Linux 0.8.1 b17 をダウンロード",
     "faq": [
       {
         "q": "両方の機器を同じネットワークにつなぐ必要はありますか？",
@@ -781,7 +811,7 @@
       }
     ],
     "privacy_counter": "Cookie を使わない訪問カウンター。ペアリング情報は非公開のままです。カウンターのサーバーは通信リクエストを処理します。",
-    "screenshot_caption": "実際のデスクトップ画面 · 開発プレビュー {version} · ビルド {build}。公開ダウンロード：{released}。"
+    "screenshot_caption": "実際のデスクトップ画面 · 開発プレビュー {version} · ビルド {build}。Linux パッケージ：{linux}、Android／macOS：{released}。"
   },
   "ko": {
     "nav_features": "기능",
@@ -815,7 +845,10 @@
     "title": "Deckivo — Nintendo Switch (Android), Android, Mac용 PS5 Remote Play",
     "description": "Nintendo Switch OLED, Android 기기, Apple Silicon Mac에서 내 PS5를 플레이하세요. chiaki-ng 기반 오픈 소스입니다.",
     "faq_title": "자주 묻는 질문.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android 및 macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng 필요 · 공증되지 않음",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch 검증 대기 중",
+    "linux_guide": "Linux 0.8.1 b17 다운로드",
     "faq": [
       {
         "q": "두 기기를 같은 네트워크에 연결해야 하나요?",
@@ -843,7 +876,7 @@
       }
     ],
     "privacy_counter": "쿠키 없는 방문 카운터입니다. 페어링 정보는 비공개로 유지되며, 카운터 서버는 네트워크 요청을 처리합니다.",
-    "screenshot_caption": "실제 데스크톱 화면 · 개발 미리보기 {version} · 빌드 {build}. 공개 다운로드: {released}."
+    "screenshot_caption": "실제 데스크톱 화면 · 개발 미리보기 {version} · 빌드 {build}. Linux 패키지: {linux}; Android 및 macOS: {released}."
   },
   "ar": {
     "nav_features": "المزايا",
@@ -877,7 +910,10 @@
     "title": "Deckivo — PS5 Remote Play على Nintendo Switch (Android) وAndroid وMac",
     "description": "العب على PS5 الخاص بك من Nintendo Switch OLED وأجهزة Android وMac بمعالج Apple Silicon. مشروع مفتوح المصدر مبني على chiaki-ng.",
     "faq_title": "أسئلة وإجابات.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android وmacOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · يتطلب chiaki-ng · غير موثّق",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · اختبار Switch قيد الانتظار",
+    "linux_guide": "تنزيل Linux 0.8.1 b17",
     "faq": [
       {
         "q": "هل يحتاج الجهازان إلى الشبكة نفسها؟",
@@ -905,7 +941,7 @@
       }
     ],
     "privacy_counter": "عداد زيارات بدون ملفات تعريف ارتباط. تبقى بيانات الاقتران خاصة؛ يعالج خادم العداد طلبات الشبكة.",
-    "screenshot_caption": "واجهة سطح المكتب الفعلية · معاينة التطوير {version} · البناء {build}. الإصدار المتاح للتنزيل: {released}."
+    "screenshot_caption": "واجهة سطح المكتب الفعلية · معاينة التطوير {version} · البناء {build}. حزمة Linux: {linux}؛ Android وmacOS: {released}."
   },
   "hi": {
     "nav_features": "सुविधाएँ",
@@ -939,7 +975,10 @@
     "title": "Deckivo — Nintendo Switch (Android), Android और Mac के लिए PS5 Remote Play",
     "description": "Nintendo Switch OLED, Android डिवाइस और Apple Silicon Mac पर अपना PS5 खेलें। chiaki-ng पर आधारित ओपन सोर्स।",
     "faq_title": "सवाल और जवाब।",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android और macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng आवश्यक · नोटराइज़ नहीं",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch सत्यापन लंबित",
+    "linux_guide": "Linux 0.8.1 b17 डाउनलोड करें",
     "faq": [
       {
         "q": "क्या दोनों डिवाइस एक ही नेटवर्क पर होने चाहिए?",
@@ -967,7 +1006,7 @@
       }
     ],
     "privacy_counter": "बिना कुकी वाला विज़िट काउंटर। पेयरिंग डेटा निजी रहता है; काउंटर सर्वर नेटवर्क अनुरोध प्रोसेस करता है।",
-    "screenshot_caption": "ऐप का वास्तविक डेस्कटॉप इंटरफ़ेस · विकास पूर्वावलोकन {version} · बिल्ड {build}। सार्वजनिक संस्करण: {released}।"
+    "screenshot_caption": "ऐप का वास्तविक डेस्कटॉप इंटरफ़ेस · विकास पूर्वावलोकन {version} · बिल्ड {build}। Linux पैकेज: {linux}; Android और macOS: {released}।"
   },
   "id": {
     "nav_features": "Fitur",
@@ -1001,7 +1040,10 @@
     "title": "Deckivo — PS5 Remote Play untuk Nintendo Switch (Android), Android dan Mac",
     "description": "Mainkan PS5 milikmu di Nintendo Switch OLED, perangkat Android, dan Mac Apple Silicon. Sumber terbuka, berbasis chiaki-ng.",
     "faq_title": "Pertanyaan dan jawaban.",
-    "stage": "0.6.1 preview · Local play tested",
+    "stage": "Linux 0.8.1 b17 · Android dan macOS 0.6.1",
+    "mac_note": "0.6.1 b10 · Apple Silicon · Memerlukan chiaki-ng · Belum dinotarisasi",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Validasi Switch masih tertunda",
+    "linux_guide": "Unduh Linux 0.8.1 b17",
     "faq": [
       {
         "q": "Apakah kedua perangkat harus berada di jaringan yang sama?",
@@ -1029,6 +1071,6 @@
       }
     ],
     "privacy_counter": "Penghitung kunjungan tanpa cookie. Data pemasangan tetap pribadi; server penghitung memproses permintaan jaringan.",
-    "screenshot_caption": "Antarmuka desktop asli · pratinjau pengembangan {version} · build {build}. Unduhan publik: {released}."
+    "screenshot_caption": "Antarmuka desktop asli · pratinjau pengembangan {version} · build {build}. Paket Linux: {linux}; Android dan macOS: {released}."
   }
 }

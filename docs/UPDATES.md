@@ -1,6 +1,6 @@
 # Deckivo updates
 
-## Public 0.6.1 channel
+## Public channel: Linux 0.8.1, Android and macOS 0.6.1
 
 The public release is experimental. Keep preview releases enabled if you want
 0.x updates. Install over the existing application; never clear registration data
@@ -11,7 +11,7 @@ release packages.
 |---|---|---|
 | Android ARM64 | GitHub Releases, home/update screen open, normally every six hours; manual check immediately; automatic download on unmetered Wi-Fi | Same package and certificate verified; Android 12+ native self-update after source permission, with system confirmation whenever Android requires it |
 | macOS Apple Silicon | RSA-signed index at the public Pages channel, automatic checks while Deckivo is open | Waits for idle dashboard, verifies bundle identity/build/codesign, replaces app and relaunches; startup acknowledgment or rollback |
-| Switchroot Ubuntu ARM64 | Same signed public metadata and exact archive hash | Waits for idle state; compiles adapter against installed headers; transactionally replaces client files, retains runtime/registration/settings/history; matching startup acknowledgment within 120 seconds or file rollback |
+| Switchroot Ubuntu ARM64 | Signed public metadata and exact archive hash; since 0.8.1 a user timer also stages updates while the app is closed | Applies on the idle dashboard, including at the next launch; compiles adapters against installed headers; retains runtime/registration/settings/history; matching startup acknowledgment within 120 seconds or file rollback |
 
 Public native metadata:
 `https://remteh-by.github.io/remteh-remote-play/updates/`.
@@ -32,8 +32,14 @@ existing APK certificate in addition to release metadata and file hashes.
 
 ### What automatic does and does not mean
 
-The app must be open and the network available. A sleeping device/closed app is
-not a permanent background service. Active gameplay defers installation.
+On Android and macOS the app must be open and the network available. Ubuntu
+0.8.1 also checks with a systemd user timer while the user is logged in and the
+device is awake: about 45 seconds after login, then about every two minutes.
+It stages a signed package without opening a window. Installation waits for the
+next idle Deckivo dashboard; an active stream always defers installation.
+A sleeping or powered-off device cannot check. Failed network checks retry on
+the next timer run, and a previously verified staged package remains available
+offline. Turning automatic updates off disables this timer too.
 Downloads may be cancelled when changing screens; incomplete files are discarded.
 Android may still ask for installation or Play Protect confirmation; the app does
 not bypass those controls. Mac builds are not notarized. No operating-system,
@@ -50,6 +56,10 @@ A failed live child is terminated before restoring a bundle/files. If it cannot
 be stopped, restoration is refused to avoid mutating a running installation.
 Linux restores from the exact backup receipt, including removal of new files;
 pairing and runtime paths are outside the upgrade allowlist.
+Linux 0.8.1 includes the previously missing `upgrade.py` in installed files,
+fixing the first update from a clean 0.6.1 installation. GUI and background
+downloads share a lock; signed metadata and packages use immutable hash-based
+cache paths, so another check cannot change an in-progress transaction.
 0.6.0 Linux only rolled back a failed replacement, not a missing startup ack;
 0.6.0 Mac used 30 seconds. Those historical limitations were corrected in 0.6.1.
 RSA verification now uses strict pure Python SPKI/PKCS#1 v1.5 SHA-256, without

@@ -6,7 +6,7 @@ import subprocess
 import sys
 from PyQt5.QtCore import QTimer,QLocale
 from PyQt5.QtWidgets import QApplication,QDialog,QVBoxLayout,QCheckBox
-from updater import UpdateWorker,channel_base
+from updater import UpdateWorker,channel_base,validate_staged
 from storage import PRIVATE,HERE,CONFIG,load_json,private_json
 from session import VERSION
 from build_meta import BUILD
@@ -16,6 +16,7 @@ from ui import label,button
 def initialize(window):
     window.update_worker=None;window.update_ready=None;window.update_message='';window.update_dialog=None
     window.update_installing=False
+    load_staged(window)
     window.update_timer=QTimer(window);window.update_timer.timeout.connect(lambda:check(window));window.update_timer.start(5*60*1000)
     window.update_apply_timer=QTimer(window);window.update_apply_timer.timeout.connect(lambda:install_when_idle(window));window.update_apply_timer.start(10000)
     QTimer.singleShot(4000,lambda:check(window))
@@ -24,9 +25,35 @@ def initialize(window):
 def acknowledge(window):
     if window.is_closing or not window.isVisible():return
     if not startup_ready(window):return
+    manage_timer(window.preferences.get('automatic_updates',True))
     receipt=load_json(PRIVATE/'update-receipt.json',{})
     if receipt.get('version')==VERSION and receipt.get('build')==BUILD:
         private_json(PRIVATE/'update-ack.json',{'version':VERSION,'build':BUILD,'transaction':receipt.get('transaction'),'pid':os.getpid()})
+
+
+def platform_name():return 'macos-arm64' if sys.platform=='darwin' else 'linux-switch-arm64'
+
+
+def pending_path():return PRIVATE/'updates/pending.json'
+
+
+def load_staged(window):
+    pending=load_json(pending_path(),{})
+    if not pending:return
+    try:
+        validate_staged(pending,platform_name(),VERSION,BUILD,PRIVATE/'updates',HERE/'assets/update-public.der')
+    except (OSError,ValueError,KeyError,TypeError):
+        pending_path().unlink(missing_ok=True);return
+    window.update_ready=pending
+    entry=pending['entry'];window.update_message='Update ready: '+entry['version']+' · '+str(entry['build'])
+
+
+def manage_timer(enabled):
+    if not sys.platform.startswith('linux'):return
+    script=HERE/'update_background.py'
+    if not script.is_file():return
+    command=[sys.executable,str(script),'--enable-timer' if enabled else '--disable-timer']
+    subprocess.Popen(command,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
 
 
 def startup_ready(window):
@@ -48,7 +75,7 @@ def check(window,manual=False):
     base=channel_base(load_json(PRIVATE/'update-channel.json',{}))
     if not base:
         window.update_message='Private updates are not configured on this device.';refresh(window);return
-    platform='macos-arm64' if sys.platform=='darwin' else 'linux-switch-arm64'
+    platform=platform_name()
     window.update_message='Checking signed updates…';refresh(window)
     worker=UpdateWorker(base,platform,VERSION,BUILD,PRIVATE/'updates',HERE/'assets/update-public.der',window)
     old=window.update_worker;window.update_worker=worker
@@ -58,8 +85,14 @@ def check(window,manual=False):
 
 def result(window,ready,error):
     if window.is_closing:return
-    window.update_ready=ready
-    window.update_message=('Update ready: '+ready['entry']['version']+' · '+str(ready['entry']['build'])) if ready else ('Check failed: '+error if error else 'Deckivo is up to date.')
+    if ready:
+        window.update_ready=ready;private_json(pending_path(),ready)
+        window.update_message='Update ready: '+ready['entry']['version']+' · '+str(ready['entry']['build'])
+    elif error:
+        window.update_message='Check failed: '+error
+    else:
+        window.update_ready=None;pending_path().unlink(missing_ok=True)
+        window.update_message='Deckivo is up to date.'
     refresh(window)
     if ready and window.preferences.get('automatic_updates',True):QTimer.singleShot(1500,lambda:install_when_idle(window))
 
@@ -101,7 +134,7 @@ def show(window):
     window.update_status_label=label(window.update_message or VERSION+' · '+str(BUILD),'heading',True);layout.addWidget(window.update_status_label)
     automatic=QCheckBox('Автоматически проверять, скачивать и устанавливать вне игры' if ru else 'Automatically check, download and install while idle')
     automatic.setChecked(window.preferences.get('automatic_updates',True))
-    def changed(value):window.preferences['automatic_updates']=value;private_json(CONFIG,window.preferences)
+    def changed(value):window.preferences['automatic_updates']=value;private_json(CONFIG,window.preferences);manage_timer(value)
     automatic.toggled.connect(changed);layout.addWidget(automatic)
     layout.addWidget(button('Проверить сейчас' if ru else 'Check now',lambda:check(window,True)))
     layout.addWidget(button('Установить готовое обновление' if ru else 'Install prepared update',lambda:install(window)))

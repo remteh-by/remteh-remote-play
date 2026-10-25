@@ -8,8 +8,10 @@ import sys
 import tempfile
 import unittest
 import zipfile
+from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from updater import candidate,valid_base,verify_signature,UpdateCancelled,fetch,channel_base,DEFAULT_CHANNEL
+from updater import (candidate,valid_base,verify_signature,UpdateCancelled,fetch,
+    channel_base,DEFAULT_CHANNEL,RELEASE_ROOT,check_and_download,validate_staged)
 from install_update import extract
 
 
@@ -40,6 +42,24 @@ class UpdatePolicyTests(unittest.TestCase):
 
     def test_cancel_prevents_even_opening_the_network(self):
         with self.assertRaises(UpdateCancelled):fetch('https://example.com/',1024,cancel=lambda:True)
+
+    def test_staged_descriptor_uses_content_addressed_metadata_and_package(self):
+        package=b'signed package';digest=__import__('hashlib').sha256(package).hexdigest()
+        row=dict(platform='linux-switch-arm64',version='0.8.2',build=18,
+            filename='Deckivo-Linux-0.8.2-b18-source.zip',bytes=len(package),sha256=digest)
+        row['url']=RELEASE_ROOT+'v'+row['version']+'/'+row['filename']
+        payload=json.dumps({'schema':1,'packages':[row]},separators=(',',':')).encode();signature=b'signature'
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);key=root/'key';key.write_bytes(b'public')
+            with patch('updater.fetch',side_effect=[payload,signature,package]),patch('updater.verify_signature'):
+                ready=check_and_download(DEFAULT_CHANNEL,'linux-switch-arm64','0.8.1',17,root/'cache',key)
+            metadata=__import__('hashlib').sha256(payload).hexdigest()
+            self.assertEqual(Path(ready['index']).parent.name,metadata)
+            self.assertEqual(Path(ready['file']).parent.name,digest)
+            with patch('updater.verify_signature'):
+                self.assertEqual(validate_staged(ready,'linux-switch-arm64','0.8.1',17,root/'cache',key),ready)
+                Path(ready['file']).write_bytes(b'tampered')
+                with self.assertRaises(ValueError):validate_staged(ready,'linux-switch-arm64','0.8.1',17,root/'cache',key)
 
     def test_manifest_tamper_and_wrong_signing_key_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
