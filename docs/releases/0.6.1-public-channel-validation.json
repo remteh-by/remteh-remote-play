@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "version": "0.6.1",
+  "date": "2026-10-25",
+  "release": "https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1",
+  "android": {
+    "hardware": "Switch OLED",
+    "os": "Android 15 / API 35",
+    "from_build": 24,
+    "to_build": 25,
+    "public_self_update": true,
+    "first_install_retained": true,
+    "saved_console_retained": true,
+    "exact_published_apk": true,
+    "sha256": "afcbfc059e69b78429fa518297b970ccfb9970483fef440e024906172ead0edc",
+    "play_protect_left_enabled": true,
+    "russian_support_and_updater": true,
+    "support_qr_decoded": true,
+    "offline_licenses_opened": true,
+    "actual_ps5_video_frame": true,
+    "normal_disconnect": true,
+    "audio_and_physical_controller_owner_acceptance": "pending for this build"
+  },
+  "macos": {
+    "from_build": 9,
+    "to_build": 10,
+    "public_rsa_verified_update": true,
+    "matching_transaction_ack": true,
+    "registration_hash_retained": true,
+    "russian_support_qr_decoded": true,
+    "stream_acceptance": "external engine frame observed, isolated launcher-owned video test pending",
+    "stop_issue": "two owned test engines remained after normal stop and needed explicit process termination; fixed-engine stop work belongs to next feature version"
+  },
+  "linux": {
+    "package_build": 10,
+    "hardware_acceptance": "pending; Switch currently running Android"
+  },
+  "v060": {
+    "original_assets": 12,
+    "ids_names_sizes_digests_unchanged": true
+  },
+  "limits": [
+    "Real six-hour update timer",
+    "10-minute thank-you card and 14-day repeat on a physical device",
+    "Sustained gameplay, actual audio and every controller input on this build",
+    "Internet/VPN, wake from rest, Ubuntu 0.6.1 hardware",
+    "Payments, Developer ID and notarization"
+  ],
+  "note": "No registration reset, uninstall/data clear, firmware change or security-control disablement. Temporary Android stay-awake setting restored to original value 0."
+}

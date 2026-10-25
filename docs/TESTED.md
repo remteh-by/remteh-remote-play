@@ -59,3 +59,12 @@ claim of testing every macOS release. No Android/Linux installation on a blank
 Switch, firmware update, jailbreak reliability or game compatibility certification.
 
 [Guide languages](guides/en.md) · [Update behaviour](UPDATES.md)
+
+## 0.6.1 public-channel verification
+
+- Android 0.6.0 #24 → 0.6.1 #25: exact public APK, same certificate, self-installer, original install date and saved console retained. Russian support, local QR and offline licenses opened. Actual PS5 video received after closing duplicate test clients; normal disconnect worked. Audio/controller and sustained play still require owner acceptance on this build.
+- Mac 0.6.0 #9 → 0.6.1 #10: RSA public update, matching startup acknowledgment, registration hash retained, Russian support QR decoded. External-engine video was seen, but two engine instances made ownership ambiguous. Normal stop left an external engine alive; isolated stream/stop acceptance remains open for the next version.
+- Ubuntu 0.6.1 #10: package and rollback tests passed; hardware remains at the previously verified version while the same Switch runs Android.
+- All twelve v0.6.0 asset IDs, names, sizes and digests still match the pre-work snapshot.
+
+[0.6.1 physical receipt](releases/0.6.1-public-channel-validation.json).
