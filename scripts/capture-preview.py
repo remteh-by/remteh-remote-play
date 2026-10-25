@@ -50,7 +50,10 @@ def main():
  parser.add_argument('--source-root',type=Path,default=ROOT,help='Deckivo source checkout whose real Qt UI is rendered')
  parser.add_argument('--output',type=Path,default=ROOT/'build/deckivo-ui.png',help='capture PNG destination')
  parser.add_argument('--metadata',type=Path,default=ROOT/'build/deckivo-ui.capture.json',help='capture metadata destination')
+ parser.add_argument('--width',type=int,default=1600,help='captured Qt window width (default: 1600)')
+ parser.add_argument('--height',type=int,default=900,help='captured Qt window height (default: 900)')
  args=parser.parse_args();source_root=args.source_root.expanduser().resolve();desktop=source_root/'desktop/linux'
+ if args.width<1000 or args.height<650:raise SystemExit('Capture dimensions must satisfy the application minimum of 1000x650')
  required=(desktop/'launcher.py',desktop/'session.py',desktop/'build_meta.py',desktop/'assets/fonts/IBMPlexSans.ttf')
  missing=[str(path) for path in required if not path.is_file()]
  if missing:raise SystemExit('Invalid Deckivo source root; missing: '+', '.join(missing))
@@ -64,7 +67,7 @@ def main():
   isolated=Path(directory);data=isolated/'data';private=isolated/'private';config=private/'preferences.json';engine=private/'engine/Chiaki/Chiaki.conf'
   patches=(patch.object(launcher,'DATA',data),patch.object(launcher,'PRIVATE',private),patch.object(launcher,'CONFIG',config),patch.object(storage,'DATA',data),patch.object(storage,'PRIVATE',private),patch.object(storage,'CONFIG',config),patch.object(storage,'ENGINE_CONFIG',engine),patch.object(launcher.Deckivo,'refresh',lambda self:None),patch.object(launcher,'ControllerMonitor',controller.ControllerMonitor),patch.object(update_ui,'initialize',lambda self:None),patch.object(support,'maybe_thank',lambda self:None))
   with patches[0],patches[1],patches[2],patches[3],patches[4],patches[5],patches[6],patches[7],patches[8],patches[9],patches[10]:
-   window=launcher.Deckivo();window.resize(1280,720);window.show();app.processEvents();pixmap=window.grab()
+   window=launcher.Deckivo();window.resize(args.width,args.height);window.show();app.processEvents();pixmap=window.grab()
    if pixmap.isNull() or not pixmap.save(str(args.output),'PNG'):raise RuntimeError('Qt window capture failed')
    window.close();app.processEvents()
  paths=ui_sources(source_root);commit=git_value(source_root,'rev-parse','HEAD');dirty=bool(git_value(source_root,'status','--porcelain','--untracked-files=no'))
