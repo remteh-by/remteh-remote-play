@@ -38,9 +38,28 @@ class MacDeckivo(Deckivo):
 
     def t(self,key):
         ru=self.language=='ru' or self.language=='auto' and launcher.QLocale.system().name().startswith('ru')
-        variants={'smooth_note':('10 Mb/s · automatic decoder','10 Мбит/с · автоматический декодер'),'balanced_note':('7 Mb/s · automatic decoder','7 Мбит/с · автоматический декодер'),'rescue_note':('5 Mb/s · compatibility','5 Мбит/с · совместимый режим'),'sharp_note':('15 Mb/s · 1080p target','15 Мбит/с · цель 1080p'),'sharp30_note':('12 Mb/s · 1080p target','12 Мбит/с · цель 1080p'),'shortcut_text':('PS / Home → PS menu\nTouchpad click → touchpad\nCtrl+Q in the stream ends the session\nKeyboard/mouse capture: Esc releases input', 'PS / Home → меню PS\nНажатие тачпада → тачпад\nCtrl+Q в окне трансляции завершает сеанс\nЗахват клавиатуры/мыши: Esc отпускает ввод'),
+        if key=='input_bindings':return 'Назначить клавиши и кнопки мыши' if ru else 'Customize keyboard & mouse'
+        if key=='input_layout':return ('Customize keys, five mouse buttons, speed and vertical inversion. Default: WASD moves, mouse aims.\nF8 — capture · Esc — release · F11 — full screen' if not ru else 'Назначения клавиш, пяти кнопок мыши, скорость и инверсия. По умолчанию: WASD — движение, мышь — обзор.\nF8 — захват · Esc — отпустить · F11 — полный экран')
+        variants={'smooth_note':('10 Mb/s · automatic decoder','10 Мбит/с · автоматический декодер'),'balanced_note':('7 Mb/s · automatic decoder','7 Мбит/с · автоматический декодер'),'rescue_note':('5 Mb/s · compatibility','5 Мбит/с · совместимый режим'),'sharp_note':('15 Mb/s · 1080p target','15 Мбит/с · цель 1080p'),'sharp30_note':('12 Mb/s · 1080p target','12 Мбит/с · цель 1080p'),'shortcut_text':('PS / Home → PS menu\nTouchpad click → touchpad\nEsc releases input; ⌘Q ends the session\nKeyboard/mouse capture: Esc releases input', 'PS / Home → меню PS\nНажатие тачпада → тачпад\nEsc отпускает ввод; ⌘Q завершает сеанс\nЗахват клавиатуры/мыши: Esc отпускает ввод'),
             'pad_tip':('Connect your controller by USB or Bluetooth. DualSense USB enables extra diagnostics.','Подключи геймпад по USB или Bluetooth. USB DualSense открывает дополнительные тесты.') }
         return variants[key][1 if ru else 0] if key in variants else super().t(key)
+
+    def edit_input_bindings(self):
+        if self.active():return
+        from macos_input_settings import InputSettingsDialog
+        language=self.language if self.language!='auto' else launcher.QLocale.system().name()
+        values=dict(self.preferences)
+        # Carry current form values into the dialog, but persist only on Save.
+        values['mouse_sensitivity']=self.sensitivity.value()
+        values['invert_mouse_y']=self.options['invert_mouse_y'].isChecked()
+        dialog=InputSettingsDialog(values,language,self)
+        if dialog.exec_()!=dialog.Accepted:return
+        self.preferences.update(dialog.result_values())
+        private_json(CONFIG,self.preferences)
+        self.options['keyboard_mouse'].setChecked(True)
+        self.options['invert_mouse_y'].setChecked(self.preferences['invert_mouse_y'])
+        self.sensitivity.setValue(self.preferences['mouse_sensitivity'])
+        self.settings_notice.setText(self.t('saved'));self.refresh()
 
     def start(self):
         if self.active() or not self.registration:return False

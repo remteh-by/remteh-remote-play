@@ -5,7 +5,7 @@ import sys
 import re
 from dataclasses import dataclass
 
-VERSION = '0.7.0'
+VERSION = '0.8.0'
 
 
 @dataclass(frozen=True)
@@ -31,6 +31,9 @@ def preferences(value):
     result = {'language': 'en', 'host': '', 'quality': 0,
               'fullscreen': True, 'controller_navigation': True,
               'disconnect_chord': True, 'history': True, 'automatic_updates': True, 'keyboard_mouse': False, 'mouse_sensitivity': .025, 'invert_mouse_y':False, 'quality_schema':2}
+    if sys.platform=='darwin':
+        from macos_input_settings import normalize_bindings
+        result['input_bindings']=normalize_bindings(value.get('input_bindings') if isinstance(value,dict) else None)
     if not isinstance(value, dict):
         return result
     for key in ('language', 'host'):

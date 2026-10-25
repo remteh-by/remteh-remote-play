@@ -59,6 +59,9 @@ WORDS = {
     'keyboard_mouse': ('Keyboard + mouse → gamepad (Esc releases)', 'Клавиатура + мышь → геймпад (Esc отпускает)'),
     'invert_mouse_y': ('Invert mouse Y axis','Инвертировать ось Y мыши'),
     'capture_input': ('Capture keyboard and mouse','Захватить клавиатуру и мышь'),
+    'input_layout': ('WASD · mouse → right stick · LMB/RMB → R2/L2\nSpace ✕ · C ○ · R □ · F △ · Q/E L1/R1 · Ctrl L3 · Alt R3\nEnter Options · 1 Share · Tab Touch · F2 PS · Esc release', 'WASD · мышь → правый стик · ЛКМ/ПКМ → R2/L2\nПробел ✕ · C ○ · R □ · F △ · Q/E L1/R1 · Ctrl L3 · Alt R3\nEnter Options · 1 Share · Tab Touch · F2 PS · Esc — отпустить'),
+    'input_mode_keyboard': ('Keyboard + mouse · F8 captures · Esc releases','Клавиатура + мышь · F8 — захват · Esc — отпустить'),
+    'input_mode_controller': ('Input: controller · enable keyboard and mouse in Preferences','Управление: геймпад · клавиатура и мышь включаются в настройках'),
     'controller': ('Your controller', 'Твой геймпад'),
     'pad_ready': ('Controller connected', 'Геймпад подключён'),
     'pad_none': ('Connect your controller by USB or Bluetooth', 'Подключи геймпад по USB или Bluetooth'),
@@ -243,6 +246,7 @@ class Deckivo(QWidget):
             value=label('—','value');column.addWidget(value);stats.addLayout(column,1);self.stat_values[key]=value
         v.addWidget(snap)
         self.capture_button=button(self.t('capture_input'),self.capture_keyboard_mouse,'ghost');self.capture_button.setEnabled(False);v.addWidget(self.capture_button)
+        self.input_mode_label=label(self.t('input_mode_keyboard' if self.preferences['keyboard_mouse'] else 'input_mode_controller'),'small',True);v.addWidget(self.input_mode_label)
         v.addWidget(label(self.t('nav_hint'),'small'))
         return page
 
@@ -331,9 +335,12 @@ class Deckivo(QWidget):
         for key,text in (('fullscreen','fullscreen'),('controller_navigation','navigation'),('disconnect_chord','chord'),('history','remember'),('keyboard_mouse','keyboard_mouse'),('invert_mouse_y','invert_mouse_y')):
             if sys.platform=='darwin' and key=='disconnect_chord':continue
             check=QCheckBox(self.t(text));check.setChecked(self.preferences[key]);s.addWidget(check);self.options[key]=check
-        s.addWidget(label('Mouse sensitivity' if self.language!='ru' else 'Чувствительность мыши','muted'))
-        self.sensitivity=QDoubleSpinBox();self.sensitivity.setRange(.001,.2);self.sensitivity.setDecimals(3);self.sensitivity.setSingleStep(.005);self.sensitivity.setValue(self.preferences['mouse_sensitivity']);s.addWidget(self.sensitivity)
-        s.addWidget(label('WASD · mouse → right stick · LMB/RMB → R2/L2\nSpace ✕ · C ○ · R □ · F △ · Q/E L1/R1 · Ctrl L3 · Alt R3\nEnter Options · 1 Share · Tab Touch · F2 PS · Esc release','small',True))
+        if not hasattr(self,'edit_input_bindings'):s.addWidget(label('Mouse sensitivity' if self.language!='ru' else 'Чувствительность мыши','muted'))
+        self.sensitivity=QDoubleSpinBox();self.sensitivity.setRange(.001,.2);self.sensitivity.setDecimals(6 if sys.platform=='darwin' else 3);self.sensitivity.setSingleStep(.005);self.sensitivity.setValue(self.preferences['mouse_sensitivity']);s.addWidget(self.sensitivity)
+        if hasattr(self,'edit_input_bindings'):
+            self.input_settings_button=button(self.t('input_bindings'),self.edit_input_bindings,'primary');s.addWidget(self.input_settings_button)
+            self.sensitivity.hide()
+        s.addWidget(label(self.t('input_layout'),'small',True))
         s.addStretch();s.addWidget(label(self.t('locked'),'small',True));row.addWidget(box,1);v.addLayout(row,1)
         self.settings_notice=label('','accent',True);v.addWidget(self.settings_notice)
         viewport.setWidget(page);return viewport
@@ -390,6 +397,7 @@ class Deckivo(QWidget):
 
     def refresh(self):
         if self.is_closing:return
+        if hasattr(self,'input_mode_label'):self.input_mode_label.setText(self.t('input_mode_keyboard' if self.preferences['keyboard_mouse'] else 'input_mode_controller'))
         if self.probe and self.probe.isRunning():return
         old=self.probe
         self.probe=Reachability(self.preferences['host'],self);self.probe.result.connect(self.update_status);self.probe.start()
@@ -477,6 +485,7 @@ class Deckivo(QWidget):
 
     def set_preferences_enabled(self,enabled):
         for widget in self.preset_buttons+[self.profile_choice,self.host_edit,self.languages,self.sensitivity]+list(self.options.values()):widget.setEnabled(enabled)
+        if hasattr(self,'input_settings_button'):self.input_settings_button.setEnabled(enabled)
 
     def stop(self):
         if not self.active():return
@@ -550,7 +559,13 @@ class Deckivo(QWidget):
             if command==b'play':response={'accepted':self.start()}
             elif command==b'stop':self.stop();response={'accepted':True}
             elif command==b'show':self.show_dashboard();response={'accepted':True}
-            elif command==b'status':response={'running':self.active(),'online':self.online,'version':VERSION,'build':BUILD,'state':self.phase,'metrics':self.metrics,'update':getattr(self,'update_message','')}
+            elif command==b'status':response={'running':self.active(),'online':self.online,'version':VERSION,'build':BUILD,'state':self.phase,'metrics':self.metrics,'keyboard_mouse':self.preferences['keyboard_mouse'],'update':getattr(self,'update_message','')}
+            elif command in (b'keyboard_mouse_on',b'keyboard_mouse_off'):
+                allowed=not self.active() and not self.is_closing
+                if allowed:
+                    self.preferences['keyboard_mouse']=command==b'keyboard_mouse_on'
+                    private_json(CONFIG,self.preferences);self.build();self.refresh()
+                response={'accepted':allowed,'keyboard_mouse':self.preferences['keyboard_mouse']}
             elif command==b'check_updates':
                 import update_ui
                 update_ui.check(self,True);response={'accepted':not self.active() and not self.is_closing}

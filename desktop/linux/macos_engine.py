@@ -50,7 +50,11 @@ def configure(registration,quality):
     height,fps,rate=preset.height,preset.fps,preset.bitrate
     values={'resolution_local_ps5':f'{height}p','fps_local_ps5':fps,'bitrate_local_ps5':rate,
         'codec_local_ps5':'h264','hw_decoder':'auto','disconnect_action':'nothing',
-        'remote_play_ask':False,'log_verbose':False,'log_sanitize':True}
+        'remote_play_ask':False,'log_verbose':False,'log_sanitize':True,
+        # Deckivo owns keyboard/mouse capture. Stock bindings use Insert/Delete
+        # for movement and mouse clicks for the touchpad; leaving them enabled
+        # would send a second, conflicting input stream before/after capture.
+        'keyboard_enabled':False,'mouse_touch_enabled':False}
     for key,value in values.items():q.setValue('settings/'+key,value)
     q.beginWriteArray('registered_hosts',1);q.setArrayIndex(0)
     for key,value in registration.items():

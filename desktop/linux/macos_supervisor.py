@@ -14,7 +14,10 @@ from storage import PRIVATE,HERE
 def main():
     os.umask(0o077)
     registration=json.loads((PRIVATE/'registration.json').read_text())
-    preferences=json.loads((PRIVATE/'preferences.json').read_text())
+    from session import preferences as validated_preferences
+    from macos_input_settings import encode_bindings
+    preferences=validated_preferences(json.loads((PRIVATE/'preferences.json').read_text()))
+    keyboard_bindings,mouse_bindings=encode_bindings(preferences.get('input_bindings'))
     with (PRIVATE/'stream.lock').open('a') as lock:
         try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:return 73
@@ -36,6 +39,7 @@ def main():
             input_socket.unlink(missing_ok=True)
             stop_socket=PRIVATE/'adapter.sock';stop_socket.unlink(missing_ok=True)
             env.update(DYLD_INSERT_LIBRARIES=str(bridge),DECKIVO_INPUT_SOCKET=str(input_socket),DECKIVO_STOP_SOCKET=str(stop_socket),DECKIVO_METRICS=str(PRIVATE/'metrics.json'),DECKIVO_KBM='1' if preferences.get('keyboard_mouse',False) else '0',SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS='1',DECKIVO_MOUSE_SENSITIVITY=str(preferences.get('mouse_sensitivity',.025)),DECKIVO_MOUSE_INVERT_Y='1' if preferences.get('invert_mouse_y',False) else '0',DECKIVO_INPUT_LANG=str(preferences.get('language','en')))
+            env.update(DECKIVO_KEY_BINDINGS=keyboard_bindings,DECKIVO_MOUSE_BINDINGS=mouse_bindings)
             child=subprocess.Popen(args,env=env)
             print('[Deckivo] engine_pid='+str(child.pid),flush=True)
             try:

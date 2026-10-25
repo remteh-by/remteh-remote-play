@@ -1,4 +1,4 @@
-# Controllers and keyboard/mouse — development preview 0.7.0
+# Controllers and keyboard/mouse — development preview 0.8.0 (Mac)
 
 Deckivo supports compatible controllers instead of assuming a particular brand.
 DualSense, DualShock 4 and Xbox Series use genuine model photographs. An unknown
@@ -39,8 +39,44 @@ are retained; product photography is not relabelled as AGPL/unrestricted materia
 
 ## Keyboard and mouse emulate a controller
 
-Desktop: enable **Keyboard + mouse → gamepad** in Preferences, save, then start a
-stream. Capture is active only in the focused stream: the owned engine window on Mac, and the Deckivo input surface on Linux. Esc releases
+### Mac: editable bindings in 0.8.0
+
+Open **Preferences → Customize keyboard & mouse** while disconnected.
+The **Keyboard** tab accepts two physical keys per controller action. Click an
+assignment and press a key; **×** clears it. Reusing a key moves it from its old
+action, with a visible notice. Physical positions work in English/Russian layouts;
+left/right Shift, Control and Option use the same assignment.
+
+The **Mouse** tab assigns all five buttons: left, right, wheel click, side Back and
+side Forward. It also provides **4–800% speed** (100% default) and vertical inversion.
+Choose **Save** to retain the configuration and enable keyboard/mouse mode. Changes
+apply on the next stream. **Restore defaults** can be cancelled before saving.
+Mouse motion emulates the right stick; the game's camera limits/deadzone still apply.
+
+| Mac default input | Controller action |
+|---|---|
+| WASD / mouse movement | Left stick / right stick |
+| Left / right mouse | R2 / L2 |
+| Middle / side Back / side Forward | R3 / Circle / Square |
+| Space / C or Control / R or E / F or 1 | Cross / Circle / Square / Triangle |
+| Q / G | L1 / R1 |
+| Shift / Option | L3 / R3 |
+| Arrows | D-pad |
+| Enter / Tab / F2 / F3 | Options / touchpad / PS / Share |
+| F8 / Esc | Toggle capture / release all held input |
+| F11 / Command+Q | Fullscreen / orderly session close |
+
+Esc, F8, F11 and system modifiers are reserved for window/system controls. Mac
+function keys may require Fn depending on the system keyboard setting. The owned
+engine's stock keyboard and mouse-touch mappings are disabled to avoid double input.
+Mouse deltas accumulate once per timer interval, with rate normalization and no
+repeated last delta; releasing capture or losing focus restores the cursor and
+neutralizes emulated controls. Other physical gamepads remain supported.
+
+### Linux / Android: existing fixed defaults
+
+Linux: enable **Keyboard + mouse → gamepad** in Preferences, save, then start a
+stream. Capture is active only in the focused Deckivo input surface. Esc releases
 it. Focus loss releases all buttons and axes without taking focus back from your
 other application. Use the dashboard's capture button to recapture. The receiver
 also neutralizes input after 250 ms without packets.
@@ -84,7 +120,7 @@ unstable. Existing Mac quality preferences migrate once to the matching profile.
 
 ## Verification boundary
 
-37 Android unit tests, 46 desktop tests and the native SDL harness passed; Lint has
+The earlier 0.7.0 baseline passed 37 Android unit tests, 46 desktop tests and the native SDL harness; Lint has
 zero new findings, 96 unchanged upstream baseline warnings. Browser checks cover
 English/Russian at 390–3840 px and synthetic model/capability gates. The native SDL
 harness observed pressed buttons/axes/triggers and timeout neutralization.
@@ -94,3 +130,10 @@ all motors/sensors/audio routes, mouse aiming in a live game, sustained 1080p pl
 older macOS versions, Windows, or this update on Ubuntu hardware. They need the
 corresponding real device and deliberate owner acceptance. The Switch currently
 runs Android, so a Linux source package is prepared for its next Ubuntu session.
+
+Mac 0.8.0 adds 15 mapping/config tests and 3 persistence/native-wire tests, bringing
+this checkout to 64 desktop tests. The C input core also passes AddressSanitizer and
+UndefinedBehaviorSanitizer checks. A local PS5 stream confirms frames, SDL virtual
+controller creation and relative capture; physical aiming and all five buttons on
+the owner's mouse still require hands-on validation. This remapping UI has not yet
+been deployed to Android, Linux or Windows.
