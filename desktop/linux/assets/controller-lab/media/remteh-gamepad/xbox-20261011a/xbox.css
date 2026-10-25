@@ -1,0 +1,14 @@
+/* Device-profile visibility and compact Xbox navigation. */
+#diag-tool .gp-workbench [hidden]{display:none!important}
+#diag-tool .gp-measurement-only tr>:nth-child(3){display:none}
+
+@media(max-width:620px){
+ #diag-tool .gp-workbench.gp-xbox-profile .gp-tabs{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+/* Keep the selected tab legible against the public site's dark surface. */
+#sp-page-builder.page-555 #gpd .rt-gamepad-public #diag-tool .gp-tabs button[aria-selected="true"]{background:#e8f2ff!important;color:#10263e!important;border-color:#e8f2ff!important}
+#sp-page-builder.page-555 #gpd .rt-gamepad-public #diag-tool .gp-live-badge{color:#8ee3ca}
+@media(max-width:620px){
+ #sp-page-builder.page-555 #gpd .rt-gamepad-public #diag-tool .gp-xbox-profile .gp-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible}
+ #sp-page-builder.page-555 #gpd .rt-gamepad-public #diag-tool .gp-xbox-profile .gp-tabs button{min-width:0;flex-direction:column;padding:9px 2px;gap:5px;font-size:11px;white-space:normal}
+}

@@ -1,0 +1,519 @@
+/* Gamepad workspace: shared instruments, compact controls and a focused view. */
+.gp-firmware-archive{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin:10px 0;font-size:13px}
+#diag-tool .gp-firmware-archive a:not([hidden]){display:inline-flex;align-items:center;min-height:40px;padding:8px 12px;border:1px solid var(--gp-line);border-radius:8px;background:var(--gp-soft);color:var(--text,#173748);font-weight:650;text-decoration:none}
+#diag-tool .gp-firmware-archive a:hover{background:var(--surface,#fff);border-color:#087f8c}
+.gp-button-check{padding:14px 0;border-top:1px solid var(--gp-line);margin-top:12px}
+.gp-button-check [data-button-hint]{font-weight:650;margin:0 0 10px;color:var(--text,#173748)}
+.gp-button-pending{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.gp-button-pending span{padding:5px 9px;border-radius:7px;background:var(--gp-soft);border:1px solid var(--gp-line);font-size:12px;color:var(--text,#173748)}
+.gp-button-details{margin:10px 0}.gp-button-details summary{cursor:pointer;font-size:13px;min-height:28px}
+.gp-button-counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:7px}
+.gp-button-counter{display:grid;gap:3px;padding:10px 12px;border:1px solid var(--gp-line);border-radius:8px;font-size:12px;min-width:0}
+.gp-button-counter strong{font-size:13px}.gp-button-counter small{color:var(--gp-muted,#52667b)}
+.gp-button-counter.has-repeats{border-color:#bd852e}.gp-button-counter.has-repeats small{color:var(--text,#173748)}
+#diag-tool .gp-workbench [data-lab=reset-buttons]{white-space:normal;max-width:100%;text-align:left}
+.gp-flow-guide{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 20px;padding:16px 18px;margin:14px 0;border:1px solid var(--gp-line);border-radius:12px;background:var(--gp-soft)}
+.gp-flow-steps{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;gap:8px;margin:0;padding:0}
+.gp-flow-steps li{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--gp-muted);padding:8px 10px;border-radius:8px;background:var(--surface,#fff)}
+.gp-flow-steps b{display:grid;place-items:center;width:25px;height:25px;flex:none;border:1px solid var(--gp-line);border-radius:50%}
+.gp-flow-steps .is-current{color:#076775;box-shadow:inset 0 0 0 1px #70b7b6;font-weight:700}
+.gp-flow-steps .is-current b{background:#117b82;color:#fff;border-color:#117b82}
+.gp-flow-steps .is-done{color:#137358}
+.gp-flow-copy strong{display:block;font-size:15px}.gp-flow-copy p{margin:4px 0 0}
+#diag-tool [data-flow-next]{align-self:center;white-space:normal;max-width:260px;min-height:42px}
+.gp-save-card{grid-column:1/-1;border:1px solid var(--gp-line);margin:0}
+.gp-save-card h4{font-size:18px;margin:0 0 6px}
+.gp-save-card[data-state=ready],.gp-save-card[data-state=saved]{border-color:#69b6a4}
+.gp-save-checks{list-style:none;margin:14px 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.gp-save-checks li{font-size:12px;padding:9px 11px;border-radius:7px;background:var(--gp-soft);color:var(--gp-muted)}
+.gp-save-checks .is-done{color:#137358;background:color-mix(in srgb,#40ad85 10%,var(--surface,#fff))}
+.gp-save-card .gp-save-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:14px}
+#diag-tool .gp-save-card [data-gp=flash]{min-height:46px;min-width:220px}
+.gp-save-card [data-save-help]{font-size:13px;margin:12px 0 0;padding:11px 13px;border-radius:8px;background:var(--gp-soft);color:var(--text,#173748)}
+.gp-manual .gp-calib-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+.gp-manual .gp-calib-steps>section:last-child{grid-column:auto}
+@media(max-width:650px){.gp-flow-guide{grid-template-columns:1fr;padding:14px}.gp-flow-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.gp-flow-steps li{font-size:11px;padding:7px}.gp-flow-copy{min-width:0}#diag-tool [data-flow-next]{width:100%;max-width:none}.gp-save-checks{grid-template-columns:repeat(2,minmax(0,1fr))}.gp-save-card .gp-save-row,.gp-manual .gp-calib-steps{grid-template-columns:1fr}}
+.diag-page:has(.gp-workbench){padding:clamp(12px,1.15vw,36px)}
+.diag-page:has(.gp-workbench) .diag-head h1{font-size:clamp(23px,1.45vw,34px)}
+.diag-page:has(.gp-workbench) .diag-head p{font-size:13px;margin:4px 0 0}
+.diag-page:has(.gp-workbench) .diag-surface{padding:clamp(16px,1.1vw,30px)}
+.gp-order-details{margin-bottom:10px}
+.gp-workbench{--gp-soft:var(--surface-alt,#f3f7fa);--gp-line:var(--border,#dce5ed)}
+.gp-workbench p{font-size:13px;line-height:1.55}
+.gp-device-heading h2{font-size:clamp(20px,1.2vw,28px)}
+.gp-device-heading{flex-basis:320px}
+.gp-device-icon{width:42px;height:42px;border-radius:12px}
+.gp-connect-row{margin-bottom:10px}
+.gp-connect-actions{gap:7px}
+#diag-tool .gp-connect-actions button{font-size:12px;min-height:38px;padding:8px 12px}
+.gp-workbench[data-hid-connected=true] .gp-select-row>label,
+.gp-workbench[data-hid-connected=true] #gp-device-select,
+.gp-workbench[data-hid-connected=true] [data-gp=connect],
+.gp-workbench[data-hid-connected=true] [data-connection]{display:none}
+.gp-workbench [data-message][data-notice=gp_connected]{display:none}
+.gp-select-row{gap:7px}
+.gp-chip{background:var(--gp-soft);border-color:transparent;border-radius:6px;padding:4px 9px;font-size:11px}
+.gp-focus-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.gp-focus-toggle svg{width:15px;height:15px;flex:none}
+.gp-tabs{display:flex;flex-wrap:nowrap;gap:4px;padding:5px;margin:16px 0;border:1px solid var(--gp-line);border-radius:12px;background:var(--gp-soft)}
+#diag-tool .gp-tabs button{display:flex;align-items:center;justify-content:center;gap:8px;flex:1 1 auto;min-width:0;min-height:42px;border:1px solid transparent;border-radius:8px;padding:9px 10px;font-size:12px;font-weight:600;white-space:nowrap;background:transparent}
+#diag-tool .gp-tabs button[aria-selected=true]{background:var(--surface,#fff);color:var(--text,#143e46);border-color:var(--gp-line);box-shadow:0 2px 4px #13394b09}
+.gp-tabs svg{width:17px;height:17px;flex:none;color:var(--gp-muted)}
+.gp-tabs button[aria-selected=true] svg{color:#087f8c}
+.gp-tab-short{display:none}
+.gp-overview-grid{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);align-items:stretch;gap:16px}
+.gp-module{padding:clamp(14px,1.05vw,26px);border-radius:13px}
+.gp-module header{gap:10px;margin-bottom:12px;flex-wrap:nowrap}
+.gp-module h3{font-size:16px;line-height:1.4}
+#diag-tool .gp-two-col{align-items:start}
+#diag-tool .gp-trigger-travel-grid{gap:12px}
+#diag-tool .gp-trigger-travel-grid .gp-module{padding:12px 14px}
+#diag-tool .gp-trigger-travel-grid .gp-module header{margin-bottom:8px}
+#diag-tool .gp-trigger-travel-grid progress{height:8px}
+#diag-tool canvas[data-travel-chart]{display:block;width:100%;height:clamp(84px,6.5vw,112px);max-height:112px;margin-top:9px}
+#diag-tool .gp-trigger-travel-grid .gp-stat-line{margin-top:7px;line-height:1.5}
+#diag-tool .gp-trigger-travel-grid .gp-inline-note{margin:8px 0 0;padding:7px 9px}
+.gp-eyebrow{font-size:9px;letter-spacing:.11em;margin-bottom:4px}
+.gp-map-card{display:flex;flex-direction:column;background:linear-gradient(160deg,var(--surface,#fff),color-mix(in srgb,#dceff5 28%,var(--surface,#fff)))}
+.gp-map-card>header{margin-bottom:2px}
+.gp-live-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;white-space:nowrap;color:var(--gp-muted);background:var(--surface,#fff);border:1px solid var(--gp-line);padding:4px 8px;border-radius:20px}
+.gp-live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#94a3b8}
+[data-live=true] .gp-live-badge{color:#137358;border-color:#b4dfd0}
+[data-live=true] .gp-live-badge::before{background:#159975}
+.gp-map-card [data-controller-diagram]{flex:1;display:flex;align-items:center;min-width:0}
+.gp-controller,.gp-controller.gp-dualsense{height:clamp(260px,16vw,350px);max-width:100%;margin:10px auto 12px}
+.gp-map-legend{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:11px;color:var(--gp-muted)}
+.gp-map-legend span{display:inline-flex;align-items:center;gap:6px}
+.gp-map-legend i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.gp-legend-pressed{background:#2188bc}
+.gp-legend-seen{background:#10a58d}
+.gp-map-card p[data-map-note]{font-size:10px;text-align:center;line-height:1.5;margin:8px 0 0;max-width:none}
+.gp-buttons-block{padding:12px 0 0}
+.gp-buttons-block>header,.gp-buttons-block>p{display:none}
+.gp-buttons{grid-template-columns:repeat(auto-fit,minmax(54px,1fr));gap:6px;margin:0;min-height:0}
+.gp-buttons span{min-height:32px;padding:5px 4px;font-size:10px;border-radius:6px;overflow-wrap:normal;background:var(--surface,#fff)}
+.gp-overview-stats{margin:14px 0 0;padding-top:12px;gap:10px}
+.gp-overview-stats small{min-height:0;font-size:10px}
+.gp-overview-stats strong{display:block;font-size:21px;margin-top:2px}
+.gp-live-card{display:flex;flex-direction:column}
+#diag-tool .gp-text-action{font-size:11px;min-height:32px;padding:5px 7px;border-color:transparent;background:transparent;color:#087b7b;flex:none}
+.gp-instruments{display:flex;flex-direction:column;min-width:0}
+.gp-dials{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 14px}
+.gp-dial{border-radius:10px;overflow:hidden;min-width:0;background:var(--surface,#fff)}
+.gp-dial header{padding:10px 12px;margin:0;flex-wrap:wrap;gap:4px;background:#102035;color:#dcecf5;border:0}
+.gp-dial header h3{font-size:13px;color:#dcecf5}
+.gp-dial [data-live-radius]{font-size:11px;color:#92dacc}
+.gp-dial [data-live-radius]::before{content:'сейчас ';font:10px system-ui;color:#9aacc1}
+#diag-tool .gp-dial canvas{height:clamp(150px,9.5vw,210px);max-height:none;aspect-ratio:auto;margin:0;border-radius:0}
+.gp-axis-values{gap:16px;padding:2px 8px 10px;font-size:11px}
+.gp-axis-values b{margin-left:3px}
+.gp-dial-metrics{gap:5px;padding:10px 8px}
+.gp-dial-metrics span{font-size:10px}
+.gp-dial-metrics strong{font-size:16px}
+.gp-coverage{padding:0 10px 10px;font-size:10px;gap:6px}
+.gp-coverage progress{height:5px}
+.gp-workbench .gp-measure-bar{display:block;border:0;padding:0;margin:0}
+.gp-workbench .gp-measure-bar h3{font-size:12px}
+.gp-measure-bar p{font-size:11px;margin:3px 0 9px;max-width:none}
+.gp-measure-bar .gp-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#diag-tool .gp-measure-bar button{font-size:11px;padding:7px 10px;min-height:35px}
+.gp-wizard{order:-1;padding:14px;margin-bottom:14px}
+.gp-trigger-summary{margin-top:15px;padding-top:12px;border-top:1px solid var(--gp-line)}
+.gp-trigger-summary>header{margin:0 0 7px}
+.gp-trigger-summary h3{font-size:13px}
+.gp-triggers{grid-template-columns:1fr 1fr;margin:0;gap:18px}
+.gp-triggers>div{gap:7px;font-size:11px;min-width:0}
+.gp-triggers progress{height:8px;flex:1;min-width:20px}
+.gp-triggers b{min-width:32px;text-align:right}
+.gp-overview-next{margin-top:auto;padding-top:15px;display:flex;gap:8px;align-items:center;justify-content:space-between;font-size:10px;color:var(--gp-muted)}
+.gp-workbench #gp-panel-calibration{display:grid;grid-template-columns:minmax(270px,.65fr) minmax(0,1.35fr);gap:14px 20px;align-items:start}
+.gp-auto-card{grid-column:1;grid-row:1;display:block;padding:20px;margin:0}
+.gp-auto-card h3{font-size:20px}
+.gp-auto-card .gp-actions{display:grid;grid-template-columns:1fr;margin:18px 0 12px}
+.gp-auto-card p{font-size:13px}
+.gp-auto-card [data-auto-status]{margin-top:12px}
+.gp-auto-card [data-lab=auto-cancel]{margin-top:10px}
+.gp-calibration-instruments{grid-column:2;grid-row:1 / span 2;min-width:0}
+.gp-calib-intro{grid-column:1;grid-row:2;padding:0}
+.gp-calib-intro h3{font-size:13px}
+.gp-workbench .gp-gate{font-size:12px;padding:10px 12px}
+.gp-manual{grid-column:1/-1;margin-top:0;padding:14px}
+.gp-workbench [data-memory-message]{grid-column:1/-1;margin:0}
+.gp-calibration-instruments .gp-measure-bar .gp-actions{grid-template-columns:repeat(4,minmax(0,1fr))}
+.gp-calib-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+.gp-calib-steps>section:last-child{grid-column:auto}
+.gp-workbench .gp-footer{margin-top:18px;padding-top:12px;gap:10px 20px}
+.gp-footer summary{font-size:11px}
+.gp-footer details[open]{flex:1 0 100%}
+.gp-measure-help p{line-height:1.7}
+.gp-workbench button:focus-visible,.gp-workbench select:focus-visible,.gp-workbench summary:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+.diag-page.gp-focused{position:fixed;inset:0;width:100%;height:100dvh;z-index:10000;overflow:auto;overscroll-behavior:contain;background:var(--bg,#eef2f7);padding:clamp(14px,1.5vw,42px)}
+.diag-page.gp-focused>.diag-head,.diag-page.gp-focused>.gp-order-details,.diag-page.gp-focused>.diag-binding{display:none}
+.diag-page.gp-focused .gp-tabs{position:sticky;top:-1px;z-index:4;background:var(--surface-alt,#f3f7fa)}
+@media(min-width:1600px){.gp-measure-bar .gp-actions{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:2200px){
+ .gp-overview-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:24px}
+ .gp-controller,.gp-controller.gp-dualsense{height:clamp(380px,18vw,520px)}
+ #diag-tool .gp-dial canvas{height:clamp(230px,10.5vw,360px)}
+ .gp-module h3{font-size:20px}.gp-dial header h3{font-size:15px}
+ .gp-measure-bar .gp-actions{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .gp-dial-metrics{padding:14px}.gp-dial-metrics strong{font-size:22px}
+ .gp-buttons{grid-template-columns:repeat(auto-fit,minmax(65px,1fr))}
+ .gp-buttons span{min-height:38px;font-size:12px}
+ .gp-workbench p{font-size:14px}
+}
+@media(max-width:1350px){
+ .gp-tab-full{display:none}.gp-tab-short{display:inline}
+ .gp-overview-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .gp-controller,.gp-controller.gp-dualsense{height:280px}
+ .gp-dial [data-live-radius]::before{content:''}
+ .gp-dial header{padding:9px}.gp-dial header h3{font-size:12px}
+ #diag-tool .gp-dial canvas{height:160px}
+ .gp-axis-values{gap:7px;font-size:10px}
+ .gp-dial-metrics strong{font-size:14px}
+ .gp-calib-steps{grid-template-columns:1fr 1fr}.gp-calib-steps>section:last-child{grid-column:1/-1}
+}
+@media(max-width:1000px){
+ .gp-overview-grid{grid-template-columns:1fr}
+ .gp-map-card [data-controller-diagram]{flex:none}
+ .gp-controller,.gp-controller.gp-dualsense{height:320px}
+ .gp-overview-next{margin-top:14px}
+ .gp-workbench #gp-panel-calibration{grid-template-columns:1fr}
+ .gp-auto-card,.gp-calib-intro,.gp-calibration-instruments{grid-column:auto;grid-row:auto}
+ .gp-calibration-instruments{order:1}.gp-manual{order:2}.gp-workbench [data-memory-message]{order:3}
+ .gp-dial header h3{font-size:13px}.gp-dial-metrics strong{font-size:16px}
+ #diag-tool .gp-dial canvas{height:210px}
+ .gp-dial [data-live-radius]::before{content:'сейчас '}
+}
+@media(max-width:620px){
+ .diag-page:has(.gp-workbench){padding:10px}
+ .diag-page:has(.gp-workbench) .diag-surface{padding:12px;border-radius:13px}
+ .diag-page:has(.gp-workbench) .diag-head p{font-size:12px}
+ .gp-device-heading{flex-basis:100%;gap:10px}.gp-device-heading h2{font-size:18px}
+ .gp-connect-actions{width:100%;flex-wrap:wrap;gap:6px}
+ #diag-tool .gp-connect-actions button{flex:1 1 130px;min-width:0;min-height:40px}
+ .gp-workbench[data-hid-connected=true] .gp-connect-actions button{flex:1}
+ .gp-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px;margin:13px 0}
+ #diag-tool .gp-tabs button{flex-direction:column;gap:3px;font-size:10px;padding:7px 3px;white-space:normal;min-height:51px;text-align:center}
+ .gp-tabs button:last-child{grid-column:auto}
+ .gp-module{padding:12px}.gp-module h3{font-size:14px}.gp-module header{gap:6px}
+ .gp-eyebrow{font-size:8px}.gp-live-badge{font-size:10px;padding:3px 6px}
+ .gp-controller,.gp-controller.gp-dualsense{height:auto;max-height:310px;aspect-ratio:640/518;margin:12px auto}
+ .gp-overview-grid{gap:12px}.gp-map-legend{gap:12px;font-size:10px}
+ .gp-buttons{grid-template-columns:repeat(auto-fit,minmax(44px,1fr));gap:5px}
+ .gp-buttons span{font-size:9px;min-height:31px}
+ .gp-overview-stats{gap:7px}.gp-overview-stats small{font-size:9px}.gp-overview-stats strong{font-size:19px}
+ .gp-dials{gap:7px}.gp-dial header{padding:8px;display:block}
+ .gp-dial header h3{font-size:12px;margin-bottom:3px}
+ .gp-dial [data-live-radius]{font-size:10px}
+ #diag-tool .gp-dial canvas{height:clamp(110px,30vw,180px)}
+ .gp-axis-values{display:grid;gap:2px;font-size:10px;padding:2px 5px 9px}
+ .gp-dial-metrics{grid-template-columns:1fr;padding:8px;gap:5px}
+ .gp-dial-metrics>div{flex-direction:row;justify-content:space-between;align-items:center;gap:5px;text-align:left}
+ .gp-dial-metrics span{font-size:9px}.gp-dial-metrics strong{font-size:12px}
+ .gp-coverage{padding:0 8px 9px;font-size:9px;flex-wrap:wrap;gap:3px}.gp-coverage>span{flex-basis:100%}
+ .gp-measure-bar .gp-actions,.gp-calibration-instruments .gp-measure-bar .gp-actions{grid-template-columns:1fr 1fr}
+ #diag-tool .gp-measure-bar button{font-size:10px;padding:7px 5px;min-height:39px}
+ .gp-triggers{grid-template-columns:1fr;gap:10px}
+ .gp-overview-next{font-size:10px;flex-wrap:wrap;margin-top:0}
+ .gp-calib-steps{grid-template-columns:1fr}.gp-calib-steps>section:last-child{grid-column:auto}
+ .gp-calib-steps>section{padding:12px}.gp-auto-card{padding:15px}
+ .gp-workbench .gp-footer{gap:10px}.gp-local{flex-basis:100%}
+ .diag-page.gp-focused{padding:8px}
+}
+@media(prefers-reduced-motion:reduce){.gp-workbench button{transition:none}}
+
+/* Plot controls share the overview and calibration instrument panel. */
+.gp-plot-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:0 0 10px;font-size:12px;color:#60768b}
+.gp-plot-tools [role="group"]{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.gp-workbench .gp-plot-tools button{min-height:32px;padding:5px 9px;font-size:12px;border-radius:7px}
+.gp-workbench .gp-plot-tools button[aria-pressed="true"]{background:#d8efeb!important;border-color:#437f89!important;color:#135e58!important;box-shadow:inset 0 0 0 1px #437f89!important}
+.gp-plot-tools>button{color:#526a80}
+[data-fw-families]{padding:10px 14px;background:var(--surface-alt,#f2f5f9);border-radius:8px}
+[data-fw-families] p{margin:3px 0}
+
+/* Photo controls share one coordinate space, including their sockets and moving caps. */
+.gp-map-card [data-controller-diagram]:not([data-artwork=generic]){isolation:isolate;border:1px solid #58778b42;border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 50% 18%,#53667a 0,#26394f 35%,#111e31 73%,#0c1727 100%);box-shadow:inset 0 1px 0 #dbf4ff28,inset 0 -28px 65px #060e1e35;padding:10px;margin:12px 0 14px}
+#diag-tool .gp-controller.gp-photo{display:block;width:min(100%,1050px);height:auto;max-height:none;aspect-ratio:1000/780;margin:0 auto;overflow:visible}
+.gp-photo image,.gp-photo-key,.gp-photo-touch{pointer-events:none}
+.gp-photo-key{--press:0;opacity:1}
+.gp-photo-cavity{stroke:#101b28;stroke-width:1;paint-order:stroke fill}
+.gp-photo-contact{fill:#07111e;stroke:#06101b;stroke-width:3;opacity:calc(.12 + var(--press)*.24);transition:opacity 100ms ease-out}
+.gp-photo-halo,.gp-photo-thumb-ring{display:none}
+
+.gp-photo-button,.gp-photo-trigger-cap{transform-box:view-box;transform-origin:0 0;transition:transform 100ms cubic-bezier(.2,.7,.2,1)}
+.gp-photo-key.pressed .gp-photo-button{transition-duration:50ms;transition-timing-function:ease-out}
+.gp-photo-surface{filter:drop-shadow(0 calc(1.2px - var(--press)*1px) calc(1px - var(--press)*.6px) #020a1445);transition:filter 100ms ease-out}
+.gp-photo-pressure-shade{opacity:calc(var(--press)*.85);transition:opacity 100ms ease-out}
+.gp-photo-lip{stroke-width:1;opacity:calc(.46 - var(--press)*.22);transition:opacity 100ms ease-out}
+.gp-photo-hit{fill:transparent;stroke:transparent;stroke-width:1.5}
+.gp-photo-key.pressed .gp-photo-hit{fill:transparent;stroke:none}
+.gp-photo-symbol{fill:#637386;font:600 29px system-ui;paint-order:stroke fill;stroke:#ffffff3d;stroke-width:.6;pointer-events:none;transition:fill 90ms ease-out}
+.gp-photo-key.pressed .gp-photo-symbol{fill:#596979}
+.gp-photo[data-photo-model=xbox-series] .gp-photo-symbol{fill:#f2f6fa;stroke:#0a1223aa;stroke-width:.5}
+.gp-photo-key[data-photo-key=ps] .gp-photo-symbol{font-size:15px;fill:#a1acb7;stroke:none}
+.gp-photo-key[data-photo-kind=bumper] .gp-photo-symbol{font-size:14px;fill:#e2eaf2;stroke:none}
+.gp-photo-key[data-photo-kind=bumper] .gp-photo-lip{stroke-width:.8}
+.gp-photo-key[data-photo-kind=bumper] .gp-photo-surface{filter:brightness(calc(1 - var(--press)*.4)) drop-shadow(0 calc(2px - var(--press)*1.8px) .7px #01081280)}
+.gp-photo-key[data-photo-kind=bumper].pressed .gp-photo-symbol{fill:#fff}
+.gp-photo-face-symbol{fill:none;stroke:#84919b;stroke-width:2.35;stroke-linejoin:round;stroke-linecap:round;opacity:1;transition:stroke 80ms ease-out}
+.gp-photo-key.pressed .gp-photo-face-symbol{stroke:#51606a}
+.gp-photo-ps-mark{filter:drop-shadow(0 calc(1px - var(--press)*.9px) .4px #000b);opacity:calc(1 - var(--press)*.28)}
+.gp-photo[data-photo-model=dualsense] .gp-photo-key[data-photo-key=ps] .gp-photo-contact,.gp-photo[data-photo-model=dualsense] .gp-photo-key[data-photo-key=ps] .gp-photo-lip{stroke-width:0}
+
+.gp-photo-key[data-photo-key=mute].pressed .gp-photo-hit{fill:#edb75a;fill-opacity:.28;stroke:none}
+.gp-photo-key[data-photo-kind=touchpad] .gp-photo-surface{filter:drop-shadow(0 calc(1.3px - var(--press)*1px) calc(1px - var(--press)*.6px) #01091855)}
+.gp-photo-key[data-photo-kind=touchpad] .gp-photo-pressure-shade{opacity:calc(var(--press)*.42)}
+
+
+.gp-photo-key.unavailable .gp-photo-symbol,.gp-photo-key.unavailable .gp-photo-face-symbol{opacity:.45}
+.gp-photo-key.unavailable .gp-photo-check{opacity:0}
+.gp-photo-check{opacity:0;pointer-events:none;transition:opacity 140ms ease-out}
+.gp-photo-key.seen:not(.unavailable) .gp-photo-check{opacity:1}
+.gp-photo-check circle{fill:#00886e;stroke:#e4fff6;stroke-width:1.5}
+.gp-photo-check path{stroke:white;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.gp-photo-thumb-ring{fill:none;stroke:transparent;stroke-width:2;pointer-events:none;transition:stroke 90ms ease-out}
+
+
+.gp-photo-cap-shadow{fill:#03070b;opacity:calc(.7 + var(--press)*.2)}
+.gp-photo-thumb .gp-photo-surface{filter:drop-shadow(0 calc(2px - var(--press)*1.4px) calc(1.5px - var(--press)*.8px) #0006)}
+.gp-photo-thumb .gp-photo-hit{stroke:transparent!important}
+.gp-photo-stick-label,.gp-photo-small-label{fill:#ccdae6;font:600 15px system-ui;letter-spacing:1px;pointer-events:none}
+.gp-photo[data-photo-model=xbox-series] .gp-photo-stick-label{fill:#465766;paint-order:stroke fill;stroke:#ffffff99;stroke-width:1.5}
+.gp-photo-trigger-well{fill:#07101c;stroke:#8ea5bb42;stroke-width:1.2}
+.gp-photo-trigger-cap{transition:transform 45ms linear;filter:drop-shadow(0 calc(3px - var(--press)*2px) 2px #0005)}
+.gp-photo-trigger-bg{stroke:#93a7bc;stroke-width:1.2}
+.gp-photo-trigger-glint{fill:none;stroke:#e2ecf8;stroke-opacity:.46;stroke-width:1.2;stroke-linecap:round}
+
+.gp-photo-trigger-name,.gp-photo-trigger-value{fill:#edf7fc;font:600 18px system-ui}
+.gp-photo-trigger-value{font-variant-numeric:tabular-nums}
+.gp-photo-track{fill:#0e1a29;stroke:#70849955;stroke-width:.6}
+.gp-photo-travel{fill:#82f2dd;filter:drop-shadow(0 0 2px #82f2dd77)}
+.gp-photo-leader{fill:none;stroke:#819aaf;stroke-opacity:.48;stroke-width:1.2}
+.gp-photo-touch circle{fill:#056d70;stroke:#ecfeff;stroke-width:1.5}
+.gp-photo-touch text{fill:white;font:700 12px system-ui}
+.gp-photo-touch[data-photo-touch="1"] circle{fill:#aa6204}
+.gp-photo-touch .gp-photo-touch-aura{fill:#59e6dc;fill-opacity:.14;stroke:#a5fff177;stroke-width:.7}
+.gp-instruments{container-type:inline-size}
+.gp-dial-metrics strong{white-space:nowrap;flex-shrink:0;overflow-wrap:normal}
+@container(max-width:460px){.gp-dials{grid-template-columns:1fr}.gp-dial-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.gp-dial-metrics>div{flex-direction:column;align-items:center;text-align:center}.gp-dial-metrics span{font-size:11px}.gp-dial-metrics strong{font-size:18px}#diag-tool .gp-dial canvas{height:200px}.gp-axis-values{display:flex;justify-content:center;gap:14px}}
+@media(max-width:620px){.gp-map-card [data-controller-diagram]:not([data-artwork=generic]){padding:2px;margin:10px 0;border-radius:12px}.gp-map-card p[data-map-note]{font-size:11px}.gp-map-legend{gap:8px 14px}.gp-dial-metrics strong{white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){.gp-photo-button,.gp-photo-trigger-cap,.gp-photo-surface,.gp-photo-pressure-shade,.gp-photo-contact,.gp-photo-halo,.gp-photo-lip,.gp-photo-symbol,.gp-photo-face-symbol,.gp-photo-check,.gp-photo-thumb-ring{transition:none!important}}
+
+/* Precision workflow has its own verified measurement and save state. */
+#diag-tool .gp-fine-card{grid-column:1/-1;grid-row:1;background:#fff;border:1px solid #bacfd9;border-radius:14px;padding:clamp(16px,1.5vw,28px);min-width:0}
+.gp-fine-card header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.gp-fine-card h3{font-size:22px;margin:5px 0}.gp-fine-card p{line-height:1.6}
+.gp-fine-badge{font-size:12px;border-radius:20px;background:#e4f4ee;color:#126759;padding:5px 10px}
+.gp-fine-instruction{background:#eef5f9;border-left:4px solid #218a8e;border-radius:8px;padding:14px;font-size:16px;color:#153749;min-height:58px}
+.gp-fine-card progress{display:block;width:100%;height:10px;margin:14px 0}
+.gp-fine-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.gp-fine-results section{min-width:0}.gp-fine-results canvas{display:block;width:min(100%,420px);height:auto;max-height:none;margin-inline:auto;background:#101f32;border-radius:12px;margin-top:10px}
+.gp-fine-results dl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 12px;font-size:13px}
+.gp-fine-results dd{margin:0;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+#gp-panel-calibration>.gp-auto-card{grid-row:2}#gp-panel-calibration>.gp-calib-intro{grid-row:3}#gp-panel-calibration>.gp-calibration-instruments{grid-row:2/span 2}
+#gp-panel-calibration.gp-tuning-active{grid-template-columns:minmax(0,1fr)}
+#gp-panel-calibration.gp-tuning-active>:not(.gp-fine-card){display:none!important}
+.gp-workbench.gp-tuning-active>.gp-flow-guide{display:none}
+@media(max-width:1000px){#gp-panel-calibration>.gp-auto-card,#gp-panel-calibration>.gp-calib-intro,#gp-panel-calibration>.gp-calibration-instruments{grid-row:auto}}
+@media(max-width:620px){.gp-fine-results{grid-template-columns:1fr}.gp-fine-card .gp-actions button{flex:1 1 160px}.gp-fine-results dl{font-size:12px}.gp-fine-instruction{font-size:14px}}
+#diag-tool .gp-fine-card [hidden]{display:none!important}
+
+.gp-fine-card>.gp-actions{margin:14px 0 20px}
+
+/* Device identity stays with the photo, outside the moving controls. */
+#diag-tool .gp-photo-scene{position:relative;width:min(100%,1050px);margin:0 auto;min-width:0}
+#diag-tool .gp-photo-scene .gp-controller.gp-photo{width:100%;margin:0}
+#diag-tool .gp-photo-hardware,#diag-tool .gp-photo-identity{position:absolute;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:4px;max-width:44%;width:max-content;color:#edf5fb;text-align:center;font:500 clamp(10px,1vw,13px)/1.35 system-ui;letter-spacing:0;box-sizing:border-box}
+#diag-tool .gp-photo-hardware{top:3%;padding:0;border:0;border-radius:0;background:none;box-shadow:none}
+#diag-tool .gp-photo-battery{position:absolute;top:2%;right:0;z-index:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:0;border:0;background:none;box-shadow:none;color:#8ea7ba;cursor:help}
+#diag-tool .gp-photo-battery svg{display:block;width:clamp(20px,2.2vw,30px);height:auto;overflow:visible}
+#diag-tool .gp-photo-battery strong{font:650 clamp(9px,.9vw,13px)/1.2 system-ui;color:inherit;white-space:nowrap;font-variant-numeric:tabular-nums}
+#diag-tool .gp-photo-battery[data-status=normal]{color:#7de1bb}
+#diag-tool .gp-photo-battery[data-status=charging]{color:#79deeb}
+#diag-tool .gp-photo-battery[data-status=low]{color:#ffb3a1}
+#diag-tool .gp-photo-battery-bolt{fill:#e7fbff;stroke:#16283d;stroke-width:1.2;stroke-linejoin:round;paint-order:stroke fill}
+#diag-tool .gp-photo-hardware strong{font:650 clamp(11px,1.2vw,17px)/1.35 system-ui;color:#f3f8fc;white-space:nowrap}
+#diag-tool .gp-photo-hardware [data-photo-edition]{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#b5c9da;font-size:clamp(9px,.85vw,12px)}
+#diag-tool .gp-photo-identity{top:73%;max-width:48%;gap:5px}
+#diag-tool .gp-photo-serial-caption{color:#92aec6;font-size:clamp(9px,.9vw,12px)}
+/* Keep photo text above the workbench's general button hover rule. */
+#diag-tool .gp-workbench .gp-photo-identity button[data-photo-serial]{appearance:none;display:block;width:auto;min-height:24px;margin:0;padding:1px 3px;border:0;border-radius:3px;background:none;box-shadow:none;transform:none;font:600 clamp(10px,1.2vw,17px)/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;color:#edf5fb;white-space:nowrap;user-select:text;letter-spacing:.025em;text-transform:none;cursor:copy;opacity:1;transition:color .12s ease}
+#diag-tool .gp-workbench .gp-photo-identity button[data-photo-serial]:hover,#diag-tool .gp-workbench .gp-photo-identity button[data-photo-serial]:active{background:none;box-shadow:none;transform:none;color:#b6f3da}
+#diag-tool .gp-workbench .gp-photo-identity button[data-photo-serial]:focus-visible{outline:2px solid #79deeb;outline-offset:2px}
+#diag-tool .gp-workbench .gp-photo-identity button[data-photo-serial]:disabled{color:#edf5fb;cursor:default;opacity:1}
+#diag-tool [data-photo-copy-status]{min-height:1.3em;font:500 clamp(9px,.85vw,12px)/1.3 system-ui;color:#7de1bb}
+#diag-tool [data-photo-copy-status][data-error=true]{color:#ffb3a1}
+#diag-tool .gp-photo-dpad-mark{display:none;fill:#89939e;stroke:none}
+#diag-tool [data-dark-caps=true] .gp-photo-dpad-mark{display:inline}
+#diag-tool [data-dark-caps=true] .gp-photo-face-symbol{stroke:#a5afba}
+#diag-tool [data-dark-caps=true] .gp-photo-key.pressed .gp-photo-face-symbol{stroke:#cbd4dd}
+@media(max-width:620px){#diag-tool .gp-photo-hardware{top:0;gap:1px}#diag-tool .gp-photo-hardware strong{font-size:10px}#diag-tool .gp-photo-identity{gap:2px}}
+
+#diag-tool .gp-photo-edition-note{position:absolute;bottom:1%;left:50%;transform:translateX(-50%);max-width:80%;font:400 clamp(9px,.8vw,11px)/1.3 system-ui;color:#a2b9cb;text-align:center}
+#diag-tool .gp-photo-edition-note[hidden]{display:none!important}
+
+.gp-fine-history{margin:16px 0}.gp-fine-history article{border:1px solid var(--gp-line);border-radius:9px;padding:12px 15px;margin:10px 0}.gp-fine-history h4{margin:15px 0 8px}.gp-fine-history p{margin:5px 0}.gp-fine-history small{color:var(--gp-muted,#52667b)}
+
+/* A single guided flow for standard DualSense. DS4 and Edge keep their native tools. */
+#gp-panel-calibration.gp-modern-calibration{display:block}
+#gp-panel-calibration.gp-modern-calibration[hidden]{display:none}
+#gp-panel-calibration.gp-modern-calibration>:not(.gp-calibration-v2){display:none!important}
+.gp-workbench.gp-modern-calibration>.gp-flow-guide{display:none}
+#diag-tool .gp-calibration-v2{padding:clamp(18px,2vw,32px);width:100%;grid-column:1/-1}
+#diag-tool .gp-calibration-v2>header{align-items:flex-start;gap:16px}
+#diag-tool .gp-calibration-v2 h3{font-size:clamp(23px,1.65vw,32px);margin:5px 0 0;line-height:1.25}
+#diag-tool .gp-v2-steps{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0;margin:26px 0;gap:12px}
+#diag-tool .gp-v2-steps li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--gp-muted);border-top:3px solid var(--gp-line);padding-top:12px}
+#diag-tool .gp-v2-steps b{display:grid;place-items:center;border:1px solid var(--gp-line);border-radius:50%;width:27px;height:27px;flex-shrink:0;font-size:12px}
+#diag-tool .gp-v2-steps .is-current{color:var(--gp-ink);border-color:#1a8b86;font-weight:700}
+#diag-tool .gp-v2-steps .is-current b,#diag-tool .gp-v2-steps .is-done b{background:#147d73;border-color:#147d73;color:white}
+#diag-tool .gp-v2-steps .is-done{border-color:#79c8b4}
+#diag-tool .gp-v2-guide{display:grid;grid-template-columns:80px minmax(0,1fr);align-items:center;gap:20px;background:var(--gp-soft,#eef5f9);border-radius:16px;padding:clamp(16px,1.5vw,24px)}
+#diag-tool .gp-v2-direction{display:grid;place-items:center;aspect-ratio:1;background:#153c4e;color:#b2f4df;border-radius:20px;font:500 50px/1 system-ui}
+#diag-tool .gp-calibration-v2 .gp-fine-instruction{margin:0;padding:0;border:0;background:none;min-height:0;color:var(--gp-ink);font-size:clamp(18px,1.3vw,23px);font-weight:650;line-height:1.45}
+#diag-tool .gp-v2-detail{margin:9px 0 0;color:var(--gp-muted);font-size:14px}
+#diag-tool .gp-v2-actions{gap:10px;margin:20px 0}
+#diag-tool .gp-v2-actions button{min-height:46px;font-size:15px;padding-inline:23px}
+#diag-tool .gp-v2-intro{display:flex;gap:14px 30px;flex-wrap:wrap;padding:4px 0 14px;color:var(--gp-muted);font-size:14px}
+#diag-tool .gp-calibration-v2 .gp-fine-results{gap:clamp(18px,3vw,48px);margin-top:24px}
+#diag-tool .gp-calibration-v2 .gp-fine-results header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#diag-tool .gp-calibration-v2 h4{margin:0;font-size:17px}
+#diag-tool .gp-calibration-v2 [data-fine-counter]{font-size:13px;color:var(--gp-muted)}
+#diag-tool .gp-calibration-v2 canvas{width:100%;max-width:760px;border:1px solid #35485b;border-radius:16px}
+#diag-tool .gp-calibration-v2 .gp-fine-results dl{font-size:14px;gap:10px 12px;margin-top:16px}
+#diag-tool .gp-v2-legend{display:flex;flex-wrap:wrap;gap:7px 20px;font-size:13px;margin-top:20px}
+#diag-tool .gp-v2-legend span:first-child{color:#855713}#diag-tool .gp-v2-legend span:nth-child(2){color:#087566}
+#diag-tool .gp-v2-outcome{padding:14px 16px;border-radius:10px;background:var(--gp-soft,#eef5f9);font-size:14px;line-height:1.5}
+#diag-tool .gp-v2-details{margin-top:24px;border-top:1px solid var(--gp-line);padding-top:17px;font-size:14px}
+#diag-tool .gp-v2-details summary{cursor:pointer;font-weight:600;min-height:30px}
+#diag-tool .gp-v2-details>p{max-width:90ch;color:var(--gp-muted);line-height:1.65}
+#diag-tool [data-fine-quality]{white-space:pre-line;line-height:1.8;font-variant-numeric:tabular-nums}
+#diag-tool .gp-calibration-v2[data-phase=error] .gp-fine-badge,#diag-tool .gp-calibration-v2[data-phase=control-failed] .gp-fine-badge{background:#fff0d6;color:#824819}
+@media(max-width:700px){#diag-tool .gp-v2-steps{gap:8px;margin:20px 0}#diag-tool .gp-v2-steps li{flex-direction:column;align-items:flex-start;gap:7px;font-size:11px}#diag-tool .gp-v2-guide{grid-template-columns:48px minmax(0,1fr);gap:12px}#diag-tool .gp-v2-direction{border-radius:12px;font-size:34px}#diag-tool .gp-calibration-v2 .gp-fine-instruction{font-size:16px}#diag-tool .gp-v2-detail{font-size:12px}#diag-tool .gp-calibration-v2 .gp-fine-results{grid-template-columns:1fr}#diag-tool .gp-calibration-v2 .gp-fine-results dl{font-size:12px}#diag-tool .gp-calibration-v2>header{flex-wrap:wrap}#diag-tool .gp-v2-actions button{flex:1 1 190px}}
+
+/* Independent stick guidance: accepted work never waits for the other hand. */
+#diag-tool .gp-v2-lane-guide{min-height:112px;margin-top:12px;padding:15px 18px;border:1px solid var(--gp-line);border-radius:12px;background:var(--gp-soft,#eef5f9)}
+#diag-tool .gp-v2-lane-guide strong{display:block;color:var(--gp-ink);font-size:clamp(16px,1.2vw,21px);line-height:1.35}
+#diag-tool .gp-v2-lane-guide p{min-height:2.6em;margin:6px 0 10px;color:var(--gp-muted);font-size:13px;line-height:1.4}
+#diag-tool .gp-v2-lane-guide progress{display:block;width:100%;height:8px;accent-color:#108778;border:0;border-radius:8px}
+#diag-tool [data-fine-lane][data-capture-stage="release"] .gp-v2-lane-guide{border-color:#41aa8d;background:color-mix(in srgb,var(--gp-soft) 88%,#6fe4ba)}
+#diag-tool [data-fine-lane][data-capture-stage="done"] .gp-v2-lane-guide{border-color:#41aa8d}
+#diag-tool [data-fine-lane][data-capture-stage="done"] .gp-v2-lane-guide strong{color:#087565}
+#diag-tool .gp-v2-device-proof{font-size:13px;line-height:1.5;color:var(--gp-muted);margin:0 0 10px}
+#diag-tool .gp-calibration-v2 .gp-fine-results canvas{width:min(100%,460px)}
+@media(max-width:700px){#diag-tool .gp-v2-lane-guide{min-height:0;padding:12px}#diag-tool .gp-v2-lane-guide p{min-height:0}#diag-tool .gp-calibration-v2 .gp-fine-results canvas{width:min(100%,360px)}}
+
+#diag-tool .gp-calibration-v2{scroll-margin-top:85px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-steps{margin:12px 0}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-steps li{padding-top:7px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-guide{grid-template-columns:42px minmax(0,1fr);gap:12px;padding:12px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-direction{border-radius:10px;font-size:28px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-fine-instruction{font-size:17px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-detail{margin-top:3px;font-size:12px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-actions{margin:10px 0}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-fine-results{margin-top:12px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-lane-guide{min-height:98px;padding:12px 14px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-lane-guide p{min-height:2.8em;margin:4px 0 8px;font-size:12px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-fine-results canvas{height:clamp(175px,27vh,320px);width:auto;max-width:100%;margin-top:8px}
+
+#diag-tool [data-fine-protocol]{max-height:320px;max-width:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;background:var(--gp-soft);color:var(--gp-ink);border-radius:10px;font-size:11px}
+
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"]{padding:16px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] h3{font-size:22px}
+#diag-tool .gp-calibration-v2[data-fine-action="work"] .gp-v2-guide{display:none}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"]>[data-fine-progress]{margin:6px 0}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-actions{display:inline-flex;vertical-align:middle;margin:6px 12px 6px 0}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-actions button{min-height:36px;padding:7px 14px;font-size:13px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-device-proof{display:inline-block;vertical-align:middle;max-width:calc(100% - 160px);margin:6px 0;font-size:12px}
+#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-lane-guide progress{margin:6px 0 0}
+@media(max-width:700px){#diag-tool .gp-calibration-v2[data-fine-capturing="true"] .gp-v2-device-proof{display:block;max-width:100%}}
+
+/* Finite hardware effects: essential controls stay visible; tuning stays compact. */
+#diag-tool .gp-effects-grid{gap:14px;align-items:start}
+#diag-tool .gp-effect-module{display:flex;flex-direction:column;min-width:0;padding:clamp(13px,.8vw,18px)}
+#diag-tool .gp-effect-module>header{margin-bottom:2px}
+#diag-tool .gp-effect-module>p{margin:4px 0 9px}
+#diag-tool .gp-effect-actions,#diag-tool .gp-pattern-actions,#diag-tool .gp-preset-actions,#diag-tool .gp-light-actions{display:grid;gap:8px}
+#diag-tool .gp-effect-actions{grid-template-columns:repeat(3,minmax(0,1fr))}
+#diag-tool .gp-pattern-actions{margin-top:8px}
+#diag-tool .gp-preset-actions{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:10px}
+#diag-tool .gp-effect-actions button,#diag-tool .gp-preset-actions button,#diag-tool .gp-light-actions button{min-width:0;min-height:40px;padding:8px 10px;white-space:normal;line-height:1.2}
+#diag-tool .gp-effect-module button.is-running,#diag-tool .gp-effect-module button[aria-pressed="true"],#diag-tool .gp-light-lab button.is-running{background:#d8efeb!important;border-color:#367f85!important;color:#0f5d59!important;box-shadow:inset 0 0 0 1px #367f85!important}
+.gp-effect-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;margin-top:9px}
+.gp-effect-controls label{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 8px;padding:8px 9px;border:1px solid var(--gp-line);border-radius:8px;background:var(--gp-soft);font-size:12px;color:var(--text,#173748);min-width:0}
+.gp-effect-primary-controls label:first-child{grid-template-columns:1fr}
+.gp-effect-controls input[type="range"]{grid-column:1;min-width:80px;width:100%;accent-color:#087f8c}
+.gp-effect-controls output{grid-column:2;grid-row:1 / span 2;min-width:39px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.gp-effect-controls select{width:100%;min-width:0}
+#diag-tool .gp-module .gp-effect-advanced{margin-top:10px;padding-top:9px;border-top:1px solid var(--gp-line)}
+#diag-tool .gp-module .gp-effect-advanced>summary{display:list-item;min-height:30px;font-size:12px;color:var(--text,#173748)}
+#diag-tool .gp-module .gp-effect-advanced>summary span{float:right;margin-left:10px;color:var(--gp-muted,#52667b);font-weight:500;font-variant-numeric:tabular-nums;text-align:right}
+#diag-tool .gp-module .gp-effect-advanced[open]>summary{margin-bottom:8px}
+.gp-effect-advanced-controls{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0}
+.gp-light-advanced .gp-effect-advanced-controls{grid-template-columns:minmax(220px,420px)}
+.gp-machinegun-note{margin:7px 0 0!important}
+.gp-command-state{margin:9px 0 0!important;padding:8px 10px;border-radius:8px;background:var(--gp-soft);border-left:3px solid #8aa0b4;color:var(--gp-muted,#52667b);font-size:12px!important}
+.gp-command-state[data-state="running"],.gp-command-state[data-state="stopping"]{border-left-color:#c0841e;color:#75530f;background:#fff8e7}
+.gp-command-state[data-state="sent"]{border-left-color:#198066;color:#145f4f;background:#edf9f5}
+.gp-command-state[data-state="error"]{border-left-color:#b84444;color:#873535;background:#fff1f1}
+.gp-light-lab{border-color:#95c9c8;background:linear-gradient(135deg,var(--surface,#fff),color-mix(in srgb,#d7f1ee 28%,var(--surface,#fff)))}
+.gp-light-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(240px,.6fr);gap:12px 20px;align-items:end}
+.gp-control-label{display:block;margin-bottom:7px;font-size:12px;font-weight:700;color:var(--text,#173748)}
+.gp-color-swatches{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#diag-tool .gp-color-swatches>button{position:relative;width:38px;height:38px;min-height:38px;padding:0;border-radius:50%;background:var(--swatch)!important;border:3px solid var(--surface,#fff)!important;box-shadow:0 0 0 1px #8294a8}
+#diag-tool .gp-color-swatches>button[aria-pressed="true"]{box-shadow:0 0 0 3px #087f8c,0 2px 7px #0b344433!important}
+#diag-tool .gp-color-swatches>button[style*="#ffffff"]{background:#fff!important}
+.gp-custom-color{display:inline-grid;justify-items:center;gap:3px;margin-left:4px;font-size:10px;color:var(--gp-muted,#52667b);cursor:pointer}
+.gp-custom-color input{width:43px;height:30px;padding:2px;border:1px solid var(--gp-line);border-radius:7px;background:var(--surface,#fff);cursor:pointer}
+.gp-light-controls{margin:0}
+#diag-tool .gp-light-actions{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:12px}
+body:has(.gp-workbench){--gp-effect-sticky-top:60px}
+.gp-test-running{position:sticky;top:var(--gp-effect-sticky-top,0px);z-index:6;box-shadow:0 4px 14px #513b1118}
+.diag-page.gp-focused{--gp-effect-sticky-top:0px}
+.gp-running-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 16px;flex:1;min-width:0}
+.gp-running-copy strong{font-size:13px}.gp-running-copy span{font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.gp-running-copy progress{grid-column:1/-1;width:100%;height:7px;accent-color:#c0841e}
+
+/* DualSense speaker: one explicit controller route, compact at every workspace width. */
+#diag-tool .gp-speaker-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#diag-tool .gp-speaker-actions button{min-width:0;min-height:42px;padding:8px 10px;white-space:normal;line-height:1.2}
+#diag-tool .gp-speaker-lab button.is-running,#diag-tool .gp-speaker-lab button[aria-pressed="true"]{background:#d8efeb!important;border-color:#367f85!important;color:#0f5d59!important;box-shadow:inset 0 0 0 1px #367f85!important}
+.gp-speaker-route{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:12px;align-items:end}
+.gp-speaker-route label{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:5px 10px;min-width:0;padding:8px 9px;border:1px solid var(--gp-line);border-radius:8px;background:var(--gp-soft);font-size:12px;font-weight:650}
+.gp-speaker-route label:first-child{grid-template-columns:1fr;align-self:stretch}
+.gp-speaker-route label:last-child{grid-column:1/-1;grid-template-columns:auto minmax(100px,1fr) auto}
+.gp-speaker-route select{width:100%;min-width:0}
+.gp-speaker-route input[type="range"]{min-width:100px;width:100%;accent-color:#087f8c}
+.gp-speaker-route output{min-width:38px;text-align:right;font-variant-numeric:tabular-nums}
+#diag-tool .gp-speaker-route>button{min-height:100%;white-space:normal}
+.gp-speaker-help p{margin:7px 0;font-size:12px!important}
+
+@media(min-width:2200px){
+ #diag-tool .gp-effects-grid{gap:18px}
+ .gp-effect-controls{gap:9px 12px}
+ #diag-tool .gp-effect-actions button,#diag-tool .gp-preset-actions button,#diag-tool .gp-light-actions button{min-height:42px;font-size:13px}
+ .gp-light-layout{grid-template-columns:minmax(0,1.5fr) minmax(320px,.5fr);gap:24px}
+}
+@media(max-width:1100px){
+ .gp-light-layout{grid-template-columns:1fr}.gp-light-controls{grid-template-columns:1fr}
+ #diag-tool .gp-light-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+ body:has(.gp-workbench){--gp-effect-sticky-top:56px}
+ #diag-tool .gp-preset-actions{grid-template-columns:1fr}
+ #diag-tool .gp-pattern-actions{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #diag-tool .gp-pattern-actions button{font-size:11px;padding:8px 5px}
+ .gp-effect-controls,.gp-light-controls{grid-template-columns:1fr}
+ .gp-effect-advanced-controls{grid-template-columns:1fr}
+ .gp-light-advanced .gp-effect-advanced-controls{grid-template-columns:1fr}
+ .gp-effect-controls label{padding:9px}
+ #diag-tool .gp-module .gp-effect-advanced>summary span{display:block;float:none;margin:2px 0 0;text-align:left}
+ #diag-tool .gp-light-actions{grid-template-columns:1fr 1fr}
+ #diag-tool .gp-light-actions button{font-size:11px;padding:8px 6px}
+ .gp-color-swatches{gap:8px}#diag-tool .gp-color-swatches>button{width:38px;height:38px;min-height:38px}
+ .gp-custom-color{margin-left:0}.gp-running-copy{grid-template-columns:1fr}.gp-running-copy span{white-space:normal}.gp-running-copy progress{grid-column:1}
+ #diag-tool .gp-test-running button{flex:none;padding:8px 10px}
+ #diag-tool .gp-speaker-actions{grid-template-columns:1fr}
+ .gp-speaker-route{grid-template-columns:1fr}.gp-speaker-route label:last-child{grid-column:1}.gp-speaker-route>button{min-height:40px}
+}

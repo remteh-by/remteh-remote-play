@@ -1,0 +1,24 @@
+/* Page-local full-width layout; hardware and the shared site shell are unchanged. */
+#sp-page-builder.page-555 #gpd { --gpd-edge-gap: clamp(16px, 1.25vw, 32px); }
+#sp-page-builder.page-555 #gpd .gpd-shell,
+#sp-page-builder.page-555 #gpd .gpd-faq {
+  width: calc(100% - var(--gpd-edge-gap) * 2);
+  max-width: none;
+}
+#sp-page-builder.page-555 #gpd .gpd-tester > .gpd-shell { width: 100%; }
+#sp-page-builder.page-555 #gpd .gpd-tester .gpd-section-head {
+  margin-inline: var(--gpd-edge-gap);
+}
+#sp-page-builder.page-555 #gpd .rt-gamepad-public .diag-surface {
+  border-inline: 0;
+  border-radius: 0;
+  padding-inline: var(--gpd-edge-gap);
+}
+#sp-page-builder.page-555 #gpd .rt-gamepad-public .rt-public-footer {
+  padding-inline: var(--gpd-edge-gap);
+}
+#sp-page-builder.page-555 #gpd .rt-gamepad-public .gp-photo-scene,
+#sp-page-builder.page-555 #gpd .rt-gamepad-public .gp-controller.gp-photo {
+  width: 100%;
+  max-width: none;
+}

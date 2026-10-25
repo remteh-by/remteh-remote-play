@@ -1,0 +1,386 @@
+{
+  "snapshot": "2026-10-25",
+  "source_page": "https://remteh.by/remont-gamepadov/diagnostika-gejmpada",
+  "files": {
+    "/media/remteh-gamepad/v20261011/boot.json": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/boot.json",
+      "sha256": "ad6ef9e17aa3cc9424a17f1c54fde55e88cf8d13ac32d26b256ea4bd9863944a",
+      "bytes": 14841
+    },
+    "/media/remteh-gamepad/calibration-20261020b/sony-engine.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/calibration-20261020b/sony-engine.js",
+      "sha256": "fd31f9d5294c8c553b89115f7f470a53f3aec0bb9df853565451ad236b5459b8",
+      "bytes": 119591
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/index.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/index.js",
+      "sha256": "97c288c9aff2ff032724602588f1af9ff48e89d7f351ca50cb6e437b1f49a213",
+      "bytes": 56244
+    },
+    "/media/remteh-gamepad/xbox-20261011a/layout.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/xbox-20261011a/layout.js",
+      "sha256": "aaa10466fe08986560590ffc9eceef3d59336dd46065f5a213ef4832cafa632a",
+      "bytes": 3479
+    },
+    "/media/remteh-gamepad/width-20261011a/width.css": {
+      "url": "https://remteh.by/media/remteh-gamepad/width-20261011a/width.css",
+      "sha256": "2e5922e1c5e31b8be3e958751e21b8cdd7b2a92b91b6073c6a0cc4b09e094732",
+      "bytes": 930
+    },
+    "/media/remteh-gamepad/v20261011/public.css": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/public.css",
+      "sha256": "8f28d7538cf7b0b11ff3e783966b53cb517338697136651fbd33efed3c654c1b",
+      "bytes": 8532
+    },
+    "/media/remteh-gamepad/design-20261011a/design.css": {
+      "url": "https://remteh.by/media/remteh-gamepad/design-20261011a/design.css",
+      "sha256": "0948bfc2b05cea2ef90d67633003c247b5d2cc499b08b4c1a7d573b8fe454474",
+      "bytes": 21419
+    },
+    "/media/remteh-gamepad/v20261011/diagnostics.css": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/diagnostics.css",
+      "sha256": "5e9191f4c18c652c4ded9655e0f1a2a5aad58a657f1faefce88294e360cd4c20",
+      "bytes": 30062
+    },
+    "/media/remteh-gamepad/xbox-20261011a/xbox.css": {
+      "url": "https://remteh.by/media/remteh-gamepad/xbox-20261011a/xbox.css",
+      "sha256": "7e88845880ee5d8a58527ab7b8ea2f31db4eef21238486cd086f6280b2723fd0",
+      "bytes": 1039
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/workspace.css": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/workspace.css",
+      "sha256": "9876605021a7d7fdea341ada4d89ba3778472843dd3326b84a93421616d00ec3",
+      "bytes": 47144
+    },
+    "/media/remteh-gamepad/v20261011/common.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/common.js",
+      "sha256": "0a61bde45dd30257594e2f9858f89f7e72830f4a5a12d01aac18b4d892489651",
+      "bytes": 5501
+    },
+    "/media/remteh-gamepad/calibration-20261020b/circle-tuning.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/calibration-20261020b/circle-tuning.js",
+      "sha256": "0f712c1fbfd0d98636a950d57c23d7ed719a3cfe68beaa63ef279fa86033fa3e",
+      "bytes": 44831
+    },
+    "/media/remteh-gamepad/photo-fix-20261011a/tools/gamepad-test/model-choice.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/photo-fix-20261011a/tools/gamepad-test/model-choice.js",
+      "sha256": "ace433cfa91b60dd4fd368823de84a5e030247ea31d052837d5bef16e43f6d8d",
+      "bytes": 2011
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/calibration-guidance.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/calibration-guidance.js",
+      "sha256": "f91cfcc11f862dd3c29c3e35a5fa2dd2609db5a1ab145368b6438987c0c925f0",
+      "bytes": 8051
+    },
+    "/media/remteh-gamepad/xbox-rumble-20261011a/tools/gamepad-test/lab.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/xbox-rumble-20261011a/tools/gamepad-test/lab.js",
+      "sha256": "9b1dbbdefa17382cdc497a2d44bc1fc1ef3b02b58a92cdab17ae86d969adbea2",
+      "bytes": 67250
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/controller-identity.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/controller-identity.js",
+      "sha256": "dcbce0b4e9eb2c4d0471f0040c3a4ba956fa79fc383fd2d5403cdeae07c9dcd5",
+      "bytes": 5012
+    },
+    "/media/remteh-gamepad/xbox-detection-20261011a/tools/gamepad-test/controller-profile.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/xbox-detection-20261011a/tools/gamepad-test/controller-profile.js",
+      "sha256": "e5eb4ffa6e3377a52c2aa896c21b1f1ad9e43c88f31f2047b42ff0481efaee45",
+      "bytes": 3430
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/teardown.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/teardown.js",
+      "sha256": "11a0260ef57ad01bba7d53055c4eb92a53ce4c44350b3d0c442b331e1432b87e",
+      "bytes": 788
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/measurements.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/measurements.js",
+      "sha256": "06659979d0f0fed3e7861f41b290c3d2c7cc30e7012138157aba11bc455bf3e7",
+      "bytes": 3810
+    },
+    "/media/remteh-gamepad/calibration-20261020b/calibration-errors.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/calibration-20261020b/calibration-errors.js",
+      "sha256": "c3b62ad651536020eb9fdf9eae7144e4a01fa2bdb6c72a775e3777ab5b184d03",
+      "bytes": 4117
+    },
+    "/media/remteh-gamepad/calibration-20261020b/calibration-backup-v1.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/calibration-20261020b/calibration-backup-v1.js",
+      "sha256": "df99c4272c599f97e9bcf32406e21b4ce8d3c364c106eacc9dd97359307c5e5c",
+      "bytes": 2358
+    },
+    "/media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/controller-diagram.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/controller-diagram.js",
+      "sha256": "bac0eb8e7f95e5af53c31a15d549daa7b1e585e1e067ef12e5e5f0226cfbcca1",
+      "bytes": 11271
+    },
+    "/media/remteh-gamepad/calibration-20261020b/calibration-runner.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/calibration-20261020b/calibration-runner.js",
+      "sha256": "415fd04943277d7effd4308e68a0bcacc18fdb04c0ec1d0955a8edae84bc2a40",
+      "bytes": 19772
+    },
+    "/media/remteh-gamepad/calibration-20261020b/calibration-core.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/calibration-20261020b/calibration-core.js",
+      "sha256": "a88a6802de4c01998dc84ada0d60228cb04e386036ad5da05c1acf1fbaac4296",
+      "bytes": 24941
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/audio-lab.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/audio-lab.js",
+      "sha256": "772f5a7385ae8b489f271cf254d3282d5e6fe627a04a23d027e8e33456cdee14",
+      "bytes": 10742
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/effects-controls.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/effects-controls.js",
+      "sha256": "d495b38b2362f545bbab985fd78a81b110465dff3ff7b9406e0ba065a5630163",
+      "bytes": 1492
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/browser-rumble.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/browser-rumble.js",
+      "sha256": "af985d0160568b36bcca421184e0865b273c7af51dff69f3576f4a865f684bc1",
+      "bytes": 1308
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/lab-metrics.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/lab-metrics.js",
+      "sha256": "945593b5abb28b50e5c8284c0e8e8f0a0527fb4ffddf528aa5b427b254b799fe",
+      "bytes": 4690
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/speaker-player.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/speaker-player.js",
+      "sha256": "9bd1591577553b298e1fe346697f5cbf7df411e2b64983d237d8f032c38e652d",
+      "bytes": 17900
+    },
+    "/media/remteh-gamepad/xbox-20261011a/tools/gamepad-test/workspace.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/xbox-20261011a/tools/gamepad-test/workspace.js",
+      "sha256": "a0c2cce3cbe58454b706a07a0d305d495d08c3c876b88483af8b8c321f276b59",
+      "bytes": 11191
+    },
+    "/media/remteh-gamepad/calibration-20261020b/circle-profile.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/calibration-20261020b/circle-profile.js",
+      "sha256": "a9354114431f44c8b3c5310747018ed2a48191a9be6316d6ba07e88db6af0ac6",
+      "bytes": 12694
+    },
+    "/media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/controller-photo.js": {
+      "url": "https://remteh.by/media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/controller-photo.js",
+      "sha256": "88364f17338865dbfcf5ddfab498a0f5c0594a0f334a15c8726d3b8f5b8f6f3c",
+      "bytes": 22856
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/audio/ps5-dualsense-speaker.mp3": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/audio/ps5-dualsense-speaker.mp3",
+      "sha256": "30e942f201cb7e07a56503567daafc9bbc5a5a286a8333c6a9dc71b91b06a854",
+      "bytes": 59372
+    },
+    "/media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/artwork/dualshock-4-front.png": {
+      "url": "https://remteh.by/media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/artwork/dualshock-4-front.png",
+      "sha256": "476700b95db729e32dd75e85b8862b3bb64c9be9de22d57e83216f58c937d7b7",
+      "bytes": 581910
+    },
+    "/media/remteh-gamepad/xbox-20261011a/tools/gamepad-test/artwork/xbox-series-front.png": {
+      "url": "https://remteh.by/media/remteh-gamepad/xbox-20261011a/tools/gamepad-test/artwork/xbox-series-front.png",
+      "sha256": "2db90306a865384714afe6ff2171d8eaf90d843b12881c07ef6894da493f7f53",
+      "bytes": 842617
+    },
+    "/media/remteh-gamepad/v20261011/tools/gamepad-test/artwork/dualsense-front.png": {
+      "url": "https://remteh.by/media/remteh-gamepad/v20261011/tools/gamepad-test/artwork/dualsense-front.png",
+      "sha256": "86d2cb9a9d57c2b8a9b48694a8521138d928fa404961b2bea513e3a406d31055",
+      "bytes": 1019918
+    }
+  },
+  "non_resources": {
+    "/media/remteh-gamepad/calibration-20261020b/remteh-calibration-v2.json": "Export download filename, not a remote dependency",
+    "/media/remteh-gamepad/xbox-rumble-20261011a/tools/gamepad-test/remteh-gamepad-report.json": "Export download filename, not a remote dependency"
+  },
+  "adaptations": [
+    "Deckivo local wrapper, app-native USB/Gamepad bridge",
+    "Unknown controllers show three separate genuine photos instead of a hybrid",
+    "An Xbox family name is not presented as a confirmed Xbox Series model",
+    "Firmware download remains via official PS5/PlayStation Accessories; app does not flash firmware",
+    "Source body photographs remain byte-identical; equal displayed body height and SVG/Painter contour clip remove the DS4 cast shadow",
+    "Artificial photo-floor ellipse removed for all selected controller models",
+    "English visible phrases, Android-only USB/Gamepad adapter, app-lifecycle cleanup",
+    "Firmware catalog/archive route is fixed to the public RemTeh endpoint; installation stays in official tools"
+  ],
+  "packaged_files": {
+    "NOTICE.html": {
+      "sha256": "f72c3a3c728295f5ee2e924c4b32d66a407ef863a61c5932bcdc2bc6e6cfb01f",
+      "bytes": 2566
+    },
+    "deckivo.css": {
+      "sha256": "c0020ccb5094dd0671f7c060330a4a395b9f15a278e3ab70e042aec687834c55",
+      "bytes": 4976
+    },
+    "deckivo.js": {
+      "sha256": "15859322d59d8e7babb40292787ed077d5e3b7165dd62f55b7fd27f93af42de1",
+      "bytes": 3646
+    },
+    "en.json": {
+      "sha256": "7c25096f88ebc2ffa9e820b9afbd4bfae143ddf4806abde97da61f2bc548eccb",
+      "bytes": 57817
+    },
+    "favicon.svg": {
+      "sha256": "3e0e732f70d7bb65ce8ddceabfa3132815ffa6ab5444216f72048268d1b9bffc",
+      "bytes": 326
+    },
+    "index.html": {
+      "sha256": "bcb1f23fb950ffa68914719b84e6a1f9a669a2423995aa30ec89c34c271cc0af",
+      "bytes": 1479
+    },
+    "media/remteh-gamepad/calibration-20261020b/calibration-backup-v1.js": {
+      "sha256": "df99c4272c599f97e9bcf32406e21b4ce8d3c364c106eacc9dd97359307c5e5c",
+      "bytes": 2358
+    },
+    "media/remteh-gamepad/calibration-20261020b/calibration-core.js": {
+      "sha256": "a88a6802de4c01998dc84ada0d60228cb04e386036ad5da05c1acf1fbaac4296",
+      "bytes": 24941
+    },
+    "media/remteh-gamepad/calibration-20261020b/calibration-errors.js": {
+      "sha256": "c3b62ad651536020eb9fdf9eae7144e4a01fa2bdb6c72a775e3777ab5b184d03",
+      "bytes": 4117
+    },
+    "media/remteh-gamepad/calibration-20261020b/calibration-runner.js": {
+      "sha256": "415fd04943277d7effd4308e68a0bcacc18fdb04c0ec1d0955a8edae84bc2a40",
+      "bytes": 19772
+    },
+    "media/remteh-gamepad/calibration-20261020b/circle-profile.js": {
+      "sha256": "a9354114431f44c8b3c5310747018ed2a48191a9be6316d6ba07e88db6af0ac6",
+      "bytes": 12694
+    },
+    "media/remteh-gamepad/calibration-20261020b/circle-tuning.js": {
+      "sha256": "0f712c1fbfd0d98636a950d57c23d7ed719a3cfe68beaa63ef279fa86033fa3e",
+      "bytes": 44831
+    },
+    "media/remteh-gamepad/calibration-20261020b/sony-engine.js": {
+      "sha256": "fd31f9d5294c8c553b89115f7f470a53f3aec0bb9df853565451ad236b5459b8",
+      "bytes": 119591
+    },
+    "media/remteh-gamepad/design-20261011a/design.css": {
+      "sha256": "0948bfc2b05cea2ef90d67633003c247b5d2cc499b08b4c1a7d573b8fe454474",
+      "bytes": 21419
+    },
+    "media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/artwork/dualshock-4-front.png": {
+      "sha256": "476700b95db729e32dd75e85b8862b3bb64c9be9de22d57e83216f58c937d7b7",
+      "bytes": 581910
+    },
+    "media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/controller-diagram.js": {
+      "sha256": "6f6c53a657a1880d7ed35d751f662d2dc883fea7840286d780a4c2790257b31c",
+      "bytes": 11301
+    },
+    "media/remteh-gamepad/ds4-20261011a/tools/gamepad-test/controller-photo.js": {
+      "sha256": "66945e390c7148cca52fa91b7fa79746bb10a532c38297766bf9f4e2e5d70f88",
+      "bytes": 22479
+    },
+    "media/remteh-gamepad/photo-fix-20261011a/tools/gamepad-test/model-choice.js": {
+      "sha256": "ace433cfa91b60dd4fd368823de84a5e030247ea31d052837d5bef16e43f6d8d",
+      "bytes": 2011
+    },
+    "media/remteh-gamepad/recheck-20261011a/licenses/dualshock-tools.html": {
+      "sha256": "8198a38d4988e4dff1e21f22e6e9170fc1287a28cc3dd8f69633bc6f974b15b8",
+      "bytes": 2281
+    },
+    "media/remteh-gamepad/v20261011/boot.json": {
+      "sha256": "ad6ef9e17aa3cc9424a17f1c54fde55e88cf8d13ac32d26b256ea4bd9863944a",
+      "bytes": 14841
+    },
+    "media/remteh-gamepad/v20261011/common.js": {
+      "sha256": "6b2ac116ad45314ada97c7a101c7e20448be39a99d78bd73f6ae97246ecdc9ca",
+      "bytes": 5589
+    },
+    "media/remteh-gamepad/v20261011/diagnostics.css": {
+      "sha256": "5e9191f4c18c652c4ded9655e0f1a2a5aad58a657f1faefce88294e360cd4c20",
+      "bytes": 30062
+    },
+    "media/remteh-gamepad/v20261011/public.css": {
+      "sha256": "8f28d7538cf7b0b11ff3e783966b53cb517338697136651fbd33efed3c654c1b",
+      "bytes": 8532
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/artwork/dualsense-front.png": {
+      "sha256": "86d2cb9a9d57c2b8a9b48694a8521138d928fa404961b2bea513e3a406d31055",
+      "bytes": 1019918
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/audio/ps5-dualsense-speaker.mp3": {
+      "sha256": "30e942f201cb7e07a56503567daafc9bbc5a5a286a8333c6a9dc71b91b06a854",
+      "bytes": 59372
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/audio-lab.js": {
+      "sha256": "772f5a7385ae8b489f271cf254d3282d5e6fe627a04a23d027e8e33456cdee14",
+      "bytes": 10742
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/browser-rumble.js": {
+      "sha256": "af985d0160568b36bcca421184e0865b273c7af51dff69f3576f4a865f684bc1",
+      "bytes": 1308
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/calibration-guidance.js": {
+      "sha256": "f91cfcc11f862dd3c29c3e35a5fa2dd2609db5a1ab145368b6438987c0c925f0",
+      "bytes": 8051
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/controller-identity.js": {
+      "sha256": "dcbce0b4e9eb2c4d0471f0040c3a4ba956fa79fc383fd2d5403cdeae07c9dcd5",
+      "bytes": 5012
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/effects-controls.js": {
+      "sha256": "d495b38b2362f545bbab985fd78a81b110465dff3ff7b9406e0ba065a5630163",
+      "bytes": 1492
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/index.js": {
+      "sha256": "97c288c9aff2ff032724602588f1af9ff48e89d7f351ca50cb6e437b1f49a213",
+      "bytes": 56244
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/lab-metrics.js": {
+      "sha256": "945593b5abb28b50e5c8284c0e8e8f0a0527fb4ffddf528aa5b427b254b799fe",
+      "bytes": 4690
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/measurements.js": {
+      "sha256": "06659979d0f0fed3e7861f41b290c3d2c7cc30e7012138157aba11bc455bf3e7",
+      "bytes": 3810
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/speaker-player.js": {
+      "sha256": "9bd1591577553b298e1fe346697f5cbf7df411e2b64983d237d8f032c38e652d",
+      "bytes": 17900
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/teardown.js": {
+      "sha256": "11a0260ef57ad01bba7d53055c4eb92a53ce4c44350b3d0c442b331e1432b87e",
+      "bytes": 788
+    },
+    "media/remteh-gamepad/v20261011/tools/gamepad-test/workspace.css": {
+      "sha256": "9876605021a7d7fdea341ada4d89ba3778472843dd3326b84a93421616d00ec3",
+      "bytes": 47144
+    },
+    "media/remteh-gamepad/width-20261011a/width.css": {
+      "sha256": "2e5922e1c5e31b8be3e958751e21b8cdd7b2a92b91b6073c6a0cc4b09e094732",
+      "bytes": 930
+    },
+    "media/remteh-gamepad/xbox-20261011a/layout.js": {
+      "sha256": "aaa10466fe08986560590ffc9eceef3d59336dd46065f5a213ef4832cafa632a",
+      "bytes": 3479
+    },
+    "media/remteh-gamepad/xbox-20261011a/tools/gamepad-test/artwork/xbox-series-front.png": {
+      "sha256": "2db90306a865384714afe6ff2171d8eaf90d843b12881c07ef6894da493f7f53",
+      "bytes": 842617
+    },
+    "media/remteh-gamepad/xbox-20261011a/tools/gamepad-test/workspace.js": {
+      "sha256": "a0c2cce3cbe58454b706a07a0d305d495d08c3c876b88483af8b8c321f276b59",
+      "bytes": 11191
+    },
+    "media/remteh-gamepad/xbox-20261011a/xbox.css": {
+      "sha256": "7e88845880ee5d8a58527ab7b8ea2f31db4eef21238486cd086f6280b2723fd0",
+      "bytes": 1039
+    },
+    "media/remteh-gamepad/xbox-detection-20261011a/tools/gamepad-test/controller-profile.js": {
+      "sha256": "e5eb4ffa6e3377a52c2aa896c21b1f1ad9e43c88f31f2047b42ff0481efaee45",
+      "bytes": 3430
+    },
+    "media/remteh-gamepad/xbox-rumble-20261011a/tools/gamepad-test/lab.js": {
+      "sha256": "9b1dbbdefa17382cdc497a2d44bc1fc1ef3b02b58a92cdab17ae86d969adbea2",
+      "bytes": 67250
+    },
+    "native-bridge.js": {
+      "sha256": "da0248c712dd321d740c1dfb694fb31e9de275de2f50221e035be1b1d472e6e5",
+      "bytes": 3273
+    },
+    "photo-masks.js": {
+      "sha256": "99e947159b023d9939707628d7c6062cd692e5cdd53cccf475c1584bd012001b",
+      "bytes": 10828
+    },
+    "photo-masks.json": {
+      "sha256": "5ba675178a2807135232465ab1b47ffd802d1e146f5656cf4e4f1b77c1cf3ab3",
+      "bytes": 13481
+    }
+  }
+}
