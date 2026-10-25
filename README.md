@@ -1,8 +1,11 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover.webp" alt="Deckivo — Your PS5. Your play space." width="100%"></a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover.webp" alt="Deckivo — actual desktop interface, development preview 0.8.0 build 16" width="100%"></a></p>
+<p align="center"><sub>Actual desktop interface · development preview 0.8.0 build 16. Public downloads remain 0.6.1 until the next release.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/">RemTeh.by</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
 <p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1">Download 0.6.1 preview</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
+
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/#download-stats"><img src="https://remteh-by.github.io/remteh-remote-play/assets/downloads.svg" alt="GitHub release app package downloads"></a><br><sub>GitHub package downloads across releases, including automatic updates and repeated downloads. Not unique users or installations. <a href="https://remteh-by.github.io/remteh-remote-play/#download-stats">By platform and version ↗</a></sub></p>
 
 [English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)
 
@@ -22,7 +25,7 @@ new Deckivo account is required for local play.
 
 ### Made for your own play space
 
-- A graphite, lime and lavender interface, with a real Qt setup capture and our own screen/gamepad illustration.
+- A graphite, lime and lavender interface. The cover shows the actual desktop development preview with a real PS5 photograph; the screenshot caption identifies its exact version.
 - Visible language selection: English default, optional system detection and
   16 guide languages. New desktop-specific controls currently have English and
   Russian translations; technical test notes remain English.

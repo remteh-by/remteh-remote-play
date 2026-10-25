@@ -2,8 +2,12 @@ name: Deckivo site
 on:
   push:
     branches: [main]
-    paths: ['website/**', 'localization/**', 'design-system/**', 'scripts/build-site.py', 'scripts/generate-support.py', 'scripts/requirements-build.txt', '.github/workflows/pages.yml']
+    paths: ['website/**', 'localization/**', 'design-system/**', 'scripts/build-site.py', 'scripts/download-stats.py', 'scripts/generate-support.py', 'scripts/requirements-build.txt', '.github/workflows/pages.yml']
   workflow_dispatch:
+  release:
+    types: [published, edited]
+  schedule:
+    - cron: "17 * * * *"
 permissions:
   contents: read
   pages: write
@@ -19,14 +23,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: main
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Generate support and static language pages
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           python -m pip install -r scripts/requirements-build.txt
           python scripts/generate-support.py --check
-          python scripts/build-site.py
+          python -m unittest tests/test_download_stats.py
+          python scripts/download-stats.py --output build/download-stats.json
+          python scripts/build-site.py --download-stats build/download-stats.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
