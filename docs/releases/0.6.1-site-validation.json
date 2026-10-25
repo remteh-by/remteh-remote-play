@@ -4,54 +4,207 @@
   "before_gzip_estimate": 748877,
   "after": [
     {
-      "locale": "en",
+      "locale": "ar",
       "files": {
-        "assets/deckivo.svg": 326,
+        "style.css": 14602,
         "app.js": 1609,
-        "assets/deckivo-ui.avif": 20474,
-        "assets/Plex-Latin-Cyrillic.woff2": 169576,
-        "style.css": 14581,
-        "index.html": 21653
-      },
-      "uncompressed_bytes": 228219,
-      "gzip_estimate": 198617
-    },
-    {
-      "locale": "ru/",
-      "files": {
         "assets/deckivo.svg": 326,
-        "app.js": 1609,
         "assets/deckivo-ui.avif": 20474,
-        "assets/Plex-Latin-Cyrillic.woff2": 169576,
-        "style.css": 14581,
-        "index.html": 27886
-      },
-      "uncompressed_bytes": 234452,
-      "gzip_estimate": 199538
-    },
-    {
-      "locale": "ar/",
-      "files": {
-        "assets/deckivo.svg": 326,
-        "app.js": 1609,
-        "assets/deckivo-ui.avif": 20474,
-        "style.css": 14581,
         "index.html": 21441
       },
-      "uncompressed_bytes": 58431,
-      "gzip_estimate": 31332
+      "uncompressed_bytes": 58452,
+      "gzip_estimate": 31338
     },
     {
-      "locale": "ja/",
+      "locale": "de",
       "files": {
-        "assets/deckivo.svg": 326,
+        "style.css": 14602,
         "app.js": 1609,
+        "assets/deckivo.svg": 326,
         "assets/deckivo-ui.avif": 20474,
-        "style.css": 14581,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19771
+      },
+      "uncompressed_bytes": 225726,
+      "gzip_estimate": 197957
+    },
+    {
+      "locale": "es",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19471
+      },
+      "uncompressed_bytes": 225426,
+      "gzip_estimate": 197840
+    },
+    {
+      "locale": "fr",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19952
+      },
+      "uncompressed_bytes": 225907,
+      "gzip_estimate": 197980
+    },
+    {
+      "locale": "hi",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "index.html": 25461
+      },
+      "uncompressed_bytes": 62472,
+      "gzip_estimate": 31490
+    },
+    {
+      "locale": "id",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19507
+      },
+      "uncompressed_bytes": 225462,
+      "gzip_estimate": 197793
+    },
+    {
+      "locale": "en",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 21660
+      },
+      "uncompressed_bytes": 227615,
+      "gzip_estimate": 198226
+    },
+    {
+      "locale": "it",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19362
+      },
+      "uncompressed_bytes": 225317,
+      "gzip_estimate": 197799
+    },
+    {
+      "locale": "ja",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
         "index.html": 21100
       },
-      "uncompressed_bytes": 58090,
-      "gzip_estimate": 31506
+      "uncompressed_bytes": 58111,
+      "gzip_estimate": 31512
+    },
+    {
+      "locale": "ko",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "index.html": 20555
+      },
+      "uncompressed_bytes": 57566,
+      "gzip_estimate": 31359
+    },
+    {
+      "locale": "pl",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19511
+      },
+      "uncompressed_bytes": 225466,
+      "gzip_estimate": 197993
+    },
+    {
+      "locale": "pt",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19346
+      },
+      "uncompressed_bytes": 225301,
+      "gzip_estimate": 197842
+    },
+    {
+      "locale": "ru",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 27893
+      },
+      "uncompressed_bytes": 233848,
+      "gzip_estimate": 199148
+    },
+    {
+      "locale": "tr",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 19666
+      },
+      "uncompressed_bytes": 225621,
+      "gzip_estimate": 197916
+    },
+    {
+      "locale": "uk",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "assets/DeckivoSans-Latin-Cyrillic.woff2": 168944,
+        "index.html": 22854
+      },
+      "uncompressed_bytes": 228809,
+      "gzip_estimate": 198379
+    },
+    {
+      "locale": "zh",
+      "files": {
+        "style.css": 14602,
+        "app.js": 1609,
+        "assets/deckivo.svg": 326,
+        "assets/deckivo-ui.avif": 20474,
+        "index.html": 19587
+      },
+      "uncompressed_bytes": 56598,
+      "gzip_estimate": 31418
     }
   ],
   "responsive": [
@@ -521,5 +674,6 @@
       "links": 16,
       "title": "Deckivo — PS5 Remote Play untuk Nintendo Switch (Android), Android dan Mac"
     }
-  ]
+  ],
+  "font_note": "Modified web subset renamed Deckivo Sans Subset, including variable-instance PostScript names, retaining original OFL/copyright."
 }

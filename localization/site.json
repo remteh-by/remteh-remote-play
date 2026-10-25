@@ -77,7 +77,8 @@
         "q": "Which gamepad and quality should I use?",
         "a": "Start at 720p and lower bitrate/30 FPS if Wi-Fi is unstable. These are requested settings, not measured performance promises. GameSir G8+ was tested on Android in blue mode and in Ubuntu with its controller adapter. On Android swipe up briefly from the bottom edge to show the hidden PS/Touch controls. On Linux Home maps to PS and Capture to the touchpad; the +/− disconnect chord is optional. Verify both sticks, triggers, buttons and sound on your device. Save the game before ending a stream; disconnecting does not close the game."
       }
-    ]
+    ],
+    "privacy_counter": "Cookie-free visit counter. Pairing data stays private; the counter server processes network requests."
   },
   "ru": {
     "nav_features": "Возможности",
@@ -157,7 +158,8 @@
         "q": "Какой геймпад и качество выбрать?",
         "a": "Начните с 720p. При нестабильном Wi-Fi снизьте битрейт или выберите 30 FPS. Это запрошенные параметры, а не обещание измеренного FPS. GameSir G8+ проверяли на Android в синем режиме и на Ubuntu с адаптером управления. На Android короткий свайп вверх от нижнего края показывает скрываемые PS/Touch. На Linux Home соответствует PS, Capture — нажатию тачпада; сочетание +/− для отключения можно выключить. Проверьте стики, курки, кнопки и звук на своём устройстве. Перед выходом сохраните игру: отключение трансляции не закрывает игру."
       }
-    ]
+    ],
+    "privacy_counter": "Счётчик посещений без cookies. Данные привязки остаются у тебя; сервер счётчика обрабатывает сетевые запросы."
   },
   "uk": {
     "nav_features": "Можливості",
@@ -217,7 +219,8 @@
         "q": "Який геймпад і якість обрати?",
         "a": "Почніть із 720p; за нестабільного Wi-Fi зменште бітрейт або виберіть 30 FPS. На Android короткий рух угору від нижнього краю показує PS/Touch. На Linux Home — PS, Capture — тачпад. Перевірте звук, стики, курки та кнопки. Збережіть гру перед від’єднанням: трансляція не закриває гру."
       }
-    ]
+    ],
+    "privacy_counter": "Лічильник відвідувань без cookies. Дані прив’язки залишаються у вас; сервер обробляє мережеві запити."
   },
   "pl": {
     "nav_features": "Funkcje",
@@ -277,7 +280,8 @@
         "q": "Jaki kontroler i jakość wybrać?",
         "a": "Zacznij od 720p; przy problemach zmniejsz bitrate lub wybierz 30 FPS. Android: przesuń od dolnej krawędzi w górę, aby wyświetlić PS/Touch. Linux: Home to PS, Capture to touchpad. Sprawdź dźwięk, drążki, spusty i przyciski. Zapisz grę przed rozłączeniem; zakończenie transmisji nie zamyka gry."
       }
-    ]
+    ],
+    "privacy_counter": "Licznik odwiedzin bez cookies. Dane parowania pozostają prywatne; serwer licznika przetwarza żądania sieciowe."
   },
   "de": {
     "nav_features": "Funktionen",
@@ -337,7 +341,8 @@
         "q": "Welches Gamepad und welche Qualität sind geeignet?",
         "a": "Beginne mit 720p; reduziere bei WLAN-Problemen Bitrate oder auf 30 FPS. Android: vom unteren Rand kurz nach oben wischen, um PS/Touch einzublenden. Linux: Home entspricht PS, Capture dem Touchpad. Prüfe Ton, Sticks, Trigger und Tasten. Vor dem Trennen speichern: Der Stream-Abbruch beendet nicht das Spiel."
       }
-    ]
+    ],
+    "privacy_counter": "Besuchszähler ohne Cookies. Kopplungsdaten bleiben privat; der Zähler verarbeitet Netzwerkanfragen."
   },
   "fr": {
     "nav_features": "Fonctions",
@@ -397,7 +402,8 @@
         "q": "Quelle manette et quelle qualité choisir ?",
         "a": "Commencez en 720p ; réduisez le débit ou passez à 30 FPS si nécessaire. Android : balayez brièvement depuis le bord inférieur pour afficher PS/Touch. Linux : Home correspond à PS, Capture au pavé tactile. Vérifiez son, sticks, gâchettes et boutons. Sauvegardez avant de quitter : couper le flux ne ferme pas le jeu."
       }
-    ]
+    ],
+    "privacy_counter": "Compteur de visites sans cookies. Les données d’association restent privées ; le serveur traite les requêtes réseau."
   },
   "es": {
     "nav_features": "Funciones",
@@ -457,7 +463,8 @@
         "q": "¿Qué mando y calidad debo elegir?",
         "a": "Empieza con 720p; reduce bitrate o usa 30 FPS si la red falla. Android: desliza brevemente desde el borde inferior para mostrar PS/Touch. Linux: Home es PS y Capture es panel táctil. Comprueba audio, palancas, gatillos y botones. Guarda antes de desconectar: cerrar la transmisión no cierra el juego."
       }
-    ]
+    ],
+    "privacy_counter": "Contador de visitas sin cookies. Los datos de vinculación siguen siendo privados; el servidor procesa las solicitudes de red."
   },
   "it": {
     "nav_features": "Funzioni",
@@ -517,7 +524,8 @@
         "q": "Quale controller e qualità devo usare?",
         "a": "Inizia a 720p; riduci bitrate o passa a 30 FPS con Wi-Fi instabile. Android: scorri brevemente dal bordo inferiore per PS/Touch. Linux: Home è PS, Capture è touchpad. Verifica audio, stick, grilletti e pulsanti. Salva prima di scollegarti: terminare il flusso non chiude il gioco."
       }
-    ]
+    ],
+    "privacy_counter": "Contatore di visite senza cookie. I dati di associazione restano privati; il server elabora richieste di rete."
   },
   "pt": {
     "nav_features": "Recursos",
@@ -577,7 +585,8 @@
         "q": "Qual controle e qualidade devo escolher?",
         "a": "Comece em 720p; reduza o bitrate ou escolha 30 FPS se a rede falhar. Android: deslize brevemente a partir da borda inferior para PS/Touch. Linux: Home é PS, Capture é touchpad. Teste som, analógicos, gatilhos e botões. Guarde o jogo antes de desligar: terminar a transmissão não fecha o jogo."
       }
-    ]
+    ],
+    "privacy_counter": "Contador de visitas sem cookies. Os dados de emparelhamento ficam privados; o servidor processa pedidos de rede."
   },
   "tr": {
     "nav_features": "Özellikler",
@@ -637,7 +646,8 @@
         "q": "Hangi oyun kumandası ve kaliteyi seçmeliyim?",
         "a": "720p ile başlayın; kararsız ağda bit hızını azaltın veya 30 FPS seçin. Android’de alt kenardan kısa bir yukarı kaydırma PS/Touch düğmelerini gösterir. Linux’ta Home PS, Capture dokunmatik yüzeydir. Ses, çubuklar, tetikler ve düğmeleri sınayın. Bağlantıyı kesmeden kaydedin; yayın kapanınca oyun kapanmaz."
       }
-    ]
+    ],
+    "privacy_counter": "Çerez kullanmayan ziyaret sayacı. Eşleştirme bilgileri gizli kalır; sayaç sunucusu ağ isteklerini işler."
   },
   "zh": {
     "nav_features": "功能",
@@ -697,7 +707,8 @@
         "q": "应该选择什么手柄和画质？",
         "a": "先使用 720p；网络不稳定时降低码率或改为 30 FPS。这些是请求参数，并非性能承诺。Android 从底部边缘短划向上显示 PS/Touch；Linux 的 Home 对应 PS，Capture 对应触摸板。检查声音、摇杆、扳机和按钮。断开前保存游戏；结束串流不会关闭游戏。"
       }
-    ]
+    ],
+    "privacy_counter": "不使用 Cookie 的访问计数器。配对数据保持私密；计数服务器会处理网络请求。"
   },
   "ja": {
     "nav_features": "機能",
@@ -757,7 +768,8 @@
         "q": "どのコントローラーと画質を選びますか？",
         "a": "まず 720p で試し、不安定ならビットレートを下げるか 30 FPS にします。Android は画面下端から短く上へスワイプすると PS/Touch が表示されます。Linux は Home が PS、Capture がタッチパッドです。音、スティック、トリガー、ボタンを確認してください。切断前にゲームを保存します。配信を閉じてもゲームは終了しません。"
       }
-    ]
+    ],
+    "privacy_counter": "Cookie を使わない訪問カウンター。ペアリング情報は非公開のままです。カウンターのサーバーは通信リクエストを処理します。"
   },
   "ko": {
     "nav_features": "기능",
@@ -817,7 +829,8 @@
         "q": "어떤 게임패드와 화질을 선택하나요?",
         "a": "720p부터 시작하고 불안정하면 비트레이트를 낮추거나 30 FPS로 바꾸세요. Android에서 아래 가장자리를 짧게 위로 밀면 PS/Touch가 나옵니다. Linux의 Home은 PS, Capture는 터치패드입니다. 소리, 스틱, 트리거와 버튼을 확인하세요. 연결 종료 전에 저장하세요. 스트림 종료는 게임을 닫지 않습니다."
       }
-    ]
+    ],
+    "privacy_counter": "쿠키 없는 방문 카운터입니다. 페어링 정보는 비공개로 유지되며, 카운터 서버는 네트워크 요청을 처리합니다."
   },
   "ar": {
     "nav_features": "المزايا",
@@ -877,7 +890,8 @@
         "q": "أي يد تحكم وجودة أختار؟",
         "a": "ابدأ بدقة 720p وخفّض معدل البت أو اختر 30 FPS عند ضعف الشبكة. في Android اسحب قليلًا للأعلى من الحافة السفلية لإظهار PS/Touch. في Linux زر Home هو PS وCapture هو لوحة اللمس. اختبر الصوت والعصي والزنادات والأزرار. احفظ اللعبة قبل قطع الاتصال؛ إغلاق البث لا يغلق اللعبة."
       }
-    ]
+    ],
+    "privacy_counter": "عداد زيارات بدون ملفات تعريف ارتباط. تبقى بيانات الاقتران خاصة؛ يعالج خادم العداد طلبات الشبكة."
   },
   "hi": {
     "nav_features": "सुविधाएँ",
@@ -937,7 +951,8 @@
         "q": "कौन सा गेमपैड और गुणवत्ता चुनें?",
         "a": "720p से शुरू करें; अस्थिर नेटवर्क पर बिटरेट घटाएँ या 30 FPS चुनें। Android में नीचे के किनारे से थोड़ा ऊपर स्वाइप करने पर PS/Touch दिखता है। Linux में Home का अर्थ PS और Capture का अर्थ टचपैड है। ध्वनि, स्टिक, ट्रिगर और बटन जाँचें। डिस्कनेक्ट से पहले सेव करें; स्ट्रीम बंद करने से गेम बंद नहीं होता।"
       }
-    ]
+    ],
+    "privacy_counter": "बिना कुकी वाला विज़िट काउंटर। पेयरिंग डेटा निजी रहता है; काउंटर सर्वर नेटवर्क अनुरोध प्रोसेस करता है।"
   },
   "id": {
     "nav_features": "Fitur",
@@ -997,6 +1012,7 @@
         "q": "Gamepad dan kualitas apa yang sebaiknya dipilih?",
         "a": "Mulai dengan 720p; kurangi bitrate atau pilih 30 FPS jika jaringan tidak stabil. Android: usap singkat ke atas dari tepi bawah untuk PS/Touch. Linux: Home adalah PS, Capture adalah touchpad. Periksa suara, stik, pemicu dan tombol. Simpan permainan sebelum memutus koneksi; menutup streaming tidak menutup gim."
       }
-    ]
+    ],
+    "privacy_counter": "Penghitung kunjungan tanpa cookie. Data pemasangan tetap pribadi; server penghitung memproses permintaan jaringan."
   }
 }

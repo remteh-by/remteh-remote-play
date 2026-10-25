@@ -11,6 +11,7 @@ sub.populate(unicodes=list(range(0x250))+list(range(0x400,0x530))+list(range(0x1
 renames={1:'Deckivo Sans Subset',3:'DeckivoSansSubset-0.6.1',4:'Deckivo Sans Subset',6:'DeckivoSansSubset-Regular',16:'Deckivo Sans Subset',25:'DeckivoSansSubset'}
 for record in f['name'].names:
  if record.nameID in renames:record.string=renames[record.nameID].encode(record.getEncoding())
+ elif record.nameID >= 256 and 'Plex' in record.toUnicode():record.string=record.toUnicode().replace('IBMPlexSans','DeckivoSansSubset').replace('IBM Plex Sans','Deckivo Sans Subset').encode(record.getEncoding())
 subset.save_font(f,str(assets/'DeckivoSans-Latin-Cyrillic.woff2'),options)
 im=Image.open(R/'build/deckivo-ui.png').convert('RGB');im.save(assets/'deckivo-ui.webp',quality=84,method=6);im.save(assets/'deckivo-ui.avif',quality=65)
 cover=Image.new('RGB',(1200,630),'#101216');d=ImageDraw.Draw(cover)

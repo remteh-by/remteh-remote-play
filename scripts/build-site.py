@@ -89,7 +89,7 @@ def main():
   soup.select_one('.credits').insert_before(faq)
   privacy=soup.select_one('[data-i="privacy"]')
   if counter:
-   privacy.string={'ru':'Счётчик посещений без cookies. Не передаём данные привязки; сервер счётчика обрабатывает сетевые запросы.','en':'Cookie-free visit counter. Pairing data stays private; the counter server processes network requests.'}.get(code,'Cookie-free visit counter. Pairing data stays private; the counter server processes network requests.')
+   privacy.string=copy['privacy_counter']
   else:privacy.decompose()
   for old in soup.select('footer p'):
    if 'PS5 product photo' in old.get_text():old.decompose()
