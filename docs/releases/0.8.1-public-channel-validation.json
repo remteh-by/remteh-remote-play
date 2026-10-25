@@ -9,8 +9,29 @@
   "macos_feed_entry": "unchanged 0.6.1 build 10",
   "android_feed_selection": "Linux-only release has no update.json and is skipped by Android client",
   "pages_deployment_run": 40224260771,
-  "physical_device_update": "pending: Switch lost USB and Wi-Fi connectivity",
-  "physical_wifi_fix": "pending administrative authentication and device connectivity",
+  "physical_device": "Nintendo Switch OLED, Switchroot Ubuntu 24.04.4 ARM64",
+  "physical_device_update": "passed: public 0.6.1 build 10 to 0.8.1 build 17 update installed and relaunched",
+  "physical_installer_files": {
+    "expected": 80,
+    "matching_public_package": 80,
+    "missing": 0,
+    "mismatched": 0
+  },
+  "physical_update_receipt_matches_public_package": true,
+  "physical_startup_acknowledgement_matches_receipt": true,
+  "physical_live_version_matches_update": true,
+  "physical_registration_retained": true,
+  "background_update_timer": {
+    "service_and_timer_match_release_source": true,
+    "enabled": true,
+    "active": true,
+    "natural_closed_application_check": "passed: current 0.8.1 build 17",
+    "service_result": "success",
+    "warning_or_error_entries": 0,
+    "natural_check_after_reboot": "passed: current 0.8.1 build 17"
+  },
+  "physical_wifi_fix": "owner-device configuration fixed separately from Deckivo; system-stored secret, automatic reconnection and reboot checked",
+  "reboot_persistence": "passed: Ubuntu reconnected automatically with KWallet closed; Deckivo user timer performed a public update check after reboot",
   "gameplay_test": "not performed",
   "old_client_source_commit": "47b088d5aa60ced0ec6ecdf0da24cdebbf4df42b",
   "old_client_download": "exact v0.6.1 updater.py and rsa_verify.py passed signed public 0.8.1 download on Mac with Linux-equivalent TLS context"

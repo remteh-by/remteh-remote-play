@@ -18,7 +18,7 @@
     "download_apk": "Download APK",
     "mac_note": "0.6.1 b10 · Apple Silicon · Requires chiaki-ng · Not notarized",
     "mac_guide": "Mac setup guide",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch acceptance pending",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Updater verified on Switch OLED · Gameplay pending",
     "linux_guide": "Download Linux 0.8.1 b17",
     "planned": "Windows, Intel Mac and desktop Linux x64 are planned. No builds are offered for them yet.",
     "setup_title": "A little setup. A lot of play.",
@@ -36,7 +36,7 @@
     "verified": "Verified",
     "android_test": "Public update 23 → 24; exact release APK and saved console retained.",
     "mac_test": "Public HTTPS update 8 → 9; relaunch and registration retained.",
-    "linux_test": "Self-update 6 → 7; pairing, settings and history retained.",
+    "linux_test": "Public updater verified on Switch OLED: 0.6.1 b10 → 0.8.1 b17; 80/80 installer files matched the public ZIP, the startup acknowledgment matched the live process, pairing was retained, and the enabled systemd user timer fetched the public feed with the GUI closed. Gameplay on 0.8.1 remains a separate pending test.",
     "test_note": "Earlier builds passed local video, sound and GameSir input checks: Android 0.1.x and Ubuntu 0.3.0; Mac used chiaki-ng 1.10.0. These checks do not certify every 0.6.0 feature or sustained Internet play. The reference PS5 currently advertises firmware 13.42.",
     "test_detail": "Read the full test matrix ↗",
     "support_one": "Keep good",
@@ -117,7 +117,7 @@
     "download_apk": "Скачать APK",
     "mac_note": "0.6.1 b10 · Apple Silicon · Нужен chiaki-ng · Без нотарификации",
     "mac_guide": "Установка на Mac",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Проверка на Switch ожидается",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Апдейтер проверен на Switch OLED · Геймплей ещё не проверен",
     "linux_guide": "Скачать Linux 0.8.1 b17",
     "planned": "Windows, Intel Mac и настольный Linux x64 запланированы. Проверенных сборок для них пока нет.",
     "full_guide": "Полная инструкция ↗",
@@ -126,7 +126,7 @@
     "verified": "Что проверено",
     "android_test": "Обновление с GitHub 23 → 24; APK совпал с релизом, консоль сохранена.",
     "mac_test": "Обновление по HTTPS 8 → 9; перезапуск и регистрация сохранены.",
-    "linux_test": "Самообновление 6 → 7; привязка, настройки и история сохранены.",
+    "linux_test": "Публичный апдейтер проверен на Switch OLED: 0.6.1 b10 → 0.8.1 b17; все 80/80 файлов установки совпали с публичным ZIP, подтверждение запуска — с активным процессом, привязка сохранена, а включённый пользовательский таймер systemd успешно получил публичный фид при закрытом интерфейсе. Геймплей на 0.8.1 ещё не проверен и остаётся отдельной проверкой.",
     "test_note": "На ранних версиях проверяли локальные изображение, звук и GameSir: Android 0.1.x и Ubuntu 0.3.0; на Mac — движок chiaki-ng 1.10.0. Это не подтверждает все функции 0.6.0 или длительную игру через Интернет. Проверяемая PS5 сейчас сообщает версию 13.42.",
     "test_detail": "Подробная таблица проверок ↗",
     "credits": "Основано на работе Chiaki, chiaki-ng и Android Extended. Независимый проект, не связан с Sony или Nintendo.",
@@ -197,7 +197,8 @@
     "faq_title": "Відповіді перед першою грою.",
     "stage": "Linux 0.8.1 b17 · Android і macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · Потрібен chiaki-ng · Без нотаризації",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Перевірка на Switch очікується",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Оновлювач перевірено на Switch OLED · Гру ще не перевірено",
+    "linux_test": "Публічний оновлювач перевірено на Switch OLED: 0.6.1 b10 → 0.8.1 b17; усі 80/80 файлів інсталятора збіглися з публічним ZIP, підтвердження запуску — з активним процесом, прив’язку збережено, а ввімкнений користувацький таймер systemd успішно отримав публічний фід із закритим інтерфейсом. Гру на 0.8.1 ще не перевірено; це окрема перевірка.",
     "linux_guide": "Завантажити Linux 0.8.1 b17",
     "faq": [
       {
@@ -262,7 +263,8 @@
     "faq_title": "Pytania i odpowiedzi.",
     "stage": "Linux 0.8.1 b17 · Android i macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · Wymaga chiaki-ng · Bez notaryzacji",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Weryfikacja na Switchu oczekuje",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Aktualizator zweryfikowany na Switch OLED · Test rozgrywki jeszcze niewykonany",
+    "linux_test": "Publiczny aktualizator zweryfikowano na Switch OLED: 0.6.1 b10 → 0.8.1 b17; wszystkie 80/80 plików instalatora odpowiadało publicznemu ZIP-owi, potwierdzenie uruchomienia zgadzało się z aktywnym procesem, parowanie zachowano, a włączony timer użytkownika systemd pobrał publiczny kanał przy zamkniętym interfejsie. Test rozgrywki w 0.8.1 pozostaje osobnym testem do wykonania.",
     "linux_guide": "Pobierz Linux 0.8.1 b17",
     "faq": [
       {
@@ -327,7 +329,8 @@
     "faq_title": "Fragen und Antworten.",
     "stage": "Linux 0.8.1 b17 · Android und macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · Benötigt chiaki-ng · Nicht notarisiert",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch-Abnahme ausstehend",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Updater auf Switch OLED verifiziert · Gameplay-Test ausstehend",
+    "linux_test": "Der öffentliche Updater wurde auf Switch OLED verifiziert: 0.6.1 b10 → 0.8.1 b17; alle 80/80 Installationsdateien entsprachen der öffentlichen ZIP-Datei, die Startbestätigung stimmte mit dem laufenden Prozess überein, die Kopplung blieb erhalten und der aktivierte systemd-Benutzertimer rief bei geschlossener Oberfläche den öffentlichen Feed erfolgreich ab. Der Gameplay-Test für 0.8.1 steht separat noch aus.",
     "linux_guide": "Linux 0.8.1 b17 herunterladen",
     "faq": [
       {
@@ -392,7 +395,8 @@
     "faq_title": "Questions et réponses.",
     "stage": "Linux 0.8.1 b17 · Android et macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · Nécessite chiaki-ng · Non notarissé",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Validation sur Switch en attente",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Outil de mise à jour vérifié sur Switch OLED · Test de jeu en attente",
+    "linux_test": "L’outil de mise à jour public a été vérifié sur Switch OLED : 0.6.1 b10 → 0.8.1 b17 ; les 80/80 fichiers d’installation correspondaient au ZIP public, l’accusé de démarrage correspondait au processus actif, l’appairage a été conservé et le minuteur utilisateur systemd activé a récupéré le flux public avec l’interface fermée. Le test de jeu de la version 0.8.1 reste un contrôle séparé en attente.",
     "linux_guide": "Télécharger Linux 0.8.1 b17",
     "faq": [
       {
@@ -457,7 +461,8 @@
     "faq_title": "Preguntas y respuestas.",
     "stage": "Linux 0.8.1 b17 · Android y macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · Requiere chiaki-ng · Sin notarizar",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Validación en Switch pendiente",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Actualizador verificado en Switch OLED · Juego pendiente de prueba",
+    "linux_test": "El actualizador público se verificó en Switch OLED: 0.6.1 b10 → 0.8.1 b17; los 80/80 archivos del instalador coincidieron con el ZIP público, la confirmación de inicio coincidió con el proceso activo, se conservó el emparejamiento y el temporizador de usuario de systemd habilitado obtuvo el canal público con la interfaz cerrada. La prueba de juego de 0.8.1 sigue pendiente por separado.",
     "linux_guide": "Descargar Linux 0.8.1 b17",
     "faq": [
       {
@@ -522,7 +527,8 @@
     "faq_title": "Domande e risposte.",
     "stage": "Linux 0.8.1 b17 · Android e macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · Richiede chiaki-ng · Non autenticato da Apple",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Verifica su Switch in attesa",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Programma di aggiornamento verificato su Switch OLED · Test di gioco in attesa",
+    "linux_test": "Il programma di aggiornamento pubblico è stato verificato su Switch OLED: 0.6.1 b10 → 0.8.1 b17; tutti gli 80/80 file di installazione corrispondevano allo ZIP pubblico, la conferma di avvio corrispondeva al processo attivo, l’associazione è rimasta intatta e il timer utente systemd abilitato ha recuperato il feed pubblico con l’interfaccia chiusa. Il test di gioco della versione 0.8.1 resta separato e in attesa.",
     "linux_guide": "Scarica Linux 0.8.1 b17",
     "faq": [
       {
@@ -587,7 +593,8 @@
     "faq_title": "Perguntas e respostas.",
     "stage": "Linux 0.8.1 b17 · Android e macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · Requer chiaki-ng · Sem notarização",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Validação no Switch pendente",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Atualizador verificado no Switch OLED · Teste de jogo pendente",
+    "linux_test": "O atualizador público foi verificado no Switch OLED: 0.6.1 b10 → 0.8.1 b17; os 80/80 ficheiros do instalador coincidiram com o ZIP público, a confirmação de arranque coincidiu com o processo ativo, a associação foi mantida e o temporizador de utilizador systemd ativado obteve o feed público com a interface fechada. O teste de jogo da versão 0.8.1 continua pendente em separado.",
     "linux_guide": "Transferir Linux 0.8.1 b17",
     "faq": [
       {
@@ -652,7 +659,8 @@
     "faq_title": "Sorular ve yanıtlar.",
     "stage": "Linux 0.8.1 b17 · Android ve macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng gerekir · Noter onayı yok",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch doğrulaması bekleniyor",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Güncelleyici Switch OLED’de doğrulandı · Oynanış testi bekliyor",
+    "linux_test": "Genel güncelleyici Switch OLED’de doğrulandı: 0.6.1 b10 → 0.8.1 b17; 80/80 yükleyici dosyası genel ZIP ile eşleşti, başlatma onayı çalışan süreçle eşleşti, eşleştirme korundu ve etkin systemd kullanıcı zamanlayıcısı arayüz kapalıyken genel akışı başarıyla aldı. 0.8.1 oynanış testi ayrı olarak hâlâ bekliyor.",
     "linux_guide": "Linux 0.8.1 b17'yi indir",
     "faq": [
       {
@@ -717,7 +725,8 @@
     "faq_title": "常见问题。",
     "stage": "Linux 0.8.1 b17 · Android 和 macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · 需要 chiaki-ng · 未经公证",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch 验收待完成",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · 已在 Switch OLED 验证更新器 · 游戏测试待完成",
+    "linux_test": "已在 Switch OLED 验证公开更新器：0.6.1 b10 → 0.8.1 b17；80/80 个安装文件与公开 ZIP 一致，启动确认与运行中的进程一致，配对得以保留；界面关闭时，已启用的 systemd 用户计时器也成功获取了公开更新源。0.8.1 的游戏测试仍作为独立项目待完成。",
     "linux_guide": "下载 Linux 0.8.1 b17",
     "faq": [
       {
@@ -782,7 +791,8 @@
     "faq_title": "よくある質問。",
     "stage": "Linux 0.8.1 b17 · Android／macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng が必要 · 未公証",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch での確認待ち",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Switch OLED で更新機能を確認済み · ゲームプレイ未検証",
+    "linux_test": "公開アップデーターを Switch OLED で確認済み：0.6.1 b10 → 0.8.1 b17。インストーラーの全 80/80 ファイルが公開 ZIP と一致し、起動確認は実行中のプロセスと一致、ペアリングも保持されました。画面を閉じた状態でも、有効な systemd ユーザータイマーが公開フィードを正常に取得しました。0.8.1 のゲームプレイ検証は別項目として未完了です。",
     "linux_guide": "Linux 0.8.1 b17 をダウンロード",
     "faq": [
       {
@@ -847,7 +857,8 @@
     "faq_title": "자주 묻는 질문.",
     "stage": "Linux 0.8.1 b17 · Android 및 macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng 필요 · 공증되지 않음",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch 검증 대기 중",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Switch OLED에서 업데이터 검증 완료 · 게임플레이 테스트 대기",
+    "linux_test": "공개 업데이터를 Switch OLED에서 검증했습니다: 0.6.1 b10 → 0.8.1 b17. 설치 파일 80/80개가 공개 ZIP과 일치했고, 시작 확인은 실행 중인 프로세스와 일치했으며 페어링도 유지되었습니다. GUI를 닫은 상태에서도 활성화된 systemd 사용자 타이머가 공개 피드를 정상적으로 가져왔습니다. 0.8.1 게임플레이 테스트는 별도 항목으로 아직 대기 중입니다.",
     "linux_guide": "Linux 0.8.1 b17 다운로드",
     "faq": [
       {
@@ -912,7 +923,8 @@
     "faq_title": "أسئلة وإجابات.",
     "stage": "Linux 0.8.1 b17 · Android وmacOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · يتطلب chiaki-ng · غير موثّق",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · اختبار Switch قيد الانتظار",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · تم التحقق من المحدّث على Switch OLED · اختبار اللعب قيد الانتظار",
+    "linux_test": "تم التحقق من المحدّث العام على Switch OLED: ‏0.6.1 b10 → 0.8.1 b17؛ تطابقت ملفات التثبيت 80/80 مع ملف ZIP العام، وتطابق تأكيد التشغيل مع العملية النشطة، وتم الاحتفاظ بالاقتران، كما جلب مؤقت مستخدم systemd المفعّل موجز التحديث العام بنجاح والواجهة مغلقة. يبقى اختبار اللعب للإصدار 0.8.1 اختبارًا منفصلًا معلّقًا.",
     "linux_guide": "تنزيل Linux 0.8.1 b17",
     "faq": [
       {
@@ -977,7 +989,8 @@
     "faq_title": "सवाल और जवाब।",
     "stage": "Linux 0.8.1 b17 · Android और macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · chiaki-ng आवश्यक · नोटराइज़ नहीं",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Switch सत्यापन लंबित",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Switch OLED पर अपडेटर सत्यापित · गेमप्ले परीक्षण लंबित",
+    "linux_test": "सार्वजनिक अपडेटर Switch OLED पर सत्यापित हुआ: 0.6.1 b10 → 0.8.1 b17; इंस्टॉलर की 80/80 फ़ाइलें सार्वजनिक ZIP से मेल खाईं, स्टार्टअप पुष्टि सक्रिय प्रक्रिया से मेल खाई, पेयरिंग सुरक्षित रही, और सक्षम systemd उपयोगकर्ता टाइमर ने GUI बंद रहते हुए सार्वजनिक फ़ीड सफलतापूर्वक प्राप्त की। 0.8.1 का गेमप्ले परीक्षण अलग से अभी लंबित है।",
     "linux_guide": "Linux 0.8.1 b17 डाउनलोड करें",
     "faq": [
       {
@@ -1042,7 +1055,8 @@
     "faq_title": "Pertanyaan dan jawaban.",
     "stage": "Linux 0.8.1 b17 · Android dan macOS 0.6.1",
     "mac_note": "0.6.1 b10 · Apple Silicon · Memerlukan chiaki-ng · Belum dinotarisasi",
-    "linux_note": "0.8.1 b17 · Ubuntu 24.04 ARM64 · Validasi Switch masih tertunda",
+    "linux_note": "0.8.1 b17 · Ubuntu 24.04.4 ARM64 · Pemutakhir terverifikasi di Switch OLED · Uji permainan tertunda",
+    "linux_test": "Pemutakhir publik telah diverifikasi di Switch OLED: 0.6.1 b10 → 0.8.1 b17; 80/80 berkas pemasang cocok dengan ZIP publik, konfirmasi mulai cocok dengan proses aktif, penyandingan tetap tersimpan, dan timer pengguna systemd yang diaktifkan berhasil mengambil umpan publik saat antarmuka ditutup. Uji permainan 0.8.1 tetap menjadi pengujian terpisah yang masih tertunda.",
     "linux_guide": "Unduh Linux 0.8.1 b17",
     "faq": [
       {

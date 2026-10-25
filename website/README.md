@@ -16,10 +16,14 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory build/site
 ```
 
 Public versions are platform-specific. Switchroot Ubuntu ARM64 is offered as
-`Deckivo-Linux-0.8.1-b17-source.zip`; its current physical acceptance is still
-pending. Android remains `Deckivo-0.6.1-arm64.apk`, and Apple Silicon macOS
-remains `Deckivo-macos-0.6.1-b10.zip`. Never relabel the Android APK or Mac ZIP
-as 0.8.1, and never imply that one shared version applies to every platform.
+`Deckivo-Linux-0.8.1-b17-source.zip`. Its public updater was verified on Switch
+OLED / Ubuntu 24.04.4 ARM64 from 0.6.1 b10 to 0.8.1 b17: all 80 installer files
+matched the public ZIP, the startup acknowledgment matched the live process,
+pairing was retained, and the enabled systemd user timer fetched the public feed
+with the GUI closed. Gameplay on 0.8.1 remains a separate pending test. Android
+remains `Deckivo-0.6.1-arm64.apk`, and Apple Silicon macOS remains
+`Deckivo-macos-0.6.1-b10.zip`. Never relabel the Android APK or Mac ZIP as 0.8.1,
+and never imply that one shared version applies to every platform.
 
 The optional `--download-stats PATH` argument accepts the validated snapshot
 produced by `scripts/download-stats.py`. A supplied malformed or inconsistent

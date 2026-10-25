@@ -11,10 +11,14 @@
 
 **Linux 0.8.1 b17 and the Android/macOS 0.6.1 builds are experimental previews,
 not a finished 1.0 product.** Linux 0.8.1 b17 contains the Ubuntu updater fix;
-physical acceptance on the owner's Switch is still pending. The guides separate
-tested hardware/builds from planned support. Local play has been tested on older
-builds; Internet/VPN play and sustained sessions are not certified. No
-subscription or new Deckivo account is required for local play.
+the public updater was verified on Switch OLED / Ubuntu 24.04.4 ARM64 from
+0.6.1 b10 to 0.8.1 b17. All 80 installer files matched the public ZIP, the
+startup acknowledgment matched the live process, pairing was retained, and the
+enabled systemd user timer fetched the public feed with the GUI closed. Gameplay
+on 0.8.1 remains a separate pending test. The guides separate tested
+hardware/builds from planned support. Internet/VPN play and sustained sessions
+are not certified. No subscription or new Deckivo account is required for local
+play.
 
 ### Choose your screen
 
@@ -22,7 +26,7 @@ subscription or new Deckivo account is required for local play.
 |---|---|---|
 | Android ARM64 | APK, Android 8+; tested device uses Android 15 | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) |
 | macOS Apple Silicon | 0.6.1 b10; native Qt preview, separate chiaki-ng engine required; ad-hoc signed, not notarized | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) |
-| Switchroot Ubuntu ARM64 | 0.8.1 b17 updater-fix preview for Ubuntu 24.04 / KDE X11 / Switchroot FFmpeg 6.1; current physical acceptance pending | [Linux 0.8.1 b17](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.1/Deckivo-Linux-0.8.1-b17-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
+| Switchroot Ubuntu ARM64 | 0.8.1 b17 updater-fix preview for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; public updater verified on Switch OLED; gameplay on this build pending separately | [Linux 0.8.1 b17](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.1/Deckivo-Linux-0.8.1-b17-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
 | Windows, Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
 ### Made for your own play space
@@ -48,7 +52,7 @@ subscription or new Deckivo account is required for local play.
 |---|---|---|
 | Switch OLED / Android 15 | 0.6.0 #24 | Public self-update 23 → 24; exact release APK verified; saved console retained |
 | Apple Silicon Mac / macOS 27.0.1 | 0.6.0 #9 | Public HTTPS self-update 8 → 9, relaunch and registration retained |
-| Switch OLED / Ubuntu 24.04.4 ARM64 | 0.5.1 #7 | Self-update 6 → 7, restart, pairing/settings/history retained |
+| Switch OLED / Ubuntu 24.04.4 ARM64 | 0.8.1 #17 | Public update 0.6.1 b10 → 0.8.1 b17; 80/80 installer files matched the public ZIP; startup acknowledgment matched the live process; pairing retained; enabled systemd user timer fetched the public feed with the GUI closed; gameplay pending separately |
 | Earlier gameplay | Android 0.1.x; Ubuntu 0.3.0; Mac chiaki-ng 1.10.0 engine | Owner-confirmed local picture and sound; GameSir input on Switch |
 
 The connected PS5 currently advertises firmware **13.42** (discovery system

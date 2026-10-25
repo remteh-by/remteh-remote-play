@@ -166,6 +166,7 @@ def main():
   hero.append(tag('p',{'class':'small screenshot-caption'},copy['screenshot_caption'].format(version=screenshot['version'],build=screenshot['build'],released=ANDROID_VERSION,linux=f'{LINUX_VERSION} b{LINUX_BUILD}')))
   for node in soup.select('.guide-link'):node['href']=f'https://github.com/remteh-by/remteh-remote-play/blob/main/docs/guides/{code}.md'+('#'+node['data-anchor'] if node.get('data-anchor') else '');node['data-event']='guide'
   linux=soup.select_one('.download-row[data-anchor="ubuntu"]');linux['href']=LINUX_URL;linux['data-event']='download-linux'
+  linux_test=soup.select_one('[data-i="linux_test"]');linux_test.find_parent('tr').select('th,td')[1].string=f'{LINUX_VERSION} · #{LINUX_BUILD}'
   apk=soup.select_one('.download-row:not(.guide-link)');apk['href']=ANDROID_URL;apk['data-event']='download-apk'
   stats_section=soup.select_one('#download-stats');stats_section.clear()
   stats_heading=tag('div',{'class':'section-heading'});stats_heading.append(tag('h2',{'id':'download-stats-title'},download_text['title']));stats_heading.append(tag('p',text=download_text['lead']));stats_section.append(stats_heading)

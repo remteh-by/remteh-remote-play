@@ -8,7 +8,7 @@ No personal registration files, account identifiers or raw device logs are publi
 |---|---|---|---|
 | Switch OLED, Android 15 / API 35, ARM64 | Deckivo 0.5.1 #18 → #19 → #20 | Native PackageInstaller self-update, same package/certificate, installer identified as Deckivo itself; original install timestamp and encrypted-data directory retained; app returned to dashboard with saved console | Sustained gameplay and every controller function in the redesigned frontend |
 | Apple Silicon MacBook, macOS 27.0.1 | Deckivo 0.5.1 #3 → #4 → #5 | Signed updater, bundle verification, replacement/relaunch, startup acknowledgment, registration hash unchanged; no new Deckivo/Python crash report during this check | Sustained new-frontend play/controller acceptance; Developer ID/notarization |
-| Switch OLED, Switchroot Ubuntu 24.04.4 ARM64, KDE/X11 | Deckivo 0.5.1 #6 → #7 | Signed updater download/install/relaunch; pairing, preferences and history retained | New disconnect chord, telemetry and sustained redesigned-frontend gameplay |
+| Switch OLED, Switchroot Ubuntu 24.04.4 ARM64, KDE/X11 | Deckivo 0.6.1 #10 → 0.8.1 #17 | Signed public update installed and relaunched; all 80 installer files match the public package; matching receipt/startup acknowledgment and live version readback; registration retained; exact timer units enabled and a natural closed-app background check reported current | Reboot persistence, Wi-Fi reconnection persistence and sustained redesigned-frontend gameplay/controller acceptance |
 | Switch OLED / Android 15 / GameSir G8+ blue mode | Earlier 0.1.x client, 0.1.2 quick controls | Owner confirmed PS5 picture, menu audio and basic GameSir control; PS/Touch panel behaviour tested | Complete analog-trigger/controller matrix and long sessions |
 | Switch OLED / Ubuntu / GameSir G8+ | Earlier 0.3.0 engine path; Chiaki 2.2.0 | Owner confirmed picture, sound and control; 1280×720 decoded frames via h264_nvv4l2, nonzero speaker PCM, exclusive controller capture, reconnect after console autoload | Sustained 60 FPS is not certified; newer frontend does not inherit full acceptance |
 | Apple Silicon MacBook | chiaki-ng 1.10.0 native engine | Owner confirmed PS5 picture and sound before the shared frontend update | Full Deckivo 0.6.0 gameplay/controller acceptance |
@@ -102,10 +102,22 @@ Switch, firmware update, jailbreak reliability or game compatibility certificati
   warnings. A private device-side backup of registration/preferences was made.
 - 74 desktop/package tests passed. The signed Linux upgrade has 94 unique paths
   including license documents; the macOS feed entry remains unchanged.
-- Physical public-channel 0.6.1 → 0.8.1 transition is **pending**. USB and Wi-Fi
-  became unavailable before installation. Neither staging/build success nor the
-  updated UI screenshot is a gameplay or device-update acceptance result.
+- Physical public-channel 0.6.1 build 10 → 0.8.1 build 17 is verified on the
+  actual Switch OLED. All 80 installed files match the public package; its
+  install receipt, startup acknowledgment and live version agree, and the
+  registration was retained.
+- The exact packaged user service/timer units are enabled. After the GUI closed,
+  the next natural timer run completed successfully and reported 0.8.1 build 17
+  current, with no warning/error journal entries.
+- Full Ubuntu reboot, Wi-Fi autoconnection with KWallet closed and another
+  natural background update check passed. Gameplay/controller acceptance remains
+  separate and was not performed on this build.
 
 [0.8.1 public-channel readback](releases/0.8.1-public-channel-validation.json)
-records the verified public download separately from the still-pending physical
-installation. No new device acceptance is inferred from that download.
+records the verified public download and exact-device update acceptance. It does
+not certify gameplay or controller behaviour.
+
+The same Ubuntu device was subsequently fully rebooted: its saved Wi-Fi profile
+autoconnected while KWallet remained closed, and the Deckivo timer checked the
+public channel again. The Wi-Fi change is owner-device configuration, not a
+feature that modifies networks in the distributed application.
