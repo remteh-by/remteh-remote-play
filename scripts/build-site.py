@@ -119,6 +119,8 @@ def main():
  for filename in ('deckivo-ui.webp','deckivo-ui.avif','github-cover.webp'):
   record=screenshot['images'][filename];image_path=ROOT/'website/assets'/filename
   if hashlib.sha256(image_path.read_bytes()).hexdigest()!=record['sha256']:raise ValueError(f'Screenshot hash mismatch: {filename}; regenerate image and provenance together')
+ def screenshot_url(filename):return 'assets/'+filename+'?v='+screenshot['images'][filename]['sha256'][:12]
+ style_version=hashlib.sha256((ROOT/'website/style.css').read_bytes()).hexdigest()[:12]
  template=(ROOT/'website/template.html').read_text();out=args.out
  if out.exists():shutil.rmtree(out)
  out.mkdir(parents=True)
@@ -142,7 +144,7 @@ def main():
    el=soup.new_tag(name,attrs=attrs or {})
    if text is not None:el.string=str(text)
    return el
-  for attrs in ({'name':'description','content':copy['description']},{'property':'og:title','content':copy['title']},{'property':'og:description','content':copy['description']},{'property':'og:type','content':'website'},{'property':'og:url','content':address(code)},{'property':'og:image','content':base+'assets/github-cover.webp'},{'name':'twitter:card','content':'summary_large_image'}):soup.head.append(tag('meta',attrs))
+  for attrs in ({'name':'description','content':copy['description']},{'property':'og:title','content':copy['title']},{'property':'og:description','content':copy['description']},{'property':'og:type','content':'website'},{'property':'og:url','content':address(code)},{'property':'og:image','content':base+screenshot_url('github-cover.webp')},{'name':'twitter:card','content':'summary_large_image'}):soup.head.append(tag('meta',attrs))
   soup.head.append(tag('link',{'rel':'canonical','href':address(code)}))
   for lang in NAMES:soup.head.append(tag('link',{'rel':'alternate','hreflang':lang,'href':address(lang)}))
   soup.head.append(tag('link',{'rel':'alternate','hreflang':'x-default','href':base}))
@@ -154,7 +156,7 @@ def main():
   links=soup.select_one('#language-links');links.clear()
   for lang,name in NAMES.items():links.append(tag('a',{'href':prefix+('' if lang=='en' else lang+'/') or './','lang':lang,'hreflang':lang,'class':'selected' if code==lang else ''},name))
   hero=soup.select_one('.hero-art');hero.clear();hero['aria-hidden']='false'
-  picture=tag('picture');picture.append(tag('source',{'type':'image/avif','srcset':'assets/deckivo-ui.avif'}));picture.append(tag('img',{'src':'assets/deckivo-ui.webp','alt':{'ru':'Настоящий экран Deckivo до привязки консоли','en':'Real Deckivo setup screen before console pairing'}.get(code,'Deckivo · setup screen'),'width':'1280','height':'720','fetchpriority':'high'}));hero.append(picture)
+  picture=tag('picture');picture.append(tag('source',{'type':'image/avif','srcset':screenshot_url('deckivo-ui.avif')}));picture.append(tag('img',{'src':screenshot_url('deckivo-ui.webp'),'alt':{'ru':'Настоящий экран Deckivo до привязки консоли','en':'Real Deckivo setup screen before console pairing'}.get(code,'Deckivo · setup screen'),'width':'1280','height':'720','fetchpriority':'high'}));hero.append(picture)
   hero.append(tag('p',{'class':'small screenshot-caption'},copy['screenshot_caption'].format(version=screenshot['version'],build=screenshot['build'],released='0.6.1')))
   for node in soup.select('.guide-link'):node['href']=f'https://github.com/remteh-by/remteh-remote-play/blob/main/docs/guides/{code}.md'+('#'+node['data-anchor'] if node.get('data-anchor') else '');node['data-event']='guide'
   apk=soup.select_one('.download-row:not(.guide-link)');apk['href']='https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk';apk['data-event']='download-apk'
@@ -235,7 +237,7 @@ def main():
   for node in soup.select('[src],[srcset],link[href]'):
    for attr in ('src','srcset','href'):
     value=node.get(attr)
-    if value and not value.startswith(('https://','http://','#','../')):node[attr]=prefix+value.replace('style.css?v=0.6.0-final','style.css?v=061').replace('v=060','v=061')
+    if value and not value.startswith(('https://','http://','#','../')):node[attr]=prefix+('style.css?v='+style_version if value.split('?')[0]=='style.css' else value.replace('v=060','v=061'))
   directory=out/('' if code=='en' else code);directory.mkdir(exist_ok=True);(directory/'index.html').write_text(str(soup)+'\n')
  ns='http://www.sitemaps.org/schemas/sitemap/0.9';xhtml='http://www.w3.org/1999/xhtml';ET.register_namespace('',ns);ET.register_namespace('xhtml',xhtml)
  root=ET.Element('{'+ns+'}urlset')
