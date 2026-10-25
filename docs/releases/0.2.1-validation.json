@@ -1,0 +1,47 @@
+{
+  "version": "0.2.1",
+  "versionCode": 13,
+  "timestamp": "2026-10-24T15:47:59.303965+00:00",
+  "release_state": "LOCAL_CANDIDATE_OWNER_GAMEPLAY_ACCEPTANCE_PENDING",
+  "build": "PASS assembleRelease, testDebugUnitTest and lintRelease; Gradle 8.14.6 / SDK 36 AAPT2",
+  "unit_tests": {
+    "tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "scope": "Existing language/updater/LAN tests; reconnect checked on device below"
+  },
+  "lint": {
+    "Warning": 227,
+    "Error": 0
+  },
+  "apk": {
+    "file": "Deckivo-0.2.1-arm64.apk",
+    "bytes": 5866513,
+    "sha256": "1d7a75802461d11731be250b202ff41878cd9268571d0f5cea8252182227b5c3"
+  },
+  "signature": "apksigner and 16 KiB zipalign passed; same signing identity; Android accepted in-place update",
+  "incident": "Build 12 private log contained 594 video packets received without an initialized decoder. Owner confirmed picture returned after reconnect.",
+  "physical_device": {
+    "model": "Switch OLED",
+    "android": "15 / API 35",
+    "in_place_install": "PASS, registration and owner-selected Russian retained",
+    "observed_picture": "PASS, PS5 home menu after same-screen reconnect",
+    "reconnect_order": "Decoder initialized at 18:45:51.893 before TCP connected at 18:45:51.913; streaminfo followed at 18:45:54.228 (device log time)",
+    "live_log_counts": {
+      "decoder_not_initialized": 0,
+      "decoder_initializations": 2,
+      "streaminfo_received": 1,
+      "fatal_exceptions": 0
+    },
+    "initial_attempt": "First connection timed out; subsequent reconnect produced picture. No claim that initial network timeout was fixed.",
+    "evidence": "Private log and screenshots outside repository; no console keys, account IDs or IPs in release package",
+    "normal_sleep_setting_restored": "PASS; stay_on_while_plugged_in=0; streaming view keeps its screen awake"
+  },
+  "not_yet_validated": [
+    "Long gameplay, GameSir full control/audio acceptance of 0.2.1",
+    "Repeated network-loss reconnect and custom GL/debanding output",
+    "WAN, other Android versions/devices and desktop platforms",
+    "Full GitHub updater download/install flow; no release published"
+  ],
+  "publication": "No new public release, source push or Pages deployment; completed 1.0.0 and owner acceptance remain required."
+}

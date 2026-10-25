@@ -53,107 +53,18 @@
         android:alpha="0"
         android:fitsSystemWindows="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/stream_overlay_background"
-            android:padding="8dp"
-            android:clickable="true"
-            android:focusable="false">
-
-            <LinearLayout
-                android:id="@+id/quickActions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/quickPsButton"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="64dp"
-                    android:layout_height="48dp"
-                    android:focusable="false"
-                    android:text="@string/stream_quick_ps"
-                    android:textAllCaps="false"
-                    android:textColor="@color/stream_text"
-                    android:contentDescription="@string/stream_quick_ps_description"
-                    app:backgroundTint="@android:color/transparent"
-                    app:cornerRadius="24dp"
-                    app:strokeColor="@color/stream_text"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/quickTouchButton"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="96dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="8dp"
-                    android:focusable="false"
-                    android:text="@string/stream_quick_touch"
-                    android:textAllCaps="false"
-                    android:textColor="@color/stream_text"
-                    android:contentDescription="@string/stream_quick_touch_description"
-                    app:backgroundTint="@android:color/transparent"
-                    app:cornerRadius="24dp"
-                    app:strokeColor="@color/stream_text"/>
-            </LinearLayout>
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/onScreenControlsSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="On-Screen Controls"
-                app:switchPadding="8dp"
-                android:layout_marginLeft="8dp"
-                android:textColor="@color/stream_text"/>
-
-
-            <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/displayModeToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintTop_toBottomOf="@id/quickActions"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:singleSelection="true"
-                app:selectionRequired="true"
-                app:checkedButton="@id/display_mode_normal_button">
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:id="@+id/display_mode_normal_button"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_display_normal"
-                    app:iconTint="@color/stream_material_button_icon_tint"
-                    app:strokeColor="@color/stream_text"/>
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:id="@+id/display_mode_zoom_button"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_display_zoom"
-                    app:iconTint="@color/stream_material_button_icon_tint"
-                    app:strokeColor="@color/stream_text"/>
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:id="@+id/display_mode_stretch_button"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_display_stretch"
-                    app:iconTint="@color/stream_material_button_icon_tint"
-                    app:strokeColor="@color/stream_text"/>
-
-        </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" android:layout_margin="16dp" android:orientation="vertical" android:background="@drawable/deckivo_stream_panel" android:padding="12dp" android:clickable="true" android:focusable="false">
+<LinearLayout android:id="@+id/quickActions" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+<com.google.android.material.button.MaterialButton android:id="@+id/quickPsButton" style="@style/Deckivo.Button.Secondary" android:layout_width="72dp" android:layout_height="48dp" android:focusable="false" android:text="@string/stream_quick_ps" android:contentDescription="@string/stream_quick_ps_description" />
+<com.google.android.material.button.MaterialButton android:id="@+id/quickTouchButton" style="@style/Deckivo.Button.Secondary" android:layout_width="96dp" android:layout_height="48dp" android:layout_marginStart="8dp" android:focusable="false" android:text="@string/stream_quick_touch" android:contentDescription="@string/stream_quick_touch_description" />
+<com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/onScreenControlsSwitch" android:layout_width="wrap_content" android:layout_height="48dp" android:layout_marginStart="20dp" android:text="@string/dv_touch_controls" android:textColor="@color/stream_text" app:switchPadding="8dp" />
+</LinearLayout>
+<com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/displayModeToggle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:singleSelection="true" app:selectionRequired="true" app:checkedButton="@id/display_mode_normal_button">
+<com.google.android.material.button.MaterialButton style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:id="@+id/display_mode_normal_button" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" android:contentDescription="@string/dv_fit" app:icon="@drawable/ic_display_normal" app:iconGravity="textStart" app:iconTint="@color/stream_material_button_icon_tint" app:strokeColor="@color/deckivo_border" />
+<com.google.android.material.button.MaterialButton style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:id="@+id/display_mode_zoom_button" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" android:contentDescription="@string/dv_zoom" app:icon="@drawable/ic_display_zoom" app:iconGravity="textStart" app:iconTint="@color/stream_material_button_icon_tint" app:strokeColor="@color/deckivo_border" />
+<com.google.android.material.button.MaterialButton style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:id="@+id/display_mode_stretch_button" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" android:contentDescription="@string/dv_stretch" app:icon="@drawable/ic_display_stretch" app:iconGravity="textStart" app:iconTint="@color/stream_material_button_icon_tint" app:strokeColor="@color/deckivo_border" />
+</com.google.android.material.button.MaterialButtonToggleGroup>
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

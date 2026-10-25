@@ -8,7 +8,7 @@ import android.view.View
 import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
+import com.metallic.chiaki.design.DeckivoActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.metallic.chiaki.R
@@ -21,7 +21,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 
-class EditManualConsoleActivity: AppCompatActivity(), RevealActivity
+class EditManualConsoleActivity: DeckivoActivity(), RevealActivity
 {
 	companion object
 	{

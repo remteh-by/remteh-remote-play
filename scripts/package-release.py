@@ -11,14 +11,15 @@ import zipfile
 root = Path(__file__).resolve().parents[1]
 dist = root / "dist"
 app_version = re.search(r'versionName\s+"([0-9]+\.[0-9]+\.[0-9]+)"', (root / "android/app/build.gradle").read_text()).group(1)
-version = f"RemTeh-Remote-Play-{app_version}"
+version = f"Deckivo-{app_version}"
 bundle = dist / version
 bundle.mkdir(parents=True, exist_ok=True)
 apk = dist / (version + "-arm64.apk")
 assert apk.is_file()
 for source, name in [
     (apk, apk.name),
-    (root / "ps5-companion/remteh-pair-helper.elf", "remteh-pair-helper.elf"),
+    (dist / "update.json", "update.json"),
+    (root / "android/app/src/main/assets/remteh-pair-helper.elf", "remteh-pair-helper.elf"),
     (root / "README-REMTEH.md", "ИНСТРУКЦИЯ.md"),
     (root / "COPYING", "LICENSE-CHIAKI.txt"),
     (root / "ps5-companion/COPYING", "LICENSE-PS5-HELPER.txt"),
@@ -61,7 +62,7 @@ with zipfile.ZipFile(source_zip, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as 
             archive.write(path, "source/" + str(path.relative_to(root)))
             entries += 1
     # Include exact FetchContent source checkouts, not only URLs/tags.
-    dep_bases = list((root / "android/app/.cxx/Release").glob("*/arm64-v8a/_deps")) + list((root / "android/app/.cxx/Debug").glob("*/arm64-v8a/_deps"))
+    dep_bases = list((root / "android/app/.cxx").glob("*/*/arm64-v8a/_deps"))
     dep_base = next((p for p in dep_bases if all((p / (d + "-src")).is_dir() for d in ("mbedtls", "json-c", "miniupnpc"))), None)
     if dep_base is None:
         raise SystemExit("Build native dependencies before packaging their corresponding source")

@@ -6,6 +6,7 @@ import com.metallic.chiaki.lib.DiscoveryHost
 
 sealed class DisplayHost
 {
+	open val manualHost: ManualHost? get() = null
 	abstract val registeredHost: RegisteredHost?
 	abstract val host: String
 	abstract val name: String?
@@ -17,7 +18,8 @@ sealed class DisplayHost
 
 class DiscoveredDisplayHost(
 	override val registeredHost: RegisteredHost?,
-	val discoveredHost: DiscoveryHost
+	val discoveredHost: DiscoveryHost,
+	override val manualHost: ManualHost? = null
 ): DisplayHost()
 {
 	override val host get() = discoveredHost.hostAddr ?: ""
@@ -29,16 +31,16 @@ class DiscoveredDisplayHost(
 		if(other !is DiscoveredDisplayHost)
 			false
 		else
-			other.discoveredHost == discoveredHost && other.registeredHost == registeredHost
+			other.discoveredHost == discoveredHost && other.registeredHost == registeredHost && other.manualHost == manualHost
 
-	override fun hashCode() = 31 * (registeredHost?.hashCode() ?: 0) + discoveredHost.hashCode()
+	override fun hashCode() = 31 * (31 * (registeredHost?.hashCode() ?: 0) + discoveredHost.hashCode()) + (manualHost?.hashCode() ?: 0)
 
 	override fun toString() = "DiscoveredDisplayHost{${registeredHost}, ${discoveredHost}}"
 }
 
 class ManualDisplayHost(
 	override val registeredHost: RegisteredHost?,
-	val manualHost: ManualHost
+	override val manualHost: ManualHost
 ): DisplayHost()
 {
 	override val host get() = manualHost.host

@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.metallic.chiaki.common.*
 import com.metallic.chiaki.common.ext.toLiveData
 import com.metallic.chiaki.discovery.DiscoveryManager
-import com.metallic.chiaki.discovery.serverMac
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.Observables
@@ -30,14 +29,7 @@ class MainViewModel(val database: AppDatabase, val preferences: Preferences): Vi
 			database.registeredHostDao().getAll().toObservable(),
 			discoveryManager.discoveredHosts)
 			{ manualHosts, registeredHosts, discoveredHosts ->
-				val macRegisteredHosts = registeredHosts.associateBy { it.serverMac }
-				val idRegisteredHosts = registeredHosts.associateBy { it.id }
-				discoveredHosts.map {
-					DiscoveredDisplayHost(it.serverMac?.let { mac -> macRegisteredHosts[mac] }, it)
-				} +
-				manualHosts.map {
-					ManualDisplayHost(it.registeredHost?.let { id -> idRegisteredHosts[id] }, it)
-				}
+				DisplayHostMerger.merge(manualHosts, registeredHosts, discoveredHosts)
 			}
 			.toLiveData()
 

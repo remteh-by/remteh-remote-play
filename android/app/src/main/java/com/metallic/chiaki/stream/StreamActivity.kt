@@ -9,7 +9,7 @@ import android.graphics.Matrix
 import android.os.*
 import android.view.*
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
+import com.metallic.chiaki.design.DeckivoActivity
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -33,7 +33,7 @@ private object StreamQuitDialog: DialogContents()
 private object CreateErrorDialog: DialogContents()
 private object PinRequestDialog: DialogContents()
 
-class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListener
+class StreamActivity : DeckivoActivity(), View.OnSystemUiVisibilityChangeListener
 {
 	companion object
 	{

@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-25",
+  "version": "0.5.1",
+  "public_release": false,
+  "desktop_tests": 25,
+  "android_tests": 29,
+  "macos": {
+    "build": 5,
+    "update_transitions": [
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "startup_confirmed": true,
+    "pairing_retained": true
+  },
+  "switchroot_ubuntu": {
+    "build": 7,
+    "os": "24.04.4 ARM64",
+    "update_transitions": [
+      [
+        6,
+        7
+      ]
+    ],
+    "startup_confirmed": true,
+    "pairing_preferences_history_retained": true
+  },
+  "android": {
+    "build": 20,
+    "os": "Android 15 / API 35",
+    "device": "Nintendo Switch OLED",
+    "bootstrap_installed_over": "0.2.2 build 14",
+    "update_transitions": [
+      [
+        18,
+        19
+      ],
+      [
+        19,
+        20
+      ]
+    ],
+    "installer_is_deckivo": true,
+    "first_install_and_data_inode_retained": true,
+    "returned_to_home": true,
+    "play_protect_scan_requested_and_owner_approved": true,
+    "usb_power_preference_restored": true
+  },
+  "limits": [
+    "Private LAN update feed requires the Mac to be awake on the same network",
+    "Checks happen while Deckivo is open",
+    "Android may request installation approval or Play Protect scanning",
+    "Native game-session acceptance is distinct from update acceptance"
+  ]
+}

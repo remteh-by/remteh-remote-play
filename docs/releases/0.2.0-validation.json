@@ -1,0 +1,74 @@
+{
+  "version": "0.2.0",
+  "versionCode": 12,
+  "release_state": "LOCAL_CANDIDATE_AWAITING_OWNER_TEST_NO_PUBLICATION",
+  "timestamp": "2026-10-24T12:24:37.906284+00:00",
+  "build": "PASS assembleRelease; Gradle 8.14.6; JDK 17; SDK 36 AAPT2; isolated local Gradle cache used because external cache reads were slow",
+  "unit_tests": {
+    "tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "scope": "5 language policy, 10 updater policy/serialization, 3 LAN setup checks"
+  },
+  "lint": {
+    "Warning": 227,
+    "Error": 0
+  },
+  "apk": {
+    "file": "Deckivo-0.2.0-arm64.apk",
+    "bytes": 5866513,
+    "sha256": "81dcdbc996acdbf50c392005ceadfd9defbd33dbb2dd22b80def04032b2550f5"
+  },
+  "signature": "Persistent signing key retained; apksigner and 16 KiB zipalign passed; Android accepted in-place upgrade",
+  "physical_device": {
+    "model": "Switch OLED",
+    "android": "15 / API 35",
+    "package_readback": "0.2.0 / 12",
+    "in_place_install": "PASS without uninstall or clearing data",
+    "language_checks": {
+      "build": 12,
+      "default_english_with_russian_framework_locale": "PASS",
+      "automatic_detects_russian_system": "PASS",
+      "automatic_persists_after_restart": "PASS",
+      "manual_english_overrides_russian_system": "PASS",
+      "manual_persists_after_restart": "PASS",
+      "automatic_option_preview": "PASS Russian even when current app is English",
+      "arabic_rtl_shell": "PASS",
+      "final_language": "English",
+      "registration_retained": true,
+      "settings_language_selector": "PASS",
+      "language_updates_background_main_on_return": "PASS"
+    },
+    "sleep_setting_restored": "PASS, stay_on_while_plugged_in=0",
+    "evidence": "Private XML and screenshots remain outside the source repository"
+  },
+  "website": {
+    "state": "LOCAL ONLY",
+    "languages": 16,
+    "automatic_mode": true,
+    "layout_cases": 85,
+    "widths": [
+      390,
+      768,
+      1920,
+      2560,
+      3840
+    ],
+    "horizontal_overflow_cases": 0,
+    "undefined_copy_cases": 0,
+    "console_errors_or_warnings": 0,
+    "language_policy_checks": 9,
+    "browser_automatic_russian_and_manual_override": "PASS, including reload persistence"
+  },
+  "native_build_paths": "No build-host home-directory source paths in shipped native .so files",
+  "not_yet_validated": [
+    "Owner gameplay and controller acceptance of the redesigned build 12",
+    "Full GitHub download and Android installer end-to-end upgrade",
+    "WAN, long sessions, rest mode and reconnect; previous reconnect issue remains open",
+    "Other Android versions/devices and native phone portrait acceptance",
+    "Native-speaker review of all translation drafts",
+    "Windows/macOS/Linux clients: planned, not implemented"
+  ],
+  "payments": "Support section prepared; no recipient or payment provider configured; no paid personal support or lead generation",
+  "publication": "This task performed no new commit, push, tag, release or Pages deployment. Publication requires completed 1.0.0 and explicit owner acceptance."
+}

@@ -40,10 +40,16 @@ class StreamSession(val connectInfo: ConnectInfo, val logManager: LogManager, va
 
 	fun shutdown()
 	{
-		session?.stop()
-		session?.dispose()
+		val oldSession = session
 		session = null
-		surface = null
+		oldSession?.eventCallback = null
+		try {
+			oldSession?.stop()
+		} finally {
+			oldSession?.dispose()
+		}
+		// The view owns the Surface. Keep it for an in-place reconnect;
+		// surfaceDestroyed/detachSurface clear it when the output actually ends.
 		_state.value = StreamStateIdle
 		//surfaceTexture?.release()
 	}
@@ -59,17 +65,22 @@ class StreamSession(val connectInfo: ConnectInfo, val logManager: LogManager, va
 			return
 		try
 		{
-			val session = Session(connectInfo, logManager.createNewFile().file.absolutePath, logVerbose)
 			_state.value = StreamStateConnecting
-			session.eventCallback = this::eventCallback
-			session.start()
-			val surface = surface
+			val session = Session(connectInfo, logManager.createNewFile().file.absolutePath, logVerbose)
+			this.session = session
+			session.eventCallback = { event ->
+				if (this.session === session) eventCallback(event)
+			}
+			val surface = surface?.takeIf { it.isValid }
 			if(surface != null)
 				session.setSurface(surface)
-			this.session = session
+			// Initialize video output before incoming packets can reach the decoder.
+			val startResult = session.start()
+			if (!startResult.isSuccess) throw CreateError(startResult)
 		}
 		catch(e: CreateError)
 		{
+			shutdown()
 			_state.value = StreamStateCreateError(e)
 		}
 	}

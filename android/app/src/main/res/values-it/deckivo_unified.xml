@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">Sessioni</string>
+<string name="dv_quality_smooth">Fluido · 720p / 60</string>
+<string name="dv_quality_balanced">Bilanciato · 720p / 30</string>
+<string name="dv_quality_safe">Compatibile · 540p / 30</string>
+<string name="dv_requested_fps">Risoluzione e FPS sono valori richiesti.</string>
+<string name="dv_hero_title">La tua console.\nIl tuo spazio di gioco.</string>
+<string name="dv_test_controller">Prova i comandi ↗</string>
+<string name="dv_sessions_note">Cronologia privata su questo dispositivo. Nessun invio.</string>
+<string name="dv_no_sessions">La tua prossima sessione inizia qui.</string>
+<string name="dv_quality">Profilo streaming</string>
+</resources>

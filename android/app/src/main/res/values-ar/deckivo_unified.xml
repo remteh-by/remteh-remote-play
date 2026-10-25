@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">الجلسات</string>
+<string name="dv_quality_smooth">سلس · 720p / 60</string>
+<string name="dv_quality_balanced">متوازن · 720p / 30</string>
+<string name="dv_quality_safe">متوافق · 540p / 30</string>
+<string name="dv_requested_fps">الدقة ومعدل الإطارات قيم مستهدفة مطلوبة.</string>
+<string name="dv_hero_title">جهازك.\nمساحة لعبك.</string>
+<string name="dv_test_controller">اختبار التحكم ↗</string>
+<string name="dv_sessions_note">سجل خاص على هذا الجهاز دون رفع بيانات.</string>
+<string name="dv_no_sessions">تبدأ جلستك التالية هنا.</string>
+<string name="dv_quality">ملف البث</string>
+</resources>

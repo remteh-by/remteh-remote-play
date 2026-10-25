@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">Sesi</string>
+<string name="dv_quality_smooth">Lancar · 720p / 60</string>
+<string name="dv_quality_balanced">Seimbang · 720p / 30</string>
+<string name="dv_quality_safe">Kompatibel · 540p / 30</string>
+<string name="dv_requested_fps">Resolusi dan FPS adalah target yang diminta.</string>
+<string name="dv_hero_title">Konsolmu.\nRuang bermainmu.</string>
+<string name="dv_test_controller">Uji kontrol ↗</string>
+<string name="dv_sessions_note">Riwayat pribadi di perangkat ini. Tanpa unggahan.</string>
+<string name="dv_no_sessions">Sesi berikutnya dimulai di sini.</string>
+<string name="dv_quality">Profil streaming</string>
+</resources>

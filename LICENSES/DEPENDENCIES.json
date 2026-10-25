@@ -1,0 +1,22 @@
+[
+  {
+    "name": "PyQt5",
+    "version": "5.15.11"
+  },
+  {
+    "name": "PyQt5-Qt5",
+    "version": "5.15.19"
+  },
+  {
+    "name": "PyQt5-sip",
+    "version": "12.20.0"
+  },
+  {
+    "name": "PyInstaller",
+    "version": "6.22.3"
+  },
+  {
+    "name": "truststore",
+    "version": "0.10.5"
+  }
+]

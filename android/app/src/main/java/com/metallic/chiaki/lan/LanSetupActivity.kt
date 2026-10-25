@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: LicenseRef-AGPL-3.0-only-OpenSSL
 package com.metallic.chiaki.lan
 
+import com.metallic.chiaki.R
 import android.content.Intent
+import com.metallic.chiaki.design.DeckivoUi
 import android.media.MediaCodecList
 import android.os.Bundle
 import android.text.InputType
 import android.util.Base64
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import com.metallic.chiaki.design.DeckivoActivity
 import androidx.lifecycle.lifecycleScope
 import com.metallic.chiaki.BuildConfig
 import com.metallic.chiaki.common.Preferences
@@ -23,7 +25,7 @@ import java.net.Socket
 import java.net.URL
 
 /** Local setup only. Account ID stays in memory; no PSN login or account activation. */
-class LanSetupActivity : AppCompatActivity() {
+class LanSetupActivity : DeckivoActivity() {
     private lateinit var host: EditText
     private lateinit var code: EditText
     private lateinit var account: EditText
@@ -36,38 +38,33 @@ class LanSetupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         title = "Switch OLED → PS5"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        panel = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(28, 12, 28, 24)
-        }
-        val scroll = ScrollView(this).apply { addView(panel) }
-        setContentView(scroll)
-        SafeInsets.apply(scroll)
-        label("RemTeh Remote Play ${BuildConfig.VERSION_NAME} · домашняя сеть", 22f)
-        label("Обе приставки подключи к домашней сети. На PS5 войди в нужный профиль и включи «Настройки → Система → Дистанционное воспроизведение». Mac для игры не нужен.")
-        host = field("IP-адрес PS5", localPrefs.getString("host", "192.168.31.77") ?: "")
+        val content = DeckivoUi.screen(this, getString(R.string.dv_setup), getString(R.string.dv_setup_intro))
+        panel = DeckivoUi.section(content, getString(R.string.dv_setup_find))
+        label(getString(R.string.dv_setup_enable))
+        host = field(getString(R.string.dv_ps5_ip), localPrefs.getString("host", "") ?: "")
         host.inputType = InputType.TYPE_CLASS_PHONE
-        button("1. Проверить связь и декодер") { diagnose() }
-        button("Профиль OLED: 720p · 60 кадров · 8 Мбит/с") {
+        button(getString(R.string.dv_check_connection)) { diagnose() }
+        button(getString(R.string.dv_switch_profile)) {
             SwitchProfile.apply(Preferences(this))
-            status.text = "Профиль применён. H.264, без дополнительных фильтров. Экран работает как тачпад; кнопки PS и Touch доступны поверх игры."
+            status.text = getString(R.string.dv_profile_applied)
         }
-        button("Проверить и настроить Joy-Con") {
+        button(getString(R.string.dv_controller_check)) {
             startActivity(Intent(this, ControllerTestActivity::class.java))
         }
-        label("2. Привязать свой профиль", 20f)
-        label("На PS5 открой WebKit / Payload Manager и дождись ELF Loader. Кнопка ниже отправит помощник из этого APK на твою консоль. Затем введи код из уведомления PS5: он действует 5 минут и один раз. Это не системный код Remote Play.")
-        button("Запустить помощник на PS5 с этого Switch") { launchHelper() }
-        code = field("Код помощника PS5", "", true)
-        button("Получить ID текущего профиля с PS5") { fetchAccount() }
-        account = field("Account ID (Base64); можно ввести вручную", "")
+        panel = DeckivoUi.section(content, getString(R.string.dv_setup_profile))
+        label(getString(R.string.dv_helper_intro))
+        button(getString(R.string.dv_helper_launch)) { launchHelper() }
+        code = field(getString(R.string.dv_helper_code), "", true)
+        button(getString(R.string.dv_account_fetch)) { fetchAccount() }
+        account = field(getString(R.string.dv_account_manual), "")
         account.isSaveEnabled = false
         code.isSaveEnabled = false
-        button("3. Ввести код Remote Play и привязать") {
+        panel = DeckivoUi.section(content, getString(R.string.dv_setup_finish))
+        button(getString(R.string.dv_setup_register)) {
             val ip = checkedHost() ?: return@button
             val id = account.text.toString().trim()
             if (!LanRules.looksLikeAccountId(id) || runCatching { Base64.decode(id, Base64.DEFAULT).size }.getOrDefault(0) != 8) {
-                account.error = "Нужен Account ID из помощника или LinkDev (8 байт в Base64)."
+                account.error = getString(R.string.dv_account_required)
                 return@button
             }
             startActivity(Intent(this, RegistActivity::class.java).apply {
@@ -76,30 +73,19 @@ class LanSetupActivity : AppCompatActivity() {
                 putExtra(RegistActivity.EXTRA_ACCOUNT_ID, id)
             })
         }
-        status = label("После привязки вернись на главный экран приложения и выбери PS5. Для этой версии достаточно локальной сети; доступ через интернет пока не настроен.")
-        button("Перейти к списку консолей") { finish() }
-        label("Основа: Chiaki / chiaki-ng Android Extended (AGPL-3.0). Исходники и изменения включены в комплект. Это отдельный клиент, не приложение Sony.")
+        status = label(getString(R.string.dv_setup_done))
+        button(getString(R.string.dv_console_list)) { finish() }
+        label(getString(R.string.dv_setup_credit))
     }
 
-    private fun label(text: String, size: Float = 16f): TextView = TextView(this).apply {
-        this.text = text; textSize = size; setPadding(0, 10, 0, 10); panel.addView(this)
-    }
-
-    private fun field(hint: String, value: String, digits: Boolean = false): EditText = EditText(this).apply {
-        this.hint = hint; setText(value); isSingleLine = true
-        inputType = if (digits) InputType.TYPE_CLASS_NUMBER else InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
-        importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_NO
-        panel.addView(this)
-    }
-
-    private fun button(text: String, action: () -> Unit) = Button(this).apply {
-        this.text = text; isAllCaps = false; setOnClickListener { action() }; panel.addView(this)
-    }
+    private fun label(text: String, size: Float = 15f): TextView = DeckivoUi.label(panel, text, size, size >= 20f)
+    private fun field(hint: String, value: String, digits: Boolean = false): EditText = DeckivoUi.field(panel, hint, value, digits)
+    private fun button(text: String, action: () -> Unit) = DeckivoUi.button(panel, text, text == getString(R.string.dv_setup_register) || text == getString(R.string.dv_check_connection), action)
 
     private fun checkedHost(): String? {
         val ip = host.text.toString().trim()
         if (!LanRules.isPrivateIpv4(ip)) {
-            host.error = "Укажи локальный IPv4, например 192.168.31.77. Без http и порта."
+            host.error = getString(R.string.dv_ip_required)
             return null
         }
         localPrefs.edit().putString("host", ip).apply()
@@ -110,7 +96,7 @@ class LanSetupActivity : AppCompatActivity() {
         val ip = checkedHost() ?: return
         if (requestInFlight) return
         requestInFlight = true
-        status.text = "Проверяю TCP Remote Play и доступные декодеры…"
+        status.text = "Checking Remote Play TCP and available decoders…"
         lifecycleScope.launch {
             try {
                 val report = withContext(Dispatchers.IO) {
@@ -124,14 +110,14 @@ class LanSetupActivity : AppCompatActivity() {
                     val codecs = MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
                         .filter { !it.isEncoder && it.supportedTypes.any { type -> type.equals("video/avc", true) } }
                         .joinToString { it.name }
-                    val network = if (samples.isEmpty()) "PS5: порт 9295 недоступен. Проверь питание, IP, Remote Play и изоляцию клиентов Wi-Fi."
-                        else "Remote Play отвечает: ${samples.size}/3, TCP ${"%.1f".format(samples.average())} мс. Это проверка доступности, не тест задержки видео."
-                    "$network\nДекодер H.264: ${codecs.ifEmpty { "не найден" }}\nОткрытый порт ещё не подтверждает привязку и передачу игры."
+                    val network = if (samples.isEmpty()) "PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi client isolation."
+                        else "Remote Play responds: ${samples.size}/3, TCP ${"%.1f".format(samples.average())} ms. This checks connectivity, not video latency."
+                    "$network\nH.264 decoder: ${codecs.ifEmpty { "not found" }}\nAn open port does not confirm registration or streaming."
                 }
                 status.text = report
             } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) throw e
-                status.text = "Проверка не завершена: ${e.message ?: "неизвестная ошибка"}"
+                status.text = "Check incomplete: ${e.message ?: "unknown error"}"
             } finally { requestInFlight = false }
         }
     }
@@ -139,10 +125,10 @@ class LanSetupActivity : AppCompatActivity() {
     private fun fetchAccount() {
         val ip = checkedHost() ?: return
         val token = code.text.toString().trim()
-        if (!LanRules.isEightDigitCode(token)) { code.error = "Введи 8 цифр из уведомления помощника PS5"; return }
+        if (!LanRules.isEightDigitCode(token)) { code.error = "Enter 8 digits from the PS5 companion notification"; return }
         if (requestInFlight) return
         requestInFlight = true
-        status.text = "Подключаюсь к помощнику PS5…"
+        status.text = "Connecting to PS5 companion…"
         lifecycleScope.launch {
             try {
                 val payload = withContext(Dispatchers.IO) {
@@ -156,23 +142,23 @@ class LanSetupActivity : AppCompatActivity() {
                         connection.setFixedLengthStreamingMode(8)
                         connection.outputStream.use { it.write(token.toByteArray(Charsets.US_ASCII)) }
                         val response = connection.responseCode
-                        require(response == 200) { "Помощник ответил HTTP $response. Проверь код и активный профиль; при истечении времени запусти помощник снова." }
+                        require(response == 200) { "Companion returned HTTP $response. Check the code and active profile; restart the companion if it expired." }
                         val bytes = connection.inputStream.use { stream ->
                             val data = ByteArray(4097); var count = 0
                             while (count < data.size) { val n = stream.read(data, count, data.size - count); if (n < 0) break; count += n }
-                            require(count <= 4096) { "Слишком большой ответ" }
+                            require(count <= 4096) { "Response too large" }
                             data.copyOf(count)
                         }
                         JSONObject(bytes.toString(Charsets.UTF_8)).also {
-                            require(it.optInt("protocol") == 1 && LanRules.looksLikeAccountId(it.optString("accountId"))) { "Неподдерживаемый ответ помощника" }
+                            require(it.optInt("protocol") == 1 && LanRules.looksLikeAccountId(it.optString("accountId"))) { "Unsupported companion response" }
                         }
                     } finally { connection.disconnect() }
                 }
                 account.setText(payload.getString("accountId")); code.text.clear()
-                status.text = "ID получен. На PS5 открой «Дистанционное воспроизведение → Привязать устройство», затем нажми шаг 3. Профиль PS5 пока не переключай."
+                status.text = "ID received. On PS5, open Remote Play → Link Device, then complete step 3 here. Keep the same PS5 profile active."
             } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) throw e
-                status.text = e.message ?: "Нет связи с помощником. Запусти ELF на PS5 или введи Account ID вручную."
+                status.text = e.message ?: "Companion unreachable. Launch its ELF on PS5 or enter Account ID manually."
             } finally { requestInFlight = false }
         }
     }
@@ -198,7 +184,7 @@ class LanSetupActivity : AppCompatActivity() {
         val ip = checkedHost() ?: return
         if (requestInFlight) return
         requestInFlight = true
-        status.text = "Подключаюсь к ELF Loader PS5…"
+        status.text = "Connecting to PS5 ELF Loader…"
         lifecycleScope.launch {
             try {
                 val running = withContext(Dispatchers.IO) {
@@ -215,11 +201,11 @@ class LanSetupActivity : AppCompatActivity() {
                         ready
                     }
                 }
-                status.text = if (running) "Помощник отвечает. Введи код из уведомления PS5 в поле ниже."
-                    else "ELF передан, но помощник пока не ответил. Проверь уведомление PS5. Не запускай повторно, если код уже показан."
+                status.text = if (running) "Companion ready. Enter the code from the PS5 notification below."
+                    else "ELF sent, but the companion has not responded yet. Check PS5 notifications. Do not resend if a code is already displayed."
             } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) throw e
-                status.text = "Не удалось запустить помощник. На PS5 открой WebKit / Payload Manager и проверь ELF Loader (порт 9021). ${e.message ?: ""}"
+                status.text = "Could not start companion. Open WebKit / Payload Manager on PS5 and check ELF Loader (port 9021). ${e.message ?: ""}"
             } finally { requestInFlight = false }
         }
     }

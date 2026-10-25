@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "version": "0.6.0",
+  "channel": "experimental-prerelease",
+  "date": "2026-10-25",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.6.0",
+    "versionCode": 24,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.6.0-arm64.apk",
+    "apkBytes": 6616471,
+    "sha256": "28dc1bcc68b20ac98d705a689e9bc227a8b6bf978c1d99bcda7dc17e70ed0d05",
+    "unit_tests": 29,
+    "unit_failures": 0,
+    "lint": {
+      "Error": 0,
+      "Warning": 249,
+      "Information": 0
+    },
+    "signed_with_existing_certificate": true,
+    "public_channel_no_private_feed": true
+  },
+  "native": {
+    "unit_tests": 28,
+    "unit_failures": 0,
+    "macos_build": 9,
+    "linux_upgrade_build": 9,
+    "macos_notarized": false,
+    "separate_chiaki_ng_required": true
+  },
+  "website": {
+    "languages_guides": 16,
+    "responsive_cases": 80,
+    "widths": [
+      390,
+      768,
+      1920,
+      2560,
+      3840
+    ],
+    "horizontal_overflow": 0,
+    "missing_images": 0,
+    "browser": "Codex in-app browser",
+    "core_copy_languages": 16,
+    "technical_notes_languages": [
+      "en",
+      "ru"
+    ]
+  },
+  "privacy_scan": [
+    {
+      "asset": "Deckivo-0.6.0-arm64.apk",
+      "sensitive_match_files": []
+    },
+    {
+      "asset": "Deckivo-Linux-0.6.0-b9-source.zip",
+      "sensitive_match_files": []
+    },
+    {
+      "asset": "Deckivo-macos-0.6.0-b9.zip",
+      "sensitive_match_files": []
+    }
+  ],
+  "physical_evidence": "See docs/TESTED.md; earlier 0.5.1 updater tests and earlier gameplay are not relabelled as full 0.6.0 acceptance. Public updater/device transition pending publication.",
+  "limits": [
+    "Internet/VPN and sustained gameplay not certified",
+    "All controller functions and planned OSes not certified",
+    "Initial Ubuntu setup not accepted on a fresh device",
+    "Mac Developer ID/notarization pending"
+  ],
+  "console": {
+    "host_type": "PS5",
+    "system_version_discovery": "13420000",
+    "firmware_display_equivalent": "13.42",
+    "hardware_revision": "Third non-Slim revision reported by owner; model label not recaptured",
+    "read_date": "2026-10-25"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "0.2.2",
+  "versionCode": 14,
+  "timestamp": "2026-10-24T16:14:15.117041+00:00",
+  "release_state": "LOCAL_CANDIDATE_OWNER_GAMEPLAY_ACCEPTANCE_PENDING",
+  "build": "PASS assembleRelease, testDebugUnitTest, lintRelease",
+  "unit_tests": {
+    "tests": 26,
+    "failures": 0,
+    "errors": 0,
+    "scope": "8 host merging regressions, 5 language, 10 updater, 3 LAN checks"
+  },
+  "lint": {
+    "Warning": 227,
+    "Error": 0
+  },
+  "apk": {
+    "file": "Deckivo-0.2.2-arm64.apk",
+    "bytes": 5866513,
+    "sha256": "243266e5a9cd268599842ad25f0751db203e0b05e2b17a3ee833d113e7dd9ae7"
+  },
+  "signature": "Persistent signing identity retained; apksigner and 16 KiB zipalign passed; Android accepted in-place upgrade",
+  "physical_device": {
+    "model": "Switch OLED",
+    "android": "15 / API 35",
+    "installed_readback": "0.2.2 / 14",
+    "checks": {
+      "build": 14,
+      "one_card_with_live_discovery": "PASS",
+      "one_saved_card_with_discovery_disabled": "PASS",
+      "one_card_after_discovery_reenabled": "PASS",
+      "merged_card_edit_delete_actions_retained": "PASS",
+      "registration_display_retained": "PASS",
+      "owner_language": "Russian",
+      "discovery_final": "Enabled"
+    },
+    "temporary_sleep_setting_restored": true,
+    "evidence": "Private screenshots/XML outside repository; one physical PS5 card before/after discovery toggle; edit/delete popup checked without invoking destructive actions"
+  },
+  "data": "No Room schema or database writes added. Manual endpoint and registration preserved; selected saved profile preferred. Distinct known hardware and alternate registrations remain separate.",
+  "reconnect": "Includes 0.2.1 fix; same-screen reconnect and decoded PS5 menu observed in build 13, detailed in 0.2.1-validation.json. No stream code changed for build 14.",
+  "not_yet_validated": [
+    "Long gameplay, audio and complete controller acceptance of build 14",
+    "Other hardware/Android versions, WAN and GL/debanding reconnect",
+    "Full GitHub updater install flow and linguistic review"
+  ],
+  "publication": "No new release, source push or Pages publication; completed 1.0.0 and owner acceptance required."
+}

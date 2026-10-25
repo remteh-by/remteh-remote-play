@@ -1,0 +1,13 @@
+{
+  "asset": "ps5-console.png",
+  "source_url": "https://gmedia.playstation.com/is/image/SIEPDC/playstation-5-with-dualsense-front-product-shot-01-ps5-en-30jul20?fmt=png-alpha&wid=1000",
+  "publisher": "Sony Interactive Entertainment / PlayStation",
+  "description": "Official original PS5 disc console and DualSense product image, front view.",
+  "sha256": "7ef2ee1b6ec5b30edaad8decf3b2a97aec737d953323091d7e67dd454bb6768c",
+  "dimensions": [
+    1000,
+    1254
+  ],
+  "pixel_changes": false,
+  "display": "Proportional contain; no crop, rotation or geometric distortion."
+}

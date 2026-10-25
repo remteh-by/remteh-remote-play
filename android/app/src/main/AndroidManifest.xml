@@ -10,7 +10,11 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION" />
     <application
+        android:name=".design.DeckivoApplication"
+        android:localeConfig="@xml/locales_config"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:usesCleartextTraffic="true"
@@ -32,6 +36,9 @@
                 />
         </provider>
 
+        <activity android:name=".design.SupportActivity" android:exported="false" />
+        <activity android:name=".design.SessionHistoryActivity" android:exported="false" />
+        <activity android:name=".updates.UpdatesActivity" android:exported="false" />
         <activity android:name=".lan.LanSetupActivity" android:exported="false" android:screenOrientation="userLandscape" />
         <activity android:name=".lan.ControllerTestActivity" android:exported="false" android:screenOrientation="userLandscape" />
         <activity android:name=".main.MainActivity"

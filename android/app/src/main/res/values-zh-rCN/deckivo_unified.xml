@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">会话</string>
+<string name="dv_quality_smooth">流畅 · 720p / 60</string>
+<string name="dv_quality_balanced">均衡 · 720p / 30</string>
+<string name="dv_quality_safe">兼容 · 540p / 30</string>
+<string name="dv_requested_fps">分辨率和帧率为请求的目标值。</string>
+<string name="dv_hero_title">你的主机。\n你的游戏空间。</string>
+<string name="dv_test_controller">测试输入 ↗</string>
+<string name="dv_sessions_note">历史记录仅保存在本设备，不会上传。</string>
+<string name="dv_no_sessions">下一次游戏从这里开始。</string>
+<string name="dv_quality">串流配置</string>
+</resources>

@@ -1,0 +1,17 @@
+{
+  "file": "https://www.figma.com/design/IMCnaXKObedKagsDKvPlB0",
+  "figma_status": "File created; MCP Starter quota exhausted; browser Terms acceptance awaiting owner. SVG import not completed.",
+  "screens": "Four editable SVG screens; home uses one discrete official product image, no flattened UI screenshot.",
+  "font": "IBM Plex Sans",
+  "colors": {
+    "background": "#101216",
+    "surface": "#1A1E24",
+    "accent": "#DAF975",
+    "secondary": "#AAA0F5"
+  },
+  "viewport": [
+    1280,
+    720
+  ],
+  "reference_only": true
+}

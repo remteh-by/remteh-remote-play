@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">सत्र</string>
+<string name="dv_quality_smooth">सहज · 720p / 60</string>
+<string name="dv_quality_balanced">संतुलित · 720p / 30</string>
+<string name="dv_quality_safe">संगत · 540p / 30</string>
+<string name="dv_requested_fps">रिज़ॉल्यूशन और FPS अनुरोधित लक्ष्य हैं।</string>
+<string name="dv_hero_title">आपका कंसोल।\nआपकी खेलने की जगह।</string>
+<string name="dv_test_controller">नियंत्रण जाँचें ↗</string>
+<string name="dv_sessions_note">निजी इतिहास केवल इस डिवाइस पर। अपलोड नहीं।</string>
+<string name="dv_no_sessions">आपका अगला सत्र यहाँ शुरू होता है।</string>
+<string name="dv_quality">स्ट्रीमिंग प्रोफ़ाइल</string>
+</resources>

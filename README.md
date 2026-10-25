@@ -1,72 +1,89 @@
-# RemTeh Remote Play
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover.png" alt="Deckivo — Your PS5. Your play space." width="100%"></a></p>
 
-Android Remote Play client for Nintendo Switch OLED running Android, maintained as a fork of **Chiaki / chiaki-ng Android Extended**.
+<p align="center"><strong>Open-source PS5 Remote Play for Android, Apple Silicon and Switchroot Ubuntu.</strong><br>Developed by <a href="https://remteh.by/">RemTeh.by</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
-Это наша модификация открытого клиента, основанная на [SalamiTheMan/chiaki-ng-android-extended](https://github.com/SalamiTheMan/chiaki-ng-android-extended), который продолжает работу Chiaki и chiaki-ng. Протокол Remote Play, видеопередача, звук и большая часть управления взяты из исходных проектов. Наши изменения перечислены ниже. Исходное описание сохранено в [docs/UPSTREAM-README.md](docs/UPSTREAM-README.md).
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.0">Download 0.6.0 preview</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="https://ko-fi.com/pavelzayats">♥ Support on Ko-fi</a></p>
 
-**Первый публичный выпуск: [0.1.2, предварительная версия](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.1.2).** Android `versionCode` — 3. Это та же подписанная APK, которая проверена на нашем Switch; приложение всё ещё экспериментальное.
+[English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)
 
-## Наши изменения
+**0.6.0 is an experimental prerelease, not a finished 1.0 product.** The guides
+separate tested hardware/builds from planned support. Local play has been tested;
+Internet/VPN play and sustained sessions are not certified. No subscription or
+new Deckivo account is required for local play.
 
-- Локальный мастер настройки PS5: проверка адреса, доступности Remote Play и декодера H.264.
-- Необязательный помощник PS5 для чтения Account ID текущего пользователя при первой привязке. Он действует пять минут, требует одноразовый код и не изменяет аккаунт.
-- Профиль Switch OLED и экран настройки расположения кнопок стандартного Android-геймпада.
-- Отдельное приложение `by.remteh.remoteplay`, собственная подпись и версии.
-- Исправление завершения нативного декодера; две исправленные ссылки CoordinatorLayout после изменения applicationId.
-- В 0.1.2 экранные PS и Touch перенесены из постоянных белых кнопок в автоматически скрываемую панель.
+### Choose your screen
 
-## Что проверено
+| Platform | Delivery | Start here |
+|---|---|---|
+| Android ARM64 | APK, Android 8+; tested device uses Android 15 | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.0/Deckivo-0.6.0-arm64.apk) |
+| macOS Apple Silicon | Native Qt preview, separate chiaki-ng engine required; ad-hoc signed, not notarized | [Mac guide](docs/guides/en.md#macos) |
+| Switchroot Ubuntu ARM64 | Developer preview for Ubuntu 24.04 / KDE X11 / Switchroot FFmpeg 6.1 | [Linux guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
+| Windows, Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
-Switch OLED, Android 15, GameSir G8+ в синем режиме: изображение меню PS5, звук и базовое управление. Для 0.1.2 дополнительно проверены обновление поверх 0.1.1 без потери регистрации, открытие/скрытие панели, короткая и длинная PS. Полный набор кнопок, аналоговые курки в игре и длительная игровая сессия не прошли полную приёмку.
+### Made for your own play space
 
-APK — только **arm64-v8a**, заявленный минимум Android 8 (API 26). Другие устройства и версии Android в этом форке отдельно не проверялись. Перед установкой Android на Switch требуется собственная подготовленная система; это приложение не устанавливает Android и не меняет загрузчик консоли.
+- A graphite, lime and lavender interface, with the original PS5 product photo.
+- Visible language selection: English default, optional system detection and
+  16 guide languages. New desktop-specific controls currently have English and
+  Russian translations; technical test notes remain English.
+- Local setup, your own PS5 profile and private registration. Android has a
+  connection wizard; Mac imports a local chiaki-ng registration; Linux uses an
+  interactive pairing tool.
+- Controller tools and hidden PS/Touch controls on Android. GameSir G8+ is in
+  the actual test history; this is not a claim that every controller is tested.
+- Verified updates: Android checks package identity, version, size, SHA-256 and
+  its existing APK certificate. Desktop checks RSA-signed metadata and hashes,
+  defers installation during streaming and retains a rollback copy.
+- Optional **[Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)** in the app, site
+  and GitHub. No paid feature unlock, priority support or individual setup service.
 
-## Установка и подключение
+### What was actually tested
 
-1. Скачайте `RemTeh-Remote-Play-0.1.2-arm64.apk` из [Releases](https://github.com/remteh-by/remteh-remote-play/releases).
-2. Установите APK на Android. Для следующей нашей версии устанавливайте обновление поверх прежней: не удаляйте приложение и не очищайте его данные.
-3. Подключите PS5 и Android к одной локальной сети. На PS5 включите дистанционное воспроизведение. Предпочтительны Wi-Fi 5 ГГц и проводное подключение PS5 к роутеру, если оно доступно.
-4. Откройте «Настроить Switch», укажите **свой IP-адрес PS5**. Предзаполненный адрес — пример, его нужно изменить под свою сеть.
-5. Введите существующий PSN Account ID нужного профиля вручную или получите его через необязательный помощник, описанный ниже.
-6. На PS5 откройте «Настройки → Система → Дистанционное воспроизведение → Привязать устройство». Введите полученный системный код в форму регистрации клиента.
-7. Выберите зарегистрированную консоль. Для обычных следующих подключений повторная привязка не нужна.
+| Hardware / OS | Exact build | Confirmed scope |
+|---|---|---|
+| Switch OLED / Android 15 | 0.5.1 #20 | Self-updates 18 → 19 → 20; registration data retained |
+| Apple Silicon Mac / macOS 27.0.1 | 0.5.1 #5 | Self-updates 3 → 4 → 5, relaunch and registration retained |
+| Switch OLED / Ubuntu 24.04.4 ARM64 | 0.5.1 #7 | Self-update 6 → 7, restart, pairing/settings/history retained |
+| Earlier gameplay | Android 0.1.x; Ubuntu 0.3.0; Mac chiaki-ng 1.10.0 engine | Owner-confirmed local picture and sound; GameSir input on Switch |
 
-Сам Remote Play использует встроенную службу PS5. Находящийся рядом компьютер и дополнительный видеосервер для локальной игры не нужны. Помощник не участвует в передаче видео.
+The connected PS5 currently advertises firmware **13.42** (discovery system
+version `13420000`); no other firmware coverage is certified.
 
-### Необязательный помощник PS5
+See **[the detailed test matrix](docs/TESTED.md)** and
+[0.6.0 validation](docs/releases/0.6.0-validation.json) for release checks.
+Historical gameplay does not certify every new frontend feature.
 
-Нужна возможность запускать собственные ELF-программы на своей PS5. Клиент также поддерживает ручной ввод Account ID без помощника.
+### Quick start
 
-- `remteh-pair-helper.elf` предоставляется в релизе и встроен в APK. Его исходники находятся в [ps5-companion](ps5-companion).
-- Мастер приложения может отправить помощник в уже запущенный ELF Loader в вашей локальной сети. Альтернатива с компьютера: `python3 scripts/send-helper.py --host <IP_PS5> --file remteh-pair-helper.elf`.
-- Помощник показывает отдельный восьмизначный код на PS5. Введите его в мастер для получения ID активного профиля.
-- **Код помощника и системный код Remote Play — разные коды.** После получения ID откройте системную привязку и используйте её новый код.
-- Помощник завершает работу через пять минут или после успешной выдачи ID; допускает не более пяти неправильных кодов. Он не активирует аккаунты, не записывает реестр, не создаёт системный PIN и не читает сохранения.
-- Не открывайте порт помощника 38080 в интернет. Работайте только в доверенной локальной сети.
+1. Connect client and PS5 to the same home network. Enable PS5 Remote Play and
+   select the profile you want to use.
+2. Install the correct package **over** an older Deckivo installation. Keep
+   data and the same signing identity; do not uninstall to update.
+3. Pair using that profile's Account ID and a fresh PS5 eight-digit Remote Play
+   code. Follow the platform guide; never upload registration keys or PINs.
+4. Start at 720p, connect your controller and check picture, sound and buttons.
+   Save the game before disconnecting.
 
-## Управление
+[English guide](docs/guides/en.md) · [Русская инструкция](docs/guides/ru.md) ·
+[Updates](docs/UPDATES.md) · [Troubleshooting](docs/TECHNICAL.md)
 
-- Подключите GameSir G8+ к Android по Bluetooth. Синий режим проверен на нашем устройстве; Android показывает его как Wireless Controller Touchpad.
-- Экран «Проверить и настроить Joy-Con» также читает стандартные Android-геймпады, включая G8+. Название экрана пока не переименовано.
-- Для PS и нажатия тачпада **сделайте короткий свайп вверх от нижнего края**. Панель исчезает через две секунды бездействия; удержание PS останавливает таймер.
-- Сенсорный экран также может работать как тачпад. Выход из видеосессии не выключает PS5 и не закрывает игру: предварительно сохраните прогресс.
+### Source and credits
 
-## Ограничения
+Deckivo is a modified distribution of
+[chiaki-ng Android Extended](https://github.com/SalamiTheMan/chiaki-ng-android-extended),
+with a shared native Qt desktop frontend and platform-specific engines. The
+Remote Play protocol and core streaming work come from Chiaki and chiaki-ng;
+we preserve upstream history and notices. [Original README](docs/UPSTREAM-README.md).
 
-- Этот выпуск рассчитан на одну локальную сеть. Доступ через интернет, VPN, пробуждение из режима покоя и длительные игровые сеансы не подтверждены.
-- После ошибки кнопка Reconnect иногда оставляет чёрный экран. Вернитесь в список консолей и начните новое подключение.
-- В существующей базе Android Lint остаётся 145 предупреждений; ошибок в проверке 0.1.2 нет.
-- Клиент не исправляет WebKit/ядро PS5, не обновляет её прошивку и не настраивает блокировку обновлений Sony.
-- Автоматического обновления приложения через GitHub пока нет: APK устанавливается вручную из Releases.
+[Build from source](BUILDING.md) · [Changelog](CHANGELOG.md) ·
+[Release process](RELEASING.md) · [Attribution](ATTRIBUTION.md)
 
-## Исходники, сборка и выпуски
+Client license: **AGPL v3 with the retained OpenSSL permission**, [COPYING](COPYING).
+The separate optional PS5 helper is GPL-3.0-or-later. Dependencies and the Sony
+product photo retain their own notices. Complete corresponding project source,
+including initialized native dependencies, accompanies the release; the tiny
+GitHub-generated source ZIP does not expand submodules.
 
-[BUILDING.md](BUILDING.md) · [CHANGELOG.md](CHANGELOG.md) · [RELEASING.md](RELEASING.md) · [UPSTREAM-LOCK.json](UPSTREAM-LOCK.json)
-
-Каждой опубликованной версии соответствуют тег Git, подписанная APK, архив исходников с зависимостями, контрольные суммы SHA-256 и отчёт проверки. Версии 0.1.0 и 0.1.1 были внутренними сборками и отдельно не публикуются.
-
-## Авторство и лицензии
-
-Основной клиент сохраняет **GNU AGPL v3 с дополнительным разрешением для OpenSSL**, как в [COPYING](COPYING). Собственные изменения клиента распространяются на этих же условиях. Отдельный помощник PS5 имеет **GPL-3.0-or-later**; полный текст находится в [ps5-companion/COPYING](ps5-companion/COPYING). Зависимости сохраняют свои лицензии. Подробнее: [ATTRIBUTION.md](ATTRIBUTION.md).
-
-Проект не связан с Sony Interactive Entertainment или Nintendo и не является их официальным приложением. Названия и товарные знаки принадлежат соответствующим владельцам.
+Independent of Sony Interactive Entertainment and Nintendo. Product names and
+trademarks belong to their respective owners. Deckivo does not install console
+firmware, fix PS5 WebKit, or provide game downloads.

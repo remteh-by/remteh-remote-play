@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">세션</string>
+<string name="dv_quality_smooth">부드럽게 · 720p / 60</string>
+<string name="dv_quality_balanced">균형 · 720p / 30</string>
+<string name="dv_quality_safe">호환성 · 540p / 30</string>
+<string name="dv_requested_fps">해상도와 FPS는 요청한 목표값입니다.</string>
+<string name="dv_hero_title">나의 콘솔.\n나의 플레이 공간.</string>
+<string name="dv_test_controller">입력 테스트 ↗</string>
+<string name="dv_sessions_note">기기에만 저장되는 비공개 기록입니다. 전송하지 않습니다.</string>
+<string name="dv_no_sessions">다음 세션은 여기서 시작됩니다.</string>
+<string name="dv_quality">스트리밍 프로필</string>
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">Сеансы</string>
+<string name="dv_quality_smooth">Плавный · 720p / 60</string>
+<string name="dv_quality_balanced">Сбалансированный · 720p / 30</string>
+<string name="dv_quality_safe">Совместимый · 540p / 30</string>
+<string name="dv_requested_fps">Разрешение и FPS — запрашиваемые значения.</string>
+<string name="dv_hero_title">Твоя консоль.\nТвои правила.</string>
+<string name="dv_test_controller">Проверить управление ↗</string>
+<string name="dv_sessions_note">Локальная история на этом устройстве. Никуда не отправляется.</string>
+<string name="dv_no_sessions">Здесь появится твой следующий сеанс.</string>
+<string name="dv_quality">Профиль трансляции</string>
+</resources>

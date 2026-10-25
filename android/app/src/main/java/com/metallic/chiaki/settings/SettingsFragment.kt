@@ -184,4 +184,13 @@ class SettingsFragment: PreferenceFragmentCompat(), TitleFragment
 			}
 		}
 	}
+    fun showCategory(index: Int) {
+        val visible = when(index) { 1 -> setOf("category_stream", "category_video_deband"); 2 -> setOf("category_mapping"); 3 -> setOf("category_export"); else -> setOf("category_general") }
+        listOf("category_general", "category_stream", "category_video_deband", "category_mapping", "category_export").forEach { findPreference<androidx.preference.Preference>(it)?.isVisible = it in visible }
+    }
+    override fun onViewCreated(view: android.view.View, savedInstanceState: android.os.Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        showCategory((activity?.findViewById<com.google.android.material.tabs.TabLayout>(R.id.settingsTabs)?.selectedTabPosition ?: 0).coerceAtLeast(0))
+    }
+
 }

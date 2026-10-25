@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">Сеанси</string>
+<string name="dv_quality_smooth">Плавний · 720p / 60</string>
+<string name="dv_quality_balanced">Збалансований · 720p / 30</string>
+<string name="dv_quality_safe">Сумісний · 540p / 30</string>
+<string name="dv_requested_fps">Роздільність і FPS — запитані значення.</string>
+<string name="dv_hero_title">Твоя консоль.\nТвій ігровий простір.</string>
+<string name="dv_test_controller">Перевірити керування ↗</string>
+<string name="dv_sessions_note">Локальна історія на цьому пристрої. Без надсилання.</string>
+<string name="dv_no_sessions">Тут почнеться твій наступний сеанс.</string>
+<string name="dv_quality">Профіль трансляції</string>
+</resources>

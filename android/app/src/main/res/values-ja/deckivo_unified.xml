@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">セッション</string>
+<string name="dv_quality_smooth">スムーズ · 720p / 60</string>
+<string name="dv_quality_balanced">バランス · 720p / 30</string>
+<string name="dv_quality_safe">互換性 · 540p / 30</string>
+<string name="dv_requested_fps">解像度とFPSは要求する目標値です。</string>
+<string name="dv_hero_title">あなたの本体。\nあなたのプレイ空間。</string>
+<string name="dv_test_controller">入力をテスト ↗</string>
+<string name="dv_sessions_note">この端末内だけの履歴です。送信しません。</string>
+<string name="dv_no_sessions">次のセッションはここから。</string>
+<string name="dv_quality">配信プロファイル</string>
+</resources>

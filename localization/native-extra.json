@@ -1,0 +1,370 @@
+{
+  "play": {
+    "en": "Play",
+    "ru": "Играть"
+  },
+  "setup": {
+    "en": "Connect",
+    "ru": "Подключение"
+  },
+  "about": {
+    "en": "About Deckivo",
+    "ru": "О Deckivo"
+  },
+  "settings": {
+    "en": "Settings",
+    "ru": "Настройки"
+  },
+  "room": {
+    "en": "Your play space",
+    "ru": "Ваша игровая"
+  },
+  "add": {
+    "en": "Add",
+    "ru": "Добавить"
+  },
+  "consoles_network": {
+    "en": "Consoles on your network",
+    "ru": "Консоли в вашей сети"
+  },
+  "discovery_on": {
+    "en": "Discovery on",
+    "ru": "Поиск включён"
+  },
+  "discovery_find": {
+    "en": "Find consoles",
+    "ru": "Найти в сети"
+  },
+  "empty_title": {
+    "en": "Your console belongs here",
+    "ru": "Здесь будет ваша консоль"
+  },
+  "empty_intro": {
+    "en": "Use the same network or add a console manually.",
+    "ru": "Подключите устройства к одной сети или добавьте консоль вручную."
+  },
+  "update_ready": {
+    "en": "Update ready — open",
+    "ru": "Обновление готово — открыть"
+  },
+  "my_console": {
+    "en": "My console",
+    "ru": "Моя консоль"
+  },
+  "address": {
+    "en": "Address · ",
+    "ru": "Адрес · "
+  },
+  "online": {
+    "en": "●  Online",
+    "ru": "●  В сети"
+  },
+  "rest": {
+    "en": "●  Rest mode",
+    "ru": "●  Режим покоя"
+  },
+  "registered_unknown": {
+    "en": "●  Registered · status unknown",
+    "ru": "●  Привязана · статус неизвестен"
+  },
+  "registration_needed": {
+    "en": "○  Registration needed",
+    "ru": "○  Нужна привязка"
+  },
+  "running": {
+    "en": "On console · ",
+    "ru": "На консоли · "
+  },
+  "wake_play": {
+    "en": "Wake and play",
+    "ru": "Разбудить и играть"
+  },
+  "register_console": {
+    "en": "Register console",
+    "ru": "Привязать консоль"
+  },
+  "console_options": {
+    "en": "Console options",
+    "ru": "Параметры консоли"
+  },
+  "registered": {
+    "en": "Registered",
+    "ru": "Привязана"
+  },
+  "add_console": {
+    "en": "Add a console",
+    "ru": "Добавить консоль"
+  },
+  "guided": {
+    "en": "Guided connection",
+    "ru": "Пошаговое подключение"
+  },
+  "manual_ip": {
+    "en": "Enter IP manually",
+    "ru": "Ввести IP вручную"
+  },
+  "register_profile": {
+    "en": "Register PS5 / PS4 profile",
+    "ru": "Привязать профиль PS5 / PS4"
+  },
+  "connect_yours": {
+    "en": "Connect your PS5 or PS4",
+    "ru": "Подключите свою PS5 или PS4"
+  },
+  "your_consoles": {
+    "en": "Your consoles · ",
+    "ru": "Ваши консоли · "
+  },
+  "searching": {
+    "en": "Looking on your network. You can also add an IP address.",
+    "ru": "Ищем консоли в вашей сети. Также можно добавить IP вручную."
+  },
+  "search_off": {
+    "en": "Use the same network and enable discovery, or add a console manually.",
+    "ru": "Подключите устройства к одной сети и включите поиск или добавьте консоль вручную."
+  },
+  "back": {
+    "en": "Back",
+    "ru": "Назад"
+  },
+  "about_updates": {
+    "en": "About Deckivo and updates",
+    "ru": "О Deckivo и обновления"
+  },
+  "tagline": {
+    "en": "Your screen. Your console. Your time to play.",
+    "ru": "Ваш экран. Ваша консоль. Ваш ритм игры."
+  },
+  "build_prefix": {
+    "en": "Build ",
+    "ru": "Сборка "
+  },
+  "build_suffix": {
+    "en": " · Android / arm64 · private testing",
+    "ru": " · Android / arm64 · закрытое тестирование"
+  },
+  "attribution": {
+    "en": "Based on Chiaki / chiaki-ng and Android Extended. AGPLv3 with OpenSSL permission; PS5 companion: GPLv3. Independent of Sony and Nintendo.",
+    "ru": "Основано на Chiaki / chiaki-ng и Android Extended. AGPLv3 с разрешением для OpenSSL; помощник PS5 — GPLv3. Независимый проект, не связанный с Sony или Nintendo."
+  },
+  "source": {
+    "en": "Source and credits ↗",
+    "ru": "Исходники и авторы ↗"
+  },
+  "updates": {
+    "en": "Updates",
+    "ru": "Обновления"
+  },
+  "updates_intro": {
+    "en": "Checks GitHub on opening, at most every 6 hours. Android confirms installation. Your console registrations and settings are kept.",
+    "ru": "Проверяем GitHub при открытии, раз в 6 часов. Установку подтверждает Android. Регистрация PS5 и настройки сохраняются."
+  },
+  "auto_check": {
+    "en": "Check for updates automatically",
+    "ru": "Проверять обновления автоматически"
+  },
+  "auto_download": {
+    "en": "Download automatically on unmetered Wi-Fi",
+    "ru": "Автоматически скачивать по Wi-Fi без лимита трафика"
+  },
+  "preview": {
+    "en": "Include preview releases",
+    "ru": "Получать предварительные версии"
+  },
+  "check_now": {
+    "en": "Check now",
+    "ru": "Проверить сейчас"
+  },
+  "download": {
+    "en": "Download update",
+    "ru": "Скачать обновление"
+  },
+  "install": {
+    "en": "Install update",
+    "ru": "Установить обновление"
+  },
+  "release_notes": {
+    "en": "Release notes on GitHub ↗",
+    "ru": "Что нового на GitHub ↗"
+  },
+  "permission_denied": {
+    "en": "Permission not granted. You can keep using this version.",
+    "ru": "Разрешение не выдано. Можно продолжать пользоваться текущей версией."
+  },
+  "install_permission": {
+    "en": "Allow Deckivo to install apps from this source in Android settings.",
+    "ru": "Откройте настройки Android и разрешите Deckivo установку приложений из этого источника."
+  },
+  "install_failed": {
+    "en": "Installation did not start: ",
+    "ru": "Установка не начата: "
+  },
+  "apk_failed": {
+    "en": "APK verification failed",
+    "ru": "не удалось проверить APK"
+  },
+  "no_browser": {
+    "en": "No browser is available to open this link.",
+    "ru": "На устройстве нет браузера для открытия ссылки."
+  },
+  "setup_intro": {
+    "en": "Three steps to your console. Keep both devices on the same network for setup.",
+    "ru": "Три шага — и ваша консоль рядом. При первой настройке устройства должны быть в одной сети."
+  },
+  "setup_find": {
+    "en": "01  ·  Find your console",
+    "ru": "01  ·  Найти консоль"
+  },
+  "setup_enable": {
+    "en": "On PS5, enable Settings → System → Remote Play.",
+    "ru": "На PS5 включите «Настройки → Система → Дистанционное воспроизведение»."
+  },
+  "ps5_ip": {
+    "en": "PS5 IP address",
+    "ru": "IP-адрес PS5"
+  },
+  "check_connection": {
+    "en": "Check connection",
+    "ru": "Проверить соединение"
+  },
+  "switch_profile": {
+    "en": "Apply Switch OLED profile",
+    "ru": "Применить профиль Switch OLED"
+  },
+  "profile_applied": {
+    "en": "Profile applied: H.264, no extra filters. The screen acts as a touchpad; PS and Touch are in the hidden game overlay.",
+    "ru": "Профиль применён. H.264, без дополнительных фильтров. Экран работает как тачпад; кнопки PS и Touch доступны поверх игры."
+  },
+  "controller_check": {
+    "en": "Test controller",
+    "ru": "Проверить геймпад"
+  },
+  "setup_profile": {
+    "en": "02  ·  Your PS5 profile",
+    "ru": "02  ·  Ваш профиль PS5"
+  },
+  "helper_intro": {
+    "en": "Open WebKit / Payload Manager on PS5 and wait for ELF Loader. Send the bundled companion using the button below. Enter its one-use notification code within 5 minutes. This is separate from the Remote Play PIN.",
+    "ru": "На PS5 открой WebKit / Payload Manager и дождись ELF Loader. Кнопка ниже отправит помощник из этого APK на твою консоль. Затем введи код из уведомления PS5: он действует 5 минут и один раз. Это не системный код Remote Play."
+  },
+  "helper_launch": {
+    "en": "Send companion to PS5",
+    "ru": "Запустить помощник на PS5 с этого Switch"
+  },
+  "helper_code": {
+    "en": "PS5 companion code",
+    "ru": "Код помощника PS5"
+  },
+  "account_fetch": {
+    "en": "Get current PS5 profile ID",
+    "ru": "Получить ID текущего профиля с PS5"
+  },
+  "account_manual": {
+    "en": "Account ID (Base64), or enter manually",
+    "ru": "Account ID (Base64); можно ввести вручную"
+  },
+  "setup_finish": {
+    "en": "03  ·  Complete registration",
+    "ru": "03  ·  Завершить привязку"
+  },
+  "setup_register": {
+    "en": "Enter Remote Play PIN and register",
+    "ru": "Ввести код Remote Play и подключить"
+  },
+  "account_required": {
+    "en": "Enter an Account ID from the companion or LinkDev (8 bytes in Base64).",
+    "ru": "Нужен Account ID из помощника или LinkDev (8 байт в Base64)."
+  },
+  "setup_done": {
+    "en": "After registration, return home and select PS5. Local play is ready; internet access is not configured by this version.",
+    "ru": "После привязки вернись на главный экран приложения и выбери PS5. Для этой версии достаточно локальной сети; доступ через интернет пока не настроен."
+  },
+  "console_list": {
+    "en": "Back to consoles",
+    "ru": "Перейти к списку консолей"
+  },
+  "setup_credit": {
+    "en": "Built on Chiaki / chiaki-ng Android Extended (AGPL-3.0). Corresponding source is included in the kit. An independent client, not a Sony app.",
+    "ru": "Основа: Chiaki / chiaki-ng Android Extended (AGPL-3.0). Исходники и изменения включены в комплект. Это отдельный клиент, не приложение Sony."
+  },
+  "ip_required": {
+    "en": "Enter a private IPv4 address, such as 192.168.1.10, without http or a port.",
+    "ru": "Укажи локальный IPv4, например 192.168.1.50. Без http и порта."
+  },
+  "controller": {
+    "en": "Controller",
+    "ru": "Геймпад"
+  },
+  "controller_intro": {
+    "en": "Test buttons and sticks on GameSir, Joy-Con or another controller.",
+    "ru": "GameSir, Joy-Con или другой контроллер — проверяйте кнопки и стики здесь."
+  },
+  "connected_devices": {
+    "en": "Connected devices",
+    "ru": "Подключённые устройства"
+  },
+  "no_controller": {
+    "en": "No controller found. Connect it in Android Bluetooth settings.",
+    "ru": "Геймпад пока не обнаружен. Подключите его в настройках Bluetooth Android."
+  },
+  "controller_help": {
+    "en": "Press buttons and move the sticks. PS and touchpad controls are in the hidden game overlay.",
+    "ru": "Нажимайте кнопки и двигайте стики. PS и тачпад доступны в скрываемой панели во время игры."
+  },
+  "input_test": {
+    "en": "Input test",
+    "ru": "Проверка ввода"
+  },
+  "waiting_input": {
+    "en": "Waiting for input…",
+    "ru": "Ожидаю нажатия…"
+  },
+  "button_layout": {
+    "en": "Button layout",
+    "ru": "Раскладка кнопок"
+  },
+  "calibrate": {
+    "en": "Map by button position",
+    "ru": "Настроить по расположению"
+  },
+  "cancel_calibration": {
+    "en": "Cancel mapping",
+    "ru": "Отменить настройку"
+  },
+  "changes_cancelled": {
+    "en": "Changes cancelled",
+    "ru": "Изменения отменены"
+  },
+  "press": {
+    "en": "Press ",
+    "ru": "Нажми "
+  },
+  "bottom_button": {
+    "en": "bottom button (× on PS5)",
+    "ru": "нижнюю кнопку (× на PS5)"
+  },
+  "right_button": {
+    "en": "right button (○)",
+    "ru": "правую кнопку (○)"
+  },
+  "left_button": {
+    "en": "left button (□)",
+    "ru": "левую кнопку (□)"
+  },
+  "top_button": {
+    "en": "top button (△)",
+    "ru": "верхнюю кнопку (△)"
+  },
+  "layout_saved": {
+    "en": "Mapping saved. Bottom ×, right ○, left □, top △.",
+    "ru": "Раскладка сохранена. Снизу — ×, справа — ○, слева — □, сверху — △."
+  },
+  "pressed": {
+    "en": "pressed",
+    "ru": "нажато"
+  },
+  "released": {
+    "en": "released",
+    "ru": "отпущено"
+  }
+}

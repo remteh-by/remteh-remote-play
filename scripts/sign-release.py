@@ -35,7 +35,7 @@ dist.mkdir(exist_ok=True)
 unsigned = root / "android/app/build/outputs/apk/release/app-release-unsigned.apk"
 aligned = dist / ".aligned.apk"
 version = re.search(r'versionName\s+"([0-9]+\.[0-9]+\.[0-9]+)"', (root / "android/app/build.gradle").read_text()).group(1)
-target = dist / f"RemTeh-Remote-Play-{version}-arm64.apk"
+target = dist / f"Deckivo-{version}-arm64.apk"
 tools = sdk / "build-tools/36.0.0"
 subprocess.run([str(tools / "zipalign"), "-P", "16", "-f", "4", str(unsigned), str(aligned)], check=True)
 subprocess.run([

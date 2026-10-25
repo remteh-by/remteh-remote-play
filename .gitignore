@@ -49,3 +49,9 @@ ps5-companion/companion-host
 *.keystore
 
 .build-tools/
+
+# Linked local Python build environment
+.buildenv
+__pycache__/
+*.pyc
+.DS_Store

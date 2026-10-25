@@ -1,0 +1,28 @@
+{
+  "preview": "0.6.0",
+  "target": "Switchroot Ubuntu 24.04 ARM64",
+  "engine": "Chiaki 2.2.0-1build3 (Ubuntu)",
+  "source_url": "https://ports.ubuntu.com/pool/universe/c/chiaki/chiaki_2.2.0.orig.tar.gz",
+  "source_sha256": "b527a8a4c42e694f4eb45403bdc8f1c08da60f1863cc2a768dc6aa174ad6c699",
+  "release": "Public experimental source/upgrade preview; historical physical results remain tied to their original versions",
+  "confirmed": [
+    "0.3 owner pairing, live Tegra 1280x720 video, audible sound and GameSir input",
+    "0.3 graceful disconnect and reconnect after PS5 autoload",
+    "0.4 first four-screen UI rendered on physical Switch",
+    "0.4 native adapter compiled on physical Switch without warnings",
+    "local preference migration and diagnostic privacy checks",
+    "0.5.1 signed updater downloaded and installed build 7 from build 6 on the physical Switch, restarted with pairing/preferences/history retained"
+  ],
+  "pending": [
+    "0.4 new controller chord and private native stop command on real PS5 session",
+    "0.4 live decoder telemetry and launcher gamepad navigation",
+    "0.4 clean reconnect and sustained gameplay",
+    "Figma SVG import; MCP Starter canvas limit reached"
+  ],
+  "experimental_candidate": {
+    "engine": "chiaki-ng 1.10.0 arm64",
+    "sha256": "233bc742f54d165a95d5d1219faf4e5cc1e710ffacb86400ff8d3cf6153827b7",
+    "default": false
+  },
+  "asset_update": "0.4.0-dev.2 uses the untouched official PS5 product image; latest preview rendered locally."
+}

@@ -1,0 +1,12 @@
+<resources>
+<string name="dv_sessions">Oturumlar</string>
+<string name="dv_quality_smooth">Akıcı · 720p / 60</string>
+<string name="dv_quality_balanced">Dengeli · 720p / 30</string>
+<string name="dv_quality_safe">Uyumlu · 540p / 30</string>
+<string name="dv_requested_fps">Çözünürlük ve FPS istenen hedef değerlerdir.</string>
+<string name="dv_hero_title">Konsolun.\nOyun alanın.</string>
+<string name="dv_test_controller">Kontrolleri test et ↗</string>
+<string name="dv_sessions_note">Bu cihazda özel geçmiş. Veri yüklenmez.</string>
+<string name="dv_no_sessions">Sonraki oturumun burada başlar.</string>
+<string name="dv_quality">Yayın profili</string>
+</resources>
