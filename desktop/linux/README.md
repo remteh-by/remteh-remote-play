@@ -60,7 +60,7 @@ The initial installation remains available through `build-install.py` below.
 ## Design handoff
 
 `design/01-play-space.svg` through `04-preferences.svg` are editable screens
-with separate text layers and an embedded original Sony product image. Import them into Figma.
+with separate text layers and our own neutral screen/gamepad illustration. Import them into Figma.
 The Figma file was created, but canvas editing is currently blocked by its
 Starter MCP limit. See `design/figma-handoff.json` for the file and exact status.
 These SVGs are reference screens, not live connection or performance evidence.

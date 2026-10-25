@@ -4,7 +4,7 @@ import math
 import re
 from dataclasses import dataclass
 
-VERSION = '0.6.0'
+VERSION = '0.6.1'
 
 
 @dataclass(frozen=True)

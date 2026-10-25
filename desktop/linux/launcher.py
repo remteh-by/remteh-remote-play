@@ -128,6 +128,7 @@ class Deckivo(QWidget):
             path.mkdir(parents=True,exist_ok=True);path.chmod(0o700)
         self.preferences=preferences(load_json(CONFIG,{}))
         self.registration=load_json((PRIVATE if sys.platform=='darwin' else DATA)/'registration.json',{})
+        self.support_state_path=PRIVATE/'support-nudge.json'
         self.records=history_records(load_json(PRIVATE/'sessions.json',[]))
         self.language=self.preferences['language']
         self.process=None;self.probe=None;self.online=False;self.rtt=-1;self.is_closing=False
@@ -159,6 +160,8 @@ class Deckivo(QWidget):
         self.refresh()
         import update_ui
         update_ui.initialize(self)
+        from support import maybe_thank
+        QTimer.singleShot(0,lambda:maybe_thank(self))
 
     def t(self,key):
         language=QLocale.system().name().split('_')[0] if self.language=='auto' else self.language
@@ -446,15 +449,20 @@ class Deckivo(QWidget):
         self.finalized=True
         if self.connecting_dialog:
             self.connecting_dialog.hide();self.connecting_dialog.deleteLater();self.connecting_dialog=None
+        support_clean=self.stop_requested and self.saw_video and code==0 and int(status)==0 and self.message!='error'
         reason='busy' if code==73 else 'cancelled' if self.stop_requested and not self.saw_video else 'finished' if self.stop_requested or (code==0 and self.saw_video) else 'error'
         self.message='ended' if reason in ('finished','cancelled') else reason
         if self.preferences['history'] and self.started_at and code!=73:
             seconds=time.monotonic()-self.first_frame_mono if self.saw_video else 0
             record=session_record(self.started_at,seconds,self.quality_at_start,self.metrics,reason)
             self.records=([record]+self.records)[:40];private_json(PRIVATE/'sessions.json',self.records)
+        import support
+        seconds=time.monotonic()-self.first_frame_mono if self.saw_video else 0
+        support.complete(self,seconds,support_clean)
         self.phase='idle';self.progress.hide();self.primary.setText(self.t('play'));self.set_preferences_enabled(True)
         self.pad.suspend(False);self.show_dashboard();self.update_status(self.online,self.rtt);self.fill_history()
         process.deleteLater();self.process=None
+        QTimer.singleShot(0,lambda:support.maybe_thank(self))
 
     def tick(self):
         if not self.active():return
@@ -516,13 +524,13 @@ class Deckivo(QWidget):
             QMessageBox.information(self,'Deckivo',self.t('export_ok'))
 
     def support(self):
-        box=QMessageBox(self);box.setWindowTitle(self.t('support'));box.setText(self.t('support_text'))
-        visit=box.addButton('Ko-fi · RemTeh ↗',QMessageBox.ActionRole);box.addButton(QMessageBox.Close);box.exec()
-        if box.clickedButton() is visit:QDesktopServices.openUrl(QUrl('https://ko-fi.com/pavelzayats'))
+        import support
+        support.show(self)
 
     def about(self):
+        from support import supporters_text
         QMessageBox.information(self,self.t('about'),
-            'Deckivo '+VERSION+'\nDeveloped by RemTeh.by\n\nNative Qt interface · Chiaki 2.2 streaming engine\nSwitchroot FFmpeg · Tegra/controller adapter\n\nAGPL-3.0-only with upstream OpenSSL exception.\nIndependent project; not affiliated with Sony or Nintendo.\nLocal play only; Internet/VPN play is not validated.\nNew Linux features: English and Russian.\nExperimental preview. See the release test matrix before use.')
+            'Deckivo '+VERSION+'\nDeveloped by RemTeh.by\n\nNative Qt interface · Chiaki 2.2 streaming engine\nSwitchroot FFmpeg · Tegra/controller adapter\n\nAGPL-3.0-only with upstream OpenSSL exception.\nIndependent project; not affiliated with Sony or Nintendo.\nLocal play only; Internet/VPN play is not validated.\nNew Linux features: English and Russian.\nExperimental preview. See the release test matrix before use.'+supporters_text(self))
 
     def stop_background_tasks(self):
         self.is_closing=True
@@ -566,6 +574,8 @@ def main():
     try:window=Deckivo()
     except RuntimeError:return 0
     window.showMaximized()
+    import update_ui
+    QTimer.singleShot(0,lambda:update_ui.acknowledge(window))
     if '--start' in sys.argv:QTimer.singleShot(1400,window.start)
     app.aboutToQuit.connect(window.shutdown_threads)
     return app.exec()

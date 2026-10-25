@@ -1,4 +1,4 @@
-"""Editable SVG design handoff; text and the official product image remain separate editable layers.
+"""Editable SVG design handoff; text and the own screen illustration remain separate editable layers.
 
 No screenshots, account data or network credentials are embedded. These are
 reference screens for Figma import, not evidence of an active PS5 connection.
@@ -25,8 +25,8 @@ def button(x,y,w,value,primary=False):
 
 
 def product_image():
-    payload=base64.b64encode((ROOT.parent/'assets/ps5-console.png').read_bytes()).decode('ascii')
-    return '<g id="Official_PS5_Product_Image"><image x="541" y="140" width="298" height="374" preserveAspectRatio="xMidYMid meet" xlink:href="data:image/png;base64,'+payload+'"/></g>'
+    payload=base64.b64encode((ROOT.parent/'assets/play-space.svg').read_bytes()).decode('ascii')
+    return '<g id="Deckivo_Own_Illustration_Image"><image x="541" y="140" width="298" height="374" preserveAspectRatio="xMidYMid meet" xlink:href="data:image/svg+xml;base64,'+payload+'"/></g>'
 
 
 
@@ -116,7 +116,7 @@ if __name__=='__main__':
         (ROOT/(name+'.svg')).write_text(svg)
     manifest={'file':'https://www.figma.com/design/IMCnaXKObedKagsDKvPlB0',
               'figma_status':'File created; MCP Starter quota exhausted; browser Terms acceptance awaiting owner. SVG import not completed.',
-              'screens':'Four editable SVG screens; home uses one discrete official product image, no flattened UI screenshot.',
+              'screens':'Four editable SVG screens; home uses one discrete own screen illustration, no flattened UI screenshot.',
               'font':'IBM Plex Sans','colors':{'background':'#101216','surface':'#1A1E24','accent':'#DAF975','secondary':'#AAA0F5'},
               'viewport':[1280,720],'reference_only':True}
     (ROOT/'figma-handoff.json').write_text(json.dumps(manifest,indent=2))

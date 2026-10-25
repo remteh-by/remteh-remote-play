@@ -14,6 +14,36 @@ import uuid
 from updater import verify_signature,candidate
 from storage import HERE,PRIVATE,private_json,load_json
 
+STARTUP_TIMEOUT=120
+
+
+def wait_for_ack(transaction,process,timeout=STARTUP_TIMEOUT):
+    deadline=time.monotonic()+timeout
+    while time.monotonic()<deadline:
+        acknowledgement=load_json(PRIVATE/'update-ack.json',{})
+        if acknowledgement.get('transaction')==transaction and acknowledgement.get('pid')==process.pid:return True
+        if process.poll() is not None:return False
+        time.sleep(.25)
+    return False
+
+
+def stop_updated_process(process):
+    if process.poll() is not None:return
+    process.terminate()
+    try:process.wait(timeout=10)
+    except subprocess.TimeoutExpired as error:
+        # Keep both copies intact rather than rename files under a live app.
+        raise RuntimeError('Updated process is still running; rollback deferred safely') from error
+
+
+def confirm_or_rollback(entry,transaction,process,restore,restart):
+    if wait_for_ack(transaction,process):return
+    stop_updated_process(process)
+    restore()
+    private_json(PRIVATE/'update-failed.json',{'sha256':entry['sha256'],'build':entry['build']})
+    restart()
+    raise ValueError('Updated app did not confirm startup; previous version restored')
+
 
 def extract(archive,directory):
     directory=directory.resolve();root=directory;links=[];seen=set()
@@ -75,23 +105,24 @@ def main(descriptor,parent):
         try:app.rename(installed)
         except BaseException:backup.rename(installed);raise
         private_json(PRIVATE/'update-receipt.json',receipt)
-        subprocess.Popen(['open',str(installed)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-        for _ in range(120):
-            acknowledgement=load_json(PRIVATE/'update-ack.json',{})
-            if acknowledgement.get('transaction')==transaction:break
-            time.sleep(.25)
-        else:
-            # A package that cannot start is quarantined; retain the known app.
+        def launch_mac():
+            return subprocess.Popen([str(installed/'Contents/MacOS/Deckivo')],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
+        def restore_mac():
             installed.rename(staging/'failed.app');backup.rename(installed)
-            private_json(PRIVATE/'update-failed.json',{'sha256':entry['sha256'],'build':entry['build']})
-            subprocess.Popen(['open',str(installed)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-            raise ValueError('Updated app did not confirm startup; previous app restored')
+        process=launch_mac()
+        confirm_or_rollback(entry,transaction,process,restore_mac,launch_mac)
     elif entry['platform']=='linux-switch-arm64':
         from session import VERSION
         from build_meta import BUILD
         if candidate({'schema':1,'packages':[entry]},entry['platform'],VERSION,BUILD) is None:raise ValueError('Update is already installed or older')
-        subprocess.run([sys.executable,str(staging/'desktop/linux/upgrade.py')],check=True)
-        subprocess.Popen([str(Path.home()/'.local/bin/deckivo')],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
+        result=subprocess.run([sys.executable,str(staging/'desktop/linux/upgrade.py'),'--json'],check=True,capture_output=True,text=True)
+        backup=Path(json.loads(result.stdout)['backup'])
+        from upgrade import restore_backup
+        def launch_linux():
+            return subprocess.Popen([str(Path.home()/'.local/bin/deckivo')],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
+        private_json(PRIVATE/'update-receipt.json',receipt)
+        process=launch_linux()
+        confirm_or_rollback(entry,transaction,process,lambda:restore_backup(backup),launch_linux)
     else:raise ValueError('Wrong target platform')
     private_json(PRIVATE/'update-receipt.json',receipt);(PRIVATE/'update-error.json').unlink(missing_ok=True);shutil.rmtree(staging)
 
