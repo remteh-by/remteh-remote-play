@@ -126,7 +126,7 @@
   "dv_account_required": "コンパニオンまたは LinkDev からのアカウント ID を入力します (Base64 で 8 バイト)。",
   "dv_setup_done": "登録後、ホームに戻りPS5を選択します。ローカルプレイの準備が整いました。このバージョンではインターネット アクセスが構成されていません。",
   "dv_console_list": "コンソールに戻る",
-  "dv_setup_credit": "Chiaki / chiaki-ng Android Extended (AGPL-3.0) 上に構築されています。対応するソースはキットに含まれています。 Sony のアプリではなく、独立したクライアントです。",
+  "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "http やポートを付けずに、192.168.1.10 などのプライベート IPv4 アドレスを入力します。",
   "dv_controller_intro": "GameSir、Joy-Con、または別のコントローラーのボタンとスティックをテストします。",
   "dv_no_controller": "コントローラーが見つかりませんでした。 AndroidのBluetooth設定で接続してください。",

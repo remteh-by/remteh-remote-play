@@ -126,7 +126,7 @@
   "dv_account_required": "Wprowadź identyfikator konta z narzędzia towarzyszącego lub LinkDev (8 bajtów w Base64).",
   "dv_setup_done": "Po rejestracji wróć do domu i wybierz PS5. Gra lokalna jest gotowa; dostęp do Internetu nie jest skonfigurowany w tej wersji.",
   "dv_console_list": "Wracając do konsol",
-  "dv_setup_credit": "Zbudowany na Chiaki / chiaki-ng Android Extended (AGPL-3.0). Odpowiednie źródło znajduje się w zestawie. Niezależny klient, a nie aplikacja Sony.",
+  "dv_setup_credit": "Source code for this exact version is linked in Licenses and source.",
   "dv_ip_required": "Wprowadź prywatny adres IPv4, np. 192.168.1.10, bez http i portu.",
   "dv_controller_intro": "Przetestuj przyciski i drążki na GameSir, Joy-Con lub innym kontrolerze.",
   "dv_no_controller": "Nie znaleziono kontrolera. Połącz go w ustawieniach Androida Bluetooth.",

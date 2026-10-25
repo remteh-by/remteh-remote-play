@@ -1,0 +1,4 @@
+qrcode==8.2
+fonttools[woff]==4.60.1
+Pillow==12.1.1
+beautifulsoup4==4.13.5

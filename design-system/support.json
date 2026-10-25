@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "methods": [
+    {"id":"kofi","title":"Ko-fi · RemTeh","url":"https://ko-fi.com/pavelzayats","network":"","qr":true,"enabled":true},
+    {"id":"usdt_trc20","title":"USDT TRC20","address":"","network":"TRC20","qr":true,"enabled":false},
+    {"id":"usdt_ton","title":"USDT TON","address":"","network":"TON","qr":true,"enabled":false},
+    {"id":"ton","title":"TON","address":"","network":"TON","qr":true,"enabled":false},
+    {"id":"boosty","title":"Boosty","url":"","network":"","qr":true,"enabled":false}
+  ],
+  "goals": [
+    {"id":"apple_developer","title_key":"support_goal_mac","target_usd":99,"raised_usd":null},
+    {"id":"windows","title_key":"support_goal_windows","target_usd":null,"raised_usd":null},
+    {"id":"hardware","title_key":"support_goal_hardware","target_usd":null,"raised_usd":null}
+  ]
+}
