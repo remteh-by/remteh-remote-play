@@ -21,6 +21,23 @@ as a non-Slim, third hardware revision; the exact model label was not read for
 this release. Historical sessions did not capture a separate full firmware
 string every time. No other firmware/model compatibility range is certified.
 
+## 0.6.0 public-channel verification
+
+- **Mac 0.6.0 build 8 → build 9:** the installed app fetched RSA-signed metadata
+  from public GitHub Pages and its ZIP from GitHub Releases, installed itself,
+  relaunched, acknowledged startup and reported up to date. The registration hash
+  stayed unchanged. This is updater acceptance, not sustained gameplay.
+- **Android 0.6.0 build 23 → build 24:** found/downloaded the public GitHub
+  release, verified size/SHA-256/package/version/certificate, completed the
+  normal Play Protect scan and installed through Deckivo itself. The installed
+  base APK hash equals the published APK exactly. First-install time and the
+  saved console card were retained. No uninstall/data clear was used.
+- Ubuntu is currently offline while the same Switch runs Android. The public
+  0.6.0 Linux pack is prepared; its physical proof stays at 0.5.1 build 7.
+
+[Public-channel proof](releases/0.6.0-public-channel-validation.json) records the
+actual results after publication; the original release validation remains intact.
+
 ## 0.6.0 release checks
 
 The release validation JSON records Android release build/lint/unit tests, native

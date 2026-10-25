@@ -41,8 +41,8 @@ new Deckivo account is required for local play.
 
 | Hardware / OS | Exact build | Confirmed scope |
 |---|---|---|
-| Switch OLED / Android 15 | 0.5.1 #20 | Self-updates 18 → 19 → 20; registration data retained |
-| Apple Silicon Mac / macOS 27.0.1 | 0.5.1 #5 | Self-updates 3 → 4 → 5, relaunch and registration retained |
+| Switch OLED / Android 15 | 0.6.0 #24 | Public self-update 23 → 24; exact release APK verified; saved console retained |
+| Apple Silicon Mac / macOS 27.0.1 | 0.6.0 #9 | Public HTTPS self-update 8 → 9, relaunch and registration retained |
 | Switch OLED / Ubuntu 24.04.4 ARM64 | 0.5.1 #7 | Self-update 6 → 7, restart, pairing/settings/history retained |
 | Earlier gameplay | Android 0.1.x; Ubuntu 0.3.0; Mac chiaki-ng 1.10.0 engine | Owner-confirmed local picture and sound; GameSir input on Switch |
 
@@ -51,7 +51,9 @@ version `13420000`); no other firmware coverage is certified.
 
 See **[the detailed test matrix](docs/TESTED.md)** and
 [0.6.0 validation](docs/releases/0.6.0-validation.json) for release checks.
-Historical gameplay does not certify every new frontend feature.
+[Public update acceptance](docs/releases/0.6.0-public-channel-validation.json)
+now confirms Android #24 and Mac #9. Historical gameplay does not certify every
+new frontend feature.
 
 ### Quick start
 

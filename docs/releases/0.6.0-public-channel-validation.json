@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "version": "0.6.0",
+  "date": "2026-10-25",
+  "android": {
+    "version": "0.6.0",
+    "from_build": 23,
+    "to_build": 24,
+    "transport": "Public GitHub Releases API, update.json and release APK over HTTPS",
+    "installed_by": "by.remteh.remoteplay",
+    "installed_apk_sha256": "28dc1bcc68b20ac98d705a689e9bc227a8b6bf978c1d99bcda7dc17e70ed0d05",
+    "exact_release_bytes": true,
+    "first_install_time_retained": true,
+    "play_protect": "Scan completed; protection left enabled",
+    "sustained_gameplay_tested": false,
+    "saved_console_visible": true
+  },
+  "macos": {
+    "version": "0.6.0",
+    "from_build": 8,
+    "to_build": 9,
+    "registration_retained": true,
+    "transport": "Public HTTPS Pages metadata and GitHub release ZIP",
+    "startup_acknowledged": true,
+    "reports_up_to_date": true
+  },
+  "linux": {
+    "public_upgrade_build": 9,
+    "physical_installed_version": "0.5.1",
+    "physical_installed_build": 7,
+    "public_transition_verified": false,
+    "reason": "Same physical Switch currently runs Android"
+  },
+  "console": {
+    "type": "PS5",
+    "firmware_discovery": "13420000",
+    "firmware": "13.42"
+  },
+  "scope": "Public update delivery and retained settings/registration; no new sustained-gameplay certification"
+}
