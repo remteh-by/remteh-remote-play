@@ -54,7 +54,7 @@ source_zip = bundle / (version + "-sources.zip")
 entries = 0
 with zipfile.ZipFile(source_zip, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
     for folder, dirs, files in os.walk(root):
-        dirs[:] = sorted(d for d in dirs if d not in excluded_dirs)
+        dirs[:] = sorted(d for d in dirs if d not in excluded_dirs and not d.endswith(".dSYM"))
         for name in sorted(files):
             path = Path(folder) / name
             if name in excluded_files or name == ".git" or name.endswith((".jks", ".keystore", ".apk", ".idsig", ".pyc")):
@@ -71,7 +71,7 @@ with zipfile.ZipFile(source_zip, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as 
     for dep in ("mbedtls", "json-c", "miniupnpc"):
         dep_root = dep_base / (dep + "-src")
         for folder, dirs, files in os.walk(dep_root):
-            dirs[:] = sorted(d for d in dirs if d not in excluded_dirs)
+            dirs[:] = sorted(d for d in dirs if d not in excluded_dirs and not d.endswith(".dSYM"))
             for name in sorted(files):
                 if name in excluded_files or name == ".git" or name.endswith(".pyc"):
                     continue
