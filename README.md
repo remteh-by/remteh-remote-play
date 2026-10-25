@@ -1,26 +1,28 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.0-b16-e059e0c43d2b.webp" alt="Deckivo — actual desktop interface, development preview 0.8.0 build 16" width="100%"></a></p>
-<p align="center"><sub>Actual desktop interface · development preview 0.8.0 build 16. Public downloads remain 0.6.1 until the next release.</sub></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.1-b17-c95635aabd0e.webp" alt="Deckivo — actual desktop interface, development preview 0.8.1 build 17" width="100%"></a></p>
+<p align="center"><sub>Actual desktop interface · development preview 0.8.1 build 17. Linux is 0.8.1 b17; Android and macOS remain 0.6.1.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/">RemTeh.by</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.6.1">Download 0.6.1 preview</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.1/Deckivo-Linux-0.8.1-b17-source.zip">Linux 0.8.1 b17</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk">Android 0.6.1</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip">macOS 0.6.1</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
 
 <p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/#download-stats"><img src="https://remteh-by.github.io/remteh-remote-play/assets/downloads.svg" alt="GitHub release app package downloads"></a><br><sub>GitHub package downloads across releases, including automatic updates and repeated downloads. Not unique users or installations. <a href="https://remteh-by.github.io/remteh-remote-play/#download-stats">By platform and version ↗</a></sub></p>
 
 [English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)
 
-**0.6.1 is an experimental prerelease, not a finished 1.0 product.** The guides
-separate tested hardware/builds from planned support. Local play has been tested;
-Internet/VPN play and sustained sessions are not certified. No subscription or
-new Deckivo account is required for local play.
+**Linux 0.8.1 b17 and the Android/macOS 0.6.1 builds are experimental previews,
+not a finished 1.0 product.** Linux 0.8.1 b17 contains the Ubuntu updater fix;
+physical acceptance on the owner's Switch is still pending. The guides separate
+tested hardware/builds from planned support. Local play has been tested on older
+builds; Internet/VPN play and sustained sessions are not certified. No
+subscription or new Deckivo account is required for local play.
 
 ### Choose your screen
 
 | Platform | Delivery | Start here |
 |---|---|---|
 | Android ARM64 | APK, Android 8+; tested device uses Android 15 | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-0.6.1-arm64.apk) |
-| macOS Apple Silicon | Native Qt preview, separate chiaki-ng engine required; ad-hoc signed, not notarized | [Mac guide](docs/guides/en.md#macos) |
-| Switchroot Ubuntu ARM64 | Developer preview for Ubuntu 24.04 / KDE X11 / Switchroot FFmpeg 6.1 | [Linux guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
+| macOS Apple Silicon | 0.6.1 b10; native Qt preview, separate chiaki-ng engine required; ad-hoc signed, not notarized | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.6.1/Deckivo-macos-0.6.1-b10.zip) |
+| Switchroot Ubuntu ARM64 | 0.8.1 b17 updater-fix preview for Ubuntu 24.04 / KDE X11 / Switchroot FFmpeg 6.1; current physical acceptance pending | [Linux 0.8.1 b17](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.1/Deckivo-Linux-0.8.1-b17-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
 | Windows, Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
 ### Made for your own play space

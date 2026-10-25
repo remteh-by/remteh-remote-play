@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "version": "0.8.1",
+  "build": 17,
+  "platform": "linux-switch-arm64",
+  "date": "2026-10-25",
+  "desktop_tests": {
+    "passed": 74
+  },
+  "physical_preflight": {
+    "hardware": "Switch OLED",
+    "os": "Switchroot Ubuntu 24.04.4 ARM64 / KDE X11",
+    "previous_version": "0.6.1",
+    "previous_build": 10,
+    "automatic_updates_enabled": true,
+    "installed_upgrade_helper_present": false,
+    "native_compilation": "both adapters passed -Wall -Wextra -Werror"
+  },
+  "package": {
+    "build": 17,
+    "bytes": 3572449,
+    "filename": "Deckivo-Linux-0.8.1-b17-source.zip",
+    "platform": "linux-switch-arm64",
+    "sha256": "f476d4a3f3bc8668ba15dcaccedef20bf31d09f578f096521d9c0d40105530ac",
+    "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.1/Deckivo-Linux-0.8.1-b17-source.zip",
+    "version": "0.8.1"
+  },
+  "archive_unique_paths": 94,
+  "license_documents": 14,
+  "public_channel_device_acceptance": "pending",
+  "gameplay_acceptance": "not performed",
+  "macos_package_changed": false,
+  "android_package_changed": false
+}

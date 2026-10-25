@@ -92,3 +92,16 @@ Switch, firmware update, jailbreak reliability or game compatibility certificati
 
 [Development receipt](releases/0.7.0-development-validation.json) ·
 [Controller features and input guide](CONTROLLERS.md).
+
+## 0.8.1 Linux packaging checks
+
+- Physical Switch OLED / Ubuntu 24.04.4 ARM64 / KDE/X11 was found running
+  0.6.1 build 10, with automatic updates enabled and the public feed still
+  offering build 10. The installed upgrade helper was missing.
+- Both updated native adapters compiled on that device with GCC and strict
+  warnings. A private device-side backup of registration/preferences was made.
+- 74 desktop/package tests passed. The signed Linux upgrade has 94 unique paths
+  including license documents; the macOS feed entry remains unchanged.
+- Physical public-channel 0.6.1 → 0.8.1 transition is **pending**. USB and Wi-Fi
+  became unavailable before installation. Neither staging/build success nor the
+  updated UI screenshot is a gameplay or device-update acceptance result.
