@@ -9,7 +9,7 @@ os.environ.setdefault('QT_QPA_PLATFORM','offscreen')
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QApplication,QDialog,QLabel,QPushButton,QWidget
+from PyQt5.QtWidgets import QApplication,QDialog,QLabel,QPushButton,QProgressBar,QWidget
 import support
 
 
@@ -78,6 +78,24 @@ class SupportUiTests(unittest.TestCase):
 
     def test_success_opens_exact_url_without_fallback(self):
         self.assertEqual(self.run_support_dialog(result=True),[])
+
+    def test_goal_progress_requires_both_verified_amounts(self):
+        for raised,target,expected in ((None,None,0),(10,None,0),(None,100,0),(10,100,1)):
+            with self.subTest(raised=raised,target=target):
+                observed={}
+                def inspect():
+                    dialog=APP.activeModalWidget()
+                    observed['bars']=len(dialog.findChildren(QProgressBar))
+                    observed['labels']=[label.text() for label in dialog.findChildren(QLabel)]
+                    dialog.close()
+                goal={'title_key':'support','raised_usd':raised,'target_usd':target}
+                configuration={**CONFIG,'goals':[goal]}
+                QTimer.singleShot(0,inspect)
+                with patch.object(support,'configuration',return_value=configuration),patch.object(support,'texts',return_value=COPY),\
+                     patch.object(support,'qr_widget',return_value=QLabel('QR')):
+                    support.show(self.window)
+                self.assertEqual(observed['bars'],expected)
+                self.assertNotIn(COPY['progress_unknown'],observed['labels'])
 
     def test_all_thank_choices_keep_their_values_on_real_button_click(self):
         for text,expected in ((COPY['support_link'],'support'),(COPY['thanks_later'],'later'),
