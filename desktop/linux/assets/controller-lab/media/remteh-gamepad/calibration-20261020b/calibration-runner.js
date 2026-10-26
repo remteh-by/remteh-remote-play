@@ -265,7 +265,14 @@ export class CalibrationRunner {
       this.phase = 'saving'; this.emit();
       // A failed/unknown NVS write must never be blindly retried on reconnect.
       this.record.saveIntent = {at: this.now(), parameters: [...this.parameters], profile: this.result, session: this.sessionId, connection: this.snapshot.connection}; this.persist();
-      await this.engine().saveTuning({verified: true, parameters: [...this.parameters], connection: this.snapshot.connection, revision: this.snapshot.revision});
+      try {
+        await this.engine().saveTuning({verified: true, parameters: [...this.parameters], connection: this.snapshot.connection, revision: this.snapshot.revision});
+      } catch (error) {
+        if (['confirmation_required','service_mode_required','persistent_backup_required'].includes(error?.message)) {
+          this.record.saveIntent=null;this.persist();
+        }
+        throw error;
+      }
       this.check();
       this.record.saved = {at: this.now(), parameters: [...this.parameters], profile: this.result, session: this.sessionId, connection: this.snapshot.connection};
       this.record.saveIntent = null; this.record.verification = null;

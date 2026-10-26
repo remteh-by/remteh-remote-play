@@ -1,0 +1,43 @@
+name: Deckivo browser quality
+on:
+  push:
+    branches: [main, 'release/**']
+    paths: ['desktop/linux/assets/controller-lab/**', 'tests/**', 'scripts/test-*.mjs', 'package*.json', '.github/workflows/quality.yml', 'website/**', 'scripts/build-site*.py', 'design-system/**', 'localization/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:controller-policy
+      - run: npm run test:controller-lab
+        env:
+          DECKIVO_QA_DIR: output/playwright/controller
+      - run: |
+          python -m pip install -r scripts/requirements-build.txt
+          python scripts/generate-support.py --check
+          python -m unittest tests/test_download_stats.py
+          python scripts/download-stats.py --output build/download-stats.json
+          python scripts/build-site.py --download-stats build/download-stats.json
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - run: node scripts/test-site.mjs
+        env:
+          DECKIVO_QA_DIR: output/playwright/site
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deckivo-browser-quality
+          path: output/playwright

@@ -119,7 +119,6 @@
     <string name="dv_pressed">premuto</string>
     <string name="dv_preview">Includi versioni preliminari</string>
     <string name="dv_profile_applied">Profilo applicato: H.264, senza filtri aggiuntivi. Lo schermo funge da touchpad; PS e Touch si trovano nell\'overlay di gioco nascosto.</string>
-    <string name="dv_progress_unknown">I progressi non sono ancora indicati.</string>
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">Indirizzo IP della PS5</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
@@ -140,7 +139,7 @@
     <string name="dv_searching">Ricerca nella tua rete. Puoi anche aggiungere un indirizzo IP.</string>
     <string name="dv_settings">Impostazioni</string>
     <string name="dv_setup">Connetti</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2</string>
+    <string name="dv_setup_credit">Development build 0.8.3. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">Dopo la registrazione, torna a casa e seleziona PS5. Il gioco locale è pronto; l\'accesso a Internet non è configurato da questa versione.</string>
     <string name="dv_setup_enable">Su PS5, abilita Impostazioni → Sistema → Riproduzione remota.</string>
     <string name="dv_setup_find">01 · Trova la tua console</string>

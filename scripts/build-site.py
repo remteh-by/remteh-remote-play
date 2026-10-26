@@ -11,10 +11,10 @@ NAMES={'en':'English','ru':'Русский','uk':'Українська','pl':'Po
 SYSTEM_FONT={'zh','ja','ko','ar','hi'}
 PLATFORM_KEYS=('android','macos','linux','bundle')
 ASSET_CATEGORIES={*PLATFORM_KEYS,'source','metadata','other'}
-ANDROID_VERSION='0.8.2'
-ANDROID_BUILD=27
-MAC_VERSION='0.8.2';MAC_BUILD=18
-LINUX_VERSION='0.8.2';LINUX_BUILD=18
+ANDROID_VERSION='0.8.3'
+ANDROID_BUILD=28
+MAC_VERSION='0.8.3';MAC_BUILD=19
+LINUX_VERSION='0.8.3';LINUX_BUILD=19
 ANDROID_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/Deckivo-{ANDROID_VERSION}-arm64.apk'
 MAC_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{MAC_VERSION}/Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip'
 LINUX_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{LINUX_VERSION}/Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip'
@@ -133,11 +133,30 @@ def downloads_badge(stats):
  return f'''<svg xmlns="http://www.w3.org/2000/svg" width="190" height="20" role="img" aria-label="{title}"><title>{title}</title><linearGradient id="s" x2="0" y2="100%"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-opacity=".12"/></linearGradient><clipPath id="r"><rect width="190" height="20" rx="3"/></clipPath><g clip-path="url(#r)"><rect width="112" height="20" fill="#2b3038"/><rect x="112" width="78" height="20" fill="#6d7f2c"/><rect width="190" height="20" fill="url(#s)"/></g><g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="11"><text x="56" y="15" fill="#010101" fill-opacity=".3">app downloads</text><text x="56" y="14">app downloads</text><text x="151" y="15" fill="#010101" fill-opacity=".3">{message}</text><text x="151" y="14">{message}</text></g></svg>\n'''
 
 
+def download_document(stats):
+ if stats is None:return '# Deckivo download history\n\nStatistics are currently unavailable.\n'
+ lines=['# Deckivo download history','',f"Generated: {stats['generated_at']}",'',
+  f"Installers and kits: **{stats['package_total']}**. All release files: **{stats['total_downloads']}**.",'',
+  'Counts include updates, repeated downloads and verification downloads. They are not unique people or installations.',
+  'Removed-release counts are historical snapshots.','',
+  '| Platform | Package downloads |','|---|---:|']
+ for key in PLATFORM_KEYS:lines.append(f"| {key} | {stats['platforms'][key]} |")
+ for release in stats['releases']:
+  lines += ['', '## '+release['tag']+(' (archived snapshot)' if release.get('archived') else ''),'',
+   f"Packages: {release['package_total']}; all files: {release['total_downloads']}.",'']
+  if not release.get('archived'):lines += ['[Release]('+release['url']+')','']
+  lines += ['| File | Category | Downloads |','|---|---|---:|']
+  for asset in release['assets']:
+   lines.append('| '+asset['name'].replace('|','\\|')+' | '+asset['category']+' | '+str(asset['count'])+' |')
+ return '\n'.join(lines)+'\n'
+
+
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=ROOT/'build/site');parser.add_argument('--download-stats',type=Path,help='validated JSON snapshot from scripts/download-stats.py');args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=ROOT/'build/site');parser.add_argument('--download-stats',type=Path,help='validated JSON snapshot from scripts/download-stats.py');parser.add_argument('--downloads-doc',type=Path,help='also refresh the repository documentation snapshot');args=parser.parse_args()
  settings=json.loads((ROOT/'design-system/site.json').read_text())['site'];base=settings['base_url']
  parsed=urlsplit(base)
  if parsed.scheme!='https' or not parsed.hostname or not base.endswith('/') or parsed.query or parsed.fragment:raise ValueError('Invalid canonical base')
+ threshold=_non_negative_int(settings.get('downloads',{}).get('public_min_packages',1000),'public_min_packages')
  counter=settings['analytics']['goatcounter']
  if counter and not re.fullmatch('[a-zA-Z0-9-]+',counter):raise ValueError('GoatCounter must be an account code')
  support=json.loads((ROOT/'website/support.json').read_text());catalog=json.loads((ROOT/'localization/site.json').read_text());download_catalog=json.loads((ROOT/'localization/downloads.json').read_text())
@@ -148,7 +167,7 @@ def main():
  stats=load_download_stats(args.download_stats) if args.download_stats is not None else None
  screenshot=json.loads((ROOT/'website/assets/screenshot.json').read_text())
  if screenshot.get('schema')!=1 or not re.fullmatch(r'\d+\.\d+\.\d+',screenshot.get('version','')) or type(screenshot.get('build')) is not int:raise ValueError('Invalid screenshot provenance')
- for filename in ('deckivo-ui.webp','deckivo-ui.avif','github-cover.webp'):
+ for filename in ('deckivo-ui.webp','deckivo-ui.avif','github-cover.webp','github-cover.jpg'):
   record=screenshot['images'][filename];image_path=ROOT/'website/assets'/filename
   if hashlib.sha256(image_path.read_bytes()).hexdigest()!=record['sha256']:raise ValueError(f'Screenshot hash mismatch: {filename}; regenerate image and provenance together')
  def screenshot_url(filename):return 'assets/'+filename+'?v='+screenshot['images'][filename]['sha256'][:12]
@@ -163,6 +182,9 @@ def main():
  snapshot=stats if stats is not None else {'schema':1,'available':False}
  (out/'download-stats.json').write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)+'\n')
  (out/'assets/downloads.svg').write_text(downloads_badge(stats))
+ document=download_document(stats);(out/'docs').mkdir();(out/'docs/DOWNLOADS.md').write_text(document)
+ if args.downloads_doc:
+  args.downloads_doc.parent.mkdir(parents=True,exist_ok=True);args.downloads_doc.write_text(document)
  def address(code):return base+('' if code=='en' else code+'/')
  for code in NAMES:
   copy={**catalog['en'],**catalog[code]};texts=support['texts'][code];download_text=download_catalog[code];prefix='' if code=='en' else '../'
@@ -171,13 +193,13 @@ def main():
   for node in soup.select('[data-i]'):
    value=copy.get(node['data-i'])
    if isinstance(value,str):node.string=value
-  for old in soup.select('head meta[property^="og:"],head meta[name="description"],head link[rel="canonical"],head link[rel="preload"],script'):old.decompose()
+  for old in soup.select('head meta[property^="og:"],head meta[name="description"],head meta[name^="twitter:"],head link[rel="canonical"],head link[rel="preload"],script'):old.decompose()
   soup.title.string=copy['title']
   def tag(name,attrs=None,text=None):
    el=soup.new_tag(name,attrs=attrs or {})
    if text is not None:el.string=str(text)
    return el
-  for attrs in ({'name':'description','content':copy['description']},{'property':'og:title','content':copy['title']},{'property':'og:description','content':copy['description']},{'property':'og:type','content':'website'},{'property':'og:url','content':address(code)},{'property':'og:image','content':base+screenshot_url('github-cover.webp')},{'name':'twitter:card','content':'summary_large_image'}):soup.head.append(tag('meta',attrs))
+  for attrs in ({'name':'description','content':copy['description']},{'property':'og:title','content':copy['title']},{'property':'og:description','content':copy['description']},{'property':'og:type','content':'website'},{'property':'og:url','content':address(code)},{'property':'og:image','content':base+screenshot_url('github-cover.jpg')},{'property':'og:image:width','content':'1200'},{'property':'og:image:height','content':'630'},{'property':'og:image:type','content':'image/jpeg'},{'name':'twitter:image','content':base+screenshot_url('github-cover.jpg')},{'name':'twitter:card','content':'summary_large_image'}):soup.head.append(tag('meta',attrs))
   soup.head.append(tag('link',{'rel':'canonical','href':address(code)}))
   for lang in NAMES:soup.head.append(tag('link',{'rel':'alternate','hreflang':lang,'href':address(lang)}))
   soup.head.append(tag('link',{'rel':'alternate','hreflang':'x-default','href':base}))
@@ -196,6 +218,7 @@ def main():
   apk=soup.select_one('.package-link[data-platform="android"]');apk['href']=ANDROID_URL;apk['data-event']='download-apk'
   mac=soup.select_one('.package-link[data-platform="macos"]');mac['href']=MAC_URL;mac['data-event']='download-macos'
   stats_section=soup.select_one('#download-stats');stats_section.clear()
+  if stats is None or stats['package_total']<threshold:stats_section.extract()
   stats_heading=tag('div',{'class':'section-heading'});stats_heading.append(tag('h2',{'id':'download-stats-title'},download_text['title']));stats_heading.append(tag('p',text=download_text['lead']));stats_section.append(stats_heading)
   if stats is None:
    unavailable=tag('div',{'class':'stats-unavailable','role':'status'});unavailable.append(tag('strong',text=download_text['unavailable_title']));unavailable.append(tag('p',text=download_text['unavailable_body']));stats_section.append(unavailable)
@@ -243,10 +266,10 @@ def main():
   for goal in support['goals']:
    item=tag('article',{'class':'goal'});item.append(tag('h3',text=texts[goal['title_key']]))
    target=goal['target_usd'];raised=goal['raised_usd']
-   if target and target>0:
+   if target is not None and raised is not None and target>0:
     attrs={'max':str(target),'aria-label':texts[goal['title_key']]}
     if raised is not None:attrs['value']=str(min(target,raised))
-    item.append(tag('progress',attrs));item.append(tag('p',{'class':'small'},texts['progress_unknown'] if raised is None else f'${raised:g} / ${target:g}'))
+    item.append(tag('progress',attrs));item.append(tag('p',{'class':'small'},f'${raised:g} / ${target:g}'))
    goals.append(item)
   support_section.append(goals)
   methods=tag('div',{'class':'support-methods'})
@@ -274,7 +297,12 @@ def main():
   for old in soup.select('footer p'):
    if 'PS5 product photo' in old.get_text():old.decompose()
   soup.footer.append(tag('p',{'class':'small'}));soup.footer.select('p')[-1].append(tag('a',{'href':'https://remteh.by/remont-konsoli?utm_source=deckivo_site&utm_medium=referral&utm_campaign=deckivo'},'Ремонт игровых приставок в Минске — RemTeh.by' if code=='ru' else 'Game console repair in Minsk — RemTeh.by'))
-  schema=[{'@context':'https://schema.org','@type':'SoftwareApplication','name':'Deckivo','operatingSystem':'Android 8+','applicationCategory':'GameApplication','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'softwareVersion':ANDROID_VERSION,'downloadUrl':apk['href'],'license':f'https://github.com/remteh-by/remteh-remote-play/blob/v{ANDROID_VERSION}/COPYING','url':address(code)}, {'@context':'https://schema.org','@type':'SoftwareApplication','name':'Deckivo for Switchroot Ubuntu','operatingSystem':'Switchroot Ubuntu 24.04 ARM64','applicationCategory':'GameApplication','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'softwareVersion':LINUX_VERSION,'downloadUrl':LINUX_URL,'license':f'https://github.com/remteh-by/remteh-remote-play/blob/v{LINUX_VERSION}/COPYING','url':address(code)}, {'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':qa['q'],'acceptedAnswer':{'@type':'Answer','text':qa['a']}} for qa in copy['faq']]}]
+  schema=[{'@context':'https://schema.org','@type':'SoftwareApplication','name':'Deckivo',
+   'operatingSystem':['Android 8+ ARM64','macOS 13+ Apple Silicon','Switchroot Ubuntu 24.04 ARM64'],
+   'applicationCategory':'GameApplication','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},
+   'softwareVersion':ANDROID_VERSION,'downloadUrl':[ANDROID_URL,MAC_URL,LINUX_URL],
+   'license':f'https://github.com/remteh-by/remteh-remote-play/blob/v{ANDROID_VERSION}/COPYING','url':address(code)},
+   {'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':qa['q'],'acceptedAnswer':{'@type':'Answer','text':qa['a']}} for qa in copy['faq']]}]
   soup.head.append(tag('script',{'type':'application/ld+json'},json.dumps(schema,ensure_ascii=False).replace('</','<\\/')))
   runtime={'lang':code,'prefix':prefix,'languages':NAMES,'counter':counter}
   soup.body.append(tag('script',{'id':'page-config','type':'application/json'},json.dumps(runtime,ensure_ascii=False).replace('</','<\\/')))

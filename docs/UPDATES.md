@@ -1,6 +1,6 @@
 # Deckivo updates
 
-## Public channel: Deckivo 0.8.2
+## Public channel: Deckivo 0.8.3
 
 The public release is experimental. Keep preview releases enabled if you want
 0.x updates. Install over the existing application; never clear registration data
@@ -27,14 +27,14 @@ existing APK certificate in addition to release metadata and file hashes.
 - Older Mac builds need the 0.6.0 public app once (or a private bootstrap carrying
   this code). The new client ignores an old cleartext channel configuration
   unless it explicitly opts into private preview mode.
-- Existing Ubuntu installs can run the 0.6.0 upgrade pack once. A fresh device
+- Existing Ubuntu installs can run the current upgrade pack once. A fresh device
   needs the initial runtime first; see [Linux requirements](LINUX.md).
 
 ### What automatic does and does not mean
 
 On Android and macOS the app must be open and the network available. Ubuntu
 0.8.1 also checks with a systemd user timer while the user is logged in and the
-device is awake: about 45 seconds after login, then about every two minutes.
+device is awake: about 45 seconds after login. In 0.8.3 a separate hourly timer repeats checks every\n60 minutes after the previous service completion, with up to 10 minutes of randomized\ndelay. The first-login timer has no randomized delay.
 It stages a signed package without opening a window. Installation waits for the
 next idle Deckivo dashboard; an active stream always defers installation.
 A sleeping or powered-off device cannot check. Failed network checks retry on
@@ -78,3 +78,7 @@ CI. Publish exact packages, complete corresponding source, validation and
 SHA256SUMS together. Never publish private channel URLs or device logs.
 
 The future custom domain is not active. See [domain migration](marketing/domain.md) before adding any CNAME.
+
+## Ubuntu timer migration in 0.8.3
+
+The updater installs deckivo-update-login.timer (45 seconds after user-manager startup) and deckivo-update.timer (60-minute cadence, RandomizedDelaySec=10min), both targeting the same service. Existing two-minute timer text is replaced, systemd is reloaded and changed active units are restarted. Unchanged units are not restarted on every GUI launch. Disabling automatic updates disables both timers. An active stream still defers installation.

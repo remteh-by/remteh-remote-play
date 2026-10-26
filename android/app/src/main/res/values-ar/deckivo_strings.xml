@@ -119,7 +119,6 @@
     <string name="dv_pressed">الضغط</string>
     <string name="dv_preview">تضمين الإصدارات التجريبية</string>
     <string name="dv_profile_applied">ملف التعريف المطبق: H.264، لا توجد مرشحات إضافية. تعمل الشاشة بمثابة لوحة اللمس. PS وTouch موجودان في تراكب اللعبة المخفية.</string>
-    <string name="dv_progress_unknown">لم يُسجّل التقدم بعد.</string>
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">عنوان IP لجهاز PS5</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
@@ -140,7 +139,7 @@
     <string name="dv_searching">نبحث في شبكتك. يمكنك أيضًا إضافة عنوان IP.</string>
     <string name="dv_settings">الإعدادات</string>
     <string name="dv_setup">اتصال</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2</string>
+    <string name="dv_setup_credit">Development build 0.8.3. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">بعد التسجيل، عد إلى المنزل واختر PS5. اللعب المحلي جاهز. لم يتم تكوين الوصول إلى الإنترنت بواسطة هذا الإصدار.</string>
     <string name="dv_setup_enable">على جهاز PS5، قم بتمكين الإعدادات → النظام → اللعب عن بُعد.</string>
     <string name="dv_setup_find">01 · ابحث عن وحدة التحكم الخاصة بك</string>

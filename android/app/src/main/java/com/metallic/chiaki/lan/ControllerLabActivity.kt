@@ -135,18 +135,25 @@ class ControllerLabActivity : DeckivoActivity() {
 
     private fun firmwareResponse(url: android.net.Uri): WebResourceResponse {
         return try {
-            val query=url.queryParameterNames
-            require(query.isEmpty() || (query==setOf("family","version") && query.all { url.getQueryParameters(it).size==1 && url.getQueryParameter(it).orEmpty().matches(Regex("[A-Za-z0-9_.-]{1,40}")) }))
-            val remote=java.net.URL("https://remteh.by/media/remteh-gamepad/v20261011/firmware.php"+(url.encodedQuery?.let { "?$it" } ?: ""))
+            require(FirmwareCatalogPolicy.permits(url.encodedQuery, url.fragment))
+            val remote=java.net.URL("https://remteh.by/media/remteh-gamepad/v20261011/firmware.php")
             val c=remote.openConnection() as javax.net.ssl.HttpsURLConnection
             c.instanceFollowRedirects=false;c.connectTimeout=7000;c.readTimeout=7000
             try {
                 require(c.responseCode==200)
                 val bytes=c.inputStream.use { input ->
                     val output=java.io.ByteArrayOutputStream();val buffer=ByteArray(8192);var total=0
-                    while(true) { val n=input.read(buffer);if(n<0)break;total+=n;require(total<=12*1024*1024);output.write(buffer,0,n) };output.toByteArray()
+                    while(true) { val n=input.read(buffer);if(n<0)break;total+=n;require(total<=256*1024);output.write(buffer,0,n) };output.toByteArray()
                 }
-                WebResourceResponse(if(query.isEmpty())"application/json" else "application/octet-stream","utf-8",ByteArrayInputStream(bytes))
+                val catalog=JSONObject(String(bytes, Charsets.UTF_8))
+                val versions=JSONObject()
+                val source=catalog.optJSONObject("versions")
+                val candidates=listOf("0004","000B","000E","0044").associateWith { source?.optString(it).orEmpty() }
+                for ((family, version) in FirmwareCatalogPolicy.versions(candidates)) versions.put(family,version)
+                val safe=JSONObject().put("versions",versions)
+                    .put("checked_at",catalog.optString("checked_at").take(80))
+                    .put("stale",catalog.optBoolean("stale",false))
+                WebResourceResponse("application/json","utf-8",ByteArrayInputStream(safe.toString().toByteArray(Charsets.UTF_8)))
             } finally { c.disconnect() }
         } catch(_:Exception) { emptyResponse() }
     }

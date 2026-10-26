@@ -58,3 +58,7 @@ __pycache__/
 
 # Local sanitized test debug bundles
 *.dSYM/
+
+# Local browser quality tools and generated evidence
+/node_modules/
+/output/

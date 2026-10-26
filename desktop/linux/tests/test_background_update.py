@@ -57,11 +57,13 @@ class BackgroundUpdateTests(unittest.TestCase):
                 for item in reversed(patches):item.stop()
 
     def test_user_timer_has_bounded_cadence_and_no_ui_launch(self):
-        service,timer=update_background.unit_text()
+        service,timer,login_timer=update_background.unit_text()
         self.assertIn('update_background.py --check',service)
         self.assertNotIn('/.local/bin/deckivo',service)
-        self.assertIn('OnStartupSec=45s',timer)
-        self.assertIn('OnUnitInactiveSec=2min',timer)
+        self.assertIn('OnStartupSec=45s',login_timer)
+        self.assertIn('RandomizedDelaySec=0',login_timer)
+        self.assertIn('OnUnitInactiveSec=60min',timer)
+        self.assertIn('RandomizedDelaySec=10min',timer)
         with tempfile.TemporaryDirectory() as directory,\
              patch.object(update_background,'USER_UNIT_DIR',Path(directory)),\
              patch.object(update_background.sys,'platform','linux'),\
@@ -69,6 +71,25 @@ class BackgroundUpdateTests(unittest.TestCase):
             self.assertFalse(update_background.install_user_timer(True))
             self.assertTrue((Path(directory)/update_background.SERVICE_NAME).is_file())
             self.assertTrue((Path(directory)/update_background.TIMER_NAME).is_file())
+
+
+    def test_old_timer_is_migrated_and_restarted_once(self):
+        with tempfile.TemporaryDirectory() as directory, \
+             patch.object(update_background,'USER_UNIT_DIR',Path(directory)), \
+             patch.object(update_background.sys,'platform','linux'), \
+             patch.object(update_background.shutil,'which',return_value='/bin/systemctl'), \
+             patch.object(update_background.subprocess,'run') as run:
+            Path(directory,update_background.TIMER_NAME).write_text('[Timer]\\nOnUnitInactiveSec=2min\\n')
+            self.assertTrue(update_background.install_user_timer(True))
+            self.assertTrue(any('restart' in c.args[0] for c in run.call_args_list))
+            self.assertIn('60min',Path(directory,update_background.TIMER_NAME).read_text())
+            self.assertIn('OnStartupSec=45s',Path(directory,update_background.LOGIN_TIMER_NAME).read_text())
+            run.reset_mock()
+            self.assertTrue(update_background.install_user_timer(True))
+            self.assertFalse(any('restart' in c.args[0] for c in run.call_args_list))
+            run.reset_mock()
+            self.assertTrue(update_background.install_user_timer(False))
+            self.assertTrue(any('disable' in c.args[0] and update_background.LOGIN_TIMER_NAME in c.args[0] for c in run.call_args_list))
 
 
 if __name__=='__main__':unittest.main()

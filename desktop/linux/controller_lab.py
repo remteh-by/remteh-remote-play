@@ -32,29 +32,31 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_error(403)
             return
         if parsed.path == '/media/remteh-gamepad/v20261011/firmware.php':
-            # Public, read-only version catalog. No controller identifiers leave
-            # the app. This route cannot flash or select an arbitrary remote URL.
-            query=urllib.parse.parse_qs(parsed.query,strict_parsing=False)
-            import re
-            if parsed.query and (set(query)!={'family','version'} or any(len(v)!=1 or not re.fullmatch(r'[A-Za-z0-9_.-]{1,40}',v[0]) for v in query.values())):
-                self.send_error(400)
+            # The app exposes version JSON only. Binary firmware is never proxied.
+            if parsed.query:
+                self.send_error(400, 'Only the version catalog is available')
                 return
             try:
-                request = urllib.request.Request('https://remteh.by/media/remteh-gamepad/v20261011/firmware.php'+('?' + urllib.parse.urlencode({k:v[0] for k,v in query.items()}) if query else ''), headers={'Accept': 'application/json'})
+                request = urllib.request.Request('https://remteh.by/media/remteh-gamepad/v20261011/firmware.php', headers={'Accept': 'application/json'})
                 with urllib.request.urlopen(request, timeout=8) as response:
-                    raw = response.read(12582913)
-                if len(raw) > 12582912:
+                    raw = response.read(262145)
+                if len(raw) > 262144:
                     raise ValueError('Catalog too large')
-                if not query:
-                    catalog=json.loads(raw)
-                    raw=json.dumps(catalog).encode()
+                catalog = json.loads(raw)
+                import re
+                versions = {key: value for key, value in catalog.get('versions', {}).items()
+                    if key in ('0004', '000B', '000E', '0044') and isinstance(value, str)
+                    and re.fullmatch(r'0x[0-9a-fA-F]{4}', value)}
+                safe = {'versions': versions, 'stale': catalog.get('stale') is True,
+                    'checked_at': str(catalog.get('checked_at') or '')[:80]}
+                raw = json.dumps(safe).encode()
                 self.send_response(200)
-                self.send_header('Content-Type', 'application/octet-stream' if query else 'application/json')
+                self.send_header('Content-Type', 'application/json')
                 self.send_header('Content-Length', str(len(raw)))
                 self.end_headers()
                 self.wfile.write(raw)
-            except (OSError, ValueError):
-                self.send_error(503, 'Firmware catalog unavailable; installed version is still readable by USB')
+            except (OSError, ValueError, TypeError, AttributeError):
+                self.send_error(503, 'Version catalog unavailable; installed version remains readable by USB')
             return
         target = (ROOT / urllib.parse.unquote(parsed.path).lstrip('/')).resolve()
         if not target.is_relative_to(ROOT.resolve()) or target.is_symlink():

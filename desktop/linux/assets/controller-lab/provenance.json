@@ -203,16 +203,16 @@
       "bytes": 2566
     },
     "deckivo.css": {
-      "sha256": "c0020ccb5094dd0671f7c060330a4a395b9f15a278e3ab70e042aec687834c55",
-      "bytes": 4976
+      "sha256": "73c1e62d1ec8926a5fce291064c6d94bc797d93af6508c3842add3fc5a12a965",
+      "bytes": 5654
     },
     "deckivo.js": {
-      "sha256": "bd04b554e62bec50cd44cf9a2d3d0cd6860817fe03d79a29381d3ac570ccc8cf",
-      "bytes": 4048
+      "sha256": "13d18225971dda918c5f9d6e09c04c0b71a284dcc7756448f88c9220222b45f3",
+      "bytes": 4857
     },
     "en.json": {
-      "sha256": "7c25096f88ebc2ffa9e820b9afbd4bfae143ddf4806abde97da61f2bc548eccb",
-      "bytes": 57817
+      "sha256": "edd4e05ff7db16a0526e3568369c87673f4f762dc5aeaa8e87c4e9f1cb66fa4d",
+      "bytes": 135513
     },
     "favicon.svg": {
       "sha256": "3e0e732f70d7bb65ce8ddceabfa3132815ffa6ab5444216f72048268d1b9bffc",
@@ -235,8 +235,8 @@
       "bytes": 4117
     },
     "media/remteh-gamepad/calibration-20261020b/calibration-runner.js": {
-      "sha256": "415fd04943277d7effd4308e68a0bcacc18fdb04c0ec1d0955a8edae84bc2a40",
-      "bytes": 19772
+      "sha256": "de7e27492eae073cdc9d5e89c067e2d5cf15f2dc000176d8e38f44e3cb12c7d3",
+      "bytes": 20022
     },
     "media/remteh-gamepad/calibration-20261020b/circle-profile.js": {
       "sha256": "a9354114431f44c8b3c5310747018ed2a48191a9be6316d6ba07e88db6af0ac6",
@@ -246,9 +246,13 @@
       "sha256": "0f712c1fbfd0d98636a950d57c23d7ed719a3cfe68beaa63ef279fa86033fa3e",
       "bytes": 44831
     },
+    "media/remteh-gamepad/calibration-20261020b/service-mode.js": {
+      "sha256": "d96d2eede105cdeee9f3e026ac9391ac18e6fbb079f156d6f72901c033733be7",
+      "bytes": 4857
+    },
     "media/remteh-gamepad/calibration-20261020b/sony-engine.js": {
-      "sha256": "fd31f9d5294c8c553b89115f7f470a53f3aec0bb9df853565451ad236b5459b8",
-      "bytes": 119591
+      "sha256": "76b658b8312e188161fd0393e853185ac32d6a370799e8b6315be93ab00d4f65",
+      "bytes": 120326
     },
     "media/remteh-gamepad/design-20261011a/design.css": {
       "sha256": "0948bfc2b05cea2ef90d67633003c247b5d2cc499b08b4c1a7d573b8fe454474",
@@ -367,8 +371,8 @@
       "bytes": 3430
     },
     "media/remteh-gamepad/xbox-rumble-20261011a/tools/gamepad-test/lab.js": {
-      "sha256": "9b1dbbdefa17382cdc497a2d44bc1fc1ef3b02b58a92cdab17ae86d969adbea2",
-      "bytes": 67250
+      "sha256": "3ae2068ee440886a5257ab132571f03379f81b146c787f4f3b6996d86848065e",
+      "bytes": 65552
     },
     "native-bridge.js": {
       "sha256": "da0248c712dd321d740c1dfb694fb31e9de275de2f50221e035be1b1d472e6e5",
@@ -381,6 +385,10 @@
     "photo-masks.json": {
       "sha256": "5ba675178a2807135232465ab1b47ffd802d1e146f5656cf4e4f1b77c1cf3ab3",
       "bytes": 13481
+    },
+    "translation.js": {
+      "sha256": "beb95f90c9ea7307fb1148c0cf893125417b90024958077e472abbd0c5ac0e70",
+      "bytes": 1425
     }
   }
 }

@@ -4,6 +4,9 @@
     "base_url": "https://remteh-by.github.io/remteh-remote-play/",
     "analytics": {
       "goatcounter": ""
+    },
+    "downloads": {
+      "public_min_packages": 1000
     }
   }
 }

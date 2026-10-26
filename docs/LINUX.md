@@ -35,7 +35,7 @@ Open Deckivo from the applications menu; choose a streaming preset and play.
 ## Existing installation
 
 With automatic updates enabled, existing public-channel clients receive Linux
-0.8.2 build 18 from GitHub. Leave Deckivo on its idle dashboard with Internet
+0.8.3 build 19 from GitHub. Leave Deckivo on its idle dashboard with Internet
 access. After this update, a user timer can download later signed updates while
 Deckivo is closed; installation waits for its next idle launch. Ubuntu must be
 awake and the user logged in. No Mac-based update server is required.
@@ -53,7 +53,7 @@ and GCC are required. The printed private backup directory supports rollback.
 There is no reason to reformat a card, delete saves or activate another profile
 for a client update.
 
-The user timer is `deckivo-update.timer`; check it with
+The hourly user timer is `deckivo-update.timer`; check it with
 `systemctl --user status deckivo-update.timer`. It respects Deckivo's automatic
 updates setting. A failed check retries later instead of disabling updates.
 Wi-Fi credentials belong to Ubuntu/NetworkManager and are never included in
@@ -69,3 +69,5 @@ lab must be checked on your device. The engine isolates controller capture to
 its stream, rather than globally injecting keyboard events.
 
 [Device results](TESTED.md) · [Local setup guides](guides/en.md)
+
+Since 0.8.3, deckivo-update-login.timer performs the initial check about 45 seconds after user login, and deckivo-update.timer checks every 60 minutes with up to 10 minutes randomized delay. Updates migrate the old two-minute unit automatically. Both timers are disabled by turning off automatic updates.

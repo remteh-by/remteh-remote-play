@@ -1,12 +1,12 @@
 # Deckivo — подробная установка и игра
 
-Deckivo **0.8.2 preview** · 2026-10-25
+Deckivo **0.8.3 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Перед началом
 
-Deckivo 0.8.2 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.
+Deckivo 0.8.3 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.
 
 <a id="android"></a>
 
@@ -14,15 +14,15 @@ Deckivo 0.8.2 — экспериментальный открытый клиен
 
 Скачайте arm64 APK из выпуска ниже. Минимум — Android 8; фактическая проверка проводилась на Switch OLED с Android 15. Когда Android попросит, разрешите установку только выбранному браузеру/файловому менеджеру. Устанавливайте поверх старого Deckivo, без удаления приложения и очистки данных: это сохраняет привязку. В приложении выберите язык и мастер подключения. GameSir подключите в настройках Bluetooth Android. Не отключайте Play Защиту.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-0.8.2-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.3)
 
 <a id="macos"></a>
 
 ## macOS
 
-В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-0.8.2-b18.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотарифицировано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком.
+В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-0.8.3-b19.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотарифицировано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком.
 
-[Mac ZIP · 0.8.2 b18](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-macos-0.8.2-b18.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.2 b18](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-Linux-0.8.2-b18-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.2/Deckivo-0.8.2-sources.zip)
+[Linux update ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-sources.zip)
 
 ## Привязка и первое подключение
 

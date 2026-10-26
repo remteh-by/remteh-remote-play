@@ -44,11 +44,11 @@ def show(window):
     layout.addWidget(label(copy['support'],'title',True));layout.addWidget(label(copy['support_body'],'muted',True))
     for goal in config['goals']:
         layout.addWidget(label(copy[goal['title_key']],'heading',True))
-        if goal['target_usd'] and goal['target_usd']>0:
-            bar=QProgressBar();raised=goal['raised_usd'];bar.setRange(0,0 if raised is None else 100)
+        if goal['target_usd'] is not None and goal['raised_usd'] is not None and goal['target_usd']>0:
+            bar=QProgressBar();raised=goal['raised_usd'];bar.setRange(0,100)
             if raised is not None:bar.setValue(min(100,int(raised/goal['target_usd']*100)))
             layout.addWidget(bar)
-            layout.addWidget(label(copy['progress_unknown'] if raised is None else f"USD {raised:.2f} / {goal['target_usd']:.2f}",'muted',True))
+            layout.addWidget(label(f"USD {raised:.2f} / {goal['target_usd']:.2f}",'muted',True))
     for method in config['methods']:
         layout.addWidget(label(method['title'],'heading'))
         if method['qr']:layout.addWidget(qr_widget(method))

@@ -9,3 +9,12 @@
 #sp-page-builder.page-555 #gpd .gp-photo-floor{display:none!important}#sp-page-builder.page-555 #gpd .gp-controller,.gp-photo-scene{filter:none;box-shadow:none}
 
 #sp-page-builder.page-555 #gpd .gp-photo-gallery{width:100%;max-width:none}
+
+/* Persistent writes stay out of the normal diagnostics interface. Engine gates remain authoritative. */
+html:not([data-service-mode="on"]) [data-gp="flash"],
+html:not([data-service-mode="on"]) [data-fine="save"] {display:none!important}
+.deckivo-service-mode {display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:#a4acba}
+.deckivo-service-dialog {max-width:min(40rem,90vw);background:#1a1e24;color:#f3f5f7;border:1px solid #4f5969;border-radius:18px;padding:24px}
+.deckivo-service-dialog::backdrop {background:#000b}
+.deckivo-service-dialog label {display:block;margin:20px 0}
+.deckivo-service-dialog button {padding:10px 16px;margin:8px;border-radius:8px}

@@ -1,4 +1,4 @@
-# Controllers and keyboard/mouse — development preview 0.8.0 (Mac)
+# Controllers and keyboard/mouse — Deckivo 0.8.3 preview
 
 Deckivo supports compatible controllers instead of assuming a particular brand.
 DualSense, DualShock 4 and Xbox Series use genuine model photographs. An unknown
@@ -137,3 +137,11 @@ UndefinedBehaviorSanitizer checks. A local PS5 stream confirms frames, SDL virtu
 controller creation and relative capture; physical aiming and all five buttons on
 the owner's mouse still require hands-on validation. This remapping UI has not yet
 been deployed to Android, Linux or Windows.
+
+## Firmware and service mode in 0.8.3
+
+The app reads installed firmware and compares it with a JSON-only version catalog. Firmware files and their proxy download routes have been removed. Update through [Sony PlayStation Accessories or the official console procedure](https://www.playstation.com/en-us/support/hardware/accessories/).
+
+Permanent calibration is hidden behind **Service mode**, off by default and saved locally. Original parameters are durably saved before any temporary calibration changes. A separate warning and mandatory backup/risk checkbox are required before every permanent write. The engine and low-level flash methods enforce the gate; selecting a controller photo cannot enable it. Temporary calibration remains available with the existing model, connection and measurement checks.
+
+Diagnostic browser tests use synthetic HID/Gamepad fixtures. No physical calibration or firmware write is performed by CI. Actual controller/keyboard/mouse acceptance remains device-specific.

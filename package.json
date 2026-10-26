@@ -1,0 +1,13 @@
+{
+  "name": "deckivo-quality",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:controller-policy": "node --test tests/controller-policy.test.mjs",
+    "test:controller-lab": "node scripts/test-controller-lab.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1",
+    "acorn": "8.17.0"
+  }
+}

@@ -119,7 +119,6 @@
     <string name="dv_pressed">दबाया</string>
     <string name="dv_preview">प्रीव्यू संस्करण शामिल करें</string>
     <string name="dv_profile_applied">प्रोफ़ाइल लागू: H.264, कोई अतिरिक्त फ़िल्टर नहीं। स्क्रीन टचपैड के रूप में कार्य करती है; पीएस और टच छिपे हुए गेम ओवरले में हैं।</string>
-    <string name="dv_progress_unknown">प्रगति अभी दर्ज नहीं है।</string>
     <string name="dv_ps4_model">PLAYSTATION 4</string>
     <string name="dv_ps5_ip">PS5 आईपी पता</string>
     <string name="dv_ps5_model">PLAYSTATION 5</string>
@@ -140,7 +139,7 @@
     <string name="dv_searching">आपके नेटवर्क में खोज रहे हैं। आप IP पता भी जोड़ सकते हैं।</string>
     <string name="dv_settings">सेटिंग</string>
     <string name="dv_setup">कनेक्ट करें</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2</string>
+    <string name="dv_setup_credit">Development build 0.8.3. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">पंजीकरण के बाद, घर लौटें और PS5 चुनें। स्थानीय नाटक तैयार है; इस संस्करण द्वारा इंटरनेट एक्सेस कॉन्फ़िगर नहीं किया गया है।</string>
     <string name="dv_setup_enable">PS5 पर, सेटिंग्स → सिस्टम → रिमोट प्ले सक्षम करें।</string>
     <string name="dv_setup_find">01 · अपना कंसोल ढूंढें</string>

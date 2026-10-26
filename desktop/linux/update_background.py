@@ -22,6 +22,7 @@ PENDING=CACHE/'pending.json'
 STATUS=PRIVATE/'update-background.json'
 SERVICE_NAME='deckivo-update.service'
 TIMER_NAME='deckivo-update.timer'
+LOGIN_TIMER_NAME='deckivo-update-login.timer'
 USER_UNIT_DIR=Path.home()/'.config/systemd/user'
 
 
@@ -87,34 +88,47 @@ RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
 Description=Check for Deckivo updates while the user is logged in
 
 [Timer]
-OnStartupSec=45s
-OnUnitInactiveSec=2min
-AccuracySec=15s
-RandomizedDelaySec=15s
+OnUnitInactiveSec=60min
+AccuracySec=1min
+RandomizedDelaySec=10min
 Unit=deckivo-update.service
 
 [Install]
 WantedBy=timers.target
 '''
-    return service,timer
+    login_timer = """[Unit]
+Description=Check Deckivo updates shortly after user login
+
+[Timer]
+OnStartupSec=45s
+AccuracySec=1s
+RandomizedDelaySec=0
+Unit=deckivo-update.service
+
+[Install]
+WantedBy=timers.target
+"""
+    return service,timer,login_timer
 
 
 def write_unit(path,text):
     path.parent.mkdir(parents=True,exist_ok=True);path.parent.chmod(0o700)
-    if path.exists() and path.read_text()==text:return
+    if path.exists() and path.read_text()==text:return False
     temporary=path.with_suffix(path.suffix+'.tmp')
     descriptor=os.open(temporary,os.O_CREAT|os.O_TRUNC|os.O_WRONLY,0o600)
     with os.fdopen(descriptor,'w') as output:
         output.write(text);output.flush();os.fsync(output.fileno())
-    temporary.replace(path);path.chmod(0o600)
+    temporary.replace(path);path.chmod(0o600);return True
 
 
 def install_user_timer(enable=True):
     os.umask(0o077)
     if not sys.platform.startswith('linux'):return False
-    directory=USER_UNIT_DIR;service,timer=unit_text()
+    directory=USER_UNIT_DIR;service,timer,login_timer=unit_text()
     try:
-        write_unit(directory/SERVICE_NAME,service);write_unit(directory/TIMER_NAME,timer)
+        changed=write_unit(directory/SERVICE_NAME,service)
+        changed=write_unit(directory/TIMER_NAME,timer) or changed
+        changed=write_unit(directory/LOGIN_TIMER_NAME,login_timer) or changed
     except OSError:return False
     if enable is None:return True
     systemctl=shutil.which('systemctl')
@@ -122,7 +136,9 @@ def install_user_timer(enable=True):
     try:
         subprocess.run([systemctl,'--user','daemon-reload'],check=True,capture_output=True,timeout=10)
         action='enable' if enable else 'disable'
-        subprocess.run([systemctl,'--user',action,'--now',TIMER_NAME],check=True,capture_output=True,timeout=10)
+        subprocess.run([systemctl,'--user',action,'--now',TIMER_NAME,LOGIN_TIMER_NAME],check=True,capture_output=True,timeout=10)
+        if enable and changed:
+            subprocess.run([systemctl,'--user','restart',TIMER_NAME,LOGIN_TIMER_NAME],check=True,capture_output=True,timeout=10)
         return True
     except (OSError,subprocess.SubprocessError):return False
 

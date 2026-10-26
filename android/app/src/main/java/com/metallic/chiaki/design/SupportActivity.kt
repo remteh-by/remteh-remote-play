@@ -24,17 +24,15 @@ class SupportActivity : DeckivoActivity() {
             val goal = rows.getJSONObject(i)
             goalStrings[goal.getString("title_key")]?.let { DeckivoUi.label(goals, getString(it)) }
             val target = goal.optDouble("target_usd", 0.0)
-            if (target > 0) {
-                val reported = !goal.isNull("raised_usd")
+            if (target > 0 && !goal.isNull("target_usd") && !goal.isNull("raised_usd")) {
                 val bar = ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal).apply {
-                    isIndeterminate = !reported
+                    isIndeterminate = false
                     max = 100
                     progress = (goal.optDouble("raised_usd", 0.0) * 100 / target).toInt().coerceIn(0, 100)
                     contentDescription = getString(R.string.dv_support_goals)
                 }
                 goals.addView(bar, LinearLayout.LayoutParams(-1, DeckivoUi.dp(this, 12)))
-                DeckivoUi.label(goals, if (reported) getString(R.string.dv_goal_amount, goal.getDouble("raised_usd"), target)
-                    else getString(R.string.dv_progress_unknown), 14f)
+                DeckivoUi.label(goals, getString(R.string.dv_goal_amount, goal.getDouble("raised_usd"), target), 14f)
             }
         }
         val methods = config.getJSONArray("methods")
