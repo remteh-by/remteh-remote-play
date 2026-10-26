@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "version": "0.8.5",
+  "channel": "experimental-prerelease",
+  "date": "2026-10-26",
+  "change": "Device-neutral Sessions subtitle in EN/RU; no behavior changes",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.5",
+    "versionCode": 30,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.5-arm64.apk",
+    "apkBytes": 9469692,
+    "sha256": "d9c55cdc32fd8a54f911c5e4f79405fa4dc5a56ff625c8e6ec02fd712a63b703",
+    "unit_tests": 41,
+    "unit_failures": 0,
+    "certificate_sha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "release_assemble": "passed",
+    "lint": {
+      "new_findings": 0,
+      "existing_baseline": 96
+    }
+  },
+  "native": {
+    "unit_tests": 100,
+    "unit_failures": 0,
+    "macos_build": 21,
+    "linux_build": 21,
+    "macos_codesign": "verified ad-hoc",
+    "macos_notarized": false,
+    "packages": [
+      {
+        "build": 21,
+        "bytes": 31888993,
+        "filename": "Deckivo-macos-0.8.5-b21.zip",
+        "platform": "macos-arm64",
+        "sha256": "773520f70cc67f74632cb5c8f23a1b2e84dcf5def5285c0d597751fb8ce59ae5",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-macos-0.8.5-b21.zip",
+        "version": "0.8.5"
+      },
+      {
+        "build": 21,
+        "bytes": 3597787,
+        "filename": "Deckivo-Linux-0.8.5-b21-source.zip",
+        "platform": "linux-switch-arm64",
+        "sha256": "3e87912b7eb95e20003ecfcc0f1d71e3010d6461ab22c83f7202e4d2218e4b0b",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-Linux-0.8.5-b21-source.zip",
+        "version": "0.8.5"
+      }
+    ]
+  },
+  "copy_acceptance": {
+    "version": "0.8.5",
+    "build": 21,
+    "rendered_mac_screens": [
+      {
+        "language": "en",
+        "page": 0,
+        "incorrect_device_copy": false,
+        "screenshot": "mac-en-page-0.png"
+      },
+      {
+        "language": "en",
+        "page": 1,
+        "incorrect_device_copy": false,
+        "screenshot": "mac-en-page-1.png"
+      },
+      {
+        "language": "en",
+        "page": 2,
+        "incorrect_device_copy": false,
+        "screenshot": "mac-en-page-2.png"
+      },
+      {
+        "language": "en",
+        "page": 3,
+        "incorrect_device_copy": false,
+        "screenshot": "mac-en-page-3.png"
+      },
+      {
+        "language": "ru",
+        "page": 0,
+        "incorrect_device_copy": false,
+        "screenshot": "mac-ru-page-0.png"
+      },
+      {
+        "language": "ru",
+        "page": 1,
+        "incorrect_device_copy": false,
+        "screenshot": "mac-ru-page-1.png"
+      },
+      {
+        "language": "ru",
+        "page": 2,
+        "incorrect_device_copy": false,
+        "screenshot": "mac-ru-page-2.png"
+      },
+      {
+        "language": "ru",
+        "page": 3,
+        "incorrect_device_copy": false,
+        "screenshot": "mac-ru-page-3.png"
+      }
+    ]
+  },
+  "site_local": {
+    "languages": [
+      "en",
+      "ru"
+    ],
+    "render_cases": 14,
+    "no_js_pages": 2,
+    "widths": [
+      360,
+      390,
+      414,
+      1440,
+      1920,
+      2560,
+      3840
+    ]
+  },
+  "screenshot": {
+    "schema": 1,
+    "version": "0.8.5",
+    "build": 21,
+    "source_commit": "0f4031254615ee6969259ed0fba127aa683cdd2b",
+    "source_dirty": false,
+    "ui_source_sha256": "ade8507ec4a4e358de8e1a99ab2560084c77946bfd19bf0089eeb239fedcfecb",
+    "capture_state": "unpaired",
+    "development_preview": true,
+    "captured_at": "2026-10-26T12:36:17Z",
+    "images": {
+      "deckivo-ui.webp": {
+        "sha256": "ab6127692a51ef4c9fa360759bc8505596354f1f0947a81a9b2d7376e1b3be4d",
+        "bytes": 43544,
+        "width": 1600,
+        "height": 900
+      },
+      "deckivo-ui.avif": {
+        "sha256": "861264279669da9f0848129febf1b54f7f6d0a16c0ee4691049bd58ec35a94ae",
+        "bytes": 25673,
+        "width": 1600,
+        "height": 900
+      },
+      "github-cover.webp": {
+        "sha256": "ba2c8a9195f0c20e449ccf632e73e9daa5a2da80b0dcc675048126fddbb7e2b9",
+        "bytes": 30294,
+        "width": 1200,
+        "height": 630
+      },
+      "github-cover.jpg": {
+        "sha256": "270cb23b0324624c4616d25774b11075432b3a78feb48b544651e02c8c06880e",
+        "bytes": 63992,
+        "width": 1200,
+        "height": 630
+      },
+      "deckivo-hero.webp": {
+        "sha256": "3ba19265da76903b4d4900ac668633d707ba98f0463736c247e44261fbff4659",
+        "bytes": 30678,
+        "width": 1476,
+        "height": 536
+      },
+      "deckivo-hero.avif": {
+        "sha256": "27d2908441490993cd8c0cb8e7b9da1a1be000df8c71d53d45657751611361c9",
+        "bytes": 17733,
+        "width": 1476,
+        "height": 536
+      }
+    },
+    "hero_crop": {
+      "source": "deckivo-ui.webp",
+      "rectangle": [
+        104,
+        108,
+        1580,
+        644
+      ],
+      "operation": "crop only, exact real Qt capture"
+    },
+    "readme_cover": "github-cover-0.8.5-b21-ba2c8a9195f0.webp"
+  },
+  "test_scope": "Relevant existing desktop suite, Android release unit/lint/build and native Mac screen rendering; no new unit tests for a copy-only change. Public delivery checked separately.",
+  "pending_physical": [
+    "Switch Android and Ubuntu updates/playback",
+    "PS5 streaming/game input",
+    "physical controllers",
+    "fresh-user macOS Gatekeeper first launch"
+  ],
+  "log_sha256": {
+    "android": "3133e8de975eb0f19cf1eab1dc29adcc51b2f181ef10d9619b155131a65bd4ac",
+    "desktop": "10bf43be7ca4a8e032b39c9a1dd522a8a59f9308a86033163c3fbd0e3b79315e",
+    "mac-build": "4ca014d0570e38c51889e2edfacebec6d5b5422083e7456059f7d60c275be288",
+    "site": "25b9bf151a506bac95cddba00abf4ad2a36a1b8f2d3fcd081d184bd8b008f1b1"
+  }
+}
