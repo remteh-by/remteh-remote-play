@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "version": "0.8.4",
+  "channel": "experimental-prerelease",
+  "date": "2026-10-26",
+  "baseline": "d34a51e7dab4b0f4e34be03ca64d8172524ae142",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.4",
+    "versionCode": 29,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.4-arm64.apk",
+    "apkBytes": 9469692,
+    "sha256": "5350b68a994e56bce42dfd323cd9ba87b0e20acd346a3f2f4cba612b7c8b1850",
+    "unit_tests": 41,
+    "unit_failures": 0,
+    "release_assemble": "passed",
+    "lint": {
+      "new_findings": 0,
+      "existing_baseline": 96
+    },
+    "certificate_unchanged": true,
+    "certificate_sha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "physical_acceptance": "pending Switch Android installation, stream, controls and sustained playback"
+  },
+  "native": {
+    "unit_tests": 100,
+    "unit_failures": 0,
+    "macos_build": 20,
+    "linux_build": 20,
+    "macos_codesign": "ad-hoc verified",
+    "macos_notarized": false,
+    "packages": [
+      {
+        "build": 20,
+        "bytes": 31889100,
+        "filename": "Deckivo-macos-0.8.4-b20.zip",
+        "platform": "macos-arm64",
+        "sha256": "ff0b564107ed592c3c26fe0fac3abbffc81807c73df718cfe9d1eea7331abdaf",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-macos-0.8.4-b20.zip",
+        "version": "0.8.4"
+      },
+      {
+        "build": 20,
+        "bytes": 3597794,
+        "filename": "Deckivo-Linux-0.8.4-b20-source.zip",
+        "platform": "linux-switch-arm64",
+        "sha256": "2da4654674cbbd001933c017e54c709e2e2fc68d157a857f4873f1c2af478698",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-Linux-0.8.4-b20-source.zip",
+        "version": "0.8.4"
+      }
+    ],
+    "signature": "verified against unchanged pinned RSA key",
+    "physical_update_acceptance": "Mac public updater checked after publication in separate acceptance report; Ubuntu pending"
+  },
+  "additional_tests": {
+    "root_python": 24,
+    "controller_policy": 17
+  },
+  "browser": {
+    "controller_scenarios": 104,
+    "physical_HID": false,
+    "website_languages": 16,
+    "stats_present_rendered_cases": 112,
+    "stats_unavailable_rendered_cases": 112,
+    "no_javascript_pages_per_mode": 16,
+    "viewports": [
+      360,
+      390,
+      414,
+      1440,
+      1920,
+      2560,
+      3840
+    ],
+    "all_passed": true
+  },
+  "screenshots": {
+    "schema": 1,
+    "version": "0.8.4",
+    "build": 20,
+    "source_commit": "55eea3e0c5e885ddff09cc59bec67016b10115ff",
+    "source_dirty": false,
+    "ui_source_sha256": "8b25af402cbe68875cc5235b1b1006def8b390fa2caf8408c23b90b939b214fc",
+    "capture_state": "unpaired",
+    "development_preview": true,
+    "captured_at": "2026-10-26T12:10:31Z",
+    "images": {
+      "deckivo-ui.webp": {
+        "sha256": "79903b790adcc0ddb5088039a811aa9af20e101ec6c04c0e2f09d0511925f8f5",
+        "bytes": 43520,
+        "width": 1600,
+        "height": 900
+      },
+      "deckivo-ui.avif": {
+        "sha256": "4f136b870bb2c13d12ebbacad847de851048a5bcd0b1cf7be394361fe4937432",
+        "bytes": 25686,
+        "width": 1600,
+        "height": 900
+      },
+      "github-cover.webp": {
+        "sha256": "89089abdf3b8dda824b9c77c3bd92a876d5b860ae233fdbc7488daa8c45fd80b",
+        "bytes": 30278,
+        "width": 1200,
+        "height": 630
+      },
+      "github-cover.jpg": {
+        "sha256": "1365380c5a9c6d6d50d9214a10d3aaa17238cc313256292e8799e6ae2168a6f1",
+        "bytes": 64002,
+        "width": 1200,
+        "height": 630
+      },
+      "deckivo-hero.webp": {
+        "sha256": "3ba19265da76903b4d4900ac668633d707ba98f0463736c247e44261fbff4659",
+        "bytes": 30678,
+        "width": 1476,
+        "height": 536
+      },
+      "deckivo-hero.avif": {
+        "sha256": "27d2908441490993cd8c0cb8e7b9da1a1be000df8c71d53d45657751611361c9",
+        "bytes": 17733,
+        "width": 1476,
+        "height": 536
+      }
+    },
+    "hero_crop": {
+      "source": "deckivo-ui.webp",
+      "rectangle": [
+        104,
+        108,
+        1580,
+        644
+      ],
+      "operation": "crop only, exact real Qt capture"
+    },
+    "readme_cover": "github-cover-0.8.4-b20-89089abdf3b8.webp"
+  },
+  "run_policy": "One complete local final run; package checks and public delivery acceptance are separate. CI may run its automatic workflow on push.",
+  "log_sha256": {
+    "android": "ea7703abdc2f5ddeacef5118e31ac21ae746e36dcb2b78d02be83d2913d3ff37",
+    "desktop": "35d1758bd95b0faf5c3347e22eb4bddfdaaf8770468b371db30e507494c9f735",
+    "python": "2252661c2ab43c8c39bf031018cc06eae7ee1fce352124c67b8c4bd58cb68d3d",
+    "controller-policy": "3a9d4db2aefadfcff5734e71c6d9a20fa6acfef6c9a2e6e79731bc93afd3cb53",
+    "controller-lab": "c37a74f5d256a75ea8ff2b40a3498eddcf3c4a34d6e86b0f68da0a5a7f369d25",
+    "site-present": "26404ed9ef91826617a4b2ebc7b8d901f7f5db3ddfadd7be11e52c4cb58a15b9",
+    "site-unavailable": "26404ed9ef91826617a4b2ebc7b8d901f7f5db3ddfadd7be11e52c4cb58a15b9",
+    "mac-build": "f462cc36ef92a4cc45b33c1382190479d2e5192f8e5717e2b08077744bbb9183"
+  },
+  "identity": {
+    "android": "by.remteh.remoteplay",
+    "macos": "by.remteh.deckivo",
+    "apk_certificate_sha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "rsa_der_sha256": "d12f9c0b46ac6168ff24acb2b49b30d76a61fe9ffb8737b7ab8334aec0a5bb23"
+  },
+  "pending_physical": [
+    "Switch Android 29 update and long session",
+    "Switch Ubuntu b20 update, Wi-Fi persistence and long session",
+    "PS5 online connection, playback and input",
+    "physical controllers and calibration/recovery (no writes performed)",
+    "new macOS user / Gatekeeper first launch",
+    "Ko-fi payment receipt (no payment submitted)"
+  ]
+}

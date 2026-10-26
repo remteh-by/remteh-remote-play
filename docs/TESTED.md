@@ -160,3 +160,20 @@ controller fixtures do not substitute for physical USB/Bluetooth checks.
 
 [Public acceptance receipt](releases/0.8.3-public-channel-validation.json) ·
 [Owner hardware checklist](OWNER-CHECKLIST-0.8.3.md).
+
+## 0.8.4 release checks (2026-10-26)
+
+Android #29 and desktop b20 were built from `release/0.8.4`, based on the audited
+`fix/audit-0.8.3` commit `d34a51e`. One complete local final run passed: 41 Android
+unit tests, lintRelease with no new findings (96 existing baseline warnings),
+100 desktop tests, 24 shared Python tests, 17 controller-policy tests and 104
+Controller Lab browser scenarios. Each website statistics mode passed 112
+rendered cases across 16 languages and 360/390/414/1440/1920/2560/3840 px,
+plus 16 pages with JavaScript disabled. Statistics-present tests use a fixture;
+that count is never published as real downloads.
+
+[Release validation](releases/0.8.4-validation.json) records exact package hashes,
+unchanged signing identities and the real isolated Qt capture provenance.
+Public Mac b19 → b20 update acceptance is recorded separately after publication.
+Physical streaming, Switch updates, controllers and new-user Gatekeeper acceptance
+remain in the [0.8.4 hardware checklist](OWNER-CHECKLIST-0.8.4.md).
