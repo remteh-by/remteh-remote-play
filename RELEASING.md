@@ -37,9 +37,15 @@ After reviewing the actual draft assets, publish it with `gh release edit vX.Y.Z
 - An update with a concrete failing build/test/release blocker remains incomplete:
   name the blocker and the last delivered version. Never silently leave the only
   new version on the developer’s computer or claim unperformed hardware tests.
-- Download statistics refresh from GitHub release asset counters at site deploy,
-  release publication/edit, and the hourly scheduled Pages build. They count
-  repeated/automatic/verification downloads too; they are not unique users.
+- Pages deploys only from `main`, as required by its protected environment.
+  After publishing and verifying release assets, fast-forward the reviewed site
+  and signed-feed changes to `main`; that push publishes the site. For a release
+  edit without a matching site change, use `gh workflow run pages.yml --ref main
+  --repo remteh-by/remteh-remote-play` or wait for the hourly scheduled refresh.
+  A `release` event uses a tag ref and must not deploy directly to this environment.
+- Download statistics refresh from GitHub release asset counters at site deploy
+  and the hourly scheduled Pages build. They count repeated/automatic/verification
+  downloads too; they are not unique users.
 
 ## Red flag: screenshots must match the app
 
