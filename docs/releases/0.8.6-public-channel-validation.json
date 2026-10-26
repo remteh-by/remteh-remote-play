@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "version": "0.8.6",
+  "date": "2026-10-26",
+  "macos": {
+    "from": "0.8.5 b21",
+    "to": "0.8.6 b22",
+    "method": "existing installed native check_updates command, normal automatic updater, public RSA-signed Pages feed and GitHub release package; no manual bundle replacement",
+    "archive_sha256": "12a55a348bf81e990ddbed6581582753f639f2b55f7568ee6e8578f1bf8b6ee5",
+    "installed_archive_entries_match": 417,
+    "codesign": "PASS (ad-hoc)",
+    "receipt_ack_transaction_match": true,
+    "ack_process_alive": true,
+    "unchanged_private_files": {
+      "registration.json": true,
+      "preferences.json": true,
+      "sessions.json": true
+    },
+    "idle_after_update": true,
+    "update_status": "Deckivo is up to date.",
+    "ps5_online": true,
+    "fixed_code_in_installed_bundle": true,
+    "donation_show_count_unchanged": true,
+    "real_Mac_class_rendering": "18 isolated Qt/offscreen EN/RU geometry checks + 4 Retina 2x checks; no clipped labels or photo overlaps; scrolling available when needed",
+    "live_window_visual_acceptance": "pending: computer-use tool reports Mac locked; owner asked to unlock; no live screenshot acceptance claimed",
+    "new_user_gatekeeper": "not tested",
+    "gameplay": "not tested"
+  },
+  "release_assets": {
+    "downloaded": 13,
+    "sha256_matches": 13
+  },
+  "older_releases": {
+    "unchanged": [
+      "v0.8.5",
+      "v0.8.4",
+      "v0.8.3",
+      "v0.8.2"
+    ],
+    "assets": 52
+  },
+  "ci": {
+    "release": {
+      "id": 40364981489,
+      "result": "success"
+    },
+    "main": {
+      "id": 40365263482,
+      "result": "success"
+    },
+    "pages": {
+      "id": 40365263137,
+      "result": "success"
+    }
+  },
+  "retina_layout": [
+    {
+      "language": "en",
+      "requested": [
+        1000,
+        650
+      ],
+      "actual": [
+        1000,
+        650
+      ],
+      "title": [
+        289,
+        100
+      ],
+      "text_bounds": [
+        285,
+        98
+      ],
+      "font_px": 37,
+      "title_clipped": false,
+      "hero": [
+        289,
+        352
+      ],
+      "screenshot": "retina-en-1000x650.png",
+      "clipped_labels": [],
+      "photo_overlaps_content": false,
+      "horizontal_overflow": false,
+      "vertical_scroll_max": 123,
+      "primary_inside_text_column": true
+    },
+    {
+      "language": "en",
+      "requested": [
+        1280,
+        720
+      ],
+      "actual": [
+        1280,
+        720
+      ],
+      "title": [
+        401,
+        114
+      ],
+      "text_bounds": [
+        331,
+        112
+      ],
+      "font_px": 43,
+      "title_clipped": false,
+      "hero": [
+        401,
+        336
+      ],
+      "screenshot": "retina-en-1280x720.png",
+      "clipped_labels": [],
+      "photo_overlaps_content": false,
+      "horizontal_overflow": false,
+      "vertical_scroll_max": 37,
+      "primary_inside_text_column": true
+    },
+    {
+      "language": "ru",
+      "requested": [
+        1000,
+        650
+      ],
+      "actual": [
+        1000,
+        650
+      ],
+      "title": [
+        278,
+        104
+      ],
+      "text_bounds": [
+        273,
+        102
+      ],
+      "font_px": 39,
+      "title_clipped": false,
+      "hero": [
+        278,
+        372
+      ],
+      "screenshot": "retina-ru-1000x650.png",
+      "clipped_labels": [],
+      "photo_overlaps_content": false,
+      "horizontal_overflow": false,
+      "vertical_scroll_max": 143,
+      "primary_inside_text_column": true
+    },
+    {
+      "language": "ru",
+      "requested": [
+        1280,
+        720
+      ],
+      "actual": [
+        1280,
+        720
+      ],
+      "title": [
+        401,
+        114
+      ],
+      "text_bounds": [
+        301,
+        112
+      ],
+      "font_px": 43,
+      "title_clipped": false,
+      "hero": [
+        401,
+        356
+      ],
+      "screenshot": "retina-ru-1280x720.png",
+      "clipped_labels": [],
+      "photo_overlaps_content": false,
+      "horizontal_overflow": false,
+      "vertical_scroll_max": 57,
+      "primary_inside_text_column": true
+    }
+  ],
+  "site_public": {
+    "render_cases": 14,
+    "no_js_pages": 2,
+    "languages": [
+      "en",
+      "ru"
+    ],
+    "images_and_feed": "public bytes match source and RSA signature verifies"
+  }
+}
