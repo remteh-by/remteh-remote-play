@@ -40,6 +40,7 @@ class StreamActivity : DeckivoActivity(), View.OnSystemUiVisibilityChangeListene
     companion object
     {
         const val EXTRA_CONNECT_INFO = "connect_info"
+        const val EXTRA_SUPPORT_COMPLETED = "deckivo_clean_long_session"
         private const val HIDE_UI_TIMEOUT_MS = 2000L
     }
 
@@ -230,6 +231,14 @@ class StreamActivity : DeckivoActivity(), View.OnSystemUiVisibilityChangeListene
             binding.debandSurfaceView.onPause()
         }
         viewModel.session.pause()
+    }
+
+    override fun finish() {
+        if (!isFinishing) {
+            val completed = ::viewModel.isInitialized && viewModel.takeSupportResult()
+            setResult(RESULT_OK, android.content.Intent().putExtra(EXTRA_SUPPORT_COMPLETED, completed))
+        }
+        super.finish()
     }
 
     override fun onDestroy()

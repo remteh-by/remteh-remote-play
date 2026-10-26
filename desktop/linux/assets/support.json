@@ -49,17 +49,17 @@
       "progress_unknown": "Progress has not been reported yet."
     },
     "ru": {
-      "support": "Помоги Deckivo расти",
+      "support": "Помогите Deckivo расти",
       "support_body": "Deckivo бесплатный и с открытым кодом. Поддержка поможет подписать Mac-версию, выпустить новые платформы и тестировать на настоящих устройствах.",
       "support_note": "Всё остаётся бесплатным. Поддержка — по желанию.",
       "support_link": "Поддержать Deckivo",
       "thanks_title": "Понравилось играть?",
-      "thanks_body": "Помоги сделать Deckivo лучше к следующей игре.",
+      "thanks_body": "Помогите сделать Deckivo лучше к следующей игре.",
       "thanks_later": "Позже",
       "thanks_never": "Больше не показывать",
-      "scan_phone": "Отсканируй телефоном",
+      "scan_phone": "Отсканируйте телефоном",
       "licenses": "Лицензии и исходники",
-      "support_goal_mac": "Apple Developer ID ($99/yr) — подпись и нотарификация Mac-версии",
+      "support_goal_mac": "Apple Developer ID (99 $ в год) — подпись и нотаризация Mac-версии",
       "support_goal_windows": "Сборка для Windows",
       "support_goal_hardware": "Больше устройств для тестов: PS5 Pro и портативные консоли",
       "progress_unknown": "Данные о собранных средствах пока не внесены."
@@ -289,5 +289,5 @@
       "progress_unknown": "Kemajuan belum diisi."
     }
   },
-  "source_sha256": "12f0b13904cb65838317ac6161978240c94fe0133573aa3678aefcd93cb8cff4"
+  "source_sha256": "38f07551b162be34cf4b2e1fac231e4a50a25faccdfef233f1ffc8e68011a42f"
 }

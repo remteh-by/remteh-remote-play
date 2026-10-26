@@ -41,7 +41,7 @@ class MacDeckivo(Deckivo):
         if key=='input_bindings':return 'Назначить клавиши и кнопки мыши' if ru else 'Customize keyboard & mouse'
         if key=='input_layout':return ('Customize keys, five mouse buttons, speed and vertical inversion. Default: WASD moves, mouse aims.\nF8 — capture · Esc — release · F11 — full screen' if not ru else 'Назначения клавиш, пяти кнопок мыши, скорость и инверсия. По умолчанию: WASD — движение, мышь — обзор.\nF8 — захват · Esc — отпустить · F11 — полный экран')
         variants={'smooth_note':('10 Mb/s · automatic decoder','10 Мбит/с · автоматический декодер'),'balanced_note':('7 Mb/s · automatic decoder','7 Мбит/с · автоматический декодер'),'rescue_note':('5 Mb/s · compatibility','5 Мбит/с · совместимый режим'),'sharp_note':('15 Mb/s · 1080p target','15 Мбит/с · цель 1080p'),'sharp30_note':('12 Mb/s · 1080p target','12 Мбит/с · цель 1080p'),'shortcut_text':('PS / Home → PS menu\nTouchpad click → touchpad\nEsc releases input; ⌘Q ends the session\nKeyboard/mouse capture: Esc releases input', 'PS / Home → меню PS\nНажатие тачпада → тачпад\nEsc отпускает ввод; ⌘Q завершает сеанс\nЗахват клавиатуры/мыши: Esc отпускает ввод'),
-            'pad_tip':('Connect your controller by USB or Bluetooth. DualSense USB enables extra diagnostics.','Подключи геймпад по USB или Bluetooth. USB DualSense открывает дополнительные тесты.') }
+            'pad_tip':('Connect your controller by USB or Bluetooth. DualSense USB enables extra diagnostics.','Подключите геймпад по USB или Bluetooth. USB DualSense открывает дополнительные тесты.') }
         return variants[key][1 if ru else 0] if key in variants else super().t(key)
 
     def edit_input_bindings(self):
@@ -131,7 +131,7 @@ class MacDeckivo(Deckivo):
 
     def about(self):
         from support import supporters_text
-        QMessageBox.information(self,'Deckivo',f'Deckivo {VERSION} · macOS Apple Silicon\nDeveloped by RemTeh.by\n\nShared native Deckivo UI, chiaki-ng 1.10.0 streaming engine.\nVideoToolbox decoding. Keyboard and SDL gamepad input.\nAGPL-3.0-only with upstream OpenSSL exception.\nIndependent project; not affiliated with Sony or Nintendo.\nExperimental preview. Internet play is not validated.'+supporters_text(self))
+        QMessageBox.information(self,'Deckivo',f'Deckivo {VERSION} · macOS Apple Silicon\n{self.t('developer_credit').removesuffix(' ↗')}\n\nShared native Deckivo UI, chiaki-ng 1.10.0 streaming engine.\nVideoToolbox decoding. Keyboard and SDL gamepad input.\nAGPL-3.0-only with upstream OpenSSL exception.\nIndependent project; not affiliated with Sony or Nintendo.\nExperimental preview. Internet play is not validated.'+supporters_text(self))
 
 
 def main():

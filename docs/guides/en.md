@@ -12,7 +12,20 @@ Deckivo 0.8.3 is an experimental open-source PS5 Remote Play client. Start on th
 
 ## Android
 
-Download the arm64 APK from the release linked below. Android 8 or newer is required; physical testing used Android 15 on Switch OLED. Allow installation for your chosen browser/file manager only when Android asks. Install over an existing Deckivo installation: do not uninstall or clear data. Open Deckivo, choose a language and use the connection wizard. Connect your Bluetooth gamepad in Android settings. Never disable Play Protect for this app.
+### First installation
+
+1. Download the arm64 APK linked below; Android 8+ is required. Install it and allow installation only for the chosen source when prompted. Keep Play Protect enabled.
+2. Open Deckivo, choose the language and pair with the PS5 profile you want to use. Pair a compatible gamepad in Android Bluetooth settings.
+
+### Update
+
+1. Keep automatic updates enabled. Allow Deckivo to install from this source when Android asks; confirm the system installer. Android may require this confirmation for each update.
+2. For manual recovery, install the same-signer APK over Deckivo. Do not uninstall or clear storage: console pairing, settings and language are retained.
+
+### Uninstall
+
+1. End the stream, then use Android Settings → Apps → Deckivo → Uninstall. This removes the app and its private pairing/settings/history on this device.
+2. APK files or reports saved in Downloads remain; remove those separately if unwanted. PS5 games and saves are not removed. A later reinstall needs pairing again.
 
 [Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.3)
 
@@ -20,7 +33,22 @@ Download the arm64 APK from the release linked below. Android 8 or newer is requ
 
 ## macOS
 
-Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-0.8.3-b19.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine.
+### First installation
+
+1. Use an Apple Silicon Mac with macOS 13+. Install the official chiaki-ng app separately and register the PS5 there. Close its stream.
+2. Extract the Mac ZIP and move Deckivo.app into ~/Applications. This preview is ad-hoc signed, not notarized. After an attempted launch, use the individual Open Anyway option in System Settings → Privacy & Security if macOS requires it. Do not disable Gatekeeper globally.
+3. Open Deckivo Preferences, import your chiaki-ng registration and select the console address. Keep chiaki-ng installed: Deckivo uses its native engine.
+
+### Update
+
+1. Leave automatic updates enabled; installation waits until streaming ends. Registration and settings remain in ~/Library/Application Support/Deckivo/private.
+2. For a manual update, quit Deckivo and replace only Deckivo.app with the extracted app. Keep the data directory and chiaki-ng.
+
+### Uninstall
+
+1. Quit Deckivo and move Deckivo.app from ~/Applications (or your chosen install location) to Trash. This does not remove chiaki-ng or Deckivo data.
+2. To remove saved registration, settings, history and downloaded updates too, remove ~/Library/Application Support/Deckivo in Finder only after backing up anything you need. It contains private pairing credentials; never share it.
+3. chiaki-ng is a separate application with separate data. Remove it separately only if no longer wanted. PS5 games and saves remain on the console.
 
 [Mac ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
@@ -28,7 +56,28 @@ Apple Silicon only in this preview. Install the official chiaki-ng Mac applicati
 
 ## Switchroot Ubuntu
 
-Switchroot Ubuntu 24.04 ARM64 with KDE/X11 and matching Switchroot FFmpeg 6.1 is the developer target. A new device needs the complete source kit, PyQt5, GCC, OpenSSL/SDL2 development dependencies and the initial runtime installer. Run the initial command below from the extracted source root, then run the interactive pairing command. The small Linux upgrade ZIP is only for an already installed runtime. Do not replace NVIDIA/FFmpeg drivers to force compatibility. If a pinned apt package is unavailable, stop and keep the working installation.
+### First installation
+
+1. Use the supported Switchroot Ubuntu 24.04 ARM64 environment and its matching drivers. Install the dependencies listed in docs/LINUX.md; download the complete source kit and extract it. The small update ZIP is insufficient for first installation.
+2. From the extracted root run python3 desktop/linux/build-install.py, then python3 desktop/linux/pair.py. Follow private pairing prompts and open Deckivo from Applications. Do not replace the Switchroot NVIDIA/FFmpeg drivers.
+
+### Update
+
+1. Keep automatic updates enabled. The user timer stages signed packages; the GUI applies them while idle. Pairing and settings are retained.
+2. For manual recovery extract the Linux update ZIP and run python3 desktop/linux/upgrade.py from its root. An existing runtime is required.
+
+### Uninstall
+
+1. Close Deckivo. Disable the timers and remove their unit files with the commands below, before removing the installed runtime.
+2. Remove ~/.local/bin/deckivo, ~/.local/share/applications/Deckivo.desktop and the Deckivo.desktop shortcut in your desktop folder. Removing ~/.local/share/deckivo also removes the runtime and Linux registration.json. Back up that private file first if you want to retain pairing.
+3. Settings, update cache and history in ~/.config/deckivo remain until separately removed. Keep them if wanted; they may contain credentials. Games and saves on PS5 are unaffected.
+
+```sh
+systemctl --user disable --now deckivo-update.timer deckivo-update-login.timer
+systemctl --user stop deckivo-update.service
+rm -f ~/.config/systemd/user/deckivo-update.timer ~/.config/systemd/user/deckivo-update-login.timer ~/.config/systemd/user/deckivo-update.service
+systemctl --user daemon-reload
+```
 
 ```sh
 # Initial runtime (complete source kit)

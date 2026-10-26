@@ -11,7 +11,7 @@ import update_background
 
 class BackgroundUpdateTests(unittest.TestCase):
     def paths(self,root):
-        return [patch.object(update_background,'CACHE',root/'updates'),
+        return [patch.object(update_background,'PRIVATE',root),patch.object(update_background,'CACHE',root/'updates'),
             patch.object(update_background,'PENDING',root/'updates/pending.json'),
             patch.object(update_background,'STATUS',root/'status.json'),
             patch.object(update_background,'CONFIG',root/'preferences.json')]

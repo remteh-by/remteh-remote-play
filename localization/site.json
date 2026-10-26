@@ -84,7 +84,9 @@
       }
     ],
     "privacy_counter": "Cookie-free visit counter. Pairing data stays private; the counter server processes network requests.",
-    "screenshot_caption": "Actual Deckivo {version} desktop interface."
+    "screenshot_caption": "Actual Deckivo {version} desktop interface.",
+    "skip_content": "Skip to content",
+    "developer_credit": "Developed by RemTeh.by ↗"
   },
   "ru": {
     "nav_features": "Возможности",
@@ -95,21 +97,21 @@
     "hero_two": "Твоё место для игры.",
     "hero_lead": "Играй на своей PS5 с Nintendo Switch OLED, устройств Android и Mac с Apple Silicon. Открытый код на основе chiaki-ng.",
     "get": "Скачать Deckivo",
-    "read": "Читать инструкцию",
-    "pick": "Выбери свой экран.",
-    "pick_note": "Установи Deckivo на устройство, на котором будешь играть. На PS5 включи дистанционное воспроизведение.",
-    "existing_update": "Deckivo уже установлен? Скачай обновление.",
-    "install_or_update": "Установи или обнови Deckivo.",
+    "read": "Инструкция",
+    "pick": "Выберите свой экран.",
+    "pick_note": "Установите Deckivo на устройство, на котором будешь играть. На PS5 включите дистанционное воспроизведение.",
+    "existing_update": "Deckivo уже установлен? Скачайте обновление.",
+    "install_or_update": "Установите или обнови Deckivo.",
     "mac_compatibility": "Apple Silicon (M1 или новее) · macOS 13+",
     "download_mac": "Скачать для Mac",
-    "first_install": "Первая установка: открой инструкцию.",
+    "first_install": "Первая установка: откройте инструкцию.",
     "setup_title": "Немного настроек. Больше игры.",
     "step1": "Одна сеть.",
-    "step1_body": "Подключи PS5 и свой экран к домашней сети. Включи дистанционное воспроизведение на PS5.",
-    "step2": "Привяжи консоль.",
-    "step2_body": "Используй Account ID нужного профиля и свежий восьмизначный код Remote Play. Храни ключи регистрации в тайне.",
-    "step3": "Настрой под себя.",
-    "step3_body": "Выбери язык, подключи геймпад и начни с 720p. Перед отключением сохрани игру.",
+    "step1_body": "Подключите PS5 и свой экран к домашней сети. Включите дистанционное воспроизведение на PS5.",
+    "step2": "Привяжите консоль.",
+    "step2_body": "Используйте Account ID нужного профиля и свежий восьмизначный код Remote Play. Храните ключи регистрации в тайне.",
+    "step3": "Настройте под себя.",
+    "step3_body": "Выберите язык, подключите геймпад и начните с 720p. Перед отключением сохраните игру.",
     "tested_title": "Результаты по версиям.",
     "tested_lead": "Реальные устройства. Точные сборки. Честные ограничения.",
     "support_one": "Пусть хорошее",
@@ -125,7 +127,7 @@
     "platform_limits": "Проверенные версии ↗",
     "android_note": "0.8.3 #28 · arm64 APK · Android 8+",
     "download_apk": "Скачать APK",
-    "mac_note": "0.8.3 b19 · Нужен chiaki-ng; сначала открой инструкцию",
+    "mac_note": "0.8.3 b19 · Нужен chiaki-ng; сначала откройте инструкцию",
     "mac_guide": "Установка на Mac",
     "linux_note": "0.8.3 b19 · Ubuntu 24.04.4 ARM64 · Проверка на реальном устройстве ещё не завершена",
     "linux_guide": "Скачать Linux 0.8.3 b19",
@@ -159,7 +161,7 @@
       },
       {
         "q": "Почему macOS предупреждает о безопасности?",
-        "a": "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-0.8.2-b18.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотарифицировано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком."
+        "a": "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-0.8.2-b18.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотаризовано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком."
       },
       {
         "q": "Deckivo бесплатный?",
@@ -170,8 +172,10 @@
         "a": "Начните с 720p. При нестабильном Wi-Fi снизьте битрейт или выберите 30 FPS. Это запрошенные параметры, а не обещание измеренного FPS. GameSir G8+ проверяли на Android в синем режиме и на Ubuntu с адаптером управления. На Android короткий свайп вверх от нижнего края показывает скрываемые PS/Touch. На Linux Home соответствует PS, Capture — нажатию тачпада; сочетание +/− для отключения можно выключить. Проверьте стики, курки, кнопки и звук на своём устройстве. Перед выходом сохраните игру: отключение трансляции не закрывает игру."
       }
     ],
-    "privacy_counter": "Счётчик посещений без cookies. Данные привязки остаются у тебя; сервер счётчика обрабатывает сетевые запросы.",
-    "screenshot_caption": "Настоящий интерфейс Deckivo {version} для компьютера."
+    "privacy_counter": "Счётчик посещений без cookies. Данные привязки остаются у вас; сервер счётчика обрабатывает сетевые запросы.",
+    "screenshot_caption": "Настоящий интерфейс Deckivo {version} для компьютера.",
+    "skip_content": "Перейти к содержимому",
+    "developer_credit": "Разработка RemTeh.by ↗"
   },
   "uk": {
     "nav_features": "Можливості",
@@ -243,7 +247,24 @@
       }
     ],
     "privacy_counter": "Лічильник відвідувань без cookies. Дані прив’язки залишаються у вас; сервер обробляє мережеві запити.",
-    "screenshot_caption": "Справжній інтерфейс Deckivo {version} для комп’ютера."
+    "screenshot_caption": "Справжній інтерфейс Deckivo {version} для комп’ютера.",
+    "download_apk": "Завантажити APK",
+    "full_guide": "Повна інструкція ↗",
+    "licenses": "Автори та ліцензії ↗",
+    "credits": "На основі Chiaki, chiaki-ng та Android Extended. Незалежний від Sony та Nintendo проєкт.",
+    "planned": "Windows, Intel Mac і настільний Linux x64 заплановані. Збірок для них поки немає.",
+    "skip_content": "Перейти до вмісту",
+    "developer_credit": "Розробка RemTeh.by ↗",
+    "test_detail": "Повна таблиця перевірок ↗",
+    "android_test": "Оновлення 23 → 24; APK релізу та прив’язку консолі збережено.",
+    "test_note": "Перевірки попередніх збірок не підтверджують усі функції поточної версії або тривалу гру через Інтернет. Точні версії наведено в таблиці перевірок.",
+    "device": "Пристрій / ОС",
+    "verified": "Перевірено",
+    "language": "Мова",
+    "build": "Збірка",
+    "platform_limits": "Повна таблиця перевірок ↗",
+    "mac_guide": "Повна інструкція ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "pl": {
     "nav_features": "Funkcje",
@@ -315,7 +336,24 @@
       }
     ],
     "privacy_counter": "Licznik odwiedzin bez cookies. Dane parowania pozostają prywatne; serwer licznika przetwarza żądania sieciowe.",
-    "screenshot_caption": "Rzeczywisty interfejs komputerowy Deckivo {version}."
+    "screenshot_caption": "Rzeczywisty interfejs komputerowy Deckivo {version}.",
+    "download_apk": "Pobierz APK",
+    "full_guide": "Pełna instrukcja ↗",
+    "licenses": "Autorzy i licencje ↗",
+    "credits": "Na podstawie Chiaki, chiaki-ng i Android Extended. Projekt niezależny od Sony i Nintendo.",
+    "planned": "Planowane są Windows, Intel Mac i desktopowy Linux x64. Wersje dla nich nie są jeszcze dostępne.",
+    "skip_content": "Przejdź do treści",
+    "developer_credit": "Opracowanie: RemTeh.by ↗",
+    "test_detail": "Pełna tabela testów ↗",
+    "android_test": "Aktualizacja 23 → 24; zachowano APK wydania i powiązanie konsoli.",
+    "test_note": "Testy wcześniejszych wersji nie potwierdzają wszystkich obecnych funkcji ani długiej gry przez Internet. Dokładne wersje podano w tabeli testów.",
+    "device": "Urządzenie / system",
+    "verified": "Sprawdzono",
+    "language": "Język",
+    "build": "Kompilacja",
+    "platform_limits": "Pełna tabela testów ↗",
+    "mac_guide": "Pełna instrukcja ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "de": {
     "nav_features": "Funktionen",
@@ -387,7 +425,24 @@
       }
     ],
     "privacy_counter": "Besuchszähler ohne Cookies. Kopplungsdaten bleiben privat; der Zähler verarbeitet Netzwerkanfragen.",
-    "screenshot_caption": "Tatsächliche Deckivo-{version}-Desktop-Oberfläche."
+    "screenshot_caption": "Tatsächliche Deckivo-{version}-Desktop-Oberfläche.",
+    "download_apk": "APK herunterladen",
+    "full_guide": "Vollständige Anleitung ↗",
+    "licenses": "Mitwirkende und Lizenzen ↗",
+    "credits": "Basiert auf Chiaki, chiaki-ng und Android Extended. Unabhängig von Sony und Nintendo.",
+    "planned": "Windows, Intel Mac und Desktop-Linux x64 sind geplant. Dafür gibt es noch keine Builds.",
+    "skip_content": "Zum Inhalt springen",
+    "developer_credit": "Entwickelt von RemTeh.by ↗",
+    "test_detail": "Vollständige Testübersicht ↗",
+    "android_test": "Update 23 → 24; Release-APK und Konsolenregistrierung blieben erhalten.",
+    "test_note": "Tests früherer Builds bestätigen weder alle aktuellen Funktionen noch längere Spielsitzungen über das Internet. Die genauen Versionen stehen in der Testübersicht.",
+    "device": "Gerät / Betriebssystem",
+    "verified": "Geprüft",
+    "language": "Sprache",
+    "build": "Build",
+    "platform_limits": "Vollständige Testübersicht ↗",
+    "mac_guide": "Vollständige Anleitung ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "fr": {
     "nav_features": "Fonctions",
@@ -459,7 +514,24 @@
       }
     ],
     "privacy_counter": "Compteur de visites sans cookies. Les données d’association restent privées ; le serveur traite les requêtes réseau.",
-    "screenshot_caption": "Interface de bureau réelle de Deckivo {version}."
+    "screenshot_caption": "Interface de bureau réelle de Deckivo {version}.",
+    "download_apk": "Télécharger l’APK",
+    "full_guide": "Guide complet ↗",
+    "licenses": "Crédits et licences ↗",
+    "credits": "Basé sur Chiaki, chiaki-ng et Android Extended. Projet indépendant de Sony et Nintendo.",
+    "planned": "Windows, les Mac Intel et Linux x64 de bureau sont prévus. Aucune version n’est encore proposée pour ces plateformes.",
+    "skip_content": "Aller au contenu",
+    "developer_credit": "Développé par RemTeh.by ↗",
+    "test_detail": "Tableau complet des tests ↗",
+    "android_test": "Mise à jour 23 → 24 ; APK publié et association de la console conservés.",
+    "test_note": "Les tests des anciennes versions ne valident pas toutes les fonctions actuelles ni les longues sessions sur Internet. Consultez le tableau des tests pour les versions exactes.",
+    "device": "Appareil / système",
+    "verified": "Vérifié",
+    "language": "Langue",
+    "build": "Version",
+    "platform_limits": "Tableau complet des tests ↗",
+    "mac_guide": "Guide complet ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "es": {
     "nav_features": "Funciones",
@@ -531,7 +603,24 @@
       }
     ],
     "privacy_counter": "Contador de visitas sin cookies. Los datos de vinculación siguen siendo privados; el servidor procesa las solicitudes de red.",
-    "screenshot_caption": "Interfaz de escritorio real de Deckivo {version}."
+    "screenshot_caption": "Interfaz de escritorio real de Deckivo {version}.",
+    "download_apk": "Descargar APK",
+    "full_guide": "Guía completa ↗",
+    "licenses": "Créditos y licencias ↗",
+    "credits": "Basado en Chiaki, chiaki-ng y Android Extended. Proyecto independiente de Sony y Nintendo.",
+    "planned": "Windows, Mac Intel y Linux x64 de escritorio están previstos. Todavía no hay versiones para ellos.",
+    "skip_content": "Saltar al contenido",
+    "developer_credit": "Desarrollado por RemTeh.by ↗",
+    "test_detail": "Tabla completa de pruebas ↗",
+    "android_test": "Actualización 23 → 24; se conservaron el APK publicado y el registro de la consola.",
+    "test_note": "Las pruebas de versiones anteriores no validan todas las funciones actuales ni las sesiones largas por Internet. La tabla de pruebas indica las versiones exactas.",
+    "device": "Dispositivo / SO",
+    "verified": "Verificado",
+    "language": "Idioma",
+    "build": "Compilación",
+    "platform_limits": "Tabla completa de pruebas ↗",
+    "mac_guide": "Guía completa ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "it": {
     "nav_features": "Funzioni",
@@ -603,7 +692,24 @@
       }
     ],
     "privacy_counter": "Contatore di visite senza cookie. I dati di associazione restano privati; il server elabora richieste di rete.",
-    "screenshot_caption": "Interfaccia desktop reale di Deckivo {version}."
+    "screenshot_caption": "Interfaccia desktop reale di Deckivo {version}.",
+    "download_apk": "Scarica APK",
+    "full_guide": "Guida completa ↗",
+    "licenses": "Autori e licenze ↗",
+    "credits": "Basato su Chiaki, chiaki-ng e Android Extended. Progetto indipendente da Sony e Nintendo.",
+    "planned": "Windows, Mac Intel e Linux x64 desktop sono previsti. Non sono ancora disponibili versioni per queste piattaforme.",
+    "skip_content": "Vai al contenuto",
+    "developer_credit": "Sviluppato da RemTeh.by ↗",
+    "test_detail": "Tabella completa dei test ↗",
+    "android_test": "Aggiornamento 23 → 24; APK pubblicato e registrazione della console conservati.",
+    "test_note": "I test delle versioni precedenti non certificano tutte le funzioni attuali né lunghe sessioni via Internet. Consultare la tabella dei test per le versioni esatte.",
+    "device": "Dispositivo / sistema",
+    "verified": "Verificato",
+    "language": "Lingua",
+    "build": "Build",
+    "platform_limits": "Tabella completa dei test ↗",
+    "mac_guide": "Guida completa ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "pt": {
     "nav_features": "Recursos",
@@ -675,7 +781,24 @@
       }
     ],
     "privacy_counter": "Contador de visitas sem cookies. Os dados de emparelhamento ficam privados; o servidor processa pedidos de rede.",
-    "screenshot_caption": "Interface de desktop real do Deckivo {version}."
+    "screenshot_caption": "Interface de desktop real do Deckivo {version}.",
+    "download_apk": "Baixar APK",
+    "full_guide": "Guia completo ↗",
+    "licenses": "Créditos e licenças ↗",
+    "credits": "Baseado em Chiaki, chiaki-ng e Android Extended. Projeto independente da Sony e da Nintendo.",
+    "planned": "Windows, Mac Intel e Linux x64 para desktop estão previstos. Ainda não há versões para essas plataformas.",
+    "skip_content": "Ir para o conteúdo",
+    "developer_credit": "Desenvolvido por RemTeh.by ↗",
+    "test_detail": "Tabela completa de testes ↗",
+    "android_test": "Atualização 23 → 24; APK publicado e registro do console preservados.",
+    "test_note": "Os testes de versões anteriores não validam todas as funções atuais nem sessões longas pela Internet. Consulte as versões exatas na tabela de testes.",
+    "device": "Dispositivo / sistema",
+    "verified": "Verificado",
+    "language": "Idioma",
+    "build": "Compilação",
+    "platform_limits": "Tabela completa de testes ↗",
+    "mac_guide": "Guia completo ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "tr": {
     "nav_features": "Özellikler",
@@ -747,7 +870,24 @@
       }
     ],
     "privacy_counter": "Çerez kullanmayan ziyaret sayacı. Eşleştirme bilgileri gizli kalır; sayaç sunucusu ağ isteklerini işler.",
-    "screenshot_caption": "Gerçek Deckivo {version} masaüstü arayüzü."
+    "screenshot_caption": "Gerçek Deckivo {version} masaüstü arayüzü.",
+    "download_apk": "APK indir",
+    "full_guide": "Tam kurulum kılavuzu ↗",
+    "licenses": "Katkılar ve lisanslar ↗",
+    "credits": "Chiaki, chiaki-ng ve Android Extended temel alınmıştır. Sony ve Nintendo’dan bağımsızdır.",
+    "planned": "Windows, Intel Mac ve masaüstü Linux x64 planlanıyor. Bu platformlar için henüz sürüm sunulmuyor.",
+    "skip_content": "İçeriğe geç",
+    "developer_credit": "RemTeh.by tarafından geliştirildi ↗",
+    "test_detail": "Tüm test sonuçları ↗",
+    "android_test": "23 → 24 güncellemesi; yayımlanan APK ve konsol kaydı korundu.",
+    "test_note": "Önceki sürümlerin testleri tüm güncel özellikleri veya uzun İnternet oturumlarını doğrulamaz. Kesin sürümler test tablosundadır.",
+    "device": "Cihaz / işletim sistemi",
+    "verified": "Doğrulandı",
+    "language": "Dil",
+    "build": "Derleme",
+    "platform_limits": "Tüm test sonuçları ↗",
+    "mac_guide": "Tam kurulum kılavuzu ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "zh": {
     "nav_features": "功能",
@@ -819,7 +959,24 @@
       }
     ],
     "privacy_counter": "不使用 Cookie 的访问计数器。配对数据保持私密；计数服务器会处理网络请求。",
-    "screenshot_caption": "真实的 Deckivo {version} 桌面界面。"
+    "screenshot_caption": "真实的 Deckivo {version} 桌面界面。",
+    "download_apk": "下载 APK",
+    "full_guide": "完整设置指南 ↗",
+    "licenses": "贡献者与许可证 ↗",
+    "credits": "基于 Chiaki、chiaki-ng 和 Android Extended。独立于 Sony 和 Nintendo。",
+    "planned": "计划支持 Windows、Intel Mac 和桌面 Linux x64，目前尚未提供这些平台的版本。",
+    "skip_content": "跳至内容",
+    "developer_credit": "由 RemTeh.by 开发 ↗",
+    "test_detail": "查看完整测试表 ↗",
+    "android_test": "从 23 更新至 24；保留了发布版 APK 和主机配对信息。",
+    "test_note": "旧版本的测试不能证明当前版本的全部功能或长时间互联网游玩可用。具体版本请参阅测试表。",
+    "device": "设备 / 系统",
+    "verified": "已验证",
+    "language": "语言",
+    "build": "构建",
+    "platform_limits": "查看完整测试表 ↗",
+    "mac_guide": "完整设置指南 ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "ja": {
     "nav_features": "機能",
@@ -830,13 +987,13 @@
     "hero_two": "あなたのプレイ空間。",
     "hero_lead": "Nintendo Switch OLED、Android 端末、Apple Silicon Mac で自分の PS5 をプレイ。chiaki-ng を基にしたオープンソース。",
     "get": "Deckivo を入手",
-    "read": "ガイドを読む",
+    "read": "ガイド",
     "pick": "画面を選ぼう。",
     "pick_note": "プレイに使う端末へ Deckivo をインストールし、PS5 でリモートプレイを有効にします。",
     "existing_update": "Deckivo をインストール済みですか？更新をダウンロード。",
     "install_or_update": "Deckivo をインストールまたは更新します。",
     "mac_compatibility": "Apple Silicon（M1 以降）· macOS 13+",
-    "download_mac": "Mac 版をダウンロード",
+    "download_mac": "Mac 版を入手",
     "first_install": "初回インストール：ガイドを開く。",
     "setup_title": "少し設定。たっぷりプレイ。",
     "step1": "同じネットワーク。",
@@ -863,7 +1020,7 @@
     "linux_note": "0.8.3 b19 · Ubuntu 24.04.4 ARM64 · 実機での受け入れ確認待ち",
     "mac_test": "公開 Mac アップデート 0.8.0 b16 → 0.8.2 b18 を確認済み：ZIP 内の全 415 項目がインストール済みアプリと一致し、コード署名、起動確認、登録保持、待機状態への復帰に合格しました。ネイティブの支援ボタンは Chrome で RemTeh の Ko-fi ページを開き、Deckivo は動作を継続しました。支払いは行っていません。",
     "linux_test": "公開アップデーターを Switch OLED で確認済み：0.6.1 b10 → 0.8.1 b17。インストーラーの全 80/80 ファイルが公開 ZIP と一致し、起動確認は実行中のプロセスと一致、ペアリングも保持されました。画面を閉じた状態でも、有効な systemd ユーザータイマーが公開フィードを正常に取得しました。0.8.1 のゲームプレイ検証は別項目として未完了です。",
-    "linux_guide": "Linux 0.8.3 b19 をダウンロード",
+    "linux_guide": "Linux 版を入手",
     "faq": [
       {
         "q": "両方の機器を同じネットワークにつなぐ必要はありますか？",
@@ -891,7 +1048,24 @@
       }
     ],
     "privacy_counter": "Cookie を使わない訪問カウンター。ペアリング情報は非公開のままです。カウンターのサーバーは通信リクエストを処理します。",
-    "screenshot_caption": "実際の Deckivo {version} デスクトップ画面。"
+    "screenshot_caption": "実際の Deckivo {version} デスクトップ画面。",
+    "download_apk": "APK を入手",
+    "full_guide": "設定ガイド ↗",
+    "licenses": "クレジットとライセンス ↗",
+    "credits": "Chiaki、chiaki-ng、Android Extended を基に開発。Sony および Nintendo とは無関係のプロジェクトです。",
+    "planned": "Windows、Intel Mac、デスクトップ Linux x64 は対応予定です。これらのビルドはまだ公開していません。",
+    "skip_content": "本文へ移動",
+    "developer_credit": "開発：RemTeh.by ↗",
+    "test_detail": "詳細なテスト一覧 ↗",
+    "android_test": "23 → 24 の更新で、公開 APK と本体の登録情報を維持しました。",
+    "test_note": "以前のビルドでの検証は、現在の全機能や長時間のインターネットプレイを保証しません。詳しいバージョンはテスト一覧をご確認ください。",
+    "device": "端末 / OS",
+    "verified": "検証済み",
+    "language": "言語",
+    "build": "ビルド",
+    "platform_limits": "詳細なテスト一覧 ↗",
+    "mac_guide": "詳しい設定ガイド ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "ko": {
     "nav_features": "기능",
@@ -963,7 +1137,24 @@
       }
     ],
     "privacy_counter": "쿠키 없는 방문 카운터입니다. 페어링 정보는 비공개로 유지되며, 카운터 서버는 네트워크 요청을 처리합니다.",
-    "screenshot_caption": "실제 Deckivo {version} 데스크톱 화면."
+    "screenshot_caption": "실제 Deckivo {version} 데스크톱 화면.",
+    "download_apk": "APK 다운로드",
+    "full_guide": "전체 설정 가이드 ↗",
+    "licenses": "제작자 및 라이선스 ↗",
+    "credits": "Chiaki, chiaki-ng, Android Extended를 기반으로 합니다. Sony 및 Nintendo와 독립된 프로젝트입니다.",
+    "planned": "Windows, Intel Mac, 데스크톱 Linux x64 지원을 계획 중입니다. 해당 플랫폼의 빌드는 아직 없습니다.",
+    "skip_content": "본문으로 이동",
+    "developer_credit": "RemTeh.by 개발 ↗",
+    "test_detail": "전체 테스트 목록 ↗",
+    "android_test": "23 → 24 업데이트 후 출시 APK와 콘솔 등록 정보가 유지되었습니다.",
+    "test_note": "이전 빌드 테스트가 현재의 모든 기능이나 장시간 인터넷 플레이를 보증하지는 않습니다. 정확한 버전은 테스트 목록을 확인하세요.",
+    "device": "기기 / OS",
+    "verified": "검증됨",
+    "language": "언어",
+    "build": "빌드",
+    "platform_limits": "전체 테스트 목록 ↗",
+    "mac_guide": "전체 설정 가이드 ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "ar": {
     "nav_features": "المزايا",
@@ -1035,7 +1226,24 @@
       }
     ],
     "privacy_counter": "عداد زيارات بدون ملفات تعريف ارتباط. تبقى بيانات الاقتران خاصة؛ يعالج خادم العداد طلبات الشبكة.",
-    "screenshot_caption": "واجهة سطح المكتب الفعلية لـ Deckivo {version}."
+    "screenshot_caption": "واجهة سطح المكتب الفعلية لـ Deckivo {version}.",
+    "download_apk": "تنزيل APK",
+    "full_guide": "دليل الإعداد الكامل ↗",
+    "licenses": "المساهمون والتراخيص ↗",
+    "credits": "مبني على Chiaki وchiaki-ng وAndroid Extended. مشروع مستقل عن Sony وNintendo.",
+    "planned": "دعم Windows وIntel Mac وLinux x64 المكتبي مخطط له. لا تتوفر إصدارات لهذه المنصات بعد.",
+    "skip_content": "انتقل إلى المحتوى",
+    "developer_credit": "تطوير RemTeh.by ↗",
+    "test_detail": "جدول الاختبارات الكامل ↗",
+    "android_test": "التحديث من 23 إلى 24؛ تم الاحتفاظ بملف APK المنشور وتسجيل الجهاز.",
+    "test_note": "اختبارات الإصدارات السابقة لا تثبت جميع الميزات الحالية أو اللعب الطويل عبر الإنترنت. الإصدارات الدقيقة مذكورة في جدول الاختبارات.",
+    "device": "الجهاز / النظام",
+    "verified": "تم التحقق",
+    "language": "اللغة",
+    "build": "البناء",
+    "platform_limits": "جدول الاختبارات الكامل ↗",
+    "mac_guide": "دليل الإعداد الكامل ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "hi": {
     "nav_features": "सुविधाएँ",
@@ -1107,7 +1315,24 @@
       }
     ],
     "privacy_counter": "बिना कुकी वाला विज़िट काउंटर। पेयरिंग डेटा निजी रहता है; काउंटर सर्वर नेटवर्क अनुरोध प्रोसेस करता है।",
-    "screenshot_caption": "Deckivo {version} का वास्तविक डेस्कटॉप इंटरफ़ेस।"
+    "screenshot_caption": "Deckivo {version} का वास्तविक डेस्कटॉप इंटरफ़ेस।",
+    "download_apk": "APK डाउनलोड करें",
+    "full_guide": "पूरी सेटअप गाइड ↗",
+    "licenses": "योगदानकर्ता और लाइसेंस ↗",
+    "credits": "Chiaki, chiaki-ng और Android Extended पर आधारित। Sony और Nintendo से स्वतंत्र परियोजना।",
+    "planned": "Windows, Intel Mac और डेस्कटॉप Linux x64 की योजना है। इनके लिए अभी कोई बिल्ड उपलब्ध नहीं है।",
+    "skip_content": "सामग्री पर जाएँ",
+    "developer_credit": "RemTeh.by द्वारा विकसित ↗",
+    "test_detail": "पूरी परीक्षण तालिका ↗",
+    "android_test": "23 → 24 अपडेट में प्रकाशित APK और कंसोल पंजीकरण सुरक्षित रहे।",
+    "test_note": "पुराने बिल्ड के परीक्षण सभी मौजूदा सुविधाओं या लंबे इंटरनेट खेल सत्रों की पुष्टि नहीं करते। सटीक संस्करण परीक्षण तालिका में हैं।",
+    "device": "डिवाइस / सिस्टम",
+    "verified": "सत्यापित",
+    "language": "भाषा",
+    "build": "बिल्ड",
+    "platform_limits": "पूरी परीक्षण तालिका ↗",
+    "mac_guide": "पूरी सेटअप गाइड ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   },
   "id": {
     "nav_features": "Fitur",
@@ -1179,6 +1404,23 @@
       }
     ],
     "privacy_counter": "Penghitung kunjungan tanpa cookie. Data pemasangan tetap pribadi; server penghitung memproses permintaan jaringan.",
-    "screenshot_caption": "Antarmuka desktop Deckivo {version} yang sebenarnya."
+    "screenshot_caption": "Antarmuka desktop Deckivo {version} yang sebenarnya.",
+    "download_apk": "Unduh APK",
+    "full_guide": "Panduan lengkap ↗",
+    "licenses": "Kontributor dan lisensi ↗",
+    "credits": "Berdasarkan Chiaki, chiaki-ng, dan Android Extended. Proyek independen dari Sony dan Nintendo.",
+    "planned": "Windows, Intel Mac, dan Linux x64 desktop direncanakan. Belum ada versi untuk platform tersebut.",
+    "skip_content": "Lewati ke konten",
+    "developer_credit": "Dikembangkan oleh RemTeh.by ↗",
+    "test_detail": "Tabel pengujian lengkap ↗",
+    "android_test": "Pembaruan 23 → 24; APK rilis dan pendaftaran konsol dipertahankan.",
+    "test_note": "Pengujian versi sebelumnya tidak membuktikan semua fitur saat ini atau sesi Internet yang panjang. Versi persisnya ada dalam tabel pengujian.",
+    "device": "Perangkat / OS",
+    "verified": "Terverifikasi",
+    "language": "Bahasa",
+    "build": "Build",
+    "platform_limits": "Tabel pengujian lengkap ↗",
+    "mac_guide": "Panduan lengkap ↗",
+    "android_note": "0.8.3 #28 · arm64 APK · Android 8+"
   }
 }

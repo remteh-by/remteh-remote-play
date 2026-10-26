@@ -13,6 +13,7 @@ from PyQt5.QtCore import QObject,pyqtSignal,QThread
 from PyQt5.QtWidgets import QApplication
 import launcher
 import controller
+import update_ui
 
 
 class FakeProcess(QObject):
@@ -40,7 +41,7 @@ class LauncherLifecycle(unittest.TestCase):
 
     def setUp(self):
         self.directory=tempfile.TemporaryDirectory();root=Path(self.directory.name)
-        self.patches=[patch.object(launcher,'DATA',root/'data'),patch.object(launcher,'PRIVATE',root/'private'),
+        self.patches=[patch.object(update_ui,'PRIVATE',root/'private'),patch.object(launcher,'DATA',root/'data'),patch.object(launcher,'PRIVATE',root/'private'),
             patch.object(launcher,'CONFIG',root/'private/preferences.json'),
             patch.object(launcher.Deckivo,'refresh',lambda self:None),
             patch.object(launcher,'ControllerMonitor',controller.ControllerMonitor),
@@ -56,6 +57,31 @@ class LauncherLifecycle(unittest.TestCase):
         self.window.close();self.app.processEvents()
         for p in reversed(self.patches):p.stop()
         self.directory.cleanup()
+
+    def test_registered_offline_console_explains_disabled_play(self):
+        for language in ('en','ru'):
+            self.window.language=language
+            self.window.update_status(False,-1)
+            expected=self.window.t('offline_help')
+            self.assertFalse(self.window.primary.isEnabled())
+            self.assertEqual(self.window.primary.toolTip(),expected)
+            self.assertEqual(self.window.primary.accessibleDescription(),expected)
+            self.assertEqual(self.window.session_label.text(),expected)
+        self.window.update_status(True,4)
+        self.assertTrue(self.window.primary.isEnabled())
+        self.assertEqual(self.window.primary.accessibleDescription(),'')
+
+    def test_crash_and_short_finish_never_schedule_support(self):
+        import support
+        for seconds,clean in ((20,False),(20,True),(900,False)):
+            self.window.start();process=self.window.process
+            self.window.saw_video=True;self.window.stop_requested=clean
+            self.window.first_frame_mono=__import__('time').monotonic()-seconds
+            process.running=False
+            with patch.object(support,'maybe_thank') as reminder:
+                self.window.finish(0 if clean else 1,0,process)
+                self.app.processEvents()
+                reminder.assert_not_called()
 
     def test_close_waits_for_a_running_background_worker(self):
         class SlowWorker(QThread):

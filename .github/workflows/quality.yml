@@ -2,7 +2,7 @@ name: Deckivo browser quality
 on:
   push:
     branches: [main, 'release/**']
-    paths: ['desktop/linux/assets/controller-lab/**', 'tests/**', 'scripts/test-*.mjs', 'package*.json', '.github/workflows/quality.yml', 'website/**', 'scripts/build-site*.py', 'design-system/**', 'localization/**']
+    paths: ['desktop/linux/assets/controller-lab/**', 'tests/**', 'scripts/test-*.mjs', 'package*.json', '.github/workflows/quality.yml', 'website/**', 'scripts/build-site*.py', 'scripts/site-download-stats.py', 'design-system/**', 'localization/**']
   pull_request:
   workflow_dispatch:
 permissions:
@@ -29,14 +29,20 @@ jobs:
           python -m pip install -r scripts/requirements-build.txt
           python scripts/generate-support.py --check
           python -m unittest tests/test_download_stats.py
-          python -m unittest tests/test_site_generation.py
-          python scripts/download-stats.py --output build/download-stats.json
+          python -m unittest tests/test_site_generation.py tests/test_site_stats_fallback.py
+          python scripts/site-download-stats.py --output build/download-stats.json
           python scripts/build-site.py --download-stats build/download-stats.json
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - run: node scripts/test-site.mjs
         env:
           DECKIVO_QA_DIR: output/playwright/site
+      - run: |
+          python -c 'import json,pathlib; pathlib.Path("build/unavailable.json").write_text(json.dumps({"schema":1,"available":False}))'
+          python scripts/build-site.py --download-stats build/unavailable.json
+          node scripts/test-site.mjs
+        env:
+          DECKIVO_QA_DIR: output/playwright/site-unavailable
       - uses: actions/upload-artifact@v4
         if: always()
         with:

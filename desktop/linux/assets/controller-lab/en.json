@@ -137,7 +137,8 @@
     "gp_trace": "Trace",
     "gp_unknown": "Unknown",
     "gp_error_service_mode_required": "Service mode is off. Permanent writes are blocked.",
-    "gp_error_persistent_backup_required": "A saved backup of the original parameters is required before writing."
+    "gp_error_persistent_backup_required": "A saved backup of the original parameters is required before writing.",
+    "gp_error_power_cycle_required": "Before calibration, unplug USB, fully power off the controller, then reconnect it on this page."
   },
   "phrases": {
     "Отключить": "Disconnect",
@@ -1133,6 +1134,10 @@
     "Сервисный режим выключен. Постоянная запись заблокирована.": "Service mode is off. Permanent writes are blocked.",
     "Перед записью нужна сохранённая резервная копия параметров.": "A saved backup of the original parameters is required before writing.",
     "мс": "ms",
-    "Повторы &lt; 80 мс": "Repeats < 80 ms"
+    "Повторы &lt; 80 мс": "Repeats < 80 ms",
+    "Исходные параметры геймпада": "Controller baseline",
+    "Протокол читает параметры из оперативной памяти. Перед первой калибровкой на этой странице отключите USB, полностью выключите геймпад и подключите заново. Простого переподключения вкладки недостаточно. Сохраняется самая ранняя доступная копия, а не гарантированные заводские настройки.": "The protocol reads RAM parameters. Before the first calibration on this page, unplug USB, fully power off the controller, then reconnect. Reopening the tab is not enough. The earliest available backup is retained; it is not guaranteed factory calibration.",
+    "Геймпад был полностью выключен перед переподключением.": "The controller was fully powered off before reconnecting.",
+    "Продолжить": "Continue"
   }
 }

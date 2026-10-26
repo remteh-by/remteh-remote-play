@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:controller-policy": "node --test tests/controller-policy.test.mjs",
+    "test:controller-policy": "node --test tests/controller-policy.test.mjs tests/claude-service-mode.test.mjs tests/controller-baseline.test.mjs",
     "test:controller-lab": "node scripts/test-controller-lab.mjs"
   },
   "devDependencies": {

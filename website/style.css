@@ -195,3 +195,11 @@ footer{padding-block:34px}
 }
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}.button:hover{transform:none}}
+
+/* Preserve whole words in action labels, including long translations. */
+.button {overflow-wrap:normal;word-break:keep-all;hyphens:none}
+.footer-top>a,.credits a {display:inline-flex;align-items:center;min-height:24px;padding-block:6px}
+@media(max-width:420px){.install-paths{grid-template-columns:1fr}.install-paths .button{width:100%}}
+
+/* Exact console/profile crop from the full, downloadable Qt screenshot. */
+.hero-art img{aspect-ratio:1476/536;object-fit:contain}

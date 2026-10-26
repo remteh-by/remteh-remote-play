@@ -112,6 +112,7 @@
     <string name="dv_my_console">Konsolum</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">Denetleyici bulunamadı. Android Bluetooth ayarlarında bağlayın.</string>
+    <string name="dv_offline_help">PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.</string>
     <string name="dv_online">●  Çevrimiçi</string>
     <string name="dv_permission_denied">İzin verilmedi. Bu sürümü kullanmaya devam edebilirsiniz.</string>
     <string name="dv_play">Oyna</string>

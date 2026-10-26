@@ -67,6 +67,24 @@ function sourceCases() {
  return [...values].filter(Boolean);
 }
 
+async function reportContrast(page,label){
+ await settle(page);
+ const measurements=await page.evaluate(()=>{
+  const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');
+  const rgb=color=>{ctx.clearRect(0,0,1,1);ctx.fillStyle=color;ctx.fillRect(0,0,1,1);return [...ctx.getImageData(0,0,1,1).data].slice(0,3).map(x=>x/255);};
+  const luminance=c=>rgb(c).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((a,x,i)=>a+x*[.2126,.7152,.0722][i],0);
+  const root=document.querySelector('#gpd'),rows=[];
+  for(const kind of ['info','pass','fail']){
+   const pill=document.createElement('span');pill.className='gp-result-pill '+kind;pill.textContent='Contrast fixture';root.append(pill);
+   const s=getComputedStyle(pill),a=luminance(s.color),b=luminance(s.backgroundColor);rows.push({kind,color:s.color,background:s.backgroundColor,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)});pill.remove();
+  }
+  return rows;
+ });
+ for(const row of measurements)assert.ok(row.ratio>=4.5,label+' '+JSON.stringify(row));
+ results.push({label:label+' contrast',measurements});
+ await page.screenshot({path:path.join(output,label+'-report.png'),fullPage:true});
+}
+
 async function settle(page){await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));}
 async function checkEnglish(page,label) {
  await settle(page);
@@ -104,16 +122,18 @@ try {
   if(id){await page.evaluate(()=>{window.__qaInput(true);window.__qaPad.axes=[0.75,-0.25,-0.5,0.8];window.__qaPad.buttons[6].value=0.4;window.__qaPad.buttons[7].value=0.8;});await checkEnglish(page,id+' live input');await page.evaluate(()=>window.__qaInput(false));}
   const tabs=await page.locator('button[data-tab]').evaluateAll(elements=>elements.map(e=>e.dataset.tab));
   for(const tab of tabs) {
+   if(process.env.DECKIVO_REPORT_ONLY && tab!=='comparison')continue;
    const button=page.locator('button[data-tab="'+tab+'"]');
    if(await button.isVisible()&&await button.isEnabled()) {
     await button.click();await checkEnglish(page,(id||'disconnected')+' tab:'+tab);
+    if(tab==='comparison'&&id)await reportContrast(page,id.startsWith('Xbox')?'xbox':id.startsWith('DualShock')?'ds4':'dualsense');
     for(const summary of await page.locator('details:not([open]) > summary').all())if(await summary.isVisible()){await summary.click();await checkEnglish(page,'details '+tab);}
    }
   }
   await page.screenshot({path:path.join(output,(id.startsWith('Xbox')?'xbox':id.startsWith('DualShock')?'ds4':id?'dualsense':'disconnected')+'.png')});
   assert.deepEqual(errors,[],'page errors');await context.close();
  }
- for(const model of ['DS5','DS4']) {
+ for(const model of (process.env.DECKIVO_REPORT_ONLY?[]:['DS5','DS4'])) {
   const context=await browser.newContext({viewport:{width:1440,height:1000}});
   const page=await context.newPage(),errors=[];page.on('pageerror',error=>{errors.push(error.message);console.error('BROWSER:',error.message);});
   await page.addInitScript(({model})=>{
@@ -127,6 +147,7 @@ try {
   await checkEnglish(page,model+' USB connected');
   const tabs=await page.locator('button[data-tab]').evaluateAll(elements=>elements.map(e=>e.dataset.tab));
   for(const tab of tabs) {
+   if(process.env.DECKIVO_REPORT_ONLY && tab!=='comparison')continue;
    const button=page.locator('button[data-tab="'+tab+'"]');
    if(!await button.isVisible()||!await button.isEnabled())continue;
    await button.click();await checkEnglish(page,model+' USB '+tab);
@@ -137,6 +158,7 @@ try {
     if(await control.count()&&await control.isVisible()&&await control.isEnabled()){await control.click();await checkEnglish(page,model+' action:'+action);}
    }
    if(tab==='comparison') {
+    await reportContrast(page,model);
     const control=page.locator('[data-lab="export"]');
     if(await control.count()&&await control.isVisible()&&await control.isEnabled()) {
      const download=page.waitForEvent('download');await control.click();const artifact=await download;

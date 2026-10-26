@@ -41,9 +41,18 @@ class MainActivity : DeckivoActivity() {
     private var updateJob: Job? = null
     private var updatePrompt: androidx.appcompat.app.AlertDialog? = null
     private var requestingInstall = false
+    private val streamLauncher = registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()) { result ->
+        val qualified = result.resultCode == RESULT_OK && result.data?.getBooleanExtra(StreamActivity.EXTRA_SUPPORT_COMPLETED, false) == true
+        result.data?.removeExtra(StreamActivity.EXTRA_SUPPORT_COMPLETED)
+        binding.root.post {
+            val allowed = lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED) && !requestingInstall && !UpdateRepository.state.value.ready
+            com.metallic.chiaki.design.SupportNudges.onStreamResult(this, qualified, allowed)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        com.metallic.chiaki.design.SupportNudges.clearPending(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         SafeInsets.apply(binding.root)
@@ -153,7 +162,6 @@ class MainActivity : DeckivoActivity() {
     override fun onResume() {
         super.onResume()
         requestingInstall = com.metallic.chiaki.updates.SelfUpdateInstaller.pending(this)
-        binding.root.post { if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED) && !requestingInstall && !UpdateRepository.state.value.ready) com.metallic.chiaki.design.SupportNudges.showIfDue(this) }
     }
     override fun onStop() {
         updatePrompt?.dismiss()
@@ -176,7 +184,7 @@ class MainActivity : DeckivoActivity() {
                 val connectInfo = ConnectInfo(host.isPS5, host.host, registeredHost.rpRegistKey, registeredHost.rpKey, Preferences(this).videoProfile)
                 Intent(this, StreamActivity::class.java).let {
                     it.putExtra(StreamActivity.EXTRA_CONNECT_INFO, connectInfo)
-                    startActivity(it)
+                    streamLauncher.launch(it)
                 }
             }
 

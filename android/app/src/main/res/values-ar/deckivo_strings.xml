@@ -112,6 +112,7 @@
     <string name="dv_my_console">جهازي</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">لم يتم العثور على وحدة تحكم. قم بتوصيله في إعدادات Android Bluetooth.</string>
+    <string name="dv_offline_help">PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.</string>
     <string name="dv_online">●  متصل</string>
     <string name="dv_permission_denied">لم يتم منح الإذن. يمكنك الاستمرار في استخدام هذا الإصدار.</string>
     <string name="dv_play">العب</string>

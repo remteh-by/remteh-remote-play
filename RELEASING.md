@@ -57,3 +57,9 @@ Use isolated empty profile storage to exclude account IDs, keys and personal dat
 Record the exact screenshot version/build, source revision and image hashes.
 A development preview shown before publication must be labelled explicitly;
 its caption must not imply that the older downloadable release contains that UI.
+
+## Historical release triggers (audit C06)
+
+Do not edit GitHub releases for historical tags v0.8.1–v0.8.3: their immutable workflow files still contain a `release:` trigger. Editing a release can run the old Pages workflow with tag context, fail environment protection and send failure notifications. This mechanism does not prove which email any owner received. Never move/recreate those tags to patch their workflows. The main branch deploys the site and desktop update channel only on a qualifying push to `main` or `workflow_dispatch` from `main`.
+
+Download statistics are optional: collector errors, timeouts and invalid output produce a warning and `{"schema":1,"available":false}`. They must never prevent the already signed update channel or site from being built. Other build errors still fail normally.

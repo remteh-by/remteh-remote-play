@@ -112,6 +112,7 @@
     <string name="dv_my_console">मेरा कंसोल</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">कोई नियंत्रक नहीं मिला. इसे एंड्रॉइड ब्लूटूथ सेटिंग्स में कनेक्ट करें।</string>
+    <string name="dv_offline_help">PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.</string>
     <string name="dv_online">●  ऑनलाइन</string>
     <string name="dv_permission_denied">अनुमति नहीं दी गई. आप इस संस्करण का उपयोग जारी रख सकते हैं.</string>
     <string name="dv_play">खेलें</string>

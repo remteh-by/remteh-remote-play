@@ -42,10 +42,11 @@ WORDS = {
     'playing': ('Live video received', 'Видеопоток получен'),
     'stopping': ('Closing the session safely…', 'Завершаем сеанс…'),
     'ready': ('Ready when you are', 'Всё готово к игре'),
+    'offline_help': ('PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.', 'PS5 не найдена. Включите консоль и проверьте, что она в той же сети. Для режима покоя включите Remote Play и пробуждение по сети в настройках PS5.'),
     'ended': ('Session finished. Your PS5 stays on.', 'Сеанс завершён. PS5 остаётся включённой.'),
-    'error': ('Connection ended. Close other clients, then retry.', 'Соединение прервано. Закрой другие клиенты и повтори.'),
+    'error': ('Connection ended. Close other clients, then retry.', 'Соединение прервано. Закройте другие клиенты и повторите.'),
     'busy': ('Another streaming session is running.', 'Уже запущен другой сеанс трансляции.'),
-    'unpaired': ('Pair your PS5 before playing.', 'Сначала привяжи PS5 к приложению.'),
+    'unpaired': ('Pair your PS5 before playing.', 'Сначала привяжите PS5 к приложению.'),
     'quality': ('Streaming profile', 'Профиль трансляции'),
     'smooth': ('Smooth · 720p / 60', 'Плавный · 720p / 60'),
     'balanced': ('Balanced · 720p / 30', 'Сбалансированный · 720p / 30'),
@@ -64,12 +65,12 @@ WORDS = {
     'input_mode_controller': ('Input: controller · enable keyboard and mouse in Preferences','Управление: геймпад · клавиатура и мышь включаются в настройках'),
     'controller': ('Your controller', 'Твой геймпад'),
     'pad_ready': ('Controller connected', 'Геймпад подключён'),
-    'pad_none': ('Connect your controller by USB or Bluetooth', 'Подключи геймпад по USB или Bluetooth'),
+    'pad_none': ('Connect your controller by USB or Bluetooth', 'Подключите геймпад по USB или Bluetooth'),
     'test_pad': ('Test inputs', 'Проверить управление'),
-    'pad_help': ('Move both sticks and press buttons. Measurements use the connected controller.', 'Двигай стиками и нажимай кнопки. Проверяется подключённый геймпад.'),
+    'pad_help': ('Move both sticks and press buttons. Measurements use the connected controller.', 'Двигайте стиками и нажимайте кнопки. Проверяется подключённый геймпад.'),
     'pad_tip': ('USB provides extra features on supported Sony controllers. Availability depends on model and OS.', 'USB открывает дополнительные функции поддерживаемых Sony. Возможности зависят от модели и ОС.'),
     'pad_capture': ('During streaming, only the PS5 receives this gamepad.', 'Во время трансляции геймпад захватывает движок PS5.'),
-    'pad_labels': ('Choose the actual model if its name is unavailable. Button names follow that model.', 'Если модель не определилась, выбери её вручную. Обозначения соответствуют выбранной модели.'),
+    'pad_labels': ('Choose the actual model if its name is unavailable. Button names follow that model.', 'Если модель не определилась, выберите её вручную. Обозначения соответствуют выбранной модели.'),
     'shortcuts': ('YOUR SHORTCUTS', 'БЫСТРОЕ УПРАВЛЕНИЕ'),
     'shortcut_text': ('Home → PS menu\nCapture → touchpad click\nHold + and − for 1.5 s → end stream\nCtrl+Q → end stream', 'Home → меню PS\nCapture → нажатие тачпада\nУдержать + и − 1,5 с → завершить сеанс\nCtrl+Q → завершить сеанс'),
     'nav_hint': ('D-pad / stick: navigate · south button: choose · east button: back · shoulders: pages', 'Крестовина / стик: выбор · нижняя кнопка: открыть · правая: назад · бамперы: разделы'),
@@ -89,21 +90,22 @@ WORDS = {
     'host': ('Console IP address', 'IP-адрес консоли'),
     'save': ('Save preferences', 'Сохранить настройки'),
     'saved': ('Preferences saved.', 'Настройки сохранены.'),
-    'invalid': ('Enter a valid IPv4 or IPv6 address.', 'Введи корректный IPv4 или IPv6 адрес.'),
+    'invalid': ('Enter a valid IPv4 or IPv6 address.', 'Введите корректный IPv4 или IPv6 адрес.'),
     'language': ('Language', 'Язык'), 'auto': ('Automatic · system language', 'Автоматически · язык системы'),
     'fullscreen': ('Open stream in full screen', 'Открывать трансляцию на весь экран'),
     'navigation': ('Navigate Deckivo with a gamepad', 'Управлять Deckivo с геймпада'),
     'chord': ('Hold + and − to disconnect safely', 'Удерживать + и − для завершения сеанса'),
     'remember': ('Keep a local session history', 'Сохранять локальную историю сеансов'),
+    'developer_credit': ('Developed by RemTeh.by ↗','Разработка RemTeh.by ↗'),
     'support': ('Support Deckivo', 'Поддержать Deckivo'),
     'support_text': ('Enjoy the project? Optional support helps development. All local play features stay available.', 'Нравится проект? Добровольная поддержка помогает разработке. Все функции локальной игры доступны без доната.'),
     'private': ('EXPERIMENTAL PREVIEW', 'ТЕСТОВАЯ ВЕРСИЯ'),
     'about': ('About Deckivo', 'О Deckivo'),
     'maintenance': ('Connection checks in progress', 'Идёт проверка подключения'),
     'wait': ('The PS5 can take 20–30 seconds to prepare video. The stream opens after the first decoded frame.', 'PS5 может готовить видео 20–30 секунд. Статус изменится после первого кадра.'),
-    'active_pad': ('Controller belongs to the streaming engine. Test after disconnecting.', 'Контроллер сейчас у движка трансляции. Проверь его после отключения.'),
-    'no_stop': ('The engine did not respond. Use Ctrl+Q in the stream window. Deckivo will not force-close an active session.', 'Движок не ответил. Нажми Ctrl+Q в окне трансляции. Активный сеанс принудительно не закрываем.'),
-    'locked': ('Change preferences after ending the stream.', 'Измени настройки после завершения сеанса.'),
+    'active_pad': ('Controller belongs to the streaming engine. Test after disconnecting.', 'Контроллер сейчас у движка трансляции. Проверьте его после отключения.'),
+    'no_stop': ('The engine did not respond. Use Ctrl+Q in the stream window. Deckivo will not force-close an active session.', 'Движок не ответил. Нажмите Ctrl+Q в окне трансляции. Активный сеанс принудительно не закрываем.'),
+    'locked': ('Change preferences after ending the stream.', 'Измените настройки после завершения сеанса.'),
 }
 
 
@@ -168,8 +170,10 @@ class Deckivo(QWidget):
         self.refresh()
         import update_ui
         update_ui.initialize(self)
-        from support import maybe_thank
-        QTimer.singleShot(0,lambda:maybe_thank(self))
+        # Old releases persisted eligibility across launches. It is now a one-shot
+        # result of the current completed session, never a launch-time reminder.
+        from support import complete
+        complete(self,0,False)
 
     def t(self,key):
         language=QLocale.system().name().split('_')[0] if self.language=='auto' else self.language
@@ -208,7 +212,7 @@ class Deckivo(QWidget):
         main.addWidget(self.stack,1)
         footer=QHBoxLayout();footer.setSpacing(18)
         source='deckivo_macos' if sys.platform=='darwin' else 'deckivo_linux'
-        links=(('Developed by RemTeh.by ↗','https://remteh.by/?utm_source='+source+'&amp;utm_medium=app&amp;utm_campaign=deckivo'),
+        links=((self.t('developer_credit'),'https://remteh.by/?utm_source='+source+'&amp;utm_medium=app&amp;utm_campaign=deckivo'),
                ('GitHub ↗','https://github.com/remteh-by/remteh-remote-play'))
         for text,url in links:
             link=QLabel('<a style="color:#B6C295;text-decoration:none" href="'+url+'">'+text+'</a>')
@@ -416,8 +420,11 @@ class Deckivo(QWidget):
         self.online_label.setStyleSheet('color:'+('#DAF975' if online else '#ABB3C0')+';')
         ready=bool(self.registration) and online and not (PRIVATE/'maintenance').exists()
         self.primary.setEnabled(self.active() or ready)
+        help_key='unpaired' if not self.registration else 'maintenance' if (PRIVATE/'maintenance').exists() else 'offline_help' if not online else None
+        reason=self.t(help_key) if help_key and not self.active() else ''
+        self.primary.setToolTip(reason);self.primary.setAccessibleDescription(reason)
         if not self.active():
-            self.session_label.setText(self.t('unpaired' if not self.registration else 'maintenance' if (PRIVATE/'maintenance').exists() else self.message))
+            self.session_label.setText(reason or self.t(self.message))
         self.stat_values['rtt_label'].setText(f'{rtt:.0f} ms' if rtt>=0 else '—')
         self.stat_values['rtt_label'].setToolTip(self.t('rtt_hint'))
 
@@ -527,7 +534,8 @@ class Deckivo(QWidget):
         self.phase='idle';self.progress.hide();self.primary.setText(self.t('play'));self.set_preferences_enabled(True)
         self.pad.suspend(False);self.show_dashboard();self.update_status(self.online,self.rtt);self.fill_history()
         process.deleteLater();self.process=None
-        QTimer.singleShot(0,lambda:support.maybe_thank(self))
+        if support_clean and seconds>=600:
+            QTimer.singleShot(0,lambda:support.maybe_thank(self))
 
     def tick(self):
         if not self.active():return

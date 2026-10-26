@@ -12,8 +12,20 @@ export function createPermanentPolicy(storage,confirm) {
  function preserve(identity,parameters) {
   if(!/^[a-f0-9]{64}$/i.test(identity??'')||!valid(parameters))throw new Error('persistent_backup_required');
   const key=BACKUP_PREFIX+identity,previous=storage.getItem(key);
-  let history=[];try{const old=JSON.parse(previous);if(old?.identity===identity&&valid(old.original))history=[...(old.history??[]),{original:old.original,at:old.at}].slice(-3);}catch{}
-  const record={schema:1,identity,original:[...parameters],at:new Date().toISOString(),history};
+  // Never overwrite the earliest surviving backup with current RAM parameters.
+  // Legacy records retain only three history entries; older lost copies cannot
+  // be reconstructed and are never described as factory calibration.
+  if(previous!==null){
+   let old;try{old=JSON.parse(previous);}catch{throw new Error('persistent_backup_required');}
+   if(old?.identity!==identity||!valid(old.original))throw new Error('persistent_backup_required');
+   if(old.immutable===true)return old;
+   const first=(Array.isArray(old.history)?old.history:[]).find(item=>valid(item?.original))??old;
+   const migrated={schema:1,identity,original:[...first.original],at:first.at,immutable:true,provenance:'earliest-surviving-legacy',history:[]};
+   const encoded=JSON.stringify(migrated);storage.setItem(key,encoded);
+   if(storage.getItem(key)!==encoded)throw new Error('storage_failed');
+   return migrated;
+  }
+  const record={schema:1,identity,original:[...parameters],at:new Date().toISOString(),immutable:true,provenance:'user-confirmed-power-cycle',history:[]};
   const value=JSON.stringify(record);storage.setItem(key,value);
   if(storage.getItem(key)!==value)throw new Error('storage_failed');
   return record;
@@ -36,6 +48,39 @@ export function createPermanentPolicy(storage,confirm) {
   try{return await operation();}finally{permits.delete(controller);}
  }
  return {enabled,setEnabled,preserve,requireBackup,assertPermitted,write};
+}
+// A browser reconnect is not a power cycle. Require a physical HID disconnect
+// observed by this page, a new connection, and an explicit user acknowledgement.
+export function createBaselineGate(){
+ const disconnected=new Set(),reconnected=new Set(),confirmed=new Set();
+ return {
+  disconnected(id){if(id){disconnected.add(id);reconnected.delete(id);confirmed.delete(id);}},
+  connected(id){if(disconnected.delete(id))reconnected.add(id);},
+  async require(id,confirm){
+   if(confirmed.has(id))return;
+   const fail=()=>{const e=new Error('power_cycle_required');e.recovered=true;throw e;};
+   if(!id||!reconnected.has(id))fail();
+   if(!await confirm())fail();
+   if(!reconnected.has(id))fail();
+   confirmed.add(id);
+  }
+ };
+}
+export function confirmPowerCycle(){
+ if(typeof document==='undefined')return Promise.resolve(false);
+ const ru=document.documentElement.lang==='ru';
+ return new Promise(resolve=>{
+  const dialog=document.createElement('dialog');dialog.className='deckivo-service-dialog';
+  const title=document.createElement('h2');title.textContent=ru?'Исходные параметры геймпада':'Controller baseline';
+  const text=document.createElement('p');text.textContent=ru?'Протокол читает параметры из оперативной памяти. Перед первой калибровкой на этой странице отключите USB, полностью выключите геймпад и подключите заново. Простого переподключения вкладки недостаточно. Сохраняется самая ранняя доступная копия, а не гарантированные заводские настройки.':'The protocol reads RAM parameters. Before the first calibration on this page, unplug USB, fully power off the controller, then reconnect. Reopening the tab is not enough. The earliest available backup is retained; it is not guaranteed factory calibration.';
+  const label=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.id='baseline-power-cycle-confirmation';
+  label.append(check,document.createTextNode(ru?' Геймпад был полностью выключен перед переподключением.':' The controller was fully powered off before reconnecting.'));
+  const cancel=document.createElement('button');cancel.textContent=ru?'Отмена':'Cancel';
+  const proceed=document.createElement('button');proceed.textContent=ru?'Продолжить':'Continue';proceed.disabled=true;
+  let settled=false;const finish=value=>{if(settled)return;settled=true;dialog.close();dialog.remove();resolve(value);};
+  check.onchange=()=>{proceed.disabled=!check.checked;};cancel.onclick=()=>finish(false);proceed.onclick=()=>{if(check.checked)finish(true);};
+  dialog.oncancel=event=>{event.preventDefault();finish(false);};dialog.append(title,text,label,cancel,proceed);document.body.append(dialog);dialog.showModal();cancel.focus();
+ });
 }
 function ask() {
  if(typeof document==='undefined')return Promise.resolve(false);

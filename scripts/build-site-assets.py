@@ -51,10 +51,15 @@ def main():
  metadata=load_capture(args.metadata,args.capture);image=Image.open(args.capture).convert('RGB')
  preview_webp=args.assets/'deckivo-ui.webp';preview_avif=args.assets/'deckivo-ui.avif';cover_path=args.assets/'github-cover.webp'
  image.save(preview_webp,quality=84,method=6);image.save(preview_avif,quality=65)
+ # Exact rectangle of the real window: console and streaming profile. No redraw.
+ crop=tuple(round(v*size/base) for v,size,base in zip((104,108,1580,644),(image.width,image.height,image.width,image.height),(1600,900,1600,900)))
+ hero=image.crop(crop);hero_webp=args.assets/'deckivo-hero.webp';hero_avif=args.assets/'deckivo-hero.avif'
+ hero.save(hero_webp,quality=88,method=6);hero.save(hero_avif,quality=70)
  cover=Image.new('RGB',(1200,630),'#101216');draw=ImageDraw.Draw(cover);large=ImageFont.truetype(str(font),68);small=ImageFont.truetype(str(font),23);caption=ImageFont.truetype(str(font),18)
  preview_box=(780,439);preview=ImageOps.contain(image,preview_box,Image.Resampling.LANCZOS);preview_position=(365+(preview_box[0]-preview.width)//2,172+(preview_box[1]-preview.height)//2)
  draw.text((54,32),'deckivo',font=large,fill='#DAF975');draw.text((56,116),'Your PS5. Your play space.',font=small,fill='#F3F5F7');cover.paste(preview,preview_position);draw.text((55,202),'Open source\nAndroid\nApple Silicon\nSwitchroot',font=small,fill='#A4ACBA',spacing=18);draw.text((55,548),f"Development preview · {metadata['version']} b{metadata['build']}",font=caption,fill='#DAF975');draw.text((55,580),'Actual Deckivo UI · unpaired',font=caption,fill='#A4ACBA');cover.save(cover_path,quality=87,method=6);cover.save(args.assets/'github-cover.jpg',quality=90,optimize=True)
- manifest={'schema':1,'version':metadata['version'],'build':metadata['build'],'source_commit':metadata['source_commit'],'source_dirty':metadata.get('source_dirty',False),'ui_source_sha256':metadata['ui_source_sha256'],'capture_state':'unpaired','development_preview':True,'captured_at':metadata['captured_at'],'images':{path.name:file_record(path) for path in (preview_webp,preview_avif,cover_path,args.assets/'github-cover.jpg')}}
+ manifest={'schema':1,'version':metadata['version'],'build':metadata['build'],'source_commit':metadata['source_commit'],'source_dirty':metadata.get('source_dirty',False),'ui_source_sha256':metadata['ui_source_sha256'],'capture_state':'unpaired','development_preview':True,'captured_at':metadata['captured_at'],'images':{path.name:file_record(path) for path in (preview_webp,preview_avif,cover_path,args.assets/'github-cover.jpg',hero_webp,hero_avif)}}
+ manifest['hero_crop']={'source':'deckivo-ui.webp','rectangle':crop,'operation':'crop only, exact real Qt capture'}
  versioned_cover=args.assets/f"github-cover-{metadata['version']}-b{metadata['build']}-{manifest['images']['github-cover.webp']['sha256'][:12]}.webp"
  shutil.copyfile(cover_path,versioned_cover);manifest['readme_cover']=versioned_cover.name
  (args.assets/'screenshot.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')

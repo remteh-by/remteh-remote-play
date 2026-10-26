@@ -2,37 +2,59 @@
   "schema": 1,
   "version": "0.8.3",
   "build": 19,
-  "source_commit": "611c5fd5b2c3511f237a006e7914e48ecac4aa1f",
-  "source_dirty": false,
-  "ui_source_sha256": "01eff09b90ddfd76d64b42c34c75d759101e35031f8f78775aca85a478aba177",
+  "source_commit": "721c83ac5333134ea4092ff79e22a662130e490a",
+  "source_dirty": true,
+  "ui_source_sha256": "73aea01fedd640f071ab078e5701191bdda8ef5f70e6950c47b94b8bc43b719f",
   "capture_state": "unpaired",
   "development_preview": true,
-  "captured_at": "2026-10-26T07:46:29Z",
+  "captured_at": "2026-10-26T11:00:34Z",
   "images": {
     "deckivo-ui.webp": {
-      "sha256": "ac05c7b714ab642d1fd2658aa2318e341e98a78e1c9b8f91cdd05d2fdf0f39f4",
-      "bytes": 43538,
+      "sha256": "26ce964e666743a02b91064bfd1abfd751c5049525ff32dd6f485e02b636fb49",
+      "bytes": 43528,
       "width": 1600,
       "height": 900
     },
     "deckivo-ui.avif": {
-      "sha256": "06f6547d9dca5adde77c9fcf1e38bcaa6e9787eba8f27f5caf04d5a92c3bd685",
-      "bytes": 25699,
+      "sha256": "71ff39cbba0451d99319639ce7cc3f0c354bb2235324b8829a75be5c8b9e3a23",
+      "bytes": 25694,
       "width": 1600,
       "height": 900
     },
     "github-cover.webp": {
-      "sha256": "f14e45c36b6f6620a41f32d1706e8387eefcfa6f2f12e31d3af981fa1714fbf4",
-      "bytes": 30286,
+      "sha256": "35653f13d28c7908ef793bb37fb47d54b363ceccaa4dd41ace4473aa4dafa2d0",
+      "bytes": 30238,
       "width": 1200,
       "height": 630
     },
     "github-cover.jpg": {
-      "sha256": "36fcee818ed529a9d67d8d958e4850627490fde25f9e48a735a4adfa30bd5229",
-      "bytes": 64015,
+      "sha256": "1d8bd5ebb7fbccc1cea8a2630c385b5c3ecb9735f1a18d8ac892e9dfec3f0248",
+      "bytes": 64035,
       "width": 1200,
       "height": 630
+    },
+    "deckivo-hero.webp": {
+      "sha256": "3ba19265da76903b4d4900ac668633d707ba98f0463736c247e44261fbff4659",
+      "bytes": 30678,
+      "width": 1476,
+      "height": 536
+    },
+    "deckivo-hero.avif": {
+      "sha256": "27d2908441490993cd8c0cb8e7b9da1a1be000df8c71d53d45657751611361c9",
+      "bytes": 17733,
+      "width": 1476,
+      "height": 536
     }
   },
-  "readme_cover": "github-cover-0.8.3-b19-f14e45c36b6f.webp"
+  "hero_crop": {
+    "source": "deckivo-ui.webp",
+    "rectangle": [
+      104,
+      108,
+      1580,
+      644
+    ],
+    "operation": "crop only, exact real Qt capture"
+  },
+  "readme_cover": "github-cover-0.8.3-b19-35653f13d28c.webp"
 }

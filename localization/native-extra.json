@@ -245,7 +245,7 @@
   },
   "helper_intro": {
     "en": "Open WebKit / Payload Manager on PS5 and wait for ELF Loader. Send the bundled companion using the button below. Enter its one-use notification code within 5 minutes. This is separate from the Remote Play PIN.",
-    "ru": "На PS5 открой WebKit / Payload Manager и дождись ELF Loader. Кнопка ниже отправит помощник из этого APK на твою консоль. Затем введи код из уведомления PS5: он действует 5 минут и один раз. Это не системный код Remote Play."
+    "ru": "На PS5 откройте WebKit / Payload Manager и дождитесь ELF Loader. Кнопка ниже отправит помощник из этого APK на вашу консоль. Затем введите код из уведомления PS5: он действует 5 минут и один раз. Это не системный код Remote Play."
   },
   "helper_launch": {
     "en": "Send companion to PS5",
@@ -277,7 +277,7 @@
   },
   "setup_done": {
     "en": "After registration, return home and select PS5. Local play is ready; internet access is not configured by this version.",
-    "ru": "После привязки вернись на главный экран приложения и выбери PS5. Для этой версии достаточно локальной сети; доступ через интернет пока не настроен."
+    "ru": "После привязки вернитесь на главный экран приложения и выберите PS5. Для этой версии достаточно локальной сети; доступ через интернет пока не настроен."
   },
   "console_list": {
     "en": "Back to consoles",
@@ -289,7 +289,7 @@
   },
   "ip_required": {
     "en": "Enter a private IPv4 address, such as 192.168.1.10, without http or a port.",
-    "ru": "Укажи локальный IPv4, например 192.168.1.50. Без http и порта."
+    "ru": "Укажите локальный IPv4, например 192.168.1.50. Без http и порта."
   },
   "controller": {
     "en": "Controller",
@@ -297,7 +297,7 @@
   },
   "controller_intro": {
     "en": "Test your controller: DualSense, DualShock, Xbox or another compatible gamepad.",
-    "ru": "Проверь DualSense, DualShock, Xbox или другой совместимый геймпад."
+    "ru": "Проверьте DualSense, DualShock, Xbox или другой совместимый геймпад."
   },
   "connected_devices": {
     "en": "Connected devices",
@@ -337,7 +337,7 @@
   },
   "press": {
     "en": "Press ",
-    "ru": "Нажми "
+    "ru": "Нажмите "
   },
   "bottom_button": {
     "en": "bottom button (× on PS5)",
@@ -369,7 +369,7 @@
   },
   "support": {
     "en": "Help Deckivo grow",
-    "ru": "Помоги Deckivo расти",
+    "ru": "Помогите Deckivo расти",
     "uk": "Допоможи Deckivo зростати",
     "pl": "Pomóż rozwijać Deckivo",
     "de": "Hilf Deckivo zu wachsen",
@@ -459,7 +459,7 @@
   },
   "thanks_body": {
     "en": "Help us improve Deckivo for your next game.",
-    "ru": "Помоги сделать Deckivo лучше к следующей игре.",
+    "ru": "Помогите сделать Deckivo лучше к следующей игре.",
     "uk": "Допоможи покращити Deckivo до наступної гри.",
     "pl": "Pomóż ulepszyć Deckivo przed kolejną grą.",
     "de": "Hilf uns, Deckivo für dein nächstes Spiel zu verbessern.",
@@ -513,7 +513,7 @@
   },
   "scan_phone": {
     "en": "Scan with your phone",
-    "ru": "Отсканируй телефоном",
+    "ru": "Отсканируйте телефоном",
     "uk": "Скануй телефоном",
     "pl": "Zeskanuj telefonem",
     "de": "Mit dem Handy scannen",
@@ -549,7 +549,7 @@
   },
   "support_goal_mac": {
     "en": "Apple Developer ID ($99/yr) — signing and notarization for Mac",
-    "ru": "Apple Developer ID ($99/yr) — подпись и нотарификация Mac-версии",
+    "ru": "Apple Developer ID (99 $ в год) — подпись и нотаризация Mac-версии",
     "uk": "Apple Developer ID ($99/yr) — підпис і нотаризація Mac",
     "pl": "Apple Developer ID ($99/yr) — podpis i notaryzacja Mac",
     "de": "Apple Developer ID ($99/yr) — Signatur und Notarisierung für Mac",
@@ -675,7 +675,7 @@
   },
   "up_available": {
     "en": "Available: %1$s. Download below or wait for Wi-Fi.",
-    "ru": "Доступна %1$s. Скачай ниже или дождись Wi-Fi.",
+    "ru": "Доступна %1$s. Скачайте ниже или дождитесь Wi-Fi.",
     "uk": "Доступна %1$s. Завантаж або зачекай Wi-Fi.",
     "pl": "Dostępna: %1$s. Pobierz lub poczekaj na Wi-Fi.",
     "de": "Verfügbar: %1$s. Laden oder auf WLAN warten.",
@@ -711,7 +711,7 @@
   },
   "up_paused": {
     "en": "Paused. Return to the home screen to continue.",
-    "ru": "Пауза. Вернись на главный экран, чтобы продолжить.",
+    "ru": "Пауза. Вернитесь на главный экран, чтобы продолжить.",
     "uk": "Пауза. Повернися на головний екран.",
     "pl": "Wstrzymano. Wróć na ekran główny.",
     "de": "Pausiert. Zur Startseite zurückkehren.",
@@ -729,7 +729,7 @@
   },
   "up_no_server": {
     "en": "Cannot reach the update server. Check the network and DNS.",
-    "ru": "Сервер обновлений недоступен. Проверь сеть и DNS.",
+    "ru": "Сервер обновлений недоступен. Проверьте сеть и DNS.",
     "uk": "Сервер недоступний. Перевір мережу та DNS.",
     "pl": "Serwer niedostępny. Sprawdź sieć i DNS.",
     "de": "Server nicht erreichbar. Netzwerk und DNS prüfen.",
@@ -747,7 +747,7 @@
   },
   "up_timeout": {
     "en": "The server timed out. Try again later.",
-    "ru": "Сервер не ответил вовремя. Попробуй позже.",
+    "ru": "Сервер не ответил вовремя. Попробуйте позже.",
     "uk": "Час очікування минув. Спробуй пізніше.",
     "pl": "Upłynął czas. Spróbuj później.",
     "de": "Zeitüberschreitung. Später erneut versuchen.",
@@ -783,7 +783,7 @@
   },
   "up_check_failed": {
     "en": "Could not check or download the update. Try again later.",
-    "ru": "Не удалось проверить или скачать обновление. Попробуй позже.",
+    "ru": "Не удалось проверить или скачать обновление. Попробуйте позже.",
     "uk": "Не вдалося перевірити чи завантажити. Спробуй пізніше.",
     "pl": "Nie udało się sprawdzić lub pobrać. Spróbuj później.",
     "de": "Prüfung oder Download fehlgeschlagen. Später versuchen.",
@@ -855,7 +855,7 @@
   },
   "up_rate_limit": {
     "en": "GitHub rate limit reached. Try again later.",
-    "ru": "Достигнут лимит запросов GitHub. Попробуй позже.",
+    "ru": "Достигнут лимит запросов GitHub. Попробуйте позже.",
     "uk": "Ліміт GitHub. Спробуй пізніше.",
     "pl": "Limit GitHub. Spróbuj później.",
     "de": "GitHub-Limit erreicht. Später versuchen.",
@@ -963,7 +963,7 @@
   },
   "developer_credit": {
     "en": "Developed by RemTeh.by ↗",
-    "ru": "Developed by RemTeh.by ↗",
+    "ru": "Разработка RemTeh.by ↗",
     "uk": "Developed by RemTeh.by ↗",
     "pl": "Developed by RemTeh.by ↗",
     "de": "Developed by RemTeh.by ↗",
@@ -1107,11 +1107,11 @@
   },
   "press_position": {
     "en": "Press %1$s",
-    "ru": "Нажми %1$s"
+    "ru": "Нажмите %1$s"
   },
   "button_duplicate": {
     "en": "Button already mapped. Press %1$s",
-    "ru": "Эта кнопка уже назначена. Нажми %1$s"
+    "ru": "Эта кнопка уже назначена. Нажмите %1$s"
   },
   "key_event": {
     "en": "%1$s: %2$s · %3$s",
@@ -1131,7 +1131,7 @@
   },
   "diag_offline": {
     "en": "PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi isolation.",
-    "ru": "Порт 9295 PS5 недоступен. Проверь питание, IP, Remote Play и изоляцию Wi-Fi."
+    "ru": "Порт 9295 PS5 недоступен. Проверьте питание, IP, Remote Play и изоляцию Wi-Fi."
   },
   "diag_online": {
     "en": "Remote Play responds: %1$d/3, TCP %2$.1f ms. This is connectivity, not video latency.",
@@ -1148,11 +1148,11 @@
   },
   "diag_failed": {
     "en": "Connection check incomplete. Check the network and try again.",
-    "ru": "Не удалось закончить проверку. Проверь сеть и повтори."
+    "ru": "Не удалось закончить проверку. Проверьте сеть и повторите."
   },
   "helper_invalid_code": {
     "en": "Enter the eight digits from the PS5 companion notification.",
-    "ru": "Введи восемь цифр из уведомления помощника PS5."
+    "ru": "Введите восемь цифр из уведомления помощника PS5."
   },
   "helper_connecting": {
     "en": "Connecting to the PS5 companion…",
@@ -1160,11 +1160,11 @@
   },
   "helper_id_received": {
     "en": "Account ID received. Open Remote Play → Link Device on PS5 and complete step 3. Keep the same profile active.",
-    "ru": "Account ID получен. На PS5 открой Remote Play → Привязать устройство и заверши шаг 3. Оставь тот же профиль."
+    "ru": "Account ID получен. На PS5 откройте Remote Play → Привязать устройство и заверши шаг 3. Оставьте тот же профиль."
   },
   "helper_failed": {
     "en": "Companion unavailable. Check its code and active PS5 profile, or enter Account ID manually.",
-    "ru": "Помощник недоступен. Проверь код и активный профиль PS5 или введи Account ID вручную."
+    "ru": "Помощник недоступен. Проверьте код и активный профиль PS5 или введите Account ID вручную."
   },
   "helper_loading": {
     "en": "Connecting to PS5 ELF Loader…",
@@ -1172,15 +1172,15 @@
   },
   "helper_ready": {
     "en": "Companion ready. Enter its PS5 notification code below.",
-    "ru": "Помощник готов. Введи ниже код из уведомления PS5."
+    "ru": "Помощник готов. Введите ниже код из уведомления PS5."
   },
   "helper_waiting": {
     "en": "ELF sent. Check PS5 notifications; do not resend if a code is already shown.",
-    "ru": "ELF отправлен. Проверь уведомления PS5. Не отправляй повторно, если код уже появился."
+    "ru": "ELF отправлен. Проверьте уведомления PS5. Не отправляй повторно, если код уже появился."
   },
   "helper_launch_failed": {
     "en": "Could not start companion. Check PS5 WebKit / Payload Manager and ELF Loader on port 9021.",
-    "ru": "Помощник не запустился. Проверь WebKit / Payload Manager и ELF Loader на порту 9021."
+    "ru": "Помощник не запустился. Проверьте WebKit / Payload Manager и ELF Loader на порту 9021."
   },
   "console_address": {
     "en": "Address: %1$s",
@@ -1202,11 +1202,11 @@
   },
   "usb_sony_missing": {
     "en": "Connect a supported Sony controller with a USB data cable. Ordinary Bluetooth controllers use the input test.",
-    "ru": "Подключи поддерживаемый Sony по USB-кабелю с данными. Для Bluetooth-геймпадов доступен обычный тест ввода."
+    "ru": "Подключите поддерживаемый Sony по USB-кабелю с данными. Для Bluetooth-геймпадов доступен обычный тест ввода."
   },
   "usb_choose": {
     "en": "Choose your USB controller",
-    "ru": "Выбери USB-геймпад"
+    "ru": "Выберите USB-геймпад"
   },
   "keyboard_mouse": {
     "en": "Keyboard + mouse",
@@ -1214,7 +1214,7 @@
   },
   "keyboard_help": {
     "en": "F8 captures input; Esc releases it. WASD moves, mouse aims, left/right click = R2/L2. Space: Cross, C: Circle, R: Square, F: Triangle, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Hold this button for sensitivity.",
-    "ru": "F8 захватывает ввод, Esc отпускает. WASD — движение, мышь — прицел, левая/правая кнопка — R2/L2. Пробел: крест, C: круг, R: квадрат, F: треугольник, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Удерживай эту кнопку для настройки чувствительности."
+    "ru": "F8 захватывает ввод, Esc отпускает. WASD — движение, мышь — прицел, левая/правая кнопка — R2/L2. Пробел: крест, C: круг, R: квадрат, F: треугольник, Q/E: L1/R1, Enter: Options, Tab: Touch, F2: PS. Удерживайте эту кнопку для настройки чувствительности."
   },
   "mouse_sensitivity": {
     "en": "Mouse sensitivity",
@@ -1235,5 +1235,9 @@
   "source_development": {
     "en": "Development build %1$s. Corresponding source is included with this test package. Open the project.",
     "ru": "Тестовая сборка %1$s. Соответствующие исходники приложены к пакету для проверки. Открыть проект."
+  },
+  "offline_help": {
+    "en": "PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.",
+    "ru": "PS5 не найдена. Включите консоль и проверьте, что она в той же сети. Для режима покоя включите Remote Play и пробуждение по сети в настройках PS5."
   }
 }

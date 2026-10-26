@@ -112,6 +112,7 @@
     <string name="dv_my_console">Konsol saya</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">Tidak ada pengontrol yang ditemukan. Hubungkan di pengaturan Bluetooth Android.</string>
+    <string name="dv_offline_help">PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.</string>
     <string name="dv_online">●  Daring</string>
     <string name="dv_permission_denied">Izin tidak diberikan. Anda dapat tetap menggunakan versi ini.</string>
     <string name="dv_play">Main</string>

@@ -2,7 +2,7 @@ name: Deckivo site
 on:
   push:
     branches: [main]
-    paths: ['website/**', 'localization/**', 'design-system/**', 'scripts/build-site.py', 'scripts/download-stats.py', 'scripts/generate-support.py', 'scripts/requirements-build.txt', '.github/workflows/pages.yml']
+    paths: ['website/**', 'localization/**', 'design-system/**', 'scripts/build-site.py', 'scripts/download-stats.py', 'scripts/site-download-stats.py', 'scripts/generate-support.py', 'scripts/requirements-build.txt', '.github/workflows/pages.yml']
   workflow_dispatch:
   schedule:
     - cron: "17 * * * *"
@@ -35,7 +35,7 @@ jobs:
           python -m pip install -r scripts/requirements-build.txt
           python scripts/generate-support.py --check
           python -m unittest tests/test_download_stats.py
-          python scripts/download-stats.py --output build/download-stats.json
+          python scripts/site-download-stats.py --output build/download-stats.json
           python scripts/build-site.py --download-stats build/download-stats.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4

@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import time
 from PyQt5.QtCore import QTimer,QLocale
 from PyQt5.QtWidgets import QApplication,QDialog,QVBoxLayout,QCheckBox
 from updater import UpdateWorker,channel_base,validate_staged
@@ -19,7 +20,19 @@ def initialize(window):
     load_staged(window)
     window.update_timer=QTimer(window);window.update_timer.timeout.connect(lambda:check(window));window.update_timer.start(5*60*1000)
     window.update_apply_timer=QTimer(window);window.update_apply_timer.timeout.connect(lambda:install_when_idle(window));window.update_apply_timer.start(10000)
-    QTimer.singleShot(4000,lambda:check(window))
+    QTimer.singleShot(4000,lambda:startup_check(window))
+
+
+def startup_check_due(now=None):
+    now=time.time() if now is None else now
+    record=load_json(PRIVATE/'update-last-success.json',{})
+    timestamp=record.get('time') if isinstance(record,dict) else None
+    return not (type(timestamp) in (int,float) and 0<=now-timestamp<=3600
+                and record.get('version')==VERSION and record.get('build')==BUILD)
+
+
+def startup_check(window):
+    if startup_check_due():check(window)
 
 
 def acknowledge(window):
@@ -85,6 +98,7 @@ def check(window,manual=False):
 
 def result(window,ready,error):
     if window.is_closing:return
+    if not error:private_json(PRIVATE/'update-last-success.json',{'time':time.time(),'version':VERSION,'build':BUILD})
     if ready:
         window.update_ready=ready;private_json(pending_path(),ready)
         window.update_message='Update ready: '+ready['entry']['version']+' · '+str(ready['entry']['build'])

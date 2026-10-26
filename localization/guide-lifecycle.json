@@ -1,0 +1,96 @@
+{
+  "en": {
+    "android": {
+      "First installation": [
+        "Download the arm64 APK linked below; Android 8+ is required. Install it and allow installation only for the chosen source when prompted. Keep Play Protect enabled.",
+        "Open Deckivo, choose the language and pair with the PS5 profile you want to use. Pair a compatible gamepad in Android Bluetooth settings."
+      ],
+      "Update": [
+        "Keep automatic updates enabled. Allow Deckivo to install from this source when Android asks; confirm the system installer. Android may require this confirmation for each update.",
+        "For manual recovery, install the same-signer APK over Deckivo. Do not uninstall or clear storage: console pairing, settings and language are retained."
+      ],
+      "Uninstall": [
+        "End the stream, then use Android Settings → Apps → Deckivo → Uninstall. This removes the app and its private pairing/settings/history on this device.",
+        "APK files or reports saved in Downloads remain; remove those separately if unwanted. PS5 games and saves are not removed. A later reinstall needs pairing again."
+      ]
+    },
+    "macos": {
+      "First installation": [
+        "Use an Apple Silicon Mac with macOS 13+. Install the official chiaki-ng app separately and register the PS5 there. Close its stream.",
+        "Extract the Mac ZIP and move Deckivo.app into ~/Applications. This preview is ad-hoc signed, not notarized. After an attempted launch, use the individual Open Anyway option in System Settings → Privacy & Security if macOS requires it. Do not disable Gatekeeper globally.",
+        "Open Deckivo Preferences, import your chiaki-ng registration and select the console address. Keep chiaki-ng installed: Deckivo uses its native engine."
+      ],
+      "Update": [
+        "Leave automatic updates enabled; installation waits until streaming ends. Registration and settings remain in ~/Library/Application Support/Deckivo/private.",
+        "For a manual update, quit Deckivo and replace only Deckivo.app with the extracted app. Keep the data directory and chiaki-ng."
+      ],
+      "Uninstall": [
+        "Quit Deckivo and move Deckivo.app from ~/Applications (or your chosen install location) to Trash. This does not remove chiaki-ng or Deckivo data.",
+        "To remove saved registration, settings, history and downloaded updates too, remove ~/Library/Application Support/Deckivo in Finder only after backing up anything you need. It contains private pairing credentials; never share it.",
+        "chiaki-ng is a separate application with separate data. Remove it separately only if no longer wanted. PS5 games and saves remain on the console."
+      ]
+    },
+    "ubuntu": {
+      "First installation": [
+        "Use the supported Switchroot Ubuntu 24.04 ARM64 environment and its matching drivers. Install the dependencies listed in docs/LINUX.md; download the complete source kit and extract it. The small update ZIP is insufficient for first installation.",
+        "From the extracted root run python3 desktop/linux/build-install.py, then python3 desktop/linux/pair.py. Follow private pairing prompts and open Deckivo from Applications. Do not replace the Switchroot NVIDIA/FFmpeg drivers."
+      ],
+      "Update": [
+        "Keep automatic updates enabled. The user timer stages signed packages; the GUI applies them while idle. Pairing and settings are retained.",
+        "For manual recovery extract the Linux update ZIP and run python3 desktop/linux/upgrade.py from its root. An existing runtime is required."
+      ],
+      "Uninstall": [
+        "Close Deckivo. Disable the timers and remove their unit files with the commands below, before removing the installed runtime.",
+        "Remove ~/.local/bin/deckivo, ~/.local/share/applications/Deckivo.desktop and the Deckivo.desktop shortcut in your desktop folder. Removing ~/.local/share/deckivo also removes the runtime and Linux registration.json. Back up that private file first if you want to retain pairing.",
+        "Settings, update cache and history in ~/.config/deckivo remain until separately removed. Keep them if wanted; they may contain credentials. Games and saves on PS5 are unaffected."
+      ]
+    }
+  },
+  "ru": {
+    "android": {
+      "Первая установка": [
+        "Скачайте APK arm64 по ссылке ниже; требуется Android 8 или новее. Установите APK и разрешите установку только выбранному источнику, когда появится запрос. Не отключайте Play Защиту.",
+        "Откройте Deckivo, выберите язык и привяжите нужный профиль PS5. Совместимый геймпад подключите в настройках Bluetooth Android."
+      ],
+      "Обновление": [
+        "Оставьте автообновления включёнными. Разрешите Deckivo установку из этого источника и подтвердите системный установщик. Android может требовать подтверждение каждой установки.",
+        "При ручном обновлении установите APK с прежней подписью поверх Deckivo. Не удаляйте приложение и не очищайте хранилище: привязка, язык и настройки сохранятся."
+      ],
+      "Удаление": [
+        "Завершите трансляцию. Откройте Настройки Android → Приложения → Deckivo → Удалить. Приложение, его привязка, настройки и история на этом устройстве будут удалены.",
+        "APK и отчёты, сохранённые в «Загрузках», остаются — удалите их отдельно при необходимости. Игры и сохранения PS5 не затрагиваются. После новой установки потребуется привязка."
+      ]
+    },
+    "macos": {
+      "Первая установка": [
+        "Используйте Mac с Apple Silicon и macOS 13 или новее. Отдельно установите официальный chiaki-ng, привяжите в нём PS5 и закройте трансляцию.",
+        "Распакуйте Mac ZIP и перенесите Deckivo.app в ~/Applications. Сборка подписана ad-hoc, но не прошла нотаризацию. Если после попытки запуска macOS требует подтверждение, используйте «Всё равно открыть» для этого приложения в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком.",
+        "В настройках Deckivo импортируйте регистрацию из chiaki-ng и выберите адрес консоли. Сохраните chiaki-ng: его движок нужен для трансляции."
+      ],
+      "Обновление": [
+        "Оставьте автообновления включёнными. Установка ждёт завершения трансляции; привязка и настройки остаются в ~/Library/Application Support/Deckivo/private.",
+        "Для ручного обновления закройте Deckivo и замените только Deckivo.app распакованным приложением. Не удаляйте папку данных и chiaki-ng."
+      ],
+      "Удаление": [
+        "Закройте Deckivo и переместите Deckivo.app из ~/Applications или выбранной вами папки в Корзину. chiaki-ng и данные Deckivo при этом остаются.",
+        "Если нужно удалить также привязку, настройки, историю и загруженные обновления, отдельно удалите ~/Library/Application Support/Deckivo через Finder, предварительно сохранив нужное. В папке есть закрытые ключи привязки — не передавайте её другим.",
+        "chiaki-ng — отдельное приложение со своими данными; при необходимости удалите его отдельно. Игры и сохранения на PS5 остаются."
+      ]
+    },
+    "ubuntu": {
+      "Первая установка": [
+        "Используйте поддерживаемую Switchroot Ubuntu 24.04 ARM64 со штатными драйверами. Установите зависимости из docs/LINUX.md, скачайте и распакуйте полный архив исходников. Маленького ZIP обновления для первой установки недостаточно.",
+        "В корне исходников выполните python3 desktop/linux/build-install.py, затем python3 desktop/linux/pair.py. Следуйте приватным запросам привязки и запустите Deckivo из меню приложений. Не заменяйте драйверы NVIDIA/FFmpeg Switchroot."
+      ],
+      "Обновление": [
+        "Оставьте автообновления включёнными. Пользовательский таймер скачивает подписанный пакет, приложение устанавливает его вне трансляции. Привязка и настройки сохраняются.",
+        "Для ручного восстановления распакуйте Linux ZIP обновления и выполните python3 desktop/linux/upgrade.py из его корня. Требуется уже установленный runtime."
+      ],
+      "Удаление": [
+        "Закройте Deckivo. Сначала выключите таймеры и удалите их unit-файлы командами ниже, затем удаляйте программу.",
+        "Удалите ~/.local/bin/deckivo, ~/.local/share/applications/Deckivo.desktop и ярлык Deckivo.desktop с рабочего стола. Удаление ~/.local/share/deckivo также удаляет runtime и Linux-файл registration.json. Если привязка нужна, предварительно сохраните этот приватный файл.",
+        "Настройки, кэш обновлений и история в ~/.config/deckivo остаются до отдельного удаления. Сохраните их при необходимости; они могут содержать ключи. Игры и сохранения PS5 не затрагиваются."
+      ]
+    }
+  }
+}

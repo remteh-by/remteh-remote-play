@@ -18,7 +18,7 @@ if(!base) {
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));base='http://127.0.0.1:'+server.address().port+'/';
 }
 if(!base.endsWith('/'))base+='/';
-const languages=['en','ru','uk','pl','de','fr','es','it','pt','tr','zh','ja','ko','ar','hi','id'];
+const languages=process.env.DECKIVO_QA_LANGS?.split(',')??['en','ru','uk','pl','de','fr','es','it','pt','tr','zh','ja','ko','ar','hi','id'];
 const executable=process.env.DECKIVO_CHROME??(process.platform==='darwin'?'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome':undefined);
 const browser=await chromium.launch({headless:true,...(executable?{executablePath:executable}:{})});
 const evidence=[];
@@ -28,7 +28,7 @@ const expectedStats=Number.isInteger(statistics.package_total)&&statistics.packa
 const support=JSON.parse(fs.readFileSync('website/support.json','utf8'));
 const expectedProgress=support.goals.filter(g=>g.target_usd!==null&&g.raised_usd!==null&&g.target_usd>0).length;
 try {
- for(const width of [390,1440,1920,2560,3840]) {
+ for(const width of [360,390,414,1440,1920,2560,3840]) {
   const context=await browser.newContext({viewport:{width,height:1000}});
   for(const lang of languages) {
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -36,6 +36,15 @@ try {
    await page.evaluate(()=>document.fonts.ready);
    const state=await page.evaluate(()=>{
     const typed=[];for(const s of document.querySelectorAll('script[type="application/ld+json"]')){const json=JSON.parse(s.textContent);typed.push(...(Array.isArray(json)?json:json['@graph']??[json]));}
+    const splitWords=[];
+    for(const button of document.querySelectorAll('.install-paths .button')){
+     const walker=document.createTreeWalker(button,NodeFilter.SHOW_TEXT);let node;
+     while((node=walker.nextNode()))for(const match of node.textContent.matchAll(/[\p{L}\p{N}]+/gu)){
+      const range=document.createRange();range.setStart(node,match.index);range.setEnd(node,match.index+match[0].length);
+      const lines=new Set([...range.getClientRects()].filter(r=>r.width&&r.height).map(r=>Math.round(r.top)));
+      if(lines.size>1)splitWords.push(match[0]);
+     }
+    }
     const meta=key=>document.querySelector('meta[property="'+key+'"],meta[name="'+key+'"]')?.content;
     const clips=[...document.body.querySelectorAll('*')].filter(el=>{
      const r=el.getBoundingClientRect(),style=getComputedStyle(el);
@@ -46,7 +55,7 @@ try {
       og:{image:meta('og:image'),width:meta('og:image:width'),height:meta('og:image:height'),type:meta('og:image:type'),twitter:meta('twitter:image')},
       downloads:[...document.querySelectorAll('a.package-link')].map(a=>a.href),
       stats:document.querySelectorAll('#download-stats').length,unknownBars:document.querySelectorAll('#support progress').length,
-      clipped:clips,scrollWidth:document.documentElement.scrollWidth,viewport:innerWidth,
+      splitWords,clipped:clips,scrollWidth:document.documentElement.scrollWidth,viewport:innerWidth,
       languageLinks:document.querySelectorAll('.language-menu a').length};
    });
    assert.equal(state.lang,lang);assert.ok(state.h1?.trim());assert.equal(state.app.length,1);assert.equal(state.faq.length,1);
@@ -55,9 +64,9 @@ try {
    assert.equal(state.og.image,state.og.twitter);assert.match(state.og.image,/^https:\/\/.*\/github-cover\.jpg(?:\?|$)/);
    assert.equal(state.downloads.length,3);assert.ok(state.downloads.every(u=>u.includes('/v0.8.3/')));
    assert.equal(state.stats,expectedStats,'public counters respect the configured threshold');assert.equal(state.unknownBars,expectedProgress);
-   assert.equal(state.languageLinks,16);assert.deepEqual(state.clipped,[]);assert.equal(state.scrollWidth,width);assert.deepEqual(errors,[]);
+   assert.deepEqual(state.splitWords,[],lang+' '+width+' split button words');assert.equal(state.languageLinks,16);assert.deepEqual(state.clipped,[]);assert.equal(state.scrollWidth,width);assert.deepEqual(errors,[]);
    evidence.push({lang,width,passed:true,appSchemas:state.app.length,faqSchemas:state.faq.length,clipped:0});
-   if(['en','ru'].includes(lang))await page.screenshot({path:path.join(output,lang+'-'+width+'.png')});
+   if(['en','ru'].includes(lang)){await page.screenshot({path:path.join(output,lang+'-'+width+'.png')});if(width<=414)await page.locator('.device-chooser').screenshot({path:path.join(output,lang+'-'+width+'-downloads.png')});}
    await page.close();
   }
   await context.close();
@@ -73,6 +82,6 @@ try {
  const page=await context.newPage();
  const jpg=await page.request.get(base+'assets/github-cover.jpg');assert.equal(jpg.status(),200);assert.match(jpg.headers()['content-type'],/image\/jpeg/);
  const docs=await page.request.get(base+'docs/DOWNLOADS.md');assert.equal(docs.status(),200);assert.match(await docs.text(),/not unique people or installations/);
- await context.close();fs.writeFileSync(path.join(output,'site-results.json'),JSON.stringify({base,cases:evidence,noJS:16,jpegHTTP:200,downloadDocsHTTP:200},null,2)+'\n');
- console.log('Site PASS:',evidence.length,'rendered cases,16 no-JS pages, JSON-LD/JPEG/funding/stats checks');
+ await context.close();fs.writeFileSync(path.join(output,'site-results.json'),JSON.stringify({base,cases:evidence,noJS:languages.length,jpegHTTP:200,downloadDocsHTTP:200},null,2)+'\n');
+ console.log('Site PASS:',evidence.length,'rendered cases,',languages.length,'no-JS pages, JSON-LD/JPEG/funding/stats checks');
 } finally {await browser.close();if(server)await new Promise(resolve=>server.close(resolve));}

@@ -8,6 +8,7 @@ const attributionSource=/Android/i.test(agent)?'deckivo_android':/(Macintosh|Mac
 if(attribution&&attributionSource)attribution.href=`https://remteh.by/?utm_source=${attributionSource}&utm_medium=app&utm_campaign=deckivo`;
 const language=new URLSearchParams(location.search).get('lang')==='ru'?'ru':'en';
 document.documentElement.lang=language;
+if(attribution)attribution.textContent=language==='ru'?'Разработка RemTeh.by ↗':'Developed by RemTeh.by ↗';
 const picker=document.querySelector('#language');picker.value=language;picker.addEventListener('change',()=>{location.search='?lang='+picker.value;});
 const serviceLabel=document.createElement('label'),serviceCheckbox=document.createElement('input');serviceCheckbox.type='checkbox';serviceCheckbox.id='deckivo-service-mode';serviceCheckbox.checked=serviceModeEnabled();
 const serviceText=language==='ru'?'Сервисный режим':'Service mode';serviceLabel.append(serviceCheckbox,document.createTextNode(' '+serviceText));serviceLabel.className='deckivo-service-mode';document.querySelector('.deckivo-header').append(serviceLabel);
@@ -31,6 +32,7 @@ if(language==='en'){
  config._translate=()=>translate(document.body);
 }
 if(language==='ru')Object.assign(config.texts,{
+ gp_error_power_cycle_required:'Перед калибровкой отключите USB, полностью выключите геймпад и подключите его заново на этой странице.',
  gp_error_service_mode_required:'Сервисный режим выключен. Постоянная запись заблокирована.',
  gp_error_persistent_backup_required:'Перед записью нужна сохранённая резервная копия параметров.',
  gp_error_confirmation_required:'Постоянная запись отменена. Команда во флеш не отправлена.'

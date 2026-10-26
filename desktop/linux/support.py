@@ -70,12 +70,14 @@ def complete(window,seconds,clean):
 
 
 def maybe_thank(window):
-    if window.is_closing or not window.isVisible() or getattr(window,"update_ready",None):return
     path=window.support_state_path;current=load_json(path,{})
-    if window.active() or not support_policy.due(current,time.time()):return
+    allowed=not (window.is_closing or not window.isVisible() or getattr(window,"update_ready",None) or window.active())
+    consumed,should_show=support_policy.consume(current,time.time(),allowed)
+    private_json(path,consumed)
+    if not should_show:return
     config=configuration()
     if not config['methods']:return
-    copy=texts(window);private_json(path,support_policy.shown(current))
+    copy=texts(window);private_json(path,support_policy.shown(consumed))
     dialog=QDialog(window);dialog.setWindowTitle(copy['thanks_title']);layout=QVBoxLayout(dialog)
     layout.addWidget(label(copy['thanks_title'],'title'));layout.addWidget(label(copy['thanks_body'],'muted',True))
     layout.addWidget(qr_widget(config['methods'][0],220))

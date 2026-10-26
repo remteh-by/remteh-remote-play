@@ -66,11 +66,16 @@ class DisplayHostRecyclerViewAdapter(
                 host.isRegistered -> it.root.context.getString(R.string.dv_registered_unknown)
                 else -> it.root.context.getString(R.string.dv_registration_needed)
             }
-            it.statusText.setTextColor(context.getColor(if(state == DiscoveryHost.State.STANDBY) R.color.deckivo_warning else R.color.accent))
+            it.statusText.setTextColor(context.getColor(if(state == DiscoveryHost.State.READY) R.color.accent else R.color.deckivo_warning))
             val app = (host as? DiscoveredDisplayHost)?.discoveredHost?.runningAppName
             it.bottomInfoTextView.text = app?.takeIf { name -> name.isNotBlank() }?.let { name -> it.root.context.getString(R.string.dv_running_app, name) } ?: ""
             it.bottomInfoTextView.visibility = if(it.bottomInfoTextView.text.isEmpty()) View.GONE else View.VISIBLE
             it.playButton.text = if(host.isRegistered) { if(state == DiscoveryHost.State.STANDBY) it.root.context.getString(R.string.dv_wake_play) else it.root.context.getString(R.string.dv_play) } else it.root.context.getString(R.string.dv_register_console)
+            val unavailable = host.isRegistered && state != DiscoveryHost.State.READY && state != DiscoveryHost.State.STANDBY
+            val help = if (unavailable) context.getString(R.string.dv_offline_help) else null
+            if (help != null) { it.bottomInfoTextView.text = help; it.bottomInfoTextView.visibility = View.VISIBLE }
+            it.playButton.tooltipText = help
+            it.playButton.contentDescription = if (help == null) it.playButton.text else "${it.playButton.text}. $help"
             it.playButton.setOnClickListener { clickCallback(host) }
             it.root.setOnClickListener { clickCallback(host) }
 

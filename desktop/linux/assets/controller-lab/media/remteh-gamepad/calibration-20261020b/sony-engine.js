@@ -1,4 +1,4 @@
-import {preserveOriginal,requireFlashPermit,permanentWrite} from './service-mode.js';
+import {preserveOriginal,requireFlashPermit,permanentWrite,createBaselineGate,confirmPowerCycle} from './service-mode.js';
 /*! DualShock Tools — MIT, Copyright (c) 2024 the_al. RemTeh headless adapter. See LICENSE.txt. */
 /**
 * Race a promise against a timeout. USB feature/output transfers on a genuine
@@ -2634,6 +2634,7 @@ class InputDecoder {
 const models = new Map([[0x05c4, DS4Controller], [0x09cc, DS4Controller], [0x0ce6, DS5Controller], [0x0df2, DS5EdgeController]]);
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 function createSonyEngine({onFrame = () => {}, onState = () => {}} = {}) {
+  const baselineGate=createBaselineGate();
   let tuning=null, manualCalibration=null, releaseLease=null, durableBackup=null;
   let device, controller, decoder, generation = 0, inputHandler, disconnectHandler, lastFrame, effectId = 0, activeCleanup = null, activeEffectDone = null, activeStop = null;
   const state = {connected: false, connecting: false, connectStage: null, busy: false, fault: false, mode: null, effect: null, dirty: false, saved: false, info: null, battery: null, lastInput: 0, nvLocked: false, revision: 0};
@@ -2764,6 +2765,7 @@ function createSonyEngine({onFrame = () => {}, onState = () => {}} = {}) {
       inputHandler = receive; device.addEventListener('inputreport', inputHandler); receive(initial);
       disconnectHandler = event => {
         if (event.device !== device) return;
+        baselineGate.disconnected(state.info?.tuningId);
         // An effect keeps busy set until its serialized cleanup completes. Other
         // in-flight operations retain the prior hard-disconnect behavior so a
         // lost controller invalidates their connection generation immediately.
@@ -2781,6 +2783,7 @@ function createSonyEngine({onFrame = () => {}, onState = () => {}} = {}) {
       state.info = {model:controller.getModel(), name:device.productName, verified:info.ok === true && info.disable_bits === 0, blocked:info.disable_bits ?? 1, readable:info.ok === true, persistentSave:typeof controller.getInMemoryModuleData === 'function', fields, nv:info.nv?.status ?? 'unknown'};
       state.nvLocked = info.nv?.locked === true;
       state.info.tuningId=['DS5','DS5_Edge'].includes(controller.getModel())?await tuningIdentity(info):null;
+      baselineGate.connected(state.info.tuningId);
       // Keep one writable session per physical controller on this origin.
       // The browser releases the lease when the tab closes. External programs and
       // old pages still require the parameter compare-and-swap checks below.
@@ -2832,15 +2835,19 @@ function createSonyEngine({onFrame = () => {}, onState = () => {}} = {}) {
     const write=async values=>{check();guard();await ctrl.writeFinetuneData([...values]);check();const readback=await read();if(!sameTune(values,readback))error('tuning_readback_failed');return readback;};
     return {own,ctrl,check,read,lock,write};
   }
-  function preserveBeforeCalibration(values) {
-    if(!durableBackup)durableBackup=preserveOriginal(state.info?.tuningId,values);
+  async function preserveBeforeCalibration(values,io) {
+    if(!durableBackup){
+      await baselineGate.require(state.info?.tuningId,confirmPowerCycle);io.check();
+      if(!sameTune(values,await io.read()))error('tuning_external_change');
+      durableBackup=preserveOriginal(state.info?.tuningId,values);
+    }
   }
   async function beginTuning(restorePoint=null){
     if(state.mode)error('busy');
     if(state.info?.model!=='DS5'||!state.info?.tuningId)error('tuning_unavailable');
     return run(async()=>{
       const io=tuningIO();await io.lock();const current=await io.read();
-      preserveBeforeCalibration(current);
+      await preserveBeforeCalibration(current,io);
       const original=restorePoint?.parameters??current;
       if(restorePoint&&(restorePoint.identity!==state.info.tuningId||!boundedTune(current,original)))error('tuning_backup_mismatch');
       tuning={own:io.own,original:[...original],last:current,initialDirty:state.dirty,initialSaved:state.saved};state.mode='fine-tune';
@@ -2891,7 +2898,7 @@ function createSonyEngine({onFrame = () => {}, onState = () => {}} = {}) {
     const supportsCas = typeof controller?.getInMemoryModuleData === 'function';
     if (supportsCas) {
       const io=tuningIO(), actual=await io.read();
-      preserveBeforeCalibration(actual);
+      await preserveBeforeCalibration(actual,io);
       if (manualCalibration && (manualCalibration.own!==generation || manualCalibration.revision!==state.revision || !sameTune(actual,manualCalibration.parameters))) error('tuning_external_change');
       manualCalibration={own:generation,revision:state.revision,parameters:actual};
     } else manualCalibration={own:generation,revision:state.revision,parameters:null};
@@ -2948,7 +2955,7 @@ function createSonyEngine({onFrame = () => {}, onState = () => {}} = {}) {
       const supportsCas = typeof controller?.getInMemoryModuleData === 'function';
       if (supportsCas) {
         const io=tuningIO(), actual=await io.read();
-        preserveBeforeCalibration(actual);
+        await preserveBeforeCalibration(actual,io);
         if (manualCalibration && (manualCalibration.own!==generation || manualCalibration.revision!==state.revision || !sameTune(actual,manualCalibration.parameters))) error('tuning_external_change');
         manualCalibration={own:generation,revision:state.revision,parameters:actual};
       } else manualCalibration={own:generation,revision:state.revision,parameters:null};

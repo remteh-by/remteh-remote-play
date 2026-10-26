@@ -57,6 +57,7 @@ def stage_update():
                 return ready
             ready=check_and_download(base,'linux-switch-arm64',VERSION,BUILD,CACHE,
                 HERE/'assets/update-public.der',locked=True)
+            private_json(PRIVATE/'update-last-success.json',{'time':time.time(),'version':VERSION,'build':BUILD})
             if ready:
                 private_json(PENDING,ready)
                 entry=ready['entry'];record('ready',version=entry['version'],build=entry['build'])

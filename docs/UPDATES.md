@@ -82,3 +82,11 @@ The future custom domain is not active. See [domain migration](marketing/domain.
 ## Ubuntu timer migration in 0.8.3
 
 The updater installs deckivo-update-login.timer (45 seconds after user-manager startup) and deckivo-update.timer (60-minute cadence, RandomizedDelaySec=10min), both targeting the same service. Existing two-minute timer text is replaced, systemd is reloaded and changed active units are restarted. Unchanged units are not restarted on every GUI launch. Disabling automatic updates disables both timers. An active stream still defers installation.
+
+## Ubuntu login, linger and missed checks
+
+`deckivo-update-login.timer` uses `OnStartupSec=45s`, relative to the **systemd user manager**, not every GUI login. Without linger this normally starts with the first login. With linger it may start at boot and stay alive after logout; a later login does not restart its clock. The recurring timer still runs after 60 minutes of inactivity plus up to 10 minutes jitter. Deckivo does not enable linger itself.
+
+On GUI startup, a missing successful-check timestamp or one older than 60 minutes triggers a check when idle. Failed, disabled or deferred attempts do not count as a success. Recent successful GUI/background checks are shared, with the existing update lock preventing concurrent downloads. Future timestamps or a different installed build trigger a new check. Real reboot/timer acceptance on Switch remains a device test.
+
+Inspect with `loginctl show-user "$USER" -p Linger` and `systemctl --user list-timers 'deckivo-update*'`. Disable via `systemctl --user disable --now deckivo-update.timer deckivo-update-login.timer`.

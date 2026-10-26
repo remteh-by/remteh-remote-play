@@ -16,17 +16,19 @@ object SupportNudges {
     private fun write(context: Context, state: SupportNudge) {
         context.getSharedPreferences("deckivo_support", Context.MODE_PRIVATE).edit { putBoolean("eligible", state.eligible); putInt("shows", state.shows); putLong("next", state.nextAt); putBoolean("disabled", state.disabled) }
     }
-    fun complete(context: Context, seconds: Long, clean: Boolean) =
-        write(context, SupportPolicy.complete(read(context), seconds, clean))
+    fun clearPending(context: Context) = write(context, read(context).copy(eligible = false))
 
-    fun showIfDue(activity: AppCompatActivity) {
-        val state = read(activity)
-        if (!SupportPolicy.due(state, System.currentTimeMillis()) || activity.isFinishing) return
+    fun onStreamResult(activity: AppCompatActivity, qualified: Boolean, allowed: Boolean) {
+        val state = SupportPolicy.complete(read(activity), if (qualified) 600 else 0, qualified)
+        val (consumed, show) = SupportPolicy.consume(state, System.currentTimeMillis(), allowed && !activity.isFinishing && !activity.isDestroyed)
+        // Consume before considering UI, cooldown, configuration or recreation.
+        write(activity, consumed)
+        if (!show) return
         val methods = SupportActivity.configuration(activity).getJSONArray("methods")
         if (methods.length() == 0) return
         val method = methods.getJSONObject(0)
         val value = method.optString("url").ifBlank { method.optString("address") }
-        write(activity, SupportPolicy.shown(state))
+        write(activity, SupportPolicy.shown(consumed))
         AlertDialog.Builder(activity).setTitle(R.string.dv_thanks_title)
             .setMessage(R.string.dv_thanks_body).setView(LinkUi.qrView(activity, value))
             .setPositiveButton(R.string.dv_support_link) { _, _ ->

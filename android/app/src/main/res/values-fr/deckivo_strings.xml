@@ -112,6 +112,7 @@
     <string name="dv_my_console">Ma console</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">Aucun contrôleur trouvé. Connectez-le dans les paramètres Bluetooth d\'Android.</string>
+    <string name="dv_offline_help">PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.</string>
     <string name="dv_online">●  En ligne</string>
     <string name="dv_permission_denied">Autorisation non accordée. Vous pouvez continuer à utiliser cette version.</string>
     <string name="dv_play">Jouer</string>

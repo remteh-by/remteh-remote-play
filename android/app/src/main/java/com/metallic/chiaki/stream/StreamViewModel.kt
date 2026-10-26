@@ -22,12 +22,15 @@ class StreamViewModel(val application: Application, val connectInfo: ConnectInfo
     fun requestUserExit() { userExitRequested = session.state.value is com.metallic.chiaki.session.StreamStateConnected }
     private var historyStarted = 0L
     private var historyMonotonic = 0L
+    private val supportCompletion = com.metallic.chiaki.design.SupportSessionCompletion()
+    fun takeSupportResult(): Boolean = supportCompletion.consume(
+        if (historyStarted == 0L) 0 else (android.os.SystemClock.elapsedRealtime()-historyMonotonic)/1000,
+        userExitRequested && session.state.value is com.metallic.chiaki.session.StreamStateConnected)
     private fun finishHistory() {
         if(historyStarted == 0L) return
         com.metallic.chiaki.design.SessionHistory.append(application,historyStarted,
             (android.os.SystemClock.elapsedRealtime()-historyMonotonic)/1000,
             preferences.resolution.value + " · " + preferences.fps.value + " FPS")
-        com.metallic.chiaki.design.SupportNudges.complete(application, (android.os.SystemClock.elapsedRealtime()-historyMonotonic)/1000, userExitRequested)
         userExitRequested=false
         historyStarted=0L
     }

@@ -72,6 +72,7 @@ def load_download_stats(path):
  except (OSError,json.JSONDecodeError) as exc:raise ValueError(f'Invalid download statistics file {path}: {exc}') from exc
  if not isinstance(data,dict):raise ValueError('Download statistics root must be an object')
  if isinstance(data.get('schema'),bool) or data.get('schema')!=1:raise ValueError('Download statistics schema must be integer 1')
+ if data=={'schema':1,'available':False}:return None
  repository=data.get('repository')
  if not isinstance(repository,str) or not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',repository):raise ValueError('Download statistics repository must be owner/name')
  _utc_timestamp(data.get('generated_at'),'generated_at')
@@ -134,7 +135,7 @@ def downloads_badge(stats):
 
 
 def download_document(stats):
- if stats is None:return '# Deckivo download history\n\nStatistics are currently unavailable.\n'
+ if stats is None:return '# Deckivo download history\n\nStatistics are currently unavailable. This does not affect app downloads or updates.\n\nCounts are not unique people or installations.\n'
  lines=['# Deckivo download history','',f"Generated: {stats['generated_at']}",'',
   f"Installers and kits: **{stats['package_total']}**. All release files: **{stats['total_downloads']}**.",'',
   'Counts include updates, repeated downloads and verification downloads. They are not unique people or installations.',
@@ -151,6 +152,19 @@ def download_document(stats):
  return '\n'.join(lines)+'\n'
 
 
+def validate_translations(catalog):
+ # Only build/version strings may intentionally match English. Missing text is
+ # an error, not an invisible fallback that publishes English in other locales.
+ identical_allowed={'stage','android_note'}
+ for code in NAMES:
+  for key,value in catalog['en'].items():
+   if not isinstance(value,str):continue
+   translated=catalog[code].get(key)
+   if not isinstance(translated,str) or not translated.strip():raise ValueError(f'Missing translation: {code}.{key}')
+   if code!='en' and len(value)>12 and translated==value and key not in identical_allowed:
+    raise ValueError(f'Untranslated English: {code}.{key}')
+
+
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=ROOT/'build/site');parser.add_argument('--download-stats',type=Path,help='validated JSON snapshot from scripts/download-stats.py');parser.add_argument('--downloads-doc',type=Path,help='also refresh the repository documentation snapshot');args=parser.parse_args()
  settings=json.loads((ROOT/'design-system/site.json').read_text())['site'];base=settings['base_url']
@@ -161,13 +175,14 @@ def main():
  if counter and not re.fullmatch('[a-zA-Z0-9-]+',counter):raise ValueError('GoatCounter must be an account code')
  support=json.loads((ROOT/'website/support.json').read_text());catalog=json.loads((ROOT/'localization/site.json').read_text());download_catalog=json.loads((ROOT/'localization/downloads.json').read_text())
  if set(download_catalog)!=set(NAMES):raise ValueError('Download translations must cover every site language')
+ validate_translations(catalog)
  translation_keys=set(download_catalog['en'])
  for code in NAMES:
   if set(download_catalog[code])!=translation_keys:raise ValueError(f'Download translations for {code} do not match English keys')
  stats=load_download_stats(args.download_stats) if args.download_stats is not None else None
  screenshot=json.loads((ROOT/'website/assets/screenshot.json').read_text())
  if screenshot.get('schema')!=1 or not re.fullmatch(r'\d+\.\d+\.\d+',screenshot.get('version','')) or type(screenshot.get('build')) is not int:raise ValueError('Invalid screenshot provenance')
- for filename in ('deckivo-ui.webp','deckivo-ui.avif','github-cover.webp','github-cover.jpg'):
+ for filename in ('deckivo-ui.webp','deckivo-ui.avif','github-cover.webp','github-cover.jpg','deckivo-hero.webp','deckivo-hero.avif'):
   record=screenshot['images'][filename];image_path=ROOT/'website/assets'/filename
   if hashlib.sha256(image_path.read_bytes()).hexdigest()!=record['sha256']:raise ValueError(f'Screenshot hash mismatch: {filename}; regenerate image and provenance together')
  def screenshot_url(filename):return 'assets/'+filename+'?v='+screenshot['images'][filename]['sha256'][:12]
@@ -211,7 +226,7 @@ def main():
   links=soup.select_one('#language-links');links.clear()
   for lang,name in NAMES.items():links.append(tag('a',{'href':prefix+('' if lang=='en' else lang+'/') or './','lang':lang,'hreflang':lang,'class':'selected' if code==lang else ''},name))
   hero=soup.select_one('.hero-art');hero.clear();hero['aria-hidden']='false'
-  picture=tag('picture');picture.append(tag('source',{'type':'image/avif','srcset':screenshot_url('deckivo-ui.avif')}));picture.append(tag('img',{'src':screenshot_url('deckivo-ui.webp'),'alt':{'ru':'Настоящий экран Deckivo до привязки консоли','en':'Real Deckivo setup screen before console pairing'}.get(code,'Deckivo · setup screen'),'width':str(screenshot['images']['deckivo-ui.webp']['width']),'height':str(screenshot['images']['deckivo-ui.webp']['height']),'fetchpriority':'high'}));hero.append(picture)
+  picture=tag('picture');picture.append(tag('source',{'type':'image/avif','srcset':screenshot_url('deckivo-hero.avif')}));picture.append(tag('img',{'src':screenshot_url('deckivo-hero.webp'),'alt':{'ru':'Настоящий экран Deckivo до привязки консоли','en':'Real Deckivo setup screen before console pairing'}.get(code,'Deckivo · setup screen'),'width':str(screenshot['images']['deckivo-hero.webp']['width']),'height':str(screenshot['images']['deckivo-hero.webp']['height']),'fetchpriority':'high'}));hero.append(picture)
   hero.append(tag('p',{'class':'small screenshot-caption'},copy['screenshot_caption'].format(version=screenshot['version'],build=screenshot['build'],released=ANDROID_VERSION,linux=f'{LINUX_VERSION} b{LINUX_BUILD}')))
   for node in soup.select('.guide-link'):node['href']=f'https://github.com/remteh-by/remteh-remote-play/blob/main/docs/guides/{code}.md'+('#'+node['data-anchor'] if node.get('data-anchor') else '');node['data-event']='guide'
   linux=soup.select_one('.package-link[data-platform="linux"]');linux['href']=LINUX_URL;linux['data-event']='download-linux'

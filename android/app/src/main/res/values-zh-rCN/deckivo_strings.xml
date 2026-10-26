@@ -112,6 +112,7 @@
     <string name="dv_my_console">我的主机</string>
     <string name="dv_named_version">Deckivo %1$s</string>
     <string name="dv_no_controller">未找到控制器。在 Android 蓝牙设置中连接它。</string>
+    <string name="dv_offline_help">PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.</string>
     <string name="dv_online">●  在线</string>
     <string name="dv_permission_denied">未授予许可。您可以继续使用此版本。</string>
     <string name="dv_play">开始游戏</string>
