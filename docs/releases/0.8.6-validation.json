@@ -1,0 +1,709 @@
+{
+  "schema": 1,
+  "version": "0.8.6",
+  "channel": "experimental-prerelease",
+  "date": "2026-10-26",
+  "change": "Complete Home text in small desktop windows, adaptive measured title, separate console photograph column and vertical scrolling when needed",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.6",
+    "versionCode": 31,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.6-arm64.apk",
+    "apkBytes": 9469692,
+    "sha256": "29fc5891c8081f11e22c6150f89adc93aa34b0be632cfb6c34de856c5a27dd2b",
+    "unit_tests": 41,
+    "unit_failures": 0,
+    "certificate_sha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "release_assemble": "passed",
+    "lint": {
+      "new_findings": 0,
+      "existing_baseline": 96
+    }
+  },
+  "native": {
+    "unit_tests": 100,
+    "unit_failures": 0,
+    "macos_build": 22,
+    "linux_build": 22,
+    "macos_codesign": "verified ad-hoc",
+    "macos_notarized": false,
+    "packages": [
+      {
+        "build": 22,
+        "bytes": 31891310,
+        "filename": "Deckivo-macos-0.8.6-b22.zip",
+        "platform": "macos-arm64",
+        "sha256": "12a55a348bf81e990ddbed6581582753f639f2b55f7568ee6e8578f1bf8b6ee5",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-macos-0.8.6-b22.zip",
+        "version": "0.8.6"
+      },
+      {
+        "build": 22,
+        "bytes": 3598264,
+        "filename": "Deckivo-Linux-0.8.6-b22-source.zip",
+        "platform": "linux-switch-arm64",
+        "sha256": "3764bd604185181d078d3767263406e514d512c1efe369ccd4a876d6a07c67ad",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-Linux-0.8.6-b22-source.zip",
+        "version": "0.8.6"
+      }
+    ]
+  },
+  "layout_acceptance": {
+    "runtime": "real MacDeckivo widgets in isolated Qt/offscreen profiles",
+    "cases": [
+      {
+        "language": "en",
+        "requested": [
+          1000,
+          650
+        ],
+        "actual": [
+          1000,
+          650
+        ],
+        "title": [
+          289,
+          100
+        ],
+        "text_bounds": [
+          285,
+          98
+        ],
+        "font_px": 37,
+        "title_clipped": false,
+        "hero": [
+          289,
+          352
+        ],
+        "screenshot": "final-en-1000x650.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 123,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "en",
+        "requested": [
+          1280,
+          720
+        ],
+        "actual": [
+          1280,
+          720
+        ],
+        "title": [
+          401,
+          114
+        ],
+        "text_bounds": [
+          331,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          401,
+          336
+        ],
+        "screenshot": "final-en-1280x720.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 37,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "en",
+        "requested": [
+          1280,
+          800
+        ],
+        "actual": [
+          1280,
+          800
+        ],
+        "title": [
+          404,
+          114
+        ],
+        "text_bounds": [
+          331,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          404,
+          379
+        ],
+        "screenshot": "final-en-1280x800.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "en",
+        "requested": [
+          1440,
+          900
+        ],
+        "actual": [
+          1440,
+          900
+        ],
+        "title": [
+          468,
+          114
+        ],
+        "text_bounds": [
+          331,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          468,
+          479
+        ],
+        "screenshot": "final-en-1440x900.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "en",
+        "requested": [
+          1920,
+          1080
+        ],
+        "actual": [
+          1920,
+          1080
+        ],
+        "title": [
+          660,
+          114
+        ],
+        "text_bounds": [
+          331,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          660,
+          659
+        ],
+        "screenshot": "final-en-1920x1080.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "en",
+        "requested": [
+          2560,
+          1440
+        ],
+        "actual": [
+          2560,
+          1440
+        ],
+        "title": [
+          916,
+          114
+        ],
+        "text_bounds": [
+          331,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          916,
+          1019
+        ],
+        "screenshot": "final-en-2560x1440.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "en",
+        "requested": [
+          3840,
+          2160
+        ],
+        "actual": [
+          3840,
+          2160
+        ],
+        "title": [
+          1428,
+          114
+        ],
+        "text_bounds": [
+          331,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          1428,
+          1739
+        ],
+        "screenshot": "final-en-3840x2160.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "en",
+        "requested": [
+          1280,
+          720
+        ],
+        "actual": [
+          1280,
+          720
+        ],
+        "title": [
+          401,
+          114
+        ],
+        "text_bounds": [
+          331,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          401,
+          350
+        ],
+        "screenshot": "final-en-1280x720.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 51,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "en",
+        "requested": [
+          1000,
+          650
+        ],
+        "actual": [
+          1000,
+          650
+        ],
+        "title": [
+          289,
+          100
+        ],
+        "text_bounds": [
+          285,
+          98
+        ],
+        "font_px": 37,
+        "title_clipped": false,
+        "hero": [
+          289,
+          420
+        ],
+        "screenshot": "final-en-1000x650.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 191,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          1000,
+          650
+        ],
+        "actual": [
+          1000,
+          650
+        ],
+        "title": [
+          278,
+          104
+        ],
+        "text_bounds": [
+          273,
+          102
+        ],
+        "font_px": 39,
+        "title_clipped": false,
+        "hero": [
+          278,
+          372
+        ],
+        "screenshot": "final-ru-1000x650.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 143,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          1280,
+          720
+        ],
+        "actual": [
+          1280,
+          720
+        ],
+        "title": [
+          401,
+          114
+        ],
+        "text_bounds": [
+          301,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          401,
+          356
+        ],
+        "screenshot": "final-ru-1280x720.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 57,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          1280,
+          800
+        ],
+        "actual": [
+          1280,
+          800
+        ],
+        "title": [
+          404,
+          114
+        ],
+        "text_bounds": [
+          301,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          404,
+          379
+        ],
+        "screenshot": "final-ru-1280x800.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          1440,
+          900
+        ],
+        "actual": [
+          1440,
+          900
+        ],
+        "title": [
+          468,
+          114
+        ],
+        "text_bounds": [
+          301,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          468,
+          479
+        ],
+        "screenshot": "final-ru-1440x900.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          1920,
+          1080
+        ],
+        "actual": [
+          1920,
+          1080
+        ],
+        "title": [
+          660,
+          114
+        ],
+        "text_bounds": [
+          301,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          660,
+          659
+        ],
+        "screenshot": "final-ru-1920x1080.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          2560,
+          1440
+        ],
+        "actual": [
+          2560,
+          1440
+        ],
+        "title": [
+          916,
+          114
+        ],
+        "text_bounds": [
+          301,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          916,
+          1019
+        ],
+        "screenshot": "final-ru-2560x1440.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          3840,
+          2160
+        ],
+        "actual": [
+          3840,
+          2160
+        ],
+        "title": [
+          1428,
+          114
+        ],
+        "text_bounds": [
+          301,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          1428,
+          1739
+        ],
+        "screenshot": "final-ru-3840x2160.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 0,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          1280,
+          720
+        ],
+        "actual": [
+          1280,
+          720
+        ],
+        "title": [
+          401,
+          114
+        ],
+        "text_bounds": [
+          301,
+          112
+        ],
+        "font_px": 43,
+        "title_clipped": false,
+        "hero": [
+          401,
+          366
+        ],
+        "screenshot": "final-ru-1280x720.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 67,
+        "primary_inside_text_column": true
+      },
+      {
+        "language": "ru",
+        "requested": [
+          1000,
+          650
+        ],
+        "actual": [
+          1000,
+          650
+        ],
+        "title": [
+          278,
+          104
+        ],
+        "text_bounds": [
+          273,
+          102
+        ],
+        "font_px": 39,
+        "title_clipped": false,
+        "hero": [
+          278,
+          492
+        ],
+        "screenshot": "final-ru-1000x650.png",
+        "clipped_labels": [],
+        "photo_overlaps_content": false,
+        "horizontal_overflow": false,
+        "vertical_scroll_max": 263,
+        "primary_inside_text_column": true
+      }
+    ],
+    "original_failure": "0.8.5 title received 45\u201363px instead of 112px in small EN/RU windows",
+    "physics": "No live console/stream contacted"
+  },
+  "site_local": {
+    "languages": [
+      "en",
+      "ru"
+    ],
+    "render_cases": 14,
+    "no_js_pages": 2,
+    "widths": [
+      360,
+      390,
+      414,
+      1440,
+      1920,
+      2560,
+      3840
+    ]
+  },
+  "screenshot": {
+    "schema": 1,
+    "version": "0.8.6",
+    "build": 22,
+    "source_commit": "99d2f9dd5a5917e8640db1982c5e3aeafc568c52",
+    "source_dirty": false,
+    "ui_source_sha256": "a9b5d2a4858a31cd78087193f5f6fce9c06bb4d8d2331d95847ad6072d963f50",
+    "capture_state": "unpaired",
+    "development_preview": true,
+    "captured_at": "2026-10-26T16:58:39Z",
+    "images": {
+      "deckivo-ui.webp": {
+        "sha256": "22a71fe30ec53e48e5ef7d4c47e6932ac66b9a2e26afc9e588f66a4b9465394d",
+        "bytes": 43216,
+        "width": 1600,
+        "height": 900
+      },
+      "deckivo-ui.avif": {
+        "sha256": "70dced1f127060915286132bab2eefe7773c4268981eaf7cb8e2ab38d1b0a78b",
+        "bytes": 25519,
+        "width": 1600,
+        "height": 900
+      },
+      "github-cover.webp": {
+        "sha256": "e89f2fef8acedb0cfcf57da5ecd8b63bc9d834933f42d09fef218e6b5fcb6584",
+        "bytes": 30254,
+        "width": 1200,
+        "height": 630
+      },
+      "github-cover.jpg": {
+        "sha256": "48ba7037b1a03e920b4533324f61ad95e17495c1dfee7fdd9745d63f4c67910e",
+        "bytes": 63795,
+        "width": 1200,
+        "height": 630
+      },
+      "deckivo-hero.webp": {
+        "sha256": "aa33ad0201f91a74572e958fffa384ff02fc13a7c9c208d1d46415ebd3e98cfe",
+        "bytes": 30256,
+        "width": 1476,
+        "height": 536
+      },
+      "deckivo-hero.avif": {
+        "sha256": "5e819d74cb2417db2a5b97dac3d31035a9fba45678f3c1848626f5a8b23cfd2d",
+        "bytes": 17572,
+        "width": 1476,
+        "height": 536
+      }
+    },
+    "hero_crop": {
+      "source": "deckivo-ui.webp",
+      "rectangle": [
+        104,
+        108,
+        1580,
+        644
+      ],
+      "operation": "crop only, exact real Qt capture"
+    },
+    "readme_cover": "github-cover-0.8.6-b22-e89f2fef8ace.webp"
+  },
+  "test_scope": "Relevant existing desktop suite, Android release unit/lint/build and measured native Mac layout plus website rendering. Public delivery and installed Mac acceptance checked separately.",
+  "pending_physical": [
+    "Switch Android/Ubuntu installation and playback",
+    "PS5 streaming and game input",
+    "physical controller matrix",
+    "fresh-user Mac Gatekeeper first launch"
+  ],
+  "log_sha256": {
+    "android": "c8d4549677f095289623178518830915d43771185ad97e86cb56326c18274699",
+    "desktop": "d89acfefcbeb535c8281c0cc24ec4b139e91264f17f88c9a980eb6639ca81690",
+    "mac-build": "73ccb3b7aa87a98c694fc31df7561bcfea3f4a1c33368a1db914e11dd081f5e6",
+    "site": "25b9bf151a506bac95cddba00abf4ad2a36a1b8f2d3fcd081d184bd8b008f1b1"
+  }
+}
