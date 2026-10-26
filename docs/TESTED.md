@@ -174,6 +174,11 @@ that count is never published as real downloads.
 
 [Release validation](releases/0.8.4-validation.json) records exact package hashes,
 unchanged signing identities and the real isolated Qt capture provenance.
-Public Mac b19 → b20 update acceptance is recorded separately after publication.
+Public Mac b19 → b20 update acceptance passed: all 417 archive entries match,
+registration and preferences are byte-identical, code signing and the live startup
+acknowledgment passed. The real window shows the corrected PS5 offline guidance;
+no donation dialog appeared during 121 seconds after startup and the show counter
+did not increase. PS5 was offline, so gameplay is not covered.
+[Public updater receipt](releases/0.8.4-public-channel-validation.json).
 Physical streaming, Switch updates, controllers and new-user Gatekeeper acceptance
 remain in the [0.8.4 hardware checklist](OWNER-CHECKLIST-0.8.4.md).

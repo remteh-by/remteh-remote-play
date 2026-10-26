@@ -11,7 +11,7 @@
 
 **Deckivo 0.8.4 packages are experimental previews, not a finished 1.0
 product.** The release set is Android ARM64 build 29 plus desktop build 20 for
-Apple Silicon macOS and Switchroot Ubuntu ARM64. Mac update acceptance for 0.8.4 is recorded after public delivery in the release report; Android and Linux physical acceptance and current-release gameplay remain pending. Historical public-updater
+Apple Silicon macOS and Switchroot Ubuntu ARM64. The normal public Mac update from 0.8.3 b19 to 0.8.4 b20 passed (417 archive entries verified, pairing/settings retained, offline help and no startup donation dialog); Android and Linux physical acceptance and current-release gameplay remain pending. Historical public-updater
 acceptance belongs to Linux 0.8.1 b17: the Switch OLED / Ubuntu 24.04.4 ARM64 update from 0.6.1 b10
 matched all 80 public-ZIP files, retained pairing, acknowledged the live process
 and fetched the public feed through the enabled systemd user timer with the GUI
@@ -50,7 +50,7 @@ subscription or new Deckivo account is required for local play.
 | Hardware / OS | Exact build | Confirmed scope |
 |---|---|---|
 | Switch OLED / Android 15 | 0.6.0 #24 | Public self-update 23 → 24; exact release APK verified; saved console retained |
-| Apple Silicon Mac / macOS 27.0.1 | 0.8.3 b19 | Normal public signed update 0.8.2 b18 → 0.8.3 b19; all 417 archive entries matched the installed app; code signing and live startup acknowledgment passed; registration and preferences retained, returned idle. Native Donate was separately verified on 0.8.2 b18; no payment was submitted |
+| Apple Silicon Mac / macOS 27.0.1 | 0.8.4 b20 | Normal public signed update 0.8.3 b19 → 0.8.4 b20; 417/417 archive entries matched; code signing and live startup acknowledgment passed; registration/preferences unchanged. Correct offline help, no startup donation dialog during 121 seconds of observation. PS5 offline: gameplay not tested. Native Donate navigation is historical 0.8.2 evidence; no payment submitted |
 | Switch OLED / Ubuntu 24.04.4 ARM64 | 0.8.1 #17 | Public update 0.6.1 b10 → 0.8.1 b17; 80/80 installer files matched the public ZIP; startup acknowledgment matched the live process; pairing retained; enabled systemd user timer fetched the public feed with the GUI closed; gameplay pending separately |
 | Earlier gameplay | Android 0.1.x; Ubuntu 0.3.0; Mac chiaki-ng 1.10.0 engine | Owner-confirmed local picture and sound; GameSir input on Switch |
 
@@ -59,8 +59,9 @@ version `13420000`); no other firmware coverage is certified.
 
 See **[the detailed test matrix](docs/TESTED.md)** and
 [0.8.4 validation](docs/releases/0.8.4-validation.json) for release checks.
-[Public update acceptance](docs/releases/0.6.0-public-channel-validation.json)
-now confirms Android #24 and Mac #9. Historical gameplay does not certify every
+[0.8.4 public Mac update acceptance](docs/releases/0.8.4-public-channel-validation.json).
+[Earlier public update acceptance](docs/releases/0.6.0-public-channel-validation.json)
+confirms Android #24 and Mac #9. Historical gameplay does not certify every
 new frontend feature.
 
 ### Quick start

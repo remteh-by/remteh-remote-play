@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "version": "0.8.4",
+  "date": "2026-10-26",
+  "macos": {
+    "from": "0.8.3 b19",
+    "to": "0.8.4 b20",
+    "method": "native Updates dialog: Check now \u2192 Install prepared update; public HTTPS signed feed",
+    "public_feed": "https://remteh-by.github.io/remteh-remote-play/updates/",
+    "archive_sha256": "ff0b564107ed592c3c26fe0fac3abbffc81807c73df718cfe9d1eea7331abdaf",
+    "installed_archive_entries_match": 417,
+    "codesign": "PASS (ad-hoc)",
+    "receipt_ack_transaction_match": true,
+    "ack_process_alive": true,
+    "registration_unchanged": true,
+    "preferences_unchanged": true,
+    "idle_after_update": true,
+    "ps5_online": false,
+    "offline_guidance_visible": true,
+    "contradictory_ready_message_absent": true,
+    "startup_donation_dialog_absent": true,
+    "donation_show_counter_unchanged": true,
+    "observed_seconds_after_startup": 121,
+    "new_user_gatekeeper": "not tested",
+    "gameplay": "not tested; PS5 offline"
+  },
+  "release_assets": {
+    "downloaded": 13,
+    "sha256_matches": 13
+  },
+  "older_releases": "v0.8.3 and v0.8.2 metadata and all 26 asset identities/digests unchanged",
+  "pages": {
+    "run_id": 40321903959,
+    "result": "success",
+    "feed_signature": "verified",
+    "fresh_capture_hashes": "match published images",
+    "public_browser_cases": 14,
+    "no_js_pages": 2
+  },
+  "github_quality_runs": [
+    {
+      "id": 40321508457,
+      "branch": "release/0.8.4",
+      "result": "success"
+    },
+    {
+      "id": 40321904112,
+      "branch": "main",
+      "result": "success"
+    }
+  ]
+}
