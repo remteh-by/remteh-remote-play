@@ -85,7 +85,7 @@ def controller():
 
 
 def history():
-    s=chrome('Sessions',2)+text(116,91,'A private record on this Switch. No uploads.')
+    s=chrome('Sessions',2)+text(116,91,'Session history stays on this device.')
     s+=rect(116,112,1136,190)+text(142,157,'Your next session starts here.',23,'#F3F5F7',600)
     s+=text(142,197,'Session time, profile and decoded frames are recorded locally.')
     s+=text(142,246,'No sample sessions or invented performance figures.',13)

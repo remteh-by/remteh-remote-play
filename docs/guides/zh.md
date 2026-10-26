@@ -1,12 +1,12 @@
 # Deckivo — 安装与游玩指南
 
-Deckivo **0.8.4 preview** · 2026-10-25
+Deckivo **0.8.5 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## 开始之前
 
-0.8.4 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。
+0.8.5 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.4 preview** · 2026-10-25
 
 从下方版本页面下载 arm64 APK。最低需要 Android 8；实际设备测试为 Switch OLED / Android 15。仅为选定的安装来源授权。直接覆盖旧版，不要卸载或清除数据，以保留配对。选择语言并打开连接向导，在 Android 蓝牙设置中连接手柄。不要关闭 Play Protect。
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.4)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-0.8.5-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.5)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Deckivo **0.8.4 preview** · 2026-10-25
 
 本预览版仅适用于 Apple Silicon。另行安装官方 chiaki-ng，在其中注册 PS5 并结束串流。解压 Mac ZIP，把 Deckivo.app 放入 ~/Applications。应用未经过公证，macOS 可能要求在隐私与安全性中选择“仍要打开”；不要全局关闭 Gatekeeper。在 Deckivo 设置中导入 chiaki-ng 注册信息并输入主机 IP。保留 chiaki-ng，它提供串流引擎。
 
-[Mac ZIP · 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-macos-0.8.4-b20.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.5 b21](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-macos-0.8.5-b21.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-Linux-0.8.4-b20-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-sources.zip)
+[Linux update ZIP · 0.8.5 b21](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-Linux-0.8.5-b21-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-0.8.5-sources.zip)
 
 ## 配对与首次连接
 

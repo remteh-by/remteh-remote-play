@@ -140,7 +140,7 @@
     <string name="dv_searching">네트워크에서 검색 중입니다. IP 주소를 추가할 수도 있습니다.</string>
     <string name="dv_settings">설정</string>
     <string name="dv_setup">연결</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.4</string>
+    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.5</string>
     <string name="dv_setup_done">등록 후 집으로 돌아와 PS5를 선택하십시오. 로컬 플레이가 준비되었습니다. 이 버전에서는 인터넷 액세스가 구성되지 않습니다.</string>
     <string name="dv_setup_enable">PS5에서는 설정 → 시스템 → 원격 플레이를 활성화하세요.</string>
     <string name="dv_setup_find">01 · 콘솔 찾기</string>

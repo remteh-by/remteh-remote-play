@@ -3,6 +3,6 @@ import plistlib
 from pathlib import Path
 import sys
 
-BUILD = 20
+BUILD = 21
 if sys.platform=='darwin' and getattr(sys,'frozen',False):
     BUILD = int(plistlib.loads((Path(sys.executable).parents[1]/'Info.plist').read_bytes())['CFBundleVersion'])

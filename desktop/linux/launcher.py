@@ -82,7 +82,7 @@ WORDS = {
     'time': ('Session time', 'Время сеанса'), 'last': ('Last session', 'Прошлый сеанс'),
     'frames': ('Decoded frames', 'Декодировано кадров'),
     'no_data': ('No session yet', 'Сеансов пока нет'),
-    'history_sub': ('A private record on this Switch. No uploads.', 'Локальная история на Switch. Никуда не отправляется.'),
+    'history_sub': ('Session history stays on this device.', 'История сеансов хранится только на этом устройстве.'),
     'empty': ('Your next session starts here.', 'Здесь появится твой следующий сеанс.'),
     'export': ('Export safe diagnostics', 'Экспорт диагностики'),
     'export_help': ('Includes versions, requested profile and measured decoder data. Excludes accounts, IP addresses, pairing keys and raw logs.', 'Версия, профиль и замеры декодера. Без аккаунтов, IP, ключей привязки и сырых журналов.'),

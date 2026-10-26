@@ -1,5 +1,11 @@
 # 0.8.3 · controller safeguards and audit corrections · 2026-10-26
 
+## 0.8.5 — 2026-10-26 (preview)
+
+- Corrected the shared Sessions subtitle in English and Russian: history stays on this device, without incorrectly calling a Mac a Switch. Updated the legacy design exporter too.
+- Android build 30; macOS and Ubuntu build 21. No pairing, session storage, streaming or controller behavior changes.
+
+
 ## 0.8.4 — 2026-10-26 (preview)
 
 - Android build 29; macOS and Ubuntu build 20. Existing application IDs and signing identities retained.
