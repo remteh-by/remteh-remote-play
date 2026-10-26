@@ -182,3 +182,19 @@ did not increase. PS5 was offline, so gameplay is not covered.
 [Public updater receipt](releases/0.8.4-public-channel-validation.json).
 Physical streaming, Switch updates, controllers and new-user Gatekeeper acceptance
 remain in the [0.8.4 hardware checklist](OWNER-CHECKLIST-0.8.4.md).
+
+## 0.8.5 Sessions-copy patch (2026-10-26)
+
+Eight isolated native Mac screen renders (four screens × EN/RU), 100 desktop tests,
+41 Android release unit tests, lintRelease with no new findings, and 14 local
+website cases + 2 no-JavaScript pages passed. CI browser quality and Pages passed.
+All 13 public assets were downloaded and verified.
+
+The owner's Mac updated through the normal public updater from 0.8.4 b20 to
+0.8.5 b21. All 417 ZIP entries matched the installed app; codesign, receipt/ack
+and live process checks passed. Registration, preferences and session history
+were byte-identical before/after. The installed Sessions page showed the corrected
+Russian device-neutral subtitle. This is UI/update acceptance, not gameplay.
+
+[Public acceptance](releases/0.8.5-public-channel-validation.json) ·
+[Device checklist](OWNER-CHECKLIST-0.8.5.md).

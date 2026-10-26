@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "version": "0.8.5",
+  "date": "2026-10-26",
+  "macos": {
+    "from": "0.8.4 b20",
+    "to": "0.8.5 b21",
+    "method": "existing native app command check_updates; restart idle app to home; native automatic signed public updater applied its staged package",
+    "archive_sha256": "773520f70cc67f74632cb5c8f23a1b2e84dcf5def5285c0d597751fb8ce59ae5",
+    "installed_archive_entries_match": 417,
+    "codesign": "PASS (ad-hoc)",
+    "receipt_ack_transaction_match": true,
+    "ack_process_alive": true,
+    "unchanged_private_files": {
+      "registration.json": true,
+      "preferences.json": true,
+      "sessions.json": true
+    },
+    "idle_after_update": true,
+    "ps5_online": false,
+    "fixed_copy_in_installed_code": true,
+    "real_Mac_class_rendering": "8 isolated MacDeckivo EN/RU screen renders passed",
+    "live_window_visual_acceptance": "PASS: installed Mac 0.8.5 b21 Sessions opened using F2; new Russian subtitle observed through native accessibility tree",
+    "new_user_gatekeeper": "not tested",
+    "gameplay": "not tested; PS5 offline",
+    "visible_sessions_copy": "История сеансов хранится только на этом устройстве."
+  },
+  "release_assets": {
+    "downloaded": 13,
+    "sha256_matches": 13
+  },
+  "older_releases": "v0.8.4/v0.8.3/v0.8.2 unchanged",
+  "ci": {
+    "release": {
+      "id": 40324366653,
+      "result": "success"
+    },
+    "main": {
+      "id": 40324567392,
+      "result": "success"
+    },
+    "pages": {
+      "id": 40324567369,
+      "result": "success"
+    }
+  }
+}
