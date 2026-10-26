@@ -25,8 +25,10 @@ const evidence=[];
 const statistics=await (await fetch(base+'download-stats.json')).json();
 const threshold=JSON.parse(fs.readFileSync('design-system/site.json','utf8')).site.downloads.public_min_packages;
 const expectedStats=Number.isInteger(statistics.package_total)&&statistics.package_total>=threshold?1:0;
+const support=JSON.parse(fs.readFileSync('website/support.json','utf8'));
+const expectedProgress=support.goals.filter(g=>g.target_usd!==null&&g.raised_usd!==null&&g.target_usd>0).length;
 try {
- for(const width of [390,1440,2560]) {
+ for(const width of [390,1440,1920,2560,3840]) {
   const context=await browser.newContext({viewport:{width,height:1000}});
   for(const lang of languages) {
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -52,7 +54,7 @@ try {
    assert.equal(state.og.width,'1200');assert.equal(state.og.height,'630');assert.equal(state.og.type,'image/jpeg');
    assert.equal(state.og.image,state.og.twitter);assert.match(state.og.image,/^https:\/\/.*\/github-cover\.jpg(?:\?|$)/);
    assert.equal(state.downloads.length,3);assert.ok(state.downloads.every(u=>u.includes('/v0.8.3/')));
-   assert.equal(state.stats,expectedStats,'public counters respect the configured threshold');assert.equal(state.unknownBars,0);
+   assert.equal(state.stats,expectedStats,'public counters respect the configured threshold');assert.equal(state.unknownBars,expectedProgress);
    assert.equal(state.languageLinks,16);assert.deepEqual(state.clipped,[]);assert.equal(state.scrollWidth,width);assert.deepEqual(errors,[]);
    evidence.push({lang,width,passed:true,appSchemas:state.app.length,faqSchemas:state.faq.length,clipped:0});
    if(['en','ru'].includes(lang))await page.screenshot({path:path.join(output,lang+'-'+width+'.png')});

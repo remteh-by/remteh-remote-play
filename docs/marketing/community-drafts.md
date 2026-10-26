@@ -18,7 +18,7 @@ modify the PS5. Start on the same home network and use your own console/profile.
 
 Exact hardware/builds and remaining tests:
 https://github.com/remteh-by/remteh-remote-play/blob/main/docs/TESTED.md
-Source and preview: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2
+Source and preview: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.3
 Upstream credit: Chiaki, chiaki-ng, Android Extended. Optional support funds signing and hardware; everything stays free.
 
 ## GBAtemp / Switchroot · English
@@ -46,7 +46,7 @@ bug reports. Keep Play Protect enabled. Download the signed APK over the previou
 installation to retain pairing. macOS and Switchroot Ubuntu have separate guides.
 
 Release / full corresponding source / hashes:
-https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2
+https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.3
 License: AGPL-3.0 with the retained upstream OpenSSL permission.
 
 ## 4PDA · Русский
@@ -65,7 +65,7 @@ License: AGPL-3.0 with the retained upstream OpenSSL permission.
 
 Инструкция и точные проверенные версии:
 https://remteh-by.github.io/remteh-remote-play/ru/
-Исходники и файлы: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.2
+Исходники и файлы: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.3
 Длительную игру и подключение через интернет не выдаём за завершённые тесты.
 
 ## Хабр · технический черновик

@@ -29,6 +29,7 @@ jobs:
           python -m pip install -r scripts/requirements-build.txt
           python scripts/generate-support.py --check
           python -m unittest tests/test_download_stats.py
+          python -m unittest tests/test_site_generation.py
           python scripts/download-stats.py --output build/download-stats.json
           python scripts/build-site.py --download-stats build/download-stats.json
         env:

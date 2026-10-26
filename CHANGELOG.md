@@ -1,3 +1,21 @@
+# 0.8.3 · controller safeguards and audit corrections · 2026-10-26
+
+- Controller firmware tools compare version numbers only; binary firmware
+  downloads and proxying are removed. Use Sony's official update method.
+- Permanent controller writes require the default-off Service mode, a durable
+  original-parameter backup and explicit confirmation with a mandatory checkbox.
+  No permanent calibration was performed on real hardware for this release.
+- Expanded English controller diagnostics, with automated deep-state Cyrillic
+  checks and honest English fallback for the other 14 languages.
+- Hide unknown funding progress and small download totals; preserve generated
+  download-history documentation, one application schema and a real UI JPEG cover.
+- Linux checks updates 45 seconds after login and then hourly with up to ten
+  minutes of jitter; upgrades migrate the installed timer units.
+- Android #28 and desktop b19 retain their existing identities. Switch lag
+  diagnosis and sustained gameplay are not verified while the device is unavailable.
+
+See [EN/RU release notes](docs/releases/0.8.3.md).
+
 # 0.8.2 · project links and clearer downloads · 2026-10-25
 
 - Fix a macOS/Ubuntu crash when clicking the donation link and preserve the

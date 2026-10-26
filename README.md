@@ -1,5 +1,5 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.2-b18-52db20a79ae5.webp" alt="Deckivo — actual desktop interface, development preview 0.8.2 build 18" width="100%"></a></p>
-<p align="center"><sub>Actual Deckivo 0.8.2 desktop interface · desktop build 18 · Android build 27.</sub></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.3-b19-f14e45c36b6f.webp" alt="Deckivo — actual desktop interface, development preview 0.8.3 build 19" width="100%"></a></p>
+<p align="center"><sub>Actual Deckivo 0.8.3 desktop interface · desktop build 19 · Android build 28.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">RemTeh.by</a> · <a href="https://remteh.by/remont-konsoli?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">Game console repair in Minsk</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
@@ -12,8 +12,8 @@
 **Deckivo 0.8.3 packages are experimental previews, not a finished 1.0
 product.** The release set is Android ARM64 build 28 plus desktop build 19 for
 Apple Silicon macOS and Switchroot Ubuntu ARM64. The Mac public updater and
-native Donate navigation are accepted for 0.8.2; Android and Linux 0.8.2 physical
-acceptance, plus current-release gameplay, remain pending. Historical public-updater
+native Donate navigation are accepted for 0.8.2; Android and Linux physical
+acceptance of 0.8.3, plus current-release gameplay, remain pending. Historical public-updater
 acceptance belongs to Linux 0.8.1 b17: the Switch OLED / Ubuntu 24.04.4 ARM64 update from 0.6.1 b10
 matched all 80 public-ZIP files, retained pairing, acknowledged the live process
 and fetched the public feed through the enabled systemd user timer with the GUI
@@ -27,7 +27,7 @@ subscription or new Deckivo account is required for local play.
 |---|---|---|
 | Android ARM64 | 0.8.3 #28 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-arm64.apk) |
 | macOS Apple Silicon | 0.8.3 b19; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip) |
-| Switchroot Ubuntu ARM64 | 0.8.3 b19 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.3 real-device acceptance pending | [Linux 0.8.2 b18](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
+| Switchroot Ubuntu ARM64 | 0.8.3 b19 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.3 real-device acceptance pending | [Linux 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
 | Windows, Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
 ### Made for your own play space
@@ -56,11 +56,11 @@ subscription or new Deckivo account is required for local play.
 | Switch OLED / Ubuntu 24.04.4 ARM64 | 0.8.1 #17 | Public update 0.6.1 b10 → 0.8.1 b17; 80/80 installer files matched the public ZIP; startup acknowledgment matched the live process; pairing retained; enabled systemd user timer fetched the public feed with the GUI closed; gameplay pending separately |
 | Earlier gameplay | Android 0.1.x; Ubuntu 0.3.0; Mac chiaki-ng 1.10.0 engine | Owner-confirmed local picture and sound; GameSir input on Switch |
 
-The connected PS5 currently advertises firmware **13.42** (discovery system
+The previously observed PS5 advertised firmware **13.42** (discovery system
 version `13420000`); no other firmware coverage is certified.
 
 See **[the detailed test matrix](docs/TESTED.md)** and
-[0.6.0 validation](docs/releases/0.6.0-validation.json) for release checks.
+[0.8.3 validation](docs/releases/0.8.3-validation.json) for release checks.
 [Public update acceptance](docs/releases/0.6.0-public-channel-validation.json)
 now confirms Android #24 and Mac #9. Historical gameplay does not certify every
 new frontend feature.

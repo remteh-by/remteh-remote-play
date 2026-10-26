@@ -1,0 +1,1055 @@
+{
+  "schema": 1,
+  "version": "0.8.3",
+  "controller": {
+    "kind": "synthetic Gamepad/HID UI fixtures and source-message corpus, no physical controller writes",
+    "cases": [
+      {
+        "label": "disconnected initial",
+        "cyrillic": []
+      },
+      {
+        "label": "disconnected tab:test",
+        "cyrillic": []
+      },
+      {
+        "label": "details test",
+        "cyrillic": []
+      },
+      {
+        "label": "details test",
+        "cyrillic": []
+      },
+      {
+        "label": "disconnected tab:calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "disconnected tab:triggers",
+        "cyrillic": []
+      },
+      {
+        "label": "disconnected tab:device",
+        "cyrillic": []
+      },
+      {
+        "label": "disconnected tab:comparison",
+        "cyrillic": []
+      },
+      {
+        "label": "DualSense Wireless Controller (Vendor: 054c Product: 0ce6) initial",
+        "cyrillic": []
+      },
+      {
+        "label": "DualSense Wireless Controller (Vendor: 054c Product: 0ce6) live input",
+        "cyrillic": []
+      },
+      {
+        "label": "DualSense Wireless Controller (Vendor: 054c Product: 0ce6) tab:test",
+        "cyrillic": []
+      },
+      {
+        "label": "details test",
+        "cyrillic": []
+      },
+      {
+        "label": "details test",
+        "cyrillic": []
+      },
+      {
+        "label": "DualSense Wireless Controller (Vendor: 054c Product: 0ce6) tab:calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "DualSense Wireless Controller (Vendor: 054c Product: 0ce6) tab:triggers",
+        "cyrillic": []
+      },
+      {
+        "label": "DualSense Wireless Controller (Vendor: 054c Product: 0ce6) tab:device",
+        "cyrillic": []
+      },
+      {
+        "label": "DualSense Wireless Controller (Vendor: 054c Product: 0ce6) tab:comparison",
+        "cyrillic": []
+      },
+      {
+        "label": "DualShock 4 (Vendor: 054c Product: 09cc) initial",
+        "cyrillic": []
+      },
+      {
+        "label": "DualShock 4 (Vendor: 054c Product: 09cc) live input",
+        "cyrillic": []
+      },
+      {
+        "label": "DualShock 4 (Vendor: 054c Product: 09cc) tab:test",
+        "cyrillic": []
+      },
+      {
+        "label": "details test",
+        "cyrillic": []
+      },
+      {
+        "label": "details test",
+        "cyrillic": []
+      },
+      {
+        "label": "DualShock 4 (Vendor: 054c Product: 09cc) tab:calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "DualShock 4 (Vendor: 054c Product: 09cc) tab:triggers",
+        "cyrillic": []
+      },
+      {
+        "label": "DualShock 4 (Vendor: 054c Product: 09cc) tab:device",
+        "cyrillic": []
+      },
+      {
+        "label": "DualShock 4 (Vendor: 054c Product: 09cc) tab:comparison",
+        "cyrillic": []
+      },
+      {
+        "label": "Xbox Series Controller (Vendor: 045e Product: 0b13) initial",
+        "cyrillic": []
+      },
+      {
+        "label": "Xbox Series Controller (Vendor: 045e Product: 0b13) live input",
+        "cyrillic": []
+      },
+      {
+        "label": "Xbox Series Controller (Vendor: 045e Product: 0b13) tab:test",
+        "cyrillic": []
+      },
+      {
+        "label": "details test",
+        "cyrillic": []
+      },
+      {
+        "label": "details test",
+        "cyrillic": []
+      },
+      {
+        "label": "Xbox Series Controller (Vendor: 045e Product: 0b13) tab:calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "Xbox Series Controller (Vendor: 045e Product: 0b13) tab:triggers",
+        "cyrillic": []
+      },
+      {
+        "label": "Xbox Series Controller (Vendor: 045e Product: 0b13) tab:device",
+        "cyrillic": []
+      },
+      {
+        "label": "Xbox Series Controller (Vendor: 045e Product: 0b13) tab:comparison",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB connected",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB test",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB details test",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB details test",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB triggers",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB details triggers",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:vib-left",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:vib-right",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:adaptive-resistance",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:adaptive-single",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:adaptive-machinegun",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB touch",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:reset-touch",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB audio",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB details audio",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:speaker",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:headphones",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB device",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB details device",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:firmware",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:lights",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:lights-rgb",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:lights-player",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 action:lights-mute",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 USB comparison",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 export",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 permanent warning",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 after cancel",
+        "cyrillic": []
+      },
+      {
+        "label": "DS5 source message corpus",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB connected",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB test",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB details test",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB details test",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB details calibration",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB triggers",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 action:vib-left",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 action:vib-right",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB touch",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 action:reset-touch",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB audio",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB details audio",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB device",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB details device",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 action:lights",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 action:lights-rgb",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 USB comparison",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 export",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 permanent warning",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 after cancel",
+        "cyrillic": []
+      },
+      {
+        "label": "DS4 source message corpus",
+        "cyrillic": []
+      },
+      {
+        "label": "RU irreversible warning, required checkbox and persisted service mode",
+        "cyrillic": []
+      }
+    ],
+    "english_cyrillic": 0,
+    "language_name_exception": "Русский"
+  },
+  "website": {
+    "base": "local generated site",
+    "cases": [
+      {
+        "lang": "en",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ru",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "uk",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pl",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "de",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "es",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "it",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pt",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "tr",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "zh",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ja",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ko",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ar",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "hi",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "id",
+        "width": 390,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "en",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ru",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "uk",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pl",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "de",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "fr",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "es",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "it",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pt",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "tr",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "zh",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ja",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ko",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ar",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "hi",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "id",
+        "width": 1440,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "en",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ru",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "uk",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pl",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "de",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "fr",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "es",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "it",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pt",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "tr",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "zh",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ja",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ko",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ar",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "hi",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "id",
+        "width": 1920,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "en",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ru",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "uk",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pl",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "de",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "fr",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "es",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "it",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pt",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "tr",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "zh",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ja",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ko",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ar",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "hi",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "id",
+        "width": 2560,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "en",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ru",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "uk",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pl",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "de",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "fr",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "es",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "it",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "pt",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "tr",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "zh",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ja",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ko",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "ar",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "hi",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      },
+      {
+        "lang": "id",
+        "width": 3840,
+        "passed": true,
+        "appSchemas": 1,
+        "faqSchemas": 1,
+        "clipped": 0
+      }
+    ],
+    "noJS": 16,
+    "jpegHTTP": 200,
+    "downloadDocsHTTP": 200
+  }
+}

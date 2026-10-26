@@ -1,0 +1,305 @@
+{
+  "schema": 1,
+  "version": "0.8.3",
+  "channel": "experimental-prerelease",
+  "date": "2026-10-26",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.3",
+    "versionCode": 28,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.3-arm64.apk",
+    "apkBytes": 9465596,
+    "sha256": "b1cf873fbd73276f3b58fad4e3f0bca99a3644595ce5c0a1df7cc78ca820a7b6",
+    "unit_tests": 39,
+    "unit_failures": 0,
+    "release_assemble": "passed",
+    "lint": {
+      "new_findings": 0,
+      "existing_baseline": 96
+    },
+    "certificate_unchanged": true,
+    "certificate_sha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "physical_acceptance": "not performed: Switch absent from ADB and mDNS",
+    "controller_lab_exact_files": 49
+  },
+  "native": {
+    "unit_tests": 84,
+    "unit_failures": 0,
+    "macos_build": 19,
+    "linux_build": 19,
+    "macos_codesign": "ad-hoc verification passed",
+    "macos_notarized": false,
+    "packages": [
+      {
+        "build": 19,
+        "bytes": 31885990,
+        "filename": "Deckivo-macos-0.8.3-b19.zip",
+        "platform": "macos-arm64",
+        "sha256": "a4a6ca72249ebce33252daa93f954da9b5a9489177527d2c168b867460de8bf4",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip",
+        "version": "0.8.3"
+      },
+      {
+        "build": 19,
+        "bytes": 3595343,
+        "filename": "Deckivo-Linux-0.8.3-b19-source.zip",
+        "platform": "linux-switch-arm64",
+        "sha256": "eb97f994ce23d8184006e48c6dd7964e47e0e9b80f6dbf5f15191653c554ebaf",
+        "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip",
+        "version": "0.8.3"
+      }
+    ],
+    "signature": "verified with unchanged pinned RSA key",
+    "physical_update_acceptance": "Mac public rollout pending publication; Ubuntu unavailable"
+  },
+  "additional_tests": {
+    "core_and_support": 12,
+    "download_statistics": 9,
+    "permanent_policy_and_translation": 6,
+    "website_generator_boundary": 1,
+    "boundary_cases": [
+      999,
+      1000
+    ],
+    "qt_unknown_goal_combinations": 4
+  },
+  "browser": {
+    "controller_states": 99,
+    "english_cyrillic": 0,
+    "physical_HID": false,
+    "website_languages": 16,
+    "rendered_cases": 80,
+    "viewports": [
+      390,
+      1440,
+      1920,
+      2560,
+      3840
+    ],
+    "no_js_pages": 16,
+    "software_application_per_page": 1,
+    "faq_page_per_page": 1,
+    "jpeg_http": 200,
+    "jpeg_dimensions": [
+      1200,
+      630
+    ],
+    "unknown_goal_bars": 0,
+    "clipped_visible_elements": 0
+  },
+  "firmware": {
+    "binaries_and_proxy": "removed from Deckivo",
+    "catalog": "JSON version strings only",
+    "official_method": "https://www.playstation.com/en-us/support/hardware/accessories/",
+    "production_remteh_changed": false
+  },
+  "controller_safety": {
+    "service_mode_default": false,
+    "persistent_setting": true,
+    "durable_original_backup_before_write": true,
+    "modal_confirmation_checkbox": true,
+    "real_permanent_writes": 0
+  },
+  "availability": {
+    "adb_devices": "List of devices attached",
+    "adb_mdns": "List of discovered mdns services",
+    "ubuntu_ssh_available": false,
+    "ubuntu_error": "RuntimeError",
+    "mac_app": {
+      "version": "0.8.2",
+      "build": 18,
+      "running": false,
+      "online": false,
+      "state": "idle"
+    },
+    "controller_names_detected": false,
+    "checked_at": "2026-10-26T08:25:59.101949+00:00"
+  },
+  "lag_diagnosis": {
+    "three_minute_runs": 0,
+    "thirty_minute_sessions": 0,
+    "profiles": [
+      {
+        "profile": "original settings",
+        "duration_seconds_measured": null,
+        "metrics": {
+          "MediaCodec decoder and hardware/software": null,
+          "received frames": null,
+          "decoded frames": null,
+          "presented frames": null,
+          "dropped frames": null,
+          "decoder latency": null,
+          "packet loss": null,
+          "FEC": null,
+          "Wi-Fi RSSI/frequency/band": null,
+          "temperature/throttling": null,
+          "CPU frequency/load": null,
+          "GPU frequency/load": null
+        }
+      },
+      {
+        "profile": "H.264 720p60, ~8 Mbps, debanding off",
+        "duration_seconds_measured": null,
+        "metrics": {
+          "MediaCodec decoder and hardware/software": null,
+          "received frames": null,
+          "decoded frames": null,
+          "presented frames": null,
+          "dropped frames": null,
+          "decoder latency": null,
+          "packet loss": null,
+          "FEC": null,
+          "Wi-Fi RSSI/frequency/band": null,
+          "temperature/throttling": null,
+          "CPU frequency/load": null,
+          "GPU frequency/load": null
+        }
+      },
+      {
+        "profile": "540p30, 5 Mbps",
+        "duration_seconds_measured": null,
+        "metrics": {
+          "MediaCodec decoder and hardware/software": null,
+          "received frames": null,
+          "decoded frames": null,
+          "presented frames": null,
+          "dropped frames": null,
+          "decoder latency": null,
+          "packet loss": null,
+          "FEC": null,
+          "Wi-Fi RSSI/frequency/band": null,
+          "temperature/throttling": null,
+          "CPU frequency/load": null,
+          "GPU frequency/load": null
+        }
+      },
+      {
+        "profile": "restore 1080p only",
+        "duration_seconds_measured": null,
+        "metrics": {
+          "MediaCodec decoder and hardware/software": null,
+          "received frames": null,
+          "decoded frames": null,
+          "presented frames": null,
+          "dropped frames": null,
+          "decoder latency": null,
+          "packet loss": null,
+          "FEC": null,
+          "Wi-Fi RSSI/frequency/band": null,
+          "temperature/throttling": null,
+          "CPU frequency/load": null,
+          "GPU frequency/load": null
+        }
+      },
+      {
+        "profile": "restore H.265 only",
+        "duration_seconds_measured": null,
+        "metrics": {
+          "MediaCodec decoder and hardware/software": null,
+          "received frames": null,
+          "decoded frames": null,
+          "presented frames": null,
+          "dropped frames": null,
+          "decoder latency": null,
+          "packet loss": null,
+          "FEC": null,
+          "Wi-Fi RSSI/frequency/band": null,
+          "temperature/throttling": null,
+          "CPU frequency/load": null,
+          "GPU frequency/load": null
+        }
+      },
+      {
+        "profile": "restore debanding only",
+        "duration_seconds_measured": null,
+        "metrics": {
+          "MediaCodec decoder and hardware/software": null,
+          "received frames": null,
+          "decoded frames": null,
+          "presented frames": null,
+          "dropped frames": null,
+          "decoder latency": null,
+          "packet loss": null,
+          "FEC": null,
+          "Wi-Fi RSSI/frequency/band": null,
+          "temperature/throttling": null,
+          "CPU frequency/load": null,
+          "GPU frequency/load": null
+        }
+      },
+      {
+        "profile": "restore high bitrate only",
+        "duration_seconds_measured": null,
+        "metrics": {
+          "MediaCodec decoder and hardware/software": null,
+          "received frames": null,
+          "decoded frames": null,
+          "presented frames": null,
+          "dropped frames": null,
+          "decoder latency": null,
+          "packet loss": null,
+          "FEC": null,
+          "Wi-Fi RSSI/frequency/band": null,
+          "temperature/throttling": null,
+          "CPU frequency/load": null,
+          "GPU frequency/load": null
+        }
+      }
+    ],
+    "conclusion": "No physical data: no lag fix or performance gain claimed; no stream defaults changed"
+  },
+  "identities": {
+    "android": "by.remteh.remoteplay",
+    "macos": "by.remteh.deckivo",
+    "keys_changed": false,
+    "mac_git_checkouts_noreply": 3,
+    "ubuntu_git_identity": "unverified: SSH unavailable"
+  },
+  "screenshots": {
+    "schema": 1,
+    "version": "0.8.3",
+    "build": 19,
+    "source_commit": "611c5fd5b2c3511f237a006e7914e48ecac4aa1f",
+    "source_dirty": false,
+    "ui_source_sha256": "01eff09b90ddfd76d64b42c34c75d759101e35031f8f78775aca85a478aba177",
+    "capture_state": "unpaired",
+    "development_preview": true,
+    "captured_at": "2026-10-26T07:46:29Z",
+    "images": {
+      "deckivo-ui.webp": {
+        "sha256": "ac05c7b714ab642d1fd2658aa2318e341e98a78e1c9b8f91cdd05d2fdf0f39f4",
+        "bytes": 43538,
+        "width": 1600,
+        "height": 900
+      },
+      "deckivo-ui.avif": {
+        "sha256": "06f6547d9dca5adde77c9fcf1e38bcaa6e9787eba8f27f5caf04d5a92c3bd685",
+        "bytes": 25699,
+        "width": 1600,
+        "height": 900
+      },
+      "github-cover.webp": {
+        "sha256": "f14e45c36b6f6620a41f32d1706e8387eefcfa6f2f12e31d3af981fa1714fbf4",
+        "bytes": 30286,
+        "width": 1200,
+        "height": 630
+      },
+      "github-cover.jpg": {
+        "sha256": "36fcee818ed529a9d67d8d958e4850627490fde25f9e48a735a4adfa30bd5229",
+        "bytes": 64015,
+        "width": 1200,
+        "height": 630
+      }
+    },
+    "readme_cover": "github-cover-0.8.3-b19-f14e45c36b6f.webp"
+  },
+  "limits": [
+    "Android #25 → #27 → #28 and Ubuntu b17 → b18 → b19 not tested on hardware",
+    "No real-game keyboard/mouse or controller acceptance in this release",
+    "No sustained streaming, Wi-Fi reconnection or sleep/wake acceptance",
+    "Ko-fi payouts and crypto addresses require owner input; no payments performed"
+  ]
+}
