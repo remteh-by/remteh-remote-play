@@ -1,12 +1,12 @@
 # Deckivo — подробная установка и игра
 
-Deckivo **0.8.3 preview** · 2026-10-25
+Deckivo **0.8.4 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Перед началом
 
-Deckivo 0.8.3 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.
+Deckivo 0.8.4 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.
 
 <a id="android"></a>
 
@@ -27,7 +27,7 @@ Deckivo 0.8.3 — экспериментальный открытый клиен
 1. Завершите трансляцию. Откройте Настройки Android → Приложения → Deckivo → Удалить. Приложение, его привязка, настройки и история на этом устройстве будут удалены.
 2. APK и отчёты, сохранённые в «Загрузках», остаются — удалите их отдельно при необходимости. Игры и сохранения PS5 не затрагиваются. После новой установки потребуется привязка.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.3)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.4)
 
 <a id="macos"></a>
 
@@ -50,7 +50,7 @@ Deckivo 0.8.3 — экспериментальный открытый клиен
 2. Если нужно удалить также привязку, настройки, историю и загруженные обновления, отдельно удалите ~/Library/Application Support/Deckivo через Finder, предварительно сохранив нужное. В папке есть закрытые ключи привязки — не передавайте её другим.
 3. chiaki-ng — отдельное приложение со своими данными; при необходимости удалите его отдельно. Игры и сохранения на PS5 остаются.
 
-[Mac ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-macos-0.8.4-b20.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -88,7 +88,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-sources.zip)
+[Linux update ZIP · 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-Linux-0.8.4-b20-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-sources.zip)
 
 ## Привязка и первое подключение
 
@@ -97,6 +97,8 @@ python3 desktop/linux/upgrade.py
 ## Управление и качество
 
 Начните с 720p. При нестабильном Wi-Fi снизьте битрейт или выберите 30 FPS. Это запрошенные параметры, а не обещание измеренного FPS. GameSir G8+ проверяли на Android в синем режиме и на Ubuntu с адаптером управления. На Android короткий свайп вверх от нижнего края показывает скрываемые PS/Touch. На Linux Home соответствует PS, Capture — нажатию тачпада; сочетание +/− для отключения можно выключить. Проверьте стики, курки, кнопки и звук на своём устройстве. Перед выходом сохраните игру: отключение трансляции не закрывает игру.
+
+**Бэкап калибровки Controller Lab:** если он повреждён, постоянная запись заблокирована; приложение не подменяет его молча. Для сброса закройте лабораторию и очистите только данные её сайта в браузере либо закройте Deckivo и удалите только отдельный профиль браузера Controller Lab: `~/Library/Application Support/Deckivo/private/controller-lab-browser` на Mac, `~/.config/deckivo/controller-lab-browser` на Ubuntu. Локальные бэкапы и настройки лаборатории будут удалены; сначала экспортируйте то, что ещё можно сохранить. Не очищайте все данные приложения Deckivo и не удаляйте файлы привязки. Во встроенной лаборатории Android в этой версии нет отдельной кнопки сброса данных; не используйте вместо неё «Очистить хранилище» Android. После сброса откройте лабораторию, отключите USB, полностью выключите геймпад и подключите его заново до создания первого бэкапа, затем подтвердите выключение. Одного обновления страницы недостаточно; бэкап хранит самую раннюю доступную калибровку, а не гарантированные заводские настройки.
 
 ## Автообновление
 

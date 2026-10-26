@@ -1,12 +1,12 @@
 # Deckivo — دليل التثبيت واللعب
 
-Deckivo **0.8.3 preview** · 2026-10-25
+Deckivo **0.8.4 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## قبل البدء
 
-الإصدار 0.8.3 تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة.
+الإصدار 0.8.4 تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة.
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.3 preview** · 2026-10-25
 
 نزّل APK بمعمارية arm64 من الإصدار. يلزم Android 8 أو أحدث؛ الاختبار الفعلي على Switch OLED مع Android 15. اسمح بالتثبيت للمصدر المختار فقط. ثبّت فوق النسخة السابقة دون حذف التطبيق أو بياناته. اختر اللغة ومعالج الاتصال، واربط يد Bluetooth من إعدادات Android. لا تعطّل Play Protect.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.3)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.4)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Deckivo **0.8.3 preview** · 2026-10-25
 
 Apple Silicon فقط. ثبّت chiaki-ng بشكل منفصل واربط PS5 ثم أغلق البث فيه. فك ZIP وانقل Deckivo.app إلى ~/Applications. التطبيق غير موثّق لدى Apple؛ قد يلزم «الفتح على أي حال» في الخصوصية والأمان. لا تعطّل Gatekeeper بالكامل. استورد تسجيل chiaki-ng في Deckivo وأدخل عنوان IP للجهاز.
 
-[Mac ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-macos-0.8.4-b20.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-sources.zip)
+[Linux update ZIP · 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-Linux-0.8.4-b20-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-sources.zip)
 
 ## ربط الجهاز
 

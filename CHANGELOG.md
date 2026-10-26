@@ -1,5 +1,14 @@
 # 0.8.3 · controller safeguards and audit corrections · 2026-10-26
 
+## 0.8.4 — 2026-10-26 (preview)
+
+- Android build 29; macOS and Ubuntu build 20. Existing application IDs and signing identities retained.
+- PS5 offline guidance, session-scoped donation reminders, readable Controller Lab reports and calibration-backup safeguards from the independent 0.8.3 audit.
+- Optional download statistics no longer block Pages or the desktop update feed. Mobile buttons, localized copy and install/update/uninstall guidance improved.
+- RU installation wording corrected; EN/RU instructions explain damaged calibration-backup reset, lab-only data scope and the required first-backup controller power cycle.
+- Fresh real 0.8.4 desktop capture. Physical Switch, controller and PS5 session checks remain separate from automated release validation.
+
+
 - Controller firmware tools compare version numbers only; binary firmware
   downloads and proxying are removed. Use Sony's official update method.
 - Permanent controller writes require the default-off Service mode, a durable

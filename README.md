@@ -1,19 +1,17 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.3-b19-35653f13d28c.webp" alt="Deckivo — actual desktop interface, development preview 0.8.3 build 19" width="100%"></a></p>
-<p align="center"><sub>Actual Deckivo 0.8.3 desktop interface · desktop build 19 · Android build 28.</sub></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.4-b20-35653f13d28c.webp" alt="Deckivo — actual desktop interface, development preview 0.8.4 build 20" width="100%"></a></p>
+<p align="center"><sub>Actual Deckivo 0.8.4 desktop interface · desktop build 20 · Android build 29.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">RemTeh.by</a> · <a href="https://remteh.by/remont-konsoli?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">Game console repair in Minsk</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip">Linux 0.8.3 b19</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-arm64.apk">Android 0.8.3</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip">macOS 0.8.3 b19</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-Linux-0.8.4-b20-source.zip">Linux 0.8.4 b20</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-arm64.apk">Android 0.8.4</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-macos-0.8.4-b20.zip">macOS 0.8.4 b20</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
 
 [Download history and counting method](docs/DOWNLOADS.md).
 
 [English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)
 
-**Deckivo 0.8.3 packages are experimental previews, not a finished 1.0
-product.** The release set is Android ARM64 build 28 plus desktop build 19 for
-Apple Silicon macOS and Switchroot Ubuntu ARM64. The Mac public updater is accepted from 0.8.2 b18 to 0.8.3 b19;
-native Donate navigation is separately accepted for 0.8.2; Android and Linux physical
-acceptance of 0.8.3, plus current-release gameplay, remain pending. Historical public-updater
+**Deckivo 0.8.4 packages are experimental previews, not a finished 1.0
+product.** The release set is Android ARM64 build 29 plus desktop build 20 for
+Apple Silicon macOS and Switchroot Ubuntu ARM64. Mac update acceptance for 0.8.4 is recorded after public delivery in the release report; Android and Linux physical acceptance and current-release gameplay remain pending. Historical public-updater
 acceptance belongs to Linux 0.8.1 b17: the Switch OLED / Ubuntu 24.04.4 ARM64 update from 0.6.1 b10
 matched all 80 public-ZIP files, retained pairing, acknowledged the live process
 and fetched the public feed through the enabled systemd user timer with the GUI
@@ -25,9 +23,9 @@ subscription or new Deckivo account is required for local play.
 
 | Platform | Delivery | Start here |
 |---|---|---|
-| Android ARM64 | 0.8.3 #28 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-arm64.apk) |
-| macOS Apple Silicon | 0.8.3 b19; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip) |
-| Switchroot Ubuntu ARM64 | 0.8.3 b19 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.3 real-device acceptance pending | [Linux 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
+| Android ARM64 | 0.8.4 #29 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-arm64.apk) |
+| macOS Apple Silicon | 0.8.4 b20; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-macos-0.8.4-b20.zip) |
+| Switchroot Ubuntu ARM64 | 0.8.4 b20 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.4 real-device acceptance pending | [Linux 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-Linux-0.8.4-b20-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
 | Windows, Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
 ### Made for your own play space
@@ -60,7 +58,7 @@ The previously observed PS5 advertised firmware **13.42** (discovery system
 version `13420000`); no other firmware coverage is certified.
 
 See **[the detailed test matrix](docs/TESTED.md)** and
-[0.8.3 validation](docs/releases/0.8.3-validation.json) for release checks.
+[0.8.4 validation](docs/releases/0.8.4-validation.json) for release checks.
 [Public update acceptance](docs/releases/0.6.0-public-channel-validation.json)
 now confirms Android #24 and Mac #9. Historical gameplay does not certify every
 new frontend feature.

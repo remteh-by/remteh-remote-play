@@ -1,12 +1,12 @@
 # Deckivo — installation and play guide
 
-Deckivo **0.8.3 preview** · 2026-10-25
+Deckivo **0.8.4 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Before you start
 
-Deckivo 0.8.3 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware.
+Deckivo 0.8.4 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware.
 
 <a id="android"></a>
 
@@ -27,7 +27,7 @@ Deckivo 0.8.3 is an experimental open-source PS5 Remote Play client. Start on th
 1. End the stream, then use Android Settings → Apps → Deckivo → Uninstall. This removes the app and its private pairing/settings/history on this device.
 2. APK files or reports saved in Downloads remain; remove those separately if unwanted. PS5 games and saves are not removed. A later reinstall needs pairing again.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.3)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.4)
 
 <a id="macos"></a>
 
@@ -50,7 +50,7 @@ Deckivo 0.8.3 is an experimental open-source PS5 Remote Play client. Start on th
 2. To remove saved registration, settings, history and downloaded updates too, remove ~/Library/Application Support/Deckivo in Finder only after backing up anything you need. It contains private pairing credentials; never share it.
 3. chiaki-ng is a separate application with separate data. Remove it separately only if no longer wanted. PS5 games and saves remain on the console.
 
-[Mac ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-macos-0.8.3-b19.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-macos-0.8.4-b20.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -88,7 +88,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.3 b19](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-Linux-0.8.3-b19-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.3/Deckivo-0.8.3-sources.zip)
+[Linux update ZIP · 0.8.4 b20](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-Linux-0.8.4-b20-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.4/Deckivo-0.8.4-sources.zip)
 
 ## Pairing and first connection
 
@@ -97,6 +97,8 @@ Use the Account ID of the selected PS5 profile in Base64 form, not its nickname 
 ## Controls and quality
 
 Start at 720p and lower bitrate/30 FPS if Wi-Fi is unstable. These are requested settings, not measured performance promises. GameSir G8+ was tested on Android in blue mode and in Ubuntu with its controller adapter. On Android swipe up briefly from the bottom edge to show the hidden PS/Touch controls. On Linux Home maps to PS and Capture to the touchpad; the +/− disconnect chord is optional. Verify both sticks, triggers, buttons and sound on your device. Save the game before ending a stream; disconnecting does not close the game.
+
+**Controller Lab calibration backup:** a damaged backup blocks permanent writes; it is never silently replaced. To reset it, close the lab and clear only its site data in the browser, or close Deckivo and remove only its dedicated Controller Lab browser profile: `~/Library/Application Support/Deckivo/private/controller-lab-browser` on Mac, `~/.config/deckivo/controller-lab-browser` on Ubuntu. This discards local lab backups and settings; export anything recoverable first. Do not clear all Deckivo application data or delete registration files. The Android embedded lab has no separate data-reset button in this release; do not use Android “Clear storage” as a substitute. After a reset, open the lab, disconnect USB, fully power off the controller and reconnect it before creating the first backup, then confirm the power cycle. A page refresh alone is insufficient; the backup is the earliest available calibration, not guaranteed factory settings.
 
 ## Automatic updates
 
