@@ -1,4 +1,4 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.6-b22-ba2c8a9195f0.webp" alt="Deckivo — actual desktop interface, development preview 0.8.6 build 22" width="100%"></a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.6-b22-e89f2fef8ace.webp" alt="Deckivo — actual desktop interface, development preview 0.8.6 build 22" width="100%"></a></p>
 <p align="center"><sub>Actual Deckivo 0.8.6 desktop interface · desktop build 22 · Android build 31.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">RemTeh.by</a> · <a href="https://remteh.by/remont-konsoli?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">Game console repair in Minsk</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
