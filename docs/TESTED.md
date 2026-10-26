@@ -1,11 +1,12 @@
 # Device and version test matrix
 
-Last evidence review: **2026-10-25**. “Installed”, “updater passed” and “gameplay
+Last evidence review: **2026-10-26**. “Installed”, “updater passed” and “gameplay
 accepted” are separate results. Requested resolution/FPS are not measured FPS.
 No personal registration files, account identifiers or raw device logs are public.
 
 | Platform / hardware | Software | Verified on that exact configuration | Still open |
 |---|---|---|---|
+| Apple Silicon MacBook, macOS 27.0.1 | Deckivo 0.8.2 b18 → 0.8.3 b19 | Normal public signed updater; 417/417 installed archive entries match; codesign and live startup acknowledgment verified; registration and preferences unchanged; returned idle | PS5 offline: no quick stream, real-game input or sustained-play acceptance; Switch unavailable |
 | Apple Silicon MacBook, macOS 27.0.1 | Deckivo 0.8.0 #16 → 0.8.2 #18 | Public signed auto-update, all 415 installed ZIP entries match, codesign verified, startup acknowledged, pairing retained; native donation button opens the correct RemTeh Ko-fi page and app stays alive | Sustained gameplay/controller acceptance; Android/Ubuntu 0.8.2 physical tests are separate |
 | Switch OLED, Android 15 / API 35, ARM64 | Deckivo 0.5.1 #18 → #19 → #20 | Native PackageInstaller self-update, same package/certificate, installer identified as Deckivo itself; original install timestamp and encrypted-data directory retained; app returned to dashboard with saved console | Sustained gameplay and every controller function in the redesigned frontend |
 | Apple Silicon MacBook, macOS 27.0.1 | Deckivo 0.5.1 #3 → #4 → #5 | Signed updater, bundle verification, replacement/relaunch, startup acknowledgment, registration hash unchanged; no new Deckivo/Python crash report during this check | Sustained new-frontend play/controller acceptance; Developer ID/notarization |
@@ -137,3 +138,25 @@ tests. Android uses a separate Kotlin browser/QR path. Physical Android and
 Ubuntu 0.8.2 tests remain pending because the Switch was unavailable.
 
 [Public acceptance receipt](releases/0.8.2-public-channel-validation.json).
+
+## 0.8.3 public distribution and Mac update
+
+The normal installed Mac launcher updated b18 to b19 from public Pages and
+GitHub Releases. All 417 installed files/symlinks match the downloaded ZIP.
+The startup acknowledgment matches the installation transaction and a live
+Deckivo process. Registration and preferences remained byte-for-byte unchanged.
+Code signing verifies; the app is ad-hoc signed, not notarized.
+
+All 13 public release assets were downloaded and their actual SHA-256 hashes
+matched the local release inventory. Both release-branch and main browser CI
+passed. The live Pages site passed 80 rendered cases across 16 languages at
+390/1440/1920/2560/3840px, 16 no-JS checks and JPEG/JSON-LD checks.
+
+Android #25 → #27 → #28, Ubuntu b17 → b18 → b19, Android lag measurements,
+30-minute play on both Switch operating systems, and real-game Mac input are
+**not accepted**: Switch and controllers were absent and PS5 was offline.
+No decoder/profile tuning or performance improvement is claimed. Synthetic
+controller fixtures do not substitute for physical USB/Bluetooth checks.
+
+[Public acceptance receipt](releases/0.8.3-public-channel-validation.json) ·
+[Owner hardware checklist](OWNER-CHECKLIST-0.8.3.md).

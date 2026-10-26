@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "version": "0.8.3",
+  "date": "2026-10-26",
+  "publication": {
+    "id": 424001816,
+    "tag": "v0.8.3",
+    "prerelease": true,
+    "published_at": "2026-10-26T08:31:21Z",
+    "source_commit": "dc1bf4392bdc874fd1c545b4d7c3e89d2816ad0e",
+    "main_after_release": "dc1bf4392bdc874fd1c545b4d7c3e89d2816ad0e",
+    "old_release_unchanged": true,
+    "ci": [
+      {
+        "id": 40292596796,
+        "head_sha": "dc1bf4392bdc874fd1c545b4d7c3e89d2816ad0e",
+        "conclusion": "success",
+        "html_url": "https://github.com/remteh-by/remteh-remote-play/actions/runs/40292596796"
+      },
+      {
+        "id": 40292927081,
+        "head_sha": "dc1bf4392bdc874fd1c545b4d7c3e89d2816ad0e",
+        "conclusion": "success",
+        "html_url": "https://github.com/remteh-by/remteh-remote-play/actions/runs/40292927081"
+      }
+    ],
+    "pages_run_id": 40292927426
+  },
+  "release_files": {
+    "files": [
+      {
+        "name": "0.8.3-validation.json",
+        "size": 9704,
+        "sha256": "85e9c74e8476655c7fe52d2039411050e6264dabd281a044a4dc9520b17742d4"
+      },
+      {
+        "name": "Deckivo-0.8.3-android.cdx.json",
+        "size": 92433,
+        "sha256": "03ddb7c696a7566ba64f2c82f76ff129685e3519980ce659aeb35dfbcb74b7ba"
+      },
+      {
+        "name": "Deckivo-0.8.3-arm64.apk",
+        "size": 9465596,
+        "sha256": "b1cf873fbd73276f3b58fad4e3f0bca99a3644595ce5c0a1df7cc78ca820a7b6"
+      },
+      {
+        "name": "Deckivo-0.8.3-desktop.cdx.json",
+        "size": 2524,
+        "sha256": "ff4c3afa57439d31d9f50d992c7f928ae82ee57362c75a9f85c5fca9d86ac687"
+      },
+      {
+        "name": "Deckivo-0.8.3-kit.zip",
+        "size": 47853841,
+        "sha256": "15b14619f03d82b6d29bd8eb4394ed5bba15499f67d8214be51bbed3d9ad40d0"
+      },
+      {
+        "name": "Deckivo-0.8.3-sources.zip",
+        "size": 42137768,
+        "sha256": "d1fc1b39120a00cb29858a08c43b74c3cd297b8806e2283ec4beeddacf65f21f"
+      },
+      {
+        "name": "Deckivo-Linux-0.8.3-b19-source.zip",
+        "size": 3595343,
+        "sha256": "eb97f994ce23d8184006e48c6dd7964e47e0e9b80f6dbf5f15191653c554ebaf"
+      },
+      {
+        "name": "Deckivo-macos-0.8.3-b19.zip",
+        "size": 31885990,
+        "sha256": "a4a6ca72249ebce33252daa93f954da9b5a9489177527d2c168b867460de8bf4"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "size": 1065,
+        "sha256": "dda8ee9fb60260f29ac3ff5cf15a3ab787fb0439b978e5f0340e958830b07307"
+      },
+      {
+        "name": "SOURCE-REVISION.json",
+        "size": 2049012,
+        "sha256": "19b9a770d485603f013f36cafc0357823d9861edc94762caf3992bd9232553fe"
+      },
+      {
+        "name": "index.json",
+        "size": 643,
+        "sha256": "1f5468bf7d6913b95af4564ce9667ad0fb9621fc9a2bd1cd4ac52f32690357b9"
+      },
+      {
+        "name": "index.sig",
+        "size": 512,
+        "sha256": "84396a8b28635d2aa135449f044f8ff335510e67bd15baa04d6c124e7826c693"
+      },
+      {
+        "name": "update.json",
+        "size": 291,
+        "sha256": "162f01ec2c91d8112f6ea5b3227326fdc63bcc35556912b2da2c7e645b7918d6"
+      }
+    ],
+    "verified": 13,
+    "method": "downloaded public release assets; compared actual bytes with local manifest"
+  },
+  "public_website": {
+    "url": "https://remteh-by.github.io/remteh-remote-play/",
+    "rendered_cases": 80,
+    "languages": 16,
+    "widths": [
+      390,
+      1440,
+      1920,
+      2560,
+      3840
+    ],
+    "no_js_pages": 16,
+    "jpeg_http": 200,
+    "downloads_doc_http": 200,
+    "byte_readback": {
+      "updates/index.json": {
+        "status": 200,
+        "sha256": "1f5468bf7d6913b95af4564ce9667ad0fb9621fc9a2bd1cd4ac52f32690357b9",
+        "bytes": 643
+      },
+      "updates/index.sig": {
+        "status": 200,
+        "sha256": "84396a8b28635d2aa135449f044f8ff335510e67bd15baa04d6c124e7826c693",
+        "bytes": 512
+      },
+      "assets/github-cover.jpg": {
+        "status": 200,
+        "sha256": "36fcee818ed529a9d67d8d958e4850627490fde25f9e48a735a4adfa30bd5229",
+        "bytes": 64015
+      },
+      "assets/screenshot.json": {
+        "status": 200,
+        "sha256": "eb5c831ebb5137833575ee867247757f75cc9a93ed5dc72f60b9783392198386",
+        "bytes": 1135
+      }
+    }
+  },
+  "mac_update": {
+    "version": "0.8.3",
+    "from_version": "0.8.2",
+    "from_build": 18,
+    "to_build": 19,
+    "checked_at": "2026-10-26T08:36:31.554783+00:00",
+    "method": "installed b18 launcher normal public signed updater, check_updates command",
+    "registration_retained": true,
+    "preferences_retained": true,
+    "public_zip_entries_exact": 417,
+    "codesign_verified": true,
+    "notarized": false,
+    "startup_ack_matches_transaction": true,
+    "ack_process_live": true,
+    "mac_state": "idle",
+    "stream_after_update": "not tested: PS5 offline",
+    "no_direct_app_replacement": true
+  },
+  "switch_tests": "unavailable: ADB/mDNS empty, Ubuntu SSH unreachable",
+  "physical_gameplay": "not performed: PS5 offline",
+  "controller_hardware": "none detected; no permanent writes",
+  "remaining_checklist": "docs/OWNER-CHECKLIST-0.8.3.md"
+}
