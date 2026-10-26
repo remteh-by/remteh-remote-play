@@ -25,7 +25,7 @@ if sys.platform=='darwin':
     from controller_macos import ControllerMonitor
 else:
     from controller import ControllerMonitor
-from ui import STYLE, LIME, INK, TEXT, label, button, card, icon, Hero, PadCanvas
+from ui import STYLE, LIME, INK, TEXT, label, button, card, icon, Hero, HeroTitle, PadCanvas
 
 WORDS = {
     'home': ('Play space', 'Игровая'), 'pad': ('Controller lab', 'Контроллер'),
@@ -224,18 +224,20 @@ class Deckivo(QWidget):
         self.primary.setFocus()
 
     def home_page(self):
+        viewport=QScrollArea();viewport.setWidgetResizable(True);viewport.setFrameShape(QFrame.NoFrame)
+        viewport.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         page=QWidget();v=QVBoxLayout(page);v.setContentsMargins(0,0,0,0);v.setSpacing(16)
-        v.addWidget(label(self.t('subtitle'),'muted'))
+        v.addWidget(label(self.t('subtitle'),'muted',True))
         row=QHBoxLayout();row.setSpacing(18)
-        hero=Hero();h=QVBoxLayout(hero);h.setContentsMargins(27,25,25,24);h.setSpacing(12)
-        h.addWidget(label('PS5  /  '+self.t('local'),'eyebrow'))
-        title=label(self.t('hero_title'),'heroTitle');title.setMaximumWidth(400);h.addWidget(title)
-        h.addWidget(label(self.t('hero_sub'),'muted'));h.addStretch(1)
-        nickname=label(self.registration.get('server_nickname','PlayStation 5'),'heading');nickname.setMaximumWidth(370);h.addWidget(nickname)
-        h.addWidget(label('PS5  ·  '+self.preferences['host'],'small'))
+        hero=Hero();h=QVBoxLayout(hero.content);h.setContentsMargins(0,0,0,0);h.setSpacing(12)
+        h.addWidget(label('PS5  /  '+self.t('local'),'eyebrow',True))
+        title=HeroTitle(self.t('hero_title'));h.addWidget(title)
+        h.addWidget(label(self.t('hero_sub'),'muted',True));h.addStretch(1)
+        nickname=label(self.registration.get('server_nickname','PlayStation 5'),'heading',True);h.addWidget(nickname)
+        h.addWidget(label('PS5  ·  '+self.preferences['host'],'small',True))
         playrow=QHBoxLayout();self.primary=button(self.t('play'),self.toggle_stream,'primary')
         self.primary.setMinimumWidth(225);playrow.addWidget(self.primary);playrow.addStretch();h.addLayout(playrow)
-        self.session_label=label(self.t('ready'),'small',True);self.session_label.setMaximumWidth(430);h.addWidget(self.session_label)
+        self.session_label=label(self.t('ready'),'small',True);h.addWidget(self.session_label)
         self.progress=QProgressBar();self.progress.setTextVisible(False);self.progress.setRange(0,0);self.progress.hide();h.addWidget(self.progress)
         row.addWidget(hero,2)
         right=QVBoxLayout();right.setSpacing(16)
@@ -258,8 +260,8 @@ class Deckivo(QWidget):
         v.addWidget(snap)
         self.capture_button=button(self.t('capture_input'),self.capture_keyboard_mouse,'ghost');self.capture_button.setEnabled(False);v.addWidget(self.capture_button)
         self.input_mode_label=label(self.t('input_mode_keyboard' if self.preferences['keyboard_mouse'] else 'input_mode_controller'),'small',True);v.addWidget(self.input_mode_label)
-        v.addWidget(label(self.t('nav_hint'),'small'))
-        return page
+        v.addWidget(label(self.t('nav_hint'),'small',True))
+        viewport.setWidget(page);return viewport
 
     def controller_page(self):
         viewport=QScrollArea();viewport.setWidgetResizable(True);viewport.setFrameShape(QFrame.NoFrame)

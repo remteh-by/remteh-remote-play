@@ -1,5 +1,12 @@
 # 0.8.3 · controller safeguards and audit corrections · 2026-10-26
 
+## 0.8.6 — 2026-10-26 (preview)
+
+- Desktop: prevent Home title clipping in short MacBook windows. Reserve the measured title height, fit its font to the text column, and allow vertical scrolling when content needs more space.
+- Console photography has a separate layout column; status, subtitle and console name wrap inside the text area.
+- Same shared fix in the Ubuntu package. Android code 31 only aligns the release identity; no Android streaming changes. Desktop build 22.
+- Fresh real-window captures and signed public update packages. Device checks remain explicit.
+
 ## 0.8.5 — 2026-10-26 (preview)
 
 - Corrected the shared Sessions subtitle in English and Russian: history stays on this device, without incorrectly calling a Mac a Switch. Updated the legacy design exporter too.

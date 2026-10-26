@@ -11,10 +11,10 @@ NAMES={'en':'English','ru':'Русский','uk':'Українська','pl':'Po
 SYSTEM_FONT={'zh','ja','ko','ar','hi'}
 PLATFORM_KEYS=('android','macos','linux','bundle')
 ASSET_CATEGORIES={*PLATFORM_KEYS,'source','metadata','other'}
-ANDROID_VERSION='0.8.5'
-ANDROID_BUILD=30
-MAC_VERSION='0.8.5';MAC_BUILD=21
-LINUX_VERSION='0.8.5';LINUX_BUILD=21
+ANDROID_VERSION='0.8.6'
+ANDROID_BUILD=31
+MAC_VERSION='0.8.6';MAC_BUILD=22
+LINUX_VERSION='0.8.6';LINUX_BUILD=22
 ANDROID_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/Deckivo-{ANDROID_VERSION}-arm64.apk'
 MAC_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{MAC_VERSION}/Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip'
 LINUX_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{LINUX_VERSION}/Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip'

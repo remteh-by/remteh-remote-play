@@ -140,7 +140,7 @@
     <string name="dv_searching">نبحث في شبكتك. يمكنك أيضًا إضافة عنوان IP.</string>
     <string name="dv_settings">الإعدادات</string>
     <string name="dv_setup">اتصال</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.5</string>
+    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
     <string name="dv_setup_done">بعد التسجيل، عد إلى المنزل واختر PS5. اللعب المحلي جاهز. لم يتم تكوين الوصول إلى الإنترنت بواسطة هذا الإصدار.</string>
     <string name="dv_setup_enable">على جهاز PS5، قم بتمكين الإعدادات → النظام → اللعب عن بُعد.</string>
     <string name="dv_setup_find">01 · ابحث عن وحدة التحكم الخاصة بك</string>

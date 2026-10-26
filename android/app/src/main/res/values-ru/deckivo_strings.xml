@@ -140,7 +140,7 @@
     <string name="dv_searching">Ищем консоли в вашей сети. Также можно добавить IP вручную.</string>
     <string name="dv_settings">Настройки</string>
     <string name="dv_setup">Подключение</string>
-    <string name="dv_setup_credit">Исходники именно этой версии: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.5</string>
+    <string name="dv_setup_credit">Исходники именно этой версии: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
     <string name="dv_setup_done">После привязки вернитесь на главный экран приложения и выберите PS5. Для этой версии достаточно локальной сети; доступ через интернет пока не настроен.</string>
     <string name="dv_setup_enable">На PS5 включите «Настройки → Система → Дистанционное воспроизведение».</string>
     <string name="dv_setup_find">01  ·  Найти консоль</string>

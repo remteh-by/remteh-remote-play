@@ -2,8 +2,8 @@
 import math
 from pathlib import Path
 from PyQt5.QtSvg import QSvgRenderer
-from PyQt5.QtCore import Qt, QRectF, QPointF, QSize
-from PyQt5.QtGui import (QPainter, QColor, QPen, QBrush, QLinearGradient,
+from PyQt5.QtCore import Qt, QRect, QRectF, QPointF, QSize
+from PyQt5.QtGui import (QPainter, QColor, QPen, QBrush, QLinearGradient, QFont, QFontMetrics,
                          QRadialGradient, QPainterPath, QIcon, QPixmap, QPolygonF, QTransform)
 from PyQt5.QtWidgets import (QWidget, QFrame, QLabel, QPushButton, QVBoxLayout,
                             QHBoxLayout, QSizePolicy)
@@ -97,11 +97,36 @@ def icon(name, color=TEXT, size=28):
     return QIcon(pixmap)
 
 
+class HeroTitle(QLabel):
+    """Keep the two-line heading readable in the available text column."""
+    def __init__(self, text):
+        super().__init__(text)
+        self.setObjectName('heroTitle');self.setTextFormat(Qt.PlainText)
+        self.setWordWrap(True);self.setSizePolicy(QSizePolicy.Preferred,QSizePolicy.Minimum)
+
+    def resizeEvent(self, event):
+        font=QFont(self.font());font.setPixelSize(43)
+        metrics=QFontMetrics(font)
+        width=max((metrics.horizontalAdvance(line) for line in self.text().splitlines()),default=1)
+        pixels=max(28,min(43,int(43*max(1,self.contentsRect().width()-2)/max(1,width))))
+        style=f'font-size:{pixels}px;'
+        if self.styleSheet()!=style:self.setStyleSheet(style)
+        self.ensurePolished()
+        bounds=self.fontMetrics().boundingRect(QRect(0,0,max(1,self.contentsRect().width()),10000),Qt.TextWordWrap,self.text())
+        self.setMinimumHeight(bounds.height()+2)
+        super().resizeEvent(event)
+
+
 class Hero(QFrame):
     def __init__(self):
         super().__init__()
         self.setMinimumSize(480, 330)
         self.console_image=QPixmap(str(Path(__file__).resolve().parent/'assets/ps5-console.png'))
+        # Give the photograph its own column. Wrapped text must never extend
+        # underneath a product image when the window becomes narrow.
+        row=QHBoxLayout(self);row.setContentsMargins(27,25,25,24);row.setSpacing(20)
+        self.content=QWidget(self);self.art=QWidget(self)
+        row.addWidget(self.content,3);row.addWidget(self.art,2)
 
     def paintEvent(self, event):
         p=QPainter(self); p.setRenderHint(QPainter.Antialiasing)
@@ -109,7 +134,7 @@ class Hero(QFrame):
         p.setClipPath(path)
         g=QLinearGradient(0,0,self.width(),self.height()); g.setColorAt(0,QColor('#202827')); g.setColorAt(1,QColor('#20202E'))
         p.fillPath(path,g)
-        art=QRectF(self.width()*.57,28,self.width()*.40,self.height()-56)
+        art=QRectF(self.art.geometry())
         glow=QRadialGradient(art.center(),art.height()*.65)
         glow.setColorAt(0,QColor(125,139,180,36));glow.setColorAt(1,QColor(125,139,180,0))
         p.fillPath(path,glow)

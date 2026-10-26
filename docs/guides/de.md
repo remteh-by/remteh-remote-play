@@ -1,12 +1,12 @@
 # Deckivo — Installation und Spielen
 
-Deckivo **0.8.5 preview** · 2026-10-25
+Deckivo **0.8.6 preview** · 2026-10-25
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Vorbereitung
 
-0.8.5 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren.
+0.8.6 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren.
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.5 preview** · 2026-10-25
 
 Lade die arm64-APK aus dem Release. Android 8+ ist erforderlich; physisch getestet wurde Switch OLED mit Android 15. Erlaube die Installation nur der gewählten Quelle. Installiere über die vorhandene Version, ohne Daten zu löschen. Wähle Sprache und Verbindungsassistent; kopple den Bluetooth-Controller in Android. Play Protect nicht deaktivieren.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-0.8.5-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.5)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-0.8.6-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Lade die arm64-APK aus dem Release. Android 8+ ist erforderlich; physisch getest
 
 Nur Apple Silicon. Installiere chiaki-ng separat, registriere die PS5 und beende dessen Stream. Entpacke das Mac-ZIP und verschiebe Deckivo.app nach ~/Applications. Die App ist nicht notarisiert; macOS kann „Dennoch öffnen“ unter Datenschutz & Sicherheit verlangen. Gatekeeper nicht global deaktivieren. Importiere in Deckivo die chiaki-ng-Registrierung und gib die Konsolen-IP ein.
 
-[Mac ZIP · 0.8.5 b21](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-macos-0.8.5-b21.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.6 b22](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-macos-0.8.6-b22.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.5 b21](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-Linux-0.8.5-b21-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.5/Deckivo-0.8.5-sources.zip)
+[Linux update ZIP · 0.8.6 b22](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-Linux-0.8.6-b22-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-0.8.6-sources.zip)
 
 ## Konsole koppeln
 

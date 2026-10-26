@@ -10,7 +10,7 @@
     "hero_lead": "Play your PS5 on Nintendo Switch OLED, Android devices and Apple Silicon Macs — open source, built on chiaki-ng.",
     "get": "Get Deckivo",
     "read": "Read the guide",
-    "stage": "Deckivo 0.8.5 · desktop b21 · Android #30",
+    "stage": "Deckivo 0.8.6 · desktop b22 · Android #31",
     "platform_limits": "See tested versions ↗",
     "pick": "Pick your screen.",
     "pick_note": "Install Deckivo on the device where you want to play. On your PS5, enable Remote Play.",
@@ -19,12 +19,12 @@
     "mac_compatibility": "Apple Silicon (M1 or newer) · macOS 13+",
     "download_mac": "Download for Mac",
     "first_install": "First installation: open the guide.",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+",
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+",
     "download_apk": "Download APK",
-    "mac_note": "0.8.5 b21 · Requires chiaki-ng; follow the setup guide first",
+    "mac_note": "0.8.6 b22 · Requires chiaki-ng; follow the setup guide first",
     "mac_guide": "Mac setup guide",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Real-device acceptance pending",
-    "linux_guide": "Download Linux 0.8.5 b21",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Real-device acceptance pending",
+    "linux_guide": "Download Linux 0.8.6 b22",
     "planned": "Windows, Intel Mac and desktop Linux x64 are planned. No builds are offered for them yet.",
     "setup_title": "A little setup. A lot of play.",
     "full_guide": "Full setup guide ↗",
@@ -123,14 +123,14 @@
     "source": "Исходники на GitHub ↗",
     "privacy": "Язык сохраняется только в этом браузере. На сайте нет аналитики, отслеживающих cookies или ключей привязки.",
     "language": "Язык",
-    "stage": "Deckivo 0.8.5 · desktop b21 · Android #30",
+    "stage": "Deckivo 0.8.6 · desktop b22 · Android #31",
     "platform_limits": "Проверенные версии ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+",
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+",
     "download_apk": "Скачать APK",
-    "mac_note": "0.8.5 b21 · Нужен chiaki-ng; сначала откройте инструкцию",
+    "mac_note": "0.8.6 b22 · Нужен chiaki-ng; сначала откройте инструкцию",
     "mac_guide": "Установка на Mac",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Проверка на реальном устройстве ещё не завершена",
-    "linux_guide": "Скачать Linux 0.8.5 b21",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Проверка на реальном устройстве ещё не завершена",
+    "linux_guide": "Скачать Linux 0.8.6 b22",
     "planned": "Windows, Intel Mac и настольный Linux x64 запланированы. Проверенных сборок для них пока нет.",
     "full_guide": "Полная инструкция ↗",
     "device": "Устройство / ОС",
@@ -214,12 +214,12 @@
     "title": "Deckivo — PS5 Remote Play для Nintendo Switch (Android), Android і Mac",
     "description": "Грай на своїй PS5 з Nintendo Switch OLED, пристроїв Android і Mac з Apple Silicon. Відкритий код на основі chiaki-ng.",
     "faq_title": "Відповіді перед першою грою.",
-    "stage": "Deckivo 0.8.5 · desktop b21 · Android #30",
-    "mac_note": "0.8.5 b21 · Потрібен chiaki-ng; спочатку відкрий інструкцію",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Перевірка на реальному пристрої ще не завершена",
+    "stage": "Deckivo 0.8.6 · desktop b22 · Android #31",
+    "mac_note": "0.8.6 b22 · Потрібен chiaki-ng; спочатку відкрий інструкцію",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Перевірка на реальному пристрої ще не завершена",
     "mac_test": "Публічне оновлення Mac 0.8.0 b16 → 0.8.2 b18: усі 415 записів ZIP збіглися з установленою програмою; перевірки підпису коду, підтвердження запуску, збереження реєстрації та повернення в режим очікування пройдено. Нативна кнопка підтримки відкрила сторінку RemTeh у Ko-fi через Chrome, а Deckivo продовжив роботу; оплату не здійснювали.",
     "linux_test": "Публічний оновлювач перевірено на Switch OLED: 0.6.1 b10 → 0.8.1 b17; усі 80/80 файлів інсталятора збіглися з публічним ZIP, підтвердження запуску — з активним процесом, прив’язку збережено, а ввімкнений користувацький таймер systemd успішно отримав публічний фід із закритим інтерфейсом. Гру на 0.8.1 ще не перевірено; це окрема перевірка.",
-    "linux_guide": "Завантажити Linux 0.8.5 b21",
+    "linux_guide": "Завантажити Linux 0.8.6 b22",
     "faq": [
       {
         "q": "Чи потрібна спільна мережа?",
@@ -264,7 +264,7 @@
     "build": "Збірка",
     "platform_limits": "Повна таблиця перевірок ↗",
     "mac_guide": "Повна інструкція ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "pl": {
     "nav_features": "Funkcje",
@@ -303,12 +303,12 @@
     "title": "Deckivo — PS5 Remote Play na Nintendo Switch (Android), Android i Mac",
     "description": "Graj na swojej PS5 przez Nintendo Switch OLED, urządzenia Android i komputery Mac z Apple Silicon. Otwarty kod, oparty na chiaki-ng.",
     "faq_title": "Pytania i odpowiedzi.",
-    "stage": "Deckivo 0.8.5 · desktop b21 · Android #30",
-    "mac_note": "0.8.5 b21 · Wymaga chiaki-ng; najpierw otwórz poradnik",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Odbiór na rzeczywistym urządzeniu w toku",
+    "stage": "Deckivo 0.8.6 · desktop b22 · Android #31",
+    "mac_note": "0.8.6 b22 · Wymaga chiaki-ng; najpierw otwórz poradnik",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Odbiór na rzeczywistym urządzeniu w toku",
     "mac_test": "Publiczna aktualizacja Mac 0.8.0 b16 → 0.8.2 b18: wszystkie 415 wpisów ZIP odpowiadało zainstalowanej aplikacji; podpis kodu, potwierdzenie uruchomienia, zachowanie rejestracji i powrót do bezczynności przeszły weryfikację. Natywny przycisk wsparcia otworzył stronę RemTeh w Ko-fi w Chrome, a Deckivo nadal działał; nie dokonano płatności.",
     "linux_test": "Publiczny aktualizator zweryfikowano na Switch OLED: 0.6.1 b10 → 0.8.1 b17; wszystkie 80/80 plików instalatora odpowiadało publicznemu ZIP-owi, potwierdzenie uruchomienia zgadzało się z aktywnym procesem, parowanie zachowano, a włączony timer użytkownika systemd pobrał publiczny kanał przy zamkniętym interfejsie. Test rozgrywki w 0.8.1 pozostaje osobnym testem do wykonania.",
-    "linux_guide": "Pobierz Linux 0.8.5 b21",
+    "linux_guide": "Pobierz Linux 0.8.6 b22",
     "faq": [
       {
         "q": "Czy oba urządzenia muszą być w tej samej sieci?",
@@ -353,7 +353,7 @@
     "build": "Kompilacja",
     "platform_limits": "Pełna tabela testów ↗",
     "mac_guide": "Pełna instrukcja ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "de": {
     "nav_features": "Funktionen",
@@ -392,12 +392,12 @@
     "title": "Deckivo — PS5 Remote Play für Nintendo Switch (Android), Android und Mac",
     "description": "Spiele deine PS5 auf Nintendo Switch OLED, Android-Geräten und Apple Silicon Macs. Open Source, auf Basis von chiaki-ng.",
     "faq_title": "Fragen und Antworten.",
-    "stage": "Deckivo 0.8.5 · Desktop b21 · Android #30",
-    "mac_note": "0.8.5 b21 · Benötigt chiaki-ng; zuerst die Anleitung öffnen",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Abnahme auf realer Hardware ausstehend",
+    "stage": "Deckivo 0.8.6 · Desktop b22 · Android #31",
+    "mac_note": "0.8.6 b22 · Benötigt chiaki-ng; zuerst die Anleitung öffnen",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Abnahme auf realer Hardware ausstehend",
     "mac_test": "Öffentliches Mac-Update 0.8.0 b16 → 0.8.2 b18: Alle 415 ZIP-Einträge entsprachen der installierten App; Codesignatur, Startbestätigung, Erhalt der Registrierung und Rückkehr in den Leerlauf wurden bestätigt. Die native Spenden-Schaltfläche öffnete die RemTeh-Ko-fi-Seite in Chrome, Deckivo blieb aktiv; es wurde keine Zahlung ausgeführt.",
     "linux_test": "Der öffentliche Updater wurde auf Switch OLED verifiziert: 0.6.1 b10 → 0.8.1 b17; alle 80/80 Installationsdateien entsprachen der öffentlichen ZIP-Datei, die Startbestätigung stimmte mit dem laufenden Prozess überein, die Kopplung blieb erhalten und der aktivierte systemd-Benutzertimer rief bei geschlossener Oberfläche den öffentlichen Feed erfolgreich ab. Der Gameplay-Test für 0.8.1 steht separat noch aus.",
-    "linux_guide": "Linux 0.8.5 b21 herunterladen",
+    "linux_guide": "Linux 0.8.6 b22 herunterladen",
     "faq": [
       {
         "q": "Müssen beide Geräte im selben Netzwerk sein?",
@@ -442,7 +442,7 @@
     "build": "Build",
     "platform_limits": "Vollständige Testübersicht ↗",
     "mac_guide": "Vollständige Anleitung ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "fr": {
     "nav_features": "Fonctions",
@@ -481,12 +481,12 @@
     "title": "Deckivo — PS5 Remote Play sur Nintendo Switch (Android), Android et Mac",
     "description": "Jouez à votre PS5 sur Nintendo Switch OLED, Android et Mac Apple Silicon. Un projet open source basé sur chiaki-ng.",
     "faq_title": "Questions et réponses.",
-    "stage": "Deckivo 0.8.5 · bureau b21 · Android #30",
-    "mac_note": "0.8.5 b21 · Nécessite chiaki-ng ; ouvrez d’abord le guide",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Validation sur appareil réel en attente",
+    "stage": "Deckivo 0.8.6 · bureau b22 · Android #31",
+    "mac_note": "0.8.6 b22 · Nécessite chiaki-ng ; ouvrez d’abord le guide",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Validation sur appareil réel en attente",
     "mac_test": "Mise à jour Mac publique 0.8.0 b16 → 0.8.2 b18 : les 415 entrées du ZIP correspondaient à l’application installée ; la signature du code, l’accusé de démarrage, la conservation de l’enregistrement et le retour au repos ont été validés. Le bouton de soutien natif a ouvert la page Ko-fi de RemTeh dans Chrome et Deckivo est resté actif ; aucun paiement n’a été effectué.",
     "linux_test": "L’outil de mise à jour public a été vérifié sur Switch OLED : 0.6.1 b10 → 0.8.1 b17 ; les 80/80 fichiers d’installation correspondaient au ZIP public, l’accusé de démarrage correspondait au processus actif, l’appairage a été conservé et le minuteur utilisateur systemd activé a récupéré le flux public avec l’interface fermée. Le test de jeu de la version 0.8.1 reste un contrôle séparé en attente.",
-    "linux_guide": "Télécharger Linux 0.8.5 b21",
+    "linux_guide": "Télécharger Linux 0.8.6 b22",
     "faq": [
       {
         "q": "Les deux appareils doivent-ils partager le même réseau ?",
@@ -531,7 +531,7 @@
     "build": "Version",
     "platform_limits": "Tableau complet des tests ↗",
     "mac_guide": "Guide complet ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "es": {
     "nav_features": "Funciones",
@@ -570,12 +570,12 @@
     "title": "Deckivo — PS5 Remote Play para Nintendo Switch (Android), Android y Mac",
     "description": "Juega a tu PS5 en Nintendo Switch OLED, dispositivos Android y Mac con Apple Silicon. Código abierto, basado en chiaki-ng.",
     "faq_title": "Preguntas y respuestas.",
-    "stage": "Deckivo 0.8.5 · escritorio b21 · Android #30",
-    "mac_note": "0.8.5 b21 · Requiere chiaki-ng; abre primero la guía",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Validación en dispositivo real pendiente",
+    "stage": "Deckivo 0.8.6 · escritorio b22 · Android #31",
+    "mac_note": "0.8.6 b22 · Requiere chiaki-ng; abre primero la guía",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Validación en dispositivo real pendiente",
     "mac_test": "Actualización pública de Mac 0.8.0 b16 → 0.8.2 b18: las 415 entradas del ZIP coincidieron con la aplicación instalada; se verificaron la firma de código, la confirmación de inicio, la conservación del registro y el regreso al estado inactivo. El botón nativo de donación abrió la página Ko-fi de RemTeh en Chrome y Deckivo siguió activo; no se realizó ningún pago.",
     "linux_test": "El actualizador público se verificó en Switch OLED: 0.6.1 b10 → 0.8.1 b17; los 80/80 archivos del instalador coincidieron con el ZIP público, la confirmación de inicio coincidió con el proceso activo, se conservó el emparejamiento y el temporizador de usuario de systemd habilitado obtuvo el canal público con la interfaz cerrada. La prueba de juego de 0.8.1 sigue pendiente por separado.",
-    "linux_guide": "Descargar Linux 0.8.5 b21",
+    "linux_guide": "Descargar Linux 0.8.6 b22",
     "faq": [
       {
         "q": "¿Deben estar ambos dispositivos en la misma red?",
@@ -620,7 +620,7 @@
     "build": "Compilación",
     "platform_limits": "Tabla completa de pruebas ↗",
     "mac_guide": "Guía completa ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "it": {
     "nav_features": "Funzioni",
@@ -659,12 +659,12 @@
     "title": "Deckivo — PS5 Remote Play per Nintendo Switch (Android), Android e Mac",
     "description": "Gioca con la tua PS5 su Nintendo Switch OLED, dispositivi Android e Mac Apple Silicon. Open source, basato su chiaki-ng.",
     "faq_title": "Domande e risposte.",
-    "stage": "Deckivo 0.8.5 · desktop b21 · Android #30",
-    "mac_note": "0.8.5 b21 · Richiede chiaki-ng; apri prima la guida",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Convalida su dispositivo reale in attesa",
+    "stage": "Deckivo 0.8.6 · desktop b22 · Android #31",
+    "mac_note": "0.8.6 b22 · Richiede chiaki-ng; apri prima la guida",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Convalida su dispositivo reale in attesa",
     "mac_test": "Aggiornamento Mac pubblico 0.8.0 b16 → 0.8.2 b18: tutte le 415 voci dello ZIP corrispondevano all’app installata; firma del codice, conferma di avvio, conservazione della registrazione e ritorno allo stato inattivo sono stati verificati. Il pulsante di supporto nativo ha aperto la pagina Ko-fi di RemTeh in Chrome e Deckivo è rimasto attivo; non è stato effettuato alcun pagamento.",
     "linux_test": "Il programma di aggiornamento pubblico è stato verificato su Switch OLED: 0.6.1 b10 → 0.8.1 b17; tutti gli 80/80 file di installazione corrispondevano allo ZIP pubblico, la conferma di avvio corrispondeva al processo attivo, l’associazione è rimasta intatta e il timer utente systemd abilitato ha recuperato il feed pubblico con l’interfaccia chiusa. Il test di gioco della versione 0.8.1 resta separato e in attesa.",
-    "linux_guide": "Scarica Linux 0.8.5 b21",
+    "linux_guide": "Scarica Linux 0.8.6 b22",
     "faq": [
       {
         "q": "I dispositivi devono essere sulla stessa rete?",
@@ -709,7 +709,7 @@
     "build": "Build",
     "platform_limits": "Tabella completa dei test ↗",
     "mac_guide": "Guida completa ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "pt": {
     "nav_features": "Recursos",
@@ -748,12 +748,12 @@
     "title": "Deckivo — PS5 Remote Play para Nintendo Switch (Android), Android e Mac",
     "description": "Jogue na sua PS5 pelo Nintendo Switch OLED, dispositivos Android e Macs Apple Silicon. Código aberto, baseado no chiaki-ng.",
     "faq_title": "Perguntas e respostas.",
-    "stage": "Deckivo 0.8.5 · desktop b21 · Android #30",
-    "mac_note": "0.8.5 b21 · Requer chiaki-ng; abre primeiro o guia",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Validação em dispositivo real pendente",
+    "stage": "Deckivo 0.8.6 · desktop b22 · Android #31",
+    "mac_note": "0.8.6 b22 · Requer chiaki-ng; abre primeiro o guia",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Validação em dispositivo real pendente",
     "mac_test": "Atualização pública do Mac 0.8.0 b16 → 0.8.2 b18: as 415 entradas do ZIP coincidiram com a aplicação instalada; foram validadas a assinatura do código, a confirmação de arranque, a manutenção do registo e o regresso ao estado inativo. O botão nativo de apoio abriu a página Ko-fi da RemTeh no Chrome e o Deckivo continuou ativo; não foi efetuado qualquer pagamento.",
     "linux_test": "O atualizador público foi verificado no Switch OLED: 0.6.1 b10 → 0.8.1 b17; os 80/80 ficheiros do instalador coincidiram com o ZIP público, a confirmação de arranque coincidiu com o processo ativo, a associação foi mantida e o temporizador de utilizador systemd ativado obteve o feed público com a interface fechada. O teste de jogo da versão 0.8.1 continua pendente em separado.",
-    "linux_guide": "Transferir Linux 0.8.5 b21",
+    "linux_guide": "Transferir Linux 0.8.6 b22",
     "faq": [
       {
         "q": "Os dispositivos precisam estar na mesma rede?",
@@ -798,7 +798,7 @@
     "build": "Compilação",
     "platform_limits": "Tabela completa de testes ↗",
     "mac_guide": "Guia completo ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "tr": {
     "nav_features": "Özellikler",
@@ -837,12 +837,12 @@
     "title": "Deckivo — Nintendo Switch (Android), Android ve Mac için PS5 Remote Play",
     "description": "PS5 oyunlarını Nintendo Switch OLED, Android cihazlar ve Apple Silicon Mac üzerinde oyna. chiaki-ng tabanlı, açık kaynak.",
     "faq_title": "Sorular ve yanıtlar.",
-    "stage": "Deckivo 0.8.5 · masaüstü b21 · Android #30",
-    "mac_note": "0.8.5 b21 · chiaki-ng gerekir; önce kılavuzu aç",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Gerçek cihaz kabulü bekleniyor",
+    "stage": "Deckivo 0.8.6 · masaüstü b22 · Android #31",
+    "mac_note": "0.8.6 b22 · chiaki-ng gerekir; önce kılavuzu aç",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Gerçek cihaz kabulü bekleniyor",
     "mac_test": "Genel Mac güncellemesi 0.8.0 b16 → 0.8.2 b18: ZIP içindeki 415 girdinin tamamı kurulu uygulamayla eşleşti; kod imzası, başlatma onayı, kayıt koruması ve boşta duruma dönüş doğrulandı. Yerel destek düğmesi Chrome’da RemTeh Ko-fi sayfasını açtı ve Deckivo çalışmaya devam etti; ödeme yapılmadı.",
     "linux_test": "Genel güncelleyici Switch OLED’de doğrulandı: 0.6.1 b10 → 0.8.1 b17; 80/80 yükleyici dosyası genel ZIP ile eşleşti, başlatma onayı çalışan süreçle eşleşti, eşleştirme korundu ve etkin systemd kullanıcı zamanlayıcısı arayüz kapalıyken genel akışı başarıyla aldı. 0.8.1 oynanış testi ayrı olarak hâlâ bekliyor.",
-    "linux_guide": "Linux 0.8.5 b21'i indir",
+    "linux_guide": "Linux 0.8.6 b22'i indir",
     "faq": [
       {
         "q": "İki cihaz aynı ağda mı olmalı?",
@@ -887,7 +887,7 @@
     "build": "Derleme",
     "platform_limits": "Tüm test sonuçları ↗",
     "mac_guide": "Tam kurulum kılavuzu ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "zh": {
     "nav_features": "功能",
@@ -926,12 +926,12 @@
     "title": "Deckivo — 适用于 Nintendo Switch (Android)、Android 和 Mac 的 PS5 Remote Play",
     "description": "在 Nintendo Switch OLED、Android 设备和 Apple Silicon Mac 上远程畅玩你的 PS5。基于 chiaki-ng 的开源项目。",
     "faq_title": "常见问题。",
-    "stage": "Deckivo 0.8.5 · 桌面版 b21 · Android #30",
-    "mac_note": "0.8.5 b21 · 需要 chiaki-ng；请先打开指南",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · 等待真实设备验收",
+    "stage": "Deckivo 0.8.6 · 桌面版 b22 · Android #31",
+    "mac_note": "0.8.6 b22 · 需要 chiaki-ng；请先打开指南",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · 等待真实设备验收",
     "mac_test": "已验证公开 Mac 更新 0.8.0 b16 → 0.8.2 b18：ZIP 中全部 415 个条目均与已安装应用一致；代码签名、启动确认、注册保留和返回空闲状态均通过。原生支持按钮在 Chrome 中打开了 RemTeh 的 Ko-fi 页面，Deckivo 保持运行；未进行付款。",
     "linux_test": "已在 Switch OLED 验证公开更新器：0.6.1 b10 → 0.8.1 b17；80/80 个安装文件与公开 ZIP 一致，启动确认与运行中的进程一致，配对得以保留；界面关闭时，已启用的 systemd 用户计时器也成功获取了公开更新源。0.8.1 的游戏测试仍作为独立项目待完成。",
-    "linux_guide": "下载 Linux 0.8.5 b21",
+    "linux_guide": "下载 Linux 0.8.6 b22",
     "faq": [
       {
         "q": "两台设备需要在同一网络吗？",
@@ -976,7 +976,7 @@
     "build": "构建",
     "platform_limits": "查看完整测试表 ↗",
     "mac_guide": "完整设置指南 ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "ja": {
     "nav_features": "機能",
@@ -1015,9 +1015,9 @@
     "title": "Deckivo — Nintendo Switch (Android)・Android・Mac 用 PS5 Remote Play",
     "description": "Nintendo Switch OLED、Android 端末、Apple Silicon Mac で自分の PS5 をプレイ。chiaki-ng を基にしたオープンソース。",
     "faq_title": "よくある質問。",
-    "stage": "Deckivo 0.8.5 · デスクトップ b21 · Android #30",
-    "mac_note": "0.8.5 b21 · chiaki-ng が必要です。まずガイドを開いてください",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · 実機での受け入れ確認待ち",
+    "stage": "Deckivo 0.8.6 · デスクトップ b22 · Android #31",
+    "mac_note": "0.8.6 b22 · chiaki-ng が必要です。まずガイドを開いてください",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · 実機での受け入れ確認待ち",
     "mac_test": "公開 Mac アップデート 0.8.0 b16 → 0.8.2 b18 を確認済み：ZIP 内の全 415 項目がインストール済みアプリと一致し、コード署名、起動確認、登録保持、待機状態への復帰に合格しました。ネイティブの支援ボタンは Chrome で RemTeh の Ko-fi ページを開き、Deckivo は動作を継続しました。支払いは行っていません。",
     "linux_test": "公開アップデーターを Switch OLED で確認済み：0.6.1 b10 → 0.8.1 b17。インストーラーの全 80/80 ファイルが公開 ZIP と一致し、起動確認は実行中のプロセスと一致、ペアリングも保持されました。画面を閉じた状態でも、有効な systemd ユーザータイマーが公開フィードを正常に取得しました。0.8.1 のゲームプレイ検証は別項目として未完了です。",
     "linux_guide": "Linux 版を入手",
@@ -1065,7 +1065,7 @@
     "build": "ビルド",
     "platform_limits": "詳細なテスト一覧 ↗",
     "mac_guide": "詳しい設定ガイド ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "ko": {
     "nav_features": "기능",
@@ -1104,12 +1104,12 @@
     "title": "Deckivo — Nintendo Switch (Android), Android, Mac용 PS5 Remote Play",
     "description": "Nintendo Switch OLED, Android 기기, Apple Silicon Mac에서 내 PS5를 플레이하세요. chiaki-ng 기반 오픈 소스입니다.",
     "faq_title": "자주 묻는 질문.",
-    "stage": "Deckivo 0.8.5 · 데스크톱 b21 · Android #30",
-    "mac_note": "0.8.5 b21 · chiaki-ng 필요. 먼저 가이드를 여세요",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · 실제 기기 승인 대기",
+    "stage": "Deckivo 0.8.6 · 데스크톱 b22 · Android #31",
+    "mac_note": "0.8.6 b22 · chiaki-ng 필요. 먼저 가이드를 여세요",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · 실제 기기 승인 대기",
     "mac_test": "공개 Mac 업데이트 0.8.0 b16 → 0.8.2 b18을 검증했습니다. ZIP의 415개 항목이 모두 설치된 앱과 일치했고 코드 서명, 시작 확인, 등록 유지 및 유휴 상태 복귀를 통과했습니다. 네이티브 후원 버튼은 Chrome에서 RemTeh Ko-fi 페이지를 열었고 Deckivo는 계속 실행되었습니다. 결제는 하지 않았습니다.",
     "linux_test": "공개 업데이터를 Switch OLED에서 검증했습니다: 0.6.1 b10 → 0.8.1 b17. 설치 파일 80/80개가 공개 ZIP과 일치했고, 시작 확인은 실행 중인 프로세스와 일치했으며 페어링도 유지되었습니다. GUI를 닫은 상태에서도 활성화된 systemd 사용자 타이머가 공개 피드를 정상적으로 가져왔습니다. 0.8.1 게임플레이 테스트는 별도 항목으로 아직 대기 중입니다.",
-    "linux_guide": "Linux 0.8.5 b21 다운로드",
+    "linux_guide": "Linux 0.8.6 b22 다운로드",
     "faq": [
       {
         "q": "두 기기를 같은 네트워크에 연결해야 하나요?",
@@ -1154,7 +1154,7 @@
     "build": "빌드",
     "platform_limits": "전체 테스트 목록 ↗",
     "mac_guide": "전체 설정 가이드 ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "ar": {
     "nav_features": "المزايا",
@@ -1193,12 +1193,12 @@
     "title": "Deckivo — PS5 Remote Play على Nintendo Switch (Android) وAndroid وMac",
     "description": "العب على PS5 الخاص بك من Nintendo Switch OLED وأجهزة Android وMac بمعالج Apple Silicon. مشروع مفتوح المصدر مبني على chiaki-ng.",
     "faq_title": "أسئلة وإجابات.",
-    "stage": "Deckivo 0.8.5 · سطح المكتب b21 · Android #30",
-    "mac_note": "0.8.5 b21 · يتطلب chiaki-ng؛ افتح الدليل أولًا",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · قبول الجهاز الفعلي قيد الانتظار",
+    "stage": "Deckivo 0.8.6 · سطح المكتب b22 · Android #31",
+    "mac_note": "0.8.6 b22 · يتطلب chiaki-ng؛ افتح الدليل أولًا",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · قبول الجهاز الفعلي قيد الانتظار",
     "mac_test": "تم التحقق من تحديث Mac العام 0.8.0 b16 → 0.8.2 b18: تطابقت جميع إدخالات ZIP البالغ عددها 415 مع التطبيق المثبّت، ونجحت اختبارات توقيع الكود وتأكيد التشغيل والاحتفاظ بالتسجيل والعودة إلى وضع الخمول. فتح زر الدعم الأصلي صفحة Ko-fi الخاصة بـ RemTeh في Chrome وبقي Deckivo يعمل؛ لم تُجرَ أي عملية دفع.",
     "linux_test": "تم التحقق من المحدّث العام على Switch OLED: ‏0.6.1 b10 → 0.8.1 b17؛ تطابقت ملفات التثبيت 80/80 مع ملف ZIP العام، وتطابق تأكيد التشغيل مع العملية النشطة، وتم الاحتفاظ بالاقتران، كما جلب مؤقت مستخدم systemd المفعّل موجز التحديث العام بنجاح والواجهة مغلقة. يبقى اختبار اللعب للإصدار 0.8.1 اختبارًا منفصلًا معلّقًا.",
-    "linux_guide": "تنزيل Linux 0.8.5 b21",
+    "linux_guide": "تنزيل Linux 0.8.6 b22",
     "faq": [
       {
         "q": "هل يحتاج الجهازان إلى الشبكة نفسها؟",
@@ -1243,7 +1243,7 @@
     "build": "البناء",
     "platform_limits": "جدول الاختبارات الكامل ↗",
     "mac_guide": "دليل الإعداد الكامل ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "hi": {
     "nav_features": "सुविधाएँ",
@@ -1282,12 +1282,12 @@
     "title": "Deckivo — Nintendo Switch (Android), Android और Mac के लिए PS5 Remote Play",
     "description": "Nintendo Switch OLED, Android डिवाइस और Apple Silicon Mac पर अपना PS5 खेलें। chiaki-ng पर आधारित ओपन सोर्स।",
     "faq_title": "सवाल और जवाब।",
-    "stage": "Deckivo 0.8.5 · डेस्कटॉप b21 · Android #30",
-    "mac_note": "0.8.5 b21 · chiaki-ng आवश्यक; पहले गाइड खोलें",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · वास्तविक डिवाइस स्वीकृति लंबित",
+    "stage": "Deckivo 0.8.6 · डेस्कटॉप b22 · Android #31",
+    "mac_note": "0.8.6 b22 · chiaki-ng आवश्यक; पहले गाइड खोलें",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · वास्तविक डिवाइस स्वीकृति लंबित",
     "mac_test": "सार्वजनिक Mac अपडेट 0.8.0 b16 → 0.8.2 b18 सत्यापित हुआ: ZIP की सभी 415 प्रविष्टियाँ इंस्टॉल किए गए ऐप से मेल खाईं; कोड साइनिंग, स्टार्टअप पुष्टि, पंजीकरण बने रहने और निष्क्रिय अवस्था में लौटने की जाँच सफल रही। मूल सहायता बटन ने Chrome में RemTeh का Ko-fi पेज खोला और Deckivo चलता रहा; कोई भुगतान नहीं किया गया।",
     "linux_test": "सार्वजनिक अपडेटर Switch OLED पर सत्यापित हुआ: 0.6.1 b10 → 0.8.1 b17; इंस्टॉलर की 80/80 फ़ाइलें सार्वजनिक ZIP से मेल खाईं, स्टार्टअप पुष्टि सक्रिय प्रक्रिया से मेल खाई, पेयरिंग सुरक्षित रही, और सक्षम systemd उपयोगकर्ता टाइमर ने GUI बंद रहते हुए सार्वजनिक फ़ीड सफलतापूर्वक प्राप्त की। 0.8.1 का गेमप्ले परीक्षण अलग से अभी लंबित है।",
-    "linux_guide": "Linux 0.8.5 b21 डाउनलोड करें",
+    "linux_guide": "Linux 0.8.6 b22 डाउनलोड करें",
     "faq": [
       {
         "q": "क्या दोनों डिवाइस एक ही नेटवर्क पर होने चाहिए?",
@@ -1332,7 +1332,7 @@
     "build": "बिल्ड",
     "platform_limits": "पूरी परीक्षण तालिका ↗",
     "mac_guide": "पूरी सेटअप गाइड ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   },
   "id": {
     "nav_features": "Fitur",
@@ -1371,12 +1371,12 @@
     "title": "Deckivo — PS5 Remote Play untuk Nintendo Switch (Android), Android dan Mac",
     "description": "Mainkan PS5 milikmu di Nintendo Switch OLED, perangkat Android, dan Mac Apple Silicon. Sumber terbuka, berbasis chiaki-ng.",
     "faq_title": "Pertanyaan dan jawaban.",
-    "stage": "Deckivo 0.8.5 · desktop b21 · Android #30",
-    "mac_note": "0.8.5 b21 · Memerlukan chiaki-ng; buka panduan lebih dahulu",
-    "linux_note": "0.8.5 b21 · Ubuntu 24.04.4 ARM64 · Penerimaan perangkat nyata tertunda",
+    "stage": "Deckivo 0.8.6 · desktop b22 · Android #31",
+    "mac_note": "0.8.6 b22 · Memerlukan chiaki-ng; buka panduan lebih dahulu",
+    "linux_note": "0.8.6 b22 · Ubuntu 24.04.4 ARM64 · Penerimaan perangkat nyata tertunda",
     "mac_test": "Pembaruan publik Mac 0.8.0 b16 → 0.8.2 b18 telah diverifikasi: seluruh 415 entri ZIP cocok dengan aplikasi terpasang; penandatanganan kode, konfirmasi mulai, penyimpanan pendaftaran, dan kembali ke keadaan diam dinyatakan lulus. Tombol dukungan native membuka halaman Ko-fi RemTeh di Chrome dan Deckivo tetap berjalan; tidak ada pembayaran yang dilakukan.",
     "linux_test": "Pemutakhir publik telah diverifikasi di Switch OLED: 0.6.1 b10 → 0.8.1 b17; 80/80 berkas pemasang cocok dengan ZIP publik, konfirmasi mulai cocok dengan proses aktif, penyandingan tetap tersimpan, dan timer pengguna systemd yang diaktifkan berhasil mengambil umpan publik saat antarmuka ditutup. Uji permainan 0.8.1 tetap menjadi pengujian terpisah yang masih tertunda.",
-    "linux_guide": "Unduh Linux 0.8.5 b21",
+    "linux_guide": "Unduh Linux 0.8.6 b22",
     "faq": [
       {
         "q": "Apakah kedua perangkat harus berada di jaringan yang sama?",
@@ -1421,6 +1421,6 @@
     "build": "Build",
     "platform_limits": "Tabel pengujian lengkap ↗",
     "mac_guide": "Panduan lengkap ↗",
-    "android_note": "0.8.5 #30 · arm64 APK · Android 8+"
+    "android_note": "0.8.6 #31 · arm64 APK · Android 8+"
   }
 }
