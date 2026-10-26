@@ -203,7 +203,7 @@ Russian device-neutral subtitle. This is UI/update acceptance, not gameplay.
 
 - Owner Mac: 0.8.5 b21 → 0.8.6 b22 through the existing automatic updater and signed public channel. All 417 package entries match; registration, preferences and session history are byte-for-byte retained. Startup acknowledged; native process is idle and reports up to date. Donation show count did not increase.
 - Shared desktop Home: 18 real MacDeckivo widget geometry checks (EN/RU, 1000×650 through 3840×2160, small→large→small resize), plus 4 Retina 2× cases. No clipped labels, photo overlap or horizontal overflow; small windows scroll vertically. This is isolated native Qt rendering, not gameplay.
-- Live installed-window visual check is pending: the computer-use tool reports the Mac locked. No visual acceptance of the owner's current window is claimed.
+- Live installed-window visual check is pending: the owner unlocked the Mac, but the computer-use tool still fails with ScreenCaptureKit -3811 after a new capture session. No visual acceptance of the owner's current window is claimed.
 - Android: 41 release unit tests, lint/build/signature verification. Desktop: 100 tests. Current CI browser quality and Pages deployment succeeded; public EN/RU site rendered at 7 widths and without JavaScript.
 - Switch Android/Ubuntu physical updates, PS5 streaming/input/controllers and a fresh Mac Gatekeeper first launch still require devices.
 

@@ -22,9 +22,19 @@
     "fixed_code_in_installed_bundle": true,
     "donation_show_count_unchanged": true,
     "real_Mac_class_rendering": "18 isolated Qt/offscreen EN/RU geometry checks + 4 Retina 2x checks; no clipped labels or photo overlaps; scrolling available when needed",
-    "live_window_visual_acceptance": "pending: computer-use tool reports Mac locked; owner asked to unlock; no live screenshot acceptance claimed",
+    "live_window_visual_acceptance": "pending: owner confirmed Mac unlocked; native capture still fails with ScreenCaptureKit -3811 after resetting capture session; no live screenshot acceptance claimed",
     "new_user_gatekeeper": "not tested",
-    "gameplay": "not tested"
+    "gameplay": "not tested",
+    "unlocked_recheck": {
+      "version": "0.8.6",
+      "build": 22,
+      "running": false,
+      "state": "idle",
+      "installed_layout_code_matches": true,
+      "owner_confirmed_unlocked": true,
+      "visual_acceptance": "blocked",
+      "capture_error": "macOS ScreenCaptureKit -3811; repeated after reset and selection of running app"
+    }
   },
   "release_assets": {
     "downloaded": 13,

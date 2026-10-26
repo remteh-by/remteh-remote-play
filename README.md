@@ -11,7 +11,7 @@
 
 **Deckivo 0.8.6 packages are experimental previews, not a finished 1.0
 product.** The release set is Android ARM64 build 31 plus desktop build 22 for
-Apple Silicon macOS and Switchroot Ubuntu ARM64. The desktop Home screen now preserves complete text in small windows, keeps the console photo in a separate column, and scrolls when needed. The owner Mac updated from 0.8.5 b21 to b22 through the normal signed public updater; all 417 package entries match, and pairing/settings/history are retained. Layout checks passed in 22 isolated native Qt cases. The final installed-window visual check is pending because the Mac is locked; Android/Ubuntu device acceptance also remains pending.
+Apple Silicon macOS and Switchroot Ubuntu ARM64. The desktop Home screen now preserves complete text in small windows, keeps the console photo in a separate column, and scrolls when needed. The owner Mac updated from 0.8.5 b21 to b22 through the normal signed public updater; all 417 package entries match, and pairing/settings/history are retained. Layout checks passed in 22 isolated native Qt cases. The final installed-window visual check is pending because native screen capture fails (ScreenCaptureKit -3811) after the owner unlocked the Mac; Android/Ubuntu device acceptance also remains pending.
 
 ### Choose your screen
 
@@ -43,7 +43,7 @@ Apple Silicon macOS and Switchroot Ubuntu ARM64. The desktop Home screen now pre
 
 | Hardware / OS | Exact build | Confirmed scope |
 |---|---|---|
-| Apple Silicon Mac / owner installation | 0.8.6 b22 | Normal public update from b21; 417/417 package entries match and private state retained. EN/RU layout: 18 geometry cases + 4 Retina 2× cases. Installed-window visual check pending (Mac locked); gameplay not tested |
+| Apple Silicon Mac / owner installation | 0.8.6 b22 | Normal public update from b21; 417/417 package entries match and private state retained. EN/RU layout: 18 geometry cases + 4 Retina 2× cases. Installed-window visual check pending (native capture error -3811); gameplay not tested |
 | Apple Silicon Mac / macOS 27.0.1 | 0.8.5 b21 | Public update from 0.8.4 b20; 417/417 package entries match; pairing, preferences and session history unchanged; corrected Sessions subtitle observed in the installed window. PS5 offline: gameplay not tested |
 | Switch OLED / Android 15 | 0.6.0 #24 | Public self-update 23 → 24; exact release APK verified; saved console retained |
 | Apple Silicon Mac / macOS 27.0.1 | 0.8.4 b20 (historical) | Normal public signed update 0.8.3 b19 → 0.8.4 b20; 417/417 archive entries matched; code signing and live startup acknowledgment passed; registration/preferences unchanged. Correct offline help, no startup donation dialog during 121 seconds of observation. PS5 offline: gameplay not tested. Native Donate navigation is historical 0.8.2 evidence; no payment submitted |
