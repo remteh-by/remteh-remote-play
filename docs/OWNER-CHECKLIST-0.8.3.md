@@ -4,8 +4,13 @@ The device was unavailable during this release. Keep registrations and app data;
 install updates over the current app. Never uninstall first. Do not permanently
 calibrate or flash controllers as part of this checklist.
 
-1. Android: run the normal updater from #25 to the retained 0.8.2 #27, then to
-   0.8.3 #28. Compare the installed base APK SHA-256 with each release. Confirm
+1. Android: the normal public updater now offers 0.8.3 #28 and can skip #27.
+   Record the actual starting build and update normally, keeping app data.
+   A separate #25 → #27 historical updater test needs a controlled old feed;
+   installing the retained #27 APK manually is only an APK upgrade test, not
+   proof of that updater transition. Never downgrade an already newer build
+   or change its identity/data just to recreate the sequence.
+   Compare the installed base APK SHA-256 with the selected release. Confirm
    the saved PS5 card, pairing, Auto/RU/EN after restart and streaming, support
    QR, licenses and localized update dialogs.
 2. Record the current Android stream settings. On the same scene, measure each
@@ -20,7 +25,10 @@ calibrate or flash controllers as part of this checklist.
    `dumpsys media.codec`, `dumpsys gfxinfo by.remteh.remoteplay` and `top`.
    These commands may not expose every metric: explicitly mark unavailable data.
    Repeat the same scenario after any evidence-based fix before choosing a default.
-4. Ubuntu: use normal signed updates b17 → retained 0.8.2 b18 → 0.8.3 b19.
+4. Ubuntu: record the starting build and use the normal signed update to b19.
+   A direct b17 → b19 update does not certify the untested intermediate b18
+   transition. Recreating that historical updater test needs a controlled old
+   signed feed; do not downgrade the current installation to manufacture it.
    Check launch, pairing, Donate without crash, streaming and a full reboot.
    Verify `systemctl --user cat deckivo-update-login.timer deckivo-update.timer`:
    45-second initial check; 60-minute repeat with 10-minute random delay. Verify
