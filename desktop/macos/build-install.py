@@ -44,6 +44,9 @@ def main():
  for path in shared.glob('*.py'):command+=['--add-data',str(path)+':.']
  subprocess.run(command+[str(shared/'macos_main.py')],check=True)
  stage=package/'frozen/Deckivo.app';info_path=stage/'Contents/Info.plist'
+ backend=stage/'Contents/Resources/assets/macos/libSDL2.dylib'
+ identifiers=subprocess.check_output(['otool','-D',str(backend)],text=True).splitlines()[1:]
+ if '@rpath/libSDL2-2.0.0.dylib' not in identifiers:raise SystemExit('Bundled SDL2 ID must be fixed at build time; users must not need developer tools.')
  info=plistlib.loads(info_path.read_bytes())
  info.update({'CFBundleDisplayName':'Deckivo','CFBundleShortVersionString':VERSION,'CFBundleVersion':str(args.build),
      'LSMinimumSystemVersion':'13.0','NSHighResolutionCapable':True,

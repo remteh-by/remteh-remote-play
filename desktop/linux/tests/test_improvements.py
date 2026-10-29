@@ -1,5 +1,5 @@
 """Regression cases from the 29 October audit; no real console or input device."""
-import http.client,json,os,plistlib,sys,tempfile,time,unittest
+import http.client,json,os,plistlib,sys,tempfile,time,unittest,struct
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock,patch
@@ -59,24 +59,46 @@ class InputTests(unittest.TestCase):
         dialog.close();app.processEvents()
 
 class EngineTests(unittest.TestCase):
+    def thin(self,cpu=0x0100000c):return struct.pack('<8I',0xfeedfacf,cpu,0,2,0,0,0,0)
     def bundle(self,root,version='1.10.0',identifier='org.streetpea.chiaking'):
         app=root/'Space in name/chiaki-ng.app';binary=app/'Contents/MacOS/chiaki';binary.parent.mkdir(parents=True)
-        binary.write_bytes(b'test Mach-O');binary.chmod(0o700)
+        binary.write_bytes(self.thin());binary.chmod(0o700)
         (app/'Contents/Info.plist').write_bytes(plistlib.dumps({'CFBundleIdentifier':identifier,'CFBundleExecutable':'chiaki','CFBundleShortVersionString':version}))
         return binary
     def test_user_path_spaces_and_architecture_validation(self):
         with tempfile.TemporaryDirectory() as d:
             binary=self.bundle(Path(d))
-            with patch.object(macos_engine.subprocess,'run',return_value=SimpleNamespace(stdout='arm64 x86_64')):
+            with patch.object(macos_engine.subprocess,'run',side_effect=AssertionError('No developer tools may run')):
                 self.assertEqual(macos_engine.resolve_engine({'engine_path':str(binary.parents[2])}),binary.resolve())
-            binary.write_bytes(b'changed')
-            with patch.object(macos_engine.subprocess,'run',return_value=SimpleNamespace(stdout='x86_64')):
-                self.assertIsNone(macos_engine.inspect_engine(binary))
+            binary.write_bytes(self.thin(0x01000007))
+            self.assertIsNone(macos_engine.inspect_engine(binary))
+    def test_universal_headers_and_malformed_inputs(self):
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d)/'binary'
+            for magic,entry in ((0xcafebabe,struct.pack('>5I',0x0100000c,0,4096,32,12)),(0xcafebabf,struct.pack('>IIQQII',0x0100000c,0,4096,32,12,0))):
+                header=struct.pack('>II',magic,1)+entry
+                path.write_bytes(header+b'\0'*(4096-len(header))+self.thin())
+                self.assertTrue(macos_engine.arm64_executable(path))
+            for data in (b'',b'bad',struct.pack('>II',0xcafebabe,999),self.thin(0x01000007)):
+                path.write_bytes(data);self.assertFalse(macos_engine.arm64_executable(path))
     def test_unknown_bundle_never_runs_and_invalid_choice_does_not_fall_back(self):
         with tempfile.TemporaryDirectory() as d:
             binary=self.bundle(Path(d),identifier='foreign.app')
             with patch.object(macos_engine.subprocess,'run') as run:
                 self.assertIsNone(macos_engine.resolve_engine({'engine_path':str(binary)}));run.assert_not_called()
+
+    def test_frozen_engine_preparation_needs_no_developer_tools(self):
+        import owned_macos_engine as owned
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);binary=self.bundle(root)
+            (binary.parents[1]/'Frameworks').mkdir()
+            bridge=root/'bridge.dylib';bridge.write_bytes(b'bridge')
+            backend=root/'libSDL2.dylib';backend.write_bytes(b'build-verified SDL')
+            with patch.object(owned.sys,'frozen',True,create=True),patch.object(owned.shutil,'disk_usage',return_value=SimpleNamespace(free=2*1024**3)),patch.object(owned.subprocess,'run') as run:
+                result=owned.prepare(binary,bridge,root/'private',backend)
+                self.assertTrue(result.is_file())
+                self.assertTrue(run.call_args_list)
+                self.assertTrue(all(call.args[0][0]=='codesign' for call in run.call_args_list))
 
 class BrowserOwnershipTests(unittest.TestCase):
     def setUp(self):

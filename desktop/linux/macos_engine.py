@@ -11,6 +11,7 @@ import re
 import sys
 import plistlib
 import subprocess
+import struct
 from PyQt5.QtCore import QSettings,QByteArray
 
 
@@ -44,6 +45,32 @@ def paired_hosts():
 ENGINE=Path('/Applications/chiaki-ng.app/Contents/MacOS/chiaki')
 PROFILE='Deckivo'
 
+def arm64_executable(binary):
+    """Read Apple's Mach-O headers without requiring Xcode Command Line Tools."""
+    thin={b'\xcf\xfa\xed\xfe':'<',b'\xfe\xed\xfa\xcf':'>'}
+    fat={b'\xca\xfe\xba\xbe':('>',20),b'\xbe\xba\xfe\xca':('<',20),
+         b'\xca\xfe\xba\xbf':('>',32),b'\xbf\xba\xfe\xca':('<',32)}
+    with binary.open('rb') as source:
+        length=binary.stat().st_size
+        def slice_is_arm(offset,size):
+            if size<32 or offset<0 or offset>length-size:return False
+            source.seek(offset);header=source.read(32);order=thin.get(header[:4])
+            return order is not None and len(header)==32 and struct.unpack(order+'I',header[4:8])[0]==0x0100000c and struct.unpack(order+'I',header[12:16])[0]==2
+        magic=source.read(4)
+        if magic in thin:return slice_is_arm(0,length)
+        if magic not in fat:return False
+        order,entry_size=fat[magic];count_raw=source.read(4)
+        if len(count_raw)!=4:return False
+        count=struct.unpack(order+'I',count_raw)[0]
+        if not 0<count<=32 or length<8+count*entry_size:return False
+        entries=source.read(count*entry_size)
+        for index in range(count):
+            entry=entries[index*entry_size:(index+1)*entry_size]
+            cpu=struct.unpack(order+'I',entry[:4])[0]
+            offset,size=struct.unpack(order+('QQ' if entry_size==32 else 'II'),entry[8:24] if entry_size==32 else entry[8:16])
+            if cpu==0x0100000c and offset>=8+count*entry_size and slice_is_arm(offset,size):return True
+        return False
+
 def inspect_engine(path):
     """Validate a user-selected official app without executing its binary."""
     path=Path(path).expanduser()
@@ -64,8 +91,7 @@ def _inspect_engine(binary,stamp):
         if info.get('CFBundleIdentifier')!='org.streetpea.chiaking' or info.get('CFBundleExecutable')!='chiaki' or not ((1,10)<=version<(2,)):
             return None
         if not binary.is_file() or not os.access(binary,os.X_OK):return None
-        arch=subprocess.run(['/usr/bin/lipo','-archs',str(binary)],capture_output=True,text=True,timeout=3,check=True).stdout.split()
-        if 'arm64' not in arch:return None
+        if not arm64_executable(binary):return None
         return binary.resolve()
     except (OSError,ValueError,KeyError,IndexError,plistlib.InvalidFileException,subprocess.SubprocessError):return None
 
