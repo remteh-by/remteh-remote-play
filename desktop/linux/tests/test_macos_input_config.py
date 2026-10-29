@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from PyQt5.QtCore import QSettings
+from PyQt5.QtCore import QSettings,QRect
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import macos_engine
@@ -35,6 +35,19 @@ class MacInputConfigurationTests(unittest.TestCase):
             self.assertTrue(stored.value('settings/enable_dualsense', False, type=bool))
             self.assertEqual(stored.value('settings/disconnect_action'), 'nothing')
             self.assertEqual(Path(path).stat().st_mode & 0o777, 0o600)
+
+    def test_video_pixels_do_not_restore_an_oversized_retina_window(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path=str(Path(folder)/'engine.ini');seed=QSettings(path,QSettings.IniFormat)
+            seed.setValue('settings/geometry',QRect(0,0,1920,1080))
+            seed.setValue('settings/stream_geometry',QRect(0,0,1920,1080));seed.sync()
+            with patch.object(macos_engine,'QSettings',lambda *args:QSettings(path,QSettings.IniFormat)):
+                macos_engine.configure({'server_nickname':'Isolated fixture'},3,QRect(0,0,1470,923))
+            stored=QSettings(path,QSettings.IniFormat)
+            self.assertFalse(stored.contains('settings/geometry'))
+            self.assertFalse(stored.contains('settings/stream_geometry'))
+            self.assertEqual(stored.value('settings/window_type'),'Adjust Manually')
+            self.assertEqual(stored.value('settings/resolution_local_ps5'),'1080p')
 
 
 if __name__ == '__main__':

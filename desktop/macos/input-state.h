@@ -20,8 +20,7 @@ typedef struct {
 typedef struct { bool active,resume_on_focus,rearm_on_focus_loss; } DkMacCapture;
 typedef struct { bool app_active,window_key,window_visible,window_minimized,modal; } DkMacFocus;
 typedef struct { double x,y,width,height; } DkMacRect;
-static inline DkMacRect dk_mac_restore_frame(DkMacRect saved,DkMacRect screen,bool fullscreen) {
-    if(fullscreen)return screen;
+static inline DkMacRect dk_mac_restore_frame(DkMacRect saved,DkMacRect screen) {
     double width=isfinite(saved.width)?saved.width:screen.width;
     double height=isfinite(saved.height)?saved.height:screen.height;
     width=fmin(screen.width,fmax(100,width));height=fmin(screen.height,fmax(100,height));

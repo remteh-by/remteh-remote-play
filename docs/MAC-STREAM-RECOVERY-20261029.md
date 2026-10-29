@@ -102,3 +102,23 @@ ASan/UBSan input/focus/Retina geometry harness and a real SDL dummy-device test
 with the production adapter inserted for 500 mute/unmute cycles. This establishes
 native policy and audio-queue behavior, not physical input, visible window or
 audible acceptance. The instrumented owner test remains required.
+
+The instrumented session subsequently exposed an actual 1920×1080-point window
+on a 1470×956-point screen. The owned engine profile now uses `Adjust Manually`
+window sizing and removes oversized/off-screen cached geometry against Qt's
+available screen bounds; the video request remains 1080p. Restore preserves the
+actual saved native frame, including a safe-area frame smaller than NSScreen.
+
+The owner also showed a disabled input-editor button during a live session.
+Mac input editing is now available while streaming, while connection/video and
+general Save controls remain locked. A bounded, validated per-process JSON
+request and private `conf` command apply mappings/speed/inversion without
+restarting. Success is displayed only after the matching process/revision and
+open virtual controller acknowledge the update; otherwise the UI says it was
+saved for the next session. Invalid/partial runtime profiles retain the current
+mapping. The setting explanation is included in all 16 desktop catalogs.
+
+The expanded suite passed 125 tests, including the actual Mac widget guard,
+local-socket request/ack, oversized geometry, and native runtime parser cases.
+The final editor checks were rerun after the capture-button state adjustment.
+This does not replace the owner's visible minimize/restore and in-game checks.

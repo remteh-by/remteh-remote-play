@@ -31,6 +31,7 @@ extern void deckivo_macos_capture(void *);
 extern void deckivo_macos_release(void *);
 extern void deckivo_macos_activate(void *);
 extern void deckivo_macos_close(void *);
+extern void deckivo_macos_reload(void *);
 __attribute__((constructor)) static void isolate_adapter(void) { unsetenv("DYLD_INSERT_LIBRARIES");init_owned_stop();deckivo_macos_input_start(); }
 #endif
 
@@ -98,6 +99,7 @@ static void stop_read(void *unused) {
     if(!memcmp(data,"quit",4)&&!stop_requested){stop_requested=1;dispatch_async_f(dispatch_get_main_queue(),NULL,quit_main);}
     else if(!memcmp(data,"grab",4))dispatch_async_f(dispatch_get_main_queue(),NULL,deckivo_macos_capture);
     else if(!memcmp(data,"drop",4))dispatch_async_f(dispatch_get_main_queue(),NULL,deckivo_macos_release);
+    else if(!memcmp(data,"conf",4))dispatch_async_f(dispatch_get_main_queue(),NULL,deckivo_macos_reload);
 }
 static void init_owned_stop(void) {
     const char *path=getenv("DECKIVO_STOP_SOCKET");

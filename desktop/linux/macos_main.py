@@ -5,6 +5,8 @@ import subprocess
 from pathlib import Path
 import sys
 import time
+import math
+import uuid
 from PyQt5.QtCore import QProcess,QProcessEnvironment,QTimer,Qt
 from PyQt5.QtGui import QFontDatabase
 from PyQt5.QtWidgets import QApplication,QMessageBox,QInputDialog,QFileDialog
@@ -15,7 +17,20 @@ from session import VERSION
 from macos_engine import resolve_engine,inspect_engine,configure,paired_hosts
 
 
+def runtime_input_request(values,revision):
+    from macos_input_settings import encode_bindings
+    keyboard,mouse=encode_bindings(values.get('input_bindings'))
+    sensitivity=values.get('mouse_sensitivity',.025)
+    if isinstance(sensitivity,bool) or not isinstance(sensitivity,(int,float)) or not math.isfinite(sensitivity) or not .001<=sensitivity<=.2:
+        raise ValueError('Invalid mouse sensitivity')
+    if not isinstance(values.get('invert_mouse_y',False),bool):raise ValueError('Invalid mouse inversion')
+    if not isinstance(revision,str) or not 16<=len(revision)<=64 or any(c not in '0123456789abcdef' for c in revision):raise ValueError('Invalid input revision')
+    return {'schema':1,'revision':revision,'keyboard':keyboard,'mouse':mouse,
+            'sensitivity':float(sensitivity),'invert_y':bool(values.get('invert_mouse_y',False))}
+
+
 class MacDeckivo(Deckivo):
+    live_input_settings=True
     def choose_engine(self):
         if self.active():return
         path=QFileDialog.getExistingDirectory(self,self.t('choose_engine'),str(Path.home()/'Applications'),QFileDialog.ShowDirsOnly|QFileDialog.DontUseNativeDialog)
@@ -49,7 +64,7 @@ class MacDeckivo(Deckivo):
         self.refresh()
 
     def edit_input_bindings(self):
-        if self.active():return
+        if self.is_closing or self.phase=='stopping':return
         from macos_input_settings import InputSettingsDialog
         language=self.effective_language()
         values=dict(self.preferences)
@@ -58,20 +73,46 @@ class MacDeckivo(Deckivo):
         values['invert_mouse_y']=self.options['invert_mouse_y'].isChecked()
         dialog=InputSettingsDialog(values,language,self)
         if dialog.exec_()!=dialog.Accepted:return
-        self.preferences.update(dialog.result_values())
+        self.preferences.update(dialog.result_values());self.preferences['keyboard_mouse']=True
         private_json(CONFIG,self.preferences)
         self.options['keyboard_mouse'].setChecked(True)
         self.options['invert_mouse_y'].setChecked(self.preferences['invert_mouse_y'])
         self.sensitivity.setValue(self.preferences['mouse_sensitivity'])
-        self.settings_notice.setText(self.t('saved'));self.refresh()
+        self.capture_button.setEnabled(self.active() and self.saw_video)
+        if self.active():self.apply_live_input_settings()
+        else:self.settings_notice.setText(self.t('saved'))
+        self.refresh()
+
+    def apply_live_input_settings(self):
+        import socket
+        revision=uuid.uuid4().hex;self.input_update_revision=revision
+        try:private_json(PRIVATE/'input-runtime.json',runtime_input_request(self.preferences,revision))
+        except (OSError,ValueError):self.settings_notice.setText(self.t('input_saved_next'));return
+        self.settings_notice.setText(self.t('input_applying'))
+        try:
+            with socket.socket(socket.AF_UNIX,socket.SOCK_DGRAM) as control:control.sendto(b'conf',str(PRIVATE/'adapter.sock'))
+        except OSError:
+            self.settings_notice.setText(self.t('input_saved_next'));return
+        self.confirm_live_input_settings(revision,self.stream_id,20)
+
+    def confirm_live_input_settings(self,revision,stream_id,remaining):
+        if revision!=getattr(self,'input_update_revision',None) or stream_id!=self.stream_id:return
+        if not self.active():self.settings_notice.setText(self.t('saved'));return
+        from storage import load_json
+        state=load_json(PRIVATE/'metrics.json.input',{})
+        if self.metrics.get('pid') and state.get('pid')==self.metrics['pid'] and state.get('input_revision')==revision and state.get('controller_ready') and state.get('controller_open'):
+            self.settings_notice.setText(self.t('input_applied'));return
+        if remaining<=0:self.settings_notice.setText(self.t('input_saved_next'));return
+        QTimer.singleShot(150,lambda:self.confirm_live_input_settings(revision,stream_id,remaining-1))
 
     def start(self):
         if self.active() or not self.registration:return False
         if self.engine_missing():
             QMessageBox.warning(self,'Deckivo',self.t('engine_missing'));return False
         self.close_controller_lab()
-        configure(self.registration,self.preferences['quality']);private_json(CONFIG,self.preferences)
-        (PRIVATE/'metrics.json').unlink(missing_ok=True)
+        screen=self.screen() or QApplication.primaryScreen()
+        configure(self.registration,self.preferences['quality'],screen.availableGeometry() if screen else None);private_json(CONFIG,self.preferences)
+        for name in ('metrics.json','metrics.json.input'):(PRIVATE/name).unlink(missing_ok=True)
         self.metrics={};self.saw_video=False;self.stop_requested=False;self.finalized=False;self.stream_id+=1
         self.started_mono=time.monotonic();self.started_at=launcher.datetime.datetime.now().astimezone().isoformat(timespec='seconds')
         self.quality_at_start=self.preferences['quality'];self.phase='connecting';self.message='ready'

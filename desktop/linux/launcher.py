@@ -287,14 +287,15 @@ class Deckivo(QWidget):
         row=QHBoxLayout();row.setSpacing(18)
         box,c=card(margins=22,spacing=11);c.addWidget(label(self.t('network'),'heading'))
         c.addWidget(label(self.t('host'),'muted'));self.host_edit=QLineEdit(self.preferences['host']);self.host_edit.setAccessibleName(self.t('host'));c.addWidget(self.host_edit)
+        self.connection_buttons=[]
         if hasattr(self,'pairing_setup'):
-            c.addWidget(button(self.t('import_pairing'),self.pairing_setup))
-            c.addWidget(button(self.t('choose_engine'),self.choose_engine))
+            self.connection_buttons=[button(self.t('import_pairing'),self.pairing_setup),button(self.t('choose_engine'),self.choose_engine)]
+            for item in self.connection_buttons:c.addWidget(item)
         c.addWidget(label(self.t('language'),'muted'));self.languages=QComboBox()
         self.languages.addItem(self.t('auto'),'auto')
         for code,name in LANGUAGES:self.languages.addItem(name,code)
         self.languages.setCurrentIndex(max(0,self.languages.findData(self.language)));c.addWidget(self.languages)
-        c.addStretch();c.addWidget(button(self.t('save'),self.save_settings,'primary'));row.addWidget(box,1)
+        c.addStretch();self.save_preferences_button=button(self.t('save'),self.save_settings,'primary');c.addWidget(self.save_preferences_button);row.addWidget(box,1)
         box,s=card(margins=22,spacing=8);s.addWidget(label(self.t('settings'),'heading'));self.options={}
         for key,text in (('fullscreen','fullscreen'),('controller_navigation','navigation'),('disconnect_chord','chord'),('history','remember'),('keyboard_mouse','keyboard_mouse'),('invert_mouse_y','invert_mouse_y')):
             if sys.platform=='darwin' and key=='disconnect_chord':continue
@@ -305,7 +306,7 @@ class Deckivo(QWidget):
             self.input_settings_button=button(self.t('input_bindings'),self.edit_input_bindings,'primary');s.addWidget(self.input_settings_button)
             self.sensitivity.hide()
         s.addWidget(label(self.t('input_layout'),'small',True))
-        s.addStretch();s.addWidget(label(self.t('locked'),'small',True));row.addWidget(box,1);v.addLayout(row,1)
+        s.addStretch();s.addWidget(label(self.t('input_live_note' if getattr(self,'live_input_settings',False) else 'locked'),'small',True));row.addWidget(box,1);v.addLayout(row,1)
         self.settings_notice=label('','accent',True);v.addWidget(self.settings_notice)
         viewport.setWidget(page);return viewport
 
@@ -455,8 +456,8 @@ class Deckivo(QWidget):
             return False
 
     def set_preferences_enabled(self,enabled):
-        for widget in self.preset_buttons+[self.profile_choice,self.host_edit,self.languages,self.sensitivity]+list(self.options.values()):widget.setEnabled(enabled)
-        if hasattr(self,'input_settings_button'):self.input_settings_button.setEnabled(enabled)
+        for widget in self.preset_buttons+[self.profile_choice,self.host_edit,self.languages,self.sensitivity,self.save_preferences_button]+self.connection_buttons+list(self.options.values()):widget.setEnabled(enabled)
+        if hasattr(self,'input_settings_button'):self.input_settings_button.setEnabled((enabled or getattr(self,'live_input_settings',False)) and not self.is_closing)
 
     def stop(self):
         if not self.active():return

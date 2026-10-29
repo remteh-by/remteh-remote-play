@@ -140,7 +140,11 @@
     "rest": "PS5 · Rest mode",
     "rest_help": "Wake your PS5 using its controller or power button, then connect.",
     "browser_missing": "Install Chrome or Chromium to use Controller Lab.",
-    "update_install": "Install update"
+    "update_install": "Install update",
+    "input_live_note": "Keyboard and mouse settings are available during streaming. Change connection and video settings after ending the stream.",
+    "input_applying": "Applying input settings…",
+    "input_applied": "Applied to the current stream.",
+    "input_saved_next": "Saved for the next session; the current stream did not confirm the change."
   },
   "ru": {
     "home": "Игровая",
@@ -283,7 +287,11 @@
     "rest": "PS5 · Режим покоя",
     "rest_help": "Включите PS5 геймпадом или кнопкой питания, затем подключитесь.",
     "browser_missing": "Для Controller Lab установите Chrome или Chromium.",
-    "update_install": "Установить обновление"
+    "update_install": "Установить обновление",
+    "input_live_note": "Клавиатуру и мышь можно настроить во время трансляции. Подключение и качество видео меняются после её завершения.",
+    "input_applying": "Применяем настройки управления…",
+    "input_applied": "Применено к текущей трансляции.",
+    "input_saved_next": "Сохранено для следующего сеанса; текущая трансляция не подтвердила изменение."
   },
   "uk": {
     "settings": "Налаштування",
@@ -426,7 +434,11 @@
     "rest": "PS5 · Режим спокою",
     "rest_help": "Увімкніть PS5 геймпадом або кнопкою живлення та підключіться.",
     "browser_missing": "Для Controller Lab установіть Chrome або Chromium.",
-    "update_install": "Установити оновлення"
+    "update_install": "Установити оновлення",
+    "input_live_note": "Клавіатуру й мишу можна налаштувати під час трансляції. Параметри з’єднання та відео змінюються після її завершення.",
+    "input_applying": "Застосовуємо налаштування керування…",
+    "input_applied": "Застосовано до поточної трансляції.",
+    "input_saved_next": "Збережено для наступного сеансу; поточна трансляція не підтвердила зміну."
   },
   "pl": {
     "settings": "Ustawienia",
@@ -569,7 +581,11 @@
     "rest": "PS5 · Tryb spoczynku",
     "rest_help": "Włącz PS5 kontrolerem lub przyciskiem zasilania, a następnie połącz.",
     "browser_missing": "Zainstaluj Chrome lub Chromium, aby używać Controller Lab.",
-    "update_install": "Zainstaluj aktualizację"
+    "update_install": "Zainstaluj aktualizację",
+    "input_live_note": "Klawiaturę i mysz można konfigurować podczas transmisji. Ustawienia połączenia i obrazu zmień po jej zakończeniu.",
+    "input_applying": "Stosowanie ustawień sterowania…",
+    "input_applied": "Zastosowano do bieżącej transmisji.",
+    "input_saved_next": "Zapisano na następną sesję; bieżąca transmisja nie potwierdziła zmiany."
   },
   "de": {
     "settings": "Einstellungen",
@@ -712,7 +728,11 @@
     "rest": "PS5 · Ruhemodus",
     "rest_help": "PS5 mit Controller oder Ein/Aus-Taste aufwecken und dann verbinden.",
     "browser_missing": "Für Controller Lab Chrome oder Chromium installieren.",
-    "update_install": "Update installieren"
+    "update_install": "Update installieren",
+    "input_live_note": "Tastatur und Maus lassen sich während des Streams konfigurieren. Verbindungs- und Videoeinstellungen können nach dem Beenden geändert werden.",
+    "input_applying": "Eingabeeinstellungen werden angewendet…",
+    "input_applied": "Auf den aktuellen Stream angewendet.",
+    "input_saved_next": "Für die nächste Sitzung gespeichert; der aktuelle Stream hat die Änderung nicht bestätigt."
   },
   "fr": {
     "settings": "Réglages",
@@ -855,7 +875,11 @@
     "rest": "PS5 · Mode repos",
     "rest_help": "Réveillez la PS5 avec la manette ou le bouton d’alimentation, puis connectez-vous.",
     "browser_missing": "Installez Chrome ou Chromium pour utiliser Controller Lab.",
-    "update_install": "Installer la mise à jour"
+    "update_install": "Installer la mise à jour",
+    "input_live_note": "Le clavier et la souris sont réglables pendant la diffusion. Modifiez la connexion et la vidéo une fois la diffusion terminée.",
+    "input_applying": "Application des réglages des commandes…",
+    "input_applied": "Appliqué à la diffusion en cours.",
+    "input_saved_next": "Enregistré pour la prochaine session ; la diffusion actuelle n’a pas confirmé la modification."
   },
   "es": {
     "settings": "Ajustes",
@@ -998,7 +1022,11 @@
     "rest": "PS5 · Modo reposo",
     "rest_help": "Activa la PS5 con el mando o el botón de encendido y conecta después.",
     "browser_missing": "Instala Chrome o Chromium para usar Controller Lab.",
-    "update_install": "Instalar actualización"
+    "update_install": "Instalar actualización",
+    "input_live_note": "Puedes configurar el teclado y el ratón durante la transmisión. Cambia la conexión y el vídeo al terminarla.",
+    "input_applying": "Aplicando los ajustes de control…",
+    "input_applied": "Aplicado a la transmisión actual.",
+    "input_saved_next": "Guardado para la próxima sesión; la transmisión actual no confirmó el cambio."
   },
   "it": {
     "settings": "Impostazioni",
@@ -1141,7 +1169,11 @@
     "rest": "PS5 · Modalità riposo",
     "rest_help": "Riattiva la PS5 con il controller o il tasto di accensione, poi connettiti.",
     "browser_missing": "Installa Chrome o Chromium per usare Controller Lab.",
-    "update_install": "Installa aggiornamento"
+    "update_install": "Installa aggiornamento",
+    "input_live_note": "Puoi configurare tastiera e mouse durante lo streaming. Modifica connessione e video dopo aver terminato la sessione.",
+    "input_applying": "Applicazione delle impostazioni dei comandi…",
+    "input_applied": "Applicato allo streaming in corso.",
+    "input_saved_next": "Salvato per la prossima sessione; lo streaming attuale non ha confermato la modifica."
   },
   "pt": {
     "settings": "Definições",
@@ -1284,7 +1316,11 @@
     "rest": "PS5 · Modo de repouso",
     "rest_help": "Ative a PS5 com o comando ou botão de energia e depois ligue-se.",
     "browser_missing": "Instale Chrome ou Chromium para usar Controller Lab.",
-    "update_install": "Instalar atualização"
+    "update_install": "Instalar atualização",
+    "input_live_note": "O teclado e o rato podem ser configurados durante a transmissão. Altere a ligação e o vídeo depois de a terminar.",
+    "input_applying": "A aplicar definições de controlo…",
+    "input_applied": "Aplicado à transmissão atual.",
+    "input_saved_next": "Guardado para a próxima sessão; a transmissão atual não confirmou a alteração."
   },
   "tr": {
     "settings": "Ayarlar",
@@ -1427,7 +1463,11 @@
     "rest": "PS5 · Dinlenme modu",
     "rest_help": "PS5’i kumanda veya güç düğmesiyle açıp bağlanın.",
     "browser_missing": "Controller Lab için Chrome veya Chromium kurun.",
-    "update_install": "Güncellemeyi yükle"
+    "update_install": "Güncellemeyi yükle",
+    "input_live_note": "Klavye ve fare ayarları yayın sırasında değiştirilebilir. Bağlantı ve video ayarlarını yayını bitirdikten sonra değiştirin.",
+    "input_applying": "Kontrol ayarları uygulanıyor…",
+    "input_applied": "Geçerli yayına uygulandı.",
+    "input_saved_next": "Sonraki oturum için kaydedildi; geçerli yayın değişikliği doğrulamadı."
   },
   "zh": {
     "settings": "设置",
@@ -1570,7 +1610,11 @@
     "rest": "PS5 · 待机模式",
     "rest_help": "使用手柄或电源键唤醒 PS5，然后连接。",
     "browser_missing": "请安装 Chrome 或 Chromium 以使用 Controller Lab。",
-    "update_install": "安装更新"
+    "update_install": "安装更新",
+    "input_live_note": "串流期间可以调整键盘和鼠标设置。连接和视频设置需在结束串流后更改。",
+    "input_applying": "正在应用输入设置…",
+    "input_applied": "已应用到当前串流。",
+    "input_saved_next": "已保存，供下次会话使用；当前串流未确认此更改。"
   },
   "ja": {
     "settings": "設定",
@@ -1713,7 +1757,11 @@
     "rest": "PS5 · レストモード",
     "rest_help": "コントローラーか電源ボタンで PS5 を起動してから接続してください。",
     "browser_missing": "Controller Lab には Chrome または Chromium をインストールしてください。",
-    "update_install": "更新をインストール"
+    "update_install": "更新をインストール",
+    "input_live_note": "配信中でもキーボードとマウスの設定を変更できます。接続と映像の設定は配信終了後に変更してください。",
+    "input_applying": "入力設定を適用中…",
+    "input_applied": "現在の配信に適用しました。",
+    "input_saved_next": "次回のセッション用に保存しました。現在の配信では変更を確認できませんでした。"
   },
   "ko": {
     "settings": "설정",
@@ -1856,7 +1904,11 @@
     "rest": "PS5 · 대기 모드",
     "rest_help": "컨트롤러 또는 전원 버튼으로 PS5를 켠 다음 연결하세요.",
     "browser_missing": "Controller Lab을 사용하려면 Chrome 또는 Chromium을 설치하세요.",
-    "update_install": "업데이트 설치"
+    "update_install": "업데이트 설치",
+    "input_live_note": "스트리밍 중에도 키보드와 마우스를 설정할 수 있습니다. 연결 및 영상 설정은 스트리밍을 종료한 후 변경하세요.",
+    "input_applying": "입력 설정 적용 중…",
+    "input_applied": "현재 스트리밍에 적용했습니다.",
+    "input_saved_next": "다음 세션을 위해 저장했습니다. 현재 스트리밍에서 변경을 확인하지 못했습니다."
   },
   "ar": {
     "settings": "الإعدادات",
@@ -1999,7 +2051,11 @@
     "rest": "PS5 · وضع السكون",
     "rest_help": "أيقظ PS5 بوحدة التحكم أو زر التشغيل ثم اتصل.",
     "browser_missing": "ثبّت Chrome أو Chromium لاستخدام Controller Lab.",
-    "update_install": "تثبيت التحديث"
+    "update_install": "تثبيت التحديث",
+    "input_live_note": "يمكن ضبط لوحة المفاتيح والفأرة أثناء البث. غيّر إعدادات الاتصال والفيديو بعد إنهاء البث.",
+    "input_applying": "جارٍ تطبيق إعدادات التحكم…",
+    "input_applied": "تم التطبيق على البث الحالي.",
+    "input_saved_next": "حُفظت للجلسة التالية؛ لم يؤكد البث الحالي التغيير."
   },
   "hi": {
     "settings": "सेटिंग",
@@ -2142,7 +2198,11 @@
     "rest": "PS5 · रेस्ट मोड",
     "rest_help": "कंट्रोलर या पावर बटन से PS5 जगाएँ, फिर कनेक्ट करें।",
     "browser_missing": "Controller Lab के लिए Chrome या Chromium स्थापित करें।",
-    "update_install": "अपडेट इंस्टॉल करें"
+    "update_install": "अपडेट इंस्टॉल करें",
+    "input_live_note": "स्ट्रीमिंग के दौरान कीबोर्ड और माउस की सेटिंग बदल सकते हैं। कनेक्शन और वीडियो की सेटिंग स्ट्रीम समाप्त करने के बाद बदलें।",
+    "input_applying": "इनपुट सेटिंग लागू की जा रही हैं…",
+    "input_applied": "मौजूदा स्ट्रीम पर लागू किया गया।",
+    "input_saved_next": "अगले सत्र के लिए सहेजा गया; मौजूदा स्ट्रीम ने बदलाव की पुष्टि नहीं की।"
   },
   "id": {
     "settings": "Pengaturan",
@@ -2285,6 +2345,10 @@
     "rest": "PS5 · Mode istirahat",
     "rest_help": "Bangunkan PS5 dengan kontroler atau tombol daya, lalu hubungkan.",
     "browser_missing": "Instal Chrome atau Chromium untuk menggunakan Controller Lab.",
-    "update_install": "Pasang pembaruan"
+    "update_install": "Pasang pembaruan",
+    "input_live_note": "Keyboard dan mouse dapat diatur saat streaming. Ubah pengaturan koneksi dan video setelah streaming berakhir.",
+    "input_applying": "Menerapkan pengaturan kontrol…",
+    "input_applied": "Diterapkan ke streaming saat ini.",
+    "input_saved_next": "Disimpan untuk sesi berikutnya; streaming saat ini tidak mengonfirmasi perubahan."
   }
 }

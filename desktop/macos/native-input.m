@@ -31,6 +31,8 @@ static unsigned long key_events,accepted_keys,mouse_events,accepted_mouse,action
 static NSRect remembered_frame;
 static BOOL have_frame,restore_pending,remembered_fullscreen,audio_hidden;
 static NSUInteger geometry_generation;
+static NSString *input_revision;
+static void install_keyboard_events(void);
 static double seconds(void){struct timespec t;clock_gettime(CLOCK_MONOTONIC,&t);return t.tv_sec+t.tv_nsec/1e9;}
 
 static void end_capture(BOOL temporary) {
@@ -164,7 +166,9 @@ static void restore_window_frame(NSWindow *window,NSUInteger generation) {
         NSRect bounds=remembered_fullscreen?screen.frame:screen.visibleFrame;
         DkMacRect saved={remembered_frame.origin.x,remembered_frame.origin.y,remembered_frame.size.width,remembered_frame.size.height};
         DkMacRect limit={bounds.origin.x,bounds.origin.y,bounds.size.width,bounds.size.height};
-        DkMacRect restored=dk_mac_restore_frame(saved,limit,remembered_fullscreen);
+        /* Preserve the real pre-minimize frame, including the Mac's safe area;
+         * a full screen frame can be smaller than NSScreen.frame on a notch. */
+        DkMacRect restored=dk_mac_restore_frame(saved,limit);
         NSRect frame=NSMakeRect(restored.x,restored.y,restored.width,restored.height);
         if(!NSEqualRects(window.frame,frame))[window setFrame:frame display:YES animate:NO];
         fprintf(stderr,"[Deckivo] restored stream window frame in logical points\n");
@@ -182,7 +186,7 @@ static void publish_input_status(void) {
     NSRect screen_frame=screen?screen.frame:NSZeroRect;
     NSDictionary *status=@{@"schema":@1,@"pid":@(getpid()),@"active":@(capture_state.active),
         @"resume_pending":@(capture_state.resume_on_focus),@"rearm_on_focus_loss":@(capture_state.rearm_on_focus_loss),
-        @"reason":[NSString stringWithUTF8String:capture_reason],@"enabled":@(enabled),
+        @"reason":[NSString stringWithUTF8String:capture_reason],@"enabled":@(enabled),@"input_revision":input_revision?:@"startup",
         @"app_active":@(NSApp.active),@"app_hidden":@(NSApp.hidden),@"window_key":@(stream_window.keyWindow),
         @"window_visible":@(stream_window.visible),@"window_minimized":@(stream_window.miniaturized),
         @"modal":@(NSApp.modalWindow!=nil),@"target_window":@(stream_window.windowNumber),@"key_window":@(NSApp.keyWindow.windowNumber),
@@ -194,6 +198,46 @@ static void publish_input_status(void) {
     NSData *data=[NSJSONSerialization dataWithJSONObject:status options:0 error:NULL];
     if(data&&[data writeToFile:path options:NSDataWritingAtomic error:NULL])
         [NSFileManager.defaultManager setAttributes:@{NSFilePosixPermissions:@0600} ofItemAtPath:path error:NULL];
+}
+static BOOL parse_input_request(NSData *data,DkMacInput *parsed,NSString **revision) {
+    if(!data||data.length>16384)return NO;
+    id value=[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+    if(![value isKindOfClass:NSDictionary.class])return NO;
+    id schema=value[@"schema"],speed=value[@"sensitivity"],invert=value[@"invert_y"];
+    if(![schema isKindOfClass:NSNumber.class]||CFGetTypeID((__bridge CFTypeRef)schema)==CFBooleanGetTypeID()||[schema doubleValue]!=1)return NO;
+    if(![speed isKindOfClass:NSNumber.class]||CFGetTypeID((__bridge CFTypeRef)speed)==CFBooleanGetTypeID())return NO;
+    double sensitivity=[speed doubleValue];if(!isfinite(sensitivity)||sensitivity<.001||sensitivity>.2)return NO;
+    if(![invert isKindOfClass:NSNumber.class]||CFGetTypeID((__bridge CFTypeRef)invert)!=CFBooleanGetTypeID())return NO;
+    NSString *keys=value[@"keyboard"],*mouse=value[@"mouse"],*identifier=value[@"revision"];
+    if(![keys isKindOfClass:NSString.class]||![mouse isKindOfClass:NSString.class]||![identifier isKindOfClass:NSString.class])return NO;
+    NSCharacterSet *wire=[[NSCharacterSet characterSetWithCharactersInString:@"0123456789:-,"] invertedSet];
+    NSCharacterSet *hex=[[NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdef"] invertedSet];
+    if(keys.length>2048||mouse.length>2048||[keys rangeOfCharacterFromSet:wire].location!=NSNotFound||[mouse rangeOfCharacterFromSet:wire].location!=NSNotFound)return NO;
+    if(identifier.length<16||identifier.length>64||[identifier rangeOfCharacterFromSet:hex].location!=NSNotFound)return NO;
+    dk_mac_init(parsed,sensitivity,[invert boolValue],seconds());
+    if(!dk_mac_bindings(parsed,keys.UTF8String,false)||!dk_mac_bindings(parsed,mouse.UTF8String,true))return NO;
+    *revision=identifier;return YES;
+}
+int deckivo_validate_input_request(const char *json,size_t length) {
+    @autoreleasepool {
+        if(!json||length>16384)return 0;
+        DkMacInput parsed;NSString *revision;
+        return parse_input_request([NSData dataWithBytes:json length:length],&parsed,&revision);
+    }
+}
+void deckivo_macos_reload(void *unused) {
+    (void)unused;const char *base=getenv("DECKIVO_METRICS");if(!base)return;
+    NSString *path=[[[NSString stringWithUTF8String:base] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"input-runtime.json"];
+    NSNumber *size=[NSFileManager.defaultManager attributesOfItemAtPath:path error:NULL][NSFileSize];
+    if(!size||size.unsignedLongLongValue>16384)return;
+    DkMacInput updated;NSString *revision;
+    if(!parse_input_request([NSData dataWithContentsOfFile:path],&updated,&revision)){
+        fprintf(stderr,"[Deckivo] rejected invalid live input settings; current mapping retained\n");return;
+    }
+    end_capture(YES);input=updated;enabled=YES;setenv("DECKIVO_KBM","1",1);
+    input_revision=revision;capture_state.resume_on_focus=YES;capture_state.rearm_on_focus_loss=YES;
+    capture_reason="runtime_input_updated";install_keyboard_events();
+    fprintf(stderr,"[Deckivo] live keyboard/mouse settings accepted\n");
 }
 static void input_tick(void *unused) {
     (void)unused;if(!NSApp)return;
@@ -246,7 +290,10 @@ void deckivo_macos_input_start(void) {
     bool mouse_valid=dk_mac_bindings(&input,getenv("DECKIVO_MOUSE_BINDINGS"),true);
     if(!keys_valid||!mouse_valid)
         fprintf(stderr,"[Deckivo] invalid input mapping; retained safe defaults for that device\n");
-    dispatch_async(dispatch_get_main_queue(),^{
+    dispatch_async(dispatch_get_main_queue(),^{install_keyboard_events();});
+}
+static void install_keyboard_events(void) {
+    if(local_monitor)return;
         NSEventMask mask=NSEventMaskKeyDown|NSEventMaskKeyUp|NSEventMaskFlagsChanged|NSEventMaskMouseMoved|NSEventMaskLeftMouseDragged|NSEventMaskRightMouseDragged|NSEventMaskOtherMouseDragged|NSEventMaskLeftMouseDown|NSEventMaskLeftMouseUp|NSEventMaskRightMouseDown|NSEventMaskRightMouseUp|NSEventMaskOtherMouseDown|NSEventMaskOtherMouseUp;
         local_monitor=[NSEvent addLocalMonitorForEventsMatchingMask:mask handler:^NSEvent *(NSEvent *event){
             if(event.type==NSEventTypeKeyDown||event.type==NSEventTypeKeyUp)key_events++;
@@ -290,5 +337,4 @@ void deckivo_macos_input_start(void) {
         resign_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSApplicationDidResignActiveNotification object:NSApp queue:nil usingBlock:^(NSNotification *note){(void)note;end_capture(YES);}];
         window_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSWindowDidResignKeyNotification object:nil queue:nil usingBlock:^(NSNotification *note){if(note.object==capture_window)end_capture(YES);}];
         termination_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSApplicationWillTerminateNotification object:NSApp queue:nil usingBlock:^(NSNotification *note){(void)note;deckivo_macos_release(NULL);}];
-    });
 }

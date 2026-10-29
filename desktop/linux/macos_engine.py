@@ -12,7 +12,7 @@ import sys
 import plistlib
 import subprocess
 import struct
-from PyQt5.QtCore import QSettings,QByteArray
+from PyQt5.QtCore import QSettings,QByteArray,QRect
 
 
 def paired_hosts():
@@ -109,7 +109,7 @@ def resolve_engine(preferences=None):
     return None
 
 
-def configure(registration,quality):
+def configure(registration,quality,window_bounds=None):
     q=QSettings('Chiaki','Chiaki-'+PROFILE)
     q.setValue('version',2)
     from session import PRESETS
@@ -117,12 +117,19 @@ def configure(registration,quality):
     height,fps,rate=preset.height,preset.fps,preset.bitrate
     values={'resolution_local_ps5':f'{height}p','fps_local_ps5':fps,'bitrate_local_ps5':rate,
         'codec_local_ps5':'h264','hw_decoder':'auto','disconnect_action':'nothing',
+        # Video pixels must not become the native window's logical point size.
+        'window_type':'Adjust Manually',
         'remote_play_ask':False,'log_verbose':False,'log_sanitize':True,
         # Deckivo owns keyboard/mouse capture. Stock bindings use Insert/Delete
         # for movement and mouse clicks for the touchpad; leaving them enabled
         # would send a second, conflicting input stream before/after capture.
         'keyboard_enabled':False,'mouse_touch_enabled':False}
     for key,value in values.items():q.setValue('settings/'+key,value)
+    if isinstance(window_bounds,QRect) and window_bounds.isValid():
+        for key in ('settings/geometry','settings/stream_geometry'):
+            stored=q.value(key)
+            if isinstance(stored,QRect) and (stored.width()>window_bounds.width() or stored.height()>window_bounds.height() or not stored.intersects(window_bounds)):
+                q.remove(key)
     q.beginWriteArray('registered_hosts',1);q.setArrayIndex(0)
     for key,value in registration.items():
         q.setValue(key,QByteArray(bytes.fromhex(value)) if key in ('server_mac','rp_key','rp_regist_key') else value)

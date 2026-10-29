@@ -120,15 +120,15 @@ int main(void) {
         assert(!capture.active&&!capture.resume_on_focus&&!capture.rearm_on_focus_loss);
     }
     DkMacRect screen={0,0,1440,900},large={0,0,2880,1800};
-    DkMacRect restored=dk_mac_restore_frame(large,screen,false);
+    DkMacRect restored=dk_mac_restore_frame(large,screen);
     assert(restored.width==1440&&restored.height==900); /* points, not Retina pixels */
-    restored=dk_mac_restore_frame((DkMacRect){800,800,600,400},screen,false);
+    restored=dk_mac_restore_frame((DkMacRect){800,800,600,400},screen);
     assert(restored.x==800&&restored.y==500&&restored.width==600&&restored.height==400);
-    restored=dk_mac_restore_frame((DkMacRect){1,2,600,400},screen,true);
-    assert(restored.x==0&&restored.y==0&&restored.width==1440&&restored.height==900);
-    restored=dk_mac_restore_frame((DkMacRect){-1900,20,800,600},(DkMacRect){-1920,0,1920,1080},false);
+    restored=dk_mac_restore_frame((DkMacRect){0,0,1470,923},(DkMacRect){0,0,1470,956});
+    assert(restored.x==0&&restored.y==0&&restored.width==1470&&restored.height==923); /* Mac safe area */
+    restored=dk_mac_restore_frame((DkMacRect){-1900,20,800,600},(DkMacRect){-1920,0,1920,1080});
     assert(restored.x==-1900&&restored.y==20&&restored.width==800&&restored.height==600);
-    restored=dk_mac_restore_frame((DkMacRect){NAN,INFINITY,NAN,INFINITY},screen,false);
+    restored=dk_mac_restore_frame((DkMacRect){NAN,INFINITY,NAN,INFINITY},screen);
     assert(restored.x==0&&restored.y==0&&restored.width==1440&&restored.height==900);
 
     puts("PASS: WASD/mouse mappings; 500 focus cycles x32 states; Esc->minimize->restore; stop cancels resume; logical-point window restore, Retina sizes and negative-screen origins");

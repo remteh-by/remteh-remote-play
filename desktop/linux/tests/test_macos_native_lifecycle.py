@@ -30,9 +30,18 @@ class MacNativeLifecycleTests(unittest.TestCase):
         run([compiler,'-dynamiclib','-undefined','dynamic_lookup','-framework','Cocoa','-framework','ApplicationServices',cls.work/'bridge.o',cls.work/'mac.o','-o',cls.adapter])
         run(common+['-I'+str(cls.sdl/'include/SDL2'),root/'macos/test-audio-minimize.c',
                     '-L'+str(cls.sdl/'lib'),'-lSDL2','-Wl,-rpath,'+str(cls.sdl/'lib'),'-Wl,-export_dynamic','-o',cls.work/'test-audio'])
+        run(common+['-fobjc-arc',root/'macos/test-input-runtime.m','-framework','Foundation',
+                    '-L'+str(cls.sdl/'lib'),'-lSDL2','-Wl,-rpath,'+str(cls.sdl/'lib'),'-Wl,-export_dynamic','-o',cls.work/'test-runtime'])
 
     def test_focus_input_and_retina_window_policy_under_sanitizers(self):
         result=self.run_compile([self.work/'test-state'])
+        self.assertIn('PASS:',result.stdout)
+        print(result.stdout.strip())
+
+    def test_live_input_request_parser_rejects_partial_or_invalid_profiles(self):
+        environment={k:v for k,v in os.environ.items() if not k.startswith(('DECKIVO_','DYLD_'))}
+        environment.update(DYLD_INSERT_LIBRARIES=str(self.adapter),SDL_AUDIODRIVER='dummy',DECKIVO_KBM='0')
+        result=subprocess.run([str(self.work/'test-runtime')],env=environment,capture_output=True,text=True,check=True,timeout=30)
         self.assertIn('PASS:',result.stdout)
         print(result.stdout.strip())
 
