@@ -65,9 +65,17 @@ static void neutral(void) {
     for(int i=0;i<21;i++)set_button(joystick,i,0);
 }
 #ifdef __APPLE__
+void deckivo_notify_closing(void) {
+    const char *path=getenv("DECKIVO_SUPERVISOR_SOCKET");
+    if(!path||!path[0]||strlen(path)>=sizeof(((struct sockaddr_un *)0)->sun_path))return;
+    int fd=socket(AF_UNIX,SOCK_DGRAM,0);if(fd<0)return;
+    struct sockaddr_un address={0};address.sun_family=AF_UNIX;strcpy(address.sun_path,path);
+    (void)sendto(fd,"closing",7,MSG_DONTWAIT,(struct sockaddr *)&address,sizeof(address));close(fd);
+}
 static void quit_main(void *unused) {
     (void)unused;deckivo_macos_release(NULL);neutral();
     fprintf(stderr,"[Deckivo] user-ended stream\n");
+    deckivo_notify_closing();
     /* The engine's window close event stops its session before Qt exits.
      * NSApplication terminate skips that event and can block session join. */
     deckivo_macos_close(NULL);
