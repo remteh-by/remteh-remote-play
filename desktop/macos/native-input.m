@@ -16,7 +16,8 @@ extern void deckivo_set_controller(uint32_t,const int16_t[6]);
 extern void deckivo_pump_controller(void);
 extern void deckivo_request_quit(void);
 extern void deckivo_notify_closing(void);
-static BOOL enabled,capturing,relative_mouse,ignore_initial_motion,previous_mouse_events;
+static BOOL enabled,relative_mouse,ignore_initial_motion,previous_mouse_events;
+static DkMacCapture capture_state;
 static DkMacInput input;
 static NSWindow *capture_window,*stream_window;
 static NSPanel *capture_badge;
@@ -24,19 +25,26 @@ static id local_monitor,resign_observer,window_observer,termination_observer,clo
 static dispatch_source_t input_timer;
 static double seconds(void){struct timespec t;clock_gettime(CLOCK_MONOTONIC,&t);return t.tv_sec+t.tv_nsec/1e9;}
 
-void deckivo_macos_release(void *unused) {
-    (void)unused;
-    if(capturing)fprintf(stderr,"[Deckivo] WASD mouse capture released\n");
+static void end_capture(BOOL temporary) {
+    BOOL was_active=dk_mac_capture_end(&capture_state,&input,seconds(),temporary);
+    if(was_active)fprintf(stderr,temporary?"[Deckivo] WASD mouse capture suspended (focus lost)\n":"[Deckivo] WASD mouse capture released\n");
     if(relative_mouse){CGAssociateMouseAndMouseCursorPosition(true);relative_mouse=NO;}
-    if(capturing)[NSCursor unhide];
+    if(was_active)[NSCursor unhide];
     if(capture_window)capture_window.acceptsMouseMovedEvents=previous_mouse_events;
-    capturing=NO;ignore_initial_motion=NO;dk_mac_reset(&input,seconds());
+    ignore_initial_motion=NO;
     if(capture_badge){
         [capture_badge.parentWindow removeChildWindow:capture_badge];
         [capture_badge orderOut:nil];[capture_badge close];capture_badge=nil;
     }
     capture_window=nil;
     const int16_t axes[6]={0,0,0,0,INT16_MIN,INT16_MIN};deckivo_set_controller(0,axes);deckivo_pump_controller();
+}
+void deckivo_macos_release(void *unused) {
+    (void)unused;end_capture(NO);
+}
+static BOOL stream_has_focus(void) {
+    DkMacFocus focus={NSApp.active,stream_window.keyWindow,stream_window.visible,stream_window.miniaturized,NSApp.modalWindow!=nil};
+    return dk_mac_capture_eligible(enabled,focus);
 }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -85,9 +93,10 @@ static void show_capture_badge(NSString *text) {
     });
 }
 static void begin_capture(void) {
-    if(!enabled||!NSApp.active||NSApp.modalWindow||!deckivo_ensure_controller())return;
+    if(!stream_has_focus()||!deckivo_ensure_controller())return;
+    BOOL resumed=capture_state.resume_on_focus;
     deckivo_macos_release(NULL);
-    capture_window=NSApp.keyWindow;
+    capture_window=stream_window;
     if(!capture_window)return;
     previous_mouse_events=capture_window.acceptsMouseMovedEvents;
     capture_window.acceptsMouseMovedEvents=YES;
@@ -96,8 +105,8 @@ static void begin_capture(void) {
         capture_window.acceptsMouseMovedEvents=previous_mouse_events;capture_window=nil;
         fprintf(stderr,"[Deckivo] relative mouse capture unavailable\n");return;
     }
-    relative_mouse=YES;capturing=YES;ignore_initial_motion=YES;[NSCursor hide];
-    fprintf(stderr,"[Deckivo] WASD mouse capture active (relative)\n");
+    relative_mouse=YES;dk_mac_capture_begin(&capture_state);ignore_initial_motion=YES;[NSCursor hide];
+    fprintf(stderr,resumed?"[Deckivo] WASD mouse capture restored after focus return\n":"[Deckivo] WASD mouse capture active (relative)\n");
     NSString *language=NSProcessInfo.processInfo.environment[@"DECKIVO_INPUT_LANG"];
     BOOL ru=[language hasPrefix:@"ru"]||([language isEqualToString:@"auto"]&&[NSLocale.preferredLanguages.firstObject hasPrefix:@"ru"]);
     show_capture_badge(ru?@"DECKIVO · Клавиатура + мышь · Esc — отпустить · F8 — захват":@"DECKIVO · Keyboard + mouse · Esc releases · F8 captures");
@@ -114,10 +123,13 @@ void deckivo_macos_capture(void *unused) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,150*NSEC_PER_MSEC),dispatch_get_main_queue(),^{begin_capture();});
 }
 static void input_tick(void *unused) {
-    (void)unused;if(!NSApp||!deckivo_ensure_controller())return;
-    if(capturing&&(!NSApp.active||!capture_window.keyWindow||NSApp.modalWindow))deckivo_macos_release(NULL);
+    (void)unused;if(!NSApp)return;
+    BOOL focused=stream_has_focus();
+    if(capture_state.active&&!focused)end_capture(YES);
+    if(!deckivo_ensure_controller())return;
+    if(dk_mac_capture_wants_resume(&capture_state,focused))begin_capture();
     int16_t axes[6]={0,0,0,0,INT16_MIN,INT16_MIN};uint32_t buttons=0;
-    if(capturing)dk_mac_sample(&input,seconds(),&buttons,axes);
+    if(capture_state.active)dk_mac_sample(&input,seconds(),&buttons,axes);
     deckivo_set_controller(buttons,axes);deckivo_pump_controller();
 }
 void deckivo_macos_input_start(void) {
@@ -143,10 +155,10 @@ void deckivo_macos_input_start(void) {
         local_monitor=[NSEvent addLocalMonitorForEventsMatchingMask:mask handler:^NSEvent *(NSEvent *event){
             /* Route Cmd+Q through the same orderly session close as the dashboard. */
             if(event.type==NSEventTypeKeyDown&&event.keyCode==12&&(event.modifierFlags&NSEventModifierFlagCommand)&&!event.ARepeat){deckivo_macos_release(NULL);deckivo_request_quit();return nil;}
-            if(event.type==NSEventTypeKeyDown&&event.keyCode==100&&!event.ARepeat){if(capturing)deckivo_macos_release(NULL);else deckivo_macos_capture(NULL);return nil;}
-            if(!capturing)return event;
-            if(!NSApp.active||NSApp.modalWindow){deckivo_macos_release(NULL);return event;}
-            if(event.window&&event.window!=capture_window){deckivo_macos_release(NULL);return event;}
+            if(event.type==NSEventTypeKeyDown&&event.keyCode==100&&!event.ARepeat){if(capture_state.active)deckivo_macos_release(NULL);else deckivo_macos_capture(NULL);return nil;}
+            if(!capture_state.active)return event;
+            if(!stream_has_focus()){end_capture(YES);return event;}
+            if(event.window&&event.window!=capture_window){end_capture(YES);return event;}
             if(event.type==NSEventTypeKeyDown&&event.keyCode==53){deckivo_macos_release(NULL);return nil;}
             /* Process key releases even when Cmd is held; shortcuts cannot leave W stuck. */
             if(event.type==NSEventTypeKeyUp)dk_mac_key(&input,event.keyCode,false);
@@ -168,8 +180,8 @@ void deckivo_macos_input_start(void) {
                 default:return event;
             }
         }];
-        resign_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSApplicationDidResignActiveNotification object:NSApp queue:nil usingBlock:^(NSNotification *note){(void)note;deckivo_macos_release(NULL);}];
-        window_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSWindowDidResignKeyNotification object:nil queue:nil usingBlock:^(NSNotification *note){if(note.object==capture_window)deckivo_macos_release(NULL);}];
+        resign_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSApplicationDidResignActiveNotification object:NSApp queue:nil usingBlock:^(NSNotification *note){(void)note;end_capture(YES);}];
+        window_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSWindowDidResignKeyNotification object:nil queue:nil usingBlock:^(NSNotification *note){if(note.object==capture_window)end_capture(YES);}];
         termination_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSApplicationWillTerminateNotification object:NSApp queue:nil usingBlock:^(NSNotification *note){(void)note;deckivo_macos_release(NULL);}];
         input_timer=dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,0,0,dispatch_get_main_queue());
         dispatch_source_set_timer(input_timer,DISPATCH_TIME_NOW,16*NSEC_PER_MSEC,2*NSEC_PER_MSEC);dispatch_source_set_event_handler_f(input_timer,input_tick);dispatch_resume(input_timer);

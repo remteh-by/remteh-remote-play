@@ -17,6 +17,9 @@ typedef struct {
     double dx, dy, sensitivity, last_tick, last_motion;
 } DkMacInput;
 
+typedef struct { bool active,resume_on_focus; } DkMacCapture;
+typedef struct { bool app_active,window_key,window_visible,window_minimized,modal; } DkMacFocus;
+
 static inline unsigned dk_mac_canonical_key(unsigned key) {
     return key==60?56:key==61?58:key==62?59:key;
 }
@@ -29,6 +32,21 @@ static inline bool dk_mac_valid_action(long action) {
 static inline void dk_mac_reset(DkMacInput *s, double now) {
     memset(s->keys,0,sizeof(s->keys));memset(s->mouse,0,sizeof(s->mouse));
     s->dx=s->dy=s->last_motion=0;s->last_tick=now;
+}
+static inline bool dk_mac_capture_eligible(bool enabled,DkMacFocus focus) {
+    return enabled&&focus.app_active&&focus.window_key&&focus.window_visible&&!focus.window_minimized&&!focus.modal;
+}
+static inline bool dk_mac_capture_wants_resume(const DkMacCapture *capture,bool eligible) {
+    return capture->resume_on_focus&&!capture->active&&eligible;
+}
+static inline void dk_mac_capture_begin(DkMacCapture *capture) {
+    capture->active=true;capture->resume_on_focus=false;
+}
+static inline bool dk_mac_capture_end(DkMacCapture *capture,DkMacInput *input,double now,bool temporary) {
+    bool was_active=capture->active;
+    capture->resume_on_focus=temporary&&(capture->active||capture->resume_on_focus);
+    capture->active=false;dk_mac_reset(input,now);
+    return was_active;
 }
 static inline void dk_mac_init(DkMacInput *s,double sensitivity,bool invert,double now) {
     memset(s,0,sizeof(*s));s->sensitivity=isfinite(sensitivity)?fmax(.001,fmin(.2,sensitivity)):.025;

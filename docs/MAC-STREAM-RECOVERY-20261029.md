@@ -53,3 +53,24 @@ Long sessions, display sleep/wake, multiple monitors, repeated fullscreen change
 physical controller combinations, Android/Switch, and clean-user Gatekeeper are
 not covered by this focused Mac check. No public release/update channel or old
 release asset was edited.
+
+## Follow-up: restoring keyboard/mouse after minimizing
+
+The owner confirmed visible video in the final capture-enabled connection, then
+reported that keyboard/mouse stopped after minimizing and restoring the stream.
+The previous focus-loss handler deliberately released capture but had no resume
+transition.
+
+Focus loss now suspends capture, releases the pointer and clears every held
+key/button. Returning to the same visible, non-minimized key streaming window
+automatically resumes capture, only when that engine app is active and has no
+modal dialog. Duplicate app/window focus-loss notifications preserve the pending
+resume. Explicit Esc/F8 release, End stream and application termination cancel
+it. No global keyboard monitor or new system permission is introduced.
+
+The production state policy is shared with the native harness. It passed 500
+cycles through all 32 focus combinations, including neutral input on return,
+fresh WASD input after return, duplicate loss notifications and cancellation of
+pending resume. The 118 desktop tests also passed. These checks validate the
+state policy and native build; the owner must still verify the real macOS
+minimize/restore cycle and physical input after installing this follow-up.
