@@ -72,11 +72,13 @@
     <string name="dv_diag_offline">PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi isolation.</string>
     <string name="dv_diag_online">Remote Play responde: %1$d/3, TCP %2$.1f ms. Isto verifica a ligação, não o atraso do vídeo.</string>
     <string name="dv_diag_report">%1$s\nH.264 decoder: %2$s\nAn open port does not confirm pairing or streaming.</string>
+    <string name="dv_diag_save_failed">Não foi possível guardar o ficheiro de diagnóstico.</string>
     <string name="dv_discovery_find">Procurar consolas</string>
     <string name="dv_discovery_on">Deteção ativa</string>
     <string name="dv_download">Transferir atualização</string>
     <string name="dv_empty_intro">Usa a mesma rede ou adiciona uma consola manualmente.</string>
     <string name="dv_empty_title">A tua consola ficará aqui</string>
+    <string name="dv_export_stream_diagnostics">Exportar diagnóstico</string>
     <string name="dv_fit">Ajustar</string>
     <string name="dv_goal_amount">USD %1$.2f / %2$.2f</string>
     <string name="dv_guided">Ligação guiada</string>
@@ -140,7 +142,7 @@
     <string name="dv_searching">A procurar na tua rede. Também podes adicionar um endereço IP.</string>
     <string name="dv_settings">Definições</string>
     <string name="dv_setup">Ligar</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
+    <string name="dv_setup_credit">Development build 0.8.6. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">Após o registro, volte para casa e selecione PS5. O jogo local está pronto; o acesso à Internet não está configurado nesta versão.</string>
     <string name="dv_setup_enable">No PS5, habilite Configurações → Sistema → Reprodução remota.</string>
     <string name="dv_setup_find">01 · Encontre seu console</string>

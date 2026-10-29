@@ -4,10 +4,13 @@ Pairing keys stay in a private native QSettings profile. Engine arguments never
 contain keys or account identifiers. The Linux Tegra adapter is never loaded.
 """
 import ctypes
+from functools import lru_cache
 import os
 from pathlib import Path
 import re
 import sys
+import plistlib
+import subprocess
 from PyQt5.QtCore import QSettings,QByteArray
 
 
@@ -40,6 +43,44 @@ def paired_hosts():
 
 ENGINE=Path('/Applications/chiaki-ng.app/Contents/MacOS/chiaki')
 PROFILE='Deckivo'
+
+def inspect_engine(path):
+    """Validate a user-selected official app without executing its binary."""
+    path=Path(path).expanduser()
+    binary=path/'Contents/MacOS/chiaki' if path.suffix=='.app' else path
+    try:
+        info=binary.parents[2]/'Contents/Info.plist'
+        stamp=tuple((p.stat().st_ino,p.stat().st_size,p.stat().st_mtime_ns) for p in (binary,info))
+        if not os.access(binary,os.X_OK):return None
+        return _inspect_engine(binary,stamp)
+    except (OSError,IndexError):return None
+
+@lru_cache(maxsize=16)
+def _inspect_engine(binary,stamp):
+    try:
+        bundle=binary.parents[2]
+        info=plistlib.loads((bundle/'Contents/Info.plist').read_bytes())
+        version=tuple(int(n) for n in info['CFBundleShortVersionString'].split('.'))
+        if info.get('CFBundleIdentifier')!='org.streetpea.chiaking' or info.get('CFBundleExecutable')!='chiaki' or not ((1,10)<=version<(2,)):
+            return None
+        if not binary.is_file() or not os.access(binary,os.X_OK):return None
+        arch=subprocess.run(['/usr/bin/lipo','-archs',str(binary)],capture_output=True,text=True,timeout=3,check=True).stdout.split()
+        if 'arm64' not in arch:return None
+        return binary.resolve()
+    except (OSError,ValueError,KeyError,IndexError,plistlib.InvalidFileException,subprocess.SubprocessError):return None
+
+def resolve_engine(preferences=None):
+    if preferences is None:
+        from storage import load_json,CONFIG
+        preferences=load_json(CONFIG,{})
+    selected=preferences.get('engine_path') if isinstance(preferences,dict) else None
+    if selected:
+        # An invalid saved choice must be explained, not silently replaced.
+        return inspect_engine(selected)
+    for path in (ENGINE,Path.home()/'Applications/chiaki-ng.app/Contents/MacOS/chiaki'):
+        found=inspect_engine(path)
+        if found:return found
+    return None
 
 
 def configure(registration,quality):

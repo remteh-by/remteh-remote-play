@@ -1239,5 +1239,41 @@
   "offline_help": {
     "en": "PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.",
     "ru": "PS5 не найдена. Включите консоль и проверьте, что она в той же сети. Для режима покоя включите Remote Play и пробуждение по сети в настройках PS5."
+  },
+  "export_stream_diagnostics": {
+    "en": "Export safe diagnostics",
+    "ru": "Экспорт диагностики",
+    "uk": "Експорт діагностики",
+    "pl": "Eksport diagnostyki",
+    "de": "Diagnose exportieren",
+    "fr": "Exporter le diagnostic",
+    "es": "Exportar diagnóstico",
+    "it": "Esporta diagnostica",
+    "pt": "Exportar diagnóstico",
+    "tr": "Tanılamayı dışa aktar",
+    "zh": "导出诊断",
+    "ja": "診断をエクスポート",
+    "ko": "진단 내보내기",
+    "ar": "تصدير التشخيص",
+    "hi": "निदान निर्यात करें",
+    "id": "Ekspor diagnostik"
+  },
+  "diag_save_failed": {
+    "en": "Could not save the diagnostic file.",
+    "ru": "Не удалось сохранить файл диагностики.",
+    "uk": "Не вдалося зберегти файл діагностики.",
+    "pl": "Nie udało się zapisać pliku diagnostycznego.",
+    "de": "Die Diagnosedatei konnte nicht gespeichert werden.",
+    "fr": "Impossible d’enregistrer le fichier de diagnostic.",
+    "es": "No se pudo guardar el archivo de diagnóstico.",
+    "it": "Impossibile salvare il file diagnostico.",
+    "pt": "Não foi possível guardar o ficheiro de diagnóstico.",
+    "tr": "Tanılama dosyası kaydedilemedi.",
+    "zh": "无法保存诊断文件。",
+    "ja": "診断ファイルを保存できませんでした。",
+    "ko": "진단 파일을 저장하지 못했습니다.",
+    "ar": "تعذر حفظ ملف التشخيص.",
+    "hi": "निदान फ़ाइल सहेजी नहीं जा सकी।",
+    "id": "File diagnostik tidak dapat disimpan."
   }
 }

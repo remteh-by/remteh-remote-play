@@ -7,7 +7,7 @@ import select
 import socket
 import subprocess
 import sys
-from macos_engine import ENGINE,PROFILE,quit_owned_engine
+from macos_engine import resolve_engine,PROFILE,quit_owned_engine
 from storage import PRIVATE,HERE
 
 
@@ -27,7 +27,9 @@ def main():
             control.bind(str(path));path.chmod(0o600)
             from owned_macos_engine import prepare
             bridge=HERE/'assets/macos/libdeckivo-input.dylib'
-            engine=prepare(ENGINE,bridge,PRIVATE,HERE/'assets/macos/libSDL2.dylib')
+            source=resolve_engine(preferences)
+            if source is None:raise RuntimeError('Compatible chiaki-ng engine not found')
+            engine=prepare(source,bridge,PRIVATE,HERE/'assets/macos/libSDL2.dylib')
             if select.select([control],[],[],0)[0] and control.recv(32)==b'stop':return 0
             args=[str(engine),'--profile',PROFILE]
             if preferences.get('fullscreen',True):args+=['--fullscreen']

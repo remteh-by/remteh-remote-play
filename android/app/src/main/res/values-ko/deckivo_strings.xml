@@ -72,11 +72,13 @@
     <string name="dv_diag_offline">PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi isolation.</string>
     <string name="dv_diag_online">Remote Play responds: %1$d/3, TCP %2$.1f ms. This is connectivity, not video latency.</string>
     <string name="dv_diag_report">%1$s\nH.264 decoder: %2$s\nAn open port does not confirm pairing or streaming.</string>
+    <string name="dv_diag_save_failed">진단 파일을 저장하지 못했습니다.</string>
     <string name="dv_discovery_find">콘솔 찾기</string>
     <string name="dv_discovery_on">검색 켜짐</string>
     <string name="dv_download">업데이트 다운로드</string>
     <string name="dv_empty_intro">같은 네트워크를 사용하거나 콘솔을 수동으로 추가하세요.</string>
     <string name="dv_empty_title">여기에 콘솔이 표시됩니다</string>
+    <string name="dv_export_stream_diagnostics">진단 내보내기</string>
     <string name="dv_fit">맞춤</string>
     <string name="dv_goal_amount">USD %1$.2f / %2$.2f</string>
     <string name="dv_guided">연결 안내</string>
@@ -140,7 +142,7 @@
     <string name="dv_searching">네트워크에서 검색 중입니다. IP 주소를 추가할 수도 있습니다.</string>
     <string name="dv_settings">설정</string>
     <string name="dv_setup">연결</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
+    <string name="dv_setup_credit">Development build 0.8.6. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">등록 후 집으로 돌아와 PS5를 선택하십시오. 로컬 플레이가 준비되었습니다. 이 버전에서는 인터넷 액세스가 구성되지 않습니다.</string>
     <string name="dv_setup_enable">PS5에서는 설정 → 시스템 → 원격 플레이를 활성화하세요.</string>
     <string name="dv_setup_find">01 · 콘솔 찾기</string>

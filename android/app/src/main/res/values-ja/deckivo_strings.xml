@@ -72,11 +72,13 @@
     <string name="dv_diag_offline">PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi isolation.</string>
     <string name="dv_diag_online">Remote Play responds: %1$d/3, TCP %2$.1f ms. This is connectivity, not video latency.</string>
     <string name="dv_diag_report">%1$s\nH.264 decoder: %2$s\nAn open port does not confirm pairing or streaming.</string>
+    <string name="dv_diag_save_failed">診断ファイルを保存できませんでした。</string>
     <string name="dv_discovery_find">本体を探す</string>
     <string name="dv_discovery_on">検出オン</string>
     <string name="dv_download">更新をダウンロード</string>
     <string name="dv_empty_intro">同じネットワークを使うか、本体を手動で追加してください。</string>
     <string name="dv_empty_title">ここに本体が表示されます</string>
+    <string name="dv_export_stream_diagnostics">診断をエクスポート</string>
     <string name="dv_fit">画面に合わせる</string>
     <string name="dv_goal_amount">USD %1$.2f / %2$.2f</string>
     <string name="dv_guided">接続ガイド</string>
@@ -140,7 +142,7 @@
     <string name="dv_searching">ネットワーク内を検索中です。IP アドレスの追加もできます。</string>
     <string name="dv_settings">設定</string>
     <string name="dv_setup">接続</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
+    <string name="dv_setup_credit">Development build 0.8.6. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">登録後、ホームに戻りPS5を選択します。ローカルプレイの準備が整いました。このバージョンではインターネット アクセスが構成されていません。</string>
     <string name="dv_setup_enable">PS5では、「設定」→「システム」→「リモートプレイ」を有効にします。</string>
     <string name="dv_setup_find">01 · 本体を探す</string>

@@ -2,7 +2,7 @@ name: Deckivo site
 on:
   push:
     branches: [main]
-    paths: ['website/**', 'localization/**', 'design-system/**', 'scripts/build-site.py', 'scripts/download-stats.py', 'scripts/site-download-stats.py', 'scripts/generate-support.py', 'scripts/requirements-build.txt', '.github/workflows/pages.yml']
+    paths: ['website/**', 'localization/**', 'design-system/**', 'scripts/build-site.py', 'scripts/download-stats.py', 'scripts/site-download-stats.py', 'scripts/generate-support.py', 'scripts/requirements-build.txt', 'android/app/build.gradle', 'desktop/linux/session.py', 'desktop/linux/build_meta.py', '.github/workflows/pages.yml']
   workflow_dispatch:
   schedule:
     - cron: "17 * * * *"

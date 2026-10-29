@@ -14,7 +14,8 @@ def configuration():return json.loads((HERE/'assets/support.json').read_text())
 
 
 def texts(window):
-    code=QLocale.system().name().split('_')[0] if window.language=='auto' else window.language
+    from i18n import effective_language
+    code=effective_language(window.language)
     config=configuration();return config['texts'].get(code,config['texts']['en'])
 
 

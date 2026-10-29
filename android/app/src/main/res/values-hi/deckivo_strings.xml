@@ -72,11 +72,13 @@
     <string name="dv_diag_offline">PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi isolation.</string>
     <string name="dv_diag_online">Remote Play responds: %1$d/3, TCP %2$.1f ms. This is connectivity, not video latency.</string>
     <string name="dv_diag_report">%1$s\nH.264 decoder: %2$s\nAn open port does not confirm pairing or streaming.</string>
+    <string name="dv_diag_save_failed">निदान फ़ाइल सहेजी नहीं जा सकी।</string>
     <string name="dv_discovery_find">कंसोल खोजें</string>
     <string name="dv_discovery_on">खोज चालू है</string>
     <string name="dv_download">अपडेट डाउनलोड करें</string>
     <string name="dv_empty_intro">एक ही नेटवर्क इस्तेमाल करें या कंसोल मैन्युअल रूप से जोड़ें।</string>
     <string name="dv_empty_title">आपका कंसोल यहाँ दिखेगा</string>
+    <string name="dv_export_stream_diagnostics">निदान निर्यात करें</string>
     <string name="dv_fit">फ़िट करें</string>
     <string name="dv_goal_amount">USD %1$.2f / %2$.2f</string>
     <string name="dv_guided">कनेक्शन गाइड</string>
@@ -140,7 +142,7 @@
     <string name="dv_searching">आपके नेटवर्क में खोज रहे हैं। आप IP पता भी जोड़ सकते हैं।</string>
     <string name="dv_settings">सेटिंग</string>
     <string name="dv_setup">कनेक्ट करें</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
+    <string name="dv_setup_credit">Development build 0.8.6. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">पंजीकरण के बाद, घर लौटें और PS5 चुनें। स्थानीय नाटक तैयार है; इस संस्करण द्वारा इंटरनेट एक्सेस कॉन्फ़िगर नहीं किया गया है।</string>
     <string name="dv_setup_enable">PS5 पर, सेटिंग्स → सिस्टम → रिमोट प्ले सक्षम करें।</string>
     <string name="dv_setup_find">01 · अपना कंसोल ढूंढें</string>

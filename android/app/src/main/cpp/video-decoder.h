@@ -21,6 +21,7 @@ typedef struct android_chiaki_video_decoder_t {
   ChiakiThread output_thread;
   atomic_bool shutdown_output;
   bool output_thread_started;
+  atomic_ullong input_buffers, decoded_frames, surface_submissions, receiver_lost_frames, first_output_ns;
   int32_t target_width;
   int32_t target_height;
   ChiakiCodec target_codec;

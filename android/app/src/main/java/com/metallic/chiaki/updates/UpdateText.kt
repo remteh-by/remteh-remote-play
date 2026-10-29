@@ -9,7 +9,7 @@ data class UpdateText(@StringRes val resource: Int, val arguments: List<Any> = e
     fun render(context: Context): String = context.getString(resource, *arguments.toTypedArray())
 }
 
-class UpdateFailure(val text: UpdateText) : IllegalStateException()
+class UpdateFailure(val text: UpdateText, override val retryAfterMillis: Long? = null) : IllegalStateException(), RetryDelay
 
 fun updateFailure(error: Exception): UpdateText = when (error) {
     is UpdateFailure -> error.text

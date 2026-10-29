@@ -28,12 +28,16 @@ PRESETS = (
 
 
 def preferences(value):
-    result = {'language': 'en', 'host': '', 'quality': 0,
+    result = {'language': 'auto', 'host': '', 'quality': 0,
               'fullscreen': True, 'controller_navigation': True,
               'disconnect_chord': True, 'history': True, 'automatic_updates': True, 'keyboard_mouse': False, 'mouse_sensitivity': .025, 'invert_mouse_y':False, 'quality_schema':2}
     if sys.platform=='darwin':
         from macos_input_settings import normalize_bindings
         result['input_bindings']=normalize_bindings(value.get('input_bindings') if isinstance(value,dict) else None)
+        if isinstance(value,dict) and isinstance(value.get('engine_path'),str) and len(value['engine_path'])<=4096:result['engine_path']=value['engine_path']
+    else:
+        from linux_input_settings import normalize_bindings
+        result['linux_input_bindings']=normalize_bindings(value.get('linux_input_bindings') if isinstance(value,dict) else None)
     if not isinstance(value, dict):
         return result
     for key in ('language', 'host'):

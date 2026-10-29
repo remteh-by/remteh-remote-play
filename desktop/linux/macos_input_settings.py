@@ -141,16 +141,17 @@ def encode_bindings(value):
 
 
 class _KeyCaptureDialog(QDialog):
-    def __init__(self, translate, parent=None):
+    def __init__(self, translate, parent=None, key_decoder=None):
         super().__init__(parent)
         self._tr = translate
+        self.language=getattr(parent,'language','en')
+        self._key_decoder = key_decoder or (lambda event:_key_code(event.nativeVirtualKey()))
         self.key_code = None
         self.setWindowTitle(translate("Assign a key", "Назначить клавишу"))
         self.setMinimumWidth(420)
         layout = QVBoxLayout(self)
-        self.hint = QLabel(translate(
-            "Press a keyboard key. Esc cancels.\nKeys are saved by physical position, in any layout.",
-            "Нажмите клавишу. Esc — отмена.\nНазначение работает в любой раскладке."))
+        from i18n import text
+        self.hint = QLabel(text('press_key',self.language))
         self.hint.setWordWrap(True)
         layout.addWidget(self.hint)
         cancel = QPushButton(translate("Cancel", "Отмена"))
@@ -175,11 +176,10 @@ class _KeyCaptureDialog(QDialog):
             if event.key() == Qt.Key_Escape:
                 self.reject()
                 return True
-            code = _key_code(event.nativeVirtualKey())
+            code = self._key_decoder(event)
             if code is None:
-                self.hint.setText(self._tr(
-                    "This key is reserved for the system or stream controls. Choose another key.\nEsc cancels; F8 releases the mouse; F11 controls full screen.",
-                    "Эта клавиша занята системой или управлением трансляцией. Выберите другую.\nEsc — отмена; F8 — освобождение мыши; F11 — полный экран."))
+                from i18n import text
+                self.hint.setText(text('editor_reserved',self.language))
                 return True
             self.key_code = code
             self.accept()
@@ -190,11 +190,20 @@ class _KeyCaptureDialog(QDialog):
 class InputSettingsDialog(QDialog):
     """Edit bindings in memory; callers persist result_values() only on Accept."""
 
-    def __init__(self, preferences, language, parent=None):
+    def __init__(self, preferences, language, parent=None, platform='macos'):
         super().__init__(parent)
         self._russian = str(language).lower().startswith("ru")
+        self.language=language
+        self.platform=platform
+        if platform=='linux':
+            import linux_input_settings as codec
+            self._normalize=codec.normalize_bindings;self._defaults=codec.default_bindings
+            self._key_code=codec.key_code;self._names=codec.NAMES;self._capture=codec.capture_code
+        else:
+            self._normalize=normalize_bindings;self._defaults=default_bindings
+            self._key_code=_key_code;self._names=_KEY_NAMES;self._capture=None
         preferences = preferences if isinstance(preferences, dict) else {}
-        self._bindings = normalize_bindings(preferences.get("input_bindings"))
+        self._bindings = self._normalize(preferences.get("input_bindings" if platform=='macos' else 'linux_input_bindings'))
         self._key_buttons = {}
         self.setWindowTitle(self._tr("Keyboard & mouse", "Клавиатура и мышь"))
         self.resize(810, 720)
@@ -214,9 +223,8 @@ class InputSettingsDialog(QDialog):
         title = QLabel(self._tr("Make every input yours", "Управление под вас"))
         title.setObjectName("heading")
         layout.addWidget(title)
-        description = QLabel(self._tr(
-            "By default, WASD moves and the mouse controls the camera. Assign keys and all five mouse buttons below. Changes apply to the next connection.",
-            "По умолчанию WASD — движение, мышь — камера. Ниже можно назначить клавиши и все пять кнопок мыши. Изменения действуют со следующего подключения."))
+        from i18n import text
+        description = QLabel(text('editor_help',language))
         description.setWordWrap(True)
         description.setObjectName("muted")
         layout.addWidget(description)
@@ -224,9 +232,7 @@ class InputSettingsDialog(QDialog):
         layout.addWidget(self.tabs, 1)
         self._build_keyboard_tab()
         self._build_mouse_tab()
-        self.status = QLabel(self._tr(
-            "Esc / F8 release the mouse · F11 full screen · ⌘ stays available for macOS",
-            "Esc / F8 освобождают мышь · F11 — полный экран · ⌘ остаётся для macOS"))
+        self.status = QLabel(text('input_mode_keyboard',language))
         self.status.setWordWrap(True)
         self.status.setObjectName("small")
         layout.addWidget(self.status)
@@ -255,10 +261,11 @@ class InputSettingsDialog(QDialog):
         self._refresh_keys()
 
     def _tr(self, english, russian):
-        return russian if self._russian else english
+        from i18n import pair
+        return pair(english,russian,self.language)
 
     def _action_name(self, action):
-        return ACTION_LABELS[action][1 if self._russian else 0]
+        return {0:'✕ / A',1:'○ / B',2:'□ / X',3:'△ / Y',4:'Share / Create',5:'PS',6:'Options / Menu',7:'L3',8:'R3',9:'L1 / LB',10:'R1 / RB',11:'D-pad ↑',12:'D-pad ↓',13:'D-pad ←',14:'D-pad →',20:'Touchpad',21:'L2 / LT',22:'R2 / RT',23:'LS ↑',24:'LS ↓',25:'LS ←',26:'LS →',27:'RS ↑',28:'RS ↓',29:'RS ←',30:'RS →'}[action]
 
     def _build_keyboard_tab(self):
         container = QWidget()
@@ -280,13 +287,13 @@ class InputSettingsDialog(QDialog):
                 key_button = QPushButton()
                 key_button.setObjectName("bindingKey")
                 key_button.setMinimumWidth(100)
-                key_button.setAccessibleName(self._tr("Assign key for ", "Назначить клавишу: ") + self._action_name(action))
+                key_button.setAccessibleName(self._tr("Assign a key", "Назначить клавишу")+': ' + self._action_name(action))
                 key_button.clicked.connect(lambda checked=False, a=action, s=slot: self._capture_key(a, s))
                 clear_button = QPushButton("×")
                 clear_button.setObjectName("bindingClear")
                 clear_button.setFixedWidth(28)
                 clear_button.setToolTip(self._tr("Clear this key", "Убрать назначение"))
-                clear_button.setAccessibleName(self._tr("Clear key for ", "Убрать клавишу: ") + self._action_name(action))
+                clear_button.setAccessibleName(self._tr("Clear this key", "Убрать назначение")+': ' + self._action_name(action))
                 clear_button.clicked.connect(lambda checked=False, a=action, s=slot: self._clear_key(a, s))
                 grid.addWidget(key_button, row, 1 + 2 * slot)
                 grid.addWidget(clear_button, row, 2 + 2 * slot)
@@ -338,9 +345,8 @@ class InputSettingsDialog(QDialog):
         speed_row.addWidget(self.speed_slider, 1)
         speed_row.addWidget(self.speed_spin)
         layout.addLayout(speed_row)
-        info = QLabel(self._tr(
-            "100% is the default. Mouse movement emulates the right stick; a game's own camera speed still applies.",
-            "100% — стандартная скорость. Движение мыши эмулирует правый стик; настройки камеры в самой игре тоже влияют на скорость."))
+        from i18n import text
+        info = QLabel(text('keyboard_mouse',self.language)+' · 100% · ΔX / ΔY → RS')
         info.setWordWrap(True)
         info.setObjectName("muted")
         layout.addWidget(info)
@@ -356,7 +362,7 @@ class InputSettingsDialog(QDialog):
         for (action, slot), (button, clear) in self._key_buttons.items():
             keys = self._keys_for_action(action)
             code = keys[slot] if slot < len(keys) else None
-            button.setText(_KEY_NAMES.get(code, f"Key {code}") if code is not None else self._tr("Assign…", "Назначить…"))
+            button.setText(self._names.get(code, f"Key {code}") if code is not None else self._tr("Assign…", "Назначить…"))
             clear.setEnabled(code is not None)
 
     def _clear_key(self, action, slot):
@@ -366,12 +372,12 @@ class InputSettingsDialog(QDialog):
         self._refresh_keys()
 
     def _capture_key(self, action, slot):
-        capture = _KeyCaptureDialog(self._tr, self)
+        capture = _KeyCaptureDialog(self._tr, self, self._capture)
         if capture.exec_() == QDialog.Accepted and capture.key_code is not None:
             self._assign_key(action, slot, capture.key_code)
 
     def _assign_key(self, action, slot, raw_code):
-        code = _key_code(raw_code)
+        code = self._key_code(raw_code)
         if code is None or action not in ACTION_LABELS or slot not in (0, 1):
             return
         keys = self._keys_for_action(action)
@@ -380,23 +386,23 @@ class InputSettingsDialog(QDialog):
             self._bindings["keyboard"].pop(str(keys[slot]), None)
         self._bindings["keyboard"][str(code)] = action
         if previous_action is not None and previous_action != action:
-            self.status.setText(self._tr(
-                f"{_KEY_NAMES.get(code, f'Key {code}')} moved from {self._action_name(previous_action)} to {self._action_name(action)}.",
-                f"{_KEY_NAMES.get(code, f'Key {code}')} переназначена: {self._action_name(previous_action)} → {self._action_name(action)}."))
+            from i18n import text
+            self.status.setText(text('binding_moved',self.language,key=self._names.get(code,str(code)),old=self._action_name(previous_action),new=self._action_name(action)))
         self._refresh_keys()
 
     def _restore_defaults(self):
-        self._bindings = default_bindings()
+        self._bindings = self._defaults()
         for combo, action in zip(self.mouse_combos, self._bindings["mouse"]):
             combo.setCurrentIndex(combo.findData(action))
         self.speed_spin.setValue(100)
         self.invert_check.setChecked(False)
-        self.status.setText(self._tr("Default controls restored. Save to apply.", "Стандартное управление восстановлено. Нажмите «Сохранить»."))
+        from i18n import text
+        self.status.setText(text('defaults_restored',self.language))
         self._refresh_keys()
 
     def result_values(self):
         return {
-            "input_bindings": normalize_bindings({
+            ("input_bindings" if self.platform=='macos' else 'linux_input_bindings'): self._normalize({
                 "keyboard": self._bindings["keyboard"],
                 "mouse": [combo.currentData() for combo in self.mouse_combos],
             }),

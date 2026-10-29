@@ -27,10 +27,10 @@ python3 -m venv .build-tools
 python3 -m http.server 8765 --bind 127.0.0.1 --directory build/site
 ```
 
-The 0.8.2 release set is `Deckivo-0.8.2-arm64.apk` (Android build 27),
-`Deckivo-macos-0.8.2-b18.zip` and
-`Deckivo-Linux-0.8.2-b18-source.zip` (desktop build 18). Real-device gameplay
-and update acceptance for 0.8.2 remain pending and must not be inferred from the
+The 0.8.6 release set is `Deckivo-0.8.6-arm64.apk` (Android build 27),
+`Deckivo-macos-0.8.6-b18.zip` and
+`Deckivo-Linux-0.8.6-b18-source.zip` (desktop build 18). Real-device gameplay
+and update acceptance for 0.8.6 remain pending and must not be inferred from the
 package version. Historical public-updater acceptance belongs to Linux 0.8.1
 b17 on Switch OLED / Ubuntu 24.04.4 ARM64: all 80 installer files matched the
 public ZIP, startup acknowledgment matched the live process, pairing was

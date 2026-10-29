@@ -72,11 +72,13 @@
     <string name="dv_diag_offline">Порт 9295 PS5 недоступен. Проверьте питание, IP, Remote Play и изоляцию Wi-Fi.</string>
     <string name="dv_diag_online">Remote Play отвечает: %1$d/3, TCP %2$.1f мс. Это проверка связи, а не задержки видео.</string>
     <string name="dv_diag_report">%1$s\nДекодер H.264: %2$s\nОткрытый порт ещё не подтверждает привязку и трансляцию.</string>
+    <string name="dv_diag_save_failed">Не удалось сохранить файл диагностики.</string>
     <string name="dv_discovery_find">Найти консоли</string>
     <string name="dv_discovery_on">Поиск включён</string>
     <string name="dv_download">Скачать обновление</string>
     <string name="dv_empty_intro">Подключите устройства к одной сети или добавьте консоль вручную.</string>
     <string name="dv_empty_title">Здесь будет ваша консоль</string>
+    <string name="dv_export_stream_diagnostics">Экспорт диагностики</string>
     <string name="dv_fit">Вписать</string>
     <string name="dv_goal_amount">USD %1$.2f / %2$.2f</string>
     <string name="dv_guided">Пошаговое подключение</string>
@@ -140,7 +142,7 @@
     <string name="dv_searching">Ищем консоли в вашей сети. Также можно добавить IP вручную.</string>
     <string name="dv_settings">Настройки</string>
     <string name="dv_setup">Подключение</string>
-    <string name="dv_setup_credit">Исходники именно этой версии: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
+    <string name="dv_setup_credit">Тестовая сборка 0.8.6. Соответствующие исходники приложены к пакету для проверки. Открыть проект.</string>
     <string name="dv_setup_done">После привязки вернитесь на главный экран приложения и выберите PS5. Для этой версии достаточно локальной сети; доступ через интернет пока не настроен.</string>
     <string name="dv_setup_enable">На PS5 включите «Настройки → Система → Дистанционное воспроизведение».</string>
     <string name="dv_setup_find">01  ·  Найти консоль</string>

@@ -16,7 +16,7 @@
     },
     "macos": {
       "First installation": [
-        "Use an Apple Silicon Mac with macOS 13+. Install the official chiaki-ng app separately and register the PS5 there. Close its stream.",
+        "Use an Apple Silicon Mac with macOS 13+. Install the official chiaki-ng app separately and register the PS5 there. Close its stream. Install chiaki-ng in /Applications or ~/Applications. Deckivo detects the official Apple Silicon engine there; for another location, use Preferences → Choose chiaki-ng app.",
         "Extract the Mac ZIP and move Deckivo.app into ~/Applications. This preview is ad-hoc signed, not notarized. After an attempted launch, use the individual Open Anyway option in System Settings → Privacy & Security if macOS requires it. Do not disable Gatekeeper globally.",
         "Open Deckivo Preferences, import your chiaki-ng registration and select the console address. Keep chiaki-ng installed: Deckivo uses its native engine."
       ],
@@ -63,7 +63,7 @@
     },
     "macos": {
       "Первая установка": [
-        "Используйте Mac с Apple Silicon и macOS 13 или новее. Отдельно установите официальный chiaki-ng, привяжите в нём PS5 и закройте трансляцию.",
+        "Используйте Mac с Apple Silicon и macOS 13 или новее. Отдельно установите официальный chiaki-ng, привяжите в нём PS5 и закройте трансляцию. Установите chiaki-ng в /Applications или ~/Applications. Deckivo обнаружит официальный движок Apple Silicon; для другой папки откройте Настройки → Выбрать приложение chiaki-ng.",
         "Распакуйте Mac ZIP и перенесите Deckivo.app в ~/Applications. Сборка подписана ad-hoc, но не прошла нотаризацию. Если после попытки запуска macOS требует подтверждение, используйте «Всё равно открыть» для этого приложения в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком.",
         "В настройках Deckivo импортируйте регистрацию из chiaki-ng и выберите адрес консоли. Сохраните chiaki-ng: его движок нужен для трансляции."
       ],

@@ -60,7 +60,7 @@
     "faq": [
       {
         "q": "Do both devices need the same network?",
-        "a": "Deckivo 0.8.2 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware."
+        "a": "Deckivo {version} is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware."
       },
       {
         "q": "Which Account ID should I use?",
@@ -72,7 +72,7 @@
       },
       {
         "q": "Why does macOS show a security warning?",
-        "a": "Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-0.8.2-b18.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine."
+        "a": "Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-{version}-b{mac_build}.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine."
       },
       {
         "q": "Is Deckivo free?",
@@ -149,7 +149,7 @@
     "faq": [
       {
         "q": "Нужна ли общая сеть?",
-        "a": "Deckivo 0.8.2 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5."
+        "a": "Deckivo {version} — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5."
       },
       {
         "q": "Какой Account ID вводить?",
@@ -161,7 +161,7 @@
       },
       {
         "q": "Почему macOS предупреждает о безопасности?",
-        "a": "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-0.8.2-b18.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотаризовано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком."
+        "a": "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-{version}-b{mac_build}.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотаризовано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком."
       },
       {
         "q": "Deckivo бесплатный?",
@@ -223,7 +223,7 @@
     "faq": [
       {
         "q": "Чи потрібна спільна мережа?",
-        "a": "Це експериментальна версія 0.8.2. Під’єднайте PS5 і клієнт до однієї домашньої мережі. На PS5 увійдіть у потрібний профіль: Налаштування → Система → Дистанційна гра → Увімкнути. Для першого підключення залиште консоль увімкненою. Гостьова мережа може ізолювати пристрої; бажано використовувати 5 ГГц."
+        "a": "Це експериментальна версія {version}. Під’єднайте PS5 і клієнт до однієї домашньої мережі. На PS5 увійдіть у потрібний профіль: Налаштування → Система → Дистанційна гра → Увімкнути. Для першого підключення залиште консоль увімкненою. Гостьова мережа може ізолювати пристрої; бажано використовувати 5 ГГц."
       },
       {
         "q": "Який Account ID вводити?",
@@ -312,7 +312,7 @@
     "faq": [
       {
         "q": "Czy oba urządzenia muszą być w tej samej sieci?",
-        "a": "Wersja 0.8.2 jest eksperymentalna. Połącz PS5 i klienta z tą samą siecią domową. Na PS5 wybierz właściwy profil i Ustawienia → System → Gra zdalna → Włącz grę zdalną. Konsola musi być włączona przy pierwszym parowaniu. Zalecane Wi-Fi 5 GHz; sieć gościnna może izolować urządzenia."
+        "a": "Wersja {version} jest eksperymentalna. Połącz PS5 i klienta z tą samą siecią domową. Na PS5 wybierz właściwy profil i Ustawienia → System → Gra zdalna → Włącz grę zdalną. Konsola musi być włączona przy pierwszym parowaniu. Zalecane Wi-Fi 5 GHz; sieć gościnna może izolować urządzenia."
       },
       {
         "q": "Którego Account ID użyć?",
@@ -401,7 +401,7 @@
     "faq": [
       {
         "q": "Müssen beide Geräte im selben Netzwerk sein?",
-        "a": "0.8.2 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren."
+        "a": "{version} ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren."
       },
       {
         "q": "Welche Account ID brauche ich?",
@@ -490,7 +490,7 @@
     "faq": [
       {
         "q": "Les deux appareils doivent-ils partager le même réseau ?",
-        "a": "La version 0.8.2 est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils."
+        "a": "La version {version} est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils."
       },
       {
         "q": "Quel Account ID faut-il utiliser ?",
@@ -579,7 +579,7 @@
     "faq": [
       {
         "q": "¿Deben estar ambos dispositivos en la misma red?",
-        "a": "0.8.2 es una versión experimental. Conecta PS5 y cliente a la misma red doméstica. En PS5 selecciona el perfil correcto: Ajustes → Sistema → Uso a distancia → Activar. Mantén la consola encendida durante la primera vinculación. Es preferible Wi-Fi de 5 GHz; la red de invitados puede aislar dispositivos."
+        "a": "{version} es una versión experimental. Conecta PS5 y cliente a la misma red doméstica. En PS5 selecciona el perfil correcto: Ajustes → Sistema → Uso a distancia → Activar. Mantén la consola encendida durante la primera vinculación. Es preferible Wi-Fi de 5 GHz; la red de invitados puede aislar dispositivos."
       },
       {
         "q": "¿Qué Account ID debo usar?",
@@ -668,7 +668,7 @@
     "faq": [
       {
         "q": "I dispositivi devono essere sulla stessa rete?",
-        "a": "0.8.2 è un’anteprima sperimentale. Collega PS5 e client alla stessa rete domestica. Su PS5 scegli il profilo corretto: Impostazioni → Sistema → Riproduzione remota → Abilita. Mantieni la console accesa per la prima associazione. Preferisci Wi-Fi 5 GHz; le reti ospiti possono isolare i dispositivi."
+        "a": "{version} è un’anteprima sperimentale. Collega PS5 e client alla stessa rete domestica. Su PS5 scegli il profilo corretto: Impostazioni → Sistema → Riproduzione remota → Abilita. Mantieni la console accesa per la prima associazione. Preferisci Wi-Fi 5 GHz; le reti ospiti possono isolare i dispositivi."
       },
       {
         "q": "Quale Account ID devo usare?",
@@ -757,7 +757,7 @@
     "faq": [
       {
         "q": "Os dispositivos precisam estar na mesma rede?",
-        "a": "0.8.2 é uma versão experimental. Ligue a PS5 e o cliente à mesma rede doméstica. Na PS5 escolha o perfil correto: Definições → Sistema → Reprodução remota → Ativar. Mantenha a consola ligada no primeiro emparelhamento. Prefira Wi-Fi de 5 GHz; redes de convidados podem isolar dispositivos."
+        "a": "{version} é uma versão experimental. Ligue a PS5 e o cliente à mesma rede doméstica. Na PS5 escolha o perfil correto: Definições → Sistema → Reprodução remota → Ativar. Mantenha a consola ligada no primeiro emparelhamento. Prefira Wi-Fi de 5 GHz; redes de convidados podem isolar dispositivos."
       },
       {
         "q": "Qual Account ID devo usar?",
@@ -846,7 +846,7 @@
     "faq": [
       {
         "q": "İki cihaz aynı ağda mı olmalı?",
-        "a": "0.8.2 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir."
+        "a": "{version} deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir."
       },
       {
         "q": "Hangi Account ID kullanılmalı?",
@@ -935,7 +935,7 @@
     "faq": [
       {
         "q": "两台设备需要在同一网络吗？",
-        "a": "0.8.2 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。"
+        "a": "{version} 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。"
       },
       {
         "q": "应该使用哪个 Account ID？",
@@ -1024,7 +1024,7 @@
     "faq": [
       {
         "q": "両方の機器を同じネットワークにつなぐ必要はありますか？",
-        "a": "0.8.2 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。"
+        "a": "{version} は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。"
       },
       {
         "q": "どの Account ID を使いますか？",
@@ -1113,7 +1113,7 @@
     "faq": [
       {
         "q": "두 기기를 같은 네트워크에 연결해야 하나요?",
-        "a": "0.8.2는 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다."
+        "a": "{version}는 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다."
       },
       {
         "q": "어떤 Account ID를 사용하나요?",
@@ -1202,7 +1202,7 @@
     "faq": [
       {
         "q": "هل يحتاج الجهازان إلى الشبكة نفسها؟",
-        "a": "الإصدار 0.8.2 تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة."
+        "a": "الإصدار {version} تجريبي. صِل PS5 والعميل بالشبكة المنزلية نفسها. اختر المستخدم المطلوب على PS5 ثم الإعدادات ← النظام ← اللعب عن بُعد ← تفعيل. أبقِ الجهاز قيد التشغيل أثناء الربط الأول. يُفضّل Wi-Fi بتردد 5 غيغاهرتز؛ قد تعزل شبكة الضيوف الأجهزة."
       },
       {
         "q": "أي Account ID أستخدم؟",
@@ -1291,7 +1291,7 @@
     "faq": [
       {
         "q": "क्या दोनों डिवाइस एक ही नेटवर्क पर होने चाहिए?",
-        "a": "0.8.2 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।"
+        "a": "{version} प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।"
       },
       {
         "q": "कौन सा Account ID इस्तेमाल करें?",
@@ -1380,7 +1380,7 @@
     "faq": [
       {
         "q": "Apakah kedua perangkat harus berada di jaringan yang sama?",
-        "a": "0.8.2 adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat."
+        "a": "{version} adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat."
       },
       {
         "q": "Account ID mana yang harus digunakan?",

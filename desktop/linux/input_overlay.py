@@ -6,12 +6,13 @@ from keyboard_mouse import InputState,InputTransport
 
 
 class KeyboardMouseOverlay(QWidget):
-    def __init__(self,path,on_release=None,sensitivity=.025,invert_y=False):
+    def __init__(self,path,on_release=None,sensitivity=.025,invert_y=False,bindings=None,language='en'):
         super().__init__(None,Qt.Tool|Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setFocusPolicy(Qt.StrongFocus)
         self.setMouseTracking(True)
-        self.state=InputState(sensitivity,invert_y)
+        self.state=InputState(sensitivity,invert_y,bindings=bindings)
+        self.language=language
         self.transport=InputTransport(path)
         self.on_release=on_release
         self.captured=False
@@ -26,6 +27,10 @@ class KeyboardMouseOverlay(QWidget):
 
     def begin_capture(self):
         if not self.isActiveWindow():self.hide();return
+        if QApplication.platformName().startswith('wayland'):
+            from PyQt5.QtWidgets import QMessageBox
+            from i18n import text
+            self.hide();QMessageBox.information(None,'Deckivo',text('wayland_input',self.language));return
         self.captured=True;self.grabMouse(QCursor(Qt.BlankCursor));self.center_cursor();self.timer.start()
 
     def join_fullscreen_space(self):
@@ -56,13 +61,19 @@ class KeyboardMouseOverlay(QWidget):
         super().focusOutEvent(event)
 
     def keyPressEvent(self,event):
-        if event.key()==Qt.Key_Escape:self.release(True);event.accept();return
-        if not event.isAutoRepeat():self.state.key(self.name(event.key()),True);self.transmit()
+        if event.key() in (Qt.Key_Escape,Qt.Key_F8):self.release(True);event.accept();return
+        if not event.isAutoRepeat():self.state.key(self.event_name(event),True);self.transmit()
         event.accept()
 
     def keyReleaseEvent(self,event):
-        if not event.isAutoRepeat():self.state.key(self.name(event.key()),False);self.transmit()
+        if not event.isAutoRepeat():self.state.key(self.event_name(event),False);self.transmit()
         event.accept()
+
+    @staticmethod
+    def event_name(event):
+        from linux_input_settings import capture_code
+        code=capture_code(event)
+        return str(code) if code is not None else ''
 
     @staticmethod
     def name(key):
@@ -75,11 +86,11 @@ class KeyboardMouseOverlay(QWidget):
         if not delta.isNull():self.state.move(delta.x(),delta.y());self.transmit();self.center_cursor()
 
     def mousePressEvent(self,event):
-        name={Qt.LeftButton:'left',Qt.RightButton:'right',Qt.MiddleButton:'middle'}.get(event.button())
+        name={Qt.LeftButton:'left',Qt.RightButton:'right',Qt.MiddleButton:'middle',Qt.XButton1:'side1',Qt.XButton2:'side2'}.get(event.button())
         if name:self.state.mouse_buttons.add(name);self.transmit()
 
     def mouseReleaseEvent(self,event):
-        name={Qt.LeftButton:'left',Qt.RightButton:'right',Qt.MiddleButton:'middle'}.get(event.button())
+        name={Qt.LeftButton:'left',Qt.RightButton:'right',Qt.MiddleButton:'middle',Qt.XButton1:'side1',Qt.XButton2:'side2'}.get(event.button())
         if name:self.state.mouse_buttons.discard(name);self.transmit()
 
     def paintEvent(self,event):

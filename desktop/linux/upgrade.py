@@ -28,6 +28,7 @@ FILES=('deckivo.py','keyboard_mouse.py','input_overlay.py','controller_lab.py','
        'assets/play-space.svg','assets/ps5-console.png','assets/source.json',
        'assets/fonts/IBMPlexSans.ttf','assets/fonts/OFL.txt','assets/update-public.der','assets/support.json')+tuple('assets/support/'+p.name for p in (HERE/'assets/support').glob('*.svg'))
 FILES+=tuple(str(p.relative_to(HERE)) for p in sorted((HERE/'assets/controller-lab').rglob('*')) if p.is_file())
+FILES+=('i18n.py','linux_input_settings.py','macos_input_settings.py','assets/desktop-translations.json')
 REMOVED=()
 
 

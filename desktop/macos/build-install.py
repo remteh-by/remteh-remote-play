@@ -17,6 +17,7 @@ def main():
  if not args.no_install_deps:subprocess.run([str(RUNTIME/'bin/python'),'-m','pip','install','--disable-pip-version-check','-r',str(ROOT/'desktop/macos/requirements.txt')],check=True)
  subprocess.run([str(RUNTIME/'bin/python'),'-c','import PyInstaller'],check=True)
  subprocess.run([sys.executable,str(ROOT/'scripts/validate-controller-lab.py'),'--check'],check=True)
+ subprocess.run([sys.executable,str(ROOT/'scripts/generate-desktop-localizations.py'),'--check'],check=True)
  shared=ROOT/'desktop/linux';sys.path.insert(0,str(shared))
  from session import VERSION
  package=args.output_dir or DATA/'packaging';package.mkdir(parents=True,exist_ok=True)

@@ -1,6 +1,7 @@
 """Rendered HTML boundaries, without changing production support/config files."""
 import importlib.util
 import json
+import re
 from pathlib import Path
 import shutil
 import tempfile
@@ -14,6 +15,22 @@ builder=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(builder)
 
 
 class SiteGenerationTests(unittest.TestCase):
+    def test_faq_versions_follow_current_release_in_html_and_schema(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out=Path(directory)/'site'
+            with patch('sys.argv',['build-site.py','--out',str(out)]):builder.main()
+            for lang in builder.NAMES:
+                page=out/('index.html' if lang=='en' else lang+'/index.html')
+                soup=BeautifulSoup(page.read_text(),'html.parser')
+                faq=soup.select_one('#faq').get_text()
+                self.assertNotIn('0.8.2',faq,lang)
+                self.assertNotIn('{version}',faq,lang)
+                self.assertIn(builder.ANDROID_VERSION,faq,lang)
+                self.assertTrue(all(version==builder.ANDROID_VERSION for version in re.findall(r'\b\d+\.\d+\.\d+\b',faq)),lang)
+                schema=''.join(n.get_text() for n in soup.select('script[type="application/ld+json"]'))
+                self.assertNotIn('0.8.2',schema,lang)
+                if lang in ('en','ru'):self.assertIn(f'Deckivo-macos-{builder.MAC_VERSION}-b{builder.MAC_BUILD}.zip',faq)
+
     def test_threshold_and_verified_funding_amounts_in_all_languages(self):
         with tempfile.TemporaryDirectory() as directory:
             fixture=Path(directory)

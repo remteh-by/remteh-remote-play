@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compile crawlable pages. Public URLs come only from design-system/site.json."""
-import argparse,hashlib,html,json,re,shutil,sys
+import argparse,ast,hashlib,html,json,re,shutil,sys
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -11,10 +11,16 @@ NAMES={'en':'English','ru':'Русский','uk':'Українська','pl':'Po
 SYSTEM_FONT={'zh','ja','ko','ar','hi'}
 PLATFORM_KEYS=('android','macos','linux','bundle')
 ASSET_CATEGORIES={*PLATFORM_KEYS,'source','metadata','other'}
-ANDROID_VERSION='0.8.6'
-ANDROID_BUILD=31
-MAC_VERSION='0.8.6';MAC_BUILD=22
-LINUX_VERSION='0.8.6';LINUX_BUILD=22
+android_settings=(ROOT/'android/app/build.gradle').read_text()
+ANDROID_VERSION=re.search(r'versionName\s+"([^"]+)"',android_settings).group(1)
+ANDROID_BUILD=int(re.search(r'versionCode\s+(\d+)',android_settings).group(1))
+def constant(path,key):
+ for node in ast.parse(path.read_text()).body:
+  if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id==key for t in node.targets):return ast.literal_eval(node.value)
+ raise ValueError('Missing version: '+key)
+MAC_VERSION=LINUX_VERSION=constant(ROOT/'desktop/linux/session.py','VERSION')
+MAC_BUILD=LINUX_BUILD=constant(ROOT/'desktop/linux/build_meta.py','BUILD')
+if ANDROID_VERSION!=MAC_VERSION:raise ValueError('Platform versions are inconsistent')
 ANDROID_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/Deckivo-{ANDROID_VERSION}-arm64.apk'
 MAC_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{MAC_VERSION}/Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip'
 LINUX_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{LINUX_VERSION}/Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip'
@@ -203,6 +209,7 @@ def main():
  def address(code):return base+('' if code=='en' else code+'/')
  for code in NAMES:
   copy={**catalog['en'],**catalog[code]};texts=support['texts'][code];download_text=download_catalog[code];prefix='' if code=='en' else '../'
+  copy['faq']=[{field:value.format(version=ANDROID_VERSION,mac_build=MAC_BUILD) for field,value in qa.items()} for qa in copy['faq']]
   soup=BeautifulSoup(template,'html.parser');soup.html['lang']=code;soup.html['dir']='rtl' if code=='ar' else 'ltr'
   if code in SYSTEM_FONT:soup.html['class']='system-font'
   for node in soup.select('[data-i]'):

@@ -72,11 +72,13 @@
     <string name="dv_diag_offline">PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi isolation.</string>
     <string name="dv_diag_online">Remote Play responds: %1$d/3, TCP %2$.1f ms. This is connectivity, not video latency.</string>
     <string name="dv_diag_report">%1$s\nH.264 decoder: %2$s\nAn open port does not confirm pairing or streaming.</string>
+    <string name="dv_diag_save_failed">无法保存诊断文件。</string>
     <string name="dv_discovery_find">查找主机</string>
     <string name="dv_discovery_on">发现功能已开启</string>
     <string name="dv_download">下载更新</string>
     <string name="dv_empty_intro">请使用同一网络，或手动添加主机。</string>
     <string name="dv_empty_title">你的主机将显示在这里</string>
+    <string name="dv_export_stream_diagnostics">导出诊断</string>
     <string name="dv_fit">适应屏幕</string>
     <string name="dv_goal_amount">USD %1$.2f / %2$.2f</string>
     <string name="dv_guided">连接向导</string>
@@ -140,7 +142,7 @@
     <string name="dv_searching">正在搜索本地网络。你也可以添加 IP 地址。</string>
     <string name="dv_settings">设置</string>
     <string name="dv_setup">连接</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
+    <string name="dv_setup_credit">Development build 0.8.6. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">注册完成后，返回家并选择PS5。本地播放已准备就绪；此版本未配置互联网访问。</string>
     <string name="dv_setup_enable">在 PS5 上，启用设置 → 系统 → 远程游戏。</string>
     <string name="dv_setup_find">01 · 找到你的控制台</string>

@@ -35,7 +35,7 @@ Deckivo 0.8.6 is an experimental open-source PS5 Remote Play client. Start on th
 
 ### First installation
 
-1. Use an Apple Silicon Mac with macOS 13+. Install the official chiaki-ng app separately and register the PS5 there. Close its stream.
+1. Use an Apple Silicon Mac with macOS 13+. Install the official chiaki-ng app separately and register the PS5 there. Close its stream. Install chiaki-ng in /Applications or ~/Applications. Deckivo detects the official Apple Silicon engine there; for another location, use Preferences → Choose chiaki-ng app.
 2. Extract the Mac ZIP and move Deckivo.app into ~/Applications. This preview is ad-hoc signed, not notarized. After an attempted launch, use the individual Open Anyway option in System Settings → Privacy & Security if macOS requires it. Do not disable Gatekeeper globally.
 3. Open Deckivo Preferences, import your chiaki-ng registration and select the console address. Keep chiaki-ng installed: Deckivo uses its native engine.
 

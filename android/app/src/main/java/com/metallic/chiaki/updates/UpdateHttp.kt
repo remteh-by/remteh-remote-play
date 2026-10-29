@@ -61,9 +61,14 @@ internal class UpdateHttp {
                     val location = connection.getHeaderField("Location") ?: error("Missing redirect location")
                     url = URL(URL(url), location).toString()
                 } else {
-                    if (status != HttpURLConnection.HTTP_OK) throw UpdateFailure(
-                        if (status == 403 || status == 429) UpdateText(R.string.dv_up_rate_limit)
-                        else UpdateText(R.string.dv_up_http_error, listOf(status)))
+                    if (status != HttpURLConnection.HTTP_OK) {
+                        val limited = status == 429 || status == 403 &&
+                            (connection.getHeaderField("X-RateLimit-Remaining") == "0" || connection.getHeaderField("Retry-After") != null)
+                        val retry = if (limited) retryDelay(connection.getHeaderField("Retry-After"),
+                            connection.getHeaderField("X-RateLimit-Reset"), System.currentTimeMillis()) else null
+                        throw UpdateFailure(if (limited) UpdateText(R.string.dv_up_rate_limit)
+                            else UpdateText(R.string.dv_up_http_error, listOf(status)), retry)
+                    }
                     val length = connection.contentLengthLong
                     require(length <= maxBytes) { "File exceeds size limit" }
                     var total = 0L
@@ -91,3 +96,12 @@ internal class UpdateHttp {
 }
 
 internal fun ByteArray.hex(): String = joinToString("") { String.format(Locale.ROOT, "%02x", it) }
+
+internal fun retryDelay(after: String?, reset: String?, now: Long): Long {
+    val seconds = after?.toLongOrNull()?.takeIf { it in 0..86400 }?.times(1000)
+    val date = if (seconds == null && after != null) runCatching {
+        java.time.ZonedDateTime.parse(after, java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME).toInstant().toEpochMilli() - now
+    }.getOrNull() else null
+    val resetDelay = reset?.toLongOrNull()?.takeIf { it in 0..Long.MAX_VALUE / 1000 }?.let { it * 1000 - now }
+    return listOfNotNull(seconds, date?.coerceAtLeast(0), resetDelay?.coerceAtLeast(0)).maxOrNull()?.coerceAtMost(86_400_000) ?: 900_000
+}
