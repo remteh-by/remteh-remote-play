@@ -74,3 +74,31 @@ fresh WASD input after return, duplicate loss notifications and cancellation of
 pending resume. The 118 desktop tests also passed. These checks validate the
 state policy and native build; the owner must still verify the real macOS
 minimize/restore cycle and physical input after installing this follow-up.
+
+## Owner rejection and instrumented lifecycle follow-up
+
+The owner rejected that focus follow-up: input still failed, window/image size
+changed and sound continued while minimized. Passing the policy harness did not
+establish acceptance of the macOS lifecycle.
+
+The next local candidate adds a per-process `metrics.json.input` diagnostic with
+focus/capture state, aggregate event counts, virtual-controller attachment and
+open state, and window dimensions in logical points. It contains no key values,
+mouse coordinates, window titles, console names, IPs or credentials. A true stop
+cancels capture; Esc/F8 frees the cursor for the current focus interval. A content
+click or leave/return cycle can capture again, including Esc → minimize → restore.
+The owned key window is reconciled instead of relying forever on the first native
+window pointer.
+
+Minimize/restore saves and restores the window frame in logical points, bounded
+by the current screen, without changing the negotiated video resolution. Content
+clicks that reclaim input are consumed instead of reaching the engine's
+double-click fullscreen shortcut. Background/minimized audio submissions are
+dropped through the actual SDL queue API, letting the decoder/drain continue
+without building a delayed audio backlog or changing system volume.
+
+All 120 desktop checks passed on the Mac, including two native checks: the
+ASan/UBSan input/focus/Retina geometry harness and a real SDL dummy-device test
+with the production adapter inserted for 500 mute/unmute cycles. This establishes
+native policy and audio-queue behavior, not physical input, visible window or
+audible acceptance. The instrumented owner test remains required.

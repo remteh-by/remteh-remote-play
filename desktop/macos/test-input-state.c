@@ -100,15 +100,37 @@ int main(void) {
         dk_mac_key(&focus_input,13,true);dk_mac_sample(&focus_input,10.05,&buttons,axes);
         assert(axes[1]==-32767); /* fresh input works after resume */
         assert(dk_mac_capture_end(&capture,&focus_input,10.06,false));
-        assert(!dk_mac_capture_wants_resume(&capture,true)); /* explicit Esc */
+        assert(!dk_mac_capture_wants_resume(&capture,true)); /* End stream */
         dk_mac_capture_end(&capture,&focus_input,10.07,true);
         assert(!dk_mac_capture_wants_resume(&capture,true)); /* later focus change */
         dk_mac_capture_begin(&capture); /* explicit F8 can start again */
         dk_mac_capture_end(&capture,&focus_input,10.08,true);
         dk_mac_capture_end(&capture,&focus_input,10.09,false);
         assert(!dk_mac_capture_wants_resume(&capture,true)); /* cancel pending resume */
+        /* Esc/F8 used to expose the minimize button must not permanently turn
+         * off input after the next minimize/return cycle. */
+        dk_mac_capture_begin(&capture);
+        dk_mac_capture_end(&capture,&focus_input,10.1,false);
+        dk_mac_capture_ungrab(&capture);
+        assert(!dk_mac_capture_wants_resume(&capture,true)); /* cursor remains free now */
+        dk_mac_capture_end(&capture,&focus_input,10.2,true);
+        assert(dk_mac_capture_wants_resume(&capture,true)); /* return re-enters */
+        dk_mac_capture_begin(&capture);
+        dk_mac_capture_end(&capture,&focus_input,10.3,false);
+        assert(!capture.active&&!capture.resume_on_focus&&!capture.rearm_on_focus_loss);
     }
+    DkMacRect screen={0,0,1440,900},large={0,0,2880,1800};
+    DkMacRect restored=dk_mac_restore_frame(large,screen,false);
+    assert(restored.width==1440&&restored.height==900); /* points, not Retina pixels */
+    restored=dk_mac_restore_frame((DkMacRect){800,800,600,400},screen,false);
+    assert(restored.x==800&&restored.y==500&&restored.width==600&&restored.height==400);
+    restored=dk_mac_restore_frame((DkMacRect){1,2,600,400},screen,true);
+    assert(restored.x==0&&restored.y==0&&restored.width==1440&&restored.height==900);
+    restored=dk_mac_restore_frame((DkMacRect){-1900,20,800,600},(DkMacRect){-1920,0,1920,1080},false);
+    assert(restored.x==-1900&&restored.y==20&&restored.width==800&&restored.height==600);
+    restored=dk_mac_restore_frame((DkMacRect){NAN,INFINITY,NAN,INFINITY},screen,false);
+    assert(restored.x==0&&restored.y==0&&restored.width==1440&&restored.height==900);
 
-    puts("PASS: WASD, mouse rates, mappings, all five buttons, malformed config; 500 focus cycles, 32 focus states, duplicate focus-loss notifications, neutral resume, explicit-release cancellation");
+    puts("PASS: WASD/mouse mappings; 500 focus cycles x32 states; Esc->minimize->restore; stop cancels resume; logical-point window restore, Retina sizes and negative-screen origins");
     return 0;
 }
