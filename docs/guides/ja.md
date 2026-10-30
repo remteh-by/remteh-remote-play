@@ -1,12 +1,12 @@
 # Deckivo — インストールとプレイガイド
 
-Deckivo **0.8.6 preview** · 2026-10-25
+Deckivo **0.8.7 preview** · 2026-10-30
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## 準備
 
-0.8.6 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。
+0.8.7 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.6 preview** · 2026-10-25
 
 リリースから arm64 APK を取得します。Android 8 以上が必要で、実機テストは Switch OLED / Android 15 です。選択した提供元だけにインストールを許可し、旧版を削除せず上書きします。データを消さず、言語と接続ウィザードを選択します。Bluetooth コントローラーは Android で接続してください。Play Protect は無効化しません。
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-0.8.6-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.7)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Deckivo **0.8.6 preview** · 2026-10-25
 
 Apple Silicon のみです。公式 chiaki-ng を別途インストールし、PS5 を登録して配信を終了します。Mac ZIP を展開し Deckivo.app を ~/Applications に移します。未公証のため macOS のプライバシーとセキュリティで「このまま開く」が必要な場合があります。Gatekeeper 全体を無効化しないでください。Deckivo で chiaki-ng の登録を読み込み、PS5 の IP を入力します。
 
-[Mac ZIP · 0.8.6 b22](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-macos-0.8.6-b22.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-macos-0.8.7-b23.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.6 b22](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-Linux-0.8.6-b22-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-0.8.6-sources.zip)
+[Linux update ZIP · 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-Linux-0.8.7-b23-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-sources.zip)
 
 ## ペアリング
 

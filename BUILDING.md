@@ -66,7 +66,7 @@ keys, local registrations and device screenshots must never enter a public asset
 
 ## Candidate builds and isolated staging
 
-Current source candidate: 0.8.7, Android build 32, desktop build 23. Public Pages deliberately retain the verified 0.8.6 registry until release. Update that registry only from actually uploaded, verified assets; pages deployment now verifies the same checked-out commit's generated site before publishing.
+Published preview: 0.8.7, Android build 32, desktop build 23. The public registry points to the immutable uploaded assets. Pages verifies the same checked-out commit's generated site before publishing. Physical-device acceptance was waived for publication by the owner and is not claimed.
 
 For Mac staging, use --runtime-dir with an isolated venv and --output-dir under a local non-synchronized directory (for example Library/Caches). File Provider/iCloud folders may reintroduce FinderInfo while codesign is running. The builder removes only FinderInfo/ResourceFork from its own staging bundle, never quarantine or metadata from an installed app. --stage-only preserves installed applications, pairing and private update state.
 

@@ -1,47 +1,47 @@
 {
   "schema": 1,
-  "version": "0.8.6",
-  "build": 22,
-  "source_commit": "99d2f9dd5a5917e8640db1982c5e3aeafc568c52",
+  "version": "0.8.7",
+  "build": 23,
+  "source_commit": "01f3a7ccd7198fab0e768566c75eb355d9ef0eff",
   "source_dirty": false,
-  "ui_source_sha256": "a9b5d2a4858a31cd78087193f5f6fce9c06bb4d8d2331d95847ad6072d963f50",
+  "ui_source_sha256": "e52a96699b503b9d155ac96e3f395df5e50f479a0d5dd0323706f9e6ab446c9b",
   "capture_state": "unpaired",
   "development_preview": true,
-  "captured_at": "2026-10-26T16:58:39Z",
+  "captured_at": "2026-10-30T19:16:36Z",
   "images": {
     "deckivo-ui.webp": {
-      "sha256": "22a71fe30ec53e48e5ef7d4c47e6932ac66b9a2e26afc9e588f66a4b9465394d",
-      "bytes": 43216,
+      "sha256": "08e0d7ccbbe3fc3f7fb46e96c7c242123e74607cba52d092e84d393c000bdd27",
+      "bytes": 43426,
       "width": 1600,
       "height": 900
     },
     "deckivo-ui.avif": {
-      "sha256": "70dced1f127060915286132bab2eefe7773c4268981eaf7cb8e2ab38d1b0a78b",
-      "bytes": 25519,
+      "sha256": "8c94918ecfa374d024fe8f29d70071b9c7e188389fc7293b4961410238e21862",
+      "bytes": 25644,
       "width": 1600,
       "height": 900
     },
     "github-cover.webp": {
-      "sha256": "e89f2fef8acedb0cfcf57da5ecd8b63bc9d834933f42d09fef218e6b5fcb6584",
-      "bytes": 30254,
+      "sha256": "804d916c02926bf9e4189733b25ea0831c1188942b8dce861f0b3bdfb04cabf6",
+      "bytes": 30226,
       "width": 1200,
       "height": 630
     },
     "github-cover.jpg": {
-      "sha256": "48ba7037b1a03e920b4533324f61ad95e17495c1dfee7fdd9745d63f4c67910e",
-      "bytes": 63795,
+      "sha256": "afe48592f290ddee8fbe124b6b74bb8ae61a47beb2e48b151ef331867d0827c9",
+      "bytes": 63384,
       "width": 1200,
       "height": 630
     },
     "deckivo-hero.webp": {
-      "sha256": "aa33ad0201f91a74572e958fffa384ff02fc13a7c9c208d1d46415ebd3e98cfe",
-      "bytes": 30256,
+      "sha256": "1a24a579014f64ce17210730f76ab1984a792598365ff6a879415287cadcf1de",
+      "bytes": 31728,
       "width": 1476,
       "height": 536
     },
     "deckivo-hero.avif": {
-      "sha256": "5e819d74cb2417db2a5b97dac3d31035a9fba45678f3c1848626f5a8b23cfd2d",
-      "bytes": 17572,
+      "sha256": "2bda2f3500a588bab6c0a345c6c95cce3f38fb0cf9277a0f5ef97e445ccddd7f",
+      "bytes": 18561,
       "width": 1476,
       "height": 536
     }
@@ -56,5 +56,5 @@
     ],
     "operation": "crop only, exact real Qt capture"
   },
-  "readme_cover": "github-cover-0.8.6-b22-e89f2fef8ace.webp"
+  "readme_cover": "github-cover-0.8.7-b23-804d916c0292.webp"
 }

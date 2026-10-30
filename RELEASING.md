@@ -64,6 +64,6 @@ Do not edit GitHub releases for historical tags v0.8.1–v0.8.3: their immutable
 
 Download statistics are optional: collector errors, timeouts and invalid output produce a warning and `{"schema":1,"available":false}`. They must never prevent the already signed update channel or site from being built. Other build errors still fail normally.
 
-## Audit candidate 0.8.7
+## 0.8.7 publication decision
 
-Physical acceptance was explicitly deferred on 2026-10-30. Track local candidate preparation separately from publication. Before promotion, record the device matrix above, refresh actual app imagery for UI changes and verify matching source archives. Update `website/published-release.json` only after verifying the new public assets; it intentionally remains on 0.8.6 while 0.8.7 is a candidate. Keep Pages validation and deployment on the same SHA.
+On 2026-10-30 the owner explicitly authorized publication without physical-device checks. The release remains a prerelease, with device limitations recorded. Original signing identities, exact package hashes and corresponding sources were retained; the actual app capture, public download registry and signed feed were refreshed. This authorization does not claim device acceptance or change signing identities.

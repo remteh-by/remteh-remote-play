@@ -1,12 +1,12 @@
 # Deckivo — подробная установка и игра
 
-Deckivo **0.8.6 preview** · 2026-10-25
+Deckivo **0.8.7 preview** · 2026-10-30
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Перед началом
 
-Deckivo 0.8.6 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.
+Deckivo 0.8.7 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.
 
 <a id="android"></a>
 
@@ -27,7 +27,7 @@ Deckivo 0.8.6 — экспериментальный открытый клиен
 1. Завершите трансляцию. Откройте Настройки Android → Приложения → Deckivo → Удалить. Приложение, его привязка, настройки и история на этом устройстве будут удалены.
 2. APK и отчёты, сохранённые в «Загрузках», остаются — удалите их отдельно при необходимости. Игры и сохранения PS5 не затрагиваются. После новой установки потребуется привязка.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-0.8.6-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.7)
 
 <a id="macos"></a>
 
@@ -50,7 +50,7 @@ Deckivo 0.8.6 — экспериментальный открытый клиен
 2. Если нужно удалить также привязку, настройки, историю и загруженные обновления, отдельно удалите ~/Library/Application Support/Deckivo через Finder, предварительно сохранив нужное. В папке есть закрытые ключи привязки — не передавайте её другим.
 3. chiaki-ng — отдельное приложение со своими данными; при необходимости удалите его отдельно. Игры и сохранения на PS5 остаются.
 
-[Mac ZIP · 0.8.6 b22](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-macos-0.8.6-b22.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-macos-0.8.7-b23.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -88,7 +88,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.6 b22](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-Linux-0.8.6-b22-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.6/Deckivo-0.8.6-sources.zip)
+[Linux update ZIP · 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-Linux-0.8.7-b23-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-sources.zip)
 
 ## Привязка и первое подключение
 

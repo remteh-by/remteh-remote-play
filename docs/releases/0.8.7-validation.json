@@ -1,6 +1,6 @@
 {
   "version": "0.8.7",
-  "status": "local-candidate-not-published",
+  "status": "published-preview-without-device-acceptance",
   "implementationCommit": "8ca1ba0965a67ac206756d29a58da2f680e0f4b0",
   "date": "2026-10-30",
   "android": {
@@ -26,7 +26,9 @@
     "build": 23,
     "unitTests": 130,
     "macOS": "arm64 isolated staged bundle, ad-hoc signature; no notarization",
-    "linux": "Switchroot Ubuntu ARM64 source/update candidate; no device install in this task"
+    "linux": "Switchroot Ubuntu ARM64 source/update candidate; no device install in this task",
+    "githubMacTests": 130,
+    "githubMacSkipped": 0
   },
   "web": {
     "siteRenderedCases": 112,
@@ -36,13 +38,15 @@
   },
   "scope": {
     "crm": "excluded",
-    "newReleasePublished": false,
-    "publicDownloadVersion": "0.8.6",
+    "newReleasePublished": true,
+    "publicDownloadVersion": "0.8.7",
     "devices": "deferred-by-owner"
   },
   "limitations": [
     "No new physical PS5/Switch/controller gameplay acceptance.",
     "No claim of generic Linux, Intel Mac, notarization or stable release.",
     "Matching new UI capture and physical acceptance are required before release promotion."
-  ]
+  ],
+  "source_commit": "01f3a7ccd7198fab0e768566c75eb355d9ef0eff",
+  "physical_acceptance": "not performed; publication explicitly authorized by owner"
 }

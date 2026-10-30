@@ -1,6 +1,6 @@
 # Deckivo platform scope
 
-Public release: **0.8.6 preview**, Android build 31, desktop build 22. Source candidate: **0.8.7**, Android build 32, desktop build 23. Candidate packages are not device acceptance and do not replace public files under old names.
+Public release: **0.8.7 preview**, Android build 32, desktop build 23. Published at the owner's request without physical-device acceptance. Mac packages use ad-hoc signing; no Developer ID notarization. Old release assets remain unchanged.
 
 | Target | Candidate delivery | Acceptance boundary |
 |---|---|---|

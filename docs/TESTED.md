@@ -208,3 +208,8 @@ Russian device-neutral subtitle. This is UI/update acceptance, not gameplay.
 - Switch Android/Ubuntu physical updates, PS5 streaming/input/controllers and a fresh Mac Gatekeeper first launch still require devices.
 
 [0.8.6 public-channel evidence](releases/0.8.6-public-channel-validation.json).
+
+
+## 0.8.7 publication without device acceptance · 2026-10-30
+
+The owner explicitly authorized publication without physical checks. 130 macOS ARM64 CI tests passed without skips; Android build/lint/49 unit tests and browser CI passed. No new PS5 gameplay, Android upgrade, Switchroot installation, controller transport or long-session acceptance is claimed. See [release evidence](releases/0.8.7-validation.json).
