@@ -184,6 +184,7 @@ class Deckivo(QWidget):
         v.addWidget(snap)
         self.capture_button=button(self.t('capture_input'),self.capture_keyboard_mouse,'ghost');self.capture_button.setEnabled(False);v.addWidget(self.capture_button)
         self.input_mode_label=label(self.t('input_mode_keyboard' if self.preferences['keyboard_mouse'] else 'input_mode_controller'),'small',True);v.addWidget(self.input_mode_label)
+        v.addWidget(button('Проверка соединения' if self.effective_language()=='ru' else 'Connection check',self.connection_diagnostics,'ghost'))
         v.addWidget(label(self.t('nav_hint'),'small',True))
         viewport.setWidget(page);return viewport
 
@@ -366,8 +367,28 @@ class Deckivo(QWidget):
         if hasattr(self,'input_mode_label'):self.input_mode_label.setText(self.t('input_mode_keyboard' if self.preferences['keyboard_mouse'] else 'input_mode_controller'))
         if self.probe and self.probe.isRunning():return
         old=self.probe
-        self.probe=Reachability(self.preferences['host'],self);self.probe.result.connect(self.update_status);self.probe.start()
+        self.probe=Reachability(self.preferences['host'],self);self.probe.result.connect(self.received_probe);self.probe.start()
         if old:old.deleteLater()
+
+    def received_probe(self,online,rtt):
+        self.probe_observed_at=time.monotonic()
+        self.update_status(online,rtt)
+
+    def connection_snapshot(self):
+        from connection_diagnostics import summarize
+        last=getattr(self,'probe_observed_at',None)
+        present=not self.engine_missing() if hasattr(self,'engine_missing') else (DATA/'runtime/usr/bin/chiaki').is_file()
+        return summarize(host_configured=bool(self.preferences.get('host')),paired=bool(self.registration),
+            probe_state=getattr(self,'console_state','offline'),probe_age=time.monotonic()-last if last is not None else None,
+            engine_present=present,decoder_active=bool(self.active() and self.saw_video),
+            input_present=bool(self.pad.name) or self.metrics.get('exclusive',False),
+            profile=PRESETS[self.preferences['quality']].name)
+
+    def connection_diagnostics(self):
+        report=self.connection_snapshot()
+        language='ru' if self.effective_language()=='ru' else 'en'
+        text='\n\n'.join(str(index+1)+'. '+row[language]+' ['+row['status']+']' for index,row in enumerate(report['checks']))
+        QMessageBox.information(self,'Deckivo · Connection check',text)
 
     def update_status(self,online,rtt):
         self.console_state=online if isinstance(online,str) else ('online' if online else 'offline')
@@ -551,6 +572,7 @@ class Deckivo(QWidget):
 
     def export_report(self):
         report=safe_report(self.phase,self.preferences,self.metrics,bool(self.pad.name) or self.metrics.get('exclusive',False),len(self.records))
+        report['connection_checks']=self.connection_snapshot()
         filename,_=QFileDialog.getSaveFileName(self,self.t('export'),str(Path.home()/'Desktop'/f'Deckivo-diagnostics-{datetime.date.today()}.json'),'JSON (*.json)')
         if filename:
             destination=Path(filename)
