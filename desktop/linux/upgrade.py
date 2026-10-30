@@ -23,11 +23,12 @@ DEST=Path.home()/'.local/share/deckivo'
 PRIVATE=Path.home()/'.config/deckivo'
 FILES=('deckivo.py','keyboard_mouse.py','input_overlay.py','controller_lab.py','launcher.py','storage.py','session.py','controller.py','ui.py','ui_theme.py',
        'support.py','support_policy.py','updater.py','rsa_verify.py','update_ui.py','install_update.py','build_meta.py','pair.py',
-       'update_background.py','upgrade.py',
+       'update_background.py','upgrade.py','preflight.py','connection_diagnostics.py',
        'deckivo.svg','README.md','UPSTREAM.json','native/tegra-decoder.c','native/kbm-bridge.c',
        'assets/play-space.svg','assets/ps5-console.png','assets/source.json',
        'assets/fonts/IBMPlexSans.ttf','assets/fonts/OFL.txt','assets/update-public.der','assets/support.json')+tuple('assets/support/'+p.name for p in (HERE/'assets/support').glob('*.svg'))
 FILES+=tuple(str(p.relative_to(HERE)) for p in sorted((HERE/'assets/controller-lab').rglob('*')) if p.is_file())
+FILES+=('i18n.py','linux_input_settings.py','macos_input_settings.py','assets/desktop-translations.json')
 REMOVED=()
 
 

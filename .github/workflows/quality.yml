@@ -28,6 +28,7 @@ jobs:
       - run: |
           python -m pip install -r scripts/requirements-build.txt
           python scripts/generate-support.py --check
+          python scripts/generate-desktop-localizations.py --check
           python -m unittest tests/test_download_stats.py
           python -m unittest tests/test_site_generation.py tests/test_site_stats_fallback.py
           python scripts/site-download-stats.py --output build/download-stats.json

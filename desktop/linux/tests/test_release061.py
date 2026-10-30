@@ -104,7 +104,7 @@ class StartupTests(unittest.TestCase):
         import update_ui,macos_engine
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);engine=root/'engine';config=root/'preferences.json'
-            with patch.object(update_ui,'PRIVATE',root),patch.object(update_ui,'CONFIG',config),patch.object(update_ui.sys,'platform','darwin'),patch.object(macos_engine,'ENGINE',engine):
+            with patch.object(update_ui,'PRIVATE',root),patch.object(update_ui,'CONFIG',config),patch.object(update_ui.sys,'platform','darwin'),patch.object(macos_engine,'resolve_engine',side_effect=lambda:engine if engine.is_file() else None):
                 self.assertFalse(update_ui.startup_ready(None))
                 engine.write_bytes(b'engine');config.write_text('{broken')
                 self.assertFalse(update_ui.startup_ready(None))

@@ -5,69 +5,114 @@ import subprocess
 from pathlib import Path
 import sys
 import time
+import math
+import uuid
 from PyQt5.QtCore import QProcess,QProcessEnvironment,QTimer,Qt
 from PyQt5.QtGui import QFontDatabase
-from PyQt5.QtWidgets import QApplication,QMessageBox,QInputDialog
+from PyQt5.QtWidgets import QApplication,QMessageBox,QInputDialog,QFileDialog
 import launcher
 from launcher import Deckivo
 from storage import DATA,PRIVATE,CONFIG,HERE,private_json
 from session import VERSION
-from macos_engine import ENGINE,configure,paired_hosts
+from macos_engine import resolve_engine,inspect_engine,configure,paired_hosts
+
+
+def runtime_input_request(values,revision):
+    from macos_input_settings import encode_bindings
+    keyboard,mouse=encode_bindings(values.get('input_bindings'))
+    sensitivity=values.get('mouse_sensitivity',.025)
+    if isinstance(sensitivity,bool) or not isinstance(sensitivity,(int,float)) or not math.isfinite(sensitivity) or not .001<=sensitivity<=.2:
+        raise ValueError('Invalid mouse sensitivity')
+    if not isinstance(values.get('invert_mouse_y',False),bool):raise ValueError('Invalid mouse inversion')
+    if not isinstance(revision,str) or not 16<=len(revision)<=64 or any(c not in '0123456789abcdef' for c in revision):raise ValueError('Invalid input revision')
+    return {'schema':1,'revision':revision,'keyboard':keyboard,'mouse':mouse,
+            'sensitivity':float(sensitivity),'invert_y':bool(values.get('invert_mouse_y',False))}
 
 
 class MacDeckivo(Deckivo):
+    live_input_settings=True
+    def choose_engine(self):
+        if self.active():return
+        path=QFileDialog.getExistingDirectory(self,self.t('choose_engine'),str(Path.home()/'Applications'),QFileDialog.ShowDirsOnly|QFileDialog.DontUseNativeDialog)
+        if not path:return
+        engine=inspect_engine(path)
+        if not engine:QMessageBox.warning(self,'Deckivo',self.t('engine_invalid'));return
+        self.preferences['engine_path']=str(engine);private_json(CONFIG,self.preferences)
+        self.settings_notice.setText(self.t('saved'));self.refresh()
+
+    def engine_missing(self):return resolve_engine(self.preferences) is None
+
     def pairing_setup(self):
         if self.active():return
         hosts=paired_hosts()
         if not hosts:
-            box=QMessageBox(self);box.setWindowTitle('Deckivo · Pairing')
-            box.setText('Pair your PS5 in chiaki-ng first, close its stream, then import the saved registration here. Your console keys stay on this Mac.')
-            launch=box.addButton('Open chiaki-ng',QMessageBox.ActionRole);box.addButton(QMessageBox.Close);box.exec()
-            if box.clickedButton() is launch and ENGINE.exists():subprocess.Popen(['open',str(ENGINE.parents[2])])
+            box=QMessageBox(self);box.setWindowTitle('Deckivo')
+            box.setText(self.t('pair_first'))
+            launch=box.addButton(self.t('open_engine'),QMessageBox.ActionRole);box.addButton(QMessageBox.Close);box.exec()
+            engine=resolve_engine(self.preferences)
+            if box.clickedButton() is launch and engine:subprocess.Popen(['open',str(engine.parents[2])])
             return
         labels=[host['server_nickname']+' · '+profile for profile,host in hosts]
-        selected,ok=QInputDialog.getItem(self,'Deckivo · Pairing','Choose your registered PS5',labels,0,False)
+        selected,ok=QInputDialog.getItem(self,'Deckivo',self.t('choose_console'),labels,0,False)
         if not ok:return
         self.registration=hosts[labels.index(selected)][1]
         private_json(PRIVATE/'registration.json',self.registration)
         try:self.preferences['host']=str(ipaddress.ip_address(self.host_edit.text().strip()))
         except ValueError:pass
         private_json(CONFIG,self.preferences)
-        self.settings_notice.setText('Registration imported. Set your PS5 address and save preferences.')
+        self.settings_notice.setText(self.t('pair_imported'))
         self.refresh()
 
-    def t(self,key):
-        ru=self.language=='ru' or self.language=='auto' and launcher.QLocale.system().name().startswith('ru')
-        if key=='input_bindings':return 'Назначить клавиши и кнопки мыши' if ru else 'Customize keyboard & mouse'
-        if key=='input_layout':return ('Customize keys, five mouse buttons, speed and vertical inversion. Default: WASD moves, mouse aims.\nF8 — capture · Esc — release · F11 — full screen' if not ru else 'Назначения клавиш, пяти кнопок мыши, скорость и инверсия. По умолчанию: WASD — движение, мышь — обзор.\nF8 — захват · Esc — отпустить · F11 — полный экран')
-        variants={'smooth_note':('10 Mb/s · automatic decoder','10 Мбит/с · автоматический декодер'),'balanced_note':('7 Mb/s · automatic decoder','7 Мбит/с · автоматический декодер'),'rescue_note':('5 Mb/s · compatibility','5 Мбит/с · совместимый режим'),'sharp_note':('15 Mb/s · 1080p target','15 Мбит/с · цель 1080p'),'sharp30_note':('12 Mb/s · 1080p target','12 Мбит/с · цель 1080p'),'shortcut_text':('PS / Home → PS menu\nTouchpad click → touchpad\nEsc releases input; ⌘Q ends the session\nKeyboard/mouse capture: Esc releases input', 'PS / Home → меню PS\nНажатие тачпада → тачпад\nEsc отпускает ввод; ⌘Q завершает сеанс\nЗахват клавиатуры/мыши: Esc отпускает ввод'),
-            'pad_tip':('Connect your controller by USB or Bluetooth. DualSense USB enables extra diagnostics.','Подключите геймпад по USB или Bluetooth. USB DualSense открывает дополнительные тесты.') }
-        return variants[key][1 if ru else 0] if key in variants else super().t(key)
-
     def edit_input_bindings(self):
-        if self.active():return
+        if self.is_closing or self.phase=='stopping':return
         from macos_input_settings import InputSettingsDialog
-        language=self.language if self.language!='auto' else launcher.QLocale.system().name()
+        language=self.effective_language()
         values=dict(self.preferences)
         # Carry current form values into the dialog, but persist only on Save.
         values['mouse_sensitivity']=self.sensitivity.value()
         values['invert_mouse_y']=self.options['invert_mouse_y'].isChecked()
         dialog=InputSettingsDialog(values,language,self)
         if dialog.exec_()!=dialog.Accepted:return
-        self.preferences.update(dialog.result_values())
+        self.preferences.update(dialog.result_values());self.preferences['keyboard_mouse']=True
         private_json(CONFIG,self.preferences)
         self.options['keyboard_mouse'].setChecked(True)
         self.options['invert_mouse_y'].setChecked(self.preferences['invert_mouse_y'])
         self.sensitivity.setValue(self.preferences['mouse_sensitivity'])
-        self.settings_notice.setText(self.t('saved'));self.refresh()
+        self.capture_button.setEnabled(self.active() and self.saw_video)
+        if self.active():self.apply_live_input_settings()
+        else:self.settings_notice.setText(self.t('saved'))
+        self.refresh()
+
+    def apply_live_input_settings(self):
+        import socket
+        revision=uuid.uuid4().hex;self.input_update_revision=revision
+        try:private_json(PRIVATE/'input-runtime.json',runtime_input_request(self.preferences,revision))
+        except (OSError,ValueError):self.settings_notice.setText(self.t('input_saved_next'));return
+        self.settings_notice.setText(self.t('input_applying'))
+        try:
+            with socket.socket(socket.AF_UNIX,socket.SOCK_DGRAM) as control:control.sendto(b'conf',str(PRIVATE/'adapter.sock'))
+        except OSError:
+            self.settings_notice.setText(self.t('input_saved_next'));return
+        self.confirm_live_input_settings(revision,self.stream_id,20)
+
+    def confirm_live_input_settings(self,revision,stream_id,remaining):
+        if revision!=getattr(self,'input_update_revision',None) or stream_id!=self.stream_id:return
+        if not self.active():self.settings_notice.setText(self.t('saved'));return
+        from storage import load_json
+        state=load_json(PRIVATE/'metrics.json.input',{})
+        if self.metrics.get('pid') and state.get('pid')==self.metrics['pid'] and state.get('input_revision')==revision and state.get('controller_ready') and state.get('controller_open'):
+            self.settings_notice.setText(self.t('input_applied'));return
+        if remaining<=0:self.settings_notice.setText(self.t('input_saved_next'));return
+        QTimer.singleShot(150,lambda:self.confirm_live_input_settings(revision,stream_id,remaining-1))
 
     def start(self):
         if self.active() or not self.registration:return False
-        if not ENGINE.is_file():
-            QMessageBox.warning(self,'Deckivo','Install chiaki-ng in /Applications first.');return False
+        if self.engine_missing():
+            QMessageBox.warning(self,'Deckivo',self.t('engine_missing'));return False
         self.close_controller_lab()
-        configure(self.registration,self.preferences['quality']);private_json(CONFIG,self.preferences)
-        (PRIVATE/'metrics.json').unlink(missing_ok=True)
+        screen=self.screen() or QApplication.primaryScreen()
+        configure(self.registration,self.preferences['quality'],screen.availableGeometry() if screen else None);private_json(CONFIG,self.preferences)
+        for name in ('metrics.json','metrics.json.input'):(PRIVATE/name).unlink(missing_ok=True)
         self.metrics={};self.saw_video=False;self.stop_requested=False;self.finalized=False;self.stream_id+=1
         self.started_mono=time.monotonic();self.started_at=launcher.datetime.datetime.now().astimezone().isoformat(timespec='seconds')
         self.quality_at_start=self.preferences['quality'];self.phase='connecting';self.message='ready'
@@ -131,7 +176,8 @@ class MacDeckivo(Deckivo):
 
     def about(self):
         from support import supporters_text
-        QMessageBox.information(self,'Deckivo',f'Deckivo {VERSION} · macOS Apple Silicon\n{self.t('developer_credit').removesuffix(' ↗')}\n\nShared native Deckivo UI, chiaki-ng 1.10.0 streaming engine.\nVideoToolbox decoding. Keyboard and SDL gamepad input.\nAGPL-3.0-only with upstream OpenSSL exception.\nIndependent project; not affiliated with Sony or Nintendo.\nExperimental preview. Internet play is not validated.'+supporters_text(self))
+        QMessageBox.information(self,'Deckivo',f"Deckivo {VERSION} · macOS Apple Silicon\n{self.t('developer_credit')}\n\nchiaki-ng · VideoToolbox · SDL\nAGPL-3.0-only + OpenSSL exception\n\n{self.t('attribution')}\n{self.t('wan_note')}"+supporters_text(self))
+
 
 
 def main():

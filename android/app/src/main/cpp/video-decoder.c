@@ -9,6 +9,7 @@
 #include <media/NdkMediaFormat.h>
 
 #include <string.h>
+#include <time.h>
 
 #define INPUT_BUFFER_TIMEOUT_MS 10
 
@@ -26,6 +27,9 @@ android_chiaki_video_decoder_init(AndroidChiakiVideoDecoder *decoder,
   decoder->target_codec = codec;
   decoder->window = NULL;
   atomic_init(&decoder->shutdown_output, false);
+  atomic_init(&decoder->input_buffers,0);atomic_init(&decoder->decoded_frames,0);
+  atomic_init(&decoder->surface_submissions,0);atomic_init(&decoder->receiver_lost_frames,0);
+  atomic_init(&decoder->first_output_ns,0);
   decoder->output_thread_started = false;
   return chiaki_mutex_init(&decoder->codec_mutex, false);
 }
@@ -148,10 +152,10 @@ bool android_chiaki_video_decoder_video_sample(uint8_t *buf, size_t buf_size,
                                                int32_t frames_lost,
                                                bool frame_recovered,
                                                void *user) {
-  (void)frames_lost;     // unused
   (void)frame_recovered; // unused
   bool r = true;
   AndroidChiakiVideoDecoder *decoder = user;
+  if(frames_lost>0)atomic_fetch_add(&decoder->receiver_lost_frames,(unsigned long long)frames_lost);
   chiaki_mutex_lock(&decoder->codec_mutex);
 
   if (!decoder->codec) {
@@ -187,7 +191,7 @@ bool android_chiaki_video_decoder_video_sample(uint8_t *buf, size_t buf_size,
     if (r != AMEDIA_OK) {
       CHIAKI_LOGE(decoder->log, "AMediaCodec_queueInputBuffer() failed: %d",
                   (int)r);
-    }
+    } else atomic_fetch_add(&decoder->input_buffers,1);
     buf += codec_sample_size;
     buf_size -= codec_sample_size;
   }
@@ -204,8 +208,15 @@ static void *android_chiaki_video_decoder_output_thread_func(void *user) {
     AMediaCodecBufferInfo info;
     ssize_t status = AMediaCodec_dequeueOutputBuffer(decoder->codec, &info, 10000);
     if (status >= 0) {
-      AMediaCodec_releaseOutputBuffer(decoder->codec, (size_t)status,
-                                      info.size != 0);
+      if(info.size!=0){
+        atomic_fetch_add(&decoder->decoded_frames,1);
+        if(atomic_load(&decoder->first_output_ns)==0){
+          struct timespec at;clock_gettime(CLOCK_MONOTONIC,&at);
+          atomic_store(&decoder->first_output_ns,(unsigned long long)at.tv_sec*1000000000ULL+at.tv_nsec);
+        }
+      }
+      media_status_t released=AMediaCodec_releaseOutputBuffer(decoder->codec,(size_t)status,info.size!=0);
+      if(info.size!=0 && released==AMEDIA_OK)atomic_fetch_add(&decoder->surface_submissions,1);
       if (info.flags & AMEDIACODEC_BUFFER_FLAG_END_OF_STREAM) {
         CHIAKI_LOGI(decoder->log, "AMediaCodec reported EOS");
         break;

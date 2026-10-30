@@ -1,17 +1,16 @@
-# Deckivo 0.8.3 platform scope
+# Deckivo platform scope
 
-| Target | Delivery | Exact-device evidence |
+Public release: **0.8.6 preview**, Android build 31, desktop build 22. Source candidate: **0.8.7**, Android build 32, desktop build 23. Candidate packages are not device acceptance and do not replace public files under old names.
+
+| Target | Candidate delivery | Acceptance boundary |
 |---|---|---|
-| Android ARM64 | 0.8.3 build 28 APK; Android 8+ minimum | Switch OLED / Android 15: earlier public 0.6.1 build 25; new-build acceptance is separate |
-| macOS Apple Silicon | 0.8.3 build 19; macOS 13+; separately installed official chiaki-ng | MacBook / macOS 27.0.1: public 0.8.2 build 18 updater and Donate passed; latest transition recorded separately |
-| Switchroot Ubuntu ARM64 | 0.8.3 build 19 upgrade/source pack; prepared Ubuntu 24.04.4, KDE X11, FFmpeg 6.1 | Switch OLED public 0.8.1 build 17 updater, reboot and Wi-Fi passed; later packages are not automatically hardware acceptance |
-| Windows x64 | Planned | No verified Deckivo package |
-| Intel Mac | Planned | No verified Deckivo package |
-| Desktop Linux x64 | Planned | No verified Deckivo package |
-| Other OSes | Research | No delivery claim |
+| Android ARM64 | 0.8.7 build 32; Android 8+ | Build, unit tests and lint; USB/Bluetooth, update over existing certificate, video/audio and lifecycle need physical device checks |
+| macOS Apple Silicon | 0.8.7 build 23; macOS 13+; separate official chiaki-ng | Native tests and staged app; current PS5 gameplay, minimize/restore, input/background audio and sustained session pending |
+| Switchroot Ubuntu ARM64 | 0.8.7 build 23 source/update candidate | Prepared Ubuntu 24.04, KDE/X11, Switchroot FFmpeg 6.1; actual installation, reboot and streaming pending |
+| Windows, Intel Mac, desktop Linux x64 | No supported package | Planned/research, not a download promise |
 
-Android retains the C/Kotlin Remote Play engine. Mac uses a separately installed chiaki-ng 1.10.0 engine through an owned private copy. Switchroot Ubuntu uses an isolated Chiaki 2.2.0 runtime with Tegra/input adapters. Branding and catalogs are shared; executables and capabilities differ.
+Android uses the C/Kotlin engine; macOS uses a separately installed chiaki-ng through an owned private copy; Switchroot Ubuntu uses the isolated Chiaki 2.2.0 runtime and Tegra/input adapters. Requested streaming profiles go up to 1080p, not 4K. External Internet/VPN play needs separate network verification.
 
-Local play does not require a permanent home PC or a Deckivo account. External Internet/VPN access and waking the console require separate network and exact-device verification. Maximum supported requested profile is 1080p; 4K streaming is not implemented.
+The public site reads website/published-release.json. Increasing source version does not publish new download URLs. The signed updater feed remains unchanged until the exact candidate assets are accepted and released.
 
-See [actual test results](TESTED.md), [updates](UPDATES.md) and [current setup guides](guides/en.md).
+[Setup](LINUX.md) · [Evidence boundaries](TESTED.md) · [Updates](UPDATES.md)

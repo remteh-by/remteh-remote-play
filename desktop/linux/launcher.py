@@ -27,90 +27,10 @@ else:
     from controller import ControllerMonitor
 from ui import STYLE, LIME, INK, TEXT, label, button, card, icon, Hero, HeroTitle, PadCanvas
 
-WORDS = {
-    'home': ('Play space', 'Игровая'), 'pad': ('Controller lab', 'Контроллер'),
-    'history': ('Sessions', 'Сеансы'), 'settings': ('Preferences', 'Настройки'),
-    'subtitle': ('A small screen. A whole console.', 'Маленький экран. Целая консоль.'),
-    'hero_title': ('Your console.\nYour play space.', 'Твоя консоль.\nТвои правила.'),
-    'hero_sub': ('Bring your PS5 to the screen you love.', 'Играй на любимом экране.'),
-    'local': ('HOME NETWORK', 'ДОМАШНЯЯ СЕТЬ'),
-    'online': ('PS5 online', 'PS5 в сети'), 'offline': ('PS5 offline', 'PS5 недоступна'),
-    'play': ('Let’s play', 'Начать игру'), 'disconnect': ('End stream', 'Завершить сеанс'),
-    'connecting': ('Connecting to your PS5', 'Подключаемся к PS5'),
-    'auth': ('Establishing the session', 'Создаём сеанс'),
-    'network': ('Preparing the video channel', 'Готовим видеоканал'),
-    'playing': ('Live video received', 'Видеопоток получен'),
-    'stopping': ('Closing the session safely…', 'Завершаем сеанс…'),
-    'ready': ('Ready when you are', 'Всё готово к игре'),
-    'offline_help': ('PS5 not found. Turn it on and check that it is on the same network. For Rest Mode, enable Remote Play and network wake-up on the console.', 'PS5 не найдена. Включите консоль и проверьте, что она в той же сети. Для режима покоя включите Remote Play и пробуждение по сети в настройках PS5.'),
-    'ended': ('Session finished. Your PS5 stays on.', 'Сеанс завершён. PS5 остаётся включённой.'),
-    'error': ('Connection ended. Close other clients, then retry.', 'Соединение прервано. Закройте другие клиенты и повторите.'),
-    'busy': ('Another streaming session is running.', 'Уже запущен другой сеанс трансляции.'),
-    'unpaired': ('Pair your PS5 before playing.', 'Сначала привяжите PS5 к приложению.'),
-    'quality': ('Streaming profile', 'Профиль трансляции'),
-    'smooth': ('Smooth · 720p / 60', 'Плавный · 720p / 60'),
-    'balanced': ('Balanced · 720p / 30', 'Сбалансированный · 720p / 30'),
-    'rescue': ('Compatibility · 540p / 30', 'Совместимый · 540p / 30'),
-    'smooth_note': ('10 Mb/s · Tegra hardware', '10 Мбит/с · Tegra'),
-    'balanced_note': ('7 Mb/s · lower network load', '7 Мбит/с · меньше нагрузка на сеть'),
-    'rescue_note': ('5 Mb/s · software decoder', '5 Мбит/с · программный декодер'),
-    'preset_hint': ('Up to 1080p. This Remote Play engine has no verified 4K mode. Resolution/FPS are requested targets.', 'До 1080p. Проверенного режима 4K в этом движке нет. Разрешение/FPS — запрашиваемые значения.'),
-    'sharp': ('Sharp · 1080p / 60', 'Чёткий · 1080p / 60'), 'sharp30': ('Sharp · 1080p / 30', 'Чёткий · 1080p / 30'),
-    'sharp_note': ('15 Mb/s · hardware decoder target','15 Мбит/с · аппаратный декодер'), 'sharp30_note': ('12 Mb/s · lower frame-rate target','12 Мбит/с · 30 FPS'),
-    'keyboard_mouse': ('Keyboard + mouse → gamepad (Esc releases)', 'Клавиатура + мышь → геймпад (Esc отпускает)'),
-    'invert_mouse_y': ('Invert mouse Y axis','Инвертировать ось Y мыши'),
-    'capture_input': ('Capture keyboard and mouse','Захватить клавиатуру и мышь'),
-    'input_layout': ('WASD · mouse → right stick · LMB/RMB → R2/L2\nSpace ✕ · C ○ · R □ · F △ · Q/E L1/R1 · Ctrl L3 · Alt R3\nEnter Options · 1 Share · Tab Touch · F2 PS · Esc release', 'WASD · мышь → правый стик · ЛКМ/ПКМ → R2/L2\nПробел ✕ · C ○ · R □ · F △ · Q/E L1/R1 · Ctrl L3 · Alt R3\nEnter Options · 1 Share · Tab Touch · F2 PS · Esc — отпустить'),
-    'input_mode_keyboard': ('Keyboard + mouse · F8 captures · Esc releases','Клавиатура + мышь · F8 — захват · Esc — отпустить'),
-    'input_mode_controller': ('Input: controller · enable keyboard and mouse in Preferences','Управление: геймпад · клавиатура и мышь включаются в настройках'),
-    'controller': ('Your controller', 'Твой геймпад'),
-    'pad_ready': ('Controller connected', 'Геймпад подключён'),
-    'pad_none': ('Connect your controller by USB or Bluetooth', 'Подключите геймпад по USB или Bluetooth'),
-    'test_pad': ('Test inputs', 'Проверить управление'),
-    'pad_help': ('Move both sticks and press buttons. Measurements use the connected controller.', 'Двигайте стиками и нажимайте кнопки. Проверяется подключённый геймпад.'),
-    'pad_tip': ('USB provides extra features on supported Sony controllers. Availability depends on model and OS.', 'USB открывает дополнительные функции поддерживаемых Sony. Возможности зависят от модели и ОС.'),
-    'pad_capture': ('During streaming, only the PS5 receives this gamepad.', 'Во время трансляции геймпад захватывает движок PS5.'),
-    'pad_labels': ('Choose the actual model if its name is unavailable. Button names follow that model.', 'Если модель не определилась, выберите её вручную. Обозначения соответствуют выбранной модели.'),
-    'shortcuts': ('YOUR SHORTCUTS', 'БЫСТРОЕ УПРАВЛЕНИЕ'),
-    'shortcut_text': ('Home → PS menu\nCapture → touchpad click\nHold + and − for 1.5 s → end stream\nCtrl+Q → end stream', 'Home → меню PS\nCapture → нажатие тачпада\nУдержать + и − 1,5 с → завершить сеанс\nCtrl+Q → завершить сеанс'),
-    'nav_hint': ('D-pad / stick: navigate · south button: choose · east button: back · shoulders: pages', 'Крестовина / стик: выбор · нижняя кнопка: открыть · правая: назад · бамперы: разделы'),
-    'network': ('Local network', 'Локальная сеть'),
-    'rtt_label': ('Discovery response', 'Отклик обнаружения'),
-    'rtt_hint': ('Not the video or input latency', 'Это не задержка видео или управления'),
-    'decode_fps': ('Decoded FPS', 'FPS декодирования'),
-    'decode_hint': ('Measured by decoder · not display FPS', 'Замер декодера · не FPS экрана'),
-    'time': ('Session time', 'Время сеанса'), 'last': ('Last session', 'Прошлый сеанс'),
-    'frames': ('Decoded frames', 'Декодировано кадров'),
-    'no_data': ('No session yet', 'Сеансов пока нет'),
-    'history_sub': ('Session history stays on this device.', 'История сеансов хранится только на этом устройстве.'),
-    'empty': ('Your next session starts here.', 'Здесь появится твой следующий сеанс.'),
-    'export': ('Export safe diagnostics', 'Экспорт диагностики'),
-    'export_help': ('Includes versions, requested profile and measured decoder data. Excludes accounts, IP addresses, pairing keys and raw logs.', 'Версия, профиль и замеры декодера. Без аккаунтов, IP, ключей привязки и сырых журналов.'),
-    'export_ok': ('Diagnostic report saved.', 'Диагностика сохранена.'),
-    'host': ('Console IP address', 'IP-адрес консоли'),
-    'save': ('Save preferences', 'Сохранить настройки'),
-    'saved': ('Preferences saved.', 'Настройки сохранены.'),
-    'invalid': ('Enter a valid IPv4 or IPv6 address.', 'Введите корректный IPv4 или IPv6 адрес.'),
-    'language': ('Language', 'Язык'), 'auto': ('Automatic · system language', 'Автоматически · язык системы'),
-    'fullscreen': ('Open stream in full screen', 'Открывать трансляцию на весь экран'),
-    'navigation': ('Navigate Deckivo with a gamepad', 'Управлять Deckivo с геймпада'),
-    'chord': ('Hold + and − to disconnect safely', 'Удерживать + и − для завершения сеанса'),
-    'remember': ('Keep a local session history', 'Сохранять локальную историю сеансов'),
-    'developer_credit': ('Developed by RemTeh.by ↗','Разработка RemTeh.by ↗'),
-    'support': ('Support Deckivo', 'Поддержать Deckivo'),
-    'support_text': ('Enjoy the project? Optional support helps development. All local play features stay available.', 'Нравится проект? Добровольная поддержка помогает разработке. Все функции локальной игры доступны без доната.'),
-    'private': ('EXPERIMENTAL PREVIEW', 'ТЕСТОВАЯ ВЕРСИЯ'),
-    'about': ('About Deckivo', 'О Deckivo'),
-    'maintenance': ('Connection checks in progress', 'Идёт проверка подключения'),
-    'wait': ('The PS5 can take 20–30 seconds to prepare video. The stream opens after the first decoded frame.', 'PS5 может готовить видео 20–30 секунд. Статус изменится после первого кадра.'),
-    'active_pad': ('Controller belongs to the streaming engine. Test after disconnecting.', 'Контроллер сейчас у движка трансляции. Проверьте его после отключения.'),
-    'no_stop': ('The engine did not respond. Use Ctrl+Q in the stream window. Deckivo will not force-close an active session.', 'Движок не ответил. Нажмите Ctrl+Q в окне трансляции. Активный сеанс принудительно не закрываем.'),
-    'locked': ('Change preferences after ending the stream.', 'Измените настройки после завершения сеанса.'),
-}
 
 
 class Reachability(QThread):
-    result = pyqtSignal(bool, float)
+    result = pyqtSignal(object, float)
 
     def __init__(self, host, parent=None):
         super().__init__(parent)
@@ -125,8 +45,9 @@ class Reachability(QThread):
                 started=time.monotonic()
                 probe.sendto(b'SRCH * HTTP/1.1\ndevice-discovery-protocol-version:00030010\n',(self.host,9302))
                 packet,sender=probe.recvfrom(4096)
-                online=sender[0]==str(address) and packet.startswith(b'HTTP/1.1 200') and b'host-type:PS5' in packet
-                self.result.emit(online, (time.monotonic()-started)*1000 if online else -1)
+                valid=sender[0]==str(address) and b'host-type:PS5' in packet
+                state='online' if valid and packet.startswith(b'HTTP/1.1 200') else 'rest' if valid and packet.startswith(b'HTTP/1.1 620') else 'offline'
+                self.result.emit(state, (time.monotonic()-started)*1000 if valid else -1)
         except (OSError,ValueError):
             self.result.emit(False,-1)
 
@@ -176,14 +97,17 @@ class Deckivo(QWidget):
         complete(self,0,False)
 
     def t(self,key):
-        language=QLocale.system().name().split('_')[0] if self.language=='auto' else self.language
-        words=WORDS.get(key)
-        return words[1 if language=='ru' else 0] if words else key
+        from i18n import text
+        return text(key,self.effective_language())
+
+    def effective_language(self):
+        from i18n import effective_language
+        return effective_language(self.language,QLocale.system().name())
 
     def build(self):
         if self.layout():
             old=QWidget();old.setLayout(self.layout());old.deleteLater()
-        self.setLayoutDirection(Qt.RightToLeft if self.language=='ar' else Qt.LeftToRight)
+        self.setLayoutDirection(Qt.RightToLeft if self.effective_language()=='ar' else Qt.LeftToRight)
         root=QHBoxLayout(self);root.setContentsMargins(0,0,0,0);root.setSpacing(0)
         rail=QFrame();rail.setObjectName('rail');rail.setFixedWidth(88)
         nav=QVBoxLayout(rail);nav.setContentsMargins(14,23,14,16);nav.setSpacing(15)
@@ -220,7 +144,7 @@ class Deckivo(QWidget):
             link.setFocusPolicy(Qt.StrongFocus);link.setAccessibleName(text);footer.addWidget(link)
         footer.addStretch()
         footer.addWidget(label(self.t('private')+' · '+VERSION+' · b'+str(BUILD),'small'));main.addLayout(footer)
-        self.update_status(self.online,self.rtt);self.update_pad()
+        self.update_status(getattr(self,'console_state',self.online),self.rtt);self.update_pad()
         self.primary.setFocus()
 
     def home_page(self):
@@ -260,6 +184,7 @@ class Deckivo(QWidget):
         v.addWidget(snap)
         self.capture_button=button(self.t('capture_input'),self.capture_keyboard_mouse,'ghost');self.capture_button.setEnabled(False);v.addWidget(self.capture_button)
         self.input_mode_label=label(self.t('input_mode_keyboard' if self.preferences['keyboard_mouse'] else 'input_mode_controller'),'small',True);v.addWidget(self.input_mode_label)
+        v.addWidget(button('Проверка соединения' if self.effective_language()=='ru' else 'Connection check',self.connection_diagnostics,'ghost'))
         v.addWidget(label(self.t('nav_hint'),'small',True))
         viewport.setWidget(page);return viewport
 
@@ -272,7 +197,8 @@ class Deckivo(QWidget):
         self.model_choice=QComboBox();self.model_choice.addItem('Auto', 'auto')
         for key,title in (('dualsense','DualSense'),('ds4','DualShock 4'),('xbox-series','Xbox Series')):self.model_choice.addItem(title,key)
         self.model_choice.currentIndexChanged.connect(lambda:self.pad_canvas.set_model(self.model_choice.currentData()));c.addWidget(self.model_choice)
-        c.addWidget(button('Полная диагностика USB / Bluetooth' if self.language=='ru' else 'Full USB / Bluetooth diagnostics',self.open_controller_lab,'primary'))
+        c.addWidget(button(self.t('full_diagnostics'),self.open_controller_lab,'primary'))
+        c.addWidget(label(self.t('lab_languages'),'small',True))
         self.pad_raw=label('—','muted',True);self.pad_raw.setMinimumHeight(45);c.addWidget(self.pad_raw)
         c.addWidget(label(self.t('pad_labels'),'small',True));row.addWidget(box,2)
         box,r=card(margins=24);r.addWidget(label(self.t('shortcuts'),'eyebrow'))
@@ -286,22 +212,48 @@ class Deckivo(QWidget):
             QMessageBox.information(self,'Deckivo',self.t('active_pad'));return
         try:
             from controller_lab import ControllerLab
-            if not getattr(self,'controller_lab',None):self.controller_lab=ControllerLab()
+            if getattr(self,'controller_lab',None) and not self.controller_lab.finished():return
+            self.close_controller_lab()
+            self.controller_lab=ControllerLab()
             self.pad.suspend(True)
-            self.controller_lab.open(self.language)
-        except (OSError,RuntimeError) as error:QMessageBox.warning(self,'Deckivo',str(error))
+            self.controller_lab.open(self.effective_language())
+            self.lab_watch=QTimer(self);self.lab_watch.timeout.connect(self.poll_controller_lab);self.lab_watch.start(500)
+        except (OSError,RuntimeError) as error:
+            self.close_controller_lab()
+            QMessageBox.warning(self,'Deckivo',str(error))
+
+    def poll_controller_lab(self):
+        lab=getattr(self,'controller_lab',None)
+        if lab and lab.finished():self.close_controller_lab()
 
     def close_controller_lab(self):
+        timer=getattr(self,'lab_watch',None)
+        if timer:timer.stop();timer.deleteLater();self.lab_watch=None
         lab=getattr(self,'controller_lab',None)
-        if lab:lab.close();self.controller_lab=None;self.pad.suspend(False)
+        self.controller_lab=None
+        try:
+            if lab:lab.close()
+        except (OSError,RuntimeError):pass
+        finally:
+            if lab and not self.active() and not self.is_closing:self.pad.suspend(False)
 
     def capture_keyboard_mouse(self):
         if not self.active() or not self.saw_video or not self.preferences.get('keyboard_mouse',False):return
         from input_overlay import KeyboardMouseOverlay
         old=getattr(self,'input_overlay',None)
         if old:old.release();old.deleteLater()
-        self.input_overlay=KeyboardMouseOverlay(PRIVATE/'input.sock',on_release=self.show_dashboard,sensitivity=self.preferences['mouse_sensitivity'],invert_y=self.preferences['invert_mouse_y'])
+        self.input_overlay=KeyboardMouseOverlay(PRIVATE/'input.sock',on_release=self.show_dashboard,sensitivity=self.preferences['mouse_sensitivity'],invert_y=self.preferences['invert_mouse_y'],bindings=self.preferences.get('linux_input_bindings'),language=self.effective_language())
         self.input_overlay.capture()
+
+    def edit_input_bindings(self):
+        if self.active():return
+        from macos_input_settings import InputSettingsDialog
+        values=dict(self.preferences,mouse_sensitivity=self.sensitivity.value(),invert_mouse_y=self.options['invert_mouse_y'].isChecked())
+        dialog=InputSettingsDialog(values,self.effective_language(),self,platform='linux')
+        if dialog.exec_()!=dialog.Accepted:return
+        self.preferences.update(dialog.result_values());private_json(CONFIG,self.preferences)
+        self.options['keyboard_mouse'].setChecked(True);self.options['invert_mouse_y'].setChecked(self.preferences['invert_mouse_y'])
+        self.sensitivity.setValue(self.preferences['mouse_sensitivity']);self.settings_notice.setText(self.t('saved'));self.refresh()
 
     def release_keyboard_mouse(self):
         overlay=getattr(self,'input_overlay',None)
@@ -336,14 +288,15 @@ class Deckivo(QWidget):
         row=QHBoxLayout();row.setSpacing(18)
         box,c=card(margins=22,spacing=11);c.addWidget(label(self.t('network'),'heading'))
         c.addWidget(label(self.t('host'),'muted'));self.host_edit=QLineEdit(self.preferences['host']);self.host_edit.setAccessibleName(self.t('host'));c.addWidget(self.host_edit)
+        self.connection_buttons=[]
         if hasattr(self,'pairing_setup'):
-            c.addWidget(button('Импорт привязки из chiaki-ng' if self.language=='ru' else 'Import pairing from chiaki-ng',self.pairing_setup))
+            self.connection_buttons=[button(self.t('import_pairing'),self.pairing_setup),button(self.t('choose_engine'),self.choose_engine)]
+            for item in self.connection_buttons:c.addWidget(item)
         c.addWidget(label(self.t('language'),'muted'));self.languages=QComboBox()
         self.languages.addItem(self.t('auto'),'auto')
         for code,name in LANGUAGES:self.languages.addItem(name,code)
         self.languages.setCurrentIndex(max(0,self.languages.findData(self.language)));c.addWidget(self.languages)
-        c.addWidget(label('Other languages use English for new Linux features.','small',True))
-        c.addStretch();c.addWidget(button(self.t('save'),self.save_settings,'primary'));row.addWidget(box,1)
+        c.addStretch();self.save_preferences_button=button(self.t('save'),self.save_settings,'primary');c.addWidget(self.save_preferences_button);row.addWidget(box,1)
         box,s=card(margins=22,spacing=8);s.addWidget(label(self.t('settings'),'heading'));self.options={}
         for key,text in (('fullscreen','fullscreen'),('controller_navigation','navigation'),('disconnect_chord','chord'),('history','remember'),('keyboard_mouse','keyboard_mouse'),('invert_mouse_y','invert_mouse_y')):
             if sys.platform=='darwin' and key=='disconnect_chord':continue
@@ -354,7 +307,7 @@ class Deckivo(QWidget):
             self.input_settings_button=button(self.t('input_bindings'),self.edit_input_bindings,'primary');s.addWidget(self.input_settings_button)
             self.sensitivity.hide()
         s.addWidget(label(self.t('input_layout'),'small',True))
-        s.addStretch();s.addWidget(label(self.t('locked'),'small',True));row.addWidget(box,1);v.addLayout(row,1)
+        s.addStretch();s.addWidget(label(self.t('input_live_note' if getattr(self,'live_input_settings',False) else 'locked'),'small',True));row.addWidget(box,1);v.addLayout(row,1)
         self.settings_notice=label('','accent',True);v.addWidget(self.settings_notice)
         viewport.setWidget(page);return viewport
 
@@ -372,6 +325,7 @@ class Deckivo(QWidget):
         for key,check in self.options.items():self.preferences[key]=check.isChecked()
         self.preferences['mouse_sensitivity']=self.sensitivity.value()
         private_json(CONFIG,self.preferences);self.language=self.preferences['language'];self.build()
+        self.tray.contextMenu().actions()[1].setText(self.t('disconnect'))
         self.settings_notice.setText(self.t('saved'));self.refresh()
 
     def switch_page(self,index):
@@ -413,16 +367,39 @@ class Deckivo(QWidget):
         if hasattr(self,'input_mode_label'):self.input_mode_label.setText(self.t('input_mode_keyboard' if self.preferences['keyboard_mouse'] else 'input_mode_controller'))
         if self.probe and self.probe.isRunning():return
         old=self.probe
-        self.probe=Reachability(self.preferences['host'],self);self.probe.result.connect(self.update_status);self.probe.start()
+        self.probe=Reachability(self.preferences['host'],self);self.probe.result.connect(self.received_probe);self.probe.start()
         if old:old.deleteLater()
 
+    def received_probe(self,online,rtt):
+        self.probe_observed_at=time.monotonic()
+        self.update_status(online,rtt)
+
+    def connection_snapshot(self):
+        from connection_diagnostics import summarize
+        last=getattr(self,'probe_observed_at',None)
+        present=not self.engine_missing() if hasattr(self,'engine_missing') else (DATA/'runtime/usr/bin/chiaki').is_file()
+        return summarize(host_configured=bool(self.preferences.get('host')),paired=bool(self.registration),
+            probe_state=getattr(self,'console_state','offline'),probe_age=time.monotonic()-last if last is not None else None,
+            engine_present=present,decoder_active=bool(self.active() and self.saw_video),
+            input_present=bool(self.pad.name) or self.metrics.get('exclusive',False),
+            profile=PRESETS[self.preferences['quality']].name)
+
+    def connection_diagnostics(self):
+        report=self.connection_snapshot()
+        language='ru' if self.effective_language()=='ru' else 'en'
+        text='\n\n'.join(str(index+1)+'. '+row[language]+' ['+row['status']+']' for index,row in enumerate(report['checks']))
+        QMessageBox.information(self,'Deckivo · Connection check',text)
+
     def update_status(self,online,rtt):
+        self.console_state=online if isinstance(online,str) else ('online' if online else 'offline')
+        online=self.console_state=='online'
         self.online=online;self.rtt=rtt
-        self.online_label.setText('●  '+self.t('online' if online else 'offline'))
+        self.online_label.setText('●  '+self.t('online' if online else 'rest' if self.console_state=='rest' else 'offline'))
         self.online_label.setStyleSheet('color:'+('#DAF975' if online else '#ABB3C0')+';')
         ready=bool(self.registration) and online and not (PRIVATE/'maintenance').exists()
-        self.primary.setEnabled(self.active() or ready)
-        help_key='unpaired' if not self.registration else 'maintenance' if (PRIVATE/'maintenance').exists() else 'offline_help' if not online else None
+        self.primary.setEnabled(self.active() or ready and not (hasattr(self,'engine_missing') and self.engine_missing()))
+        missing=hasattr(self,'engine_missing') and self.engine_missing()
+        help_key='engine_missing' if missing else 'unpaired' if not self.registration else 'maintenance' if (PRIVATE/'maintenance').exists() else 'rest_help' if self.console_state=='rest' else 'offline_help' if not online else None
         reason=self.t(help_key) if help_key and not self.active() else ''
         self.primary.setToolTip(reason);self.primary.setAccessibleDescription(reason)
         if not self.active():
@@ -500,8 +477,8 @@ class Deckivo(QWidget):
             return False
 
     def set_preferences_enabled(self,enabled):
-        for widget in self.preset_buttons+[self.profile_choice,self.host_edit,self.languages,self.sensitivity]+list(self.options.values()):widget.setEnabled(enabled)
-        if hasattr(self,'input_settings_button'):self.input_settings_button.setEnabled(enabled)
+        for widget in self.preset_buttons+[self.profile_choice,self.host_edit,self.languages,self.sensitivity,self.save_preferences_button]+self.connection_buttons+list(self.options.values()):widget.setEnabled(enabled)
+        if hasattr(self,'input_settings_button'):self.input_settings_button.setEnabled((enabled or getattr(self,'live_input_settings',False)) and not self.is_closing)
 
     def stop(self):
         if not self.active():return
@@ -534,7 +511,7 @@ class Deckivo(QWidget):
         seconds=time.monotonic()-self.first_frame_mono if self.saw_video else 0
         support.complete(self,seconds,support_clean)
         self.phase='idle';self.progress.hide();self.primary.setText(self.t('play'));self.set_preferences_enabled(True)
-        self.pad.suspend(False);self.show_dashboard();self.update_status(self.online,self.rtt);self.fill_history()
+        self.pad.suspend(False);self.show_dashboard();self.update_status(getattr(self,'console_state',self.online),self.rtt);self.fill_history()
         process.deleteLater();self.process=None
         if support_clean and seconds>=600:
             QTimer.singleShot(0,lambda:support.maybe_thank(self))
@@ -595,6 +572,7 @@ class Deckivo(QWidget):
 
     def export_report(self):
         report=safe_report(self.phase,self.preferences,self.metrics,bool(self.pad.name) or self.metrics.get('exclusive',False),len(self.records))
+        report['connection_checks']=self.connection_snapshot()
         filename,_=QFileDialog.getSaveFileName(self,self.t('export'),str(Path.home()/'Desktop'/f'Deckivo-diagnostics-{datetime.date.today()}.json'),'JSON (*.json)')
         if filename:
             destination=Path(filename)

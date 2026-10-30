@@ -63,3 +63,7 @@ its caption must not imply that the older downloadable release contains that UI.
 Do not edit GitHub releases for historical tags v0.8.1–v0.8.3: their immutable workflow files still contain a `release:` trigger. Editing a release can run the old Pages workflow with tag context, fail environment protection and send failure notifications. This mechanism does not prove which email any owner received. Never move/recreate those tags to patch their workflows. The main branch deploys the site and desktop update channel only on a qualifying push to `main` or `workflow_dispatch` from `main`.
 
 Download statistics are optional: collector errors, timeouts and invalid output produce a warning and `{"schema":1,"available":false}`. They must never prevent the already signed update channel or site from being built. Other build errors still fail normally.
+
+## Audit candidate 0.8.7
+
+Physical acceptance was explicitly deferred on 2026-10-30. Track local candidate preparation separately from publication. Before promotion, record the device matrix above, refresh actual app imagery for UI changes and verify matching source archives. Update `website/published-release.json` only after verifying the new public assets; it intentionally remains on 0.8.6 while 0.8.7 is a candidate. Keep Pages validation and deployment on the same SHA.

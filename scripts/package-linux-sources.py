@@ -32,6 +32,8 @@ SOURCE_PREFIXES = (
     'docs/',
 )
 BUILD_CONTROL_FILES = (
+    'scripts/generate-desktop-localizations.py',
+    'localization/desktop.json',
     'scripts/generate-support.py',
     'scripts/package-linux-sources.py',
     'scripts/package-public-release.py',

@@ -12,6 +12,9 @@ from storage import PRIVATE,HERE,CONFIG,load_json,private_json
 from session import VERSION
 from build_meta import BUILD
 from ui import label,button
+from i18n import text,effective_language
+
+def copy(window,key,**values):return text(key,effective_language(window.language),**values)
 
 
 def initialize(window):
@@ -58,7 +61,7 @@ def load_staged(window):
     except (OSError,ValueError,KeyError,TypeError):
         pending_path().unlink(missing_ok=True);return
     window.update_ready=pending
-    entry=pending['entry'];window.update_message='Update ready: '+entry['version']+' · '+str(entry['build'])
+    entry=pending['entry'];window.update_message=copy(window,'update_status_ready',version=entry['version'],build=entry['build'])
 
 
 def manage_timer(enabled):
@@ -76,8 +79,8 @@ def startup_ready(window):
         for path in (CONFIG,registration):
             if path.exists() and not isinstance(json.loads(path.read_text()),dict):return False
         if sys.platform=='darwin':
-            from macos_engine import ENGINE
-            return ENGINE.is_file()
+            from macos_engine import resolve_engine
+            return resolve_engine() is not None
         return (DATA/'runtime/usr/bin/chiaki').is_file()
     except (OSError,ValueError):return False
 
@@ -87,9 +90,9 @@ def check(window,manual=False):
     if not manual and not window.preferences.get('automatic_updates',True):return
     base=channel_base(load_json(PRIVATE/'update-channel.json',{}))
     if not base:
-        window.update_message='Private updates are not configured on this device.';refresh(window);return
+        window.update_message=copy(window,'update_failed');refresh(window);return
     platform=platform_name()
-    window.update_message='Checking signed updates…';refresh(window)
+    window.update_message=copy(window,'update_checking');refresh(window)
     worker=UpdateWorker(base,platform,VERSION,BUILD,PRIVATE/'updates',HERE/'assets/update-public.der',window)
     old=window.update_worker;window.update_worker=worker
     if old:old.deleteLater()
@@ -101,12 +104,12 @@ def result(window,ready,error):
     if not error:private_json(PRIVATE/'update-last-success.json',{'time':time.time(),'version':VERSION,'build':BUILD})
     if ready:
         window.update_ready=ready;private_json(pending_path(),ready)
-        window.update_message='Update ready: '+ready['entry']['version']+' · '+str(ready['entry']['build'])
+        window.update_message=copy(window,'update_status_ready',version=ready['entry']['version'],build=ready['entry']['build'])
     elif error:
-        window.update_message='Check failed: '+error
+        window.update_message=copy(window,'update_status_failed',detail=error)
     else:
         window.update_ready=None;pending_path().unlink(missing_ok=True)
-        window.update_message='Deckivo is up to date.'
+        window.update_message=copy(window,'update_current')
     refresh(window)
     if ready and window.preferences.get('automatic_updates',True):QTimer.singleShot(1500,lambda:install_when_idle(window))
 
@@ -142,14 +145,13 @@ def install(window):
 def show(window):
     dialog=QDialog(window);dialog.setWindowTitle('Deckivo · Updates');dialog.resize(560,320)
     layout=QVBoxLayout(dialog);layout.setContentsMargins(25,25,25,25);layout.setSpacing(16)
-    ru=window.language=='ru' or window.language=='auto' and QLocale.system().name().startswith('ru')
-    layout.addWidget(label('Обновления Deckivo' if ru else 'Deckivo updates','title'))
-    layout.addWidget(label('Подписанные обновления Deckivo. Установка выполняется вне трансляции; регистрация консоли сохраняется.' if ru else 'Signed Deckivo updates. Installation is deferred while streaming; console registration is retained.','muted',True))
+    layout.addWidget(label(copy(window,'update_title'),'title'))
+    layout.addWidget(label(copy(window,'update_help'),'muted',True))
     window.update_status_label=label(window.update_message or VERSION+' · '+str(BUILD),'heading',True);layout.addWidget(window.update_status_label)
-    automatic=QCheckBox('Автоматически проверять, скачивать и устанавливать вне игры' if ru else 'Automatically check, download and install while idle')
+    automatic=QCheckBox(copy(window,'update_auto'))
     automatic.setChecked(window.preferences.get('automatic_updates',True))
     def changed(value):window.preferences['automatic_updates']=value;private_json(CONFIG,window.preferences);manage_timer(value)
     automatic.toggled.connect(changed);layout.addWidget(automatic)
-    layout.addWidget(button('Проверить сейчас' if ru else 'Check now',lambda:check(window,True)))
-    layout.addWidget(button('Установить готовое обновление' if ru else 'Install prepared update',lambda:install(window)))
+    layout.addWidget(button(copy(window,'update_check'),lambda:check(window,True)))
+    layout.addWidget(button(copy(window,'update_install'),lambda:install(window)))
     window.update_dialog=dialog;dialog.exec();window.update_dialog=None

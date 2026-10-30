@@ -72,11 +72,13 @@
     <string name="dv_diag_offline">PS5 port 9295 is unreachable. Check power, IP, Remote Play and Wi-Fi isolation.</string>
     <string name="dv_diag_online">Remote Play responds: %1$d/3, TCP %2$.1f ms. This is connectivity, not video latency.</string>
     <string name="dv_diag_report">%1$s\nH.264 decoder: %2$s\nAn open port does not confirm pairing or streaming.</string>
+    <string name="dv_diag_save_failed">File diagnostik tidak dapat disimpan.</string>
     <string name="dv_discovery_find">Cari konsol</string>
     <string name="dv_discovery_on">Pencarian aktif</string>
     <string name="dv_download">Unduh pembaruan</string>
     <string name="dv_empty_intro">Gunakan jaringan yang sama atau tambahkan konsol secara manual.</string>
     <string name="dv_empty_title">Konsolmu akan muncul di sini</string>
+    <string name="dv_export_stream_diagnostics">Ekspor diagnostik</string>
     <string name="dv_fit">Sesuaikan</string>
     <string name="dv_goal_amount">USD %1$.2f / %2$.2f</string>
     <string name="dv_guided">Panduan koneksi</string>
@@ -140,7 +142,7 @@
     <string name="dv_searching">Mencari di jaringanmu. Kamu juga dapat menambahkan alamat IP.</string>
     <string name="dv_settings">Pengaturan</string>
     <string name="dv_setup">Hubungkan</string>
-    <string name="dv_setup_credit">Source code for this exact version: https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.6</string>
+    <string name="dv_setup_credit">Development build 0.8.6. Corresponding source is included with this test package. Open the project.</string>
     <string name="dv_setup_done">Setelah registrasi, kembali ke rumah dan pilih PS5. Pertunjukan lokal sudah siap; akses internet tidak dikonfigurasi oleh versi ini.</string>
     <string name="dv_setup_enable">Di PS5, aktifkan Pengaturan → Sistem → Putar Jarak Jauh.</string>
     <string name="dv_setup_find">01 · Temukan konsol Anda</string>

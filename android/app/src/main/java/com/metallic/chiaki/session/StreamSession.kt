@@ -30,6 +30,10 @@ class StreamSession(val connectInfo: ConnectInfo, val logManager: LogManager, va
 
 	private var surfaceTexture: SurfaceTexture? = null
 	private var surface: Surface? = null
+	var lastVideoMetrics: LongArray? = null
+		private set
+	var startedNanos = 0L
+		private set
 
 	init
 	{
@@ -43,6 +47,7 @@ class StreamSession(val connectInfo: ConnectInfo, val logManager: LogManager, va
 		val oldSession = session
 		session = null
 		oldSession?.eventCallback = null
+		lastVideoMetrics = oldSession?.videoMetrics() ?: lastVideoMetrics
 		try {
 			oldSession?.stop()
 		} finally {
@@ -66,6 +71,7 @@ class StreamSession(val connectInfo: ConnectInfo, val logManager: LogManager, va
 		try
 		{
 			_state.value = StreamStateConnecting
+			startedNanos = System.nanoTime(); lastVideoMetrics = null
 			val session = Session(connectInfo, logManager.createNewFile().file.absolutePath, logVerbose)
 			this.session = session
 			session.eventCallback = { event ->

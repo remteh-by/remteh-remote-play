@@ -11,6 +11,7 @@ from pathlib import Path
 import plistlib
 import shutil
 import subprocess
+import sys
 import uuid
 
 
@@ -38,7 +39,10 @@ def prepare(source, bridge, private, controller_backend=None):
         # genuine SDL2 ABI in our private copy so virtual input has one backend.
         sdl=bundle/'Contents/Frameworks/libSDL2-2.0.0.dylib'
         sdl.unlink(missing_ok=True);shutil.copy2(backend,sdl)
-        subprocess.run(['install_name_tool','-id','@rpath/libSDL2-2.0.0.dylib',str(sdl)],check=True,capture_output=True)
+        # Frozen packages already carry this ID (enforced by build-install.py).
+        # Only a source/developer run needs the developer tool to rewrite it.
+        if not getattr(sys,'frozen',False):
+            subprocess.run(['install_name_tool','-id','@rpath/libSDL2-2.0.0.dylib',str(sdl)],check=True,capture_output=True)
         info=bundle/'Contents/Info.plist';metadata=plistlib.loads(info.read_bytes())
         metadata.update(CFBundleIdentifier='by.remteh.deckivo.engine',CFBundleName='Deckivo Engine',CFBundleDisplayName='Deckivo Engine')
         info.write_bytes(plistlib.dumps(metadata))

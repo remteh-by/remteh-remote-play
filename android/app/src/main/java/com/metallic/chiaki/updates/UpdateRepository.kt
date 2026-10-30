@@ -50,11 +50,16 @@ object UpdateRepository {
         restore(context)
         val settings = prefs(context)
         if (!manual && !settings.getBoolean("automatic", true)) return@operation
-        val now = System.currentTimeMillis()
-        val elapsed = now - settings.getLong("last_attempt", 0)
         val interval = if(PrivateChannel.enabled) 5 * 60 * 1000L else INTERVAL
-        if (manual || elapsed < 0 || elapsed >= interval) {
-            settings.edit { putLong("last_attempt", now) }
+        val gate = UpdateCheckGate(System::currentTimeMillis, {
+            CheckHistory(settings.getLong("check_started", 0), settings.getLong("check_succeeded", 0),
+                settings.getInt("check_failures", 0), settings.getLong("check_retry_at", 0), settings.getLong("check_server_retry_at", 0))
+        }, { value -> settings.edit {
+            putLong("check_started", value.started); putLong("check_succeeded", value.succeeded)
+            putInt("check_failures", value.failures); putLong("check_retry_at", value.retryAt)
+            putLong("check_server_retry_at", value.serverRetryAt)
+        } })
+        gate.execute(manual, interval) {
             mutable.value = mutable.value.copy(message = UpdateText(R.string.dv_up_checking), busy = true)
             val feed = if(PrivateChannel.enabled) emptyList() else releasesAdapter.fromJson(UpdateHttp().text(UpdatePolicy.API_URL, 2 * 1024 * 1024L)) ?: error("Invalid release list")
             val candidates = mutableListOf<UpdateCandidate>()
@@ -75,14 +80,12 @@ object UpdateRepository {
             if (candidate == null) {
                 clear(context)
                 mutable.value = UpdateState(UpdateText(R.string.dv_up_current, listOf(BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)))
-                return@operation
-            }
-            if (candidate != mutable.value.candidate) {
+            } else if (candidate != mutable.value.candidate) {
                 apk(context).delete()
                 save(context, candidate)
                 mutable.value = UpdateState(candidate = candidate)
             }
-            restore(context)
+            if (candidate != null) restore(context)
         }
         val candidate = mutable.value.candidate ?: return@operation
         if (!mutable.value.ready && settings.getBoolean("download_wifi", true) && unmeteredWifi(context)) {
@@ -109,7 +112,8 @@ object UpdateRepository {
     }
 
     fun channelChanged(context: Context) {
-        prefs(context).edit { putLong("last_attempt", 0) }
+        // Changing channels bypasses a successful check, never a server rate limit.
+        prefs(context).edit { putLong("check_succeeded", 0); putLong("check_retry_at", 0) }
     }
 
     private suspend fun operation(context: Context, block: suspend () -> Unit) = withContext(Dispatchers.IO) {
@@ -122,7 +126,7 @@ object UpdateRepository {
         } catch (failure: Exception) {
             val detail = updateFailure(failure)
             mutable.value = mutable.value.copy(message = detail)
-            // Automatic checks back off even on failure. Manual retry remains available.
+            // Feed failures use a bounded retry schedule, separate from successful checks.
         } finally {
             File(context.filesDir, "updates/download.part").delete()
             mutable.value = mutable.value.copy(busy = false, percent = null)

@@ -1,6 +1,6 @@
 # Deckivo for Switchroot Ubuntu
 
-Experimental Linux development preview **0.7.0** for the owner's Switch OLED running
+Experimental Linux development preview **0.8.6** for the owner's Switch OLED running
 Switchroot Ubuntu 24.04.4 ARM64. This is a native Python/Qt interface with an
 isolated native Chiaki 2.2.0 streaming engine and Deckivo's Tegra/input adapter.
 It is not an Android APK. This source upgrade is prepared for testing; it has not

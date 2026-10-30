@@ -16,6 +16,7 @@
 #include <fcntl.h>
 #include <time.h>
 #include <pthread.h>
+#include <stdatomic.h>
 #ifdef __APPLE__
 #include <dispatch/dispatch.h>
 #include <objc/runtime.h>
@@ -30,6 +31,7 @@ extern void deckivo_macos_capture(void *);
 extern void deckivo_macos_release(void *);
 extern void deckivo_macos_activate(void *);
 extern void deckivo_macos_close(void *);
+extern void deckivo_macos_reload(void *);
 __attribute__((constructor)) static void isolate_adapter(void) { unsetenv("DYLD_INSERT_LIBRARIES");init_owned_stop();deckivo_macos_input_start(); }
 #endif
 
@@ -65,9 +67,17 @@ static void neutral(void) {
     for(int i=0;i<21;i++)set_button(joystick,i,0);
 }
 #ifdef __APPLE__
+void deckivo_notify_closing(void) {
+    const char *path=getenv("DECKIVO_SUPERVISOR_SOCKET");
+    if(!path||!path[0]||strlen(path)>=sizeof(((struct sockaddr_un *)0)->sun_path))return;
+    int fd=socket(AF_UNIX,SOCK_DGRAM,0);if(fd<0)return;
+    struct sockaddr_un address={0};address.sun_family=AF_UNIX;strcpy(address.sun_path,path);
+    (void)sendto(fd,"closing",7,MSG_DONTWAIT,(struct sockaddr *)&address,sizeof(address));close(fd);
+}
 static void quit_main(void *unused) {
     (void)unused;deckivo_macos_release(NULL);neutral();
     fprintf(stderr,"[Deckivo] user-ended stream\n");
+    deckivo_notify_closing();
     /* The engine's window close event stops its session before Qt exits.
      * NSApplication terminate skips that event and can block session join. */
     deckivo_macos_close(NULL);
@@ -89,6 +99,7 @@ static void stop_read(void *unused) {
     if(!memcmp(data,"quit",4)&&!stop_requested){stop_requested=1;dispatch_async_f(dispatch_get_main_queue(),NULL,quit_main);}
     else if(!memcmp(data,"grab",4))dispatch_async_f(dispatch_get_main_queue(),NULL,deckivo_macos_capture);
     else if(!memcmp(data,"drop",4))dispatch_async_f(dispatch_get_main_queue(),NULL,deckivo_macos_release);
+    else if(!memcmp(data,"conf",4))dispatch_async_f(dispatch_get_main_queue(),NULL,deckivo_macos_reload);
 }
 static void init_owned_stop(void) {
     const char *path=getenv("DECKIVO_STOP_SOCKET");
@@ -170,6 +181,17 @@ int deckivo_ensure_controller(void) {
     if(!(was_init(0x200)&0x200)&&init(0x2200)<0)return 0;
     initialize();return joystick!=NULL;
 }
+unsigned deckivo_controller_status(void) {
+    uint32_t (*was_init)(uint32_t)=dlsym(RTLD_DEFAULT,"SDL_WasInit");
+    if(!joystick||!was_init||!(was_init(0x200)&0x200))return 0;
+    int (*attached)(void *)=dlsym(RTLD_DEFAULT,"SDL_JoystickGetAttached");
+    int32_t (*instance)(void *)=dlsym(RTLD_DEFAULT,"SDL_JoystickInstanceID");
+    void *(*controller)(int32_t)=dlsym(RTLD_DEFAULT,"SDL_GameControllerFromInstanceID");
+    unsigned status=1;
+    if(attached&&attached(joystick))status|=2;
+    if(instance&&controller&&controller(instance(joystick)))status|=4;
+    return status;
+}
 void deckivo_set_controller(uint32_t buttons,const int16_t axes[6]) {
     uint32_t (*was_init)(uint32_t)=dlsym(RTLD_DEFAULT,"SDL_WasInit");
     if(!joystick||!set_axis||!set_button||!was_init||!(was_init(0x200)&0x200))return;
@@ -199,6 +221,17 @@ static int dk_poll(void *event) {
 extern int SDL_NumJoysticks(void);extern int SDL_PollEvent(void *);
 #define INTERPOSE(new,old) __attribute__((used)) static struct {const void *replacement,*original;} interpose_##old __attribute__((section("__DATA,__interpose")))={(const void *)&new,(const void *)&old}
 INTERPOSE(dk_num,SDL_NumJoysticks);INTERPOSE(dk_poll,SDL_PollEvent);
+/* Keep draining decoded audio while the owned window is minimized/hidden.
+ * Dropping queue submissions avoids a stale audio backlog on return and does
+ * not alter the system volume, microphone capture or the owner's audio level. */
+static _Atomic int minimized_audio;
+void deckivo_set_audio_hidden(int hidden) {atomic_store(&minimized_audio,hidden!=0);}
+extern int SDL_QueueAudio(uint32_t,const void *,uint32_t);
+static int dk_queue_audio(uint32_t device,const void *data,uint32_t length) {
+    if(atomic_load(&minimized_audio))return 0;
+    return SDL_QueueAudio(device,data,length);
+}
+INTERPOSE(dk_queue_audio,SDL_QueueAudio);
 /* Count successful video decode calls without depending on an AVFrame layout. */
 static unsigned long frames;static double first_frame;
 static int dk_receive(void *context,void *frame) {

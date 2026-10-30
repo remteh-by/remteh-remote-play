@@ -29,15 +29,11 @@ def run(*args, cwd=None):
 
 def main():
     os.umask(0o077)
-    if platform.machine() not in ('aarch64', 'arm64'):
-        raise SystemExit('This preview is for Switchroot Ubuntu ARM64 only.')
-    if 'VERSION_ID="24.04"' not in Path('/etc/os-release').read_text():
-        raise SystemExit('This installer is pinned to Ubuntu 24.04.')
-    import PyQt5.QtCore
-    import ctypes
-    ctypes.CDLL('libavcodec.so.60')
-    if not shutil.which('gcc'):
-        raise SystemExit('GCC is required to build the local native adapters.')
+    from preflight import run as preflight
+    if not preflight(DEST):
+        raise SystemExit('Preflight did not pass. No installation changes were made.')
+    if '--preflight' in sys.argv:
+        return
     runtime = DEST / 'runtime'
     runtime.mkdir(parents=True, exist_ok=True)
     DEST.chmod(0o700)

@@ -28,6 +28,8 @@ class StreamViewModel(val application: Application, val connectInfo: ConnectInfo
         userExitRequested && session.state.value is com.metallic.chiaki.session.StreamStateConnected)
     private fun finishHistory() {
         if(historyStarted == 0L) return
+        com.metallic.chiaki.design.StreamDiagnostics.save(application, connectInfo.videoProfile,
+            session.session?.videoMetrics() ?: session.lastVideoMetrics, session.startedNanos, System.nanoTime())
         com.metallic.chiaki.design.SessionHistory.append(application,historyStarted,
             (android.os.SystemClock.elapsedRealtime()-historyMonotonic)/1000,
             preferences.resolution.value + " · " + preferences.fps.value + " FPS")

@@ -8,21 +8,23 @@ PRIVATE=DATA/'private'
 RUNTIME=DATA/'python'
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--build',type=int,default=16);parser.add_argument('--stage-only',action='store_true');parser.add_argument('--private-preview',action='store_true');parser.add_argument('--output-dir',type=Path);parser.add_argument('--no-install-deps',action='store_true');args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--build',type=int,default=23);parser.add_argument('--stage-only',action='store_true');parser.add_argument('--private-preview',action='store_true');parser.add_argument('--output-dir',type=Path);parser.add_argument('--no-install-deps',action='store_true');parser.add_argument('--runtime-dir',type=Path);args=parser.parse_args()
+ runtime=args.runtime_dir or RUNTIME
  if sys.platform!='darwin' or platform.machine()!='arm64':raise SystemExit('This package targets the current Apple Silicon Mac.')
  os.umask(0o077)
  if not args.stage_only:PRIVATE.mkdir(parents=True,exist_ok=True);PRIVATE.chmod(0o700)
- if not (RUNTIME/'bin/python').exists():
-  subprocess.run([sys.executable,'-m','venv',str(RUNTIME)],check=True)
- if not args.no_install_deps:subprocess.run([str(RUNTIME/'bin/python'),'-m','pip','install','--disable-pip-version-check','-r',str(ROOT/'desktop/macos/requirements.txt')],check=True)
- subprocess.run([str(RUNTIME/'bin/python'),'-c','import PyInstaller'],check=True)
+ if not (runtime/'bin/python').exists():
+  subprocess.run([sys.executable,'-m','venv',str(runtime)],check=True)
+ if not args.no_install_deps:subprocess.run([str(runtime/'bin/python'),'-m','pip','install','--disable-pip-version-check','-r',str(ROOT/'desktop/macos/requirements.txt')],check=True)
+ subprocess.run([str(runtime/'bin/python'),'-c','import PyInstaller'],check=True)
  subprocess.run([sys.executable,str(ROOT/'scripts/validate-controller-lab.py'),'--check'],check=True)
+ subprocess.run([sys.executable,str(ROOT/'scripts/generate-desktop-localizations.py'),'--check'],check=True)
  shared=ROOT/'desktop/linux';sys.path.insert(0,str(shared))
  from session import VERSION
  package=args.output_dir or DATA/'packaging';package.mkdir(parents=True,exist_ok=True)
  iconset=package/'Deckivo.iconset';iconset.mkdir(exist_ok=True)
  render='''from PyQt5.QtWidgets import QApplication\nfrom PyQt5.QtGui import QPainter,QImage\nfrom PyQt5.QtSvg import QSvgRenderer\nfrom pathlib import Path\nimport sys\napp=QApplication([]);svg=QSvgRenderer(sys.argv[1]);out=Path(sys.argv[2])\nfor size in (16,32,128,256,512):\n for scale in (1,2):\n  image=QImage(size*scale,size*scale,QImage.Format_ARGB32);image.fill(0);p=QPainter(image);svg.render(p);p.end();image.save(str(out/('icon_%dx%d%s.png'%(size,size,'@2x' if scale==2 else ''))))\n'''
- subprocess.run([str(RUNTIME/'bin/python'),'-c',render,str(shared/'deckivo.svg'),str(iconset)],env={**os.environ,'QT_QPA_PLATFORM':'offscreen'},check=True)
+ subprocess.run([str(runtime/'bin/python'),'-c',render,str(shared/'deckivo.svg'),str(iconset)],env={**os.environ,'QT_QPA_PLATFORM':'offscreen'},check=True)
  icon=package/'Deckivo.icns'
  subprocess.run(['iconutil','-c','icns',str(iconset),'-o',str(icon)],check=True)
  bridge=package/'libdeckivo-input.dylib'
@@ -31,7 +33,7 @@ def main():
  subprocess.run(['clang','-Wall','-Wextra','-Werror','-O2','-fobjc-arc','-mmacosx-version-min=13.0','-c',str(ROOT/'desktop/macos/native-input.m'),'-o',str(mac_object)],check=True)
  subprocess.run(['clang','-dynamiclib','-undefined','dynamic_lookup','-mmacosx-version-min=13.0','-framework','Cocoa','-framework','ApplicationServices',str(native_object),str(mac_object),'-o',str(bridge)],check=True)
 
- command=[str(RUNTIME/'bin/python'),'-m','PyInstaller','--noconfirm','--clean','--windowed',
+ command=[str(runtime/'bin/python'),'-m','PyInstaller','--noconfirm','--clean','--windowed',
      '--name','Deckivo','--osx-bundle-identifier','by.remteh.deckivo','--icon',str(icon),
      '--distpath',str(package/'frozen'),'--workpath',str(package/'work'),'--specpath',str(package),
      '--paths',str(shared),'--add-data',str(shared/'assets')+':assets',
@@ -43,11 +45,17 @@ def main():
  for path in shared.glob('*.py'):command+=['--add-data',str(path)+':.']
  subprocess.run(command+[str(shared/'macos_main.py')],check=True)
  stage=package/'frozen/Deckivo.app';info_path=stage/'Contents/Info.plist'
+ backend=stage/'Contents/Resources/assets/macos/libSDL2.dylib'
+ identifiers=subprocess.check_output(['otool','-D',str(backend)],text=True).splitlines()[1:]
+ if '@rpath/libSDL2-2.0.0.dylib' not in identifiers:raise SystemExit('Bundled SDL2 ID must be fixed at build time; users must not need developer tools.')
  info=plistlib.loads(info_path.read_bytes())
  info.update({'CFBundleDisplayName':'Deckivo','CFBundleShortVersionString':VERSION,'CFBundleVersion':str(args.build),
      'LSMinimumSystemVersion':'13.0','NSHighResolutionCapable':True,
      'NSLocalNetworkUsageDescription':'Deckivo connects to your PS5 and retrieves signed local updates.'})
  info_path.write_bytes(plistlib.dumps(info))
+ # Strip Finder metadata only from the new staging bundle. Keep quarantine and user apps untouched.
+ for name in ('com.apple.FinderInfo','com.apple.ResourceFork'):
+  subprocess.run(['/usr/bin/xattr','-dr',name,str(stage)],check=True)
  subprocess.run(['/usr/bin/codesign','--force','--deep','--sign','-',str(stage)],check=True)
  subprocess.run(['/usr/bin/codesign','--verify','--deep','--strict',str(stage)],check=True)
  if args.stage_only:

@@ -410,6 +410,17 @@ JNIEXPORT void JNICALL JNI_FCN(sessionSetSurface)(JNIEnv *env, jobject obj, jlon
 	android_chiaki_video_decoder_set_surface(&session->video_decoder, env, surface);
 }
 
+JNIEXPORT jlongArray JNICALL JNI_FCN(sessionVideoMetrics)(JNIEnv *env, jobject obj, jlong ptr)
+{
+    (void)obj;
+    AndroidChiakiVideoDecoder *d=&((AndroidChiakiSession *)ptr)->video_decoder;
+    jlong values[]={atomic_load(&d->input_buffers),atomic_load(&d->decoded_frames),
+        atomic_load(&d->surface_submissions),atomic_load(&d->receiver_lost_frames),atomic_load(&d->first_output_ns)};
+    jlongArray result=(*env)->NewLongArray(env,5);
+    if(result)(*env)->SetLongArrayRegion(env,result,0,5,values);
+    return result;
+}
+
 JNIEXPORT void JNICALL JNI_FCN(sessionSetControllerState)(JNIEnv *env, jobject obj, jlong ptr, jobject controller_state_java)
 {
 	AndroidChiakiSession *session = (AndroidChiakiSession *)ptr;

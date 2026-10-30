@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compile crawlable pages. Public URLs come only from design-system/site.json."""
-import argparse,hashlib,html,json,re,shutil,sys
+import argparse,ast,hashlib,html,json,re,shutil,sys
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -11,13 +11,22 @@ NAMES={'en':'English','ru':'Русский','uk':'Українська','pl':'Po
 SYSTEM_FONT={'zh','ja','ko','ar','hi'}
 PLATFORM_KEYS=('android','macos','linux','bundle')
 ASSET_CATEGORIES={*PLATFORM_KEYS,'source','metadata','other'}
-ANDROID_VERSION='0.8.6'
-ANDROID_BUILD=31
-MAC_VERSION='0.8.6';MAC_BUILD=22
-LINUX_VERSION='0.8.6';LINUX_BUILD=22
-ANDROID_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/Deckivo-{ANDROID_VERSION}-arm64.apk'
-MAC_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{MAC_VERSION}/Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip'
-LINUX_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{LINUX_VERSION}/Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip'
+# A source candidate must not turn the public site's download buttons into missing URLs.
+release=json.loads((ROOT/'website/published-release.json').read_text())
+if release.get('schema') != 1 or not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+',release.get('version','')):
+ raise ValueError('Invalid published release metadata')
+ANDROID_VERSION=MAC_VERSION=LINUX_VERSION=release['version']
+ANDROID_BUILD=release['android_build']
+MAC_BUILD=LINUX_BUILD=release['desktop_build']
+def public_asset(name):
+ matches=[row for row in release['assets'] if row.get('name')==name]
+ expected=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/{name}'
+ if len(matches)!=1 or matches[0].get('url')!=expected or not re.fullmatch(r'[a-f0-9]{64}',matches[0].get('sha256','')):
+  raise ValueError('Missing/invalid published asset: '+name)
+ return expected
+ANDROID_URL=public_asset(f'Deckivo-{ANDROID_VERSION}-arm64.apk')
+MAC_URL=public_asset(f'Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip')
+LINUX_URL=public_asset(f'Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip')
 ARCHIVE_COPY={
  'en':('Historical snapshot','Archived totals are frozen GitHub asset download counts captured before a release or file was removed. They are not unique users or installations.'),
  'ru':('Исторический снимок','Архивные итоги — это зафиксированные GitHub-счётчики загрузок файлов до удаления релиза или файла. Это не число уникальных пользователей или установок.'),
@@ -203,6 +212,7 @@ def main():
  def address(code):return base+('' if code=='en' else code+'/')
  for code in NAMES:
   copy={**catalog['en'],**catalog[code]};texts=support['texts'][code];download_text=download_catalog[code];prefix='' if code=='en' else '../'
+  copy['faq']=[{field:value.format(version=ANDROID_VERSION,mac_build=MAC_BUILD) for field,value in qa.items()} for qa in copy['faq']]
   soup=BeautifulSoup(template,'html.parser');soup.html['lang']=code;soup.html['dir']='rtl' if code=='ar' else 'ltr'
   if code in SYSTEM_FONT:soup.html['class']='system-font'
   for node in soup.select('[data-i]'):

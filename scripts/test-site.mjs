@@ -5,6 +5,7 @@ import http from 'node:http';
 import assert from 'node:assert/strict';
 import os from 'node:os';
 const root=path.resolve('build/site'),output=process.env.DECKIVO_QA_DIR??path.join(os.tmpdir(),'deckivo-site-qa');
+const expectedVersion=JSON.parse(fs.readFileSync('website/published-release.json','utf8')).version;
 fs.mkdirSync(output,{recursive:true});
 let server,base=process.env.DECKIVO_SITE_BASE;
 if(!base) {
@@ -59,10 +60,11 @@ try {
       languageLinks:document.querySelectorAll('.language-menu a').length};
    });
    assert.equal(state.lang,lang);assert.ok(state.h1?.trim());assert.equal(state.app.length,1);assert.equal(state.faq.length,1);
-   assert.equal(state.app[0].softwareVersion,'0.8.6');assert.ok(state.faq[0].mainEntity.length>=5);
+   assert.equal(state.app[0].softwareVersion,expectedVersion);assert.ok(state.faq[0].mainEntity.length>=5);
+   for(const qa of state.faq[0].mainEntity) for(const found of qa.acceptedAnswer.text.matchAll(/\b\d+\.\d+\.\d+\b/g))assert.equal(found[0],expectedVersion,lang+' stale FAQ version');
    assert.equal(state.og.width,'1200');assert.equal(state.og.height,'630');assert.equal(state.og.type,'image/jpeg');
    assert.equal(state.og.image,state.og.twitter);assert.match(state.og.image,/^https:\/\/.*\/github-cover\.jpg(?:\?|$)/);
-   assert.equal(state.downloads.length,3);assert.ok(state.downloads.every(u=>u.includes('/v0.8.6/')));
+   assert.equal(state.downloads.length,3);assert.ok(state.downloads.every(u=>u.includes('/v'+expectedVersion+'/')));
    assert.equal(state.stats,expectedStats,'public counters respect the configured threshold');assert.equal(state.unknownBars,expectedProgress);
    assert.deepEqual(state.splitWords,[],lang+' '+width+' split button words');assert.equal(state.languageLinks,16);assert.deepEqual(state.clipped,[]);assert.equal(state.scrollWidth,width);assert.deepEqual(errors,[]);
    evidence.push({lang,width,passed:true,appSchemas:state.app.length,faqSchemas:state.faq.length,clipped:0});

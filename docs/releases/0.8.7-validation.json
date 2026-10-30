@@ -1,0 +1,48 @@
+{
+  "version": "0.8.7",
+  "status": "local-candidate-not-published",
+  "implementationCommit": "8ca1ba0965a67ac206756d29a58da2f680e0f4b0",
+  "date": "2026-10-30",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.7",
+    "versionCode": 32,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.7-arm64.apk",
+    "apkBytes": 9490172,
+    "sha256": "fa94657389a1e65cd1b10bbc6d9edb0c59bf86fac0906aad07b8136de89ec838",
+    "build": "release-with-SOURCE_RELEASED-false",
+    "buildPassed": true,
+    "lintPassed": true,
+    "unitTests": 49,
+    "signingCertificateSha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "certificateMatchesPublic086": true,
+    "physicalUpdateInstall": "deferred-by-owner"
+  },
+  "desktop": {
+    "version": "0.8.7",
+    "build": 23,
+    "unitTests": 130,
+    "macOS": "arm64 isolated staged bundle, ad-hoc signature; no notarization",
+    "linux": "Switchroot Ubuntu ARM64 source/update candidate; no device install in this task"
+  },
+  "web": {
+    "siteRenderedCases": 112,
+    "noJavaScriptLanguagePages": 16,
+    "controllerLabSyntheticStates": 104,
+    "physicalControllerAcceptance": false
+  },
+  "scope": {
+    "crm": "excluded",
+    "newReleasePublished": false,
+    "publicDownloadVersion": "0.8.6",
+    "devices": "deferred-by-owner"
+  },
+  "limitations": [
+    "No new physical PS5/Switch/controller gameplay acceptance.",
+    "No claim of generic Linux, Intel Mac, notarization or stable release.",
+    "Matching new UI capture and physical acceptance are required before release promotion."
+  ]
+}

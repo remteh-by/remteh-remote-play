@@ -11,20 +11,22 @@ SDL_BUTTONS={'cross':0,'circle':1,'square':2,'triangle':3,'share':4,'ps':5,'opti
 
 
 class InputState:
-    def __init__(self,sensitivity=.025,invert_y=False,mapping=None):
+    def __init__(self,sensitivity=.025,invert_y=False,mapping=None,bindings=None):
         self.sensitivity=max(.001,min(.2,float(sensitivity))) if isinstance(sensitivity,(int,float)) and math.isfinite(sensitivity) else .025
         self.invert_y=bool(invert_y)
         self.mapping=DEFAULT_KEYS.copy()
         if isinstance(mapping,dict):
             self.mapping.update({key:value for key,value in mapping.items() if key in DEFAULT_KEYS and value in set(DEFAULT_KEYS.values())})
         self.sequence=0
+        from linux_input_settings import normalize_bindings
+        self.bindings=normalize_bindings(bindings)
         self.reset()
 
     def reset(self):
         self.keys=set();self.mouse_buttons=set();self.mouse=(0.,0.);self.moved_at=0.
 
     def key(self,name,down):
-        if name not in self.mapping:return False
+        if name not in self.mapping and name not in self.bindings['keyboard']:return False
         self.keys.add(name) if down else self.keys.discard(name)
         return True
 
@@ -35,13 +37,20 @@ class InputState:
 
     def packet(self,at=None):
         at=time.monotonic() if at is None else at
-        actions={self.mapping[key] for key in self.keys}
+        actions={self.mapping[key] for key in self.keys if key in self.mapping}
+        numeric={self.bindings['keyboard'][key] for key in self.keys if key in self.bindings['keyboard']}
+        numeric|={self.bindings['mouse'][i] for i,key in enumerate(('left','right','middle','side1','side2')) if key in self.mouse_buttons}
+        for name,index in SDL_BUTTONS.items():
+            if index in numeric:actions.add(name)
+        for index,name in ((23,'ly-'),(24,'ly+'),(25,'lx-'),(26,'lx+')):
+            if index in numeric:actions.add(name)
         buttons=sum(1<<index for name,index in SDL_BUTTONS.items() if name in actions)
-        if 'middle' in self.mouse_buttons:buttons|=1<<SDL_BUTTONS['r3']
         x=int('lx+' in actions)-int('lx-' in actions);y=int('ly+' in actions)-int('ly-' in actions)
         scale=max(1.,math.hypot(x,y));x/=scale;y/=scale
         rx,ry=self.mouse if at-self.moved_at<.08 else (0.,0.)
-        axes=[round(v*32767) for v in (x,y,rx,ry)]+[32767 if key in self.mouse_buttons else -32768 for key in ('right','left')]
+        rx=max(-1.,min(1.,rx+int(30 in numeric)-int(29 in numeric)))
+        ry=max(-1.,min(1.,ry+int(28 in numeric)-int(27 in numeric)))
+        axes=[round(v*32767) for v in (x,y,rx,ry)]+[32767 if action in numeric else -32768 for action in (21,22)]
         global _sequence_tick
         _sequence_tick=max(int(time.monotonic()*1000),_sequence_tick+1)
         self.sequence=_sequence_tick&0xffffffff

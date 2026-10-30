@@ -17,6 +17,19 @@ typedef struct {
     double dx, dy, sensitivity, last_tick, last_motion;
 } DkMacInput;
 
+typedef struct { bool active,resume_on_focus,rearm_on_focus_loss; } DkMacCapture;
+typedef struct { bool app_active,window_key,window_visible,window_minimized,modal; } DkMacFocus;
+typedef struct { double x,y,width,height; } DkMacRect;
+static inline DkMacRect dk_mac_restore_frame(DkMacRect saved,DkMacRect screen) {
+    double width=isfinite(saved.width)?saved.width:screen.width;
+    double height=isfinite(saved.height)?saved.height:screen.height;
+    width=fmin(screen.width,fmax(100,width));height=fmin(screen.height,fmax(100,height));
+    double x=isfinite(saved.x)?saved.x:screen.x,y=isfinite(saved.y)?saved.y:screen.y;
+    x=fmin(screen.x+screen.width-width,fmax(screen.x,x));
+    y=fmin(screen.y+screen.height-height,fmax(screen.y,y));
+    return (DkMacRect){x,y,width,height};
+}
+
 static inline unsigned dk_mac_canonical_key(unsigned key) {
     return key==60?56:key==61?58:key==62?59:key;
 }
@@ -29,6 +42,27 @@ static inline bool dk_mac_valid_action(long action) {
 static inline void dk_mac_reset(DkMacInput *s, double now) {
     memset(s->keys,0,sizeof(s->keys));memset(s->mouse,0,sizeof(s->mouse));
     s->dx=s->dy=s->last_motion=0;s->last_tick=now;
+}
+static inline bool dk_mac_capture_eligible(bool enabled,DkMacFocus focus) {
+    return enabled&&focus.app_active&&focus.window_key&&focus.window_visible&&!focus.window_minimized&&!focus.modal;
+}
+static inline bool dk_mac_capture_wants_resume(const DkMacCapture *capture,bool eligible) {
+    return capture->resume_on_focus&&!capture->active&&eligible;
+}
+static inline void dk_mac_capture_begin(DkMacCapture *capture) {
+    capture->active=true;capture->resume_on_focus=false;capture->rearm_on_focus_loss=true;
+}
+static inline bool dk_mac_capture_end(DkMacCapture *capture,DkMacInput *input,double now,bool temporary) {
+    bool was_active=capture->active;
+    capture->resume_on_focus=temporary&&(capture->active||capture->resume_on_focus||capture->rearm_on_focus_loss);
+    capture->rearm_on_focus_loss=temporary&&(capture->rearm_on_focus_loss||was_active);
+    capture->active=false;dk_mac_reset(input,now);
+    return was_active;
+}
+/* Esc/F8 frees the cursor in this focus interval. Clicking the video or a new
+ * leave/return cycle can re-enter capture; End stream uses end(false) instead. */
+static inline void dk_mac_capture_ungrab(DkMacCapture *capture) {
+    capture->rearm_on_focus_loss=true;
 }
 static inline void dk_mac_init(DkMacInput *s,double sensitivity,bool invert,double now) {
     memset(s,0,sizeof(*s));s->sensitivity=isfinite(sensitivity)?fmax(.001,fmin(.2,sensitivity)):.025;
