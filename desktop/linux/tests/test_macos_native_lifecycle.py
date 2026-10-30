@@ -13,8 +13,10 @@ class MacNativeLifecycleTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         compiler=shutil.which('clang')
-        cls.sdl=Path('/opt/homebrew/opt/sdl2')
+        cls.sdl=Path(os.environ.get('DECKIVO_TEST_SDL_PREFIX','/opt/homebrew/opt/sdl2'))
         if not compiler or not (cls.sdl/'include/SDL2/SDL.h').exists():
+            if os.environ.get('DECKIVO_REQUIRE_MAC_NATIVE_TESTS')=='1':
+                raise RuntimeError('Required Mac native tests need clang and SDL2 at DECKIVO_TEST_SDL_PREFIX')
             raise unittest.SkipTest('The Mac builder clang/SDL2 dependencies are required')
         cls.temp=tempfile.TemporaryDirectory(prefix='dk-native-')
         cls.addClassCleanup(cls.temp.cleanup)
