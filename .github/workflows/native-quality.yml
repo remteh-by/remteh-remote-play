@@ -45,8 +45,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y protobuf-compiler ninja-build
           python -m venv .buildenv
-          .buildenv/bin/python -m pip install protobuf==7.34.2
-          sdkmanager 'platforms;android-36' 'build-tools;36.0.0' 'ndk;30.0.16248370' 'cmake;4.4.4'
+          .buildenv/bin/python -m pip install protobuf==7.34.2 cmake==4.4.4
+          .buildenv/bin/python -c 'import cmake,pathlib; pathlib.Path("android/local.properties").write_text("cmake.dir="+str(pathlib.Path(cmake.CMAKE_BIN_DIR).parent)+"\n")'
+          echo "$PWD/.buildenv/bin" >> "$GITHUB_PATH"
+          sdkmanager 'platforms;android-36' 'build-tools;36.0.0' 'ndk;30.0.16248370'
       - run: ./android/gradlew -p android --no-daemon :app:testReleaseUnitTest :app:lintRelease :app:assembleRelease
       - uses: actions/upload-artifact@v4
         with:

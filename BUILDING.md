@@ -69,3 +69,5 @@ keys, local registrations and device screenshots must never enter a public asset
 Current source candidate: 0.8.7, Android build 32, desktop build 23. Public Pages deliberately retain the verified 0.8.6 registry until release. Update that registry only from actually uploaded, verified assets; pages deployment now verifies the same checked-out commit's generated site before publishing.
 
 For Mac staging, use --runtime-dir with an isolated venv and --output-dir under a local non-synchronized directory (for example Library/Caches). File Provider/iCloud folders may reintroduce FinderInfo while codesign is running. The builder removes only FinderInfo/ResourceFork from its own staging bundle, never quarantine or metadata from an installed app. --stage-only preserves installed applications, pairing and private update state.
+
+The Linux GitHub runner installs CMake 4.4.4 from the pinned Python distribution and supplies `cmake.dir` in its temporary `android/local.properties`; that version is not an Android SDK Manager package. The SDK/NDK stay managed by SDK tools. See the native-quality workflow for the complete setup.
