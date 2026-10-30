@@ -2,7 +2,7 @@ name: Deckivo site
 on:
   push:
     branches: [main]
-    paths: ['website/**', 'localization/**', 'design-system/**', 'scripts/build-site.py', 'scripts/download-stats.py', 'scripts/site-download-stats.py', 'scripts/generate-support.py', 'scripts/requirements-build.txt', 'android/app/build.gradle', 'desktop/linux/session.py', 'desktop/linux/build_meta.py', '.github/workflows/pages.yml']
+    paths: ['website/**', 'scripts/verify-public-release.py', 'localization/**', 'design-system/**', 'scripts/build-site.py', 'scripts/download-stats.py', 'scripts/site-download-stats.py', 'scripts/generate-support.py', 'scripts/requirements-build.txt', 'android/app/build.gradle', 'desktop/linux/session.py', 'desktop/linux/build_meta.py', '.github/workflows/pages.yml']
   workflow_dispatch:
   schedule:
     - cron: "17 * * * *"
@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: main
+          ref: ${{ github.sha }}
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
@@ -37,6 +37,19 @@ jobs:
           python -m unittest tests/test_download_stats.py
           python scripts/site-download-stats.py --output build/download-stats.json
           python scripts/build-site.py --download-stats build/download-stats.json
+      - name: Verify public assets
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/verify-public-release.py
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-site.mjs
+        env:
+          DECKIVO_QA_DIR: output/playwright/pages
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

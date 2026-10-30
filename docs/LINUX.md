@@ -22,6 +22,7 @@ Extract the complete release source archive and open its `source/` directory.
 Do not use the small upgrade ZIP for a first installation.
 
 ```sh
+python3 desktop/linux/preflight.py
 python3 desktop/linux/build-install.py
 python3 desktop/linux/pair.py
 ```
@@ -32,10 +33,12 @@ command-line arguments or printed logs. A failed pairing retains the previous
 registration. If already registered, the previous file is retained locally.
 Open Deckivo from the applications menu; choose a streaming preset and play.
 
+The 0.8.7 build 23 source candidate adds a read-only preflight report for architecture, Ubuntu version, Python, KDE/X11, FFmpeg ABI, SDL2/OpenSSL, build tools, free space, write access and an existing runtime. A failed check stops before installation. Mirror availability is checked by apt during the actual first install; preflight does not promise that downloads will succeed.
+
 ## Existing installation
 
 With automatic updates enabled, existing public-channel clients receive Linux
-0.8.3 build 19 from GitHub. Leave Deckivo on its idle dashboard with Internet
+0.8.6 build 22 from GitHub. Leave Deckivo on its idle dashboard with Internet
 access. After this update, a user timer can download later signed updates while
 Deckivo is closed; installation waits for its next idle launch. Ubuntu must be
 awake and the user logged in. No Mac-based update server is required.

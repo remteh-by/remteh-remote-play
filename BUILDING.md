@@ -31,7 +31,7 @@ Build and inspect the Android artifact again after changing any embedded ELF. On
 
 ## Signing
 
-`python3 scripts/sign-release.py` aligns and signs the release APK. It keeps the private key outside the source tree. The first use creates a local identity; maintainers of this distribution must retain the existing identity so updates can be installed over previous releases. Independent forks need their own identity/package name. Never upload a private key, password file or Android registration data.
+`python3 scripts/sign-release.py` aligns and signs the release APK. It keeps the private key outside the source tree. The release tool requires the existing identity and never generates a replacement. Maintainers must retain it so updates can be installed over previous releases. Independent forks need a separately provisioned identity/package name. Never upload a private key, password file or Android registration data.
 
 The artifact filename is derived from `versionName`; every changed installable APK requires a new increasing `versionCode`. Publishing the already signed APK with unchanged bytes does not require another version increment.
 
@@ -63,3 +63,9 @@ acceptance and native unit tests are separate from gameplay evidence.
 
 Public APKs must be built with `DECKIVO_UPDATE_FEED` unset. Private preview URLs,
 keys, local registrations and device screenshots must never enter a public asset.
+
+## Candidate builds and isolated staging
+
+Current source candidate: 0.8.7, Android build 32, desktop build 23. Public Pages deliberately retain the verified 0.8.6 registry until release. Update that registry only from actually uploaded, verified assets; pages deployment now verifies the same checked-out commit's generated site before publishing.
+
+For Mac staging, use --runtime-dir with an isolated venv and --output-dir under a local non-synchronized directory (for example Library/Caches). File Provider/iCloud folders may reintroduce FinderInfo while codesign is running. The builder removes only FinderInfo/ResourceFork from its own staging bundle, never quarantine or metadata from an installed app. --stage-only preserves installed applications, pairing and private update state.

@@ -1,3 +1,14 @@
+# Deckivo changelog
+
+## 0.8.7 — 2026-10-30 (candidate, not published)
+
+- Android build 32: preserve server retry embargo across wall-clock rollback; manual checks cannot bypass rate limits.
+- Desktop build 23: include the reviewed input/lifecycle fixes above public 0.8.6, plus a connection check using observed registration, discovery, engine, frame and input state. Diagnostic exports omit addresses, account IDs and raw logs.
+- Switch Ubuntu: read-only installation preflight with actionable requirements; keep update and rollback separate from initial installation.
+- macOS: build in isolated staging with the chosen Python runtime; preserve the installed application and signing identity. Candidate uses ad-hoc signing, not Developer ID notarization.
+- Site: download versions now come from verified published assets, independently of development versions. Pages runs checks against the exact deployment commit.
+- Automated native, Android and browser checks are recorded in docs/releases/0.8.7.md. Physical acceptance is deferred by the owner; no new stream/device success is claimed.
+
 # 0.8.3 · controller safeguards and audit corrections · 2026-10-26
 
 ## 0.8.6 — 2026-10-26 (preview)

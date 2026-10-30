@@ -11,19 +11,22 @@ NAMES={'en':'English','ru':'Русский','uk':'Українська','pl':'Po
 SYSTEM_FONT={'zh','ja','ko','ar','hi'}
 PLATFORM_KEYS=('android','macos','linux','bundle')
 ASSET_CATEGORIES={*PLATFORM_KEYS,'source','metadata','other'}
-android_settings=(ROOT/'android/app/build.gradle').read_text()
-ANDROID_VERSION=re.search(r'versionName\s+"([^"]+)"',android_settings).group(1)
-ANDROID_BUILD=int(re.search(r'versionCode\s+(\d+)',android_settings).group(1))
-def constant(path,key):
- for node in ast.parse(path.read_text()).body:
-  if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id==key for t in node.targets):return ast.literal_eval(node.value)
- raise ValueError('Missing version: '+key)
-MAC_VERSION=LINUX_VERSION=constant(ROOT/'desktop/linux/session.py','VERSION')
-MAC_BUILD=LINUX_BUILD=constant(ROOT/'desktop/linux/build_meta.py','BUILD')
-if ANDROID_VERSION!=MAC_VERSION:raise ValueError('Platform versions are inconsistent')
-ANDROID_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/Deckivo-{ANDROID_VERSION}-arm64.apk'
-MAC_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{MAC_VERSION}/Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip'
-LINUX_URL=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{LINUX_VERSION}/Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip'
+# A source candidate must not turn the public site's download buttons into missing URLs.
+release=json.loads((ROOT/'website/published-release.json').read_text())
+if release.get('schema') != 1 or not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+',release.get('version','')):
+ raise ValueError('Invalid published release metadata')
+ANDROID_VERSION=MAC_VERSION=LINUX_VERSION=release['version']
+ANDROID_BUILD=release['android_build']
+MAC_BUILD=LINUX_BUILD=release['desktop_build']
+def public_asset(name):
+ matches=[row for row in release['assets'] if row.get('name')==name]
+ expected=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/{name}'
+ if len(matches)!=1 or matches[0].get('url')!=expected or not re.fullmatch(r'[a-f0-9]{64}',matches[0].get('sha256','')):
+  raise ValueError('Missing/invalid published asset: '+name)
+ return expected
+ANDROID_URL=public_asset(f'Deckivo-{ANDROID_VERSION}-arm64.apk')
+MAC_URL=public_asset(f'Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip')
+LINUX_URL=public_asset(f'Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip')
 ARCHIVE_COPY={
  'en':('Historical snapshot','Archived totals are frozen GitHub asset download counts captured before a release or file was removed. They are not unique users or installations.'),
  'ru':('Исторический снимок','Архивные итоги — это зафиксированные GitHub-счётчики загрузок файлов до удаления релиза или файла. Это не число уникальных пользователей или установок.'),

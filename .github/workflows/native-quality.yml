@@ -1,0 +1,45 @@
+name: Deckivo native quality
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  native-tests:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r desktop/macos/requirements.txt cryptography
+      - run: python -m unittest discover -s desktop/linux/tests -v
+        env:
+          QT_QPA_PLATFORM: offscreen
+      - name: Native input state regression
+        run: |
+          clang -std=c11 -Wall -Wextra -Werror desktop/macos/test-input-state.c -o "$RUNNER_TEMP/deckivo-input-test"
+          "$RUNNER_TEMP/deckivo-input-test"
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: git submodule update --init third-party/nanopb third-party/jerasure third-party/gf-complete third-party/curl android/app/src/main/cpp/oboe
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: android-actions/setup-android@v3
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y protobuf-compiler ninja-build
+          python -m venv .buildenv
+          .buildenv/bin/python -m pip install protobuf==7.34.2
+          sdkmanager 'platforms;android-36' 'build-tools;36.0.0' 'ndk;30.0.16248370' 'cmake;4.4.4'
+      - run: ./android/gradlew -p android --no-daemon :app:testReleaseUnitTest :app:lintRelease :app:assembleRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: deckivo-unsigned-android-candidate
+          path: android/app/build/outputs/apk/release/*unsigned.apk
+          retention-days: 14

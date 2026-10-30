@@ -5,7 +5,7 @@ import http from 'node:http';
 import assert from 'node:assert/strict';
 import os from 'node:os';
 const root=path.resolve('build/site'),output=process.env.DECKIVO_QA_DIR??path.join(os.tmpdir(),'deckivo-site-qa');
-const expectedVersion=fs.readFileSync('android/app/build.gradle','utf8').match(/versionName\s+"([^"]+)"/)[1];
+const expectedVersion=JSON.parse(fs.readFileSync('website/published-release.json','utf8')).version;
 fs.mkdirSync(output,{recursive:true});
 let server,base=process.env.DECKIVO_SITE_BASE;
 if(!base) {
