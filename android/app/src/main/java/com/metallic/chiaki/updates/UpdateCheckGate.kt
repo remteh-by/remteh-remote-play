@@ -19,7 +19,16 @@ internal class UpdateCheckGate(
 ) {
     suspend fun execute(manual: Boolean, interval: Long, request: suspend () -> Unit): Boolean {
         val now = clock()
-        val previous = read().let { if (now < it.started) CheckHistory() else it }
+        val previous = read().let {
+            if (now >= it.started) it else {
+                // Rebase once: a wall-clock rollback must not bypass a server embargo.
+                fun remaining(deadline: Long, cap: Long): Long =
+                    if (deadline <= it.started) 0 else now + (deadline - it.started).coerceAtMost(cap)
+                it.copy(started = now - 5_000, succeeded = 0,
+                    retryAt = remaining(it.retryAt, 30 * 60_000L),
+                    serverRetryAt = remaining(it.serverRetryAt, 24 * 60 * 60_000L)).also(write)
+            }
+        }
         if (previous.serverRetryAt > 0 && previous.serverRetryAt > now) return false
         if (!manual && (previous.retryAt > 0 && previous.retryAt > now ||
                 previous.started > 0 && now - previous.started < 5_000 ||

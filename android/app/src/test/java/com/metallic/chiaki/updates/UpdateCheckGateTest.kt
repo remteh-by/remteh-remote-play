@@ -61,6 +61,20 @@ class UpdateCheckGateTest {
         assertTrue(gate.execute(false, interval) {})
     }
 
+    @Test fun clockRollbackRetainsServerEmbargoWithoutSlidingItForever() = runBlocking {
+        now = 200_000_000L
+        class Limited : Exception(), RetryDelay { override val retryAfterMillis = 900_000L }
+        try { gate.execute(false, interval) { throw Limited() } } catch (_: Limited) {}
+        now -= 86_400_000L
+        assertFalse(gate.execute(true, interval) { fail("server embargo survives rollback") })
+        val deadline = history.serverRetryAt
+        now += 60_000L
+        assertFalse(gate.execute(true, interval) { fail("still limited") })
+        assertEquals(deadline, history.serverRetryAt)
+        now = deadline
+        assertTrue(gate.execute(true, interval) {})
+    }
+
     @Test fun retryHeadersUseLongestValidServerDeadline() {
         assertEquals(120_000L, retryDelay("120", null, now))
         assertEquals(0L, retryDelay("0", null, now))

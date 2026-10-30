@@ -6,7 +6,6 @@ Never prints the password and never puts it in command-line arguments.
 from pathlib import Path
 import os
 import re
-import secrets
 import subprocess
 
 root = Path(__file__).resolve().parents[1]
@@ -18,20 +17,9 @@ signing = Path.home() / ".codex/private/remteh-remote-play"
 signing.mkdir(mode=0o700, parents=True, exist_ok=True)
 key = signing / "release.jks"
 password_file = signing / "password.txt"
-if key.exists() != password_file.exists():
-    raise SystemExit("Incomplete signing identity; refusing to replace an existing key/password")
-if not password_file.exists():
-    with os.fdopen(os.open(password_file, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w") as f:
-        f.write(secrets.token_urlsafe(36))
+if not key.is_file() or not password_file.is_file():
+    raise SystemExit("Existing signing identity is required; this release tool never creates or replaces a key")
 environment = {**os.environ, "JAVA_HOME": str(java), "REMTEH_APK_SIGNING_PASSWORD": password_file.read_text().strip()}
-if not key.exists():
-    subprocess.run([
-        str(java / "bin/keytool"), "-genkeypair", "-keystore", str(key),
-        "-storepass:env", "REMTEH_APK_SIGNING_PASSWORD", "-keypass:env", "REMTEH_APK_SIGNING_PASSWORD",
-        "-alias", "remteh-remote-play", "-keyalg", "RSA", "-keysize", "3072",
-        "-validity", "10000", "-dname", "CN=RemTeh Remote Play Local",
-    ], env=environment, check=True)
-    key.chmod(0o600)
 dist = root / "dist"
 dist.mkdir(exist_ok=True)
 unsigned = root / "android/app/build/outputs/apk/release/app-release-unsigned.apk"
