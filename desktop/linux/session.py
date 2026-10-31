@@ -32,6 +32,8 @@ def preferences(value):
               'fullscreen': True, 'controller_navigation': True,
               'disconnect_chord': True, 'history': True, 'automatic_updates': True, 'keyboard_mouse': False, 'mouse_sensitivity': .025, 'invert_mouse_y':False, 'quality_schema':2}
     if sys.platform=='darwin':
+        from mouse_look import settings
+        result.update(settings(value))
         from macos_input_settings import normalize_bindings
         result['input_bindings']=normalize_bindings(value.get('input_bindings') if isinstance(value,dict) else None)
         if isinstance(value,dict) and isinstance(value.get('engine_path'),str) and len(value['engine_path'])<=4096:result['engine_path']=value['engine_path']

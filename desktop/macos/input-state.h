@@ -15,6 +15,7 @@ typedef struct {
     bool keys[128], mouse[5], invert_y;
     int8_t key_bindings[128], mouse_bindings[5];
     double dx, dy, sensitivity, last_tick, last_motion;
+    double tail_x,tail_y,smoothing_ms,deadzone,response_curve;
 } DkMacInput;
 
 typedef struct { bool active,resume_on_focus,rearm_on_focus_loss; } DkMacCapture;
@@ -41,7 +42,7 @@ static inline bool dk_mac_valid_action(long action) {
 }
 static inline void dk_mac_reset(DkMacInput *s, double now) {
     memset(s->keys,0,sizeof(s->keys));memset(s->mouse,0,sizeof(s->mouse));
-    s->dx=s->dy=s->last_motion=0;s->last_tick=now;
+    s->dx=s->dy=s->tail_x=s->tail_y=s->last_motion=0;s->last_tick=now;
 }
 static inline bool dk_mac_capture_eligible(bool enabled,DkMacFocus focus) {
     return enabled&&focus.app_active&&focus.window_key&&focus.window_visible&&!focus.window_minimized&&!focus.modal;
@@ -67,11 +68,18 @@ static inline void dk_mac_capture_ungrab(DkMacCapture *capture) {
 static inline void dk_mac_init(DkMacInput *s,double sensitivity,bool invert,double now) {
     memset(s,0,sizeof(*s));s->sensitivity=isfinite(sensitivity)?fmax(.001,fmin(.2,sensitivity)):.025;
     s->invert_y=invert;s->last_tick=now;
+    s->response_curve=1.;
     memset(s->key_bindings,-1,sizeof(s->key_bindings));
     const unsigned keys[]={13,1,0,2,49,8,59,56,58,15,14,3,18,12,5,126,125,123,124,36,48,120,99};
     const int8_t actions[]={23,24,25,26,0,1,1,7,8,2,2,3,3,9,10,11,12,13,14,6,20,5,4};
     for(unsigned i=0;i<sizeof(keys)/sizeof(keys[0]);i++)s->key_bindings[keys[i]]=actions[i];
     const int8_t mouse[]={22,21,8,1,2};memcpy(s->mouse_bindings,mouse,sizeof(mouse));
+}
+static inline bool dk_mac_mouse_options(DkMacInput *s,double smoothing_ms,double deadzone,double curve) {
+    if(!isfinite(smoothing_ms)||smoothing_ms<0||smoothing_ms>16||
+       !isfinite(deadzone)||deadzone<0||deadzone>.35||!isfinite(curve)||curve<.5||curve>3)return false;
+    s->smoothing_ms=smoothing_ms;s->deadzone=deadzone;s->response_curve=curve;
+    s->tail_x=s->tail_y=0;return true;
 }
 /* Parse the bounded, normalized launch config. A malformed value leaves defaults intact.
  * Empty text intentionally unbinds all inputs of this type; NULL keeps defaults. */
@@ -110,13 +118,36 @@ static inline void dk_mac_sample(DkMacInput *s,double now,uint32_t *buttons,int1
     double scale=fmax(1.,hypot(x,y));
     axes[0]=(int16_t)lrint(x/scale*32767.);axes[1]=(int16_t)lrint(y/scale*32767.);
     double elapsed=now-s->last_tick;
-    double dt=isfinite(elapsed)&&elapsed>0?fmax(.004,fmin(.05,elapsed)):1./60.;
+    double dt=isfinite(elapsed)&&elapsed>0?fmax(.001,fmin(.05,elapsed)):1./60.;
     double rx=(active[30]?1.:0.)-(active[29]?1.:0.);
     double ry=(active[28]?1.:0.)-(active[27]?1.:0.);
-    if(now>=s->last_motion&&now-s->last_motion<.08){
-        rx+=s->dx*s->sensitivity/(60.*dt);ry+=s->dy*s->sensitivity/(60.*dt)*(s->invert_y?-1.:1.);
+    if(isfinite(now)&&now>=s->last_motion&&now-s->last_motion<.020&&elapsed<=.05){
+        /* A short, time-based displacement reservoir bridges gaps between HID
+         * reports. It preserves sub-count movement instead of alternating a
+         * full pulse and zero at every 4 ms controller sample. Reversals cancel
+         * the old direction immediately, never fight the user's new motion. */
+        if(s->dx*s->tail_x<0)s->tail_x=0;
+        if(s->dy*s->tail_y<0)s->tail_y=0;
+        s->tail_x+=s->dx;s->tail_y+=s->dy;
+        double remaining=s->last_motion+s->smoothing_ms*.001-s->last_tick;
+        double alpha=s->smoothing_ms>0?fmin(1.,dt/fmax(dt,remaining)):1.;
+        double mx=s->tail_x*alpha,my=s->tail_y*alpha;
+        s->tail_x-=mx;s->tail_y-=my;
+        mx*=s->sensitivity/(60.*dt);my*=s->sensitivity/(60.*dt)*(s->invert_y?-1.:1.);
+        double magnitude=hypot(mx,my);
+        if(magnitude>1e-8){
+            /* Invert the game's radial response, with an exact neutral at rest.
+             * A soft knee avoids snapping into maximum turn speed. Keyboard
+             * right-stick bindings retain their original digital response. */
+            double speed=magnitude<=.8?magnitude:.8+.2*tanh((magnitude-.8)/.2);
+            speed=pow(fmin(1.,speed),1./s->response_curve);
+            speed=s->deadzone+(1.-s->deadzone)*speed;
+            rx+=mx/magnitude*speed;ry+=my/magnitude*speed;
+        }
+    }else{
+        s->tail_x=s->tail_y=0;
     }
-    /* Consume every event once: no last-event overwrite or 80 ms camera tail. */
+    /* Each delta is consumed once; the reservoir has a hard 20 ms stop. */
     s->dx=s->dy=0;s->last_tick=now;
     scale=fmax(1.,hypot(rx,ry));
     axes[2]=(int16_t)lrint(rx/scale*32767.);axes[3]=(int16_t)lrint(ry/scale*32767.);

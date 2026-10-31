@@ -25,8 +25,10 @@ def runtime_input_request(values,revision):
         raise ValueError('Invalid mouse sensitivity')
     if not isinstance(values.get('invert_mouse_y',False),bool):raise ValueError('Invalid mouse inversion')
     if not isinstance(revision,str) or not 16<=len(revision)<=64 or any(c not in '0123456789abcdef' for c in revision):raise ValueError('Invalid input revision')
+    from mouse_look import settings
     return {'schema':1,'revision':revision,'keyboard':keyboard,'mouse':mouse,
-            'sensitivity':float(sensitivity),'invert_y':bool(values.get('invert_mouse_y',False))}
+            'sensitivity':float(sensitivity),'invert_y':bool(values.get('invert_mouse_y',False)),
+            'camera':settings(values,strict=True)}
 
 
 class MacDeckivo(Deckivo):

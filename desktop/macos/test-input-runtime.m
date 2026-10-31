@@ -15,6 +15,14 @@ int main(void) {
             @"sensitivity":@0.025,@"invert_y":@(NO)};
         NSData *data=[NSJSONSerialization dataWithJSONObject:valid options:0 error:NULL];
         assert(validate(data.bytes,data.length));
+        NSMutableDictionary *camera=valid.mutableCopy;
+        camera[@"camera"]=@{@"mouse_raw_input":@(YES),@"mouse_smoothing_ms":@8,@"mouse_deadzone":@.12,@"mouse_response_curve":@1.6};
+        data=[NSJSONSerialization dataWithJSONObject:camera options:0 error:NULL];assert(validate(data.bytes,data.length));
+        for(NSArray *invalid in @[@[@"mouse_smoothing_ms",@17],@[@"mouse_smoothing_ms",@(YES)],@[@"mouse_deadzone",@.4],@[@"mouse_response_curve",@0],@[@"mouse_raw_input",@1]]){
+            NSMutableDictionary *profile=[camera[@"camera"] mutableCopy];profile[invalid[0]]=invalid[1];camera[@"camera"]=profile;
+            data=[NSJSONSerialization dataWithJSONObject:camera options:0 error:NULL];assert(!validate(data.bytes,data.length));
+            camera[@"camera"]=@{@"mouse_raw_input":@(YES),@"mouse_smoothing_ms":@8,@"mouse_deadzone":@.12,@"mouse_response_curve":@1.6};
+        }
         NSArray *invalid=@[@[@"schema",@2],@[@"schema",@(YES)],@[@"sensitivity",@(YES)],
             @[@"sensitivity",@0.00001],@[@"sensitivity",@1],@[@"invert_y",@"false"],
             @[@"keyboard",@"53:0"],@[@"keyboard",@"13:23,"],@[@"mouse",@"5:1"],
