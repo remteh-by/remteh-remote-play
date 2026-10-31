@@ -31,6 +31,23 @@ class SiteGenerationTests(unittest.TestCase):
                 self.assertNotIn('0.8.2',schema,lang)
                 if lang in ('en','ru'):self.assertIn(f'Deckivo-macos-{builder.MAC_VERSION}-b{builder.MAC_BUILD}.zip',faq)
 
+    def test_download_labels_follow_the_verified_release_on_every_language_page(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out=Path(directory)/'site'
+            with patch('sys.argv',['build-site.py','--out',str(out)]):builder.main()
+            for lang in builder.NAMES:
+                page=out/('index.html' if lang=='en' else lang+'/index.html')
+                soup=BeautifulSoup(page.read_text(),'html.parser')
+                for key in ('stage','android_note','mac_note','linux_note'):
+                    text=soup.select_one('[data-i="'+key+'"]').get_text()
+                    versions=re.findall(r'\b\d+\.\d+\.\d+\b',text)
+                    # The Ubuntu OS version is independently documented and retained.
+                    versions=[version for version in versions if version!='24.04.4']
+                    self.assertEqual(versions,[builder.ANDROID_VERSION],lang+' '+key)
+                    self.assertNotIn('{',text)
+                self.assertIn('#'+str(builder.ANDROID_BUILD),soup.select_one('[data-i="android_note"]').get_text())
+                self.assertIn('b'+str(builder.MAC_BUILD),soup.select_one('[data-i="mac_note"]').get_text())
+
     def test_threshold_and_verified_funding_amounts_in_all_languages(self):
         with tempfile.TemporaryDirectory() as directory:
             fixture=Path(directory)

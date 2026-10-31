@@ -58,6 +58,7 @@ try {
       stats:document.querySelectorAll('#download-stats').length,unknownBars:document.querySelectorAll('#support progress').length,
       splitWords,clipped:clips,scrollWidth:document.documentElement.scrollWidth,viewport:innerWidth,
       languageLinks:document.querySelectorAll('.language-menu a').length,
+      downloadLabels:[...document.querySelectorAll('[data-i="stage"],[data-i="android_note"],[data-i="mac_note"],[data-i="linux_note"]')].map(el=>el.textContent),
       supportMethods:[...document.querySelectorAll('[data-support-method]')].map(card=>({
        id:card.dataset.supportMethod,url:card.querySelector('a').href,
        copy:card.querySelector('[data-copy-support]').dataset.copySupport,
@@ -70,6 +71,8 @@ try {
    assert.equal(state.og.width,'1200');assert.equal(state.og.height,'630');assert.equal(state.og.type,'image/jpeg');
    assert.equal(state.og.image,state.og.twitter);assert.match(state.og.image,/^https:\/\/.*\/github-cover\.jpg(?:\?|$)/);
    assert.equal(state.downloads.length,3);assert.ok(state.downloads.every(u=>u.includes('/v'+expectedVersion+'/')));
+   assert.equal(state.downloadLabels.length,4);
+   for(const label of state.downloadLabels)assert.ok(label.includes(expectedVersion),'visible download label must match the published version: '+label);
    assert.equal(state.stats,expectedStats,'public counters respect the configured threshold');assert.equal(state.unknownBars,expectedProgress);
    assert.deepEqual(state.supportMethods.map(m=>[m.id,m.url,m.copy]),support.methods.map(m=>[m.id,m.url,m.url]));
    assert.ok(state.supportMethods.every(m=>m.qr&&m.status.trim()),'every method has a QR and visible readiness status');

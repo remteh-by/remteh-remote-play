@@ -212,6 +212,8 @@ def main():
  def address(code):return base+('' if code=='en' else code+'/')
  for code in NAMES:
   copy={**catalog['en'],**catalog[code]};texts=support['texts'][code];download_text=download_catalog[code];prefix='' if code=='en' else '../'
+  for key in ('stage','android_note','mac_note','linux_note','linux_guide'):
+   copy[key]=copy[key].format(version=ANDROID_VERSION,android_build=ANDROID_BUILD,desktop_build=MAC_BUILD)
   copy['faq']=[{field:value.format(version=ANDROID_VERSION,mac_build=MAC_BUILD) for field,value in qa.items()} for qa in copy['faq']]
   soup=BeautifulSoup(template,'html.parser');soup.html['lang']=code;soup.html['dir']='rtl' if code=='ar' else 'ltr'
   if code in SYSTEM_FONT:soup.html['class']='system-font'
