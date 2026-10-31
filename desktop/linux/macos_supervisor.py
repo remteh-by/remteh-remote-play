@@ -77,6 +77,12 @@ def main():
             stop_socket=PRIVATE/'adapter.sock';stop_socket.unlink(missing_ok=True)
             env.update(DYLD_INSERT_LIBRARIES=str(bridge),DECKIVO_INPUT_SOCKET=str(input_socket),DECKIVO_STOP_SOCKET=str(stop_socket),DECKIVO_SUPERVISOR_SOCKET=str(path),DECKIVO_METRICS=str(PRIVATE/'metrics.json'),DECKIVO_KBM='1' if preferences.get('keyboard_mouse',False) else '0',SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS='1',DECKIVO_MOUSE_SENSITIVITY=str(preferences.get('mouse_sensitivity',.025)),DECKIVO_MOUSE_INVERT_Y='1' if preferences.get('invert_mouse_y',False) else '0',DECKIVO_INPUT_LANG=str(preferences.get('language','en')))
             env.update(DECKIVO_KEY_BINDINGS=keyboard_bindings,DECKIVO_MOUSE_BINDINGS=mouse_bindings)
+            from mouse_look import settings
+            camera=settings(preferences)
+            env.update(DECKIVO_MOUSE_RAW='1' if camera['mouse_raw_input'] else '0',
+                       DECKIVO_MOUSE_SMOOTHING=str(camera['mouse_smoothing_ms']),
+                       DECKIVO_MOUSE_DEADZONE=str(camera['mouse_deadzone']),
+                       DECKIVO_MOUSE_CURVE=str(camera['mouse_response_curve']))
             child=subprocess.Popen(args,env=env)
             print('[Deckivo] engine_pid='+str(child.pid),flush=True)
             try:

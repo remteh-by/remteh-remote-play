@@ -26,10 +26,11 @@ class MacNativeLifecycleTests(unittest.TestCase):
         cls.run_compile=staticmethod(run)
         common=[compiler,'-Wall','-Wextra','-Werror','-O1','-mmacosx-version-min=13.0']
         run(common+['-fsanitize=address,undefined',root/'macos/test-input-state.c','-o',cls.work/'test-state'])
+        run(common+['-fsanitize=address,undefined',root/'macos/test-mouse-look.c','-o',cls.work/'test-mouse-look'])
         run(common+['-c',root/'linux/native/kbm-bridge.c','-o',cls.work/'bridge.o'])
         run(common+['-fobjc-arc','-c',root/'macos/native-input.m','-o',cls.work/'mac.o'])
         cls.adapter=cls.work/'adapter.dylib'
-        run([compiler,'-dynamiclib','-undefined','dynamic_lookup','-framework','Cocoa','-framework','ApplicationServices',cls.work/'bridge.o',cls.work/'mac.o','-o',cls.adapter])
+        run([compiler,'-dynamiclib','-undefined','dynamic_lookup','-framework','Cocoa','-framework','ApplicationServices','-framework','GameController',cls.work/'bridge.o',cls.work/'mac.o','-o',cls.adapter])
         run(common+['-I'+str(cls.sdl/'include/SDL2'),root/'macos/test-audio-minimize.c',
                     '-L'+str(cls.sdl/'lib'),'-lSDL2','-Wl,-rpath,'+str(cls.sdl/'lib'),'-Wl,-export_dynamic','-o',cls.work/'test-audio'])
         run(common+['-fobjc-arc',root/'macos/test-input-runtime.m','-framework','Foundation',
@@ -37,6 +38,11 @@ class MacNativeLifecycleTests(unittest.TestCase):
 
     def test_focus_input_and_retina_window_policy_under_sanitizers(self):
         result=self.run_compile([self.work/'test-state'])
+        self.assertIn('PASS:',result.stdout)
+        print(result.stdout.strip())
+
+    def test_mouse_resampling_precision_and_stop_under_sanitizers(self):
+        result=self.run_compile([self.work/'test-mouse-look'])
         self.assertIn('PASS:',result.stdout)
         print(result.stdout.strip())
 

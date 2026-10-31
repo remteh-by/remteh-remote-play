@@ -64,7 +64,7 @@ class MacLiveInputTests(unittest.TestCase):
     def test_runtime_request_rejects_invalid_mouse_values_without_private_fields(self):
         values={'input_bindings':default_bindings(),'host':'192.0.2.123','mouse_sensitivity':.025,'invert_mouse_y':False}
         request=macos_main.runtime_input_request(values,'a'*32)
-        self.assertEqual(set(request),{'schema','revision','keyboard','mouse','sensitivity','invert_y'})
+        self.assertEqual(set(request),{'schema','revision','keyboard','mouse','sensitivity','invert_y','camera'})
         for speed in (True,float('nan'),0,1):
             with self.assertRaises(ValueError):macos_main.runtime_input_request({**values,'mouse_sensitivity':speed},'a'*32)
         with self.assertRaises(ValueError):macos_main.runtime_input_request(values,'bad revision')

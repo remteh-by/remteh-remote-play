@@ -31,7 +31,7 @@ def main():
  native_object=package/'input-core.o';mac_object=package/'native-input.o'
  subprocess.run(['clang','-Wall','-Wextra','-Werror','-O2','-mmacosx-version-min=13.0','-c',str(shared/'native/kbm-bridge.c'),'-o',str(native_object)],check=True)
  subprocess.run(['clang','-Wall','-Wextra','-Werror','-O2','-fobjc-arc','-mmacosx-version-min=13.0','-c',str(ROOT/'desktop/macos/native-input.m'),'-o',str(mac_object)],check=True)
- subprocess.run(['clang','-dynamiclib','-undefined','dynamic_lookup','-mmacosx-version-min=13.0','-framework','Cocoa','-framework','ApplicationServices',str(native_object),str(mac_object),'-o',str(bridge)],check=True)
+ subprocess.run(['clang','-dynamiclib','-undefined','dynamic_lookup','-mmacosx-version-min=13.0','-framework','Cocoa','-framework','ApplicationServices','-framework','GameController',str(native_object),str(mac_object),'-o',str(bridge)],check=True)
 
  command=[str(runtime/'bin/python'),'-m','PyInstaller','--noconfirm','--clean','--windowed',
      '--name','Deckivo','--osx-bundle-identifier','by.remteh.deckivo','--icon',str(icon),

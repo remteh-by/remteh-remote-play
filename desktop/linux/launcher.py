@@ -29,6 +29,10 @@ from ui import STYLE, LIME, INK, TEXT, label, button, card, icon, Hero, HeroTitl
 
 
 
+class ApplicationAlreadyRunning(RuntimeError):
+    """Only the instance-lock conflict is a successful no-op at startup."""
+
+
 class Reachability(QThread):
     result = pyqtSignal(object, float)
 
@@ -68,7 +72,7 @@ class Deckivo(QWidget):
         self.finalized=False;self.stream_id=0;self.page=0
         self.connecting_dialog=None
         self.lock=QLockFile(str(PRIVATE/'application.lock'))
-        if not self.lock.tryLock(0):raise RuntimeError('Deckivo is already open')
+        if not self.lock.tryLock(0):raise ApplicationAlreadyRunning('Deckivo is already open')
         self.setObjectName('window');self.setWindowTitle('Deckivo · PS5 Remote Play')
         self.setWindowIcon(QIcon(str(HERE/'deckivo.svg')))
         self.resize(1280,720);self.setMinimumSize(1000,650)
@@ -88,13 +92,16 @@ class Deckivo(QWidget):
         self.shortcuts=[]
         for key,action in [('Ctrl+Q',self.close),('F1',lambda:self.switch_page(1)),('F2',lambda:self.switch_page(2)),('F3',lambda:self.switch_page(3))]:
             shortcut=QShortcut(QKeySequence(key),self);shortcut.activated.connect(action);self.shortcuts.append(shortcut)
-        self.refresh()
         import update_ui
         update_ui.initialize(self)
         # Old releases persisted eligibility across launches. It is now a one-shot
         # result of the current completed session, never a launch-time reminder.
         from support import complete
         complete(self,0,False)
+        # Do not start a parented QThread from the constructor. A later startup
+        # exception would destroy this half-built window before shutdown is
+        # connected. The first event-loop turn runs only after main is ready.
+        QTimer.singleShot(0,self.refresh)
 
     def t(self,key):
         from i18n import text
@@ -632,10 +639,14 @@ def main():
             if connection.waitForConnected(500):
                 connection.write(('play' if command=='start' else command).encode()+b'\n');connection.flush();connection.waitForBytesWritten(500);connection.waitForReadyRead(1000);return 0
     try:window=Deckivo()
-    except RuntimeError:return 0
-    window.showMaximized()
-    import update_ui
-    QTimer.singleShot(0,lambda:update_ui.acknowledge(window))
-    if '--start' in sys.argv:QTimer.singleShot(1400,window.start)
+    except ApplicationAlreadyRunning:return 0
     app.aboutToQuit.connect(window.shutdown_threads)
-    return app.exec()
+    try:
+        window.showMaximized()
+        import update_ui
+        QTimer.singleShot(0,lambda:update_ui.acknowledge(window))
+        if '--start' in sys.argv:QTimer.singleShot(1400,window.start)
+        return app.exec()
+    finally:
+        # Also covers an exception/return before aboutToQuit can be emitted.
+        window.shutdown_threads()

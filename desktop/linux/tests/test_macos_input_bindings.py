@@ -93,7 +93,8 @@ class BindingDialogTests(unittest.TestCase):
         self.assertEqual(dialog.tabs.count(), 2)
         self.assertEqual(len(dialog.mouse_combos), 5)
         self.assertEqual(dialog.speed_spin.value(), 100)
-        self.assertEqual(dialog.result_values(), {"input_bindings": normalize_bindings(None), "mouse_sensitivity": 0.025, "invert_mouse_y": False, "keyboard_mouse": True})
+        from mouse_look import DEFAULTS
+        self.assertEqual(dialog.result_values(), {"input_bindings": normalize_bindings(None), "mouse_sensitivity": 0.025, "invert_mouse_y": False, "keyboard_mouse": True, **DEFAULTS})
 
     def test_assignment_moves_duplicate_and_clear_works(self):
         dialog = self.make_dialog()

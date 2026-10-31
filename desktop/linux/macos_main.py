@@ -25,8 +25,10 @@ def runtime_input_request(values,revision):
         raise ValueError('Invalid mouse sensitivity')
     if not isinstance(values.get('invert_mouse_y',False),bool):raise ValueError('Invalid mouse inversion')
     if not isinstance(revision,str) or not 16<=len(revision)<=64 or any(c not in '0123456789abcdef' for c in revision):raise ValueError('Invalid input revision')
+    from mouse_look import settings
     return {'schema':1,'revision':revision,'keyboard':keyboard,'mouse':mouse,
-            'sensitivity':float(sensitivity),'invert_y':bool(values.get('invert_mouse_y',False))}
+            'sensitivity':float(sensitivity),'invert_y':bool(values.get('invert_mouse_y',False)),
+            'camera':settings(values,strict=True)}
 
 
 class MacDeckivo(Deckivo):
@@ -193,12 +195,15 @@ def main():
     os.umask(0o077);app=QApplication(sys.argv)
     app.setOrganizationName('RemTeh');app.setApplicationName('Deckivo');QFontDatabase.addApplicationFont(str(HERE/'assets/fonts/IBMPlexSans.ttf'));app.setStyleSheet(launcher.STYLE)
     try:w=MacDeckivo()
-    except RuntimeError:return 0
-    w.setWindowTitle('Deckivo · PS5 Remote Play');w.show()
-    import update_ui
-    QTimer.singleShot(0,lambda:update_ui.acknowledge(w))
+    except launcher.ApplicationAlreadyRunning:return 0
     app.aboutToQuit.connect(w.shutdown_threads)
-    return app.exec()
+    try:
+        w.setWindowTitle('Deckivo · PS5 Remote Play');w.show()
+        import update_ui
+        QTimer.singleShot(0,lambda:update_ui.acknowledge(w))
+        return app.exec()
+    finally:
+        w.shutdown_threads()
 
 
 if __name__=='__main__':sys.exit(main())

@@ -3,6 +3,9 @@
  */
 #import <Cocoa/Cocoa.h>
 #import <ApplicationServices/ApplicationServices.h>
+#import <GameController/GameController.h>
+#import <os/lock.h>
+#include <stdatomic.h>
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -32,10 +35,59 @@ static NSRect remembered_frame;
 static BOOL have_frame,restore_pending,remembered_fullscreen,audio_hidden;
 static NSUInteger geometry_generation;
 static NSString *input_revision;
+static BOOL raw_requested=YES;
+static NSMutableArray<GCMouse *> *raw_mice;
+static id mouse_connect_observer,mouse_disconnect_observer;
+static os_unfair_lock raw_lock=OS_UNFAIR_LOCK_INIT;
+static atomic_bool raw_capturing;
+static double raw_dx,raw_dy,raw_at;
+static unsigned long raw_reports;
 static void install_keyboard_events(void);
 static double seconds(void){struct timespec t;clock_gettime(CLOCK_MONOTONIC,&t);return t.tv_sec+t.tv_nsec/1e9;}
 
+static BOOL use_raw_mouse(void) {return raw_requested&&raw_mice.count>0;}
+static void clear_raw_mouse(void) {
+    atomic_store(&raw_capturing,false);
+    os_unfair_lock_lock(&raw_lock);raw_dx=raw_dy=raw_at=0;os_unfair_lock_unlock(&raw_lock);
+}
+static void connect_raw_mouse(GCMouse *mouse) {
+    if(!mouse.mouseInput||[raw_mice containsObject:mouse]||mouse.mouseInput.mouseMovedHandler)return;
+    [raw_mice addObject:mouse];
+    mouse.handlerQueue=dispatch_queue_create("by.remteh.deckivo.mouse",dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL,QOS_CLASS_USER_INTERACTIVE,0));
+    mouse.mouseInput.mouseMovedHandler=^(GCMouseInput *device,float dx,float dy){
+        (void)device;
+        if(!atomic_load(&raw_capturing)||!isfinite(dx)||!isfinite(dy))return;
+        os_unfair_lock_lock(&raw_lock);
+        if(atomic_load(&raw_capturing)){
+            raw_dx=fmax(-4000.,fmin(4000.,raw_dx+dx));
+            /* GCMouse Y is up-positive; the focused AppKit path is down-positive. */
+            raw_dy=fmax(-4000.,fmin(4000.,raw_dy-dy));raw_at=seconds();raw_reports++;
+        }
+        os_unfair_lock_unlock(&raw_lock);
+    };
+}
+static void initialize_raw_mouse(void) {
+    /* Earlier macOS versions keep the focused AppKit fallback. Never request
+     * global Input Monitoring or enable background mouse observation. */
+    if(@available(macOS 14.0,*)){
+        raw_mice=[NSMutableArray array];
+        for(GCMouse *mouse in GCMouse.mice)connect_raw_mouse(mouse);
+        NSNotificationCenter *center=NSNotificationCenter.defaultCenter;
+        mouse_connect_observer=[center addObserverForName:GCMouseDidConnectNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification *note){connect_raw_mouse(note.object);}];
+        mouse_disconnect_observer=[center addObserverForName:GCMouseDidDisconnectNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification *note){
+            GCMouse *mouse=note.object;
+            if([raw_mice containsObject:mouse]){mouse.mouseInput.mouseMovedHandler=nil;[raw_mice removeObject:mouse];clear_raw_mouse();dk_mac_reset(&input,seconds());}
+        }];
+    }
+}
+static void drain_raw_mouse(void) {
+    double dx,dy,at;
+    os_unfair_lock_lock(&raw_lock);dx=raw_dx;dy=raw_dy;at=raw_at;raw_dx=raw_dy=0;os_unfair_lock_unlock(&raw_lock);
+    if(at>0&&(dx||dy))dk_mac_motion(&input,dx,dy,at);
+}
+
 static void end_capture(BOOL temporary) {
+    clear_raw_mouse();
     BOOL was_active=dk_mac_capture_end(&capture_state,&input,seconds(),temporary);
     capture_reason=temporary?"focus_lost":"dashboard_or_stop";
     if(was_active)fprintf(stderr,temporary?"[Deckivo] WASD mouse capture suspended (focus lost)\n":"[Deckivo] WASD mouse capture released\n");
@@ -134,6 +186,7 @@ static void begin_capture(void) {
         fprintf(stderr,"[Deckivo] relative mouse capture unavailable\n");return;
     }
     relative_mouse=YES;dk_mac_capture_begin(&capture_state);ignore_initial_motion=YES;[NSCursor hide];
+    atomic_store(&raw_capturing,use_raw_mouse());
     capture_reason=resumed?"focus_return":"capture_requested";
     fprintf(stderr,resumed?"[Deckivo] WASD mouse capture restored after focus return\n":"[Deckivo] WASD mouse capture active (relative)\n");
     NSString *language=NSProcessInfo.processInfo.environment[@"DECKIVO_INPUT_LANG"];
@@ -182,6 +235,7 @@ static void publish_input_status(void) {
     NSString *path=[[NSString stringWithUTF8String:base] stringByAppendingString:@".input"];
     if(!path)return;
     unsigned controller=deckivo_controller_status();
+    os_unfair_lock_lock(&raw_lock);unsigned long reports=raw_reports;os_unfair_lock_unlock(&raw_lock);
     NSRect frame=stream_window?stream_window.frame:NSZeroRect;NSScreen *screen=stream_window.screen;
     NSRect screen_frame=screen?screen.frame:NSZeroRect;
     NSDictionary *status=@{@"schema":@1,@"pid":@(getpid()),@"active":@(capture_state.active),
@@ -194,6 +248,8 @@ static void publish_input_status(void) {
         @"backing_scale":@(stream_window.backingScaleFactor),@"screen_width_points":@(NSWidth(screen_frame)),@"screen_height_points":@(NSHeight(screen_frame)),
         @"audio_hidden":@(audio_hidden),@"keys_seen":@(key_events),@"keys_accepted":@(accepted_keys),
         @"mouse_seen":@(mouse_events),@"mouse_accepted":@(accepted_mouse),@"samples_with_actions":@(action_samples),
+        @"mouse_source":use_raw_mouse()?@"raw":@"system",@"raw_mice":@(raw_mice.count),@"raw_reports":@(reports),
+        @"input_interval_ms":@4,@"mouse_smoothing_ms":@(input.smoothing_ms),@"mouse_deadzone":@(input.deadzone),@"mouse_response_curve":@(input.response_curve),
         @"controller_ready":@((controller&1)!=0),@"controller_attached":@((controller&2)!=0),@"controller_open":@((controller&4)!=0)};
     NSData *data=[NSJSONSerialization dataWithJSONObject:status options:0 error:NULL];
     if(data&&[data writeToFile:path options:NSDataWritingAtomic error:NULL])
@@ -215,6 +271,17 @@ static BOOL parse_input_request(NSData *data,DkMacInput *parsed,NSString **revis
     if(keys.length>2048||mouse.length>2048||[keys rangeOfCharacterFromSet:wire].location!=NSNotFound||[mouse rangeOfCharacterFromSet:wire].location!=NSNotFound)return NO;
     if(identifier.length<16||identifier.length>64||[identifier rangeOfCharacterFromSet:hex].location!=NSNotFound)return NO;
     dk_mac_init(parsed,sensitivity,[invert boolValue],seconds());
+    double smoothing=8,deadzone=0,curve=1;
+    id camera=value[@"camera"];
+    if(camera){
+        if(![camera isKindOfClass:NSDictionary.class])return NO;
+        NSArray *names=@[@"mouse_raw_input",@"mouse_smoothing_ms",@"mouse_deadzone",@"mouse_response_curve"];
+        for(NSString *name in names){id item=camera[name];if(![item isKindOfClass:NSNumber.class])return NO;
+            BOOL boolean=CFGetTypeID((__bridge CFTypeRef)item)==CFBooleanGetTypeID();
+            if(boolean!=[name isEqualToString:@"mouse_raw_input"])return NO;}
+        smoothing=[camera[@"mouse_smoothing_ms"] doubleValue];deadzone=[camera[@"mouse_deadzone"] doubleValue];curve=[camera[@"mouse_response_curve"] doubleValue];
+    }
+    if(!dk_mac_mouse_options(parsed,smoothing,deadzone,curve))return NO;
     if(!dk_mac_bindings(parsed,keys.UTF8String,false)||!dk_mac_bindings(parsed,mouse.UTF8String,true))return NO;
     *revision=identifier;return YES;
 }
@@ -230,11 +297,13 @@ void deckivo_macos_reload(void *unused) {
     NSString *path=[[[NSString stringWithUTF8String:base] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"input-runtime.json"];
     NSNumber *size=[NSFileManager.defaultManager attributesOfItemAtPath:path error:NULL][NSFileSize];
     if(!size||size.unsignedLongLongValue>16384)return;
-    DkMacInput updated;NSString *revision;
-    if(!parse_input_request([NSData dataWithContentsOfFile:path],&updated,&revision)){
+    DkMacInput updated;NSString *revision;NSData *data=[NSData dataWithContentsOfFile:path];
+    if(!parse_input_request(data,&updated,&revision)){
         fprintf(stderr,"[Deckivo] rejected invalid live input settings; current mapping retained\n");return;
     }
     end_capture(YES);input=updated;enabled=YES;setenv("DECKIVO_KBM","1",1);
+    NSDictionary *value=[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+    raw_requested=value[@"camera"]?[value[@"camera"][@"mouse_raw_input"] boolValue]:YES;
     input_revision=revision;capture_state.resume_on_focus=YES;capture_state.rearm_on_focus_loss=YES;
     capture_reason="runtime_input_updated";install_keyboard_events();
     fprintf(stderr,"[Deckivo] live keyboard/mouse settings accepted\n");
@@ -253,6 +322,8 @@ static void input_tick(void *unused) {
     if(!focused&&(capture_state.active||capture_state.rearm_on_focus_loss)&&!capture_state.resume_on_focus)end_capture(YES);
     if(!deckivo_ensure_controller())return;
     if(dk_mac_capture_wants_resume(&capture_state,focused))begin_capture();
+    atomic_store(&raw_capturing,capture_state.active&&focused&&use_raw_mouse());
+    if(capture_state.active&&use_raw_mouse())drain_raw_mouse();
     int16_t axes[6]={0,0,0,0,INT16_MIN,INT16_MIN};uint32_t buttons=0;
     if(capture_state.active)dk_mac_sample(&input,seconds(),&buttons,axes);
     if(buttons||axes[0]||axes[1]||axes[2]||axes[3]||axes[4]!=INT16_MIN||axes[5]!=INT16_MIN)action_samples++;
@@ -262,6 +333,7 @@ void deckivo_macos_input_start(void) {
     /* Observe the owned streaming window even in controller-only mode. A
      * non-key hint panel closing must never end the Remote Play session. */
     dispatch_async(dispatch_get_main_queue(),^{
+        initialize_raw_mouse();
         close_observer=[NSNotificationCenter.defaultCenter addObserverForName:NSWindowWillCloseNotification object:nil queue:nil usingBlock:^(NSNotification *note){
             NSWindow *window=note.object;
             if(!stream_window||window!=stream_window||[window isKindOfClass:NSPanel.class])return;
@@ -281,11 +353,14 @@ void deckivo_macos_input_start(void) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,200*NSEC_PER_MSEC),dispatch_get_main_queue(),^{restore_window_frame(window,generation);});
         }];
         input_timer=dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,0,0,dispatch_get_main_queue());
-        dispatch_source_set_timer(input_timer,DISPATCH_TIME_NOW,16*NSEC_PER_MSEC,2*NSEC_PER_MSEC);dispatch_source_set_event_handler_f(input_timer,input_tick);dispatch_resume(input_timer);
+        dispatch_source_set_timer(input_timer,DISPATCH_TIME_NOW,4*NSEC_PER_MSEC,NSEC_PER_MSEC/2);dispatch_source_set_event_handler_f(input_timer,input_tick);dispatch_resume(input_timer);
     });
     const char *flag=getenv("DECKIVO_KBM");enabled=flag&&!strcmp(flag,"1");if(!enabled)return;
     const char *value=getenv("DECKIVO_MOUSE_SENSITIVITY"),*inverted=getenv("DECKIVO_MOUSE_INVERT_Y");
     dk_mac_init(&input,value?strtod(value,NULL):.025,inverted&&!strcmp(inverted,"1"),seconds());
+    const char *raw=getenv("DECKIVO_MOUSE_RAW"),*smooth=getenv("DECKIVO_MOUSE_SMOOTHING"),*deadzone=getenv("DECKIVO_MOUSE_DEADZONE"),*curve=getenv("DECKIVO_MOUSE_CURVE");
+    raw_requested=!raw||strcmp(raw,"0");
+    (void)dk_mac_mouse_options(&input,smooth?strtod(smooth,NULL):8.,deadzone?strtod(deadzone,NULL):0.,curve?strtod(curve,NULL):1.);
     bool keys_valid=dk_mac_bindings(&input,getenv("DECKIVO_KEY_BINDINGS"),false);
     bool mouse_valid=dk_mac_bindings(&input,getenv("DECKIVO_MOUSE_BINDINGS"),true);
     if(!keys_valid||!mouse_valid)
@@ -324,6 +399,7 @@ static void install_keyboard_events(void) {
             }
             switch(event.type){
                 case NSEventTypeMouseMoved:case NSEventTypeLeftMouseDragged:case NSEventTypeRightMouseDragged:case NSEventTypeOtherMouseDragged:
+                    if(use_raw_mouse())return nil; /* Never count raw + accelerated motion twice. */
                     accepted_mouse++;
                     if(ignore_initial_motion){ignore_initial_motion=NO;return nil;}
                     dk_mac_motion(&input,event.deltaX,event.deltaY,seconds());return nil;

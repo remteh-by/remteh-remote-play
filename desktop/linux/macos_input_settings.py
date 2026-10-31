@@ -10,7 +10,7 @@ from PyQt5.QtCore import QEvent, Qt
 from PyQt5.QtWidgets import (
     QCheckBox, QComboBox, QDialog, QDialogButtonBox, QGridLayout, QHBoxLayout,
     QLabel, QPushButton, QScrollArea, QSlider, QSpinBox, QTabWidget,
-    QVBoxLayout, QWidget,
+    QVBoxLayout, QWidget, QDoubleSpinBox,
 )
 
 
@@ -258,6 +258,13 @@ class InputSettingsDialog(QDialog):
             sensitivity = 0.025
         self.speed_spin.setValue(round(min(0.2, max(0.001, sensitivity)) / 0.025 * 100))
         self.invert_check.setChecked(preferences.get("invert_mouse_y") is True)
+        if self.platform=='macos':
+            from mouse_look import settings
+            camera=settings(preferences)
+            self.raw_check.setChecked(camera['mouse_raw_input'])
+            self.smoothing_spin.setValue(camera['mouse_smoothing_ms'])
+            self.deadzone_spin.setValue(camera['mouse_deadzone']*100)
+            self.curve_spin.setValue(camera['mouse_response_curve'])
         self._refresh_keys()
 
     def _tr(self, english, russian):
@@ -352,8 +359,33 @@ class InputSettingsDialog(QDialog):
         layout.addWidget(info)
         self.invert_check = QCheckBox(self._tr("Invert vertical mouse movement", "Инвертировать движение мыши по вертикали"))
         layout.addWidget(self.invert_check)
+        if self.platform=='macos':
+            self.raw_check=QCheckBox(self._tr("Raw Input · bypass macOS pointer acceleration", "Raw Input · без ускорения указателя macOS"))
+            layout.addWidget(self.raw_check)
+            camera=QGridLayout()
+            self.smoothing_spin=QDoubleSpinBox();self.smoothing_spin.setRange(0,16);self.smoothing_spin.setDecimals(1);self.smoothing_spin.setSuffix(' ms')
+            self.deadzone_spin=QDoubleSpinBox();self.deadzone_spin.setRange(0,35);self.deadzone_spin.setDecimals(1);self.deadzone_spin.setSuffix(' %')
+            self.curve_spin=QDoubleSpinBox();self.curve_spin.setRange(.5,3);self.curve_spin.setDecimals(2);self.curve_spin.setSingleStep(.1)
+            for row,(en,ru,widget) in enumerate([
+                ('Micro-smoothing','Микросглаживание',self.smoothing_spin),
+                ('Game deadzone compensation','Компенсация мёртвой зоны игры',self.deadzone_spin),
+                ('Game response curve','Кривая отклика игры',self.curve_spin)]):
+                caption=QLabel(self._tr(en,ru));caption.setBuddy(widget);widget.setAccessibleName(caption.text());camera.addWidget(caption,row,0);camera.addWidget(widget,row,1)
+            layout.addLayout(camera)
+            starter=QPushButton(self._tr('Starfield · starting profile','Starfield · стартовый профиль'))
+            starter.clicked.connect(self._starfield_profile);layout.addWidget(starter)
+            hint=QLabel(self._tr(
+                '0 ms is unfiltered. Increase deadzone compensation only until tiny movements respond. Curve 1 is linear; higher values offset slow camera response. The Starfield profile is a starting point to tune in your game. Raw Input falls back automatically when no supported mouse is connected; turn it off to use a trackpad alongside a mouse.',
+                '0 мс — без сглаживания. Увеличивайте компенсацию мёртвой зоны лишь до отклика на мелкие движения. Кривая 1 — линейная; выше — быстрее отклик медленных движений. Профиль Starfield — начальные значения для подстройки в игре. Без совместимой мыши Raw Input переключается на системный ввод; отключите его для трекпада при подключённой мыши.'))
+            hint.setWordWrap(True);hint.setObjectName('muted');layout.addWidget(hint)
         layout.addStretch()
-        self.tabs.addTab(page, self._tr("Mouse", "Мышь"))
+        scroll=QScrollArea();scroll.setWidgetResizable(True);scroll.setWidget(page)
+        self.tabs.addTab(scroll, self._tr("Mouse", "Мышь"))
+
+    def _starfield_profile(self):
+        self.speed_spin.setValue(100);self.raw_check.setChecked(True)
+        self.smoothing_spin.setValue(8);self.deadzone_spin.setValue(12);self.curve_spin.setValue(1.6)
+        self.status.setText(self._tr('Starting profile selected. Tune deadzone and speed in Starfield.', 'Стартовый профиль выбран. Подстройте мёртвую зону и скорость в Starfield.'))
 
     def _keys_for_action(self, action):
         return sorted(int(code) for code, assigned in self._bindings["keyboard"].items() if assigned == action)
@@ -396,12 +428,14 @@ class InputSettingsDialog(QDialog):
             combo.setCurrentIndex(combo.findData(action))
         self.speed_spin.setValue(100)
         self.invert_check.setChecked(False)
+        if self.platform=='macos':
+            self.raw_check.setChecked(True);self.smoothing_spin.setValue(8);self.deadzone_spin.setValue(0);self.curve_spin.setValue(1)
         from i18n import text
         self.status.setText(text('defaults_restored',self.language))
         self._refresh_keys()
 
     def result_values(self):
-        return {
+        result = {
             ("input_bindings" if self.platform=='macos' else 'linux_input_bindings'): self._normalize({
                 "keyboard": self._bindings["keyboard"],
                 "mouse": [combo.currentData() for combo in self.mouse_combos],
@@ -410,3 +444,7 @@ class InputSettingsDialog(QDialog):
             "invert_mouse_y": self.invert_check.isChecked(),
             "keyboard_mouse": True,
         }
+        if self.platform=='macos':
+            result.update(mouse_raw_input=self.raw_check.isChecked(),mouse_smoothing_ms=self.smoothing_spin.value(),
+                          mouse_deadzone=self.deadzone_spin.value()/100,mouse_response_curve=self.curve_spin.value())
+        return result
