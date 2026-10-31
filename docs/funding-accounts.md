@@ -11,6 +11,13 @@ This page records the creator-support accounts maintained for the Deckivo projec
 - **Boosty — RemTeh / Deckivo:** https://boosty.to/remteh
   - The creator profile is prepared. The provider requires account verification before a paid support level can be enabled. Payment acceptance is pending.
 
+- **Patreon — Deckivo / RemTeh.by:** https://www.patreon.com/c/deckivo
+  - The creator account and a USD 3 monthly support tier have been created. The page is not published: Patreon requires the owner's legal name and country for tax and payment purposes. No payout method or payment receipt has been verified.
+- **DonationAlerts — deckivo:** https://www.donationalerts.com/r/deckivo
+  - The profile is created and its public contribution form is accessible without signing in. No payout method is configured; actual payment receipt has not been tested. Recurring support is not verified.
+- **DonatePay — Deckivo / RemTeh.by:** https://donatepay.ru/don/1541009
+  - The creator profile is configured and its public contribution form is accessible without signing in. Payout details are not configured; actual payment receipt has not been tested. Recurring support is not verified.
+
 Contributions are optional and support development, maintenance and real-device testing. Deckivo remains free and open source. Contributions do not include personal technical support, commissioned development or promised release dates.
 
 ## About the project
