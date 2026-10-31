@@ -12,7 +12,7 @@ This page records the creator-support accounts maintained for the Deckivo projec
   - The creator profile is prepared. The provider requires account verification before a paid support level can be enabled. Payment acceptance is pending.
 
 - **Patreon — Deckivo / RemTeh.by:** https://www.patreon.com/c/deckivo
-  - The creator account and a USD 3 monthly support tier have been created. Publication has been requested; its result is awaiting verification because the provider's security check blocked readback. No payout method or payment receipt has been verified.
+  - The creator account and a USD 3 monthly support tier are configured. The tier and checkout link are visible in the creator's Public preview. Independent anonymous access is unverified because the provider's security check blocked the separate browser. No payout method is configured; actual payment receipt and recurring renewal have not been tested.
 - **DonationAlerts — deckivo:** https://www.donationalerts.com/r/deckivo
   - The profile is created and its public contribution form is accessible without signing in. No payout method is configured; actual payment receipt has not been tested. Recurring support is not verified.
 - **DonatePay — Deckivo / RemTeh.by:** https://donatepay.ru/don/1541009
