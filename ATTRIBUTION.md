@@ -29,5 +29,5 @@ The upstream support link in `.github/FUNDING.yml` is retained for the upstream 
 - Website WOFF2: Latin/Cyrillic subset of IBM Plex Sans, renamed Deckivo Sans Subset to respect the reserved font name under the same included OFL. System fonts serve CJK, Arabic and Hindi.
 - 0.6.1 no longer distributes the earlier Sony press photograph in its active assets; old release/tag artifacts remain unchanged.
 
-RemTeh's voluntary project support is [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats).
+RemTeh's voluntary project support methods and their readiness labels are listed in the [support hub](https://remteh-by.github.io/remteh-remote-play/#support).
 The retained upstream Buy Me a Coffee link is a separate destination. Both destinations support their respective maintainers.

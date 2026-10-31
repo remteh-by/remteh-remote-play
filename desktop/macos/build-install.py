@@ -8,7 +8,7 @@ PRIVATE=DATA/'private'
 RUNTIME=DATA/'python'
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--build',type=int,default=23);parser.add_argument('--stage-only',action='store_true');parser.add_argument('--private-preview',action='store_true');parser.add_argument('--output-dir',type=Path);parser.add_argument('--no-install-deps',action='store_true');parser.add_argument('--runtime-dir',type=Path);args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--build',type=int,default=24);parser.add_argument('--stage-only',action='store_true');parser.add_argument('--private-preview',action='store_true');parser.add_argument('--output-dir',type=Path);parser.add_argument('--no-install-deps',action='store_true');parser.add_argument('--runtime-dir',type=Path);args=parser.parse_args()
  runtime=args.runtime_dir or RUNTIME
  if sys.platform!='darwin' or platform.machine()!='arm64':raise SystemExit('This package targets the current Apple Silicon Mac.')
  os.umask(0o077)

@@ -1,5 +1,13 @@
 # Deckivo changelog
 
+## 0.8.8 — 2026-11-01 (experimental preview)
+
+- Seven owner support destinations in Android 33 and macOS / Switchroot Ubuntu build 24: Ko-fi, Patreon, Afdian, Boosty, DonationAlerts, DonatePay and OKX Pay.
+- One remembered provider selection drives the exact open / copy / QR destination. Readiness and one-time / monthly options are translated in 16 languages; pending verification is visible.
+- Website, GitHub funding and multilingual guides use the same public destination registry. Payment receipt and recurring renewals remain unverified; OKX Pay is an app transfer, not an automatic subscription.
+- Retain the already installed Mac Qt shutdown and raw-mouse fixes, original signing identities and upstream credits.
+
+
 ## 0.8.7 — 2026-10-30 (candidate, not published)
 
 - Android build 32: preserve server retry embargo across wall-clock rollback; manual checks cannot bypass rate limits.

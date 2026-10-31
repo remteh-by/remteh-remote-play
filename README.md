@@ -1,4 +1,4 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.7-b23-804d916c0292.webp" alt="Deckivo — actual desktop interface, development preview 0.8.7 build 23" width="100%"></a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.8-b24-cdeafe7510be.webp" alt="Deckivo — actual desktop interface, development preview 0.8.7 build 23" width="100%"></a></p>
 <p align="center"><sub>Actual Deckivo 0.8.7 desktop interface · desktop build 23 · Android build 32.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">RemTeh.by</a> · <a href="https://remteh.by/remont-konsoli?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">Game console repair in Minsk</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
@@ -84,9 +84,43 @@ Deckivo is free and open source. Your support helps fund signing, new platforms 
 - Windows build
 - More test hardware: PS5 Pro and handhelds
 
-[Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
+| Method | Options | Status |
+| --- | --- | --- |
+| [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) | One-time or monthly support | Page configured |
+| [Patreon](https://www.patreon.com/c/deckivo) | Monthly support | Payment receipt not yet tested |
+| [Afdian · 爱发电](https://afdian.com/a/deckivo) | Monthly support | Profile approval pending |
+| [Boosty](https://boosty.to/remteh) | Creator page | Still being prepared |
+| [DonationAlerts](https://www.donationalerts.com/r/deckivo) | One-time support | Payment receipt not yet tested |
+| [DonatePay](https://donatepay.ru/don/1541009) | One-time support | Payment receipt not yet tested |
+| [OKX Pay](https://okx.com/ul/VQfh84m) | Transfer in the OKX app | Payment receipt not yet tested |
 
+Payments are handled by the provider. Check the status and available payment options before continuing.
+
+<details>
+<summary>QR codes for your phone</summary>
+
+<p>Ko-fi · RemTeh</p>
 <img src="website/assets/support/kofi.svg" alt="Scan Ko-fi · RemTeh" width="180" height="180">
+
+<p>Patreon</p>
+<img src="website/assets/support/patreon.svg" alt="Scan Patreon" width="180" height="180">
+
+<p>Afdian · 爱发电</p>
+<img src="website/assets/support/afdian.svg" alt="Scan Afdian · 爱发电" width="180" height="180">
+
+<p>Boosty</p>
+<img src="website/assets/support/boosty.svg" alt="Scan Boosty" width="180" height="180">
+
+<p>DonationAlerts</p>
+<img src="website/assets/support/donationalerts.svg" alt="Scan DonationAlerts" width="180" height="180">
+
+<p>DonatePay</p>
+<img src="website/assets/support/donatepay.svg" alt="Scan DonatePay" width="180" height="180">
+
+<p>OKX Pay</p>
+<img src="website/assets/support/okx_pay.svg" alt="Scan OKX Pay" width="180" height="180">
+
+</details>
 
 Everything stays free. Supporting is optional.
 <!-- SUPPORT:END -->

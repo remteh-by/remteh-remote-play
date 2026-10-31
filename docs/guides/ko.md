@@ -1,12 +1,12 @@
 # Deckivo — 설치 및 플레이 안내
 
-Deckivo **0.8.7 preview** · 2026-10-30
+Deckivo **0.8.8 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## 시작하기 전에
 
-0.8.7은 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다.
+0.8.8은 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다.
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.7 preview** · 2026-10-30
 
 릴리스에서 arm64 APK를 받으세요. Android 8 이상이 필요하며 실기기 검증은 Switch OLED / Android 15입니다. 선택한 출처에만 설치 권한을 허용하세요. 기존 앱을 삭제하거나 데이터를 지우지 말고 덮어 설치합니다. 언어와 연결 마법사를 선택하고 Android Bluetooth에서 게임패드를 연결하세요. Play Protect를 끄지 마세요.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.7)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.8)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Deckivo **0.8.7 preview** · 2026-10-30
 
 Apple Silicon 전용입니다. 공식 chiaki-ng를 별도로 설치하고 PS5를 등록한 뒤 스트림을 닫으세요. Mac ZIP을 풀고 Deckivo.app을 ~/Applications로 옮깁니다. 공증되지 않은 앱이므로 개인정보 보호 및 보안에서 “확인 없이 열기”가 필요할 수 있습니다. Gatekeeper 전체를 끄지 마세요. Deckivo에서 chiaki-ng 등록을 가져오고 콘솔 IP를 입력합니다.
 
-[Mac ZIP · 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-macos-0.8.7-b23.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-macos-0.8.8-b24.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-Linux-0.8.7-b23-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-sources.zip)
+[Linux update ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-Linux-0.8.8-b24-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-sources.zip)
 
 ## 기기 등록
 
@@ -70,9 +70,41 @@ Deckivo는 무료 오픈 소스입니다. 후원은 새 플랫폼과 실제 기�
 - Windows 버전
 - 테스트 기기 추가: PS5 Pro 및 휴대용 기기
 
-[Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
+- [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — 일회성 또는 월간 후원. 페이지 설정 완료.
+- [Patreon](https://www.patreon.com/c/deckivo) — 월간 후원. 입금 수신은 아직 테스트되지 않음.
+- [Afdian · 爱发电](https://afdian.com/a/deckivo) — 월간 후원. 프로필 승인 대기 중.
+- [Boosty](https://boosty.to/remteh) — 크리에이터 페이지. 준비 중.
+- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — 일회성 후원. 입금 수신은 아직 테스트되지 않음.
+- [DonatePay](https://donatepay.ru/don/1541009) — 일회성 후원. 입금 수신은 아직 테스트되지 않음.
+- [OKX Pay](https://okx.com/ul/VQfh84m) — OKX 앱에서 송금. 입금 수신은 아직 테스트되지 않음.
 
+결제는 선택한 서비스에서 처리합니다. 계속하기 전에 상태와 결제 방법을 확인하세요.
+
+<details>
+<summary>휴대폰으로 스캔</summary>
+
+Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="휴대폰으로 스캔">
+
+Patreon
+<img src="../../website/assets/support/patreon.svg" width="180" height="180" alt="휴대폰으로 스캔">
+
+Afdian · 爱发电
+<img src="../../website/assets/support/afdian.svg" width="180" height="180" alt="휴대폰으로 스캔">
+
+Boosty
+<img src="../../website/assets/support/boosty.svg" width="180" height="180" alt="휴대폰으로 스캔">
+
+DonationAlerts
+<img src="../../website/assets/support/donationalerts.svg" width="180" height="180" alt="휴대폰으로 스캔">
+
+DonatePay
+<img src="../../website/assets/support/donatepay.svg" width="180" height="180" alt="휴대폰으로 스캔">
+
+OKX Pay
+<img src="../../website/assets/support/okx_pay.svg" width="180" height="180" alt="휴대폰으로 스캔">
+
+</details>
 
 모두 무료로 유지됩니다. 후원은 선택 사항입니다.
 <!-- SUPPORT:END -->

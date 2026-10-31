@@ -286,7 +286,7 @@ def main():
    for row in table.select('tbody tr'):
     for cell,title in zip(row.select('th,td'),headers):cell['data-label']=title
   support_section=soup.select_one('#support');support_section.clear()
-  intro=tag('div',{'class':'support-intro'});intro.append(tag('h2',{'id':'support-title'},texts['support']));intro.append(tag('p',{'class':'support-lead'},texts['support_body']));intro.append(tag('p',{'class':'small'},texts['support_note']));support_section.append(intro)
+  intro=tag('div',{'class':'support-intro'});intro.append(tag('h2',{'id':'support-title'},texts['support']));intro.append(tag('p',{'class':'support-lead'},texts['support_body']));intro.append(tag('p',{'class':'small'},texts['support_note']));intro.append(tag('p',{'class':'small'},texts['support_provider_note']));support_section.append(intro)
   goals=tag('div',{'class':'goals'})
   for goal in support['goals']:
    item=tag('article',{'class':'goal'});item.append(tag('h3',text=texts[goal['title_key']]))
@@ -299,12 +299,19 @@ def main():
   support_section.append(goals)
   methods=tag('div',{'class':'support-methods'})
   for method in support['methods']:
-   item=tag('article',{'class':'support-method'})
+   item=tag('article',{'class':'support-method','data-support-method':method['id']})
    destination=method.get('url') or method['address']
-   if method['qr']:item.append(tag('img',{'src':f'assets/support/{method["id"]}.svg','class':'qr','width':'240','height':'240','loading':'lazy','alt':texts['scan_phone']+' · '+method['title']}))
-   item.append(tag('h3',text=method['title']));item.append(tag('p',{'class':'destination'},destination))
+   item.append(tag('h3',text=method['title']))
+   item.append(tag('p',{'class':'support-cadence'},texts['method_cadence_'+method['cadence']]))
+   item.append(tag('p',{'class':'support-status status-'+method['status']},texts['method_status_'+method['status']]))
+   item.append(tag('p',{'class':'destination','dir':'ltr'},destination))
    if method.get('network'):item.append(tag('p',{'class':'small'},method['network']))
-   if method.get('url'):item.append(tag('a',{'class':'button primary','href':destination,'rel':'noopener noreferrer','target':'_blank','data-event':'support-'+method['id']},texts['support_link']+' ↗'))
+   if method.get('url'):item.append(tag('a',{'class':'button primary','href':destination,'rel':'noopener noreferrer','target':'_blank','data-event':'support-'+method['id']},texts['support_open_provider']+' ↗'))
+   item.append(tag('button',{'class':'button support-copy','type':'button','hidden':'','data-copy-support':destination,'data-success':texts['support_copied'],'data-failure':texts['support_copy_failed']},texts['support_copy_link']))
+   item.append(tag('p',{'class':'small copy-result','role':'status','aria-live':'polite'}))
+   if method['qr']:
+    qr=tag('details',{'class':'support-qr'});qr.append(tag('summary',text=texts['scan_phone']))
+    qr.append(tag('img',{'src':f'assets/support/{method["id"]}.svg','class':'qr','width':'240','height':'240','loading':'lazy','alt':texts['scan_phone']+' · '+method['title']}));item.append(qr)
    methods.append(item)
   support_section.append(methods)
   if support['supporters']:

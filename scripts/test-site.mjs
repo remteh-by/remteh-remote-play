@@ -57,7 +57,12 @@ try {
       downloads:[...document.querySelectorAll('a.package-link')].map(a=>a.href),
       stats:document.querySelectorAll('#download-stats').length,unknownBars:document.querySelectorAll('#support progress').length,
       splitWords,clipped:clips,scrollWidth:document.documentElement.scrollWidth,viewport:innerWidth,
-      languageLinks:document.querySelectorAll('.language-menu a').length};
+      languageLinks:document.querySelectorAll('.language-menu a').length,
+      supportMethods:[...document.querySelectorAll('[data-support-method]')].map(card=>({
+       id:card.dataset.supportMethod,url:card.querySelector('a').href,
+       copy:card.querySelector('[data-copy-support]').dataset.copySupport,
+       status:card.querySelector('.support-status').textContent,
+       qr:card.querySelector('.support-qr img')?.getAttribute('src')}))};
    });
    assert.equal(state.lang,lang);assert.ok(state.h1?.trim());assert.equal(state.app.length,1);assert.equal(state.faq.length,1);
    assert.equal(state.app[0].softwareVersion,expectedVersion);assert.ok(state.faq[0].mainEntity.length>=5);
@@ -66,6 +71,8 @@ try {
    assert.equal(state.og.image,state.og.twitter);assert.match(state.og.image,/^https:\/\/.*\/github-cover\.jpg(?:\?|$)/);
    assert.equal(state.downloads.length,3);assert.ok(state.downloads.every(u=>u.includes('/v'+expectedVersion+'/')));
    assert.equal(state.stats,expectedStats,'public counters respect the configured threshold');assert.equal(state.unknownBars,expectedProgress);
+   assert.deepEqual(state.supportMethods.map(m=>[m.id,m.url,m.copy]),support.methods.map(m=>[m.id,m.url,m.url]));
+   assert.ok(state.supportMethods.every(m=>m.qr&&m.status.trim()),'every method has a QR and visible readiness status');
    assert.deepEqual(state.splitWords,[],lang+' '+width+' split button words');assert.equal(state.languageLinks,16);assert.deepEqual(state.clipped,[]);assert.equal(state.scrollWidth,width);assert.deepEqual(errors,[]);
    evidence.push({lang,width,passed:true,appSchemas:state.app.length,faqSchemas:state.faq.length,clipped:0});
    if(['en','ru'].includes(lang)){await page.screenshot({path:path.join(output,lang+'-'+width+'.png')});if(width<=414)await page.locator('.device-chooser').screenshot({path:path.join(output,lang+'-'+width+'-downloads.png')});}
@@ -79,6 +86,8 @@ try {
   assert.equal(await page.locator('a.package-link').count(),3);
   assert.equal(await page.locator('.language-menu a').count(),16);
   assert.equal(await page.locator('script[type="application/ld+json"]').count(),1);
+  assert.equal(await page.locator('[data-support-method] a[href^="https://"]').count(),support.methods.length);
+  assert.equal(await page.locator('[data-copy-support]:visible').count(),0);
   await page.close();
  }
  const page=await context.newPage();

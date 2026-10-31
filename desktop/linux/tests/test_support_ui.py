@@ -79,6 +79,33 @@ class SupportUiTests(unittest.TestCase):
     def test_success_opens_exact_url_without_fallback(self):
         self.assertEqual(self.run_support_dialog(result=True),[])
 
+    def test_switching_method_keeps_open_copy_and_qr_on_same_destination(self):
+        configuration=support.configuration()
+        copy=configuration['texts']['en']
+        with patch.object(support,'load_json',return_value={}),patch.object(support,'private_json') as saved,\
+             patch.object(support,'qr_widget',side_effect=lambda method,side:QLabel(method['url'])) as qr,\
+             patch.object(support.QDesktopServices,'openUrl',return_value=True) as opened:
+            picker=support.MethodPicker(self.window,configuration,copy)
+            for index,method in enumerate(configuration['methods']):
+                picker.selector.setCurrentIndex(index);APP.processEvents()
+                picker.open_button.click();picker.copy_button.click()
+                self.assertEqual(opened.call_args.args[0].toString(),method['url'])
+                self.assertEqual(APP.clipboard().text(),method['url'])
+                self.assertEqual(picker.destination.text(),method['url'])
+                self.assertEqual(qr.call_args.args[0]['id'],method['id'])
+                self.assertEqual(picker.qr.count(),1)
+                self.assertEqual(picker.readiness.text(),copy['method_status_'+method['status']])
+            self.assertEqual(saved.call_args.args[1],{'method':configuration['methods'][-1]['id']})
+            picker.close();picker.deleteLater()
+
+    def test_saved_choice_is_restored_without_writing_on_open(self):
+        configuration=support.configuration()
+        with patch.object(support,'load_json',return_value={'method':'donatepay'}),\
+             patch.object(support,'private_json') as saved,patch.object(support,'qr_widget',return_value=QLabel('QR')):
+            picker=support.MethodPicker(self.window,configuration,configuration['texts']['en'])
+            self.assertEqual(picker.current()['id'],'donatepay');saved.assert_not_called()
+            picker.close();picker.deleteLater()
+
     def test_goal_progress_requires_both_verified_amounts(self):
         for raised,target,expected in ((None,None,0),(10,None,0),(None,100,0),(10,100,1)):
             with self.subTest(raised=raised,target=target):

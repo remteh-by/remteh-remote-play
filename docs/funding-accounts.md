@@ -7,7 +7,7 @@ This page records the creator-support accounts maintained for the Deckivo projec
 - **Ko-fi — RemTeh / Deckivo:** https://ko-fi.com/pavelzayats
   - Monthly and one-time support options are configured. Actual receipt and a recurring renewal have not yet been tested.
 - **Afdian — Deckivo / RemTeh.by:** https://afdian.com/a/deckivo
-  - This is our creator page, prepared for supporters who use Afdian. Creator verification is pending. Payment receipt and payout access are unverified; the method is awaiting activation in Deckivo's shared support configuration.
+  - This is our creator page, prepared for supporters who use Afdian. Creator verification is pending. Payment receipt and payout access are unverified. Deckivo lists the page with a visible approval-pending status.
 - **Boosty — RemTeh / Deckivo:** https://boosty.to/remteh
   - The creator profile is prepared. The provider requires account verification before a paid support level can be enabled. Payment acceptance is pending.
 
@@ -17,6 +17,9 @@ This page records the creator-support accounts maintained for the Deckivo projec
   - The profile is created and its public contribution form is accessible without signing in. No payout method is configured; actual payment receipt has not been tested. Recurring support is not verified.
 - **DonatePay — Deckivo / RemTeh.by:** https://donatepay.ru/don/1541009
   - The creator profile is configured and its public contribution form is accessible without signing in. Payout details are not configured; actual payment receipt has not been tested. Recurring support is not verified.
+
+- **OKX Pay — FILEsD:** https://okx.com/ul/VQfh84m
+  - This is the owner-provided receiving link from the OKX Pay QR code. Transfers require the OKX app; it is not an automatic subscription. Receipt has not been tested. The registration referral URL and unverified raw blockchain addresses are not donation destinations.
 
 Contributions are optional and support development, maintenance and real-device testing. Deckivo remains free and open source. Contributions do not include personal technical support, commissioned development or promised release dates.
 
@@ -31,4 +34,4 @@ Deckivo is a PS5 Remote Play client built on the work of Chiaki, chiaki-ng and A
 
 Deckivo 在爱发电的创作者页面是 https://afdian.com/a/deckivo ，由 RemTeh.by 维护，用于支持 Deckivo 的开源开发。目前创作者认证正在申请，收款和提现尚未验证。Deckivo 保持免费开源，赞助不包含一对一技术支持、定制开发或交付日期承诺。
 
-Status recorded on 2026-10-31. A public profile or a verification application does not establish that payment receipt or payouts have been tested.
+Status recorded on 2026-11-01. A public profile or a verification application does not establish that payment receipt or payouts have been tested.

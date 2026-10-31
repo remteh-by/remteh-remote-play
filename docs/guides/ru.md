@@ -1,12 +1,12 @@
 # Deckivo — подробная установка и игра
 
-Deckivo **0.8.7 preview** · 2026-10-30
+Deckivo **0.8.8 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Перед началом
 
-Deckivo 0.8.7 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.
+Deckivo 0.8.8 — экспериментальный открытый клиент Remote Play для PS5. Начните в одной домашней сети. На PS5 войдите в нужный профиль: Настройки → Система → Дистанционное воспроизведение → Включить дистанционное воспроизведение. При первой привязке консоль должна быть включена. Предпочтительна сеть 5 ГГц; гостевая сеть может запрещать связь устройств. Deckivo не устанавливает Android/Linux и не меняет прошивку PS5.
 
 <a id="android"></a>
 
@@ -27,7 +27,7 @@ Deckivo 0.8.7 — экспериментальный открытый клиен
 1. Завершите трансляцию. Откройте Настройки Android → Приложения → Deckivo → Удалить. Приложение, его привязка, настройки и история на этом устройстве будут удалены.
 2. APK и отчёты, сохранённые в «Загрузках», остаются — удалите их отдельно при необходимости. Игры и сохранения PS5 не затрагиваются. После новой установки потребуется привязка.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.7)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.8)
 
 <a id="macos"></a>
 
@@ -50,7 +50,7 @@ Deckivo 0.8.7 — экспериментальный открытый клиен
 2. Если нужно удалить также привязку, настройки, историю и загруженные обновления, отдельно удалите ~/Library/Application Support/Deckivo через Finder, предварительно сохранив нужное. В папке есть закрытые ключи привязки — не передавайте её другим.
 3. chiaki-ng — отдельное приложение со своими данными; при необходимости удалите его отдельно. Игры и сохранения на PS5 остаются.
 
-[Mac ZIP · 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-macos-0.8.7-b23.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-macos-0.8.8-b24.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -88,7 +88,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-Linux-0.8.7-b23-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-sources.zip)
+[Linux update ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-Linux-0.8.8-b24-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-sources.zip)
 
 ## Привязка и первое подключение
 
@@ -121,9 +121,41 @@ Deckivo бесплатный и с открытым кодом. Поддержк
 - Сборка для Windows
 - Больше устройств для тестов: PS5 Pro и портативные консоли
 
-[Ko-fi · RemTeh](https://ko-fi.com/pavelzayats)
+- [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Разовая или ежемесячная поддержка. Страница настроена.
+- [Patreon](https://www.patreon.com/c/deckivo) — Ежемесячная поддержка. Зачисление платежей ещё не проверено.
+- [Afdian · 爱发电](https://afdian.com/a/deckivo) — Ежемесячная поддержка. Ожидается подтверждение профиля.
+- [Boosty](https://boosty.to/remteh) — Страница автора. Способ ещё настраивается.
+- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Разовая поддержка. Зачисление платежей ещё не проверено.
+- [DonatePay](https://donatepay.ru/don/1541009) — Разовая поддержка. Зачисление платежей ещё не проверено.
+- [OKX Pay](https://okx.com/ul/VQfh84m) — Перевод в приложении OKX. Зачисление платежей ещё не проверено.
 
+Платежи обрабатывает выбранный сервис. Перед продолжением проверьте статус и доступные варианты оплаты.
+
+<details>
+<summary>Отсканируйте телефоном</summary>
+
+Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="Отсканируйте телефоном">
+
+Patreon
+<img src="../../website/assets/support/patreon.svg" width="180" height="180" alt="Отсканируйте телефоном">
+
+Afdian · 爱发电
+<img src="../../website/assets/support/afdian.svg" width="180" height="180" alt="Отсканируйте телефоном">
+
+Boosty
+<img src="../../website/assets/support/boosty.svg" width="180" height="180" alt="Отсканируйте телефоном">
+
+DonationAlerts
+<img src="../../website/assets/support/donationalerts.svg" width="180" height="180" alt="Отсканируйте телефоном">
+
+DonatePay
+<img src="../../website/assets/support/donatepay.svg" width="180" height="180" alt="Отсканируйте телефоном">
+
+OKX Pay
+<img src="../../website/assets/support/okx_pay.svg" width="180" height="180" alt="Отсканируйте телефоном">
+
+</details>
 
 Всё остаётся бесплатным. Поддержка — по желанию.
 <!-- SUPPORT:END -->

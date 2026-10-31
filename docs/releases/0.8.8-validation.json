@@ -1,0 +1,90 @@
+{
+  "version": "0.8.8",
+  "status": "experimental-preview",
+  "date": "2026-11-01",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.8",
+    "versionCode": 33,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.8-arm64.apk",
+    "apkBytes": 9494268,
+    "sha256": "00897a973834e43dd922eb4fcf71c5c1cde07fc62f1c0fac3a6c39293d388d91",
+    "build": "release-with-SOURCE_RELEASED-true",
+    "buildPassed": true,
+    "lintPassed": true,
+    "lintIssues": {
+      "Hint": 1,
+      "Warning": 2
+    },
+    "unitTests": 49,
+    "signingCertificateSha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "certificateMatchesPublic087": true,
+    "physicalUpdateInstall": "not-tested-this-release"
+  },
+  "desktop": {
+    "version": "0.8.8",
+    "build": 24,
+    "unitTests": 139,
+    "macOS": "arm64 staged bundle; ad-hoc signing, not notarized",
+    "linux": "Switchroot Ubuntu ARM64 source update; physical installation not tested"
+  },
+  "controllerPolicy": {
+    "passed": 17
+  },
+  "controllerLab": {
+    "englishStatesPassed": 104
+  },
+  "projectTests": {
+    "passed": 28,
+    "note": "20 project tests passed initially; 8 companion tests passed after building their required HOST_TEST fixture"
+  },
+  "site": {
+    "languages": 16,
+    "widths": [
+      360,
+      390,
+      414,
+      1440,
+      1920,
+      2560,
+      3840
+    ],
+    "renderedCasesPerStatisticsMode": 112,
+    "noJavascriptLanguagesPerMode": 16,
+    "statisticsModes": [
+      "available",
+      "unavailable"
+    ]
+  },
+  "support": {
+    "methods": [
+      "kofi",
+      "patreon",
+      "afdian",
+      "boosty",
+      "donationalerts",
+      "donatepay",
+      "okx_pay"
+    ],
+    "registrySourceSha256": "627d3df46736465bad94c87d60e5a430ee5f6d5f55b0e3edf6e4aaf17f439aab",
+    "independentlyDecodedQrCodes": 7,
+    "actualPaymentReceipt": "not-tested",
+    "pendingApproval": [
+      "afdian"
+    ],
+    "paidTierPreparing": [
+      "boosty"
+    ]
+  },
+  "requiresDevices": [
+    "Switch Android native UI and update install",
+    "Switchroot Ubuntu native UI and update install",
+    "PS5 sustained sessions",
+    "physical controllers",
+    "fresh-user macOS Gatekeeper"
+  ],
+  "privacy": "No profile IDs, addresses, credentials or private logs are packaged in this validation report."
+}

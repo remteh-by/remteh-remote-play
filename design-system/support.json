@@ -1,15 +1,95 @@
 {
   "schema": 1,
   "methods": [
-    {"id":"kofi","title":"Ko-fi · RemTeh","url":"https://ko-fi.com/pavelzayats","network":"","qr":true,"enabled":true},
-    {"id":"usdt_trc20","title":"USDT TRC20","address":"","network":"TRC20","qr":true,"enabled":false},
-    {"id":"usdt_ton","title":"USDT TON","address":"","network":"TON","qr":true,"enabled":false},
-    {"id":"ton","title":"TON","address":"","network":"TON","qr":true,"enabled":false},
-    {"id":"boosty","title":"Boosty","url":"","network":"","qr":true,"enabled":false}
+    {
+      "id": "kofi",
+      "title": "Ko-fi · RemTeh",
+      "url": "https://ko-fi.com/pavelzayats",
+      "network": "",
+      "qr": true,
+      "enabled": true,
+      "cadence": "both",
+      "status": "configured"
+    },
+    {
+      "id": "patreon",
+      "title": "Patreon",
+      "url": "https://www.patreon.com/c/deckivo",
+      "network": "",
+      "qr": true,
+      "enabled": true,
+      "cadence": "monthly",
+      "status": "unverified"
+    },
+    {
+      "id": "afdian",
+      "title": "Afdian · 爱发电",
+      "url": "https://afdian.com/a/deckivo",
+      "network": "",
+      "qr": true,
+      "enabled": true,
+      "cadence": "monthly",
+      "status": "review"
+    },
+    {
+      "id": "boosty",
+      "title": "Boosty",
+      "url": "https://boosty.to/remteh",
+      "network": "",
+      "qr": true,
+      "enabled": true,
+      "cadence": "profile",
+      "status": "preparing"
+    },
+    {
+      "id": "donationalerts",
+      "title": "DonationAlerts",
+      "url": "https://www.donationalerts.com/r/deckivo",
+      "network": "",
+      "qr": true,
+      "enabled": true,
+      "cadence": "once",
+      "status": "unverified"
+    },
+    {
+      "id": "donatepay",
+      "title": "DonatePay",
+      "url": "https://donatepay.ru/don/1541009",
+      "network": "",
+      "qr": true,
+      "enabled": true,
+      "cadence": "once",
+      "status": "unverified"
+    },
+    {
+      "id": "okx_pay",
+      "title": "OKX Pay",
+      "url": "https://okx.com/ul/VQfh84m",
+      "network": "",
+      "qr": true,
+      "enabled": true,
+      "cadence": "app",
+      "status": "unverified"
+    }
   ],
   "goals": [
-    {"id":"apple_developer","title_key":"support_goal_mac","target_usd":99,"raised_usd":null},
-    {"id":"windows","title_key":"support_goal_windows","target_usd":null,"raised_usd":null},
-    {"id":"hardware","title_key":"support_goal_hardware","target_usd":null,"raised_usd":null}
+    {
+      "id": "apple_developer",
+      "title_key": "support_goal_mac",
+      "target_usd": 99,
+      "raised_usd": null
+    },
+    {
+      "id": "windows",
+      "title_key": "support_goal_windows",
+      "target_usd": null,
+      "raised_usd": null
+    },
+    {
+      "id": "hardware",
+      "title_key": "support_goal_hardware",
+      "target_usd": null,
+      "raised_usd": null
+    }
   ]
 }

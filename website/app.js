@@ -12,6 +12,14 @@
   document.getElementById('auto-lang')?.addEventListener('click',suggest);
   // A suggestion never redirects or replaces the server-rendered language.
   suggest();
+  document.querySelectorAll('[data-copy-support]').forEach(button=>{
+    button.hidden=false;
+    button.addEventListener('click',async()=>{
+      const status=button.closest('.support-method').querySelector('.copy-result');
+      try{await navigator.clipboard.writeText(button.dataset.copySupport);status.textContent=button.dataset.success;}
+      catch{status.textContent=button.dataset.failure;}
+    });
+  });
   if(!c.counter)return;
   const script=document.createElement('script');script.src='https://gc.zgo.at/count.js';script.async=true;
   script.dataset.goatcounter='https://'+c.counter+'.goatcounter.com/count';script.dataset.goatcounterSettings=JSON.stringify({no_onload:true});

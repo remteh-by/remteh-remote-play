@@ -9,7 +9,7 @@ catalog=json.loads((ROOT/'localization/guides.json').read_text());support=json.l
 lifecycle=json.loads((ROOT/'localization/guide-lifecycle.json').read_text())
 links=' · '.join(f'[{x["name"]}]({code}.md)' for code,x in catalog.items())
 for code,copy in catalog.items():
- lines=['# '+copy['title'],'',f'Deckivo **{VERSION} preview** · 2026-10-25','',links,'']
+ lines=['# '+copy['title'],'',f'Deckivo **{VERSION} preview** · 2026-11-01','',links,'']
  for i in range(8):
   anchors={1:'android',2:'macos',3:'ubuntu'}
   if i in anchors:lines += [f'<a id="{anchors[i]}"></a>','']
@@ -29,8 +29,12 @@ for code,copy in catalog.items():
  for goal in support['goals']:lines+=['- '+text[goal['title_key']]]
  lines+=['']
  for method in support['methods']:
-  destination=method.get('url') or method['address'];lines += [f'[{method["title"]}]({destination})' if method.get('url') else f'{method["title"]} · {method["network"]}: `{destination}`','']
-  if method['qr']:lines += [f'<img src="../../website/assets/support/{method["id"]}.svg" width="180" height="180" alt="{text["scan_phone"]}">','']
+  destination=method.get('url') or method['address'];link=f'[{method["title"]}]({destination})' if method.get('url') else f'{method["title"]} · {method["network"]}: `{destination}`'
+  lines += ['- '+link+' — '+text['method_cadence_'+method['cadence']]+'. '+text['method_status_'+method['status']]+'.']
+ lines+=['',text['support_provider_note'],'','<details>','<summary>'+text['scan_phone']+'</summary>','']
+ for method in support['methods']:
+  if method['qr']:lines += [method['title'],f'<img src="../../website/assets/support/{method["id"]}.svg" width="180" height="180" alt="{text["scan_phone"]}">','']
+ lines+=['</details>','']
  lines += [text['support_note'],'<!-- SUPPORT:END -->','']
  (ROOT/f'docs/guides/{code}.md').write_text('\n'.join(lines))
 print('Generated',len(catalog),'install guides with enabled support methods.')
