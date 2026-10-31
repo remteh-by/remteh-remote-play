@@ -71,7 +71,10 @@ def main():
             if not method['qr']:continue
             code=qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M,box_size=8,border=4)
             code.add_data(method.get('url') or method['address']);code.make(fit=True)
-            code.make_image(image_factory=qrcode.image.svg.SvgPathImage,fill_color='black',back_color='white').save(folder/(method['id']+'.svg'))
+            # GitHub strips page CSS: web/README images need their own white
+            # quiet zone. The native renderer already paints a white pixmap.
+            factory=qrcode.image.svg.SvgPathFillImage if folder==ROOT/'website/assets/support' else qrcode.image.svg.SvgPathImage
+            code.make_image(image_factory=factory,fill_color='black',back_color='white').save(folder/(method['id']+'.svg'))
     readme=ROOT/'README.md';text=readme.read_text();begin='<!-- SUPPORT:START -->';end='<!-- SUPPORT:END -->'
     lines=[begin,'### Help Deckivo grow','',payload['texts']['en']['support_body'],'']
     for goal in payload['goals']:lines.append('- '+payload['texts']['en'][goal['title_key']])
@@ -84,7 +87,9 @@ def main():
         lines.append(f'| {link} | {copy["method_cadence_"+method["cadence"]]} | {copy["method_status_"+method["status"]]} |')
     lines+=['',payload['texts']['en']['support_provider_note'],'','<details>','<summary>QR codes for your phone</summary>','']
     for method in payload['methods']:
-        if method['qr']:lines += [f'<p>{html.escape(method["title"])}</p>',f'<img src="website/assets/support/{method["id"]}.svg" alt="Scan {html.escape(method["title"])}" width="180" height="180">','']
+        if method['qr']:
+            digest=hashlib.sha256((ROOT/'website/assets/support'/(method['id']+'.svg')).read_bytes()).hexdigest()[:12]
+            lines += [f'<p>{html.escape(method["title"])}</p>',f'<img src="website/assets/support/{method["id"]}.svg?v={digest}" alt="Scan {html.escape(method["title"])}" width="180" height="180">','']
     lines+=['</details>','']
     lines.append(payload['texts']['en']['support_note'])
     if payload['supporters']:

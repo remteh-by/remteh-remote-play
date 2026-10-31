@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render all install guides from reviewed language and owner funding catalogs."""
 from pathlib import Path
-import json,sys
+import hashlib,json,sys
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'desktop/linux'))
 from session import VERSION
 from build_meta import BUILD
@@ -33,7 +33,9 @@ for code,copy in catalog.items():
   lines += ['- '+link+' — '+text['method_cadence_'+method['cadence']]+'. '+text['method_status_'+method['status']]+'.']
  lines+=['',text['support_provider_note'],'','<details>','<summary>'+text['scan_phone']+'</summary>','']
  for method in support['methods']:
-  if method['qr']:lines += [method['title'],f'<img src="../../website/assets/support/{method["id"]}.svg" width="180" height="180" alt="{text["scan_phone"]}">','']
+  if method['qr']:
+   digest=hashlib.sha256((ROOT/'website/assets/support'/(method['id']+'.svg')).read_bytes()).hexdigest()[:12]
+   lines += [method['title'],f'<img src="../../website/assets/support/{method["id"]}.svg?v={digest}" width="180" height="180" alt="{text["scan_phone"]}">','']
  lines+=['</details>','']
  lines += [text['support_note'],'<!-- SUPPORT:END -->','']
  (ROOT/f'docs/guides/{code}.md').write_text('\n'.join(lines))

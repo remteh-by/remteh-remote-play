@@ -100,25 +100,25 @@ Payments are handled by the provider. Check the status and available payment opt
 <summary>QR codes for your phone</summary>
 
 <p>Ko-fi · RemTeh</p>
-<img src="website/assets/support/kofi.svg" alt="Scan Ko-fi · RemTeh" width="180" height="180">
+<img src="website/assets/support/kofi.svg?v=dc1c37f9125b" alt="Scan Ko-fi · RemTeh" width="180" height="180">
 
 <p>Patreon</p>
-<img src="website/assets/support/patreon.svg" alt="Scan Patreon" width="180" height="180">
+<img src="website/assets/support/patreon.svg?v=f9e58ec6f1d9" alt="Scan Patreon" width="180" height="180">
 
 <p>Afdian · 爱发电</p>
-<img src="website/assets/support/afdian.svg" alt="Scan Afdian · 爱发电" width="180" height="180">
+<img src="website/assets/support/afdian.svg?v=8d31fd917144" alt="Scan Afdian · 爱发电" width="180" height="180">
 
 <p>Boosty</p>
-<img src="website/assets/support/boosty.svg" alt="Scan Boosty" width="180" height="180">
+<img src="website/assets/support/boosty.svg?v=7c00bd5f2a9a" alt="Scan Boosty" width="180" height="180">
 
 <p>DonationAlerts</p>
-<img src="website/assets/support/donationalerts.svg" alt="Scan DonationAlerts" width="180" height="180">
+<img src="website/assets/support/donationalerts.svg?v=c45161fae4e6" alt="Scan DonationAlerts" width="180" height="180">
 
 <p>DonatePay</p>
-<img src="website/assets/support/donatepay.svg" alt="Scan DonatePay" width="180" height="180">
+<img src="website/assets/support/donatepay.svg?v=6c0beed9ff84" alt="Scan DonatePay" width="180" height="180">
 
 <p>OKX Pay</p>
-<img src="website/assets/support/okx_pay.svg" alt="Scan OKX Pay" width="180" height="180">
+<img src="website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" alt="Scan OKX Pay" width="180" height="180">
 
 </details>
 

@@ -1,5 +1,6 @@
 """Invalid owner funding configuration must never become a visible destination."""
 import importlib.util,json,shutil,tempfile,unittest
+from xml.etree import ElementTree
 from pathlib import Path
 from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
@@ -39,6 +40,11 @@ class FundingConfig(unittest.TestCase):
  def test_credentials_in_destination_are_rejected(self):
   self.change(lambda x:x['methods'][0].update(url='https://user:password@example.com/'))
   with self.assertRaises(ValueError):funding.prepare()
+ def test_web_qr_quiet_zone_survives_dark_github_pages_without_styles(self):
+  for method in funding.prepare()['methods']:
+   image=ElementTree.fromstring((ROOT/'website/assets/support'/(method['id']+'.svg')).read_bytes())
+   rectangles=image.findall('{http://www.w3.org/2000/svg}rect')
+   self.assertTrue(any(rect.get('fill') in ('white','#fff','#ffffff') and rect.get('width')=='100%' and rect.get('height')=='100%' for rect in rectangles),method['id'])
  def test_nonfinite_funding_progress_is_rejected(self):
   self.change(lambda x:x['goals'][0].update(raised_usd=float('nan')))
   with self.assertRaises(ValueError):funding.prepare()

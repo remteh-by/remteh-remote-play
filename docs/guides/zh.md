@@ -84,25 +84,25 @@ Deckivo 免费开源。支持将用于新平台、签名和真实设备测试。
 <summary>用手机扫描</summary>
 
 Ko-fi · RemTeh
-<img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="用手机扫描">
+<img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="用手机扫描">
 
 Patreon
-<img src="../../website/assets/support/patreon.svg" width="180" height="180" alt="用手机扫描">
+<img src="../../website/assets/support/patreon.svg?v=f9e58ec6f1d9" width="180" height="180" alt="用手机扫描">
 
 Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg" width="180" height="180" alt="用手机扫描">
+<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="用手机扫描">
 
 Boosty
-<img src="../../website/assets/support/boosty.svg" width="180" height="180" alt="用手机扫描">
+<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="用手机扫描">
 
 DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg" width="180" height="180" alt="用手机扫描">
+<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="用手机扫描">
 
 DonatePay
-<img src="../../website/assets/support/donatepay.svg" width="180" height="180" alt="用手机扫描">
+<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="用手机扫描">
 
 OKX Pay
-<img src="../../website/assets/support/okx_pay.svg" width="180" height="180" alt="用手机扫描">
+<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="用手机扫描">
 
 </details>
 

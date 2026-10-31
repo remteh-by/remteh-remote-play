@@ -84,25 +84,25 @@ Deckivo は無料のオープンソースです。支援は新プラットフォ
 <summary>スマートフォンで読み取る</summary>
 
 Ko-fi · RemTeh
-<img src="../../website/assets/support/kofi.svg" width="180" height="180" alt="スマートフォンで読み取る">
+<img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="スマートフォンで読み取る">
 
 Patreon
-<img src="../../website/assets/support/patreon.svg" width="180" height="180" alt="スマートフォンで読み取る">
+<img src="../../website/assets/support/patreon.svg?v=f9e58ec6f1d9" width="180" height="180" alt="スマートフォンで読み取る">
 
 Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg" width="180" height="180" alt="スマートフォンで読み取る">
+<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="スマートフォンで読み取る">
 
 Boosty
-<img src="../../website/assets/support/boosty.svg" width="180" height="180" alt="スマートフォンで読み取る">
+<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="スマートフォンで読み取る">
 
 DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg" width="180" height="180" alt="スマートフォンで読み取る">
+<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="スマートフォンで読み取る">
 
 DonatePay
-<img src="../../website/assets/support/donatepay.svg" width="180" height="180" alt="スマートフォンで読み取る">
+<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="スマートフォンで読み取る">
 
 OKX Pay
-<img src="../../website/assets/support/okx_pay.svg" width="180" height="180" alt="スマートフォンで読み取る">
+<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="スマートフォンで読み取る">
 
 </details>
 
