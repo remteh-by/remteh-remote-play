@@ -1,6 +1,6 @@
 # Device and version test matrix
 
-Last evidence review: **2026-10-26**. “Installed”, “updater passed” and “gameplay
+Last evidence review: **2026-11-01**. “Installed”, “updater passed” and “gameplay
 accepted” are separate results. Requested resolution/FPS are not measured FPS.
 No personal registration files, account identifiers or raw device logs are public.
 
@@ -213,3 +213,7 @@ Russian device-neutral subtitle. This is UI/update acceptance, not gameplay.
 ## 0.8.7 publication without device acceptance · 2026-10-30
 
 The owner explicitly authorized publication without physical checks. 130 macOS ARM64 CI tests passed without skips; Android build/lint/49 unit tests and browser CI passed. No new PS5 gameplay, Android upgrade, Switchroot installation, controller transport or long-session acceptance is claimed. See [release evidence](releases/0.8.7-validation.json).
+
+## 0.8.9 support audit
+
+Patreon is removed from the current registry and Sponsor links. Six destinations remain. Boosty requires account verification; Afdian remains unverified. The public forms for Ko-fi, DonationAlerts and DonatePay were observed; OKX Pay opens an app-download page on desktop. No payment, recurring renewal or payout was performed. Desktop regression checks and exact package checks are recorded in [the release receipt](releases/0.8.9-validation.json); physical Switch and sustained PS5 tests remain separate.

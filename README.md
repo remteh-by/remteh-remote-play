@@ -1,23 +1,23 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.8-b24-46d7fd5ca7f1.webp" alt="Deckivo — actual desktop interface, development preview 0.8.7 build 23" width="100%"></a></p>
-<p align="center"><sub>Actual Deckivo 0.8.7 desktop interface · desktop build 23 · Android build 32.</sub></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.9-b25-7310a6eed305.webp" alt="Deckivo — actual desktop interface, development preview 0.8.9 build 25" width="100%"></a></p>
+<p align="center"><sub>Actual Deckivo 0.8.9 desktop interface · desktop build 25 · Android build 34.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">RemTeh.by</a> · <a href="https://remteh.by/remont-konsoli?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">Game console repair in Minsk</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-Linux-0.8.7-b23-source.zip">Linux 0.8.7 b23</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-arm64.apk">Android 0.8.7</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-macos-0.8.7-b23.zip">macOS 0.8.7 b23</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-Linux-0.8.9-b25-source.zip">Linux 0.8.9 b25</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-arm64.apk">Android 0.8.9</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-macos-0.8.9-b25.zip">macOS 0.8.9 b25</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
 
 [Download history and counting method](docs/DOWNLOADS.md).
 
 [English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)
 
-**Deckivo 0.8.7 is an experimental preview.** Android ARM64 build 32 and desktop build 23 for Apple Silicon macOS / Switchroot Ubuntu ARM64 are published. The owner authorized publication without physical-device acceptance. Android retry handling, desktop input/window/audio fixes, connection diagnostics and Ubuntu preflight are included. Automated checks passed; installation over existing data, real PS5 streaming and sustained sessions remain untested for this release. Mac packages are ad-hoc signed, not notarized.
+**Deckivo 0.8.9 is an experimental preview.** Android ARM64 build 34 and desktop build 25 cover Apple Silicon macOS and prepared Switchroot Ubuntu ARM64. This update removes Patreon, keeps six optional support methods and clarifies pending account verification. Payment receipt, Switch installation and PS5 sustained sessions are not certified by these software checks. Mac packages are ad-hoc signed, not notarized.
 
 ### Choose your screen
 
 | Platform | Delivery | Start here |
 |---|---|---|
-| Android ARM64 | 0.8.7 #32 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-0.8.7-arm64.apk) |
-| macOS Apple Silicon | 0.8.7 b23; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-macos-0.8.7-b23.zip) |
-| Switchroot Ubuntu ARM64 | 0.8.7 b23 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.7 real-device acceptance pending | [Linux 0.8.7 b23](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.7/Deckivo-Linux-0.8.7-b23-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
+| Android ARM64 | 0.8.9 #34 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-arm64.apk) |
+| macOS Apple Silicon | 0.8.9 b25; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-macos-0.8.9-b25.zip) |
+| Switchroot Ubuntu ARM64 | 0.8.9 b25 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.9 real-device acceptance pending | [Linux 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-Linux-0.8.9-b25-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
 | Windows, Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
 ### Made for your own play space
@@ -41,6 +41,7 @@
 
 | Hardware / OS | Exact build | Confirmed scope |
 |---|---|---|
+| Apple Silicon Mac development environment | 0.8.9 b25 source | 140 desktop tests and six-provider regression checks; isolated real Qt capture. Public updater acceptance is recorded separately after publication |
 | GitHub macOS 15 ARM64 runner | 0.8.7 b23 source | 130 automated tests passed without skips, including native input/window/audio; no physical gameplay or installed-device acceptance |
 | Apple Silicon Mac / owner installation | 0.8.6 b22 | Normal public update from b21; 417/417 package entries match and private state retained. EN/RU layout: 18 geometry cases + 4 Retina 2× cases. Installed-window visual check pending (native capture error -3811); gameplay not tested |
 | Apple Silicon Mac / macOS 27.0.1 | 0.8.5 b21 | Public update from 0.8.4 b20; 417/417 package entries match; pairing, preferences and session history unchanged; corrected Sessions subtitle observed in the installed window. PS5 offline: gameplay not tested |
@@ -53,7 +54,7 @@ The previously observed PS5 advertised firmware **13.42** (discovery system
 version `13420000`); no other firmware coverage is certified.
 
 See **[the detailed test matrix](docs/TESTED.md)** and
-[0.8.7 validation](docs/releases/0.8.7-validation.json) for the current preview; [0.8.6 validation](docs/releases/0.8.6-validation.json) is historical.
+[0.8.9 validation](docs/releases/0.8.9-validation.json) for the current preview; [0.8.6 validation](docs/releases/0.8.6-validation.json) is historical.
 [0.8.6 public Mac update acceptance](docs/releases/0.8.6-public-channel-validation.json).
 [0.8.5 public Mac update acceptance](docs/releases/0.8.5-public-channel-validation.json).
 [Earlier public update acceptance](docs/releases/0.6.0-public-channel-validation.json)

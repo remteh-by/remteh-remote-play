@@ -1,0 +1,147 @@
+{
+  "version": "0.8.9",
+  "status": "experimental-preview",
+  "date": "2026-11-01",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.9",
+    "versionCode": 34,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.9-arm64.apk",
+    "apkBytes": 9494268,
+    "sha256": "5a7602c973075995fa4b55d51bfb7fa2bdc8608d786fbd33ba1f2c84863f0078",
+    "build": "release-with-SOURCE_RELEASED-true",
+    "buildPassed": true,
+    "lintPassed": true,
+    "lintIssues": {
+      "Hint": 1,
+      "Warning": 2
+    },
+    "unitTests": 49,
+    "signingCertificateSha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "physicalUpdateInstall": "not-tested-this-release"
+  },
+  "desktop": {
+    "version": "0.8.9",
+    "build": 25,
+    "unitTests": 140,
+    "macOS": "ARM64 bundle, ad-hoc signed; no notarization",
+    "linux": "Switchroot Ubuntu ARM64 source update; physical installation not tested"
+  },
+  "controllerPolicy": {
+    "passed": 17
+  },
+  "controllerLab": {
+    "englishStatesPassed": 104
+  },
+  "support": {
+    "methods": [
+      "kofi",
+      "afdian",
+      "boosty",
+      "donationalerts",
+      "donatepay",
+      "okx_pay"
+    ],
+    "registrySourceSha256": "81543c3b08b32473da76adb3b442cf6c118bbf251ad1679ae9b66a3f5964e39a",
+    "patreonRemoved": true,
+    "removedSelectionFallsBackWithoutWrites": true,
+    "actualPaymentReceipt": "not-tested",
+    "pendingApproval": [
+      "afdian"
+    ],
+    "accountVerificationRequired": [
+      "boosty"
+    ],
+    "okxDesktop": "Link opens app-download page; mobile receiving flow not tested"
+  },
+  "site": {
+    "languages": 16,
+    "widths": [
+      360,
+      390,
+      414,
+      1440,
+      1920,
+      2560,
+      3840
+    ],
+    "renderedCasesPerStatisticsMode": 112,
+    "noJavascriptLanguagesPerMode": 16,
+    "statisticsModes": [
+      "available",
+      "unavailable"
+    ]
+  },
+  "screenshot": {
+    "schema": 1,
+    "version": "0.8.9",
+    "build": 25,
+    "source_commit": "bfefd75498c4148bc40ea465c0f5f454e967d49e",
+    "source_dirty": false,
+    "ui_source_sha256": "05d6aba9024cc6ea16c0588d6904e752b8a436cc97b5b4b84e5c656afc1a1ae2",
+    "capture_state": "unpaired",
+    "development_preview": true,
+    "captured_at": "2026-11-01T08:14:09Z",
+    "images": {
+      "deckivo-ui.webp": {
+        "sha256": "67e4faa8b3d117cb1157f1bfb218e935794ae579133f7b80a035d8d60e7bac10",
+        "bytes": 52344,
+        "width": 1600,
+        "height": 900
+      },
+      "deckivo-ui.avif": {
+        "sha256": "f40e049d6f40259cbc6113bbdc72293b903f462aab69224ea03ba9dbdca200b4",
+        "bytes": 28299,
+        "width": 1600,
+        "height": 900
+      },
+      "github-cover.webp": {
+        "sha256": "7310a6eed305a0802b6fecc57fcdae635132c684ac85840358e58afee8e2d209",
+        "bytes": 34010,
+        "width": 1200,
+        "height": 630
+      },
+      "github-cover.jpg": {
+        "sha256": "0a4053ecff4ad338e3153e10833c1d3d74bf7b59e1d9078c213f38e7e3d6d459",
+        "bytes": 76404,
+        "width": 1200,
+        "height": 630
+      },
+      "deckivo-hero.webp": {
+        "sha256": "1aa94064365dcbfb3691d4db293d4731340dd36bc0a77052481c6bdc17f63cab",
+        "bytes": 34750,
+        "width": 1476,
+        "height": 536
+      },
+      "deckivo-hero.avif": {
+        "sha256": "eef779d3c81a38ad95a842a516ed90ef3cb9a327aa8b4ba4cece551c36f00a25",
+        "bytes": 19638,
+        "width": 1476,
+        "height": 536
+      }
+    },
+    "hero_crop": {
+      "source": "deckivo-ui.webp",
+      "rectangle": [
+        104,
+        108,
+        1580,
+        644
+      ],
+      "operation": "crop only, exact real Qt capture"
+    },
+    "cover_transform": "contain full capture within 1200x630; no synthetic interface",
+    "readme_cover": "github-cover-0.8.9-b25-7310a6eed305.webp"
+  },
+  "requiresDevices": [
+    "Switch Android update and native UI",
+    "Switchroot Ubuntu update and native UI",
+    "PS5 sustained sessions",
+    "physical controllers",
+    "fresh-user macOS Gatekeeper"
+  ],
+  "privacy": "No private account, pairing, credential or device address data included."
+}
