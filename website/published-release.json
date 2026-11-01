@@ -8,21 +8,93 @@
   "assets": [
     {
       "name": "Deckivo-0.8.10-arm64.apk",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-0.8.10-arm64.apk",
       "bytes": 9494268,
-      "sha256": "f5e4395436c7acf19be2309c2d2f8f76a229ad4f97203b20f1845c3b93201b5f",
-      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-0.8.10-arm64.apk"
-    },
-    {
-      "name": "Deckivo-macos-0.8.10-b26.zip",
-      "bytes": 32496524,
-      "sha256": "bc1bfa76b27d3ee8bf058a8f50210969c03e23020f78d5f761b687989b2a73d1",
-      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-macos-0.8.10-b26.zip"
+      "sha256": "f5e4395436c7acf19be2309c2d2f8f76a229ad4f97203b20f1845c3b93201b5f"
     },
     {
       "name": "Deckivo-Linux-0.8.10-b26-source.zip",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-Linux-0.8.10-b26-source.zip",
       "bytes": 3668487,
-      "sha256": "efc3de3cf6496c54415277d1b930fa44e960660d2ded3d094873505b751c2b87",
-      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-Linux-0.8.10-b26-source.zip"
+      "sha256": "efc3de3cf6496c54415277d1b930fa44e960660d2ded3d094873505b751c2b87"
+    },
+    {
+      "name": "Deckivo-Linux-0.8.10-b26-corresponding-source.zip",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-Linux-0.8.10-b26-corresponding-source.zip",
+      "bytes": 4030696,
+      "sha256": "c3c602144b7e74e772d3d695d53880775daaee2981fb839388b8f7cd22fd2deb"
+    },
+    {
+      "name": "Deckivo-macos-0.8.10-b26.zip",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-macos-0.8.10-b26.zip",
+      "bytes": 32496524,
+      "sha256": "bc1bfa76b27d3ee8bf058a8f50210969c03e23020f78d5f761b687989b2a73d1"
+    },
+    {
+      "name": "Deckivo-0.8.10-android.cdx.json",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-0.8.10-android.cdx.json",
+      "bytes": 92435,
+      "sha256": "c2cac0a845df3793bec7b891a447e271fb7fbf06c980cd88b44f9a05af3f752a"
+    },
+    {
+      "name": "Deckivo-0.8.10-desktop.cdx.json",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-0.8.10-desktop.cdx.json",
+      "bytes": 2784,
+      "sha256": "f783a2cd2994a3fab55bd4a5f475aa4a0f9904685ce74778bfeaa33e843083fc"
+    },
+    {
+      "name": "update.json",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/update.json",
+      "bytes": 293,
+      "sha256": "596fe61c98c4b30cb7a9f89de4fb8f57284cb1ce21e7a6088120005108486282"
+    },
+    {
+      "name": "Deckivo-0.8.10-sources.zip",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-0.8.10-sources.zip",
+      "bytes": 42705242,
+      "sha256": "406f4cd76b604302a180c84aab19f1c0f29716c7c717e02cee288397e6611ff2"
+    },
+    {
+      "name": "SOURCE-REVISION.json",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/SOURCE-REVISION.json",
+      "bytes": 2065192,
+      "sha256": "e0799b2be75ee7cb642b7b7baba1753be1d78637fb04ec12abfdb45e9b6d8ec7"
+    },
+    {
+      "name": "remteh-pair-helper.elf",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/remteh-pair-helper.elf",
+      "bytes": 112672,
+      "sha256": "e63e9daab43b15af1bcaeb2eb172d86b1a057449a78ded563890be3c579cf297"
+    },
+    {
+      "name": "0.8.10-validation.json",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/0.8.10-validation.json",
+      "bytes": 4949,
+      "sha256": "57d96504c54a9cfd7f442922c41ac34c85a4e6b0b66f093e4be791eef2d8b0ca"
+    },
+    {
+      "name": "index.json",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/index.json",
+      "bytes": 651,
+      "sha256": "08fc89239c1f46fcc56eff7e85df50d6e7aa47dfc50fea6e281dbe329bcc5b59"
+    },
+    {
+      "name": "index.sig",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/index.sig",
+      "bytes": 512,
+      "sha256": "ad3de8e8137e3b201ddef0abfd665968ef67c6812dd9629d429796f19fd275a4"
+    },
+    {
+      "name": "release-manifest.json",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/release-manifest.json",
+      "bytes": 2285,
+      "sha256": "62a9a9a6d70d0400acb746c0cff43729b7404e36c1a7bcdcc46715a5c8ebfa46"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/SHA256SUMS.txt",
+      "bytes": 1277,
+      "sha256": "8fbe6ce5c8f57e780de2d378a1c830ed750c150223188c74e05e8a59601292f8"
     }
   ]
 }
