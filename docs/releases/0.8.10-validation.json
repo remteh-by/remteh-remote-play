@@ -1,0 +1,159 @@
+{
+  "version": "0.8.10",
+  "status": "experimental-preview",
+  "date": "2026-11-01",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.10",
+    "versionCode": 35,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.10-arm64.apk",
+    "apkBytes": 9494268,
+    "sha256": "f5e4395436c7acf19be2309c2d2f8f76a229ad4f97203b20f1845c3b93201b5f",
+    "build": "release-with-SOURCE_RELEASED-true",
+    "buildPassed": true,
+    "lintPassed": true,
+    "lintIssues": {
+      "Hint": 1,
+      "Warning": 2
+    },
+    "unitTests": 49,
+    "signingCertificateSha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "physicalUpdateInstall": "not-tested-this-release"
+  },
+  "desktop": {
+    "version": "0.8.10",
+    "build": 26,
+    "unitTests": 140,
+    "macOS": "ARM64 bundle, ad-hoc signed; no notarization",
+    "linux": "Switchroot Ubuntu ARM64 source update; physical installation not tested",
+    "macPackagedStartup": "Actual frozen application opened on owner Mac; six-method dialog observed via accessibility tree",
+    "bundledSDL": "SDL2-compat 2.32.74 + SDL3 3.4.18; loading and initialization smoke passed"
+  },
+  "controllerPolicy": {
+    "passed": 17,
+    "evidence": "Retained passing check from 0.8.9 in this audit; policy source unchanged"
+  },
+  "controllerLab": {
+    "englishStatesPassed": 104,
+    "evidence": "Retained passing check from 0.8.9 in this audit; lab source unchanged"
+  },
+  "support": {
+    "methods": [
+      "kofi",
+      "afdian",
+      "boosty",
+      "donationalerts",
+      "donatepay",
+      "okx_pay"
+    ],
+    "registrySourceSha256": "81543c3b08b32473da76adb3b442cf6c118bbf251ad1679ae9b66a3f5964e39a",
+    "patreonRemoved": true,
+    "removedSelectionFallsBackWithoutWrites": true,
+    "actualPaymentReceipt": "not-tested",
+    "pendingApproval": [
+      "afdian"
+    ],
+    "accountVerificationRequired": [
+      "boosty"
+    ],
+    "okxDesktop": "Link opens app-download page; mobile receiving flow not tested"
+  },
+  "site": {
+    "languages": 16,
+    "widths": [
+      360,
+      390,
+      414,
+      1440,
+      1920,
+      2560,
+      3840
+    ],
+    "renderedCasesPerStatisticsMode": 112,
+    "noJavascriptLanguagesPerMode": 16,
+    "statisticsModes": [
+      "available",
+      "unavailable"
+    ],
+    "status": "passed-both-statistics-modes"
+  },
+  "screenshot": {
+    "schema": 1,
+    "version": "0.8.10",
+    "build": 26,
+    "source_commit": "0d0f6e622dec963d5922a4e0f4447b6b5f09f99a",
+    "source_dirty": false,
+    "ui_source_sha256": "37e2cea228e33bbbf0e9b0a72d2113a9a2b0897626fd49330c00d8f7045751d1",
+    "capture_state": "unpaired",
+    "development_preview": true,
+    "captured_at": "2026-11-01T08:39:34Z",
+    "images": {
+      "deckivo-ui.webp": {
+        "sha256": "8b6e7e90ea76427b3180f2da34f897532ac70c2868c1e91ef5f247fcf777e42d",
+        "bytes": 52454,
+        "width": 1600,
+        "height": 900
+      },
+      "deckivo-ui.avif": {
+        "sha256": "6941cacdb53514ee5894926fd106bed4b71badf5f894289a6ac498c5694795a2",
+        "bytes": 31176,
+        "width": 1600,
+        "height": 900
+      },
+      "github-cover.webp": {
+        "sha256": "37655fc363471dfcf6628724373f64a43f36aff08b21b38445499c73d7f48f59",
+        "bytes": 32048,
+        "width": 1200,
+        "height": 630
+      },
+      "github-cover.jpg": {
+        "sha256": "606d74e7078e2fa41544fa6efa80828f88353de844652e25c71838e8037ebb3f",
+        "bytes": 68388,
+        "width": 1200,
+        "height": 630
+      },
+      "deckivo-hero.webp": {
+        "sha256": "1aa94064365dcbfb3691d4db293d4731340dd36bc0a77052481c6bdc17f63cab",
+        "bytes": 34750,
+        "width": 1476,
+        "height": 536
+      },
+      "deckivo-hero.avif": {
+        "sha256": "b3c28100d886903084e45a00567b85c495a2a53908697bee09ec7c39b9320a3b",
+        "bytes": 21356,
+        "width": 1476,
+        "height": 536
+      }
+    },
+    "hero_crop": {
+      "source": "deckivo-ui.webp",
+      "rectangle": [
+        104,
+        108,
+        1580,
+        644
+      ],
+      "operation": "crop only, exact real Qt capture"
+    },
+    "cover_transform": "contain full capture within 1200x630; no synthetic interface",
+    "readme_cover": "github-cover-0.8.10-b26-37655fc36347.webp"
+  },
+  "requiresDevices": [
+    "Switch Android update and native UI",
+    "Switchroot Ubuntu update and native UI",
+    "PS5 sustained sessions",
+    "physical controllers",
+    "fresh-user macOS Gatekeeper"
+  ],
+  "privacy": "No private account, pairing, credential or device address data included.",
+  "packagingRegression": {
+    "previousVersion": "0.8.9",
+    "previousBuild": 25,
+    "cause": "SDL2-compat dynamically loads SDL3; dependency was missing",
+    "observedRollback": "Updater restored 0.8.8 b24 after failed startup acknowledgement",
+    "fix": "Bundle SDL3 and license; verify actual packaged controller backend with timeout before publication"
+  }
+}

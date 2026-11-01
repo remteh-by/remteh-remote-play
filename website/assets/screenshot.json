@@ -1,35 +1,35 @@
 {
   "schema": 1,
-  "version": "0.8.9",
-  "build": 25,
-  "source_commit": "bfefd75498c4148bc40ea465c0f5f454e967d49e",
+  "version": "0.8.10",
+  "build": 26,
+  "source_commit": "0d0f6e622dec963d5922a4e0f4447b6b5f09f99a",
   "source_dirty": false,
-  "ui_source_sha256": "05d6aba9024cc6ea16c0588d6904e752b8a436cc97b5b4b84e5c656afc1a1ae2",
+  "ui_source_sha256": "37e2cea228e33bbbf0e9b0a72d2113a9a2b0897626fd49330c00d8f7045751d1",
   "capture_state": "unpaired",
   "development_preview": true,
-  "captured_at": "2026-11-01T08:14:09Z",
+  "captured_at": "2026-11-01T08:39:34Z",
   "images": {
     "deckivo-ui.webp": {
-      "sha256": "67e4faa8b3d117cb1157f1bfb218e935794ae579133f7b80a035d8d60e7bac10",
-      "bytes": 52344,
+      "sha256": "8b6e7e90ea76427b3180f2da34f897532ac70c2868c1e91ef5f247fcf777e42d",
+      "bytes": 52454,
       "width": 1600,
       "height": 900
     },
     "deckivo-ui.avif": {
-      "sha256": "f40e049d6f40259cbc6113bbdc72293b903f462aab69224ea03ba9dbdca200b4",
-      "bytes": 28299,
+      "sha256": "6941cacdb53514ee5894926fd106bed4b71badf5f894289a6ac498c5694795a2",
+      "bytes": 31176,
       "width": 1600,
       "height": 900
     },
     "github-cover.webp": {
-      "sha256": "7310a6eed305a0802b6fecc57fcdae635132c684ac85840358e58afee8e2d209",
-      "bytes": 34010,
+      "sha256": "37655fc363471dfcf6628724373f64a43f36aff08b21b38445499c73d7f48f59",
+      "bytes": 32048,
       "width": 1200,
       "height": 630
     },
     "github-cover.jpg": {
-      "sha256": "0a4053ecff4ad338e3153e10833c1d3d74bf7b59e1d9078c213f38e7e3d6d459",
-      "bytes": 76404,
+      "sha256": "606d74e7078e2fa41544fa6efa80828f88353de844652e25c71838e8037ebb3f",
+      "bytes": 68388,
       "width": 1200,
       "height": 630
     },
@@ -40,8 +40,8 @@
       "height": 536
     },
     "deckivo-hero.avif": {
-      "sha256": "eef779d3c81a38ad95a842a516ed90ef3cb9a327aa8b4ba4cece551c36f00a25",
-      "bytes": 19638,
+      "sha256": "b3c28100d886903084e45a00567b85c495a2a53908697bee09ec7c39b9320a3b",
+      "bytes": 21356,
       "width": 1476,
       "height": 536
     }
@@ -57,5 +57,5 @@
     "operation": "crop only, exact real Qt capture"
   },
   "cover_transform": "contain full capture within 1200x630; no synthetic interface",
-  "readme_cover": "github-cover-0.8.9-b25-7310a6eed305.webp"
+  "readme_cover": "github-cover-0.8.10-b26-37655fc36347.webp"
 }
