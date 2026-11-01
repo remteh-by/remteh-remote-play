@@ -1,12 +1,12 @@
 # Deckivo — インストールとプレイガイド
 
-Deckivo **0.8.8 preview** · 2026-11-01
+Deckivo **0.8.9 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## 準備
 
-0.8.8 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。
+0.8.9 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.8 preview** · 2026-11-01
 
 リリースから arm64 APK を取得します。Android 8 以上が必要で、実機テストは Switch OLED / Android 15 です。選択した提供元だけにインストールを許可し、旧版を削除せず上書きします。データを消さず、言語と接続ウィザードを選択します。Bluetooth コントローラーは Android で接続してください。Play Protect は無効化しません。
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.8)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.9)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Deckivo **0.8.8 preview** · 2026-11-01
 
 Apple Silicon のみです。公式 chiaki-ng を別途インストールし、PS5 を登録して配信を終了します。Mac ZIP を展開し Deckivo.app を ~/Applications に移します。未公証のため macOS のプライバシーとセキュリティで「このまま開く」が必要な場合があります。Gatekeeper 全体を無効化しないでください。Deckivo で chiaki-ng の登録を読み込み、PS5 の IP を入力します。
 
-[Mac ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-macos-0.8.8-b24.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-macos-0.8.9-b25.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-Linux-0.8.8-b24-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-sources.zip)
+[Linux update ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-Linux-0.8.9-b25-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-sources.zip)
 
 ## ペアリング
 
@@ -71,9 +71,8 @@ Deckivo は無料のオープンソースです。支援は新プラットフォ
 - テスト機材の追加：PS5 Pro と携帯端末
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — 単発または毎月の支援. ページ設定済み.
-- [Patreon](https://www.patreon.com/c/deckivo) — 毎月の支援. 入金は未確認です.
 - [Afdian · 爱发电](https://afdian.com/a/deckivo) — 毎月の支援. プロフィール承認待ち.
-- [Boosty](https://boosty.to/remteh) — クリエイターのページ. 準備中.
+- [Boosty](https://boosty.to/remteh) — クリエイターのページ. 支払いの受領にはアカウント認証が必要です.
 - [DonationAlerts](https://www.donationalerts.com/r/deckivo) — 単発の支援. 入金は未確認です.
 - [DonatePay](https://donatepay.ru/don/1541009) — 単発の支援. 入金は未確認です.
 - [OKX Pay](https://okx.com/ul/VQfh84m) — OKX アプリで送金. 入金は未確認です.
@@ -85,9 +84,6 @@ Deckivo は無料のオープンソースです。支援は新プラットフォ
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="スマートフォンで読み取る">
-
-Patreon
-<img src="../../website/assets/support/patreon.svg?v=f9e58ec6f1d9" width="180" height="180" alt="スマートフォンで読み取る">
 
 Afdian · 爱发电
 <img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="スマートフォンで読み取る">

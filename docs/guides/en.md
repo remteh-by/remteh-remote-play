@@ -1,12 +1,12 @@
 # Deckivo — installation and play guide
 
-Deckivo **0.8.8 preview** · 2026-11-01
+Deckivo **0.8.9 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Before you start
 
-Deckivo 0.8.8 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware.
+Deckivo 0.8.9 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware.
 
 <a id="android"></a>
 
@@ -27,7 +27,7 @@ Deckivo 0.8.8 is an experimental open-source PS5 Remote Play client. Start on th
 1. End the stream, then use Android Settings → Apps → Deckivo → Uninstall. This removes the app and its private pairing/settings/history on this device.
 2. APK files or reports saved in Downloads remain; remove those separately if unwanted. PS5 games and saves are not removed. A later reinstall needs pairing again.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.8)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.9)
 
 <a id="macos"></a>
 
@@ -50,7 +50,7 @@ Deckivo 0.8.8 is an experimental open-source PS5 Remote Play client. Start on th
 2. To remove saved registration, settings, history and downloaded updates too, remove ~/Library/Application Support/Deckivo in Finder only after backing up anything you need. It contains private pairing credentials; never share it.
 3. chiaki-ng is a separate application with separate data. Remove it separately only if no longer wanted. PS5 games and saves remain on the console.
 
-[Mac ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-macos-0.8.8-b24.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-macos-0.8.9-b25.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -88,7 +88,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-Linux-0.8.8-b24-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-sources.zip)
+[Linux update ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-Linux-0.8.9-b25-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-sources.zip)
 
 ## Pairing and first connection
 
@@ -122,9 +122,8 @@ Deckivo is free and open source. Your support helps fund signing, new platforms 
 - More test hardware: PS5 Pro and handhelds
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — One-time or monthly support. Page configured.
-- [Patreon](https://www.patreon.com/c/deckivo) — Monthly support. Payment receipt not yet tested.
 - [Afdian · 爱发电](https://afdian.com/a/deckivo) — Monthly support. Profile approval pending.
-- [Boosty](https://boosty.to/remteh) — Creator page. Still being prepared.
+- [Boosty](https://boosty.to/remteh) — Creator page. Account verification required before payments.
 - [DonationAlerts](https://www.donationalerts.com/r/deckivo) — One-time support. Payment receipt not yet tested.
 - [DonatePay](https://donatepay.ru/don/1541009) — One-time support. Payment receipt not yet tested.
 - [OKX Pay](https://okx.com/ul/VQfh84m) — Transfer in the OKX app. Payment receipt not yet tested.
@@ -136,9 +135,6 @@ Payments are handled by the provider. Check the status and available payment opt
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Scan with your phone">
-
-Patreon
-<img src="../../website/assets/support/patreon.svg?v=f9e58ec6f1d9" width="180" height="180" alt="Scan with your phone">
 
 Afdian · 爱发电
 <img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Scan with your phone">

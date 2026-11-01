@@ -1,12 +1,12 @@
 # Deckivo — स्थापना और खेलने की मार्गदर्शिका
 
-Deckivo **0.8.8 preview** · 2026-11-01
+Deckivo **0.8.9 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## शुरू करने से पहले
 
-0.8.8 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।
+0.8.9 प्रयोगात्मक संस्करण है। PS5 और क्लाइंट को एक ही घरेलू नेटवर्क से जोड़ें। PS5 पर सही प्रोफ़ाइल चुनें: सेटिंग्स → सिस्टम → रिमोट प्ले → सक्षम करें। पहली बार जोड़ते समय कंसोल चालू रखें। 5 GHz Wi-Fi बेहतर है; अतिथि नेटवर्क उपकरणों को अलग कर सकता है।
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.8 preview** · 2026-11-01
 
 रिलीज़ से arm64 APK डाउनलोड करें। Android 8+ आवश्यक है; वास्तविक परीक्षण Switch OLED और Android 15 पर हुआ। केवल चुने हुए स्रोत को स्थापना की अनुमति दें। पुराना ऐप या डेटा हटाए बिना ऊपर से इंस्टॉल करें। भाषा और कनेक्शन विज़ार्ड चुनें तथा Android Bluetooth में गेमपैड जोड़ें। Play Protect बंद न करें।
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.8)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.9)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Deckivo **0.8.8 preview** · 2026-11-01
 
 केवल Apple Silicon। आधिकारिक chiaki-ng अलग से इंस्टॉल करें, PS5 पंजीकृत करें और उसकी स्ट्रीम बंद करें। Mac ZIP खोलकर Deckivo.app को ~/Applications में रखें। ऐप notarized नहीं है; गोपनीयता और सुरक्षा में “Open Anyway” आवश्यक हो सकता है। Gatekeeper पूरी तरह बंद न करें। Deckivo में chiaki-ng पंजीकरण आयात करके कंसोल का IP भरें।
 
-[Mac ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-macos-0.8.8-b24.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-macos-0.8.9-b25.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-Linux-0.8.8-b24-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-sources.zip)
+[Linux update ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-Linux-0.8.9-b25-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-sources.zip)
 
 ## कंसोल जोड़ना
 
@@ -71,9 +71,8 @@ Deckivo मुफ्त और खुला स्रोत है। आपक�
 - और परीक्षण उपकरण: PS5 Pro और हैंडहेल्ड
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — एक बार या मासिक समर्थन. पेज सेट अप है.
-- [Patreon](https://www.patreon.com/c/deckivo) — मासिक समर्थन. भुगतान प्राप्ति का परीक्षण नहीं हुआ.
 - [Afdian · 爱发电](https://afdian.com/a/deckivo) — मासिक समर्थन. प्रोफ़ाइल की स्वीकृति लंबित है.
-- [Boosty](https://boosty.to/remteh) — निर्माता का पेज. अभी तैयार हो रहा है.
+- [Boosty](https://boosty.to/remteh) — निर्माता का पेज. भुगतान प्राप्त करने से पहले खाते का सत्यापन आवश्यक है.
 - [DonationAlerts](https://www.donationalerts.com/r/deckivo) — एक बार समर्थन. भुगतान प्राप्ति का परीक्षण नहीं हुआ.
 - [DonatePay](https://donatepay.ru/don/1541009) — एक बार समर्थन. भुगतान प्राप्ति का परीक्षण नहीं हुआ.
 - [OKX Pay](https://okx.com/ul/VQfh84m) — OKX ऐप में ट्रांसफ़र. भुगतान प्राप्ति का परीक्षण नहीं हुआ.
@@ -85,9 +84,6 @@ Deckivo मुफ्त और खुला स्रोत है। आपक�
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="फ़ोन से स्कैन करें">
-
-Patreon
-<img src="../../website/assets/support/patreon.svg?v=f9e58ec6f1d9" width="180" height="180" alt="फ़ोन से स्कैन करें">
 
 Afdian · 爱发电
 <img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="फ़ोन से स्कैन करें">

@@ -23,8 +23,7 @@ class FundingConfig(unittest.TestCase):
   self.change(lambda x:x['methods'][1].update(url=''))
   with self.assertRaises(ValueError):funding.prepare()
  def test_all_owner_destinations_have_translated_status_and_options(self):
-  expected={'kofi':'https://ko-fi.com/pavelzayats','patreon':'https://www.patreon.com/c/deckivo',
-   'afdian':'https://afdian.com/a/deckivo','boosty':'https://boosty.to/remteh',
+  expected={'kofi':'https://ko-fi.com/pavelzayats','afdian':'https://afdian.com/a/deckivo','boosty':'https://boosty.to/remteh',
    'donationalerts':'https://www.donationalerts.com/r/deckivo',
    'donatepay':'https://donatepay.ru/don/1541009','okx_pay':'https://okx.com/ul/VQfh84m'}
   payload=funding.prepare();self.assertEqual({x['id']:x['url'] for x in payload['methods']},expected)

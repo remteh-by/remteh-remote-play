@@ -106,6 +106,14 @@ class SupportUiTests(unittest.TestCase):
             self.assertEqual(picker.current()['id'],'donatepay');saved.assert_not_called()
             picker.close();picker.deleteLater()
 
+    def test_removed_provider_falls_back_without_opening_or_saving(self):
+        configuration=support.configuration()
+        self.assertNotIn('patreon',[m['id'] for m in configuration['methods']])
+        with patch.object(support,'load_json',return_value={'method':'patreon'}), patch.object(support,'private_json') as saved, patch.object(support,'qr_widget',return_value=QLabel('QR')), patch.object(support.QDesktopServices,'openUrl') as opened:
+            picker=support.MethodPicker(self.window,configuration,configuration['texts']['en'])
+            self.assertEqual(picker.current()['id'],'kofi');saved.assert_not_called();opened.assert_not_called()
+            picker.close();picker.deleteLater()
+
     def test_goal_progress_requires_both_verified_amounts(self):
         for raised,target,expected in ((None,None,0),(10,None,0),(None,100,0),(10,100,1)):
             with self.subTest(raised=raised,target=target):

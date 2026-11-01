@@ -1,12 +1,12 @@
 # Deckivo — kurulum ve oyun kılavuzu
 
-Deckivo **0.8.8 preview** · 2026-11-01
+Deckivo **0.8.9 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Başlamadan önce
 
-0.8.8 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir.
+0.8.9 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir.
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.8 preview** · 2026-11-01
 
 Sürümden arm64 APK dosyasını indirin. Android 8+ gerekir; fiziksel test Switch OLED ve Android 15 üzerinde yapıldı. Yalnızca seçtiğiniz kaynağa kurulum izni verin. Uygulamayı kaldırmadan ve verileri silmeden eski sürümün üzerine kurun. Dil ve bağlantı sihirbazını seçin, Bluetooth kontrolcüsünü Android’de eşleştirin. Play Protect’i kapatmayın.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.8)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.9)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Sürümden arm64 APK dosyasını indirin. Android 8+ gerekir; fiziksel test Swit
 
 Yalnızca Apple Silicon. chiaki-ng’yi ayrıca kurup PS5’i kaydedin ve yayınını kapatın. Mac ZIP dosyasını açıp Deckivo.app’i ~/Applications içine taşıyın. Noter onayı yoktur; macOS Gizlilik ve Güvenlik bölümünde «Yine de Aç» isteyebilir. Gatekeeper’ı tamamen kapatmayın. Deckivo’da chiaki-ng kaydını içe aktarıp konsol IP’sini girin.
 
-[Mac ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-macos-0.8.8-b24.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-macos-0.8.9-b25.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-Linux-0.8.8-b24-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-sources.zip)
+[Linux update ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-Linux-0.8.9-b25-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-sources.zip)
 
 ## Konsolu eşleştirme
 
@@ -71,9 +71,8 @@ Deckivo ücretsiz ve açık kaynaklıdır. Desteğiniz yeni platformlara ve ger�
 - Daha fazla cihaz: PS5 Pro ve el konsolları
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Tek seferlik veya aylık destek. Sayfa yapılandırıldı.
-- [Patreon](https://www.patreon.com/c/deckivo) — Aylık destek. Ödeme alımı henüz test edilmedi.
 - [Afdian · 爱发电](https://afdian.com/a/deckivo) — Aylık destek. Profil onayı bekleniyor.
-- [Boosty](https://boosty.to/remteh) — İçerik üreticisinin sayfası. Hazırlanıyor.
+- [Boosty](https://boosty.to/remteh) — İçerik üreticisinin sayfası. Ödeme almak için hesap doğrulaması gerekli.
 - [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Tek seferlik destek. Ödeme alımı henüz test edilmedi.
 - [DonatePay](https://donatepay.ru/don/1541009) — Tek seferlik destek. Ödeme alımı henüz test edilmedi.
 - [OKX Pay](https://okx.com/ul/VQfh84m) — OKX uygulamasında transfer. Ödeme alımı henüz test edilmedi.
@@ -85,9 +84,6 @@ Deckivo ücretsiz ve açık kaynaklıdır. Desteğiniz yeni platformlara ve ger�
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Telefonunla tara">
-
-Patreon
-<img src="../../website/assets/support/patreon.svg?v=f9e58ec6f1d9" width="180" height="180" alt="Telefonunla tara">
 
 Afdian · 爱发电
 <img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Telefonunla tara">

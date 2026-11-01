@@ -1,12 +1,12 @@
 # Deckivo — Installation und Spielen
 
-Deckivo **0.8.8 preview** · 2026-11-01
+Deckivo **0.8.9 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Vorbereitung
 
-0.8.8 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren.
+0.8.9 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren.
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.8 preview** · 2026-11-01
 
 Lade die arm64-APK aus dem Release. Android 8+ ist erforderlich; physisch getestet wurde Switch OLED mit Android 15. Erlaube die Installation nur der gewählten Quelle. Installiere über die vorhandene Version, ohne Daten zu löschen. Wähle Sprache und Verbindungsassistent; kopple den Bluetooth-Controller in Android. Play Protect nicht deaktivieren.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.8)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.9)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Lade die arm64-APK aus dem Release. Android 8+ ist erforderlich; physisch getest
 
 Nur Apple Silicon. Installiere chiaki-ng separat, registriere die PS5 und beende dessen Stream. Entpacke das Mac-ZIP und verschiebe Deckivo.app nach ~/Applications. Die App ist nicht notarisiert; macOS kann „Dennoch öffnen“ unter Datenschutz & Sicherheit verlangen. Gatekeeper nicht global deaktivieren. Importiere in Deckivo die chiaki-ng-Registrierung und gib die Konsolen-IP ein.
 
-[Mac ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-macos-0.8.8-b24.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-macos-0.8.9-b25.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-Linux-0.8.8-b24-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-sources.zip)
+[Linux update ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-Linux-0.8.9-b25-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-sources.zip)
 
 ## Konsole koppeln
 
@@ -71,9 +71,8 @@ Deckivo ist kostenlos und quelloffen. Unterstützung hilft bei neuen Plattformen
 - Mehr Testgeräte: PS5 Pro und Handhelds
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Einmalige oder monatliche Unterstützung. Seite eingerichtet.
-- [Patreon](https://www.patreon.com/c/deckivo) — Monatliche Unterstützung. Zahlungseingang noch nicht getestet.
 - [Afdian · 爱发电](https://afdian.com/a/deckivo) — Monatliche Unterstützung. Profilfreigabe ausstehend.
-- [Boosty](https://boosty.to/remteh) — Seite des Entwicklers. Wird noch eingerichtet.
+- [Boosty](https://boosty.to/remteh) — Seite des Entwicklers. Kontoverifizierung für den Zahlungsempfang erforderlich.
 - [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Einmalige Unterstützung. Zahlungseingang noch nicht getestet.
 - [DonatePay](https://donatepay.ru/don/1541009) — Einmalige Unterstützung. Zahlungseingang noch nicht getestet.
 - [OKX Pay](https://okx.com/ul/VQfh84m) — Überweisung in der OKX-App. Zahlungseingang noch nicht getestet.
@@ -85,9 +84,6 @@ Zahlungen werden vom Anbieter abgewickelt. Prüfe vor dem Fortfahren den Status 
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Mit dem Handy scannen">
-
-Patreon
-<img src="../../website/assets/support/patreon.svg?v=f9e58ec6f1d9" width="180" height="180" alt="Mit dem Handy scannen">
 
 Afdian · 爱发电
 <img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Mit dem Handy scannen">

@@ -12,16 +12,6 @@
       "status": "configured"
     },
     {
-      "id": "patreon",
-      "title": "Patreon",
-      "url": "https://www.patreon.com/c/deckivo",
-      "network": "",
-      "qr": true,
-      "enabled": true,
-      "cadence": "monthly",
-      "status": "unverified"
-    },
-    {
       "id": "afdian",
       "title": "Afdian · 爱发电",
       "url": "https://afdian.com/a/deckivo",

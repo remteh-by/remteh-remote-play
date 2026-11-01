@@ -87,9 +87,8 @@ Deckivo is free and open source. Your support helps fund signing, new platforms 
 | Method | Options | Status |
 | --- | --- | --- |
 | [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) | One-time or monthly support | Page configured |
-| [Patreon](https://www.patreon.com/c/deckivo) | Monthly support | Payment receipt not yet tested |
 | [Afdian · 爱发电](https://afdian.com/a/deckivo) | Monthly support | Profile approval pending |
-| [Boosty](https://boosty.to/remteh) | Creator page | Still being prepared |
+| [Boosty](https://boosty.to/remteh) | Creator page | Account verification required before payments |
 | [DonationAlerts](https://www.donationalerts.com/r/deckivo) | One-time support | Payment receipt not yet tested |
 | [DonatePay](https://donatepay.ru/don/1541009) | One-time support | Payment receipt not yet tested |
 | [OKX Pay](https://okx.com/ul/VQfh84m) | Transfer in the OKX app | Payment receipt not yet tested |
@@ -101,9 +100,6 @@ Payments are handled by the provider. Check the status and available payment opt
 
 <p>Ko-fi · RemTeh</p>
 <img src="website/assets/support/kofi.svg?v=dc1c37f9125b" alt="Scan Ko-fi · RemTeh" width="180" height="180">
-
-<p>Patreon</p>
-<img src="website/assets/support/patreon.svg?v=f9e58ec6f1d9" alt="Scan Patreon" width="180" height="180">
 
 <p>Afdian · 爱发电</p>
 <img src="website/assets/support/afdian.svg?v=8d31fd917144" alt="Scan Afdian · 爱发电" width="180" height="180">

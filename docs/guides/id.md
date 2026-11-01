@@ -1,12 +1,12 @@
 # Deckivo — panduan instalasi dan bermain
 
-Deckivo **0.8.8 preview** · 2026-11-01
+Deckivo **0.8.9 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
 ## Sebelum mulai
 
-0.8.8 adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat.
+0.8.9 adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat.
 
 <a id="android"></a>
 
@@ -14,7 +14,7 @@ Deckivo **0.8.8 preview** · 2026-11-01
 
 Unduh APK arm64 dari rilis. Memerlukan Android 8+; pengujian fisik memakai Switch OLED dengan Android 15. Izinkan instalasi hanya dari sumber yang dipilih. Pasang di atas versi lama tanpa menghapus aplikasi atau data. Pilih bahasa dan panduan koneksi, lalu pasangkan kontroler Bluetooth di Android. Jangan matikan Play Protect.
 
-[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.8)
+[Android APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-arm64.apk) · [Release / SHA-256](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.8.9)
 
 <a id="macos"></a>
 
@@ -22,7 +22,7 @@ Unduh APK arm64 dari rilis. Memerlukan Android 8+; pengujian fisik memakai Switc
 
 Hanya Apple Silicon. Instal chiaki-ng secara terpisah, daftarkan PS5 dan tutup streaming-nya. Ekstrak ZIP Mac dan pindahkan Deckivo.app ke ~/Applications. Belum dinotarisasi: macOS dapat meminta “Open Anyway” di Privasi & Keamanan. Jangan matikan Gatekeeper secara global. Impor pendaftaran chiaki-ng dalam Deckivo dan masukkan IP konsol.
 
-[Mac ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-macos-0.8.8-b24.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
+[Mac ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-macos-0.8.9-b25.zip) · [chiaki-ng](https://github.com/streetpea/chiaki-ng/releases)
 
 <a id="ubuntu"></a>
 
@@ -39,7 +39,7 @@ python3 desktop/linux/pair.py
 python3 desktop/linux/upgrade.py
 ```
 
-[Linux update ZIP · 0.8.8 b24](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-Linux-0.8.8-b24-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.8/Deckivo-0.8.8-sources.zip)
+[Linux update ZIP · 0.8.9 b25](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-Linux-0.8.9-b25-source.zip) · [Linux requirements](../LINUX.md) · [Complete source kit](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.9/Deckivo-0.8.9-sources.zip)
 
 ## Memasangkan konsol
 
@@ -71,9 +71,8 @@ Deckivo gratis dan terbuka. Dukungan membantu platform baru dan pengujian perang
 - Perangkat tambahan: PS5 Pro dan handheld
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Dukungan sekali atau bulanan. Halaman telah disiapkan.
-- [Patreon](https://www.patreon.com/c/deckivo) — Dukungan bulanan. Penerimaan pembayaran belum diuji.
 - [Afdian · 爱发电](https://afdian.com/a/deckivo) — Dukungan bulanan. Menunggu persetujuan profil.
-- [Boosty](https://boosty.to/remteh) — Halaman kreator. Masih disiapkan.
+- [Boosty](https://boosty.to/remteh) — Halaman kreator. Verifikasi akun diperlukan sebelum menerima pembayaran.
 - [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Dukungan sekali. Penerimaan pembayaran belum diuji.
 - [DonatePay](https://donatepay.ru/don/1541009) — Dukungan sekali. Penerimaan pembayaran belum diuji.
 - [OKX Pay](https://okx.com/ul/VQfh84m) — Transfer di aplikasi OKX. Penerimaan pembayaran belum diuji.
@@ -85,9 +84,6 @@ Pembayaran diproses oleh layanan yang dipilih. Periksa status dan opsi pembayara
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Pindai dengan ponsel">
-
-Patreon
-<img src="../../website/assets/support/patreon.svg?v=f9e58ec6f1d9" width="180" height="180" alt="Pindai dengan ponsel">
 
 Afdian · 爱发电
 <img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Pindai dengan ponsel">

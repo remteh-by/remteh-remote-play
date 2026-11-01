@@ -11,8 +11,6 @@ This page records the creator-support accounts maintained for the Deckivo projec
 - **Boosty — RemTeh / Deckivo:** https://boosty.to/remteh
   - The creator profile is prepared. The provider requires account verification before a paid support level can be enabled. Payment acceptance is pending.
 
-- **Patreon — Deckivo / RemTeh.by:** https://www.patreon.com/c/deckivo
-  - The creator account and a USD 3 monthly support tier are configured. The tier and checkout link are visible in the creator's Public preview. Independent anonymous access is unverified because the provider's security check blocked the separate browser. No payout method is configured; actual payment receipt and recurring renewal have not been tested.
 - **DonationAlerts — deckivo:** https://www.donationalerts.com/r/deckivo
   - The profile is created and its public contribution form is accessible without signing in. No payout method is configured; actual payment receipt has not been tested. Recurring support is not verified.
 - **DonatePay — Deckivo / RemTeh.by:** https://donatepay.ru/don/1541009
@@ -33,5 +31,7 @@ Deckivo is a PS5 Remote Play client built on the work of Chiaki, chiaki-ng and A
 ## 爱发电创作者页面确认
 
 Deckivo 在爱发电的创作者页面是 https://afdian.com/a/deckivo ，由 RemTeh.by 维护，用于支持 Deckivo 的开源开发。目前创作者认证正在申请，收款和提现尚未验证。Deckivo 保持免费开源，赞助不包含一对一技术支持、定制开发或交付日期承诺。
+
+Patreon was removed on 2026-11-01 at the owner's request after the account was blocked. It is not a current support method.
 
 Status recorded on 2026-11-01. A public profile or a verification application does not establish that payment receipt or payouts have been tested.

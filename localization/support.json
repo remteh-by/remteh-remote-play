@@ -27,7 +27,7 @@
     "method_status_configured": "Page configured",
     "method_status_unverified": "Payment receipt not yet tested",
     "method_status_review": "Profile approval pending",
-    "method_status_preparing": "Still being prepared",
+    "method_status_preparing": "Account verification required before payments",
     "support_provider_note": "Payments are handled by the provider. Check the status and available payment options before continuing."
   },
   "ru": {
@@ -58,7 +58,7 @@
     "method_status_configured": "Страница настроена",
     "method_status_unverified": "Зачисление платежей ещё не проверено",
     "method_status_review": "Ожидается подтверждение профиля",
-    "method_status_preparing": "Способ ещё настраивается",
+    "method_status_preparing": "Для приёма платежей нужна верификация",
     "support_provider_note": "Платежи обрабатывает выбранный сервис. Перед продолжением проверьте статус и доступные варианты оплаты."
   },
   "uk": {
@@ -89,7 +89,7 @@
     "method_status_configured": "Сторінку налаштовано",
     "method_status_unverified": "Зарахування платежів ще не перевірено",
     "method_status_review": "Очікується підтвердження профілю",
-    "method_status_preparing": "Спосіб ще налаштовується",
+    "method_status_preparing": "Для приймання платежів потрібна верифікація",
     "support_provider_note": "Платежі обробляє вибраний сервіс. Перед продовженням перевірте статус і доступні варіанти оплати."
   },
   "pl": {
@@ -120,7 +120,7 @@
     "method_status_configured": "Strona skonfigurowana",
     "method_status_unverified": "Otrzymanie płatności nie zostało przetestowane",
     "method_status_review": "Profil oczekuje na zatwierdzenie",
-    "method_status_preparing": "Metoda jest przygotowywana",
+    "method_status_preparing": "Przyjmowanie wpłat wymaga weryfikacji konta",
     "support_provider_note": "Płatności obsługuje wybrany serwis. Przed kontynuowaniem sprawdź status i dostępne opcje płatności."
   },
   "de": {
@@ -151,7 +151,7 @@
     "method_status_configured": "Seite eingerichtet",
     "method_status_unverified": "Zahlungseingang noch nicht getestet",
     "method_status_review": "Profilfreigabe ausstehend",
-    "method_status_preparing": "Wird noch eingerichtet",
+    "method_status_preparing": "Kontoverifizierung für den Zahlungsempfang erforderlich",
     "support_provider_note": "Zahlungen werden vom Anbieter abgewickelt. Prüfe vor dem Fortfahren den Status und die verfügbaren Zahlungsarten."
   },
   "fr": {
@@ -182,7 +182,7 @@
     "method_status_configured": "Page configurée",
     "method_status_unverified": "Réception des paiements non testée",
     "method_status_review": "Validation du profil en attente",
-    "method_status_preparing": "En cours de préparation",
+    "method_status_preparing": "Vérification du compte requise pour recevoir des paiements",
     "support_provider_note": "Les paiements sont traités par le service choisi. Vérifiez le statut et les options de paiement avant de continuer."
   },
   "es": {
@@ -213,7 +213,7 @@
     "method_status_configured": "Página configurada",
     "method_status_unverified": "Recepción de pagos aún no probada",
     "method_status_review": "Perfil pendiente de aprobación",
-    "method_status_preparing": "En preparación",
+    "method_status_preparing": "Se requiere verificar la cuenta para recibir pagos",
     "support_provider_note": "El servicio elegido procesa los pagos. Comprueba el estado y las opciones de pago antes de continuar."
   },
   "it": {
@@ -244,7 +244,7 @@
     "method_status_configured": "Pagina configurata",
     "method_status_unverified": "Ricezione dei pagamenti non ancora testata",
     "method_status_review": "Approvazione del profilo in attesa",
-    "method_status_preparing": "In preparazione",
+    "method_status_preparing": "Verifica dell’account richiesta per ricevere pagamenti",
     "support_provider_note": "I pagamenti sono gestiti dal servizio scelto. Verifica lo stato e le opzioni di pagamento prima di continuare."
   },
   "pt": {
@@ -275,7 +275,7 @@
     "method_status_configured": "Página configurada",
     "method_status_unverified": "Receção de pagamentos ainda não testada",
     "method_status_review": "Aprovação do perfil pendente",
-    "method_status_preparing": "Em preparação",
+    "method_status_preparing": "É necessário verificar a conta para receber pagamentos",
     "support_provider_note": "Os pagamentos são processados pelo serviço escolhido. Verifique o estado e as opções de pagamento antes de continuar."
   },
   "tr": {
@@ -306,7 +306,7 @@
     "method_status_configured": "Sayfa yapılandırıldı",
     "method_status_unverified": "Ödeme alımı henüz test edilmedi",
     "method_status_review": "Profil onayı bekleniyor",
-    "method_status_preparing": "Hazırlanıyor",
+    "method_status_preparing": "Ödeme almak için hesap doğrulaması gerekli",
     "support_provider_note": "Ödemeler seçilen sağlayıcı tarafından işlenir. Devam etmeden önce durumu ve ödeme seçeneklerini kontrol edin."
   },
   "zh": {
@@ -337,7 +337,7 @@
     "method_status_configured": "页面已设置",
     "method_status_unverified": "尚未测试收款",
     "method_status_review": "等待创作者认证",
-    "method_status_preparing": "正在准备中",
+    "method_status_preparing": "收款前需要完成账户验证",
     "support_provider_note": "付款由所选平台处理。继续前请查看状态和可用的付款方式。"
   },
   "ja": {
@@ -368,7 +368,7 @@
     "method_status_configured": "ページ設定済み",
     "method_status_unverified": "入金は未確認です",
     "method_status_review": "プロフィール承認待ち",
-    "method_status_preparing": "準備中",
+    "method_status_preparing": "支払いの受領にはアカウント認証が必要です",
     "support_provider_note": "支払いは選択したサービスが処理します。続ける前に状態と利用可能な支払い方法を確認してください。"
   },
   "ko": {
@@ -399,7 +399,7 @@
     "method_status_configured": "페이지 설정 완료",
     "method_status_unverified": "입금 수신은 아직 테스트되지 않음",
     "method_status_review": "프로필 승인 대기 중",
-    "method_status_preparing": "준비 중",
+    "method_status_preparing": "결제를 받으려면 계정 인증이 필요합니다",
     "support_provider_note": "결제는 선택한 서비스에서 처리합니다. 계속하기 전에 상태와 결제 방법을 확인하세요."
   },
   "ar": {
@@ -430,7 +430,7 @@
     "method_status_configured": "تم إعداد الصفحة",
     "method_status_unverified": "لم يتم اختبار استلام المدفوعات بعد",
     "method_status_review": "بانتظار الموافقة على الملف",
-    "method_status_preparing": "قيد الإعداد",
+    "method_status_preparing": "يلزم توثيق الحساب قبل استقبال المدفوعات",
     "support_provider_note": "تُعالج الخدمة المختارة المدفوعات. تحقق من الحالة وطرق الدفع المتاحة قبل المتابعة."
   },
   "hi": {
@@ -461,7 +461,7 @@
     "method_status_configured": "पेज सेट अप है",
     "method_status_unverified": "भुगतान प्राप्ति का परीक्षण नहीं हुआ",
     "method_status_review": "प्रोफ़ाइल की स्वीकृति लंबित है",
-    "method_status_preparing": "अभी तैयार हो रहा है",
+    "method_status_preparing": "भुगतान प्राप्त करने से पहले खाते का सत्यापन आवश्यक है",
     "support_provider_note": "भुगतान चुनी गई सेवा द्वारा संसाधित होता है। आगे बढ़ने से पहले स्थिति और भुगतान विकल्प जाँचें।"
   },
   "id": {
@@ -492,7 +492,7 @@
     "method_status_configured": "Halaman telah disiapkan",
     "method_status_unverified": "Penerimaan pembayaran belum diuji",
     "method_status_review": "Menunggu persetujuan profil",
-    "method_status_preparing": "Masih disiapkan",
+    "method_status_preparing": "Verifikasi akun diperlukan sebelum menerima pembayaran",
     "support_provider_note": "Pembayaran diproses oleh layanan yang dipilih. Periksa status dan opsi pembayaran sebelum melanjutkan."
   }
 }

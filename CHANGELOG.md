@@ -1,3 +1,9 @@
+# 0.8.9
+
+- Remove the blocked Patreon destination from all current support selectors, QR assets, guides and GitHub Sponsor.
+- Explain that Boosty requires account verification before receiving payments.
+- Saved selections of a removed method fall back to Ko-fi. Application identities and signing keys are unchanged.
+
 # Deckivo changelog
 
 ## 0.8.8 — 2026-11-01 (experimental preview)
