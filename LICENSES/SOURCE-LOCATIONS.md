@@ -22,6 +22,9 @@ needed to build this open-source preview.
   packaged app's notices; https://www.python.org/downloads/source/
 - SDL2: zlib license, included with the packaged library. Source and build:
   https://github.com/libsdl-org/SDL/tree/SDL2
+- Mac builds using SDL2-compat include SDL3 alongside it (both zlib licensed).
+  Sources: https://github.com/libsdl-org/sdl2-compat and
+  https://github.com/libsdl-org/SDL. Both license files are inside the app bundle.
 - IBM Plex Sans: the bundled font's OFL.txt is included alongside the font.
 
 Mac streaming uses a separately installed chiaki-ng app; its own source, notices

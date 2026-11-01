@@ -8,7 +8,7 @@ PRIVATE=DATA/'private'
 RUNTIME=DATA/'python'
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--build',type=int,default=25);parser.add_argument('--stage-only',action='store_true');parser.add_argument('--private-preview',action='store_true');parser.add_argument('--output-dir',type=Path);parser.add_argument('--no-install-deps',action='store_true');parser.add_argument('--runtime-dir',type=Path);args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--build',type=int,default=26);parser.add_argument('--stage-only',action='store_true');parser.add_argument('--private-preview',action='store_true');parser.add_argument('--output-dir',type=Path);parser.add_argument('--no-install-deps',action='store_true');parser.add_argument('--runtime-dir',type=Path);args=parser.parse_args()
  runtime=args.runtime_dir or RUNTIME
  if sys.platform!='darwin' or platform.machine()!='arm64':raise SystemExit('This package targets the current Apple Silicon Mac.')
  os.umask(0o077)
@@ -41,6 +41,14 @@ def main():
      '--add-binary',str(bridge)+':assets/macos',
      '--add-data','/opt/homebrew/opt/sdl2/LICENSE.txt:licenses/SDL2',
      '--add-data',str(shared/'deckivo.svg')+':.','--add-data',str(ROOT/'LICENSES')+':licenses']
+ # SDL2-compat loads SDL3 dynamically; otool/PyInstaller cannot discover it.
+ # Keep both libraries adjacent so @loader_path resolves without Homebrew.
+ sdl2=Path('/opt/homebrew/opt/sdl2/lib/libSDL2.dylib')
+ if b'SDL2COMPAT_' in sdl2.read_bytes():
+  sdl3=Path('/opt/homebrew/opt/sdl3/lib/libSDL3.dylib')
+  if not sdl3.is_file():raise SystemExit('SDL2-compat requires SDL3 in the application bundle')
+  command+=['--add-binary',str(sdl3)+':assets/macos',
+      '--add-data','/opt/homebrew/opt/sdl3/LICENSE.txt:licenses/SDL3']
  # The external helper runtime needs real source files after the GUI is frozen.
  for path in shared.glob('*.py'):command+=['--add-data',str(path)+':.']
  subprocess.run(command+[str(shared/'macos_main.py')],check=True)
@@ -58,6 +66,13 @@ def main():
   subprocess.run(['/usr/bin/xattr','-dr',name,str(stage)],check=True)
  subprocess.run(['/usr/bin/codesign','--force','--deep','--sign','-',str(stage)],check=True)
  subprocess.run(['/usr/bin/codesign','--verify','--deep','--strict',str(stage)],check=True)
+ # Exercise the actual packaged backend in an isolated process. A missing
+ # dynamic SDL dependency displays a modal alert instead of raising OSError.
+ # The timeout makes that packaging failure a build error before publication.
+ smoke='''import ctypes,sys\nlib=ctypes.CDLL(sys.argv[1]);lib.SDL_InitSubSystem.argtypes=[ctypes.c_uint32]\nassert lib.SDL_InitSubSystem(0x2200)==0\nlib.SDL_GameControllerUpdate();print("Bundled controller backend loaded");lib.SDL_Quit()\n'''
+ subprocess.run([str(runtime/'bin/python'),'-c',smoke,str(backend)],
+     env={k:v for k,v in os.environ.items() if not k.startswith(('SDL','DYLD_'))},
+     timeout=20,check=True)
  if args.stage_only:
   print('Staged:',stage);return
  destination=Path.home()/'Applications/Deckivo.app';destination.parent.mkdir(exist_ok=True)

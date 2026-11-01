@@ -217,3 +217,7 @@ The owner explicitly authorized publication without physical checks. 130 macOS A
 ## 0.8.9 support audit
 
 Patreon is removed from the current registry and Sponsor links. Six destinations remain. Boosty requires account verification; Afdian remains unverified. The public forms for Ko-fi, DonationAlerts and DonatePay were observed; OKX Pay opens an app-download page on desktop. No payment, recurring renewal or payout was performed. Desktop regression checks and exact package checks are recorded in [the release receipt](releases/0.8.9-validation.json); physical Switch and sustained PS5 tests remain separate.
+
+## 0.8.10 Mac packaging follow-up
+
+The first 0.8.9 Mac package exposed a dynamic SDL2-compat dependency absent from the bundle. The public updater restored 0.8.8 when startup acknowledgement did not arrive. 0.8.10 bundles SDL3 and its license, and the build now loads the packaged controller backend with a bounded smoke check. The actual frozen 0.8.10 b26 app opened on the owner's Mac; its support dialog lists six destinations without Patreon. No controller input or PS5 stream was synthesized for this check.
