@@ -71,11 +71,6 @@ Deckivo는 무료 오픈 소스입니다. 후원은 새 플랫폼과 실제 기�
 - 테스트 기기 추가: PS5 Pro 및 휴대용 기기
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — 일회성 또는 월간 후원. 페이지 설정 완료.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — 월간 후원. 프로필 승인 대기 중.
-- [Boosty](https://boosty.to/remteh) — 크리에이터 페이지. 결제를 받으려면 계정 인증이 필요합니다.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — 일회성 후원. 입금 수신은 아직 테스트되지 않음.
-- [DonatePay](https://donatepay.ru/don/1541009) — 일회성 후원. 입금 수신은 아직 테스트되지 않음.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — OKX 앱에서 송금. 입금 수신은 아직 테스트되지 않음.
 
 결제는 선택한 서비스에서 처리합니다. 계속하기 전에 상태와 결제 방법을 확인하세요.
 
@@ -84,21 +79,6 @@ Deckivo는 무료 오픈 소스입니다. 후원은 새 플랫폼과 실제 기�
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="휴대폰으로 스캔">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="휴대폰으로 스캔">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="휴대폰으로 스캔">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="휴대폰으로 스캔">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="휴대폰으로 스캔">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="휴대폰으로 스캔">
 
 </details>
 

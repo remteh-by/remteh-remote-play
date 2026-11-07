@@ -71,11 +71,6 @@ Deckivo gratis dan terbuka. Dukungan membantu platform baru dan pengujian perang
 - Perangkat tambahan: PS5 Pro dan handheld
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Dukungan sekali atau bulanan. Halaman telah disiapkan.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — Dukungan bulanan. Menunggu persetujuan profil.
-- [Boosty](https://boosty.to/remteh) — Halaman kreator. Verifikasi akun diperlukan sebelum menerima pembayaran.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Dukungan sekali. Penerimaan pembayaran belum diuji.
-- [DonatePay](https://donatepay.ru/don/1541009) — Dukungan sekali. Penerimaan pembayaran belum diuji.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — Transfer di aplikasi OKX. Penerimaan pembayaran belum diuji.
 
 Pembayaran diproses oleh layanan yang dipilih. Periksa status dan opsi pembayaran sebelum melanjutkan.
 
@@ -84,21 +79,6 @@ Pembayaran diproses oleh layanan yang dipilih. Periksa status dan opsi pembayara
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Pindai dengan ponsel">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Pindai dengan ponsel">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="Pindai dengan ponsel">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="Pindai dengan ponsel">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="Pindai dengan ponsel">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="Pindai dengan ponsel">
 
 </details>
 

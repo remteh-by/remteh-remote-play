@@ -71,11 +71,6 @@ Deckivo è gratuito e open source. Il sostegno aiuta nuove piattaforme e test re
 - Più dispositivi: PS5 Pro e console portatili
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Sostegno singolo o mensile. Pagina configurata.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — Sostegno mensile. Approvazione del profilo in attesa.
-- [Boosty](https://boosty.to/remteh) — Pagina del creatore. Verifica dell’account richiesta per ricevere pagamenti.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Sostegno singolo. Ricezione dei pagamenti non ancora testata.
-- [DonatePay](https://donatepay.ru/don/1541009) — Sostegno singolo. Ricezione dei pagamenti non ancora testata.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — Trasferimento nell’app OKX. Ricezione dei pagamenti non ancora testata.
 
 I pagamenti sono gestiti dal servizio scelto. Verifica lo stato e le opzioni di pagamento prima di continuare.
 
@@ -84,21 +79,6 @@ I pagamenti sono gestiti dal servizio scelto. Verifica lo stato e le opzioni di 
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Scansiona con il telefono">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Scansiona con il telefono">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="Scansiona con il telefono">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="Scansiona con il telefono">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="Scansiona con il telefono">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="Scansiona con il telefono">
 
 </details>
 

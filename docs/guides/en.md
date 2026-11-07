@@ -122,11 +122,6 @@ Deckivo is free and open source. Your support helps fund signing, new platforms 
 - More test hardware: PS5 Pro and handhelds
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — One-time or monthly support. Page configured.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — Monthly support. Profile approval pending.
-- [Boosty](https://boosty.to/remteh) — Creator page. Account verification required before payments.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — One-time support. Payment receipt not yet tested.
-- [DonatePay](https://donatepay.ru/don/1541009) — One-time support. Payment receipt not yet tested.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — Transfer in the OKX app. Payment receipt not yet tested.
 
 Payments are handled by the provider. Check the status and available payment options before continuing.
 
@@ -135,21 +130,6 @@ Payments are handled by the provider. Check the status and available payment opt
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Scan with your phone">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Scan with your phone">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="Scan with your phone">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="Scan with your phone">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="Scan with your phone">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="Scan with your phone">
 
 </details>
 

@@ -71,11 +71,6 @@ Deckivo مجاني ومفتوح المصدر. يساعد دعمك في المن�
 - أجهزة اختبار أكثر: PS5 Pro وأجهزة محمولة
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — دعم لمرة واحدة أو شهري. تم إعداد الصفحة.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — دعم شهري. بانتظار الموافقة على الملف.
-- [Boosty](https://boosty.to/remteh) — صفحة المطور. يلزم توثيق الحساب قبل استقبال المدفوعات.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — دعم لمرة واحدة. لم يتم اختبار استلام المدفوعات بعد.
-- [DonatePay](https://donatepay.ru/don/1541009) — دعم لمرة واحدة. لم يتم اختبار استلام المدفوعات بعد.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — تحويل في تطبيق OKX. لم يتم اختبار استلام المدفوعات بعد.
 
 تُعالج الخدمة المختارة المدفوعات. تحقق من الحالة وطرق الدفع المتاحة قبل المتابعة.
 
@@ -84,21 +79,6 @@ Deckivo مجاني ومفتوح المصدر. يساعد دعمك في المن�
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="امسح بهاتفك">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="امسح بهاتفك">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="امسح بهاتفك">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="امسح بهاتفك">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="امسح بهاتفك">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="امسح بهاتفك">
 
 </details>
 

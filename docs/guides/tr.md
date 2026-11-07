@@ -71,11 +71,6 @@ Deckivo ücretsiz ve açık kaynaklıdır. Desteğiniz yeni platformlara ve ger�
 - Daha fazla cihaz: PS5 Pro ve el konsolları
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Tek seferlik veya aylık destek. Sayfa yapılandırıldı.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — Aylık destek. Profil onayı bekleniyor.
-- [Boosty](https://boosty.to/remteh) — İçerik üreticisinin sayfası. Ödeme almak için hesap doğrulaması gerekli.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Tek seferlik destek. Ödeme alımı henüz test edilmedi.
-- [DonatePay](https://donatepay.ru/don/1541009) — Tek seferlik destek. Ödeme alımı henüz test edilmedi.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — OKX uygulamasında transfer. Ödeme alımı henüz test edilmedi.
 
 Ödemeler seçilen sağlayıcı tarafından işlenir. Devam etmeden önce durumu ve ödeme seçeneklerini kontrol edin.
 
@@ -84,21 +79,6 @@ Deckivo ücretsiz ve açık kaynaklıdır. Desteğiniz yeni platformlara ve ger�
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Telefonunla tara">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Telefonunla tara">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="Telefonunla tara">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="Telefonunla tara">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="Telefonunla tara">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="Telefonunla tara">
 
 </details>
 

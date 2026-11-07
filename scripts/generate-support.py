@@ -103,7 +103,7 @@ def main():
     for method_id,key in (('kofi','ko_fi'),('patreon','patreon')):
         method=next((m for m in payload['methods'] if m['id']==method_id),None)
         if method:funding+=key+': '+method['url'].rstrip('/').split('/')[-1]+'\n'
-    (ROOT/'.github/FUNDING.yml').write_text(funding+'# Support for upstream chiaki-ng; this is a separate creator.\nbuy_me_a_coffee: streetpea\n# Every Deckivo method, with its current status, is listed here.\ncustom: ["https://remteh-by.github.io/remteh-remote-play/#support"]\n')
+    (ROOT/'.github/FUNDING.yml').write_text(funding)
     print('Support generated:',len(payload['methods']),'enabled methods;',len(payload['supporters']),'supporters')
 
 

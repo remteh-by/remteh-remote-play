@@ -71,11 +71,6 @@ Deckivo は無料のオープンソースです。支援は新プラットフォ
 - テスト機材の追加：PS5 Pro と携帯端末
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — 単発または毎月の支援. ページ設定済み.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — 毎月の支援. プロフィール承認待ち.
-- [Boosty](https://boosty.to/remteh) — クリエイターのページ. 支払いの受領にはアカウント認証が必要です.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — 単発の支援. 入金は未確認です.
-- [DonatePay](https://donatepay.ru/don/1541009) — 単発の支援. 入金は未確認です.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — OKX アプリで送金. 入金は未確認です.
 
 支払いは選択したサービスが処理します。続ける前に状態と利用可能な支払い方法を確認してください。
 
@@ -84,21 +79,6 @@ Deckivo は無料のオープンソースです。支援は新プラットフォ
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="スマートフォンで読み取る">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="スマートフォンで読み取る">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="スマートフォンで読み取る">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="スマートフォンで読み取る">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="スマートフォンで読み取る">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="スマートフォンで読み取る">
 
 </details>
 

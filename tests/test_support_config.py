@@ -20,19 +20,16 @@ class FundingConfig(unittest.TestCase):
   payload=funding.prepare();self.assertNotIn('unused',[x['id'] for x in payload['methods']]);self.assertEqual(payload['supporters'],[])
   self.assertEqual(len(payload['texts']),16)
  def test_enabled_empty_destination_is_rejected(self):
-  self.change(lambda x:x['methods'][1].update(url=''))
+  self.change(lambda x:x['methods'][0].update(url=''))
   with self.assertRaises(ValueError):funding.prepare()
  def test_all_owner_destinations_have_translated_status_and_options(self):
-  expected={'kofi':'https://ko-fi.com/pavelzayats','afdian':'https://afdian.com/a/deckivo','boosty':'https://boosty.to/remteh',
-   'donationalerts':'https://www.donationalerts.com/r/deckivo',
-   'donatepay':'https://donatepay.ru/don/1541009','okx_pay':'https://okx.com/ul/VQfh84m'}
+  expected={'kofi':'https://ko-fi.com/pavelzayats'}
   payload=funding.prepare();self.assertEqual({x['id']:x['url'] for x in payload['methods']},expected)
   for method in payload['methods']:
    for copy in payload['texts'].values():
     self.assertTrue(copy['method_status_'+method['status']].strip())
     self.assertTrue(copy['method_cadence_'+method['cadence']].strip())
-  self.assertEqual(next(m for m in payload['methods'] if m['id']=='afdian')['status'],'review')
-  self.assertEqual(next(m for m in payload['methods'] if m['id']=='boosty')['cadence'],'profile')
+  self.assertTrue(all(m['status']=='configured' for m in payload['methods']))
  def test_unknown_status_is_rejected_instead_of_implying_payment_readiness(self):
   self.change(lambda x:x['methods'][0].update(status='ready'))
   with self.assertRaises(ValueError):funding.prepare()
