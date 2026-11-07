@@ -1,3 +1,8 @@
+# 0.8.11 preview — 2026-11-07
+
+- Offer only the configured Ko-fi support page; hide pending and unverified providers across Android, macOS, Linux, the website and funding links.
+- Preserve the existing fallback when a removed provider was saved.
+
 # 0.8.9
 
 - Remove the blocked Patreon destination from all current support selectors, QR assets, guides and GitHub Sponsor.

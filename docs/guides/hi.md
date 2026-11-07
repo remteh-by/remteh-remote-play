@@ -71,11 +71,6 @@ Deckivo मुफ्त और खुला स्रोत है। आपक�
 - और परीक्षण उपकरण: PS5 Pro और हैंडहेल्ड
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — एक बार या मासिक समर्थन. पेज सेट अप है.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — मासिक समर्थन. प्रोफ़ाइल की स्वीकृति लंबित है.
-- [Boosty](https://boosty.to/remteh) — निर्माता का पेज. भुगतान प्राप्त करने से पहले खाते का सत्यापन आवश्यक है.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — एक बार समर्थन. भुगतान प्राप्ति का परीक्षण नहीं हुआ.
-- [DonatePay](https://donatepay.ru/don/1541009) — एक बार समर्थन. भुगतान प्राप्ति का परीक्षण नहीं हुआ.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — OKX ऐप में ट्रांसफ़र. भुगतान प्राप्ति का परीक्षण नहीं हुआ.
 
 भुगतान चुनी गई सेवा द्वारा संसाधित होता है। आगे बढ़ने से पहले स्थिति और भुगतान विकल्प जाँचें।
 
@@ -84,21 +79,6 @@ Deckivo मुफ्त और खुला स्रोत है। आपक�
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="फ़ोन से स्कैन करें">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="फ़ोन से स्कैन करें">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="फ़ोन से स्कैन करें">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="फ़ोन से स्कैन करें">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="फ़ोन से स्कैन करें">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="फ़ोन से स्कैन करें">
 
 </details>
 

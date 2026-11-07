@@ -71,11 +71,6 @@ Deckivo безкоштовний і відкритий. Підтримка до�
 - Більше пристроїв: PS5 Pro та портативні консолі
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Разова або щомісячна підтримка. Сторінку налаштовано.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — Щомісячна підтримка. Очікується підтвердження профілю.
-- [Boosty](https://boosty.to/remteh) — Сторінка автора. Для приймання платежів потрібна верифікація.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Разова підтримка. Зарахування платежів ще не перевірено.
-- [DonatePay](https://donatepay.ru/don/1541009) — Разова підтримка. Зарахування платежів ще не перевірено.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — Переказ у застосунку OKX. Зарахування платежів ще не перевірено.
 
 Платежі обробляє вибраний сервіс. Перед продовженням перевірте статус і доступні варіанти оплати.
 
@@ -84,21 +79,6 @@ Deckivo безкоштовний і відкритий. Підтримка до�
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Скануй телефоном">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Скануй телефоном">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="Скануй телефоном">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="Скануй телефоном">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="Скануй телефоном">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="Скануй телефоном">
 
 </details>
 

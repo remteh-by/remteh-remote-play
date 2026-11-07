@@ -1,0 +1,109 @@
+{
+  "version": "0.8.11",
+  "status": "experimental-preview",
+  "date": "2026-11-07",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.11",
+    "versionCode": 36,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.11-arm64.apk",
+    "apkBytes": 9494268,
+    "sha256": "ba38c43212ed7cc4e21e826902484e4b124bb832189952bc01278e9f670e202c",
+    "build": "release-with-SOURCE_RELEASED-true",
+    "buildPassed": true,
+    "lintPassed": true,
+    "unitTests": 49,
+    "signingCertificateSha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "signedApkCatalogMethods": [
+      "kofi"
+    ],
+    "physicalUpdateInstall": "not-tested-this-release"
+  },
+  "desktop": {
+    "version": "0.8.11",
+    "build": 27,
+    "supportConfigTests": 8,
+    "supportQtTests": 9,
+    "realQtSupportDialog": "one Ko-fi option and stale-choice fallback passed",
+    "macOS": "ARM64 bundle built; bundled SDL initialization and ad-hoc codesign verified; no notarization",
+    "linux": "Switchroot Ubuntu source update; physical installation not tested"
+  },
+  "support": {
+    "methods": [
+      "kofi"
+    ],
+    "hiddenMethods": [
+      "afdian",
+      "boosty",
+      "donationalerts",
+      "donatepay",
+      "okx_pay"
+    ],
+    "registrySourceSha256": "ffe0233932b069685bc77e376453d58a32db9bc0d940b48a95b1ab18657c5443",
+    "actualPaymentReceipt": "not-tested",
+    "providerVerification": "not-certified"
+  },
+  "screenshot": {
+    "schema": 1,
+    "version": "0.8.11",
+    "build": 27,
+    "source_commit": "4a5dfea16276fcba53ca5e2c787c93febdd2c720",
+    "source_dirty": true,
+    "ui_source_sha256": "d078b70472bab51af6ce0ad4e3e149d54f1d7501df92b585d36c672dcc30567c",
+    "capture_state": "unpaired",
+    "development_preview": true,
+    "captured_at": "2026-11-07T17:38:11Z",
+    "images": {
+      "deckivo-ui.webp": {
+        "sha256": "4db8e28650812a1f5747a0416a4bca1307d8a63e7b3e374ad3cdea0d12a3fd90",
+        "bytes": 43456,
+        "width": 1600,
+        "height": 900
+      },
+      "deckivo-ui.avif": {
+        "sha256": "07fa3b4dab694d23748647cab86001a943efd22f4a5661cae5d0518c2844e0c1",
+        "bytes": 25646,
+        "width": 1600,
+        "height": 900
+      },
+      "github-cover.webp": {
+        "sha256": "58c1d7613d5227b994b9675a619a9ced03739bf173a7c2f0c74550ef42695d12",
+        "bytes": 30284,
+        "width": 1200,
+        "height": 630
+      },
+      "github-cover.jpg": {
+        "sha256": "7b996edc3901e8d06a10bf774dbc7f1e34e07df1e2d754defbf15873085c36e7",
+        "bytes": 63465,
+        "width": 1200,
+        "height": 630
+      },
+      "deckivo-hero.webp": {
+        "sha256": "1a24a579014f64ce17210730f76ab1984a792598365ff6a879415287cadcf1de",
+        "bytes": 31728,
+        "width": 1476,
+        "height": 536
+      },
+      "deckivo-hero.avif": {
+        "sha256": "2bda2f3500a588bab6c0a345c6c95cce3f38fb0cf9277a0f5ef97e445ccddd7f",
+        "bytes": 18561,
+        "width": 1476,
+        "height": 536
+      }
+    },
+    "hero_crop": {
+      "source": "deckivo-ui.webp",
+      "rectangle": [
+        104,
+        108,
+        1580,
+        644
+      ],
+      "operation": "crop only, exact real Qt capture"
+    },
+    "readme_cover": "github-cover-0.8.11-b27-58c1d7613d52.webp"
+  }
+}

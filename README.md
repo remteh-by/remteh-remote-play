@@ -1,23 +1,23 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.10-b26-37655fc36347.webp" alt="Deckivo — actual desktop interface, development preview 0.8.10 build 25" width="100%"></a></p>
-<p align="center"><sub>Actual Deckivo 0.8.10 desktop interface · desktop build 25 · Android build 34.</sub></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.11-b27-58c1d7613d52.webp" alt="Deckivo — actual desktop interface, development preview 0.8.11 build 27" width="100%"></a></p>
+<p align="center"><sub>Actual Deckivo 0.8.11 desktop interface · desktop build 27 · Android build 36.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">RemTeh.by</a> · <a href="https://remteh.by/remont-konsoli?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">Game console repair in Minsk</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-Linux-0.8.10-b26-source.zip">Linux 0.8.10 b26</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-0.8.10-arm64.apk">Android 0.8.10</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-macos-0.8.10-b26.zip">macOS 0.8.10 b26</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-Linux-0.8.11-b27-source.zip">Linux 0.8.11 b27</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-0.8.11-arm64.apk">Android 0.8.11</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-macos-0.8.11-b27.zip">macOS 0.8.11 b27</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
 
 [Download history and counting method](docs/DOWNLOADS.md).
 
 [English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)
 
-**Deckivo 0.8.10 is an experimental preview.** Android ARM64 build 34 and desktop build 25 cover Apple Silicon macOS and prepared Switchroot Ubuntu ARM64. This update removes Patreon, keeps six optional support methods and clarifies pending account verification. Payment receipt, Switch installation and PS5 sustained sessions are not certified by these software checks. Mac packages are ad-hoc signed, not notarized.
+**Deckivo 0.8.11 is an experimental preview.** Android ARM64 build 36 and desktop build 27 cover Apple Silicon macOS and prepared Switchroot Ubuntu ARM64. This update keeps the configured Ko-fi page and hides pending or unverified support providers. Payment receipt, Switch installation and PS5 sustained sessions are not certified by these software checks. Mac packages are ad-hoc signed, not notarized.
 
 ### Choose your screen
 
 | Platform | Delivery | Start here |
 |---|---|---|
-| Android ARM64 | 0.8.10 #34 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-0.8.10-arm64.apk) |
-| macOS Apple Silicon | 0.8.10 b26; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-macos-0.8.10-b26.zip) |
-| Switchroot Ubuntu ARM64 | 0.8.10 b26 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.10 real-device acceptance pending | [Linux 0.8.10 b26](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.10/Deckivo-Linux-0.8.10-b26-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
+| Android ARM64 | 0.8.11 #36 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-0.8.11-arm64.apk) |
+| macOS Apple Silicon | 0.8.11 b27; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-macos-0.8.11-b27.zip) |
+| Switchroot Ubuntu ARM64 | 0.8.11 b27 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.11 real-device acceptance pending | [Linux 0.8.11 b27](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-Linux-0.8.11-b27-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
 | Windows, Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
 ### Made for your own play space
@@ -41,7 +41,7 @@
 
 | Hardware / OS | Exact build | Confirmed scope |
 |---|---|---|
-| Apple Silicon Mac development environment | 0.8.10 b26 source | 140 desktop tests and six-provider regression checks; isolated real Qt capture. Public updater acceptance is recorded separately after publication |
+| Apple Silicon Mac development environment | 0.8.11 b27 source | Support catalog and fallback regression checks; isolated real Qt capture. Public updater acceptance is recorded separately after publication |
 | GitHub macOS 15 ARM64 runner | 0.8.7 b23 source | 130 automated tests passed without skips, including native input/window/audio; no physical gameplay or installed-device acceptance |
 | Apple Silicon Mac / owner installation | 0.8.6 b22 | Normal public update from b21; 417/417 package entries match and private state retained. EN/RU layout: 18 geometry cases + 4 Retina 2× cases. Installed-window visual check pending (native capture error -3811); gameplay not tested |
 | Apple Silicon Mac / macOS 27.0.1 | 0.8.5 b21 | Public update from 0.8.4 b20; 417/417 package entries match; pairing, preferences and session history unchanged; corrected Sessions subtitle observed in the installed window. PS5 offline: gameplay not tested |
@@ -54,7 +54,7 @@ The previously observed PS5 advertised firmware **13.42** (discovery system
 version `13420000`); no other firmware coverage is certified.
 
 See **[the detailed test matrix](docs/TESTED.md)** and
-[0.8.10 validation](docs/releases/0.8.10-validation.json) for the current preview; [0.8.6 validation](docs/releases/0.8.6-validation.json) is historical.
+[0.8.11 validation](docs/releases/0.8.11-validation.json) for the current preview; [0.8.6 validation](docs/releases/0.8.6-validation.json) is historical.
 [0.8.6 public Mac update acceptance](docs/releases/0.8.6-public-channel-validation.json).
 [0.8.5 public Mac update acceptance](docs/releases/0.8.5-public-channel-validation.json).
 [Earlier public update acceptance](docs/releases/0.6.0-public-channel-validation.json)
@@ -88,11 +88,6 @@ Deckivo is free and open source. Your support helps fund signing, new platforms 
 | Method | Options | Status |
 | --- | --- | --- |
 | [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) | One-time or monthly support | Page configured |
-| [Afdian · 爱发电](https://afdian.com/a/deckivo) | Monthly support | Profile approval pending |
-| [Boosty](https://boosty.to/remteh) | Creator page | Account verification required before payments |
-| [DonationAlerts](https://www.donationalerts.com/r/deckivo) | One-time support | Payment receipt not yet tested |
-| [DonatePay](https://donatepay.ru/don/1541009) | One-time support | Payment receipt not yet tested |
-| [OKX Pay](https://okx.com/ul/VQfh84m) | Transfer in the OKX app | Payment receipt not yet tested |
 
 Payments are handled by the provider. Check the status and available payment options before continuing.
 
@@ -101,21 +96,6 @@ Payments are handled by the provider. Check the status and available payment opt
 
 <p>Ko-fi · RemTeh</p>
 <img src="website/assets/support/kofi.svg?v=dc1c37f9125b" alt="Scan Ko-fi · RemTeh" width="180" height="180">
-
-<p>Afdian · 爱发电</p>
-<img src="website/assets/support/afdian.svg?v=8d31fd917144" alt="Scan Afdian · 爱发电" width="180" height="180">
-
-<p>Boosty</p>
-<img src="website/assets/support/boosty.svg?v=7c00bd5f2a9a" alt="Scan Boosty" width="180" height="180">
-
-<p>DonationAlerts</p>
-<img src="website/assets/support/donationalerts.svg?v=c45161fae4e6" alt="Scan DonationAlerts" width="180" height="180">
-
-<p>DonatePay</p>
-<img src="website/assets/support/donatepay.svg?v=6c0beed9ff84" alt="Scan DonatePay" width="180" height="180">
-
-<p>OKX Pay</p>
-<img src="website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" alt="Scan OKX Pay" width="180" height="180">
 
 </details>
 

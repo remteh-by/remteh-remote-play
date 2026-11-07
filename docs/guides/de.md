@@ -71,11 +71,6 @@ Deckivo ist kostenlos und quelloffen. Unterstützung hilft bei neuen Plattformen
 - Mehr Testgeräte: PS5 Pro und Handhelds
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Einmalige oder monatliche Unterstützung. Seite eingerichtet.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — Monatliche Unterstützung. Profilfreigabe ausstehend.
-- [Boosty](https://boosty.to/remteh) — Seite des Entwicklers. Kontoverifizierung für den Zahlungsempfang erforderlich.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Einmalige Unterstützung. Zahlungseingang noch nicht getestet.
-- [DonatePay](https://donatepay.ru/don/1541009) — Einmalige Unterstützung. Zahlungseingang noch nicht getestet.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — Überweisung in der OKX-App. Zahlungseingang noch nicht getestet.
 
 Zahlungen werden vom Anbieter abgewickelt. Prüfe vor dem Fortfahren den Status und die verfügbaren Zahlungsarten.
 
@@ -84,21 +79,6 @@ Zahlungen werden vom Anbieter abgewickelt. Prüfe vor dem Fortfahren den Status 
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Mit dem Handy scannen">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Mit dem Handy scannen">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="Mit dem Handy scannen">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="Mit dem Handy scannen">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="Mit dem Handy scannen">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="Mit dem Handy scannen">
 
 </details>
 

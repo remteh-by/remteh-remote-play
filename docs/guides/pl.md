@@ -71,11 +71,6 @@ Deckivo jest darmowy i otwarty. Wsparcie pomaga rozwijać platformy i testować 
 - Więcej urządzeń: PS5 Pro i konsole przenośne
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — Wsparcie jednorazowe lub miesięczne. Strona skonfigurowana.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — Wsparcie miesięczne. Profil oczekuje na zatwierdzenie.
-- [Boosty](https://boosty.to/remteh) — Strona twórcy. Przyjmowanie wpłat wymaga weryfikacji konta.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — Wsparcie jednorazowe. Otrzymanie płatności nie zostało przetestowane.
-- [DonatePay](https://donatepay.ru/don/1541009) — Wsparcie jednorazowe. Otrzymanie płatności nie zostało przetestowane.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — Przelew w aplikacji OKX. Otrzymanie płatności nie zostało przetestowane.
 
 Płatności obsługuje wybrany serwis. Przed kontynuowaniem sprawdź status i dostępne opcje płatności.
 
@@ -84,21 +79,6 @@ Płatności obsługuje wybrany serwis. Przed kontynuowaniem sprawdź status i do
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="Zeskanuj telefonem">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="Zeskanuj telefonem">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="Zeskanuj telefonem">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="Zeskanuj telefonem">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="Zeskanuj telefonem">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="Zeskanuj telefonem">
 
 </details>
 

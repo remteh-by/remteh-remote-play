@@ -71,11 +71,6 @@ Deckivo 免费开源。支持将用于新平台、签名和真实设备测试。
 - 更多测试设备：PS5 Pro 和掌机
 
 - [Ko-fi · RemTeh](https://ko-fi.com/pavelzayats) — 单次或每月支持. 页面已设置.
-- [Afdian · 爱发电](https://afdian.com/a/deckivo) — 每月支持. 等待创作者认证.
-- [Boosty](https://boosty.to/remteh) — 创作者页面. 收款前需要完成账户验证.
-- [DonationAlerts](https://www.donationalerts.com/r/deckivo) — 单次支持. 尚未测试收款.
-- [DonatePay](https://donatepay.ru/don/1541009) — 单次支持. 尚未测试收款.
-- [OKX Pay](https://okx.com/ul/VQfh84m) — 在 OKX 应用中转账. 尚未测试收款.
 
 付款由所选平台处理。继续前请查看状态和可用的付款方式。
 
@@ -84,21 +79,6 @@ Deckivo 免费开源。支持将用于新平台、签名和真实设备测试。
 
 Ko-fi · RemTeh
 <img src="../../website/assets/support/kofi.svg?v=dc1c37f9125b" width="180" height="180" alt="用手机扫描">
-
-Afdian · 爱发电
-<img src="../../website/assets/support/afdian.svg?v=8d31fd917144" width="180" height="180" alt="用手机扫描">
-
-Boosty
-<img src="../../website/assets/support/boosty.svg?v=7c00bd5f2a9a" width="180" height="180" alt="用手机扫描">
-
-DonationAlerts
-<img src="../../website/assets/support/donationalerts.svg?v=c45161fae4e6" width="180" height="180" alt="用手机扫描">
-
-DonatePay
-<img src="../../website/assets/support/donatepay.svg?v=6c0beed9ff84" width="180" height="180" alt="用手机扫描">
-
-OKX Pay
-<img src="../../website/assets/support/okx_pay.svg?v=2b6a3d8c1a9b" width="180" height="180" alt="用手机扫描">
 
 </details>
 

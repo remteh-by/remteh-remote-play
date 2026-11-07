@@ -95,21 +95,21 @@ class SupportUiTests(unittest.TestCase):
                 self.assertEqual(qr.call_args.args[0]['id'],method['id'])
                 self.assertEqual(picker.qr.count(),1)
                 self.assertEqual(picker.readiness.text(),copy['method_status_'+method['status']])
-            self.assertEqual(saved.call_args.args[1],{'method':configuration['methods'][-1]['id']})
+            saved.assert_not_called()
             picker.close();picker.deleteLater()
 
     def test_saved_choice_is_restored_without_writing_on_open(self):
         configuration=support.configuration()
-        with patch.object(support,'load_json',return_value={'method':'donatepay'}),\
+        with patch.object(support,'load_json',return_value={'method':'kofi'}),\
              patch.object(support,'private_json') as saved,patch.object(support,'qr_widget',return_value=QLabel('QR')):
             picker=support.MethodPicker(self.window,configuration,configuration['texts']['en'])
-            self.assertEqual(picker.current()['id'],'donatepay');saved.assert_not_called()
+            self.assertEqual(picker.current()['id'],'kofi');saved.assert_not_called()
             picker.close();picker.deleteLater()
 
     def test_removed_provider_falls_back_without_opening_or_saving(self):
         configuration=support.configuration()
         self.assertNotIn('patreon',[m['id'] for m in configuration['methods']])
-        with patch.object(support,'load_json',return_value={'method':'patreon'}), patch.object(support,'private_json') as saved, patch.object(support,'qr_widget',return_value=QLabel('QR')), patch.object(support.QDesktopServices,'openUrl') as opened:
+        with patch.object(support,'load_json',return_value={'method':'boosty'}), patch.object(support,'private_json') as saved, patch.object(support,'qr_widget',return_value=QLabel('QR')), patch.object(support.QDesktopServices,'openUrl') as opened:
             picker=support.MethodPicker(self.window,configuration,configuration['texts']['en'])
             self.assertEqual(picker.current()['id'],'kofi');saved.assert_not_called();opened.assert_not_called()
             picker.close();picker.deleteLater()
