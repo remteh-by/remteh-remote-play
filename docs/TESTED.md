@@ -1,5 +1,14 @@
 # Device and version test matrix
 
+## 2026-11-08 — Switch OLED / Android audio
+
+Android 0.8.12 build 37 was installed over the existing signed Deckivo app. The registered PS5 and settings were retained, and a Remote Play session started. With Galaxy Buds Live using AAC, the client AudioTrack buffer changed from 19,006 to 1,920 frames at 48 kHz (about 396 → 40 ms). Its reported track latency changed from about 850 to 482 ms; the Bluetooth output itself still reported about 386 ms. These are software/driver estimates, not acoustic measurements. Physical listening and sustained gameplay remain pending; the game displayed a disconnected-controller notice.
+
+The final 0.8.12 device session decoded 9,443 frames at an average 59.94 decoded frames/s, with zero receiver-lost frames in that sample. Presented/display FPS was not measured.
+
+The saved Wi-Fi reconnected on 5 GHz instead of 2.4 GHz. A ten-packet PS5 ping sample averaged 6.8 ms with no loss. The device profile was H.264, 720p/60 and 8 Mbit/s. This is a bounded local-network check. See [the Android release validation](releases/0.8.12-validation.json) for exact package identity and diagnostics.
+
+
 Last evidence review: **2026-11-01**. “Installed”, “updater passed” and “gameplay
 accepted” are separate results. Requested resolution/FPS are not measured FPS.
 No personal registration files, account identifiers or raw device logs are public.

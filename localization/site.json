@@ -72,7 +72,8 @@
       },
       {
         "q": "Why does macOS show a security warning?",
-        "a": "Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-{version}-b{mac_build}.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine."
+        "a": "Apple Silicon only in this preview. Install the official chiaki-ng Mac application separately, register your PS5 there and close its stream. Download and extract Deckivo-macos-{version}-b{mac_build}.zip, then move Deckivo.app to ~/Applications. The bundle is ad-hoc signed and is not notarized: macOS may require a deliberate Open Anyway action in System Settings → Privacy & Security after an attempted launch. Do not disable Gatekeeper globally. In Deckivo Preferences choose the pairing/import action, select the existing chiaki-ng registration and enter your console address. Keep chiaki-ng installed: Deckivo uses its native engine.",
+        "platform": "macos"
       },
       {
         "q": "Is Deckivo free?",
@@ -161,7 +162,8 @@
       },
       {
         "q": "Почему macOS предупреждает о безопасности?",
-        "a": "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-{version}-b{mac_build}.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотаризовано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком."
+        "a": "В этом выпуске поддерживается только Apple Silicon. Отдельно установите официальный chiaki-ng для Mac, привяжите в нём свою PS5 и закройте трансляцию. Распакуйте Deckivo-macos-{version}-b{mac_build}.zip, перенесите Deckivo.app в ~/Applications. Приложение имеет ad-hoc подпись, но не нотаризовано: после попытки открытия macOS может потребовать «Всё равно открыть» в Системных настройках → Конфиденциальность и безопасность. Не отключайте Gatekeeper целиком. В настройках Deckivo выберите привязку/импорт из chiaki-ng, нужную регистрацию и IP консоли. Не удаляйте chiaki-ng: он остаётся видеодвижком.",
+        "platform": "macos"
       },
       {
         "q": "Deckivo бесплатный?",
