@@ -26,7 +26,7 @@ class SiteGenerationTests(unittest.TestCase):
                 self.assertNotIn('0.8.2',faq,lang)
                 self.assertNotIn('{version}',faq,lang)
                 self.assertIn(builder.ANDROID_VERSION,faq,lang)
-                self.assertTrue(all(version==builder.ANDROID_VERSION for version in re.findall(r'\b\d+\.\d+\.\d+\b',faq)),lang)
+                self.assertTrue(all(version in {builder.ANDROID_VERSION,builder.MAC_VERSION} for version in re.findall(r'\b\d+\.\d+\.\d+\b',faq)),lang)
                 schema=''.join(n.get_text() for n in soup.select('script[type="application/ld+json"]'))
                 self.assertNotIn('0.8.2',schema,lang)
                 if lang in ('en','ru'):self.assertIn(f'Deckivo-macos-{builder.MAC_VERSION}-b{builder.MAC_BUILD}.zip',faq)
@@ -43,10 +43,31 @@ class SiteGenerationTests(unittest.TestCase):
                     versions=re.findall(r'\b\d+\.\d+\.\d+\b',text)
                     # The Ubuntu OS version is independently documented and retained.
                     versions=[version for version in versions if version!='24.04.4']
-                    self.assertEqual(versions,[builder.ANDROID_VERSION],lang+' '+key)
+                    self.assertEqual(versions,[builder.MAC_VERSION if key in ('mac_note','linux_note') else builder.ANDROID_VERSION],lang+' '+key)
                     self.assertNotIn('{',text)
                 self.assertIn('#'+str(builder.ANDROID_BUILD),soup.select_one('[data-i="android_note"]').get_text())
                 self.assertIn('b'+str(builder.MAC_BUILD),soup.select_one('[data-i="mac_note"]').get_text())
+
+    def test_android_hotfix_keeps_desktop_labels_and_links_at_their_published_version(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out=Path(directory)/'site'
+            values=dict(ANDROID_VERSION='9.8.7',MAC_VERSION='8.7.6',LINUX_VERSION='8.7.6',
+                ANDROID_URL='https://example.invalid/Deckivo-9.8.7-arm64.apk',
+                MAC_URL='https://example.invalid/Deckivo-macos-8.7.6-b27.zip',
+                LINUX_URL='https://example.invalid/Deckivo-Linux-8.7.6-b27-source.zip')
+            with patch.multiple(builder,**values),patch('sys.argv',['build-site.py','--out',str(out)]):builder.main()
+            for lang in builder.NAMES:
+                page=out/('index.html' if lang=='en' else lang+'/index.html')
+                soup=BeautifulSoup(page.read_text(),'html.parser')
+                self.assertIn('9.8.7',soup.select_one('[data-i="android_note"]').get_text(),lang)
+                for key in ('mac_note','linux_note'):
+                    self.assertIn('8.7.6',soup.select_one('[data-i="'+key+'"]').get_text(),lang)
+                    self.assertNotIn('9.8.7',soup.select_one('[data-i="'+key+'"]').get_text(),lang)
+                faq=soup.select_one('#faq').get_text()
+                if lang in ('en','ru'):self.assertIn('Deckivo-macos-8.7.6-b27.zip',faq,lang)
+                self.assertNotIn('Deckivo-macos-9.8.7',faq,lang)
+                self.assertTrue(soup.select_one('a[href="'+values['ANDROID_URL']+'"]'),lang)
+                self.assertTrue(soup.select_one('a[href="'+values['MAC_URL']+'"]'),lang)
 
     def test_threshold_and_verified_funding_amounts_in_all_languages(self):
         with tempfile.TemporaryDirectory() as directory:

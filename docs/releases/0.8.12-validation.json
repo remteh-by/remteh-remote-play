@@ -1,0 +1,81 @@
+{
+  "version": "0.8.12",
+  "scope": "Android audio; desktop remains 0.8.11 b27",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.12",
+    "versionCode": 37,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.12-arm64.apk",
+    "apkBytes": 9494268,
+    "sha256": "3e6e0fc52f5007e813396dc6eea78216123da18294b7a9c26e28a9b07b72ebb5"
+  },
+  "checks": {
+    "arm64_release_build": "passed",
+    "android_unit_tests": 49,
+    "unit_failures": 0,
+    "android_lint": "passed with two existing warnings and existing baseline",
+    "site_policy_tests": 18,
+    "site_policy_failures": 0
+  },
+  "physical_device": {
+    "model": "Switch OLED",
+    "android": "15",
+    "installed_version": "0.8.12",
+    "installed_build": 37,
+    "ps5_registration_retained": true,
+    "remote_play_started": true,
+    "headset": "Galaxy Buds Live",
+    "headset_codec": "AAC",
+    "requested_video": {
+      "resolution": "1280x720",
+      "fps": 60,
+      "codec": "H264",
+      "bitrate_kbps": 8000
+    },
+    "wifi_frequency_mhz": 5180,
+    "stream_diagnostics": {
+      "schema": 1,
+      "appVersion": "0.8.12",
+      "requested": {
+        "width": 1280,
+        "height": 720,
+        "fps": 60
+      },
+      "decoderApi": "MediaCodec",
+      "decoderName": null,
+      "hardwareAcceleration": null,
+      "actualResolution": null,
+      "inputBuffers": 9444,
+      "decodedFrames": 9443,
+      "surfaceSubmissions": 9443,
+      "receiverLostFrames": 0,
+      "firstDecodedFrameMs": 1274.018646,
+      "decodedFps": 59.94357690898197,
+      "presentedFrames": null,
+      "displayDroppedFrames": null,
+      "queueLatencyMs": null
+    },
+    "audio": {
+      "sample_rate": 48000,
+      "client_buffer_frames_before": 19006,
+      "client_buffer_frames_after": 1920,
+      "reported_track_latency_ms_before": 849.75,
+      "reported_track_latency_ms_after": 482.1,
+      "reported_bluetooth_output_latency_ms_after": 386.17,
+      "active_track_underruns": 0,
+      "acoustic_latency_measured": false,
+      "auditory_confirmation": "pending"
+    },
+    "limits": [
+      "Game showed a disconnected-controller notice; sustained gameplay and physical controls were not accepted.",
+      "Native decodedFps is not presented/display FPS.",
+      "AudioTrack and mixer latency are estimates; no acoustic latency measurement was made.",
+      "A 10-packet ping sample is not sustained network acceptance."
+    ]
+  },
+  "signing_certificate_sha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+  "publication": "Android-only prerelease; corresponding source archive and update.json required"
+}
