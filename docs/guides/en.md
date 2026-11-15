@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## Before you start
 
 Deckivo 0.8.10 is an experimental open-source PS5 Remote Play client. Start on the same home network. On PS5, select the profile you intend to use, then Settings → System → Remote Play → Enable Remote Play. Keep the console awake during first pairing. A 5 GHz Wi-Fi connection is preferable; a guest network may isolate devices. This client does not install Android/Linux or modify PS5 firmware.
@@ -108,7 +110,7 @@ Keep the same package/signing identity and install over the previous version. An
 
 ## Troubleshooting and limits
 
-If pairing fails, check the profile, Account ID, fresh PIN, console IP and network isolation. For a black screen, end the stream, close other Remote Play clients and reconnect; try lower quality. For failed updates, use the release APK/package over the existing installation and retain app data. See the exact device/build matrix below. Internet/VPN play, wake-from-rest, every controller function and sustained sessions are not certified. Windows, Intel Mac and desktop Linux x64 are planned. WebKit/jailbreak hangs belong to the console and are not fixed by this client.
+If pairing fails, check the profile, Account ID, fresh PIN, console IP and network isolation. For a black screen, end the stream, close other Remote Play clients and reconnect; try lower quality. For failed updates, use the release APK/package over the existing installation and retain app data. See the exact device/build matrix below. Internet/VPN play, wake-from-rest, every controller function and sustained sessions are not certified. Intel Mac and desktop Linux x64 are planned. WebKit/jailbreak hangs belong to the console and are not fixed by this client.
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 

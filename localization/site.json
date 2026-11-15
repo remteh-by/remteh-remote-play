@@ -25,7 +25,7 @@
     "mac_guide": "Mac setup guide",
     "linux_note": "{version} b{desktop_build} · Ubuntu 24.04.4 ARM64 · Real-device acceptance pending",
     "linux_guide": "Download Linux {version} b{desktop_build}",
-    "planned": "Windows, Intel Mac and desktop Linux x64 are planned. No builds are offered for them yet.",
+    "planned": "Intel Mac and desktop Linux x64 are planned. No builds are offered for them yet.",
     "setup_title": "A little setup. A lot of play.",
     "full_guide": "Full setup guide ↗",
     "step1": "Same network.",
@@ -68,7 +68,7 @@
       },
       {
         "q": "Can I play over the Internet?",
-        "a": "If pairing fails, check the profile, Account ID, fresh PIN, console IP and network isolation. For a black screen, end the stream, close other Remote Play clients and reconnect; try lower quality. For failed updates, use the release APK/package over the existing installation and retain app data. See the exact device/build matrix below. Internet/VPN play, wake-from-rest, every controller function and sustained sessions are not certified. Windows, Intel Mac and desktop Linux x64 are planned. WebKit/jailbreak hangs belong to the console and are not fixed by this client."
+        "a": "If pairing fails, check the profile, Account ID, fresh PIN, console IP and network isolation. For a black screen, end the stream, close other Remote Play clients and reconnect; try lower quality. For failed updates, use the release APK/package over the existing installation and retain app data. See the exact device/build matrix below. Internet/VPN play, wake-from-rest, every controller function and sustained sessions are not certified. Intel Mac and desktop Linux x64 are planned. WebKit/jailbreak hangs belong to the console and are not fixed by this client."
       },
       {
         "q": "Why does macOS show a security warning?",
@@ -131,7 +131,7 @@
     "mac_guide": "Установка на Mac",
     "linux_note": "{version} b{desktop_build} · Ubuntu 24.04.4 ARM64 · Проверка на реальном устройстве ещё не завершена",
     "linux_guide": "Скачать Linux {version} b{desktop_build}",
-    "planned": "Windows, Intel Mac и настольный Linux x64 запланированы. Проверенных сборок для них пока нет.",
+    "planned": "Intel Mac и настольный Linux x64 запланированы. Проверенных сборок для них пока нет.",
     "full_guide": "Полная инструкция ↗",
     "device": "Устройство / ОС",
     "build": "Сборка",
@@ -157,7 +157,7 @@
       },
       {
         "q": "Можно играть через интернет?",
-        "a": "При ошибке привязки проверьте профиль, Account ID, свежий код, IP и изоляцию Wi-Fi. При чёрном экране завершите трансляцию, закройте другие клиенты Remote Play и подключитесь заново, попробуйте меньшее качество. При ошибке обновления установите пакет выпуска поверх существующей установки, сохранив данные. Точные устройства и версии — в таблице ниже. Интернет/VPN, пробуждение, все функции геймпадов и длительные сеансы ещё не сертифицированы. Windows, Intel Mac и Linux x64 запланированы. Зависание WebKit относится к PS5 и не исправляется клиентом."
+        "a": "При ошибке привязки проверьте профиль, Account ID, свежий код, IP и изоляцию Wi-Fi. При чёрном экране завершите трансляцию, закройте другие клиенты Remote Play и подключитесь заново, попробуйте меньшее качество. При ошибке обновления установите пакет выпуска поверх существующей установки, сохранив данные. Точные устройства и версии — в таблице ниже. Интернет/VPN, пробуждение, все функции геймпадов и длительные сеансы ещё не сертифицированы. Intel Mac и Linux x64 запланированы. Зависание WebKit относится к PS5 и не исправляется клиентом."
       },
       {
         "q": "Почему macOS предупреждает о безопасности?",
@@ -231,7 +231,7 @@
       },
       {
         "q": "Чи можна грати через інтернет?",
-        "a": "За помилки перевірте IP, профіль, Account ID, свіжий PIN та ізоляцію мережі. За чорного екрана закрийте інші клієнти й під’єднайтеся знову. Точні перевірені версії наведено нижче. Інтернет/VPN, довгі сеанси та всі контролери не перевірені. Windows, Intel Mac і Linux x64 заплановані. Deckivo не виправляє WebKit PS5."
+        "a": "За помилки перевірте IP, профіль, Account ID, свіжий PIN та ізоляцію мережі. За чорного екрана закрийте інші клієнти й під’єднайтеся знову. Точні перевірені версії наведено нижче. Інтернет/VPN, довгі сеанси та всі контролери не перевірені. Intel Mac і Linux x64 заплановані. Deckivo не виправляє WebKit PS5."
       },
       {
         "q": "Чому macOS показує попередження безпеки?",
@@ -252,7 +252,7 @@
     "full_guide": "Повна інструкція ↗",
     "licenses": "Автори та ліцензії ↗",
     "credits": "На основі Chiaki, chiaki-ng та Android Extended. Незалежний від Sony та Nintendo проєкт.",
-    "planned": "Windows, Intel Mac і настільний Linux x64 заплановані. Збірок для них поки немає.",
+    "planned": "Intel Mac і настільний Linux x64 заплановані. Збірок для них поки немає.",
     "skip_content": "Перейти до вмісту",
     "developer_credit": "Розробка RemTeh.by ↗",
     "test_detail": "Повна таблиця перевірок ↗",
@@ -320,7 +320,7 @@
       },
       {
         "q": "Czy można grać przez Internet?",
-        "a": "Przy błędzie sprawdź IP, profil, Account ID, nowy PIN i izolację sieci. Czarny ekran: zamknij inne klienty i połącz ponownie. Dokładne testy wersji są poniżej. Internet/VPN, długie sesje i wszystkie funkcje kontrolerów nie są potwierdzone. Windows, Intel Mac i Linux x64 są planowane. Deckivo nie naprawia WebKit na PS5."
+        "a": "Przy błędzie sprawdź IP, profil, Account ID, nowy PIN i izolację sieci. Czarny ekran: zamknij inne klienty i połącz ponownie. Dokładne testy wersji są poniżej. Internet/VPN, długie sesje i wszystkie funkcje kontrolerów nie są potwierdzone. Intel Mac i Linux x64 są planowane. Deckivo nie naprawia WebKit na PS5."
       },
       {
         "q": "Dlaczego macOS pokazuje ostrzeżenie?",
@@ -341,7 +341,7 @@
     "full_guide": "Pełna instrukcja ↗",
     "licenses": "Autorzy i licencje ↗",
     "credits": "Na podstawie Chiaki, chiaki-ng i Android Extended. Projekt niezależny od Sony i Nintendo.",
-    "planned": "Planowane są Windows, Intel Mac i desktopowy Linux x64. Wersje dla nich nie są jeszcze dostępne.",
+    "planned": "Planowane są Intel Mac i desktopowy Linux x64. Wersje dla nich nie są jeszcze dostępne.",
     "skip_content": "Przejdź do treści",
     "developer_credit": "Opracowanie: RemTeh.by ↗",
     "test_detail": "Pełna tabela testów ↗",
@@ -409,7 +409,7 @@
       },
       {
         "q": "Kann ich über das Internet spielen?",
-        "a": "Bei Fehlern IP, Profil, Account-ID, frischen PIN und Netzisolation prüfen. Schwarzes Bild: andere Clients schließen und neu verbinden. Die genaue Versionsmatrix steht unten. Internet/VPN, lange Sitzungen und sämtliche Controllerfunktionen sind nicht bestätigt. Windows, Intel Mac und Linux x64 sind geplant. Deckivo repariert kein PS5-WebKit."
+        "a": "Bei Fehlern IP, Profil, Account-ID, frischen PIN und Netzisolation prüfen. Schwarzes Bild: andere Clients schließen und neu verbinden. Die genaue Versionsmatrix steht unten. Internet/VPN, lange Sitzungen und sämtliche Controllerfunktionen sind nicht bestätigt. Intel Mac und Linux x64 sind geplant. Deckivo repariert kein PS5-WebKit."
       },
       {
         "q": "Warum zeigt macOS eine Sicherheitswarnung?",
@@ -430,7 +430,7 @@
     "full_guide": "Vollständige Anleitung ↗",
     "licenses": "Mitwirkende und Lizenzen ↗",
     "credits": "Basiert auf Chiaki, chiaki-ng und Android Extended. Unabhängig von Sony und Nintendo.",
-    "planned": "Windows, Intel Mac und Desktop-Linux x64 sind geplant. Dafür gibt es noch keine Builds.",
+    "planned": "Intel Mac und Desktop-Linux x64 sind geplant. Dafür gibt es noch keine Builds.",
     "skip_content": "Zum Inhalt springen",
     "developer_credit": "Entwickelt von RemTeh.by ↗",
     "test_detail": "Vollständige Testübersicht ↗",
@@ -498,7 +498,7 @@
       },
       {
         "q": "Peut-on jouer par Internet ?",
-        "a": "En cas d’échec, vérifiez IP, profil, Account ID, nouveau code et isolation réseau. Écran noir : fermez les autres clients et reconnectez-vous. Consultez la matrice exacte ci-dessous. Internet/VPN, longues sessions et toutes les fonctions des manettes ne sont pas certifiés. Windows, Intel Mac et Linux x64 sont prévus. Deckivo ne répare pas WebKit sur PS5."
+        "a": "En cas d’échec, vérifiez IP, profil, Account ID, nouveau code et isolation réseau. Écran noir : fermez les autres clients et reconnectez-vous. Consultez la matrice exacte ci-dessous. Internet/VPN, longues sessions et toutes les fonctions des manettes ne sont pas certifiés. Intel Mac et Linux x64 sont prévus. Deckivo ne répare pas WebKit sur PS5."
       },
       {
         "q": "Pourquoi macOS affiche-t-il un avertissement ?",
@@ -519,7 +519,7 @@
     "full_guide": "Guide complet ↗",
     "licenses": "Crédits et licences ↗",
     "credits": "Basé sur Chiaki, chiaki-ng et Android Extended. Projet indépendant de Sony et Nintendo.",
-    "planned": "Windows, les Mac Intel et Linux x64 de bureau sont prévus. Aucune version n’est encore proposée pour ces plateformes.",
+    "planned": "Les Mac Intel et Linux x64 de bureau sont prévus. Aucune version n’est encore proposée pour ces plateformes.",
     "skip_content": "Aller au contenu",
     "developer_credit": "Développé par RemTeh.by ↗",
     "test_detail": "Tableau complet des tests ↗",
@@ -587,7 +587,7 @@
       },
       {
         "q": "¿Puedo jugar por Internet?",
-        "a": "Si falla, comprueba IP, perfil, Account ID, código nuevo y aislamiento de red. Pantalla negra: cierra otros clientes y reconecta. Consulta las versiones probadas abajo. Internet/VPN, sesiones largas y todas las funciones del mando no están certificados. Windows, Intel Mac y Linux x64 están previstos. Deckivo no repara WebKit de PS5."
+        "a": "Si falla, comprueba IP, perfil, Account ID, código nuevo y aislamiento de red. Pantalla negra: cierra otros clientes y reconecta. Consulta las versiones probadas abajo. Internet/VPN, sesiones largas y todas las funciones del mando no están certificados. Intel Mac y Linux x64 están previstos. Deckivo no repara WebKit de PS5."
       },
       {
         "q": "¿Por qué macOS muestra una advertencia?",
@@ -608,7 +608,7 @@
     "full_guide": "Guía completa ↗",
     "licenses": "Créditos y licencias ↗",
     "credits": "Basado en Chiaki, chiaki-ng y Android Extended. Proyecto independiente de Sony y Nintendo.",
-    "planned": "Windows, Mac Intel y Linux x64 de escritorio están previstos. Todavía no hay versiones para ellos.",
+    "planned": "Mac Intel y Linux x64 de escritorio están previstos. Todavía no hay versiones para ellos.",
     "skip_content": "Saltar al contenido",
     "developer_credit": "Desarrollado por RemTeh.by ↗",
     "test_detail": "Tabla completa de pruebas ↗",
@@ -676,7 +676,7 @@
       },
       {
         "q": "Posso giocare via Internet?",
-        "a": "In caso di errore controlla IP, profilo, Account ID, nuovo PIN e isolamento di rete. Schermo nero: chiudi altri client e riconnetti. La matrice sotto riporta le versioni precise. Internet/VPN, sessioni lunghe e ogni funzione dei controller non sono certificati. Windows, Intel Mac e Linux x64 sono previsti. Deckivo non ripara WebKit PS5."
+        "a": "In caso di errore controlla IP, profilo, Account ID, nuovo PIN e isolamento di rete. Schermo nero: chiudi altri client e riconnetti. La matrice sotto riporta le versioni precise. Internet/VPN, sessioni lunghe e ogni funzione dei controller non sono certificati. Intel Mac e Linux x64 sono previsti. Deckivo non ripara WebKit PS5."
       },
       {
         "q": "Perché macOS mostra un avviso?",
@@ -697,7 +697,7 @@
     "full_guide": "Guida completa ↗",
     "licenses": "Autori e licenze ↗",
     "credits": "Basato su Chiaki, chiaki-ng e Android Extended. Progetto indipendente da Sony e Nintendo.",
-    "planned": "Windows, Mac Intel e Linux x64 desktop sono previsti. Non sono ancora disponibili versioni per queste piattaforme.",
+    "planned": "Mac Intel e Linux x64 desktop sono previsti. Non sono ancora disponibili versioni per queste piattaforme.",
     "skip_content": "Vai al contenuto",
     "developer_credit": "Sviluppato da RemTeh.by ↗",
     "test_detail": "Tabella completa dei test ↗",
@@ -765,7 +765,7 @@
       },
       {
         "q": "Posso jogar pela Internet?",
-        "a": "Em caso de falha, verifique IP, perfil, Account ID, PIN novo e isolamento da rede. Ecrã preto: feche outros clientes e volte a ligar. Consulte as versões testadas abaixo. Internet/VPN, sessões longas e todas as funções de comandos não estão certificados. Windows, Intel Mac e Linux x64 estão planeados. Deckivo não corrige WebKit da PS5."
+        "a": "Em caso de falha, verifique IP, perfil, Account ID, PIN novo e isolamento da rede. Ecrã preto: feche outros clientes e volte a ligar. Consulte as versões testadas abaixo. Internet/VPN, sessões longas e todas as funções de comandos não estão certificados. Intel Mac e Linux x64 estão planeados. Deckivo não corrige WebKit da PS5."
       },
       {
         "q": "Por que o macOS mostra um aviso?",
@@ -786,7 +786,7 @@
     "full_guide": "Guia completo ↗",
     "licenses": "Créditos e licenças ↗",
     "credits": "Baseado em Chiaki, chiaki-ng e Android Extended. Projeto independente da Sony e da Nintendo.",
-    "planned": "Windows, Mac Intel e Linux x64 para desktop estão previstos. Ainda não há versões para essas plataformas.",
+    "planned": "Mac Intel e Linux x64 para desktop estão previstos. Ainda não há versões para essas plataformas.",
     "skip_content": "Ir para o conteúdo",
     "developer_credit": "Desenvolvido por RemTeh.by ↗",
     "test_detail": "Tabela completa de testes ↗",
@@ -854,7 +854,7 @@
       },
       {
         "q": "İnternet üzerinden oynayabilir miyim?",
-        "a": "Hatada IP, profil, Account ID, yeni PIN ve ağ yalıtımını kontrol edin. Siyah ekranda diğer istemcileri kapatıp yeniden bağlanın. Kesin sürümler aşağıdadır. İnternet/VPN, uzun oturumlar ve tüm kontrolcü işlevleri doğrulanmadı. Windows, Intel Mac ve Linux x64 planlanıyor. Deckivo PS5 WebKit’i onarmaz."
+        "a": "Hatada IP, profil, Account ID, yeni PIN ve ağ yalıtımını kontrol edin. Siyah ekranda diğer istemcileri kapatıp yeniden bağlanın. Kesin sürümler aşağıdadır. İnternet/VPN, uzun oturumlar ve tüm kontrolcü işlevleri doğrulanmadı. Intel Mac ve Linux x64 planlanıyor. Deckivo PS5 WebKit’i onarmaz."
       },
       {
         "q": "macOS neden güvenlik uyarısı gösteriyor?",
@@ -875,7 +875,7 @@
     "full_guide": "Tam kurulum kılavuzu ↗",
     "licenses": "Katkılar ve lisanslar ↗",
     "credits": "Chiaki, chiaki-ng ve Android Extended temel alınmıştır. Sony ve Nintendo’dan bağımsızdır.",
-    "planned": "Windows, Intel Mac ve masaüstü Linux x64 planlanıyor. Bu platformlar için henüz sürüm sunulmuyor.",
+    "planned": "Intel Mac ve masaüstü Linux x64 planlanıyor. Bu platformlar için henüz sürüm sunulmuyor.",
     "skip_content": "İçeriğe geç",
     "developer_credit": "RemTeh.by tarafından geliştirildi ↗",
     "test_detail": "Tüm test sonuçları ↗",
@@ -943,7 +943,7 @@
       },
       {
         "q": "可以通过互联网玩吗？",
-        "a": "配对失败时检查 IP、用户、Account ID、新验证码及网络隔离。黑屏时关闭其他远程游玩客户端，再重新连接或降低画质。具体测试版本见下表。互联网/VPN、休眠唤醒、长时间游玩及所有手柄功能尚未验证。Windows、Intel Mac 和桌面 Linux x64 仍在计划中。Deckivo 不修复 PS5 WebKit。"
+        "a": "配对失败时检查 IP、用户、Account ID、新验证码及网络隔离。黑屏时关闭其他远程游玩客户端，再重新连接或降低画质。具体测试版本见下表。互联网/VPN、休眠唤醒、长时间游玩及所有手柄功能尚未验证。Intel Mac 和桌面 Linux x64 仍在计划中。Deckivo 不修复 PS5 WebKit。"
       },
       {
         "q": "为什么 macOS 显示安全警告？",
@@ -964,7 +964,7 @@
     "full_guide": "完整设置指南 ↗",
     "licenses": "贡献者与许可证 ↗",
     "credits": "基于 Chiaki、chiaki-ng 和 Android Extended。独立于 Sony 和 Nintendo。",
-    "planned": "计划支持 Windows、Intel Mac 和桌面 Linux x64，目前尚未提供这些平台的版本。",
+    "planned": "计划支持 Intel Mac 和桌面 Linux x64，目前尚未提供这些平台的版本。",
     "skip_content": "跳至内容",
     "developer_credit": "由 RemTeh.by 开发 ↗",
     "test_detail": "查看完整测试表 ↗",
@@ -1032,7 +1032,7 @@
       },
       {
         "q": "インターネット経由でプレイできますか？",
-        "a": "失敗時は IP、ユーザー、Account ID、新コードとネットワーク隔離を確認します。黒画面では他のクライアントを閉じ、再接続します。正確な検証版は下表を参照。インターネット/VPN、スリープ復帰、長時間プレイと全コントローラー機能は未検証です。Windows、Intel Mac、Linux x64 は予定段階。PS5 の WebKit は修復しません。"
+        "a": "失敗時は IP、ユーザー、Account ID、新コードとネットワーク隔離を確認します。黒画面では他のクライアントを閉じ、再接続します。正確な検証版は下表を参照。インターネット/VPN、スリープ復帰、長時間プレイと全コントローラー機能は未検証です。Intel Mac、Linux x64 は予定段階。PS5 の WebKit は修復しません。"
       },
       {
         "q": "macOS が警告を表示するのはなぜですか？",
@@ -1053,7 +1053,7 @@
     "full_guide": "設定ガイド ↗",
     "licenses": "クレジットとライセンス ↗",
     "credits": "Chiaki、chiaki-ng、Android Extended を基に開発。Sony および Nintendo とは無関係のプロジェクトです。",
-    "planned": "Windows、Intel Mac、デスクトップ Linux x64 は対応予定です。これらのビルドはまだ公開していません。",
+    "planned": "Intel Mac、デスクトップ Linux x64 は対応予定です。これらのビルドはまだ公開していません。",
     "skip_content": "本文へ移動",
     "developer_credit": "開発：RemTeh.by ↗",
     "test_detail": "詳細なテスト一覧 ↗",
@@ -1121,7 +1121,7 @@
       },
       {
         "q": "인터넷으로 플레이할 수 있나요?",
-        "a": "실패하면 IP, 프로필, Account ID, 새 코드와 네트워크 격리를 확인하세요. 검은 화면이면 다른 클라이언트를 닫고 다시 연결하세요. 정확한 검증 버전은 아래에 있습니다. 인터넷/VPN, 절전 해제, 장시간 플레이와 모든 컨트롤러 기능은 미검증입니다. Windows, Intel Mac, Linux x64는 계획 단계입니다. PS5 WebKit은 고치지 않습니다."
+        "a": "실패하면 IP, 프로필, Account ID, 새 코드와 네트워크 격리를 확인하세요. 검은 화면이면 다른 클라이언트를 닫고 다시 연결하세요. 정확한 검증 버전은 아래에 있습니다. 인터넷/VPN, 절전 해제, 장시간 플레이와 모든 컨트롤러 기능은 미검증입니다. Intel Mac, Linux x64는 계획 단계입니다. PS5 WebKit은 고치지 않습니다."
       },
       {
         "q": "macOS에서 보안 경고가 나오는 이유는 무엇인가요?",
@@ -1142,7 +1142,7 @@
     "full_guide": "전체 설정 가이드 ↗",
     "licenses": "제작자 및 라이선스 ↗",
     "credits": "Chiaki, chiaki-ng, Android Extended를 기반으로 합니다. Sony 및 Nintendo와 독립된 프로젝트입니다.",
-    "planned": "Windows, Intel Mac, 데스크톱 Linux x64 지원을 계획 중입니다. 해당 플랫폼의 빌드는 아직 없습니다.",
+    "planned": "Intel Mac, 데스크톱 Linux x64 지원을 계획 중입니다. 해당 플랫폼의 빌드는 아직 없습니다.",
     "skip_content": "본문으로 이동",
     "developer_credit": "RemTeh.by 개발 ↗",
     "test_detail": "전체 테스트 목록 ↗",
@@ -1210,7 +1210,7 @@
       },
       {
         "q": "هل يمكن اللعب عبر الإنترنت؟",
-        "a": "عند الفشل تحقّق من IP والمستخدم وAccount ID ورمز جديد وعزل الشبكة. للشاشة السوداء أغلق العملاء الآخرين وأعد الاتصال. الإصدارات المختبرة موضحة أدناه. الإنترنت/VPN والاستيقاظ والجلسات الطويلة وكل وظائف التحكم غير معتمدة. Windows وIntel Mac وLinux x64 مخططة. لا يصلح Deckivo متصفح WebKit في PS5."
+        "a": "عند الفشل تحقّق من IP والمستخدم وAccount ID ورمز جديد وعزل الشبكة. للشاشة السوداء أغلق العملاء الآخرين وأعد الاتصال. الإصدارات المختبرة موضحة أدناه. الإنترنت/VPN والاستيقاظ والجلسات الطويلة وكل وظائف التحكم غير معتمدة. Intel Mac وLinux x64 مخططة. لا يصلح Deckivo متصفح WebKit في PS5."
       },
       {
         "q": "لماذا يظهر تحذير أمان في macOS؟",
@@ -1231,7 +1231,7 @@
     "full_guide": "دليل الإعداد الكامل ↗",
     "licenses": "المساهمون والتراخيص ↗",
     "credits": "مبني على Chiaki وchiaki-ng وAndroid Extended. مشروع مستقل عن Sony وNintendo.",
-    "planned": "دعم Windows وIntel Mac وLinux x64 المكتبي مخطط له. لا تتوفر إصدارات لهذه المنصات بعد.",
+    "planned": "دعم Intel Mac وLinux x64 المكتبي مخطط له. لا تتوفر إصدارات لهذه المنصات بعد.",
     "skip_content": "انتقل إلى المحتوى",
     "developer_credit": "تطوير RemTeh.by ↗",
     "test_detail": "جدول الاختبارات الكامل ↗",
@@ -1299,7 +1299,7 @@
       },
       {
         "q": "क्या इंटरनेट पर खेल सकते हैं?",
-        "a": "त्रुटि पर IP, प्रोफ़ाइल, Account ID, नया PIN और नेटवर्क अलगाव जाँचें। काली स्क्रीन पर दूसरे क्लाइंट बंद करके पुनः जोड़ें। सटीक परीक्षण संस्करण नीचे हैं। इंटरनेट/VPN, स्लीप से जागना, लंबे सत्र और सभी कंट्रोलर फ़ंक्शन प्रमाणित नहीं हैं। Windows, Intel Mac और Linux x64 योजनाबद्ध हैं। Deckivo PS5 WebKit ठीक नहीं करता।"
+        "a": "त्रुटि पर IP, प्रोफ़ाइल, Account ID, नया PIN और नेटवर्क अलगाव जाँचें। काली स्क्रीन पर दूसरे क्लाइंट बंद करके पुनः जोड़ें। सटीक परीक्षण संस्करण नीचे हैं। इंटरनेट/VPN, स्लीप से जागना, लंबे सत्र और सभी कंट्रोलर फ़ंक्शन प्रमाणित नहीं हैं। Intel Mac और Linux x64 योजनाबद्ध हैं। Deckivo PS5 WebKit ठीक नहीं करता।"
       },
       {
         "q": "macOS सुरक्षा चेतावनी क्यों दिखाता है?",
@@ -1320,7 +1320,7 @@
     "full_guide": "पूरी सेटअप गाइड ↗",
     "licenses": "योगदानकर्ता और लाइसेंस ↗",
     "credits": "Chiaki, chiaki-ng और Android Extended पर आधारित। Sony और Nintendo से स्वतंत्र परियोजना।",
-    "planned": "Windows, Intel Mac और डेस्कटॉप Linux x64 की योजना है। इनके लिए अभी कोई बिल्ड उपलब्ध नहीं है।",
+    "planned": "Intel Mac और डेस्कटॉप Linux x64 की योजना है। इनके लिए अभी कोई बिल्ड उपलब्ध नहीं है।",
     "skip_content": "सामग्री पर जाएँ",
     "developer_credit": "RemTeh.by द्वारा विकसित ↗",
     "test_detail": "पूरी परीक्षण तालिका ↗",
@@ -1388,7 +1388,7 @@
       },
       {
         "q": "Bisakah bermain lewat Internet?",
-        "a": "Jika gagal, periksa IP, profil, Account ID, PIN baru dan isolasi jaringan. Layar hitam: tutup klien lain lalu sambungkan ulang. Versi pengujian tepat ada di bawah. Internet/VPN, bangun dari tidur, sesi panjang dan semua fungsi kontroler belum tersertifikasi. Windows, Intel Mac dan Linux x64 direncanakan. Deckivo tidak memperbaiki WebKit PS5."
+        "a": "Jika gagal, periksa IP, profil, Account ID, PIN baru dan isolasi jaringan. Layar hitam: tutup klien lain lalu sambungkan ulang. Versi pengujian tepat ada di bawah. Internet/VPN, bangun dari tidur, sesi panjang dan semua fungsi kontroler belum tersertifikasi. Intel Mac dan Linux x64 direncanakan. Deckivo tidak memperbaiki WebKit PS5."
       },
       {
         "q": "Mengapa macOS menampilkan peringatan keamanan?",
@@ -1409,7 +1409,7 @@
     "full_guide": "Panduan lengkap ↗",
     "licenses": "Kontributor dan lisensi ↗",
     "credits": "Berdasarkan Chiaki, chiaki-ng, dan Android Extended. Proyek independen dari Sony dan Nintendo.",
-    "planned": "Windows, Intel Mac, dan Linux x64 desktop direncanakan. Belum ada versi untuk platform tersebut.",
+    "planned": "Intel Mac dan Linux x64 desktop direncanakan. Belum ada versi untuk platform tersebut.",
     "skip_content": "Lewati ke konten",
     "developer_credit": "Dikembangkan oleh RemTeh.by ↗",
     "test_detail": "Tabel pengujian lengkap ↗",

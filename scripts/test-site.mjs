@@ -70,7 +70,8 @@ try {
    for(const qa of state.faq[0].mainEntity) for(const found of qa.acceptedAnswer.text.matchAll(/\b\d+\.\d+\.\d+\b/g))assert.equal(found[0],expectedVersion,lang+' stale FAQ version');
    assert.equal(state.og.width,'1200');assert.equal(state.og.height,'630');assert.equal(state.og.type,'image/jpeg');
    assert.equal(state.og.image,state.og.twitter);assert.match(state.og.image,/^https:\/\/.*\/github-cover\.jpg(?:\?|$)/);
-   assert.equal(state.downloads.length,3);assert.ok(state.downloads.every(u=>u.includes('/v'+expectedVersion+'/')));
+   assert.equal(state.downloads.length,4);assert.ok(state.downloads.slice(0,3).every(u=>u.includes('/v'+expectedVersion+'/')));
+   assert.match(state.downloads[3],/\/v0\.9\.0-windows-preview\.4\/Deckivo-0\.9\.0-preview-Windows-x64-Setup\.exe$/);
    assert.equal(state.downloadLabels.length,4);
    for(const label of state.downloadLabels)assert.ok(label.includes(expectedVersion),'visible download label must match the published version: '+label);
    assert.equal(state.stats,expectedStats,'public counters respect the configured threshold');assert.equal(state.unknownBars,expectedProgress);
@@ -86,7 +87,7 @@ try {
  const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:1440,height:1000}});
  for(const lang of languages) {
   const page=await context.newPage();await page.goto(base+(lang==='en'?'':lang+'/'));
-  assert.equal(await page.locator('a.package-link').count(),3);
+  assert.equal(await page.locator('a.package-link').count(),4);
   assert.equal(await page.locator('.language-menu a').count(),16);
   assert.equal(await page.locator('script[type="application/ld+json"]').count(),1);
   assert.equal(await page.locator('[data-support-method] a[href^="https://"]').count(),support.methods.length);

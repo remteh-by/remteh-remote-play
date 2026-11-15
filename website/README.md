@@ -13,10 +13,10 @@ another URL. Arabic is RTL. No language redirect or local-storage dependency.
 
 The first screen explains that Deckivo is installed on the playback device and
 that Remote Play must be enabled on the PS5. It then separates Android, Apple
-Silicon Mac and Switch OLED / Ubuntu into three choices. Android and Mac present
+Silicon Mac and Switch OLED / Ubuntu into platform cards. Android and Mac present
 their packages as install-or-update downloads with a separate setup guide. Linux
 keeps the update and first-install paths explicit because its first installation
-has additional dependencies. Windows, Intel Mac and Linux x64 remain explicitly
+has additional dependencies. The Windows 11 x64 preview has separate installer and portable links plus a Russian guide. Intel Mac and Linux x64 remain explicitly
 unavailable.
 
 ```sh

@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## Başlamadan önce
 
 0.8.10 deneysel bir ön sürümdür. PS5 ile istemciyi aynı ev ağına bağlayın. PS5’te doğru profili seçin: Ayarlar → Sistem → Uzaktan Oynama → Etkinleştir. İlk eşleştirmede konsolu açık tutun. 5 GHz Wi-Fi önerilir; misafir ağı cihazları birbirinden ayırabilir.
@@ -57,7 +59,7 @@ Android uygulama açıkken GitHub’ı genellikle altı saatte bir denetler ve s
 
 ## Sorunlar ve sınırlar
 
-Hatada IP, profil, Account ID, yeni PIN ve ağ yalıtımını kontrol edin. Siyah ekranda diğer istemcileri kapatıp yeniden bağlanın. Kesin sürümler aşağıdadır. İnternet/VPN, uzun oturumlar ve tüm kontrolcü işlevleri doğrulanmadı. Windows, Intel Mac ve Linux x64 planlanıyor. Deckivo PS5 WebKit’i onarmaz.
+Hatada IP, profil, Account ID, yeni PIN ve ağ yalıtımını kontrol edin. Siyah ekranda diğer istemcileri kapatıp yeniden bağlanın. Kesin sürümler aşağıdadır. İnternet/VPN, uzun oturumlar ve tüm kontrolcü işlevleri doğrulanmadı. Intel Mac ve Linux x64 planlanıyor. Deckivo PS5 WebKit’i onarmaz.
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 

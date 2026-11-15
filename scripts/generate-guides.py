@@ -9,7 +9,7 @@ catalog=json.loads((ROOT/'localization/guides.json').read_text());support=json.l
 lifecycle=json.loads((ROOT/'localization/guide-lifecycle.json').read_text())
 links=' · '.join(f'[{x["name"]}]({code}.md)' for code,x in catalog.items())
 for code,copy in catalog.items():
- lines=['# '+copy['title'],'',f'Deckivo **{VERSION} preview** · 2026-11-01','',links,'']
+ lines=['# '+copy['title'],'',f'Deckivo **{VERSION} preview** · 2026-11-01','',links,'','[Windows 11 x64 · инструкция (RU)](windows-ru.md)','']
  for i in range(8):
   anchors={1:'android',2:'macos',3:'ubuntu'}
   if i in anchors:lines += [f'<a id="{anchors[i]}"></a>','']

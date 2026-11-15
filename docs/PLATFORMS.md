@@ -7,7 +7,8 @@ Public release: **0.8.10 preview**, Android build 34, desktop build 25. Publishe
 | Android ARM64 | 0.8.10 build 34; Android 8+ | Build, unit tests and lint; USB/Bluetooth, update over existing certificate, video/audio and lifecycle need physical device checks |
 | macOS Apple Silicon | 0.8.10 build 25; macOS 13+; separate official chiaki-ng | Native tests and staged app; current PS5 gameplay, minimize/restore, input/background audio and sustained session pending |
 | Switchroot Ubuntu ARM64 | 0.8.10 build 25 source/update candidate | Prepared Ubuntu 24.04, KDE/X11, Switchroot FFmpeg 6.1; actual installation, reboot and streaming pending |
-| Windows, Intel Mac, desktop Linux x64 | No supported package | Planned/research, not a download promise |
+| Windows 11 x64 | 0.9.0.4 preview · installer and portable ZIP | [Installation and verification scope](../desktop/windows/RELEASE.md) |
+| Intel Mac, desktop Linux x64 | No supported package | Planned/research, not a download promise |
 
 Android uses the C/Kotlin engine; macOS uses a separately installed chiaki-ng through an owned private copy; Switchroot Ubuntu uses the isolated Chiaki 2.2.0 runtime and Tegra/input adapters. Requested streaming profiles go up to 1080p, not 4K. External Internet/VPN play needs separate network verification.
 

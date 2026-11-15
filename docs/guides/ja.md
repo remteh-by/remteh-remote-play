@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## 準備
 
 0.8.10 は実験的なプレビューです。PS5 とクライアントを同じ家庭内ネットワークに接続します。PS5 で使うユーザーを選び、設定 → システム → リモートプレイ → 有効にする、を設定します。初回登録中は電源を入れたままにしてください。5 GHz Wi-Fi を推奨します。ゲストネットワークは機器を隔離する場合があります。
@@ -57,7 +59,7 @@ Android はホーム・更新画面が開いている間、通常6時間ごと�
 
 ## 問題と制限
 
-失敗時は IP、ユーザー、Account ID、新コードとネットワーク隔離を確認します。黒画面では他のクライアントを閉じ、再接続します。正確な検証版は下表を参照。インターネット/VPN、スリープ復帰、長時間プレイと全コントローラー機能は未検証です。Windows、Intel Mac、Linux x64 は予定段階。PS5 の WebKit は修復しません。
+失敗時は IP、ユーザー、Account ID、新コードとネットワーク隔離を確認します。黒画面では他のクライアントを閉じ、再接続します。正確な検証版は下表を参照。インターネット/VPN、スリープ復帰、長時間プレイと全コントローラー機能は未検証です。Intel Mac、Linux x64 は予定段階。PS5 の WebKit は修復しません。
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 

@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## Antes de empezar
 
 0.8.10 es una versión experimental. Conecta PS5 y cliente a la misma red doméstica. En PS5 selecciona el perfil correcto: Ajustes → Sistema → Uso a distancia → Activar. Mantén la consola encendida durante la primera vinculación. Es preferible Wi-Fi de 5 GHz; la red de invitados puede aislar dispositivos.
@@ -57,7 +59,7 @@ Android consulta GitHub con la app abierta, normalmente cada seis horas, y puede
 
 ## Problemas y límites
 
-Si falla, comprueba IP, perfil, Account ID, código nuevo y aislamiento de red. Pantalla negra: cierra otros clientes y reconecta. Consulta las versiones probadas abajo. Internet/VPN, sesiones largas y todas las funciones del mando no están certificados. Windows, Intel Mac y Linux x64 están previstos. Deckivo no repara WebKit de PS5.
+Si falla, comprueba IP, perfil, Account ID, código nuevo y aislamiento de red. Pantalla negra: cierra otros clientes y reconecta. Consulta las versiones probadas abajo. Internet/VPN, sesiones largas y todas las funciones del mando no están certificados. Intel Mac y Linux x64 están previstos. Deckivo no repara WebKit de PS5.
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 

@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## Avant de commencer
 
 La version 0.8.10 est expérimentale. Connectez la PS5 et le client au même réseau domestique. Sur PS5, choisissez le bon profil puis Paramètres → Système → Lecture à distance → Activer. Laissez la console allumée pendant la première association. Préférez le Wi-Fi 5 GHz ; un réseau invité peut isoler les appareils.
@@ -57,7 +59,7 @@ Android consulte GitHub avec l’application ouverte, généralement toutes les 
 
 ## Dépannage et limites
 
-En cas d’échec, vérifiez IP, profil, Account ID, nouveau code et isolation réseau. Écran noir : fermez les autres clients et reconnectez-vous. Consultez la matrice exacte ci-dessous. Internet/VPN, longues sessions et toutes les fonctions des manettes ne sont pas certifiés. Windows, Intel Mac et Linux x64 sont prévus. Deckivo ne répare pas WebKit sur PS5.
+En cas d’échec, vérifiez IP, profil, Account ID, nouveau code et isolation réseau. Écran noir : fermez les autres clients et reconnectez-vous. Consultez la matrice exacte ci-dessous. Internet/VPN, longues sessions et toutes les fonctions des manettes ne sont pas certifiés. Intel Mac et Linux x64 sont prévus. Deckivo ne répare pas WebKit sur PS5.
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 
