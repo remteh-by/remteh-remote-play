@@ -1,2 +1,4 @@
 /test/*.inl linguist-generated=true
 /lib/*.h linguist-language=C
+/desktop/windows/*.patch text eol=lf
+/desktop/windows/*.sh text eol=lf
