@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## Zanim zaczniesz
 
 Wersja 0.8.10 jest eksperymentalna. Połącz PS5 i klienta z tą samą siecią domową. Na PS5 wybierz właściwy profil i Ustawienia → System → Gra zdalna → Włącz grę zdalną. Konsola musi być włączona przy pierwszym parowaniu. Zalecane Wi-Fi 5 GHz; sieć gościnna może izolować urządzenia.
@@ -57,7 +59,7 @@ Android sprawdza GitHub przy otwartej aplikacji, zwykle co sześć godzin; może
 
 ## Problemy i ograniczenia
 
-Przy błędzie sprawdź IP, profil, Account ID, nowy PIN i izolację sieci. Czarny ekran: zamknij inne klienty i połącz ponownie. Dokładne testy wersji są poniżej. Internet/VPN, długie sesje i wszystkie funkcje kontrolerów nie są potwierdzone. Windows, Intel Mac i Linux x64 są planowane. Deckivo nie naprawia WebKit na PS5.
+Przy błędzie sprawdź IP, profil, Account ID, nowy PIN i izolację sieci. Czarny ekran: zamknij inne klienty i połącz ponownie. Dokładne testy wersji są poniżej. Internet/VPN, długie sesje i wszystkie funkcje kontrolerów nie są potwierdzone. Intel Mac i Linux x64 są planowane. Deckivo nie naprawia WebKit na PS5.
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 

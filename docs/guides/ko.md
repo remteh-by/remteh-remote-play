@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## 시작하기 전에
 
 0.8.10은 실험용 미리 보기입니다. PS5와 클라이언트를 같은 가정 네트워크에 연결하세요. PS5에서 사용할 프로필을 고르고 설정 → 시스템 → 리모트 플레이 → 활성화를 선택합니다. 첫 등록 중에는 콘솔을 켜 두세요. 5 GHz Wi-Fi를 권장하며 게스트 네트워크는 기기를 격리할 수 있습니다.
@@ -57,7 +59,7 @@ Android는 홈/업데이트 화면이 열린 동안 보통 6시간마다 GitHub�
 
 ## 문제와 제한
 
-실패하면 IP, 프로필, Account ID, 새 코드와 네트워크 격리를 확인하세요. 검은 화면이면 다른 클라이언트를 닫고 다시 연결하세요. 정확한 검증 버전은 아래에 있습니다. 인터넷/VPN, 절전 해제, 장시간 플레이와 모든 컨트롤러 기능은 미검증입니다. Windows, Intel Mac, Linux x64는 계획 단계입니다. PS5 WebKit은 고치지 않습니다.
+실패하면 IP, 프로필, Account ID, 새 코드와 네트워크 격리를 확인하세요. 검은 화면이면 다른 클라이언트를 닫고 다시 연결하세요. 정확한 검증 버전은 아래에 있습니다. 인터넷/VPN, 절전 해제, 장시간 플레이와 모든 컨트롤러 기능은 미검증입니다. Intel Mac, Linux x64는 계획 단계입니다. PS5 WebKit은 고치지 않습니다.
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 

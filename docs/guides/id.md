@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## Sebelum mulai
 
 0.8.10 adalah pratinjau eksperimental. Hubungkan PS5 dan klien ke jaringan rumah yang sama. Pilih profil yang benar di PS5: Pengaturan → Sistem → Remote Play → Aktifkan. Biarkan konsol menyala saat pemasangan pertama. Wi-Fi 5 GHz disarankan; jaringan tamu dapat mengisolasi perangkat.
@@ -57,7 +59,7 @@ Android memeriksa GitHub saat layar utama/pembaruan terbuka, biasanya setiap ena
 
 ## Masalah dan batasan
 
-Jika gagal, periksa IP, profil, Account ID, PIN baru dan isolasi jaringan. Layar hitam: tutup klien lain lalu sambungkan ulang. Versi pengujian tepat ada di bawah. Internet/VPN, bangun dari tidur, sesi panjang dan semua fungsi kontroler belum tersertifikasi. Windows, Intel Mac dan Linux x64 direncanakan. Deckivo tidak memperbaiki WebKit PS5.
+Jika gagal, periksa IP, profil, Account ID, PIN baru dan isolasi jaringan. Layar hitam: tutup klien lain lalu sambungkan ulang. Versi pengujian tepat ada di bawah. Internet/VPN, bangun dari tidur, sesi panjang dan semua fungsi kontroler belum tersertifikasi. Intel Mac dan Linux x64 direncanakan. Deckivo tidak memperbaiki WebKit PS5.
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 

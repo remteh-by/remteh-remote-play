@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## 开始之前
 
 0.8.10 是实验性预览版。请先让 PS5 与客户端连接同一家庭网络。在 PS5 选择要使用的用户，打开设置 → 系统 → 远程游玩 → 启用远程游玩。首次配对时保持主机开机。建议使用 5 GHz Wi-Fi；访客网络可能隔离设备。应用不会安装 Android/Linux 或修改 PS5 固件。
@@ -57,7 +59,7 @@ Android 在主界面或更新界面打开时检查 GitHub，通常每六小时�
 
 ## 故障排查与限制
 
-配对失败时检查 IP、用户、Account ID、新验证码及网络隔离。黑屏时关闭其他远程游玩客户端，再重新连接或降低画质。具体测试版本见下表。互联网/VPN、休眠唤醒、长时间游玩及所有手柄功能尚未验证。Windows、Intel Mac 和桌面 Linux x64 仍在计划中。Deckivo 不修复 PS5 WebKit。
+配对失败时检查 IP、用户、Account ID、新验证码及网络隔离。黑屏时关闭其他远程游玩客户端，再重新连接或降低画质。具体测试版本见下表。互联网/VPN、休眠唤醒、长时间游玩及所有手柄功能尚未验证。Intel Mac 和桌面 Linux x64 仍在计划中。Deckivo 不修复 PS5 WebKit。
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 

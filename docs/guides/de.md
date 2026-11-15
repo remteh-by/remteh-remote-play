@@ -4,6 +4,8 @@ Deckivo **0.8.10 preview** · 2026-11-01
 
 [English](en.md) · [Русский](ru.md) · [Українська](uk.md) · [Polski](pl.md) · [Deutsch](de.md) · [Français](fr.md) · [Español](es.md) · [Italiano](it.md) · [Português](pt.md) · [Türkçe](tr.md) · [简体中文](zh.md) · [日本語](ja.md) · [한국어](ko.md) · [العربية](ar.md) · [हिन्दी](hi.md) · [Bahasa Indonesia](id.md)
 
+[Windows 11 x64 · инструкция (RU)](windows-ru.md)
+
 ## Vorbereitung
 
 0.8.10 ist eine experimentelle Vorschau. Verbinde PS5 und Client mit demselben Heimnetz. Wähle auf der PS5 das gewünschte Profil und Einstellungen → System → Remote Play → Remote Play aktivieren. Bei der ersten Kopplung muss die Konsole eingeschaltet bleiben. 5-GHz-WLAN ist vorzuziehen; Gastnetze können Geräte isolieren.
@@ -57,7 +59,7 @@ Android prüft GitHub bei geöffneter App normalerweise alle sechs Stunden und k
 
 ## Fehler und Grenzen
 
-Bei Fehlern IP, Profil, Account-ID, frischen PIN und Netzisolation prüfen. Schwarzes Bild: andere Clients schließen und neu verbinden. Die genaue Versionsmatrix steht unten. Internet/VPN, lange Sitzungen und sämtliche Controllerfunktionen sind nicht bestätigt. Windows, Intel Mac und Linux x64 sind geplant. Deckivo repariert kein PS5-WebKit.
+Bei Fehlern IP, Profil, Account-ID, frischen PIN und Netzisolation prüfen. Schwarzes Bild: andere Clients schließen und neu verbinden. Die genaue Versionsmatrix steht unten. Internet/VPN, lange Sitzungen und sämtliche Controllerfunktionen sind nicht bestätigt. Intel Mac und Linux x64 sind geplant. Deckivo repariert kein PS5-WebKit.
 
 [Device / version / scope](../TESTED.md) · [Technical reference](../TECHNICAL.md)
 
