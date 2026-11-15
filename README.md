@@ -5,6 +5,8 @@
 
 <p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-Linux-0.8.11-b27-source.zip">Linux 0.8.11 b27</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-0.8.11-arm64.apk">Android 0.8.11</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-macos-0.8.11-b27.zip">macOS 0.8.11 b27</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
 
+**Windows 11 x64 preview** · [Installation, PS5 pairing, controllers and troubleshooting (Русский)](docs/guides/windows-ru.md) · [Windows prerelease](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.9.0-windows-preview.4) · [Support Deckivo on Ko-fi](https://ko-fi.com/pavelzayats)
+
 [Download history and counting method](docs/DOWNLOADS.md).
 
 [English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)

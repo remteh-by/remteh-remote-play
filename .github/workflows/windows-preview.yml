@@ -1,0 +1,44 @@
+name: Windows x64 preview build
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        id: msys
+        with:
+          msystem: UCRT64
+          update: true
+          install: git make diffutils gnupg curl
+          pacboy: >-
+            cmake:p ffmpeg:p gcc:p hidapi:p json-c:p libevent:p libplacebo:p
+            miniupnpc:p ninja:p openssl:p opus:p pkgconf:p protobuf:p python-protobuf:p
+            qt6-base:p qt6-declarative:p qt6-svg:p sdl2-compat:p speexdsp:p
+      - name: Compile the pinned engine and Windows overlay
+        shell: pwsh
+        env:
+          MSYSROOT: ${{ steps.msys.outputs.msys2-location }}
+        run: ./desktop/windows/build.ps1 -MsysRoot $env:MSYSROOT -Work D:/deckivo-build
+      - name: Check controls, saved settings and update signatures
+        shell: msys2 {0}
+        run: bash desktop/windows/test.sh /d/deckivo-build/engine
+      - name: Build the installer and ZIP
+        shell: pwsh
+        env:
+          MSYSROOT: ${{ steps.msys.outputs.msys2-location }}
+        run: |
+          $iscc = (Get-Command iscc.exe -ErrorAction SilentlyContinue).Source
+          if (!$iscc) { $iscc = "${env:ProgramFiles(x86)}/Inno Setup 6/ISCC.exe" }
+          ./desktop/windows/package.ps1 -Engine D:/deckivo-build/engine -MsysRoot $env:MSYSROOT -Destination D:/deckivo-release -Iscc $iscc -Python "$env:MSYSROOT/ucrt64/bin/python.exe"
+          $packages = Get-ChildItem D:/deckivo-release -File
+          $packages | ForEach-Object { (Get-FileHash $_).Hash.ToLowerInvariant() + '  ' + $_.Name } | Set-Content D:/deckivo-release/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: deckivo-windows-preview
+          path: |
+            D:/deckivo-release/*.exe
+            D:/deckivo-release/*.zip
+            D:/deckivo-release/SHA256SUMS.txt
