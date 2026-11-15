@@ -1,0 +1,2159 @@
+diff --git a/gui/CMakeLists.txt b/gui/CMakeLists.txt
+index 7e777e1..8681fcf 100755
+--- a/gui/CMakeLists.txt
++++ b/gui/CMakeLists.txt
+@@ -89,6 +89,7 @@ elseif(WIN32)
+ endif()
+ 
+ add_executable(chiaki WIN32
++        include/windows_tools.h
+ 		${RESOURCE_FILES}
+ 		${SOURCE_FILES}
+ )
+@@ -98,7 +99,10 @@ add_library(placebo-libav-impl src/libav_impl.c)
+ target_link_libraries(placebo-libav-impl PkgConfig::LIBPLACEBO FFMPEG::avcodec FFMPEG::avutil FFMPEG::avformat)
+ target_link_libraries(chiaki PkgConfig::LIBPLACEBO placebo-libav-impl)
+ 
+-target_link_libraries(chiaki chiaki-lib)
++find_package(OpenSSL REQUIRED COMPONENTS Crypto)
++target_sources(chiaki PRIVATE include/windows_update.h)
++target_link_libraries(chiaki chiaki-lib crypt32 OpenSSL::Crypto)
++set_target_properties(chiaki PROPERTIES OUTPUT_NAME Deckivo)
+ if(CHIAKI_ENABLE_CLI)
+ 	add_definitions(-DCHIAKI_ENABLE_CLI)
+ 	target_link_libraries(chiaki chiaki-cli-lib)
+diff --git a/gui/chiaking.rc.in b/gui/chiaking.rc.in
+index 908d938..06d4090 100644
+--- a/gui/chiaking.rc.in
++++ b/gui/chiaking.rc.in
+@@ -1,8 +1,8 @@
+-#define VER_FILEVERSION             @CHIAKI_VERSION_MAJOR@,@CHIAKI_VERSION_MINOR@,@CHIAKI_VERSION_PATCH@,0
+-#define VER_FILEVERSION_STR         "@CHIAKI_VERSION_MAJOR@.@CHIAKI_VERSION_MINOR@.@CHIAKI_VERSION_PATCH@.0\0"
++#define VER_FILEVERSION             0,9,0,4
++#define VER_FILEVERSION_STR         "0.9.0.4\0"
+ 
+-#define VER_PRODUCTVERSION          @CHIAKI_VERSION_MAJOR@,@CHIAKI_VERSION_MINOR@,@CHIAKI_VERSION_PATCH@,0
+-#define VER_PRODUCTVERSION_STR      "@CHIAKI_VERSION_MAJOR@.@CHIAKI_VERSION_MINOR@.@CHIAKI_VERSION_PATCH@.0\0"
++#define VER_PRODUCTVERSION          0,9,0,4
++#define VER_PRODUCTVERSION_STR      "0.9.0.4\0"
+ 
+ 1 VERSIONINFO
+  FILEVERSION VER_FILEVERSION
+@@ -22,13 +22,13 @@ BEGIN
+         BLOCK "080904b0"
+         BEGIN
+             VALUE "Comments", "next-generation of Chiaki"
+-            VALUE "CompanyName", "Stret Pea"
+-            VALUE "FileDescription", "Open-Source PlayStation Remote Play App"
++            VALUE "CompanyName", "RemTeh"
++            VALUE "FileDescription", "Deckivo - PlayStation Remote Play"
+             VALUE "FileVersion", VER_FILEVERSION_STR
+-            VALUE "InternalName", "chiaki-ng"
++            VALUE "InternalName", "Deckivo"
+             VALUE "LegalCopyright", "AGPLv3 Stret Pea 2022"
+-            VALUE "OriginalFilename", "chiaki.exe"
+-            VALUE "ProductName", "chiaki-ng"
++            VALUE "OriginalFilename", "Deckivo.exe"
++            VALUE "ProductName", "Deckivo"
+             VALUE "ProductVersion", VER_PRODUCTVERSION_STR
+         END
+     END
+@@ -37,4 +37,4 @@ BEGIN
+         VALUE "Translation", 0x809, 1200
+     END
+ END
+-IDI_ICON1 ICON DISCARDABLE "chiaking.ico"
+\ No newline at end of file
++IDI_ICON1 ICON DISCARDABLE "deckivo.ico"
+diff --git a/gui/include/qmlbackend.h b/gui/include/qmlbackend.h
+index 3b9e49a..5ec3cfc 100644
+--- a/gui/include/qmlbackend.h
++++ b/gui/include/qmlbackend.h
+@@ -185,6 +185,7 @@ public:
+     Q_INVOKABLE void unhideHost(const QString &mac_string);
+     Q_INVOKABLE bool registerHost(const QString &host, const QString &psn_id, const QString &pin, const QString &cpin, bool broadcast, int target, const QJSValue &callback);
+     Q_INVOKABLE void connectToHost(int index, QString nickname = QString());
++    Q_INVOKABLE void startManualPairing();
+     Q_INVOKABLE void stopSession(bool sleep);
+     Q_INVOKABLE void sessionGoHome();
+     Q_INVOKABLE void enterPin(const QString &pin);
+diff --git a/gui/include/qmlcontroller.h b/gui/include/qmlcontroller.h
+index e57043b..b54848a 100644
+--- a/gui/include/qmlcontroller.h
++++ b/gui/include/qmlcontroller.h
+@@ -7,6 +7,7 @@ class QTimer;
+ class QmlController : public QObject
+ {
+     Q_OBJECT
++    Q_PROPERTY(QString name READ name CONSTANT)
+     Q_PROPERTY(bool dualSense READ isDualSense CONSTANT)
+     Q_PROPERTY(bool handheld READ isHandheld CONSTANT)
+     Q_PROPERTY(bool steamVirtual READ isSteamVirtual CONSTANT)
+@@ -17,6 +18,8 @@ public:
+     QmlController(Controller *controller, uint32_t shortcut, QObject *target, QObject *parent = nullptr);
+     ~QmlController();
+ 
++    QString name() const { return controller->GetName(); }
++    Q_INVOKABLE QVariantMap sample() const;
+     bool isDualSense() const;
+     bool isHandheld() const;
+     bool isSteamVirtual() const;
+diff --git a/gui/include/qmlmainwindow.h b/gui/include/qmlmainwindow.h
+index 33bfea4..49a7a21 100644
+--- a/gui/include/qmlmainwindow.h
++++ b/gui/include/qmlmainwindow.h
+@@ -2,6 +2,8 @@
+ 
+ #include "streamsession.h"
+ #include "settings.h"
++#include "desktop_input.h"
++class WindowsTools;
+ 
+ #include <QMutex>
+ #include <QAtomicInteger>
+@@ -45,6 +47,17 @@ class QOpenGLFramebufferObject;
+ class QmlMainWindow : public QWindow
+ {
+     Q_OBJECT
++    Q_INVOKABLE qint64 decodedFrameCount() const { return decoded_frames.loadRelaxed(); }
++private:
++    WindowsTools *tools = nullptr;
++    DeckivoInput::State desktop_input;
++    bool capturing_mouse = false;
++    QTimer aim_timer;
++    void releaseDesktopInput();
++    bool desktopEvent(QEvent *event);
++    void sendDesktopInput();
++    QAtomicInteger<qint64> decoded_frames{0};
++public:
+     Q_PROPERTY(bool hasVideo READ hasVideo NOTIFY hasVideoChanged)
+     Q_PROPERTY(int droppedFrames READ droppedFrames NOTIFY droppedFramesChanged)
+     Q_PROPERTY(bool keepVideo READ keepVideo WRITE setKeepVideo NOTIFY keepVideoChanged)
+diff --git a/gui/include/streamsession.h b/gui/include/streamsession.h
+index 8029f96..2ce9e19 100755
+--- a/gui/include/streamsession.h
++++ b/gui/include/streamsession.h
+@@ -150,6 +150,12 @@ class StreamSession : public QObject
+ 	friend class StreamSessionPrivate;
+ 
+ 	Q_OBJECT
++    Q_PROPERTY(int requestedHeight READ RequestedHeight CONSTANT)
++    Q_PROPERTY(int requestedFps READ RequestedFps CONSTANT)
++    public:
++        int RequestedHeight() const { return session.connect_info.video_profile.height; }
++        int RequestedFps() const { return session.connect_info.video_profile.max_fps; }
++    private:
+ 	Q_PROPERTY(QString host READ GetHost CONSTANT)
+ 	Q_PROPERTY(bool connected READ GetConnected NOTIFY ConnectedChanged)
+ 	Q_PROPERTY(double measuredBitrate READ GetMeasuredBitrate NOTIFY MeasuredBitrateChanged)
+@@ -222,6 +228,7 @@ class StreamSession : public QObject
+ 		bool rumble_haptics_on;
+ 		float PS_TOUCHPAD_MAX_X, PS_TOUCHPAD_MAX_Y;
+ 		ChiakiControllerState keyboard_state;
++		ChiakiControllerState desktop_state;
+ 		ChiakiControllerState touch_state;
+ 		QMap<int, uint8_t> touch_tracker;
+ 		int8_t mouse_touch_id;
+@@ -366,6 +373,8 @@ class StreamSession : public QObject
+ 		void HandleKeyboardEvent(QKeyEvent *event);
+ 		void HandleTouchEvent(QTouchEvent *event, qreal width, qreal height);
+ 		void HandleDpadTouchEvent(ChiakiControllerState *state, bool placeholder = false);
++		void SetDesktopInput(const ChiakiControllerState &state) { desktop_state = state; SendFeedbackState(); }
++		void ClearDesktopKeys() { chiaki_controller_state_set_idle(&keyboard_state); mouse_touch_id = -1; }
+ 		void HandleMouseReleaseEvent(QMouseEvent *event);
+ 		void HandleMousePressEvent(QMouseEvent *event);
+ 		void HandleMouseMoveEvent(QMouseEvent *event, qreal width, qreal height);
+diff --git a/gui/src/main.cpp b/gui/src/main.cpp
+index fb853e2..d618a1d 100644
+--- a/gui/src/main.cpp
++++ b/gui/src/main.cpp
+@@ -20,6 +20,11 @@ int main(int argc, char *argv[]) { return real_main(argc, argv); }
+ #include <discoverymanager.h>
+ #include <qmlmainwindow.h>
+ #include <QApplication>
++#include <QDir>
++#include <QLockFile>
++#include <QFontDatabase>
++#include <QStandardPaths>
++#include <QQmlEngine>
+ #include <QtTypes>
+ 
+ #ifdef CHIAKI_ENABLE_CLI
+@@ -73,10 +78,10 @@ int real_main(int argc, char *argv[])
+ 	qRegisterMetaType<ChiakiRegistEventType>();
+ 	qRegisterMetaType<ChiakiLogLevel>();
+ 
+-	QGuiApplication::setOrganizationName("Chiaki");
+-	QGuiApplication::setApplicationName("Chiaki");
+-	QGuiApplication::setApplicationVersion(CHIAKI_VERSION);
+-	QGuiApplication::setApplicationDisplayName("chiaki-ng");
++	QGuiApplication::setOrganizationName("RemTeh");
++	QGuiApplication::setApplicationName("Deckivo");
++	QGuiApplication::setApplicationVersion("0.9.0");
++	QGuiApplication::setApplicationDisplayName("Deckivo");
+ #if defined(Q_OS_MACOS)
+ 	qputenv("QT_MTL_NO_TRANSACTION", "1");
+ #endif
+@@ -85,15 +90,10 @@ int real_main(int argc, char *argv[])
+ 		QGuiApplication::setDesktopFileName(qEnvironmentVariable("FLATPAK_ID"));
+ 	else
+ #endif
+-		QGuiApplication::setDesktopFileName("chiaki-ng");
++		QGuiApplication::setDesktopFileName("Deckivo");
+ 
+ 	qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-gpu");
+ #if defined(Q_OS_WIN)
+-	const size_t cSize = strlen(argv[0])+1;
+-	wchar_t wc[cSize];
+-	mbstowcs (wc, argv[0], cSize);
+-	QString import_path = QFileInfo(QString::fromWCharArray(wc)).dir().absolutePath() + "/qml";
+-	qputenv("QML_IMPORT_PATH", import_path.toUtf8());
+ #endif
+ #if defined(Q_OS_WIN) || defined(Q_OS_LINUX)
+ 	qputenv("ANV_VIDEO_DECODE", "1");
+@@ -111,7 +111,7 @@ int real_main(int argc, char *argv[])
+ 		return 1;
+ 	}
+ 
+-    SDL_SetHint(SDL_HINT_APP_NAME, "chiaki-ng");
++    SDL_SetHint(SDL_HINT_APP_NAME, "Deckivo");
+ 
+ 	if(SDL_Init(SDL_INIT_AUDIO) < 0)
+ 	{
+@@ -124,11 +124,21 @@ int real_main(int argc, char *argv[])
+ 	QtWebEngineQuick::initialize();
+ #endif
+ 	QApplication app(argc, argv);
++    const auto data = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
++    if (!QDir().mkpath(data))
++        return 1;
++    QLockFile instance(data + "/application.lock");
++    if (!instance.tryLock())
++        return instance.error() == QLockFile::LockFailedError ? 0 : 1;
++    qputenv("QML_IMPORT_PATH", (app.applicationDirPath() + "/qml").toUtf8());
++    const auto fontId = QFontDatabase::addApplicationFont(":/IBMPlexSans.ttf");
++    if (fontId >= 0)
++        app.setFont(QFont(QFontDatabase::applicationFontFamilies(fontId).value(0)));
+ 
+ #ifdef Q_OS_MACOS
+ 	QGuiApplication::setWindowIcon(QIcon(":/icons/chiaking_macos.svg"));
+ #else
+-	QGuiApplication::setWindowIcon(QIcon(":/icons/chiaking.svg"));
++	QGuiApplication::setWindowIcon(QIcon(":/deckivo.svg"));
+ #endif
+ 
+ 	QCommandLineParser parser;
+@@ -183,7 +193,7 @@ int real_main(int argc, char *argv[])
+ 		settings.SetCurrentProfile(parser.value(profile_option));
+ 	Settings alt_settings(parser.isSet(profile_option) ? "" : settings.GetCurrentProfile());
+ 	if(!settings.GetCurrentProfile().isEmpty())
+-		QGuiApplication::setApplicationDisplayName(QString("chiaki-ng:%1").arg(settings.GetCurrentProfile()));
++		QGuiApplication::setApplicationDisplayName(QString("Deckivo:%1").arg(settings.GetCurrentProfile()));
+ 	bool use_alt_settings = false;
+ 	if(!parser.isSet(profile_option))
+ 		use_alt_settings = true;
+diff --git a/gui/src/qml/DeckButton.qml b/gui/src/qml/DeckButton.qml
+new file mode 100644
+index 0000000..c678871
+--- /dev/null
++++ b/gui/src/qml/DeckButton.qml
+@@ -0,0 +1,27 @@
++import QtQuick
++import QtQuick.Controls
++
++Button {
++    id: button
++    property bool primary: false
++    implicitHeight: 42
++    leftPadding: 17
++    rightPadding: 17
++    hoverEnabled: true
++    contentItem: Text {
++        text: button.text
++        font.family: button.font.family
++        font.pixelSize: 15
++        font.weight: Font.DemiBold
++        color: !button.enabled ? "#919AA6" : button.primary ? "#17200A" : "#F3F5F7"
++        verticalAlignment: Text.AlignVCenter
++        horizontalAlignment: Text.AlignHCenter
++        elide: Text.ElideRight
++    }
++    background: Rectangle {
++        radius: 12
++        color: !button.enabled ? "#282D32" : button.primary ? (button.hovered ? "#E6FFA0" : "#DAF975") : (button.hovered ? "#343B44" : "#222730")
++        border.color: button.visualFocus ? "#FFFFFF" : button.primary && button.enabled ? "#DAF975" : "#404853"
++        border.width: button.visualFocus ? 2 : 1
++    }
++}
+diff --git a/gui/src/qml/Main.qml b/gui/src/qml/Main.qml
+index 7f1db3e..7f5c9d5 100644
+--- a/gui/src/qml/Main.qml
++++ b/gui/src/qml/Main.qml
+@@ -7,12 +7,18 @@ import org.streetpea.chiaking
+ 
+ Item {
+     id: root
++    Connections {
++        target: Chiaki.session
++        function onConnectedChanged() {
++            if (Chiaki.session && Chiaki.session.connected) deckivoTools.connected(Chiaki.session.requestedHeight, Chiaki.session.requestedFps);
++        }
++    }
+     property list<Item> restoreFocusItems
+     property bool initialAsk: false
+     readonly property bool preferSeparateStreamSettingsWindows: Chiaki.window.runtimeRendererBackend === 1 && Chiaki.session
+     property bool useSeparateStreamSettingsWindows: false
+     Material.theme: Material.Dark
+-    Material.accent: "#00a7ff"
++    Material.accent: "#daf975"
+ 
+     function controllerButton(name) {
+         let type = "deck";
+@@ -186,8 +192,8 @@ Item {
+         stack.push(registDialogComponent, {host: host, ps5: ps5});
+     }
+ 
+-    function showSettingsDialog() {
+-        stack.push(settingsDialogComponent);
++    function showSettingsDialog(tab = 0) {
++        stack.push(settingsDialogComponent, { selectedTab: tab });
+     }
+ 
+     function showDisplaySettingsDialog() {
+@@ -525,6 +531,7 @@ Item {
+         function onSessionChanged() {
+             if (Chiaki.session)
+                 root.showStreamView();
++            else deckivoTools.disconnected(Chiaki.window.decodedFrameCount());
+         }
+ 
+         function onShowPsnView() {
+diff --git a/gui/src/qml/MainView.qml b/gui/src/qml/MainView.qml
+index bbb4af3..df180b1 100644
+--- a/gui/src/qml/MainView.qml
++++ b/gui/src/qml/MainView.qml
+@@ -1,437 +1,452 @@
+ import QtQuick
+-import QtQuick.Layouts
+ import QtQuick.Controls
+-import QtQuick.Controls.Material
+-
++import QtQuick.Layouts
+ import org.streetpea.chiaking
+ 
+-Pane {
+-    padding: 0
+-    id: consolePane
+-    StackView.onActivated: {
+-        forceActiveFocus(Qt.TabFocusReason);
+-        if(!Chiaki.autoConnect && !root.initialAsk && !Chiaki.window.directStream)
+-        {
+-            root.initialAsk = true;
+-            if(Chiaki.settings.addSteamShortcutAsk && (typeof Chiaki.createSteamShortcut === "function"))
+-                root.showRemindDialog(qsTr("Official Steam artwork + controller layout"), qsTr("Would you like to either create a new non-Steam game for chiaki-ng\nor update an existing non-Steam game with the official artwork and controller layout?") + "\n\n" + qsTr("(Note: If you select no now and want to do this later, click the button or press R3 from the main menu.)"), false, () => root.showSteamShortcutDialog(true));
+-            else if(Chiaki.settings.remotePlayAsk)
+-            {
+-                if(!Chiaki.settings.psnRefreshToken || !Chiaki.settings.psnAuthToken || !Chiaki.settings.psnAuthTokenExpiry || !Chiaki.settings.psnAccountId)
+-                    root.showRemindDialog(qsTr("Remote Play via PSN"), qsTr("Would you like to connect to PSN?\nThis enables:\n- Automatic registration\n- Playing outside of your home network without port forwarding?") + "\n\n" + qsTr("(Note: If you select no now and want to do this later, go to the Config section of the settings.)"), true, () => root.showPSNTokenDialog(false));
+-                else
+-                    Chiaki.settings.remotePlayAsk = false;
+-            }
++Rectangle {
++    id: home
++    color: "#101216"
++    readonly property bool ru: (deckivoTools.language === "auto" ? Qt.locale().name : deckivoTools.language).startsWith("ru")
++    function t(r, e) { return ru ? r : e }
++    readonly property var consoles: {
++        let entries = []
++        for (let i = 0; i < Chiaki.hosts.length; i++) {
++            let host = Chiaki.hosts[i]
++            if (host.display) entries.push({host: host, sourceIndex: i})
+         }
++        return entries
++    }
++    function connectConsole(entry) {
++        if (entry.host.discovered) Chiaki.connectToHost(entry.sourceIndex, entry.host.name)
++        else Chiaki.connectToHost(entry.sourceIndex)
++    }
++    function firstConsole() {
++        if (preferred) connectConsole(preferred)
++        else addConsole()
+     }
+-    Keys.onUpPressed: {
+-        if(hostsView.currentItem && hostsView.currentItem.visible)
+-        {
+-            hostsView.decrementCurrentIndex()
+-            while(!hostsView.currentItem.visible)
+-                hostsView.decrementCurrentIndex()
++    function addConsole() { Chiaki.startManualPairing() }
++    readonly property var presets: [
++        [t("Плавный", "Smooth"), 3, 60, 10000, "720p"],
++        [t("Сбалансированный", "Balanced"), 3, 30, 7000, "720p"],
++        [t("Слабая сеть", "Low bandwidth"), 2, 30, 5000, "540p"],
++        [t("Чёткий", "Sharp"), 4, 60, 15000, "1080p"],
++        [t("Чёткий 30", "Sharp 30"), 4, 30, 12000, "1080p"]
++    ]
++    readonly property int presetIndex: presets.findIndex(p => p[1] === Chiaki.settings.resolutionLocalPS5 && p[2] === Chiaki.settings.fpsLocalPS5 && p[3] === Chiaki.settings.bitrateLocalPS5)
++    function setQuality(i) {
++        const p = presets[i]
++        Chiaki.settings.resolutionLocalPS5 = p[1]
++        Chiaki.settings.fpsLocalPS5 = p[2]
++        Chiaki.settings.bitrateLocalPS5 = p[3]
++    }
++
++    property int page: 0
++    readonly property bool compact: width < 700
++    readonly property var preferred: consoles.find(e => e.host.registered && e.host.discovered) || consoles.find(e => e.host.registered) || consoles[0]
++    readonly property var words: deckivoTools.strings
++    function trKey(key) { return words[key] || key }
++    function hostName(host) { return Chiaki.settings.streamerMode ? "PlayStation" : host.name || (host.ps5 ? "PlayStation 5" : "PlayStation 4") }
++    readonly property var titles: [trKey("home"), trKey("pad"), trKey("history"), trKey("settings"), t("Поддержать проект", "Support Deckivo"), t("О программе", "About")]
++    readonly property var presetKeys: ["smooth","balanced","rescue","sharp","sharp30"]
++    readonly property var records: deckivoTools.sessions
++    readonly property var lastRecord: records.length ? records[0] : ({})
++    readonly property var icons: [
++        '<path d="m3 12 9-8 9 8M5 10v10h5v-6h4v6h5V10"/>',
++        '<path d="M8 7h8c4-1 6 7 5 10s-4 1-6-1H9c-2 2-5 4-6 1S4 6 8 7ZM6 11h5m-2.5-2.5v5m7-3h.1m2 2h.1"/>',
++        '<path d="M3 5v6h6M4 10a8 8 0 1 1 1 8m7-11v6l4 2"/>',
++        '<path d="M5 3v5m0 5v8m7-18v10m0 5v3m7-18v4m0 5v9"/><circle cx="5" cy="10.5" r="2.5"/><circle cx="12" cy="15.5" r="2.5"/><circle cx="19" cy="9.5" r="2.5"/>',
++        '<path d="M12 21S1 14 3 8c1-5 7-6 9-1 2-5 8-4 9 1 2 6-9 13-9 13Z"/>',
++        '<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.1"/>'
++    ]
++    function duration(seconds) {
++        if (seconds === undefined) return "—"
++        return Math.floor(seconds/3600) + ":" + String(Math.floor(seconds/60)%60).padStart(2,"0") + ":" + String(seconds%60).padStart(2,"0")
++    }
++    function changePage(index) { page = index; scroll.contentItem.contentY = 0 }
++    function exportReport() {
++        deckivoTools.exportReport(Chiaki.window.runtimeRendererBackend === 1 ? "OpenGL" : "Vulkan",
++            Chiaki.session ? Chiaki.window.queueDepthAverage : -1, Chiaki.session ? Chiaki.window.droppedFrames : -1)
++    }
++    readonly property var pad: Chiaki.controllers.length ? Chiaki.controllers[0] : null
++    property var padState: ({})
++    readonly property string padModel: artwork.currentIndex === 1 ? "dualsense" : artwork.currentIndex === 2 ? "dualshock-4" :
++        artwork.currentIndex === 3 ? "xbox-series" : !pad || pad.dualSense || pad.dualSenseEdge ? "dualsense" : pad.playStation ? "dualshock-4" : "xbox-series"
++    Timer { interval: 50; running: home.page === 1 && !!home.pad; repeat: true; triggeredOnStart: true; onTriggered: home.padState = home.pad ? home.pad.sample() : ({}) }
++    property int probe: -1
++    property double probeTime: 0
++    property string probeResult: ""
++    function checkConsole() {
++        if (!preferred || !preferred.host.address) return
++        probeTime = Date.now()
++        probeResult = ""
++        probe = deckivoTools.checkLan(preferred.host.address)
++    }
++    Connections {
++        target: deckivoTools
++        function onLanCheckDone(serial, ok) {
++            if (serial !== home.probe) return
++            home.probeResult = ok ? Math.max(1, Date.now() - home.probeTime) + home.t(" мс"," ms") : home.t("Нет ответа","No response")
++            home.probe = -1
+         }
+     }
+-    Keys.onDownPressed: {
+-        if(hostsView.currentItem && hostsView.currentItem.visible)
+-        {
+-            hostsView.incrementCurrentIndex()
+-            while(!hostsView.currentItem.visible)
+-                 hostsView.incrementCurrentIndex()
++    StackView.onActivated: home.forceActiveFocus(Qt.TabFocusReason)
++    Keys.onEscapePressed: { if (page !== 0) changePage(0); else root.showConfirmDialog(t("Выйти из Deckivo?", "Quit Deckivo?"), "", () => Qt.quit()) }
++    Keys.onMenuPressed: changePage(3)
++    Keys.onPressed: event => {
++        if (event.key === Qt.Key_PageUp || event.key === Qt.Key_PageDown) {
++            changePage((page + (event.key === Qt.Key_PageDown ? 1 : 3)) % 4); event.accepted = true; return
+         }
++        const pages = [Qt.Key_F1,Qt.Key_F2,Qt.Key_F3]
++        if (pages.includes(event.key)) { changePage(pages.indexOf(event.key)+1); event.accepted = true }
++        if (event.key === Qt.Key_N && (event.modifiers & Qt.ControlModifier)) { addConsole(); event.accepted = true }
++    }
++    component Caption: Label { color: "#AFB6C1"; font.pixelSize: 15; wrapMode: Text.WordWrap; Layout.fillWidth: true }
++    component Heading: Caption { color: "#F1F3F5"; font.pixelSize: 21; font.weight: Font.DemiBold }
++    component Surface: Rectangle { color: "#1A1E24"; radius: 18; border.color: "#303640" }
++    component Panel: Pane {
++        default property alias items: inside.data
++        Layout.fillWidth: true; padding: 20
++        background: Surface {}
++        contentItem: ColumnLayout { id: inside; spacing: 11 }
+     }
+-    Keys.onMenuPressed: settingsButton.clicked()
+-    Keys.onReturnPressed: if (hostsView.currentItem) hostsView.currentItem.connectToHost()
+-    Keys.onYesPressed: if (hostsView.currentItem) hostsView.currentItem.wakeUpHost()
+-    Keys.onNoPressed: if (hostsView.currentItem) hostsView.currentItem.deleteHost()
+-    Keys.onEscapePressed: root.showConfirmDialog(qsTr("Quit"), qsTr("Are you sure you want to quit?"), () => Qt.quit())
+-    Keys.onPressed: (event) => {
+-        if (event.modifiers)
+-            return;
+-        switch (event.key) {
+-        case Qt.Key_PageUp:
+-            if (hostsView.currentItem) hostsView.currentItem.setConsolePin();
+-            event.accepted = true;
+-            break;
+-        case Qt.Key_PageDown:
+-            if (Chiaki.settings.psnAuthToken) Chiaki.refreshPsnToken();
+-            event.accepted = true;
+-            break;
+-        case Qt.Key_F1:
+-            if (typeof Chiaki.createSteamShortcut === "function") root.showSteamShortcutDialog(false);
+-            event.accepted = true;
+-            break;
+-        case Qt.Key_F2:
+-            root.showManualHostDialog();
+-            event.accepted = true;
+-            break;
++    component NavButton: ToolButton {
++        id: nav
++        required property int section
++        readonly property bool selected: home.page === section
++        implicitWidth: home.compact ? 46 : 60; implicitHeight: home.compact ? 40 : 52
++        Accessible.name: home.titles[section]
++        ToolTip.visible: hovered; ToolTip.text: Accessible.name
++        onClicked: home.changePage(section)
++        contentItem: Image {
++            source: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="'+(nav.selected ? '#DAF975' : '#BBC1CC')+'" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">'+home.icons[nav.section]+'</svg>')
++            sourceSize: Qt.size(25,25); fillMode: Image.Pad
+         }
++        background: Rectangle { radius: 14; color: nav.selected ? "#2F3826" : nav.hovered ? "#262C34" : "transparent"; border.color: nav.visualFocus ? "white" : "transparent" }
+     }
+-
+-    ToolBar {
+-        id: toolBar
+-        anchors {
+-            top: parent.top
+-            left: parent.left
+-            right: parent.right
++    Rectangle {
++        id: rail
++        anchors.left: parent.left; anchors.top: parent.top
++        width: home.compact ? home.width : 84; height: home.compact ? 56 : home.height
++        color: "#15181D"
++        GridLayout {
++            anchors.fill: parent; anchors.margins: home.compact ? 5 : 12
++            columns: home.compact ? 8 : 1; rowSpacing: 7; columnSpacing: 2
++            Image { source: "qrc:/deckivo.svg"; Layout.preferredHeight: 38; Layout.preferredWidth: 42; Layout.alignment: Qt.AlignHCenter; fillMode: Image.PreserveAspectFit }
++            Repeater { model: 4; NavButton { required property int index; section: index; Layout.alignment: Qt.AlignHCenter } }
++            Item { Layout.fillWidth: true; Layout.fillHeight: true }
++            NavButton { section: 4; Layout.alignment: Qt.AlignHCenter }
++            NavButton { section: 5; Layout.alignment: Qt.AlignHCenter }
+         }
+-        height: 80
+-
+-        RowLayout {
+-            anchors {
+-                fill: parent
+-                leftMargin: 10
+-                rightMargin: 10
+-            }
+-
+-            Button {
+-                Layout.fillHeight: true
+-                Layout.preferredWidth: 100
+-                flat: true
+-                text: "×"
+-                font.pixelSize: 60
+-                focusPolicy: Qt.NoFocus
+-                onClicked: Qt.quit()
+-                Material.roundedScale: Material.SmallScale
++    }
++    ScrollView {
++        id: scroll
++        anchors.fill: parent
++        anchors.leftMargin: home.compact ? 0 : rail.width
++        anchors.topMargin: home.compact ? rail.height : 0
++        clip: true; contentWidth: availableWidth
++        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
++        ColumnLayout {
++            id: body
++            width: Math.min(1260, scroll.availableWidth - (home.compact ? 32 : 58))
++            x: (scroll.availableWidth - width) / 2
++            spacing: 16
++            Item { implicitHeight: 6 }
++            RowLayout {
++                Layout.fillWidth: true
++                ColumnLayout {
++                    Layout.fillWidth: true; spacing: 3
++                    Caption { text: "Deckivo"; color: "#B6ABF5"; font.weight: Font.DemiBold; font.pixelSize: 15 }
++                    Heading { text: home.titles[home.page]; font.pixelSize: 32 }
++                }
++                DeckButton { visible: home.page === 0; text: home.t("Добавить консоль", "Add console"); onClicked: home.addConsole() }
+             }
+-
+-            Item { Layout.fillWidth: true }
+-
+-            Button {
+-                Layout.fillHeight: true
+-                Layout.preferredWidth: 350
+-                flat: true
+-                text: "Create Steam Shortcut"
+-                focusPolicy: Qt.NoFocus
+-                onClicked: root.showSteamShortcutDialog(false)
+-                Material.roundedScale: Material.SmallScale
+-                visible: typeof Chiaki.createSteamShortcut === "function"
+-                Image {
+-                    anchors {
+-                        right: parent.right
+-                        verticalCenter: parent.verticalCenter
+-                        leftMargin: 12
++            ColumnLayout {
++                visible: home.page === 0
++                Layout.fillWidth: true; spacing: 16
++            GridLayout {
++                Layout.fillWidth: true
++                columns: body.width < 810 ? 1 : 2
++                columnSpacing: 16
++                rowSpacing: 14
++                Surface {
++                    id: hero
++                    Layout.fillWidth: true
++                    Layout.preferredWidth: 740
++                    implicitHeight: Math.max(300, heroText.implicitHeight + 56)
++                    gradient: Gradient { orientation: Gradient.Horizontal; GradientStop { position: 0; color: "#272D25" } GradientStop { position: 1; color: "#1C2126" } }
++                    border.color: "#414D39"
++                    Image {
++                        anchors.right: parent.right; anchors.rightMargin: 12
++                        anchors.verticalCenter: parent.verticalCenter
++                        width: parent.width * 0.33; height: parent.height * 0.84
++                        source: "qrc:/ps5-console.png"; fillMode: Image.PreserveAspectFit; visible: hero.width > 500
++                    }
++                    ColumnLayout {
++                        id: heroText
++                        anchors.left: parent.left; anchors.leftMargin: 26; anchors.verticalCenter: parent.verticalCenter
++                        width: parent.width * (hero.width > 500 ? 0.63 : 1) - 46
++                        spacing: 12
++                        Caption { text: "PS5   /   " + home.trKey("local"); color: "#DAF975"; font.pixelSize: 12; font.letterSpacing: 1.5 }
++                        Heading { Layout.fillWidth: true; font.pixelSize: hero.width > 520 ? 36 : 29; text: home.trKey("hero_title") }
++                        Caption { Layout.fillWidth: true; text: preferred ? home.hostName(preferred.host) + (preferred.host.state === "standby" ? home.t(" · Режим покоя"," · Rest mode") : preferred.host.discovered ? home.t(" · В сети"," · Online") : "") : home.trKey("offline_help") }
++                        DeckButton { id: play; primary: true; text: preferred && preferred.host.registered ? home.trKey("play") : home.t("Подключить консоль", "Pair console"); onClicked: home.firstConsole() }
++                    }
++                }
++                Surface {
++                    Layout.fillWidth: true
++                    Layout.preferredWidth: 352
++                    implicitHeight: toolsCol.implicitHeight + 40
++                    ColumnLayout {
++                        id: toolsCol; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: 20; anchors.verticalCenter: parent.verticalCenter; spacing: 6
++                        Heading { text: home.trKey("quality") }
++                        Caption { text: home.t("PS5 в домашней сети", "PS5 on your home network") }
++                        ComboBox {
++                            id: quality; Layout.fillWidth: true
++                            Accessible.name: home.t("Качество трансляции PS5", "PS5 stream quality")
++                            model: home.presetKeys.map(key => home.trKey(key))
++                            currentIndex: home.presetIndex
++                            displayText: home.presetIndex < 0 ? home.t("Свои настройки", "Custom settings") : model[home.presetIndex]
++                            onActivated: i => home.setQuality(i)
++                        }
++                        Rectangle { Layout.fillWidth: true; implicitHeight: 1; color: "#39404A" }
++                        Heading { text: home.trKey("controller") }
++                        Caption { text: Chiaki.controllers.length ? home.t("Подключено устройств: ", "Connected devices: ") + Chiaki.controllers.length : home.t("К ПК геймпад не подключён", "No gamepad connected to PC") }
++                        DeckButton { text: home.t("Проверить контроллер", "Test controller"); onClicked: home.changePage(1) }
+                     }
+-                    width: 28
+-                    height: 28
+-                    sourceSize: Qt.size(width, height)
+-                    source: "qrc:/icons/l3.svg"
+                 }
+             }
+-
+-            Button {
+-                Layout.fillHeight: true
+-                Layout.preferredWidth: 400
+-                flat: true
+-                text: "Refresh PSN Hosts"
+-                icon.source: "qrc:/icons/r1.svg"
+-                focusPolicy: Qt.NoFocus
+-                onClicked: Chiaki.refreshPsnToken();
+-                Material.roundedScale: Material.SmallScale
+-                visible: Chiaki.settings.psnAuthToken
++            RowLayout {
++                Layout.fillWidth: true
++                Heading { Layout.fillWidth: true; text: home.t("Мои консоли", "My consoles") }
++                DeckButton { text: home.t("Ввести адрес", "Enter address"); onClicked: root.showManualHostDialog() }
+             }
+-
+-            Button {
+-                Layout.fillHeight: true
+-                Layout.preferredWidth: 400
+-                flat: true
+-                focusPolicy: Qt.NoFocus
+-                Material.roundedScale: Material.SmallScale
+-                visible: !Chiaki.settings.psnAuthToken
++            Surface {
++                visible: !consoles.length; Layout.fillWidth: true; implicitHeight: emptyRow.implicitHeight + 34
++                RowLayout { id: emptyRow; anchors.verticalCenter: parent.verticalCenter; x: 18; width: parent.width - 36
++                    Caption { Layout.fillWidth: true; text: Chiaki.discoveryEnabled ? home.t("Поиск консолей в локальной сети…", "Searching the local network for consoles…") : home.t("Поиск консолей выключен", "Discovery is turned off") }
++                }
+             }
+-
+-            Button {
+-                Layout.fillHeight: true
+-                Layout.preferredWidth: 300
+-                flat: true
+-                text: "Add Manual Host"
+-                focusPolicy: Qt.NoFocus
+-                onClicked: root.showManualHostDialog()
+-                Material.roundedScale: Material.SmallScale
+-                Image {
+-                    anchors {
+-                        left: parent.left
+-                        verticalCenter: parent.verticalCenter
+-                        leftMargin: 12
++            Repeater {
++                model: home.consoles
++                Surface {
++                    id: rowCard
++                    required property var modelData
++                    readonly property var host: modelData.host
++                    Layout.fillWidth: true
++                    implicitHeight: rowInfo.implicitHeight + 30
++                    RowLayout {
++                        id: rowInfo; x: 18; width: parent.width - 36; anchors.verticalCenter: parent.verticalCenter
++                        ColumnLayout {
++                            Layout.fillWidth: true; spacing: 3
++                            Heading { text: home.hostName(rowCard.host) }
++                            Caption { Layout.fillWidth: true; text: (rowCard.host.registered ? home.t("Привязана", "Paired") : home.t("Требуется привязка", "Pairing required")) + (rowCard.host.state === "standby" ? home.t("  ·  В режиме покоя", "  ·  Rest mode") : "") }
++                        }
++                        DeckButton { text: rowCard.host.registered ? home.t("Играть", "Play") : home.t("Привязать", "Pair"); onClicked: home.connectConsole(rowCard.modelData) }
++                        DeckButton { text: "•••"; Accessible.name: home.t("Действия с консолью", "Console actions"); onClicked: actions.open()
++                            Menu { id: actions
++                                MenuItem { visible: rowCard.host.registered && !rowCard.host.duid && !rowCard.host.discovered; height: visible ? implicitHeight : 0; text: home.t("Разбудить", "Wake up"); onTriggered: Chiaki.wakeUpHost(rowCard.modelData.sourceIndex) }
++                                MenuItem { visible: rowCard.host.registered; height: visible ? implicitHeight : 0; text: home.t("Изменить PIN входа", "Change login PIN"); onTriggered: root.showConsolePinDialog(rowCard.modelData.sourceIndex) }
++                                MenuItem { enabled: rowCard.host.manual || (rowCard.host.discovered && !rowCard.host.registered); text: rowCard.host.manual ? home.t("Удалить адрес", "Delete address") : home.t("Скрыть консоль", "Hide console"); onTriggered: root.showConfirmDialog(text, rowCard.host.name || "PlayStation", () => rowCard.host.manual ? Chiaki.deleteHost(rowCard.modelData.sourceIndex) : Chiaki.hideHost(rowCard.host.mac, rowCard.host.name)) }
++                            }
++                        }
+                     }
+-                    width: 28
+-                    height: 28
+-                    sourceSize: Qt.size(width, height)
+-                    source: "qrc:/icons/r3.svg"
+                 }
+             }
+ 
+-            Button {
+-                id: settingsButton
+-                Layout.fillHeight: true
+-                Layout.preferredWidth: 100
+-                flat: true
+-                icon.source: "qrc:/icons/settings-20px.svg";
+-                icon.width: 50
+-                icon.height: 50
+-                focusPolicy: Qt.NoFocus
+-                onClicked: root.showSettingsDialog()
+-                Material.roundedScale: Material.SmallScale
+-            }
+-        }
+-    }
+-
+-    ListView {
+-        id: hostsView
+-        keyNavigationWraps: true
+-        anchors {
+-            top: toolBar.bottom
+-            left: parent.left
+-            right: parent.right
+-            bottom: parent.bottom
+-            bottomMargin: 50
+-        }
+-        clip: true
+-        model: Chiaki.hosts
+-        onCountChanged: {
+-            if(!hostsView.currentItem)
+-                hostsView.incrementCurrentIndex();
+-            if(!hostsView.currentItem)
+-                return;
+-            if(!hostsView.currentItem.visible)
+-            {
+-                for(var i = 0; i < hostsView.count; i++)
+-                {
+-                    hostsView.incrementCurrentIndex()
+-                    if(hostsView.currentItem.visible)
+-                    {
+-                        break;
++                Panel {
++                    GridLayout {
++                        Layout.fillWidth: true
++                        columns: body.width < 680 ? 2 : 4; columnSpacing: 16; rowSpacing: 12
++                        Repeater {
++                            model: [
++                                [home.t("Отклик TCP", "TCP response"), home.probeResult || "—"],
++                                [home.trKey("decode_fps"), home.lastRecord.seconds > 0 ? (home.lastRecord.frames / home.lastRecord.seconds).toFixed(1) : "—"],
++                                [home.trKey("time"), home.duration(home.lastRecord.seconds)],
++                                [home.trKey("frames"), home.lastRecord.frames === undefined ? "—" : String(home.lastRecord.frames)]]
++                            ColumnLayout {
++                                required property var modelData
++                                Layout.fillWidth: true; spacing: 3
++                                Caption { text: modelData[0]; font.pixelSize: 13 }
++                                Heading { text: modelData[1]; font.pixelSize: 22 }
++                            }
++                        }
+                     }
++                    Caption { text: home.t("Статистика последнего сеанса. Отклик измеряется при проверке соединения.", "Statistics from the last session. TCP response is measured when you check the connection."); font.pixelSize: 13 }
++                    DeckButton { text: home.probe >= 0 ? home.t("Проверяем…", "Checking…") : home.t("Проверить соединение", "Check connection"); enabled: !!home.preferred && !!home.preferred.host.address && home.probe < 0; onClicked: home.checkConsole() }
+                 }
+             }
+-        }
+-        delegate: ItemDelegate {
+-            visible: modelData.display
+-            id: delegate
+-            width: parent ? parent.width : 0
+-            height: modelData.display ? 180 : 0
+-            highlighted: ListView.isCurrentItem
+-            onClicked: connectToHost()
+-
+-            function connectToHost() {
+-                if(modelData.discovered)
+-                    Chiaki.connectToHost(index, modelData.name);
+-                else
+-                    Chiaki.connectToHost(index);
+-            }
+-
+-            function wakeUpHost() {
+-                if(!modelData.discovered && !modelData.duid)
+-                    Chiaki.wakeUpHost(index);
+-            }
+-
+-            function deleteHost() {
+-                if (modelData.manual)
+-                    root.showConfirmDialog(qsTr("Delete Console"), qsTr("Are you sure you want to delete this console?"), () => {Chiaki.deleteHost(index)});
+-                        
+-                else if (modelData.discovered && !modelData.registered)
+-                    root.showConfirmDialog(qsTr("Hide Console"), qsTr("Are you sure you want to hide this console?") + "\n\n" + qsTr("Note: You can unhide from the Consoles section of the Settings under Hidden Consoles"), () => Chiaki.hideHost(modelData.mac, modelData.name));
+-
+-            }
+-
+-            function setConsolePin() {
+-                root.showConsolePinDialog(index);
+-            }
+-
+-            RowLayout {
+-                anchors {
+-                    fill: parent
+-                    leftMargin: 30
+-                    rightMargin: 10
+-                    topMargin: 10
+-                    bottomMargin: 10
+-                }
+-                spacing: 50
+-
+-                Image {
+-                    Layout.fillHeight: true
+-                    Layout.preferredWidth: 150
+-                    fillMode: Image.PreserveAspectFit
+-                    source: "image://svg/console-ps" + (modelData.ps5 ? "5" : "4") + (modelData.state == "standby" ? "#light_standby" : "#light_on")
+-                    sourceSize: Qt.size(width, height)
++            ColumnLayout {
++                visible: home.page === 1; Layout.fillWidth: true; spacing: 16
++                GridLayout {
++                    Layout.fillWidth: true; columns: body.width < 770 ? 1 : 2; columnSpacing: 16; rowSpacing: 16
++                    Panel {
++                        Layout.preferredWidth: 550
++                        Heading { text: home.trKey("controller") }
++                        Image { source: "qrc:/" + home.padModel + "-front.png"; Layout.fillWidth: true; Layout.preferredHeight: 210; fillMode: Image.PreserveAspectFit }
++                        ComboBox { id: artwork; Layout.fillWidth: true; model: [home.t("Автоопределение", "Auto detect"), "DualSense", "DualShock 4", "Xbox Series"] }
++                        Caption { text: Chiaki.controllers.length ? home.pad.name : home.t("Геймпад к ПК не подключён", "No controller connected to this PC"); color: Chiaki.controllers.length ? "#DAF975" : "#C1B6F1" }
++                        Caption { text: home.trKey("pad_help") }
++                        Caption {
++                            visible: !!home.pad; font.family: "Consolas"; font.pixelSize: 14
++                            text: visible ? "LS  " + (home.padState.lx || 0) + ", " + (home.padState.ly || 0)
++                                + "     RS  " + (home.padState.rx || 0) + ", " + (home.padState.ry || 0)
++                                + "\nL2  " + (home.padState.l2 || 0) + "     R2  " + (home.padState.r2 || 0) + "     "
++                                + ["×","○","□","△","←","→","↑","↓","L1","R1","L3","R3","Options","Share","Touch","PS"].filter((name,i) => (home.padState.buttons || 0) & (1 << i)).join("  ") : ""
++                        }
++                        DeckButton { primary: true; text: "Controller Lab  ↗"; onClicked: if (!deckivoTools.openLab()) root.showConfirmDialog("Controller Lab", home.trKey("browser_missing"), function() {}) }
++                    }
++                    Panel {
++                        Layout.preferredWidth: 420; Layout.alignment: Qt.AlignTop
++                        Heading { text: home.t("Управление", "Input") }
++                        Caption { text: home.t("Если DualSense подключён к PS5, выбери свой игровой профиль на консоли. Для трансляции используй второй профиль.", "For a DualSense connected to your PS5, select your playing profile on the console and stream through a second profile.") }
++                        DeckButton { text: home.t("Назначить кнопки геймпада", "Controller mapping"); onClicked: root.showSettingsDialog(6) }
++                        DeckButton { text: home.t("Назначить клавиши", "Keyboard mapping"); onClicked: root.showSettingsDialog(5) }
++                        Caption { text: home.trKey("pad_tip"); font.pixelSize: 13 }
++                        Switch { text: home.t("Экранный геймпад", "On-screen gamepad"); checked: deckivoTools.touchOverlay; onToggled: deckivoTools.touchOverlay = checked }
++                        Switch { text: home.t("Клавиатура как геймпад", "Keyboard as controller"); checked: Chiaki.settings.keyboardEnabled; onToggled: Chiaki.settings.keyboardEnabled = checked }
++                        Caption { text: home.t("Во время игры F8 захватывает мышь, Esc отпускает. WASD двигает левый стик, мышь — правый.", "During play, F8 captures the mouse and Esc releases it. WASD moves the left stick and the mouse moves the right stick.") }
++                    }
+                 }
+-
+-                Label {
+-                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+-                    text: {
+-                        let t = "";
+-                        if (modelData.name)
+-                            t += modelData.name + "\n";
+-                        if (modelData.address)
+-                            t += qsTr("Address: %1").arg(Chiaki.settings.streamerMode ? "hidden" : modelData.address);
+-                        if (modelData.mac)
+-                            t += "\n" + qsTr("ID: %1 (%2)").arg(Chiaki.settings.streamerMode ? "hidden" : modelData.mac).arg(modelData.registered ? qsTr("registered") : qsTr("unregistered"));
+-                        if (modelData.duid)
+-                        {
+-                            if(modelData.discovered)
+-                                t += "\n" + qsTr("Automatic Registration Available");
+-                            else
+-                                t += "\n" + qsTr("Remote Connection via PSN");
+-                        } 
+-                        else
+-                        {
+-                            t += "\n";
+-                            if(modelData.discovered)
+-                            {
+-                                if(modelData.manual)
+-                                    t += qsTr("discovered + manual")
+-                                else
+-                                    t += qsTr("discovered");
++                Panel {
++                    Heading { text: home.t("Настройки мыши","Mouse settings") }
++                    Caption { text: home.trKey("editor_speed") + " · " + deckivoTools.sensitivity + "%" }
++                    Slider { Layout.fillWidth: true; from: 10; to: 300; stepSize: 5; value: deckivoTools.sensitivity; onMoved: deckivoTools.sensitivity = Math.round(value) }
++                    Switch { text: home.trKey("invert_mouse_y"); checked: deckivoTools.invert; onToggled: deckivoTools.invert = checked }
++                    GridLayout {
++                        Layout.fillWidth: true; columns: body.width < 590 ? 1 : 2
++                        Repeater {
++                            model: ["editor_left","editor_right","editor_middle","editor_side1","editor_side2"]
++                            RowLayout {
++                                required property string modelData
++                                required property int index
++                                Layout.fillWidth: true
++                                Caption { text: home.trKey(modelData); font.pixelSize: 13 }
++                                ComboBox {
++                                    readonly property var actions: [0,131072,65536,512,256,2048,1024,1,2,4,8,4096,8192,16384,32768,16,32,64,128]
++                                    model: ["—","R2","L2","R1","L1","R3","L3","×","○","□","△","Options","Share","Touchpad","PS","←","→","↑","↓"]
++                                    currentIndex: actions.indexOf(deckivoTools.mouseActions[parent.index]); onActivated: i => deckivoTools.mapMouse(parent.index,actions[i])
++                                }
+                             }
+-                            else
+-                                t += qsTr("manual");
+                         }
+-                        return t;
+                     }
+                 }
+-
+-                Label {
+-                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+-                    text: {
+-                        let t = "";
+-                        if(modelData.duid)
+-                            return t;
+-                        t += qsTr("State: %1").arg(modelData.state);
+-                        if(!modelData.discovered)
+-                            return t;
+-                        if (modelData.app)
+-                            t += "\n" + qsTr("App: %1").arg(modelData.app);
+-                        if (modelData.titleId)
+-                            t += "\n" + qsTr("Title ID: %1").arg(modelData.titleId);
+-                        return t;
++            }
++            ColumnLayout {
++                visible: home.page === 2; Layout.fillWidth: true; spacing: 14
++                Caption { text: home.trKey("history_sub") }
++                Panel {
++                    Switch { text: home.t("Сохранять историю сеансов", "Save session history"); checked: deckivoTools.remember; onToggled: deckivoTools.remember = checked }
++                    Caption { visible: !home.records.length; text: home.trKey("empty") }
++                    Repeater {
++                        model: home.records
++                        ColumnLayout {
++                            required property var modelData
++                            Layout.fillWidth: true; spacing: 4
++                            Rectangle { Layout.fillWidth: true; implicitHeight: 1; color: "#353A43" }
++                            Heading { text: modelData.legacy || modelData.date; font.pixelSize: 17 }
++                            Caption { visible: !modelData.legacy; text: visible ? home.duration(modelData.seconds) + "  ·  " + modelData.height + "p / " + modelData.fps + "  ·  " + home.trKey("frames") + " " + modelData.frames : "" }
++                        }
+                     }
+                 }
+-
+-                Item { Layout.fillWidth: true }
+-
+-                ColumnLayout {
+-                    Layout.fillHeight: true
+-                    spacing: 0
+-
+-                    Button {
+-                        Layout.alignment: Qt.AlignCenter
+-                        text: modelData.manual ? qsTr("Delete") : qsTr("Hide")
+-                        flat: true
+-                        padding: 20
+-                        leftPadding: delegate.highlighted ? 50 : undefined
+-                        focusPolicy: Qt.NoFocus
+-                        visible: modelData.manual || (modelData.discovered && !modelData.registered)
+-                        onClicked: delegate.deleteHost()
+-                        Material.roundedScale: Material.SmallScale
+-
+-                        Image {
+-                            anchors {
+-                                left: parent.left
+-                                verticalCenter: parent.verticalCenter
+-                                leftMargin: 12
+-                            }
+-                            width: 28
+-                            height: 28
+-                            sourceSize: Qt.size(width, height)
+-                            source: root.controllerButton("box")
+-                            visible: delegate.highlighted
++                Flow {
++                    Layout.fillWidth: true; spacing: 8
++                    DeckButton { text: home.trKey("export"); onClicked: home.exportReport() }
++                    DeckButton { enabled: home.records.length > 0; text: home.t("Очистить историю", "Clear history"); onClicked: root.showConfirmDialog(text, home.t("Удалить записи сеансов с этого ПК?", "Delete session records from this PC?"), () => deckivoTools.clearHistory()) }
++                }
++            }
++            ColumnLayout {
++                visible: home.page === 3; Layout.fillWidth: true; spacing: 16
++                GridLayout {
++                    Layout.fillWidth: true; columns: body.width < 810 ? 1 : 2; columnSpacing: 16; rowSpacing: 16
++                    Panel {
++                        Layout.alignment: Qt.AlignTop; Layout.preferredWidth: 450
++                        Heading { text: home.t("Изображение и звук", "Video and audio") }
++                        Caption { text: home.trKey("quality") }
++                        ComboBox {
++                            Layout.fillWidth: true; model: home.presetKeys.map(key => home.trKey(key)); currentIndex: home.presetIndex
++                            displayText: currentIndex < 0 ? home.t("Свои настройки","Custom settings") : currentText
++                            onActivated: index => home.setQuality(index)
++                        }
++                        Caption { text: home.t("Режим окна", "Window mode") }
++                        ComboBox {
++                            Layout.fillWidth: true
++                            model: [home.t("Размер потока","Stream size"),home.t("Свой размер","Custom size"),home.t("Вручную","Manual"),home.t("Весь экран","Fullscreen"),home.t("Увеличение","Zoom"),home.t("Растянуть","Stretch")]
++                            currentIndex: Chiaki.settings.windowType; onActivated: index => Chiaki.settings.windowType = index
+                         }
++                        Caption { text: home.t("Поток до 1080p. В полноэкранном режиме изображение масштабируется до разрешения монитора.", "Streams up to 1080p. Fullscreen scales the image to your display resolution."); font.pixelSize: 13 }
++                        Caption { text: home.t("Устройство вывода", "Audio output") }
++                        ComboBox {
++                            Layout.fillWidth: true; model: [home.t("Системное по умолчанию", "System default")].concat(Chiaki.settings.availableAudioOutDevices)
++                            currentIndex: Math.max(0, model.indexOf(Chiaki.settings.audioOutDevice))
++                            onActivated: index => Chiaki.settings.audioOutDevice = index ? model[index] : ""
++                        }
++                        Caption { text: home.t("Громкость", "Volume") + " · " + Math.round(Chiaki.settings.audioVolume * 100 / 128) + "%" }
++                        Slider { Layout.fillWidth: true; from: 0; to: 128; stepSize: 1; value: Chiaki.settings.audioVolume; onMoved: Chiaki.settings.audioVolume = value }
++                        DeckButton { text: home.t("Параметры видео", "Video settings"); onClicked: root.showSettingsDialog(1) }
+                     }
+-
+-                    Button {
+-                        Layout.alignment: Qt.AlignCenter
+-                        text: qsTr("Wake Up")
+-                        flat: true
+-                        padding: 20
+-                        leftPadding: delegate.highlighted ? 50 : undefined
+-                        visible: modelData.registered && !modelData.duid && !modelData.discovered
+-                        focusPolicy: Qt.NoFocus
+-                        onClicked: delegate.wakeUpHost()
+-                        Material.roundedScale: Material.SmallScale
+-
+-                        Image {
+-                            anchors {
+-                                left: parent.left
+-                                verticalCenter: parent.verticalCenter
+-                                leftMargin: 12
+-                            }
+-                            width: 28
+-                            height: 28
+-                            sourceSize: Qt.size(width, height)
+-                            source: root.controllerButton("pyramid")
+-                            visible: delegate.highlighted
++                    Panel {
++                        Layout.alignment: Qt.AlignTop; Layout.preferredWidth: 450
++                        Heading { text: home.t("Приложение", "Application") }
++                        Caption { text: home.t("Язык интерфейса", "Interface language") }
++                        ComboBox {
++                            readonly property var codes: ["auto","ru","en","uk","de","es","fr","it","pl","pt","tr","ar","hi","id","ja","ko","zh"]
++                            model: [home.t("Системный","System"),"Русский","English","Українська","Deutsch","Español","Français","Italiano","Polski","Português","Türkçe","العربية","हिन्दी","Indonesia","日本語","한국어","中文"]
++                            Layout.fillWidth: true; currentIndex: codes.indexOf(deckivoTools.language); onActivated: index => deckivoTools.language = codes[index]
+                         }
++                        Switch { text: home.t("Поиск консолей в сети", "Network discovery"); checked: Chiaki.discoveryEnabled; onToggled: Chiaki.discoveryEnabled = checked }
++                        Switch { text: home.t("Скрывать личные данные", "Hide personal details"); checked: Chiaki.settings.streamerMode; onToggled: Chiaki.settings.streamerMode = checked }
++                        DeckButton { text: home.t("Консоли и привязки", "Paired consoles"); onClicked: root.showSettingsDialog(4) }
++                        DeckButton { text: home.t("Профили и конфигурация", "Profiles and configuration"); onClicked: root.showSettingsDialog(8) }
++                        DeckButton { text: home.t("Все настройки движка", "All engine settings"); onClicked: root.showSettingsDialog() }
+                     }
+-
+-                    Button {
+-                        Layout.alignment: Qt.AlignCenter
+-                        text: qsTr("Update Console Pin")
+-                        flat: true
+-                        padding: 20
+-                        leftPadding: delegate.highlighted ? 50 : undefined
+-                        visible: modelData.registered
+-                        focusPolicy: Qt.NoFocus
+-                        onClicked: delegate.setConsolePin()
+-                        Material.roundedScale: Material.SmallScale
+-
+-                        Image {
+-                            anchors {
+-                                left: parent.left
+-                                verticalCenter: parent.verticalCenter
+-                                leftMargin: 12
++                }
++            }
++            Panel {
++                visible: home.page === 4
++                Heading { text: "Ko-fi · RemTeh" }
++                Image { source: "qrc:/kofi.svg"; Layout.preferredWidth: 184; Layout.preferredHeight: 184; sourceSize: Qt.size(224,224); fillMode: Image.PreserveAspectFit }
++                DeckButton { primary: true; text: home.t("Поддержать на Ko-fi", "Support on Ko-fi") + "  ↗"; onClicked: Qt.openUrlExternally("https://ko-fi.com/pavelzayats") }
++            }
++            ColumnLayout {
++                visible: home.page === 5; Layout.fillWidth: true; spacing: 16
++                Panel {
++                    Heading { text: "Deckivo · Windows" }
++                    Caption { text: "0.9.0.4 preview  /  chiaki-ng 1.10.0" }
++                    Caption { text: home.trKey("attribution") }
++                    Switch { text: home.t("Проверять обновления при запуске","Check for updates at startup"); checked: deckivoTools.autoCheck; onToggled: deckivoTools.autoCheck = checked }
++                    DeckButton { text: home.trKey("update_check"); enabled: deckivoTools.updates.status !== "busy"; onClicked: deckivoTools.updates.check() }
++                    Caption {
++                        visible: text.length > 0
++                        text: {
++                            switch (deckivoTools.updates.status) {
++                            case "busy": return home.trKey("update_checking")
++                            case "current": return home.trKey("update_current")
++                            case "unpublished": return home.t("В подписанном каталоге ещё нет сборок для Windows x64.", "The signed catalog has no Windows x64 releases yet.")
++                            case "new": return home.trKey("update_ready") + " · " + deckivoTools.updates.version
++                            case "network": return home.t("Каталог недоступен. Проверь подключение и повтори попытку.", "Catalog unavailable. Check your connection and try again.")
++                            case "format": case "signature": return home.t("Подлинность каталога не подтверждена.", "Could not verify the update catalog.")
++                            default: return ""
+                             }
+-                            width: 28
+-                            height: 28
+-                            sourceSize: Qt.size(width, height)
+-                            source: "qrc:/icons/l1.svg"
+-                            visible: delegate.highlighted
+                         }
+                     }
+-                } 
+-            } 
+-        }
+-    }     
+-
+-    RoundButton {
+-        anchors {
+-            left: parent.left
+-            bottom: parent.bottom
+-            margins: 20
+-        }
+-        icon.source: "qrc:/icons/discover-" + (checked ? "" : "off-") + "24px.svg"
+-        icon.width: 50
+-        icon.height: 50
+-        padding: 20
+-        focusPolicy: Qt.NoFocus
+-        checkable: true
+-        checked: Chiaki.discoveryEnabled
+-        onToggled: Chiaki.discoveryEnabled = !Chiaki.discoveryEnabled
+-        Material.background: Material.accent
+-    }
+-
+-    Label {
+-        anchors {
+-            right: parent.right
+-            bottom: parent.bottom
+-            margins: 20
+-        }
+-        text: Qt.application.version
+-    }
+-
+-    Image {
+-        id: logoImage
+-        anchors.centerIn: parent
+-        source: "qrc:/icons/chiaking-logo-white.svg"
+-        sourceSize: Qt.size(Math.min(parent.width, parent.height) / 2, Math.min(parent.width, parent.height) / 2)
+-
+-        PropertyAnimation {
+-            target: logoImage
+-            property: "opacity"
+-            from: 0.05
+-            to: 0.20
+-            duration: 1000
+-            easing.type: Easing.OutCubic
+-            running: true
++                    Flow {
++                        Layout.fillWidth: true; spacing: 8
++                        DeckButton { text: home.t("История выпусков", "Release history") + "  ↗"; onClicked: deckivoTools.openWindowsReleases() }
++                        DeckButton { text: home.t("Лицензии", "Licenses"); onClicked: deckivoTools.openLicenses() }
++                        DeckButton { text: home.trKey("export"); onClicked: home.exportReport() }
++                    }
++                }
++                Panel {
++                    Heading { text: home.t("Руководство Deckivo", "Deckivo guide") }
++                    Label {
++                        Layout.fillWidth: true; wrapMode: Text.Wrap; color: "#D5D9DF"; linkColor: "#DAF975"
++                        textFormat: Text.MarkdownText
++                        text: home.page === 5 && deckivoTools.language ? deckivoTools.guideText() : ""
++                        onLinkActivated: link => { if (link.startsWith("https://")) Qt.openUrlExternally(link) }
++                    }
++                }
++            }
++            Item { implicitHeight: 14 }
+         }
+     }
+ }
+diff --git a/gui/src/qml/RegistDialog.qml b/gui/src/qml/RegistDialog.qml
+index b67fede..4827bc9 100644
+--- a/gui/src/qml/RegistDialog.qml
++++ b/gui/src/qml/RegistDialog.qml
+@@ -1,264 +1,201 @@
+ import QtQuick
+-import QtQuick.Layouts
+ import QtQuick.Controls
+-import QtQuick.Controls.Material
+-
++import QtQuick.Layouts
+ import org.streetpea.chiaking
+ 
+-import "controls" as C
+-
+-DialogView {
++Rectangle {
++    id: wizard
++    color: "#101216"
+     property bool ps5: true
+-    property alias host: hostField.text
+-    title: qsTr("Register Console")
+-    buttonText: qsTr("Register")
+-    buttonEnabled: hostField.text.trim() && pin.acceptableInput && cpin.acceptableInput && (!onlineId.visible || onlineId.text.trim()) && (!accountId.visible || accountId.text.trim())
+-    StackView.onActivated: {
+-        if(Chiaki.settings.psnAccountId)
+-            accountId.text = Chiaki.settings.psnAccountId
++    property alias host: address.text
++    readonly property bool ru: ((!deckivoTools.language || deckivoTools.language === "auto") ? Qt.locale().name : deckivoTools.language).startsWith("ru")
++    function t(r, e) { return ru ? r : e }
++    property int page: 0
++    property int method: 0
++    property bool pairing: false
++    property bool paired: false
++    property bool signing: false
++    property var lookup: null
++    property string message: ""
++    property string netMessage: ""
++    property string checkedHost: ""
++    property int networkRequest: -1
++    property bool accountReady: /^[A-Za-z0-9+/]{11}=$/.test(account.text.trim())
++    readonly property bool legacy: model.currentIndex === 3
++    readonly property bool profileReady: legacy ? nickname.text.trim().length > 0 : accountReady
++    readonly property string addressValue: address.text.trim()
++    readonly property bool addressReady: {
++        const a = addressValue
++        if (!a || a.length > 253) return false
++        if (/^[0-9.]+$/.test(a)) return a.split(".").length === 4 && a.split(".").every(v => /^(0|[1-9][0-9]{0,2})$/.test(v) && Number(v) <= 255)
++        return /^[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*$/.test(a) || /^[A-Fa-f0-9:]+$/.test(a) && a.includes(":")
+     }
+-    onAccepted: {
+-        let psnId = onlineId.visible ? onlineId.text.trim() : accountId.text.trim();
+-        let registerOk = Chiaki.registerHost(hostField.text.trim(), psnId, pin.text.trim(), cpin.text.trim(), hostField.text.trim() == "255.255.255.255", consoleButtons.checkedButton.target, function(msg, ok, done) {
+-            if (!done)
+-                logArea.text += msg + "\n";
+-            else
+-                logDialog.standardButtons = Dialog.Close;
+-        });
+-        if (registerOk) {
+-            logArea.text = "";
+-            logDialog.open();
++    function go(i) { message = ""; page = i; scroll.contentItem.contentY = 0; next.forceActiveFocus(Qt.TabFocusReason) }
++    function lookupProfile() {
++        const xhr = new XMLHttpRequest()
++        lookup = xhr
++        signing = true
++        message = t("Ищем профиль…", "Looking up profile…")
++        xhr.onreadystatechange = function() {
++            if (xhr.readyState !== XMLHttpRequest.DONE || lookup !== xhr) return
++            let id = ""
++            try { if (xhr.status === 200) id = JSON.parse(xhr.responseText).encoded_id || "" } catch (error) {}
++            lookup = null
++            lookupTimeout.stop()
++            signing = false
++            if (/^[A-Za-z0-9+/]{11}=$/.test(id)) { account.text = id; message = "" }
++            else message = t("Профиль не найден. Проверьте ник или выберите вход через PlayStation.", "Profile not found. Check the online ID or choose PlayStation sign-in.")
+         }
++        xhr.open("GET", "https://psn.flipscreen.games/search.php?username=" + encodeURIComponent(publicName.text.trim()))
++        lookupTimeout.start()
++        xhr.send()
+     }
+-
+-    Item {
+-        GridLayout {
+-            anchors {
+-                top: parent.top
+-                horizontalCenter: parent.horizontalCenter
+-                topMargin: 20
+-            }
+-            columns: 2
+-            rowSpacing: 10
+-            columnSpacing: 20
+-
+-            Label {
+-                Layout.alignment: Qt.AlignRight
+-                text: qsTr("Host:")
+-            }
+-
+-            C.TextField {
+-                id: hostField
+-                echoMode: Chiaki.settings.streamerMode ? TextInput.Password : TextInput.Normal
+-                Layout.preferredWidth: 400
+-                firstInFocusChain: true
+-            }
+-
+-            Label {
+-                Layout.alignment: Qt.AlignRight
+-                text: qsTr("PSN Online-ID:")
+-                visible: onlineId.visible
+-            }
+-
+-            C.TextField {
+-                id: onlineId
+-                echoMode: Chiaki.settings.streamerMode ? TextInput.Password : TextInput.Normal
+-                visible: ps4_7.checked
+-                placeholderText: qsTr("username, case-sensitive")
+-                Layout.preferredWidth: 400
+-            }
+-
+-            Label {
+-                Layout.alignment: Qt.AlignRight
+-                text: qsTr("PSN Account-ID:")
+-                visible: accountId.visible
++    Timer { id: lookupTimeout; interval: 7000; onTriggered: if (lookup) lookup.abort() }
++    Component.onDestruction: if (lookup) { const old = lookup; lookup = null; old.abort() }
++    function back() {
++        if (pairing) return
++        if (page === 0 || paired) root.closeDialog()
++        else go(page - 1)
++    }
++    Keys.onEscapePressed: back()
++    Component.onCompleted: account.text = Chiaki.settings.psnAccountId || ""
++    function submit() {
++        if (paired) { root.closeDialog(); return }
++        if (page < 2) { go(page + 1); return }
++        if (pairing || !pin.acceptableInput || !profileReady || !addressReady) return
++        pairing = true
++        message = t("Привязываем профиль…", "Pairing your profile…")
++        const started = Chiaki.registerHost(addressValue, legacy ? nickname.text.trim() : account.text.trim(), pin.text.replace(/\s/g, ""), extra.checked ? loginPin.text : "", addressValue === "255.255.255.255", [1000100,1000,900,800][model.currentIndex], (msg, ok, done) => {
++            if (!done) return
++            pairing = false; paired = ok
++            message = ok ? t("Консоль привязана. На главном экране теперь можно начать игру.", "Console paired. You can now start playing from the dashboard.") : t("Привязка не удалась. Проверьте профиль, сеть и получите на консоли свежий код.", "Pairing failed. Check the profile and network, then generate a fresh code on the console.")
++            pin.clear(); loginPin.clear()
++        })
++        if (!started) { pairing = false; message = t("Не удалось начать привязку. Проверьте данные профиля.", "Could not start pairing. Check the profile details.") }
++    }
++    Connections {
++        target: Chiaki
++        function onPsnLoginAccountIdDone(id) {
++            if (!signing || method !== 0) return
++            signing = false; account.text = id; redirect.clear(); message = ""
++        }
++        function onPsnLoginAccountIdError(error) {
++            if (!signing || method !== 0) return
++            signing = false; message = wizard.t("Не удалось получить профиль. Откройте вход заново и скопируйте полный адрес после входа.", "Could not retrieve the profile. Sign in again and copy the complete return address.")
++        }
++    }
++    Connections {
++        target: deckivoTools
++        function onLanCheckDone(serial, ok) {
++            if (serial !== networkRequest || checkedHost !== addressValue) return
++            networkRequest = -1
++            netMessage = ok ? wizard.t("Консоль принимает подключения Remote Play.", "The Remote Play port is reachable.") : wizard.t("Нет ответа. Проверьте адрес, питание и настройки дистанционной игры.", "No response. Check the address, console power and Remote Play settings.")
++        }
++        function onCompanionDone(serial, id) {
++            if (serial !== networkRequest || checkedHost !== addressValue) return
++            networkRequest = -1
++            if (id) { account.text = id; helperCode.clear(); message = "" }
++            else message = wizard.t("Нет ответа от помощника. Проверьте адрес, запустите помощник на PS5 и получите новый код.", "No valid response. Check the address, start the companion on your PS5 and get a new code.")
++        }
++    }
++    component Hint: Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; color: "#A4ACBA"; font.pixelSize: 15 }
++    component FieldName: Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; color: "#F3F5F7"; font.pixelSize: 17; font.weight: Font.DemiBold }
++    component Field: TextField { Layout.fillWidth: true; selectByMouse: true; font.pixelSize: 17; color: "#F3F5F7"; placeholderTextColor: "#87919F"; leftPadding: 14; implicitHeight: 46
++        background: Rectangle { radius: 10; color: "#15191F"; border.color: parent.activeFocus ? "#DAF975" : "#485160" }
++    }
++    ScrollView {
++        id: scroll; anchors.fill: parent; contentWidth: availableWidth; clip: true
++        ColumnLayout {
++            width: Math.min(700, scroll.availableWidth - 32); x: (scroll.availableWidth - width) / 2; spacing: 14
++            Item { implicitHeight: 8 }
++            RowLayout {
++                Layout.fillWidth: true
++                DeckButton { text: wizard.t("‹  Назад", "‹  Back"); enabled: !pairing; onClicked: wizard.back() }
++                Item { Layout.fillWidth: true }
++                Label { text: "Deckivo"; color: "#A4ACBA"; font.pixelSize: 17 }
+             }
+-
+-            C.TextField {
+-                id: accountId
+-                visible: !ps4_7.checked
+-                echoMode: Chiaki.settings.streamerMode ? TextInput.Password : TextInput.Normal
+-                placeholderText: qsTr("base64")
+-                Layout.preferredWidth: 400 - loginButton.width - 10
+-                KeyNavigation.priority: {
+-                    if(readOnly)
+-                        KeyNavigation.BeforeItem
+-                    else
+-                        KeyNavigation.AfterItem
+-                }
+-                KeyNavigation.up: hostField
+-                KeyNavigation.right: loginButton
+-                KeyNavigation.down: pin
+-
+-                C.Button {
+-                    id: loginButton
+-                    anchors {
+-                        left: parent.right
+-                        verticalCenter: parent.verticalCenter
+-                        leftMargin: 10
+-                    }
+-                    topPadding: 18
+-                    bottomPadding: 18
+-                    text: qsTr("PSN Login")
+-                    onClicked: stack.push(psnLoginDialogComponent, {login: true, callback: (id) => accountId.text = id})
+-                    visible: !Chiaki.settings.psnAccountId
+-                    Material.roundedScale: Material.SmallScale
+-                    KeyNavigation.priority: KeyNavigation.BeforeItem
+-                    KeyNavigation.up: hostField
+-                    KeyNavigation.left: accountId
+-                    KeyNavigation.right: lookupButton
+-                    KeyNavigation.down: pin
+-                }
+-                C.Button {
+-                    id: lookupButton
+-                    anchors {
+-                        left: loginButton.right
+-                        verticalCenter: parent.verticalCenter
+-                        leftMargin: 10
++            Label { text: wizard.t("Подключение консоли", "Pair your console"); font.bold: true; font.pixelSize: 30; color: "#F3F5F7"; Layout.fillWidth: true; wrapMode: Text.WordWrap }
++            RowLayout {
++                Layout.fillWidth: true; spacing: 8
++                Repeater { model: [wizard.t("Консоль", "Console"),wizard.t("Профиль", "Profile"),wizard.t("Код", "Code")]
++                    ColumnLayout { required property int index; required property string modelData; Layout.fillWidth: true
++                        Rectangle { Layout.fillWidth: true; implicitHeight: 3; radius: 2; color: index <= page ? "#DAF975" : "#303640" }
++                        Label { text: (index + 1) + "  " + modelData; color: index === page ? "#DAF975" : "#A4ACBA" }
+                     }
+-                    topPadding: 18
+-                    bottomPadding: 18
+-                    text: qsTr("Public Lookup")
+-                    onClicked: stack.push(psnLoginDialogComponent, {login: false, callback: (id) => accountId.text = id})
+-                    visible: !Chiaki.settings.psnAccountId
+-                    Material.roundedScale: Material.SmallScale
+-                    KeyNavigation.up: hostField
+-                    KeyNavigation.priority: KeyNavigation.BeforeItem
+-                    KeyNavigation.left: loginButton
+-                    KeyNavigation.right: lookupButton
+-                    KeyNavigation.down: pin
+-                }
+-            }
+-
+-            Label {
+-                Layout.alignment: Qt.AlignRight
+-                text: qsTr("Remote Play PIN:")
+-            }
+-
+-            C.TextField {
+-                id: pin
+-                validator: RegularExpressionValidator { regularExpression: /[0-9]{8}/ }
+-                Layout.preferredWidth: 400
+-                echoMode: Chiaki.settings.streamerMode ? TextInput.Password : TextInput.Normal
+-                KeyNavigation.priority: {
+-                    if(readOnly)
+-                        KeyNavigation.BeforeItem
+-                    else
+-                        KeyNavigation.AfterItem
+-                }
+-                KeyNavigation.up: accountId
+-            }
+-
+-            Label {
+-                Layout.alignment: Qt.AlignRight
+-                text: qsTr("Console Pin [Optional]")
+-            }
+-
+-            C.TextField {
+-                id: cpin
+-                echoMode: Chiaki.settings.streamerMode ? TextInput.Password : TextInput.Normal
+-                validator: RegularExpressionValidator { regularExpression: /^$|[0-9]{4}/ }
+-                Layout.preferredWidth: 400
+-            }
+-
+-            Label {
+-                Layout.alignment: Qt.AlignRight
+-                text: qsTr("Console:")
+-            }
+-
+-            ColumnLayout {
+-                spacing: 0
+-
+-                C.RadioButton {
+-                    id: ps4_7
+-                    property int target: 800
+-                    text: qsTr("PS4 Firmware < 7.0")
+-                }
+-
+-                C.RadioButton {
+-                    id: ps4_75
+-                    property int target: 900
+-                    text: qsTr("PS4 Firmware >= 7.0, < 8.0")
+-                }
+-
+-                C.RadioButton {
+-                    id: ps4_8
+-                    property int target: 1000
+-                    text: qsTr("PS4 Firmware >= 8.0")
+-                    checked: !ps5
+-                }
+-
+-                C.RadioButton {
+-                    id: ps5_0
+-                    property int target: 1000100
+-                    lastInFocusChain: true
+-                    text: qsTr("PS5")
+-                    checked: ps5
+                 }
+             }
+-        }
+-
+-        ButtonGroup {
+-            id: consoleButtons
+-            buttons: [ps4_7, ps4_75, ps4_8, ps5_0]
+-        }
+-
+-        Item {
+-            Dialog {
+-                id: logDialog
+-                parent: Overlay.overlay
+-                x: Math.round((root.width - width) / 2)
+-                y: Math.round((root.height - height) / 2)
+-                title: qsTr("Register Console")
+-                modal: true
+-                closePolicy: Popup.NoAutoClose
+-                standardButtons: Dialog.Cancel
+-                Material.roundedScale: Material.MediumScale
+-                onOpened: logArea.forceActiveFocus(Qt.TabFocusReason)
+-                onClosed: stack.pop();
+-
+-                Flickable {
+-                    id: logFlick
+-                    implicitWidth: 600
+-                    implicitHeight: 400
+-                    clip: true
+-                    contentWidth: logArea.contentWidth
+-                    contentHeight: logArea.contentHeight
+-                    flickableDirection: Flickable.AutoFlickIfNeeded
+-                    ScrollBar.vertical: ScrollBar {
+-                        id: logScrollbar
+-                        policy: ScrollBar.AlwaysOn
+-                        visible: logFlick.contentHeight > logFlick.implicitHeight
++            Rectangle {
++                Layout.fillWidth: true; implicitHeight: form.implicitHeight + 44; color: "#1A1E24"; radius: 20; border.color: "#303640"
++                ColumnLayout {
++                    id: form; x: 22; y: 22; width: parent.width - 44; spacing: 11
++                    ColumnLayout {
++                        visible: page === 0; Layout.fillWidth: true; spacing: 10
++                        FieldName { text: wizard.t("Какая у вас консоль?", "Which console do you have?") }
++                        ComboBox { id: model; Layout.fillWidth: true; currentIndex: wizard.ps5 ? 0 : 1
++                            model: ["PlayStation 5", "PlayStation 4 (8.0+)", "PlayStation 4 (7.x)", "PlayStation 4 (< 7.0)"]
++                        }
++                        Hint { text: model.currentIndex === 0 ? wizard.t("На PS5 откройте Настройки → Система → Дистанционная игра и включите её.", "On PS5, open Settings → System → Remote Play and enable it.") : wizard.t("На PS4 откройте Настройки → Настройки соединения дистанционного воспроизведения и включите его.", "On PS4, open Settings → Remote Play Connection Settings and enable Remote Play.") }
++                        FieldName { text: wizard.t("Адрес консоли", "Console address") }
++                        Field { id: address; echoMode: Chiaki.settings.streamerMode ? TextInput.Password : TextInput.Normal; placeholderText: wizard.t("Например, 192.168.1.25", "For example, 192.168.1.25"); Accessible.name: wizard.t("Адрес консоли", "Console address"); onTextChanged: { netMessage = ""; networkRequest = -1 } }
++                        Hint { text: wizard.t("Адрес найденной консоли уже подставлен. Если поле пустое, посмотрите IP-адрес в настройках сети PlayStation.", "A discovered console fills this in automatically. If empty, find the IP address in the PlayStation network settings.") }
++                        Hint { visible: address.text.length > 0 && !addressReady; color: "#F0C17A"; text: wizard.t("Введите IP-адрес или имя устройства без http:// и номера порта.", "Enter an IP address or hostname without http:// or a port.") }
++                        DeckButton { enabled: addressReady && networkRequest < 0; text: wizard.t("Проверить соединение", "Test connection"); onClicked: { checkedHost = addressValue; netMessage = wizard.t("Проверяем…", "Checking…"); networkRequest = deckivoTools.checkLan(addressValue) } }
++                        Hint { visible: netMessage.length > 0; text: netMessage }
+                     }
+-
+-                    Label {
+-                        id: logArea
+-                        width: logFlick.width
+-                        wrapMode: TextEdit.Wrap
+-                        Keys.onReturnPressed: if (logDialog.standardButtons == Dialog.Close) logDialog.close()
+-                        Keys.onEscapePressed: logDialog.close()
+-                        Keys.onPressed: (event) => {
+-                            switch (event.key) {
+-                            case Qt.Key_Up:
+-                                if(logScrollbar.position > 0.001)
+-                                    logFlick.flick(0, 500);
+-                                event.accepted = true;
+-                                break;
+-                            case Qt.Key_Down:
+-                                if(logScrollbar.position < 1.0 - logScrollbar.size - 0.001)
+-                                    logFlick.flick(0, -500);
+-                                event.accepted = true;
+-                                break;
++                    ColumnLayout {
++                        visible: page === 1; Layout.fillWidth: true; spacing: 10
++                        FieldName { text: wizard.t("Профиль на PlayStation", "PlayStation profile") }
++                        Hint { visible: !legacy; text: wizard.t("Выберите учётную запись, под которой играете на этой консоли.", "Use the account you play with on this console.") }
++                        Field { id: nickname; visible: legacy; placeholderText: wizard.t("Сетевой идентификатор PSN (ник)", "PSN online ID (nickname)") }
++                        ComboBox { id: methods; Layout.fillWidth: true; visible: !legacy; enabled: !signing
++                            model: [wizard.t("Войти через PlayStation", "Sign in with PlayStation"), wizard.t("Ввести готовый Account ID", "Enter an existing Account ID"), wizard.t("Найти по нику PSN", "Find by PSN online ID")].concat(wizard.modelChoiceIsPS5 ? [wizard.t("Локальный помощник PS5", "Local PS5 companion")] : [])
++                            onActivated: i => { method = i; message = ""; networkRequest = -1 }
++                        }
++                        ColumnLayout {
++                            visible: !legacy && method === 0; Layout.fillWidth: true
++                            DeckButton { text: wizard.t("Открыть вход Sony", "Open Sony sign-in"); onClicked: { Chiaki.openPsnLink(); signedInHelp.visible = true } }
++                            ColumnLayout { id: signedInHelp; Layout.fillWidth: true; visible: false
++                                Hint { text: wizard.t("После входа скопируйте адрес последней страницы из адресной строки браузера и вставьте ниже.", "After signing in, copy the final page address from the browser address bar and paste it below.") }
++                                Field { id: redirect; echoMode: TextInput.Password; placeholderText: wizard.t("Адрес страницы после входа", "Return address after sign-in") }
++                                DeckButton { enabled: redirect.text.trim().length > 0 && !signing; text: wizard.t("Получить профиль", "Get profile"); onClicked: { signing = true; message = ""; Chiaki.handlePsnLoginRedirect(redirect.text.trim()) } }
+                             }
+                         }
++                        ColumnLayout { visible: !legacy && method === 2; Layout.fillWidth: true
++                            Hint { text: wizard.t("По кнопке ниже ник будет отправлен в сервис psn.flipscreen.games для поиска открытого профиля.", "Selecting Find sends your online ID to psn.flipscreen.games to look up the public profile.") }
++                            Field { id: publicName; placeholderText: wizard.t("Ваш сетевой идентификатор PSN", "Your PSN online ID"); onTextEdited: account.clear() }
++                            DeckButton { enabled: publicName.text.trim().length > 0 && !signing; text: wizard.t("Найти профиль", "Find profile"); onClicked: wizard.lookupProfile() }
++                        }
++                        ColumnLayout { visible: !legacy && method === 3; Layout.fillWidth: true
++                            Hint { text: wizard.t("Если на PS5 уже запущен RemTeh Pair Helper, введите восемь цифр с его экрана. Код дистанционной игры понадобится на следующем шаге.", "With RemTeh Pair Helper running on the PS5, enter its eight digits here. The Remote Play code comes in the next step.") }
++                            Field { id: helperCode; echoMode: TextInput.Password; validator: RegularExpressionValidator { regularExpression: /[0-9]{8}/ }
++                                placeholderText: wizard.t("Код помощника", "Companion code") }
++                            DeckButton { enabled: helperCode.acceptableInput && networkRequest < 0 && deckivoTools.privateLanHost(addressValue); text: wizard.t("Получить профиль с PS5", "Get profile from PS5"); onClicked: { checkedHost = addressValue; message = wizard.t("Получаем профиль…", "Retrieving profile…"); networkRequest = deckivoTools.fetchCompanion(addressValue, helperCode.text) } }
++                            Hint { visible: !deckivoTools.privateLanHost(addressValue); text: wizard.t("Для помощника укажите локальный IPv4-адрес PS5 на первом шаге.", "Enter your PS5’s private IPv4 address in the first step to use the companion.") }
++                        }
++                        Hint { visible: !legacy && method === 1; text: wizard.t("Вставьте Account ID этого профиля в формате Base64 (12 символов). Его можно взять из ранее настроенного клиента.", "Paste this profile’s Base64 Account ID (12 characters) from a previously configured client.") }
++                        Field { id: account; visible: !legacy && method === 1; echoMode: TextInput.Password; placeholderText: "Account ID · Base64"; Accessible.name: "Account ID" }
++                        Hint { visible: !legacy && accountReady; color: "#DAF975"; text: wizard.t("Профиль готов к привязке.", "Profile ready to pair.") }
++                        Hint { visible: !legacy && method === 1 && account.text.length > 0 && !accountReady; color: "#F0C17A"; text: wizard.t("Проверьте формат: 11 символов Base64 и знак = в конце.", "Expected 11 Base64 characters followed by =.") }
++                    }
++                    ColumnLayout {
++                        visible: page === 2 && !paired; enabled: !pairing; Layout.fillWidth: true; spacing: 10
++                        FieldName { text: wizard.t("Код привязки с экрана консоли", "Pairing code from your console") }
++                        Hint { text: model.currentIndex === 0 ? wizard.t("На PS5 откройте Настройки → Система → Дистанционная игра → Привязать устройство. Введите показанные восемь цифр.", "On PS5, go to Settings → System → Remote Play → Pair Device. Enter the eight digits shown there.") : wizard.t("На PS4 откройте Настройки → Настройки соединения дистанционного воспроизведения → Добавить устройство. Введите восемь цифр.", "On PS4, go to Settings → Remote Play Connection Settings → Add Device. Enter the eight digits shown there.") }
++                        Field { id: pin; placeholderText: "0000 0000"; echoMode: Chiaki.settings.streamerMode ? TextInput.Password : TextInput.Normal; validator: RegularExpressionValidator { regularExpression: /[0-9]{4} ?[0-9]{4}/ } }
++                        CheckBox { id: extra; text: wizard.t("У профиля есть PIN входа в консоль", "My profile uses a console login PIN") }
++                        Field { id: loginPin; visible: extra.checked; placeholderText: wizard.t("4 цифры для входа в профиль", "4 digits for profile login"); echoMode: TextInput.Password; validator: RegularExpressionValidator { regularExpression: /[0-9]{4}/ } }
++                    }
++                    Hint { visible: message.length > 0; text: message; color: "#DAF975" }
++                    DeckButton { id: next; primary: true
++                        text: paired ? wizard.t("На главный экран", "Dashboard") : page === 2 ? wizard.t("Привязать консоль", "Pair console") : wizard.t("Продолжить", "Continue")
++                        enabled: paired || (!pairing && (page === 0 ? addressReady : page === 1 ? profileReady && !signing : pin.acceptableInput && (!extra.checked || loginPin.acceptableInput)))
++                        onClicked: wizard.submit()
+                     }
+                 }
+             }
+-        }
+-
+-        Component {
+-            id: psnLoginDialogComponent
+-            PSNLoginDialog { }
++            Item { implicitHeight: 20 }
+         }
+     }
++    readonly property bool modelChoiceIsPS5: model.currentIndex === 0
++    onModelChoiceIsPS5Changed: if (!modelChoiceIsPS5 && method === 3) { method = 0; methods.currentIndex = 0 }
+ }
+diff --git a/gui/src/qml/SettingsDialog.qml b/gui/src/qml/SettingsDialog.qml
+index 22e35e1..fc9600f 100644
+--- a/gui/src/qml/SettingsDialog.qml
++++ b/gui/src/qml/SettingsDialog.qml
+@@ -17,6 +17,7 @@ DialogView {
+     property int selectedConsole: SettingsDialog.Console.PS5
+     property bool quitControllerMapping: true
+     id: dialog
++    property alias selectedTab: bar.currentIndex
+     title: qsTr("Settings")
+     header: qsTr("* Defaults in () to right of value or marked with (Default)")
+     buttonVisible: false
+diff --git a/gui/src/qml/StreamView.qml b/gui/src/qml/StreamView.qml
+index db96217..cddd689 100644
+--- a/gui/src/qml/StreamView.qml
++++ b/gui/src/qml/StreamView.qml
+@@ -28,6 +28,22 @@ Item {
+     property int separateDialogX: 0
+     property int separateDialogY: 0
+ 
++    Item {
++        anchors.fill: parent
++        visible: deckivoTools.touchOverlay && Chiaki.window.hasVideo && !view.sessionLoading && !menuController.open
++        readonly property real unit: Math.min(72, width/9.4, height/7.5)
++        Repeater {
++            model: deckivoTools.overlayControls
++            Rectangle {
++                required property var modelData
++                width: modelData.radius * 2 * parent.unit; height: width; radius: width/2
++                x: (modelData.right ? parent.width-modelData.x*parent.unit : modelData.x*parent.unit) - radius
++                y: parent.height-modelData.y*parent.unit-radius
++                color: "#7032353C"; border.color: "#BFE1E4E6"
++                Label { anchors.centerIn: parent; color: "white"; text: modelData.label; font.pixelSize: Math.max(11,parent.height*0.32) }
++            }
++        }
++    }
+     function grabInput(item) {
+         Chiaki.window.grabInput();
+         restoreFocusItems.push(hostWindow ? hostWindow.activeFocusItem : null);
+diff --git a/gui/src/qml/qml.qrc b/gui/src/qml/qml.qrc
+index addf62e..96c955d 100644
+--- a/gui/src/qml/qml.qrc
++++ b/gui/src/qml/qml.qrc
+@@ -2,7 +2,34 @@
+   <qresource prefix="/">
+     <file>qtquickcontrols2.conf</file>
+     <file>Main.qml</file>
++    <file>deckivo.svg</file>
++    <file>ps5-console.png</file>
++    <file>IBMPlexSans.ttf</file>
+     <file>MainView.qml</file>
++    <file>desktop-translations.json</file>
++    <file>engine-ru.json</file>
++    <file>update-public.der</file>
++    <file>dualshock-4-front.png</file>
++    <file>xbox-series-front.png</file>
++    <file>dualsense-front.png</file>
++    <file>kofi.svg</file>
++    <file>guides/ar.md</file>
++    <file>guides/de.md</file>
++    <file>guides/en.md</file>
++    <file>guides/es.md</file>
++    <file>guides/fr.md</file>
++    <file>guides/hi.md</file>
++    <file>guides/id.md</file>
++    <file>guides/it.md</file>
++    <file>guides/ja.md</file>
++    <file>guides/ko.md</file>
++    <file>guides/pl.md</file>
++    <file>guides/pt.md</file>
++    <file>guides/ru.md</file>
++    <file>guides/tr.md</file>
++    <file>guides/uk.md</file>
++    <file>guides/zh.md</file>
++    <file>DeckButton.qml</file>
+     <file>StreamView.qml</file>
+     <file>StreamMenuWindow.qml</file>
+     <file>ConfirmDialog.qml</file>
+diff --git a/gui/src/qml/qtquickcontrols2.conf b/gui/src/qml/qtquickcontrols2.conf
+index 8932a6a..a3f2230 100644
+--- a/gui/src/qml/qtquickcontrols2.conf
++++ b/gui/src/qml/qtquickcontrols2.conf
+@@ -3,7 +3,7 @@ Style=Material
+ 
+ [Material]
+ Theme=Dark
+-Accent=#00a7ff
++Accent=#daf975
+ 
+ [Material\Font]
+ PixelSize=20
+diff --git a/gui/src/qmlbackend.cpp b/gui/src/qmlbackend.cpp
+index 1a7270b..38439e0 100644
+--- a/gui/src/qmlbackend.cpp
++++ b/gui/src/qmlbackend.cpp
+@@ -1350,9 +1350,14 @@ void QmlBackend::setWebEngineHints(QQuickWebEngineProfile *profile)
+ }
+ #endif
+ 
++void QmlBackend::startManualPairing()
++{
++    regist_dialog_server = {};
++    emit registDialogRequested({}, true, {});
++}
++
+ void QmlBackend::connectToHost(int index, QString nickname)
+ {
+-    window->setWindowAdjustable(false);
+     auto server = displayServerAt(index);
+     if (!server.valid)
+         return;
+@@ -1362,6 +1367,7 @@ void QmlBackend::connectToHost(int index, QString nickname)
+         emit registDialogRequested(server.GetHostAddr(), server.IsPS5(), server.duid);
+         return;
+     }
++    window->setWindowAdjustable(false);
+ 
+     if (server.discovered && server.discovery_host.state == CHIAKI_DISCOVERY_HOST_STATE_STANDBY)
+     {
+diff --git a/gui/src/qmlcontroller.cpp b/gui/src/qmlcontroller.cpp
+index dd555d9..f70295d 100644
+--- a/gui/src/qmlcontroller.cpp
++++ b/gui/src/qmlcontroller.cpp
+@@ -1,6 +1,7 @@
+ #include "qmlcontroller.h"
+ 
+ #include <QTimer>
++#include <QVariantMap>
+ #include <QKeyEvent>
+ #include <QDateTime>
+ #include <QHash>
+@@ -78,6 +79,12 @@ QmlController::~QmlController()
+     controller->Unref();
+ }
+ 
++QVariantMap QmlController::sample() const
++{
++    const auto s = controller->GetState();
++    return {{"buttons", s.buttons}, {"l2", s.l2_state}, {"r2", s.r2_state}, {"lx", s.left_x}, {"ly", s.left_y}, {"rx", s.right_x}, {"ry", s.right_y}};
++}
++
+ bool QmlController::isDualSense() const
+ {
+     return controller->IsDualSense();
+diff --git a/gui/src/qmlmainwindow.cpp b/gui/src/qmlmainwindow.cpp
+index a22ad03..f79a809 100644
+--- a/gui/src/qmlmainwindow.cpp
++++ b/gui/src/qmlmainwindow.cpp
+@@ -32,6 +32,8 @@ extern "C" {
+ #include <QVulkanInstance>
+ #include <QQuickItem>
+ #include <QQmlEngine>
++#include <QQmlContext>
++#include "windows_tools.h"
+ #include <QQmlComponent>
+ #include <QQuickRenderTarget>
+ #include <QQuickRenderControl>
+@@ -505,6 +507,7 @@ void QmlMainWindow::setKeepVideo(bool keep)
+ 
+ void QmlMainWindow::grabInput()
+ {
++    releaseDesktopInput();
+     setCursor(Qt::ArrowCursor);
+     grab_input++;
+     if (session)
+@@ -566,9 +569,9 @@ void QmlMainWindow::setSettings(Settings *new_settings)
+     QString profile = settings->GetCurrentProfile();
+     qCCritical(chiakiGui) << "Current Profile: " << profile;
+     if(profile.isEmpty())
+-        QGuiApplication::setApplicationDisplayName("chiaki-ng");
++        QGuiApplication::setApplicationDisplayName("Deckivo");
+     else
+-        QGuiApplication::setApplicationDisplayName(QString("chiaki-ng:%1").arg(profile));
++        QGuiApplication::setApplicationDisplayName(QString("Deckivo · %1").arg(profile));
+     this->setTitle(QGuiApplication::applicationDisplayName());
+ }
+ 
+@@ -595,6 +598,9 @@ void QmlMainWindow::show()
+         QMetaObject::invokeMethod(quick_item, "showRendererFallbackDialog",
+                                   Q_ARG(QVariant, QVariant::fromValue(reason)));
+     }
++    if (direct_stream && windowState() == Qt::WindowFullScreen)
++        return;
++
+     auto screen_size = QGuiApplication::primaryScreen()->availableSize();
+     resize(screen_size);
+ 
+@@ -608,7 +614,10 @@ void QmlMainWindow::show()
+             showNormal();
+         }
+         else
+-            showMaximized();
++        {
++            resize(QSize(1280, 760).boundedTo(screen_size));
++            showNormal();
++        }
+         setWindowAdjustable(true);
+     }
+ }
+@@ -625,6 +634,7 @@ void QmlMainWindow::presentFrame(ChiakiFfmpegFrame frame, int32_t frames_lost)
+     if (!frame.frame)
+         return;
+ 
++    decoded_frames.fetchAndAddRelaxed(1);
+     if (frame.recovered)
+     {
+         const bool stored_pending = storePendingFrame(frame, true);
+@@ -1363,6 +1373,7 @@ AVBufferRef *QmlMainWindow::vulkanHwDeviceCtx()
+         return vulkan_hw_dev_ctx;
+ 
+     vulkan_hw_dev_ctx = av_hwdevice_ctx_alloc(AV_HWDEVICE_TYPE_VULKAN);
++    if (!vulkan_hw_dev_ctx) return nullptr;
+     AVHWDeviceContext *hwctx = reinterpret_cast<AVHWDeviceContext*>(vulkan_hw_dev_ctx->data);
+     hwctx->user_opaque = const_cast<void*>(reinterpret_cast<const void*>(placebo_vulkan));
+     AVVulkanDeviceContext *vkctx = reinterpret_cast<AVVulkanDeviceContext*>(hwctx->hwctx);
+@@ -1375,14 +1386,32 @@ AVBufferRef *QmlMainWindow::vulkanHwDeviceCtx()
+     vkctx->nb_enabled_inst_extensions = placebo_vk_inst->num_extensions;
+     vkctx->enabled_dev_extensions = placebo_vulkan->extensions;
+     vkctx->nb_enabled_dev_extensions = placebo_vulkan->num_extensions;
+-    vkctx->queue_family_index = placebo_vulkan->queue_graphics.index;
+-    vkctx->nb_graphics_queues = placebo_vulkan->queue_graphics.count;
+-    vkctx->queue_family_tx_index = placebo_vulkan->queue_transfer.index;
+-    vkctx->nb_tx_queues = placebo_vulkan->queue_transfer.count;
+-    vkctx->queue_family_comp_index = placebo_vulkan->queue_compute.index;
+-    vkctx->nb_comp_queues = placebo_vulkan->queue_compute.count;
+-    vkctx->queue_family_decode_index = vk_decode_queue_index;
+-    vkctx->nb_decode_queues = 1;
++    auto queryFamilies = reinterpret_cast<PFN_vkGetPhysicalDeviceQueueFamilyProperties2>(
++        placebo_vulkan->get_proc_addr(placebo_vulkan->instance, "vkGetPhysicalDeviceQueueFamilyProperties2"));
++    if (!queryFamilies) {
++        av_buffer_unref(&vulkan_hw_dev_ctx);
++        return nullptr;
++    }
++    uint32_t count = 0;
++    queryFamilies(vkctx->phys_dev, &count, nullptr);
++    std::vector<VkQueueFamilyVideoPropertiesKHR> video(count, {VK_STRUCTURE_TYPE_QUEUE_FAMILY_VIDEO_PROPERTIES_KHR});
++    std::vector<VkQueueFamilyProperties2> families(count, {VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2});
++    for (uint32_t i = 0; i < count; ++i)
++        families[i].pNext = &video[i];
++    queryFamilies(vkctx->phys_dev, &count, families.data());
++    for (uint32_t i = 0; i < count && vkctx->nb_qf < 64; ++i) {
++        uint32_t enabled = 0;
++        for (const auto &queue : {placebo_vulkan->queue_graphics, placebo_vulkan->queue_transfer, placebo_vulkan->queue_compute})
++            if (queue.index == i) enabled = std::max(enabled, queue.count);
++        if (static_cast<int>(i) == vk_decode_queue_index)
++            enabled = std::max(enabled, 1u);
++        if (!enabled) continue;
++        auto &family = vkctx->qf[vkctx->nb_qf++];
++        family.idx = static_cast<int>(i);
++        family.num = static_cast<int>(enabled);
++        family.flags = static_cast<VkQueueFlagBits>(families[i].queueFamilyProperties.queueFlags);
++        family.video_caps = static_cast<VkVideoCodecOperationFlagBitsKHR>(video[i].videoCodecOperations);
++    }
+     vkctx->lock_queue = [](struct AVHWDeviceContext *dev_ctx, uint32_t queue_family, uint32_t index) {
+         auto vk = reinterpret_cast<pl_vulkan>(dev_ctx->user_opaque);
+         vk->lock_queue(vk, queue_family, index);
+@@ -1723,6 +1752,14 @@ renderer_backend_ready:
+     connect(quick_window, &QQuickWindow::focusObjectChanged, this, &QmlMainWindow::focusObjectChanged);
+ 
+     qml_engine = new QQmlEngine(this);
++    tools = new WindowsTools(qml_engine);
++    qml_engine->rootContext()->setContextProperty("deckivoTools", tools);
++    connect(tools, &WindowsTools::languageChanged, qml_engine, &QQmlEngine::retranslate);
++    aim_timer.setSingleShot(true);
++    connect(&aim_timer, &QTimer::timeout, this, [this] {
++        desktop_input.aim = {};
++        sendDesktopInput();
++    });
+     qml_engine->addImageProvider(QStringLiteral("svg"), new QmlSvgProvider);
+     if (!qml_engine->incubationController())
+         qml_engine->setIncubationController(quick_window->incubationController());
+@@ -1730,7 +1767,11 @@ renderer_backend_ready:
+ 
+     backend = new QmlBackend(settings, this);
+     connect(backend, &QmlBackend::sessionChanged, this, [this, exit_app_on_stream_exit](StreamSession *s) {
++        // The previous stream may already have been destroyed when this signal arrives.
++        session = nullptr;
++        releaseDesktopInput();
+         session = s;
++        if (s) decoded_frames.storeRelaxed(0);
+         stream_session_active.storeRelease(s ? 1 : 0);
+         grab_input = 0;
+         if (session)
+@@ -2763,8 +2804,113 @@ bool QmlMainWindow::nvidiaCard() const
+     return nvidia_card;
+ }
+ 
++void QmlMainWindow::sendDesktopInput()
++{
++    if (session) session->SetDesktopInput(desktop_input.snapshot(size()));
++}
++
++void QmlMainWindow::releaseDesktopInput()
++{
++    aim_timer.stop();
++    if (capturing_mouse) {
++        capturing_mouse = false;
++        setMouseGrabEnabled(false);
++        setCursor(Qt::ArrowCursor);
++    }
++    desktop_input = {};
++    if (session) {
++        session->ClearDesktopKeys();
++        sendDesktopInput();
++    }
++}
++
++bool QmlMainWindow::desktopEvent(QEvent *event)
++{
++    if (!tools || !session || grab_input) return false;
++    const auto type = event->type();
++    if (type == QEvent::FocusOut || type == QEvent::WindowDeactivate) {
++        releaseDesktopInput();
++        return false;
++    }
++    if (type == QEvent::KeyPress || type == QEvent::KeyRelease) {
++        auto key = static_cast<QKeyEvent *>(event);
++        const bool down = type == QEvent::KeyPress;
++        if (key->key() == Qt::Key_F8 && key->modifiers() == Qt::NoModifier) {
++            if (!down || key->isAutoRepeat()) return true;
++            if (capturing_mouse) releaseDesktopInput();
++            else if (settings->GetKeyboardEnabled() && setMouseGrabEnabled(true)) {
++                capturing_mouse = true;
++                setCursor(Qt::BlankCursor);
++                QCursor::setPos(mapToGlobal(QPoint(width()/2,height()/2)));
++            }
++            return true;
++        }
++        if (!capturing_mouse) return false;
++        if (key->key() == Qt::Key_Escape) {
++            if (down) releaseDesktopInput();
++            return true;
++        }
++        if (key->key() == Qt::Key_W || key->key() == Qt::Key_A || key->key() == Qt::Key_S || key->key() == Qt::Key_D) {
++            if (!key->isAutoRepeat()) {
++                if (down) desktop_input.keys.insert(key->key());
++                else desktop_input.keys.remove(key->key());
++                sendDesktopInput();
++            }
++            return true;
++        }
++        return false;
++    }
++    if (type == QEvent::TouchCancel) {
++        desktop_input.contacts.clear(); sendDesktopInput(); return false;
++    }
++    if (type == QEvent::TouchBegin || type == QEvent::TouchUpdate || type == QEvent::TouchEnd) {
++        if (!tools->touchOverlay()) return false;
++        for (const auto &point : static_cast<QTouchEvent *>(event)->points()) {
++            if (point.state() == QEventPoint::Released) desktop_input.contacts.remove(point.id());
++            else desktop_input.contact(point.id(), point.position(), size(), point.state() == QEventPoint::Pressed);
++        }
++        sendDesktopInput();
++        return true;
++    }
++    if (type != QEvent::MouseMove && type != QEvent::MouseButtonPress && type != QEvent::MouseButtonRelease && type != QEvent::MouseButtonDblClick)
++        return false;
++    auto mouse = static_cast<QMouseEvent *>(event);
++    if (mouse->source() != Qt::MouseEventNotSynthesized) return false;
++    if (!capturing_mouse) {
++        // A click on the overlay also works on a non-touch monitor.
++        constexpr int pointer = -1;
++        if (!tools->touchOverlay()) return false;
++        if (type == QEvent::MouseButtonPress && mouse->button() == Qt::LeftButton)
++            desktop_input.contact(pointer, mouse->position(), size(), true);
++        if (!desktop_input.contacts.contains(pointer)) return false;
++        if (type == QEvent::MouseButtonRelease) desktop_input.contacts.remove(pointer);
++        else desktop_input.contact(pointer, mouse->position(), size(), false);
++        sendDesktopInput();
++        return true;
++    }
++    if (type == QEvent::MouseMove) {
++        const QPoint center(width()/2,height()/2);
++        auto delta = mouse->position().toPoint() - center;
++        if (delta.isNull()) return true;
++        const int scale = tools->sensitivity() * 12;
++        desktop_input.aim = {qBound(-32767,delta.x()*scale,32767),
++            qBound(-32767,delta.y()*scale*(tools->invert() ? -1 : 1),32767)};
++        QCursor::setPos(mapToGlobal(center));
++        aim_timer.start(45);
++    } else {
++        const QList<Qt::MouseButton> buttons{Qt::LeftButton,Qt::RightButton,Qt::MiddleButton,Qt::BackButton,Qt::ForwardButton};
++        const int index = buttons.indexOf(mouse->button());
++        if (index < 0) return true;
++        if (type == QEvent::MouseButtonRelease) desktop_input.mouseButtons.remove(index);
++        else desktop_input.mouseButtons[index] = tools->mouseActions().at(index).toInt();
++    }
++    sendDesktopInput();
++    return true;
++}
++
+ bool QmlMainWindow::event(QEvent *event)
+ {
++    if (desktopEvent(event)) return true;
+     switch (event->type()) {
+     case QEvent::MouseMove:
+     case QEvent::MouseButtonPress:
+diff --git a/gui/src/qmlsettings.cpp b/gui/src/qmlsettings.cpp
+index 6504261..710b74f 100644
+--- a/gui/src/qmlsettings.cpp
++++ b/gui/src/qmlsettings.cpp
+@@ -1977,10 +1977,10 @@ void QmlSettings::exportSettings()
+     if(profile.isEmpty())
+         profile = "Default";
+     QString fileName = QFileDialog::getSaveFileName(QApplication::focusWidget(), tr("Export %1 Profile To File").arg(profile),
+-                                                    QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/chiaki-ng-" + profile,
+-                                                    tr("Settings files (*.ini)"),
++                                                    QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/Deckivo-" + profile,
++                                                    tr("Deckivo profile (*.dvp)"),
+                                                     nullptr,
+-                                                    QFileDialog::DontUseNativeDialog | QFileDialog::DontConfirmOverwrite);
++                                                    QFileDialog::DontUseNativeDialog);
+     if(fileName.isEmpty())
+         return;
+     settings->ExportSettings(std::move(fileName));
+@@ -1990,7 +1990,7 @@ void QmlSettings::importSettings()
+ {
+     QString fileName = QFileDialog::getOpenFileName(QApplication::focusWidget(), tr("Import Profile From File"),
+                                                     QStandardPaths::writableLocation(QStandardPaths::DownloadLocation),
+-                                                    tr("Settings files (*.ini)"),
++                                                    tr("Deckivo profile (*.dvp)"),
+                                                     nullptr,
+                                                     QFileDialog::DontUseNativeDialog);
+     if(fileName.isEmpty())
+@@ -2014,7 +2014,7 @@ void QmlSettings::exportPlaceboSettings()
+                                                     QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/chiaki-ng-placebo",
+                                                     tr("Settings files (*.ini)"),
+                                                     nullptr,
+-                                                    QFileDialog::DontUseNativeDialog | QFileDialog::DontConfirmOverwrite);
++                                                    QFileDialog::DontUseNativeDialog);
+     if(fileName.isEmpty())
+         return;
+     settings->ExportPlaceboSettings(std::move(fileName));
+diff --git a/gui/src/settings.cpp b/gui/src/settings.cpp
+index 512ebde..3de60ec 100644
+--- a/gui/src/settings.cpp
++++ b/gui/src/settings.cpp
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: LicenseRef-AGPL-3.0-only-OpenSSL
+ 
+ #include <settings.h>
++#include "private_settings.h"
+ #include <SDL.h>
+ #include <QFile>
+ #include <QFileInfo>
+@@ -170,9 +171,9 @@ static void MigrateControllerMappings(QSettings *settings)
+ 
+ Settings::Settings(const QString &conf, QObject *parent) : QObject(parent),
+ 	time_format("yyyy-MM-dd HH:mm:ss t"),
+-	settings(QCoreApplication::organizationName(), conf.isEmpty() ? QCoreApplication::applicationName() : QStringLiteral("%1-%2").arg(QCoreApplication::applicationName(), conf)),
+-	default_settings(QCoreApplication::organizationName(), QCoreApplication::applicationName()),
+-	placebo_settings(QCoreApplication::organizationName(), QStringLiteral("pl_render_params"))
++	settings(Deckivo::path(conf.isEmpty() ? QCoreApplication::applicationName() : QStringLiteral("%1-%2").arg(QCoreApplication::applicationName(), conf)), Deckivo::format()),
++	default_settings(Deckivo::path(QCoreApplication::applicationName()), Deckivo::format()),
++	placebo_settings(Deckivo::path(QStringLiteral("pl_render_params")), Deckivo::format())
+ {
+ 	settings.setFallbacksEnabled(false);
+ 	MigrateSettings(&settings);
+@@ -197,11 +198,11 @@ void Settings::ExportSettings(QString filepath)
+ 	// append ini if not already added
+ 	QFileInfo info(filepath);
+ 	if(info.suffix().isEmpty())
+-		filepath += ".ini";
++		filepath += ".dvp";
+ 	QFile file(filepath);
+ 	file.open(QIODevice::ReadWrite);
+ 	file.close();
+-	QSettings settings_backup(filepath, QSettings::IniFormat);
++	QSettings settings_backup(filepath, Deckivo::format());
+ 	SaveRegisteredHosts(&settings_backup);
+ 	SaveHiddenHosts(&settings_backup);
+ 	SaveManualHosts(&settings_backup);
+@@ -251,7 +252,9 @@ QMap<QString, QString> Settings::GetPlaceboValues()
+ 
+ void Settings::ImportSettings(QString filepath)
+ {
+-	QSettings settings_backup(filepath, QSettings::IniFormat);
++	QSettings settings_backup(filepath, Deckivo::format());
++	if (!settings_backup.contains("version") || settings_backup.status() != QSettings::NoError)
++		return;
+ 	LoadRegisteredHosts(&settings_backup);
+ 	LoadHiddenHosts(&settings_backup);
+ 	LoadManualHosts(&settings_backup);
+@@ -273,7 +276,7 @@ void Settings::ImportSettings(QString filepath)
+ 	}
+ 	else
+ 	{
+-		QSettings profile_settings(QCoreApplication::organizationName(), QStringLiteral("%1-%2").arg(QCoreApplication::applicationName(), profile));
++		QSettings profile_settings(Deckivo::path(QStringLiteral("%1-%2").arg(QCoreApplication::applicationName(), profile)), Deckivo::format());
+ 		profile_settings.clear();
+ 		SaveRegisteredHosts(&profile_settings);
+ 		SaveHiddenHosts(&profile_settings);
+@@ -2010,7 +2013,7 @@ void Settings::SaveProfiles()
+ 
+ void Settings::DeleteProfile(QString profile)
+ {
+-	QSettings delete_profile(QCoreApplication::organizationName(), QStringLiteral("%1-%2").arg(QCoreApplication::applicationName(), profile));
++	QSettings delete_profile(Deckivo::path(QStringLiteral("%1-%2").arg(QCoreApplication::applicationName(), profile)), Deckivo::format());
+ 	registered_hosts.clear();
+ 	manual_hosts.clear();
+ 	controller_mappings.clear();
+diff --git a/gui/src/streamsession.cpp b/gui/src/streamsession.cpp
+index 2d4ed55..aa7265c 100755
+--- a/gui/src/streamsession.cpp
++++ b/gui/src/streamsession.cpp
+@@ -327,6 +327,7 @@ StreamSession::StreamSession(const StreamSessionConnectInfo &connect_info, QObje
+ 	}
+ 
+ 	chiaki_controller_state_set_idle(&keyboard_state);
++	chiaki_controller_state_set_idle(&desktop_state);
+ 	chiaki_controller_state_set_idle(&touch_state);
+ 	touch_tracker=QMap<int, uint8_t>();
+ 	mouse_touch_id=-1;
+@@ -1052,6 +1053,7 @@ void StreamSession::DpadSendFeedbackState()
+ 	chiaki_controller_state_or(&state, &state, &sdeck_state);
+ #endif
+ 	chiaki_controller_state_or(&state, &state, &keyboard_state);
++	chiaki_controller_state_or(&state, &state, &desktop_state);
+ 	chiaki_controller_state_or(&state, &state, &touch_state);
+ 
+ 	if(input_block)
+@@ -1108,6 +1110,7 @@ void StreamSession::SendFeedbackState()
+ 	chiaki_controller_state_or(&state, &state, &sdeck_state);
+ #endif
+ 	chiaki_controller_state_or(&state, &state, &keyboard_state);
++	chiaki_controller_state_or(&state, &state, &desktop_state);
+ 	chiaki_controller_state_or(&state, &state, &touch_state);
+ 
+ 	if(input_block)
