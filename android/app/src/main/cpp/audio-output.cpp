@@ -8,6 +8,7 @@
 #include <chiaki/thread.h>
 
 #include <oboe/Oboe.h>
+#include <memory>
 
 #define BUFFER_CHUNK_SIZE 1024
 #define BUFFER_CHUNKS_COUNT 32
@@ -33,6 +34,7 @@ struct AudioOutput
 	ChiakiLog *log;
 	oboe::ManagedStream stream;
 	AudioOutputCallback stream_callback;
+	std::unique_ptr<oboe::LatencyTuner> latency_tuner;
 	AudioBuffer buf;
 
 	AudioOutput() : stream_callback(this) {}
@@ -58,19 +60,37 @@ extern "C" void android_chiaki_audio_output_settings(uint32_t channels, uint32_t
 {
 	auto ao = reinterpret_cast<AudioOutput *>(audio_output);
 
+	// Stop callbacks before replacing the tuner.
+	ao->stream = nullptr;
+	ao->latency_tuner.reset();
+
 	oboe::AudioStreamBuilder builder;
 	builder.setPerformanceMode(oboe::PerformanceMode::LowLatency)
 		->setSharingMode(oboe::SharingMode::Exclusive)
+		->setUsage(oboe::Usage::Game)
+		->setContentType(oboe::ContentType::Music)
 		->setFormat(oboe::AudioFormat::I16)
 		->setChannelCount(channels)
 		->setSampleRate(rate)
 		->setCallback(&ao->stream_callback);
 
 	auto result = builder.openManagedStream(ao->stream);
-	if(result == oboe::Result::OK)
-		CHIAKI_LOGI(ao->log, "Audio Output opened Oboe stream");
-	else
+	if(result != oboe::Result::OK)
+	{
 		CHIAKI_LOGE(ao->log, "Audio Output failed to open Oboe stream: %s", oboe::convertToText(result));
+		return;
+	}
+
+	// A low-latency request can fall back to a shared Bluetooth stream whose
+	// default client buffer is hundreds of milliseconds. Tune this queue, while
+	// allowing Oboe to grow it again if the device reports underruns.
+	if(ao->stream->getAudioApi() == oboe::AudioApi::AAudio)
+		ao->latency_tuner = std::make_unique<oboe::LatencyTuner>(*ao->stream);
+	const int32_t burst = ao->stream->getFramesPerBurst();
+	if(burst > 0)
+		ao->stream->setBufferSizeInFrames(burst * 2);
+	CHIAKI_LOGI(ao->log, "Audio Output opened Oboe stream: burst=%d buffer=%d capacity=%d",
+		burst, ao->stream->getBufferSizeInFrames(), ao->stream->getBufferCapacityInFrames());
 
 	result = ao->stream->start();
 	if(result == oboe::Result::OK)
@@ -109,6 +129,9 @@ oboe::DataCallbackResult AudioOutputCallback::onAudioReady(oboe::AudioStream *st
 		CHIAKI_LOGV(audio_output->log, "Audio Output Buffer Underflow!");
 		memset(buf + buf_size_delivered, 0, buf_size_requested - buf_size_delivered);
 	}
+
+	if(audio_output->latency_tuner)
+		audio_output->latency_tuner->tune();
 
 	return oboe::DataCallbackResult::Continue;
 }

@@ -30,7 +30,7 @@ jobs:
           python scripts/generate-support.py --check
           python scripts/generate-desktop-localizations.py --check
           python -m unittest tests/test_download_stats.py
-          python -m unittest tests/test_site_generation.py tests/test_site_stats_fallback.py
+          python -m unittest tests/test_site_generation.py tests/test_site_stats_fallback.py tests/test_public_release.py
           python scripts/site-download-stats.py --output build/download-stats.json
           python scripts/build-site.py --download-stats build/download-stats.json
         env:

@@ -1,5 +1,12 @@
 # 0.8.11 preview — 2026-11-07
 
+## 0.8.12 Android preview (2026-11-08)
+
+- Bound the initial Oboe output buffer and tune it for underruns instead of keeping the large default Bluetooth client queue.
+- Declare game audio usage and handle failure to open an output stream safely.
+- Keep the published desktop packages at 0.8.11 / build 27; this patch changes Android audio only.
+
+
 - Offer only the configured Ko-fi support page; hide pending and unverified providers across Android, macOS, Linux, the website and funding links.
 - Preserve the existing fallback when a removed provider was saved.
 

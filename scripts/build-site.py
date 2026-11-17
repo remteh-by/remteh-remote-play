@@ -15,18 +15,22 @@ ASSET_CATEGORIES={*PLATFORM_KEYS,'source','metadata','other'}
 release=json.loads((ROOT/'website/published-release.json').read_text())
 if release.get('schema') != 1 or not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+',release.get('version','')):
  raise ValueError('Invalid published release metadata')
-ANDROID_VERSION=MAC_VERSION=LINUX_VERSION=release['version']
+ANDROID_VERSION=release['version']
+MAC_VERSION=LINUX_VERSION=release.get('desktop_version',ANDROID_VERSION)
+if not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+',MAC_VERSION):
+ raise ValueError('Invalid published desktop version')
 ANDROID_BUILD=release['android_build']
 MAC_BUILD=LINUX_BUILD=release['desktop_build']
-def public_asset(name):
+def public_asset(name,version=None):
+ version=version or ANDROID_VERSION
  matches=[row for row in release['assets'] if row.get('name')==name]
- expected=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{ANDROID_VERSION}/{name}'
+ expected=f'https://github.com/remteh-by/remteh-remote-play/releases/download/v{version}/{name}'
  if len(matches)!=1 or matches[0].get('url')!=expected or not re.fullmatch(r'[a-f0-9]{64}',matches[0].get('sha256','')):
   raise ValueError('Missing/invalid published asset: '+name)
  return expected
 ANDROID_URL=public_asset(f'Deckivo-{ANDROID_VERSION}-arm64.apk')
-MAC_URL=public_asset(f'Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip')
-LINUX_URL=public_asset(f'Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip')
+MAC_URL=public_asset(f'Deckivo-macos-{MAC_VERSION}-b{MAC_BUILD}.zip',MAC_VERSION)
+LINUX_URL=public_asset(f'Deckivo-Linux-{LINUX_VERSION}-b{LINUX_BUILD}-source.zip',LINUX_VERSION)
 ARCHIVE_COPY={
  'en':('Historical snapshot','Archived totals are frozen GitHub asset download counts captured before a release or file was removed. They are not unique users or installations.'),
  'ru':('Исторический снимок','Архивные итоги — это зафиксированные GitHub-счётчики загрузок файлов до удаления релиза или файла. Это не число уникальных пользователей или установок.'),
@@ -213,8 +217,8 @@ def main():
  for code in NAMES:
   copy={**catalog['en'],**catalog[code]};texts=support['texts'][code];download_text=download_catalog[code];prefix='' if code=='en' else '../'
   for key in ('stage','android_note','mac_note','linux_note','linux_guide'):
-   copy[key]=copy[key].format(version=ANDROID_VERSION,android_build=ANDROID_BUILD,desktop_build=MAC_BUILD)
-  copy['faq']=[{field:value.format(version=ANDROID_VERSION,mac_build=MAC_BUILD) for field,value in qa.items()} for qa in copy['faq']]
+   copy[key]=copy[key].format(version=MAC_VERSION if key in ('mac_note','linux_note','linux_guide') else ANDROID_VERSION,android_build=ANDROID_BUILD,desktop_build=MAC_BUILD)
+  copy['faq']=[{field:qa[field].format(version=MAC_VERSION if qa.get('platform')=='macos' else ANDROID_VERSION,mac_build=MAC_BUILD) for field in ('q','a')} for qa in copy['faq']]
   soup=BeautifulSoup(template,'html.parser');soup.html['lang']=code;soup.html['dir']='rtl' if code=='ar' else 'ltr'
   if code in SYSTEM_FONT:soup.html['class']='system-font'
   for node in soup.select('[data-i]'):
