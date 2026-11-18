@@ -9,6 +9,7 @@ class ControllerMonitor(QObject):
     changed=pyqtSignal();navigate=pyqtSignal(str)
     def __init__(self,parent=None):
         super().__init__(parent);self.name='';self.axes={};self.buttons={};self.paused=False;self.pad=None;self.library=None;self.last_nav=0
+        self.input_sampled=False;self.direction_ready=False
         try:
             bundled=Path(__file__).resolve().parent/'assets/macos/libSDL2.dylib'
             lib=ctypes.CDLL(str(bundled) if bundled.is_file() else '/opt/homebrew/opt/sdl2/lib/libSDL2.dylib')
@@ -25,7 +26,8 @@ class ControllerMonitor(QObject):
     def suspend(self,value):self.paused=value;self.disconnect_device()
     def disconnect_device(self):
         if self.pad and self.library:self.library.SDL_GameControllerClose(self.pad)
-        self.pad=None;self.name='';self.axes={};self.buttons={};self.changed.emit()
+        self.pad=None;self.name='';self.axes={};self.buttons={}
+        self.input_sampled=False;self.direction_ready=False;self.last_nav=0;self.changed.emit()
     def poll(self):
         if self.paused or not self.library:return
         lib=self.library;lib.SDL_GameControllerUpdate()
@@ -38,13 +40,18 @@ class ControllerMonitor(QObject):
         if not self.pad:return
         mapping={'south':0,'east':1,'west':2,'north':3,'select':4,'home':5,'start':6,'L3':7,'R3':8,'L1':9,'R1':10,'up':11,'down':12,'left':13,'right':14,'capture':15}
         new={key:bool(lib.SDL_GameControllerGetButton(self.pad,index)) for key,index in mapping.items()}
-        for key,action in (('south','activate'),('east','back'),('L1','previous_page'),('R1','next_page')):
-            if new[key] and not self.buttons.get(key):self.navigate.emit(action)
+        # The first sample establishes the current state. A button already held
+        # while connecting or returning from a stream must not activate the UI.
+        if self.input_sampled:
+            for key,action in (('south','activate'),('east','back'),('L1','previous_page'),('R1','next_page')):
+                if new[key] and not self.buttons.get(key):self.navigate.emit(action)
         self.buttons=new;self.axes={target:lib.SDL_GameControllerGetAxis(self.pad,index)/32767 for target,index in ((0,0),(1,1),(3,2),(4,3),(2,4),(5,5))}
+        self.input_sampled=True
         now=time.monotonic()
-        if now-self.last_nav>.24:
-            action=next((key for key in ('up','down','left','right') if new[key]),'')
-            if not action:
-                x,y=self.axes[0],self.axes[1];action='right' if x>.6 else 'left' if x<-.6 else 'down' if y>.6 else 'up' if y<-.6 else ''
-            if action:self.navigate.emit(action);self.last_nav=now
+        action=next((key for key in ('up','down','left','right') if new[key]),'')
+        if not action:
+            x,y=self.axes[0],self.axes[1];action='right' if x>.6 else 'left' if x<-.6 else 'down' if y>.6 else 'up' if y<-.6 else ''
+        if not action:self.direction_ready=True
+        elif self.direction_ready and now-self.last_nav>.24:
+            self.navigate.emit(action);self.last_nav=now
         self.changed.emit()

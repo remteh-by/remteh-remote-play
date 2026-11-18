@@ -217,8 +217,7 @@ class DebandRenderer(
     private var screenWidth = 1
     private var screenHeight = 1
 
-    @Volatile
-    private var frameAvailable = false
+    private val frameAvailability = FrameAvailability()
     private var frameCount = 0f
 
     init {
@@ -294,10 +293,9 @@ class DebandRenderer(
     }
 
     override fun onDrawFrame(gl: GL10?) {
-        if (frameAvailable) {
+        frameAvailability.consume {
             surfaceTexture?.updateTexImage()
             surfaceTexture?.getTransformMatrix(stMatrix)
-            frameAvailable = false
         }
 
         // --- PASS 1: OES to FBO ---
@@ -348,7 +346,7 @@ class DebandRenderer(
     }
 
     override fun onFrameAvailable(surfaceTexture: SurfaceTexture?) {
-        frameAvailable = true
+        frameAvailability.signal()
     }
 
     fun release() {

@@ -34,6 +34,8 @@ jobs:
           QT_QPA_PLATFORM: offscreen
           DECKIVO_TEST_SDL_PREFIX: ${{ runner.temp }}/sdl2
           DECKIVO_REQUIRE_MAC_NATIVE_TESTS: '1'
+      - name: Android audio stream failure and ownership regression
+        run: python -m unittest discover -s tests -p test_audio_output.py -v
       - name: Native input state regression
         run: |
           clang -std=c11 -Wall -Wextra -Werror desktop/macos/test-input-state.c -o "$RUNNER_TEMP/deckivo-input-test"
