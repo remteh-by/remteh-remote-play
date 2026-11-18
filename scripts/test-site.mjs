@@ -6,6 +6,12 @@ import assert from 'node:assert/strict';
 import os from 'node:os';
 const root=path.resolve('build/site'),output=process.env.DECKIVO_QA_DIR??path.join(os.tmpdir(),'deckivo-site-qa');
 const expectedVersion=JSON.parse(fs.readFileSync('website/published-release.json','utf8')).version;
+const windowsInstaller = fs.readFileSync('desktop/windows/installer.iss', 'utf8');
+const windowsVersion = /^AppVersion=(\d+\.\d+\.\d+)\.(\d+)\s*$/m.exec(windowsInstaller);
+assert.ok(windowsVersion, 'Windows installer must declare a four-part AppVersion');
+const [, windowsBaseVersion, windowsBuild] = windowsVersion;
+const windowsTag = `v${windowsBaseVersion}-windows-preview.${windowsBuild}`;
+const windowsAssets = `https://github.com/remteh-by/remteh-remote-play/releases/download/${windowsTag}/Deckivo-${windowsBaseVersion}-preview-Windows-x64`;
 fs.mkdirSync(output,{recursive:true});
 let server,base=process.env.DECKIVO_SITE_BASE;
 if(!base) {
@@ -55,6 +61,7 @@ try {
       app:typed.filter(x=>x['@type']==='SoftwareApplication'),faq:typed.filter(x=>x['@type']==='FAQPage'),
       og:{image:meta('og:image'),width:meta('og:image:width'),height:meta('og:image:height'),type:meta('og:image:type'),twitter:meta('twitter:image')},
       downloads:[...document.querySelectorAll('a.package-link')].map(a=>a.href),
+      windowsPortable:document.querySelector('#windows a[href$="-Portable.zip"]')?.href,
       stats:document.querySelectorAll('#download-stats').length,unknownBars:document.querySelectorAll('#support progress').length,
       splitWords,clipped:clips,scrollWidth:document.documentElement.scrollWidth,viewport:innerWidth,
       languageLinks:document.querySelectorAll('.language-menu a').length,
@@ -71,7 +78,8 @@ try {
    assert.equal(state.og.width,'1200');assert.equal(state.og.height,'630');assert.equal(state.og.type,'image/jpeg');
    assert.equal(state.og.image,state.og.twitter);assert.match(state.og.image,/^https:\/\/.*\/github-cover\.jpg(?:\?|$)/);
    assert.equal(state.downloads.length,4);assert.ok(state.downloads.slice(0,3).every(u=>u.includes('/v'+expectedVersion+'/')));
-   assert.match(state.downloads[3],/\/v0\.9\.0-windows-preview\.4\/Deckivo-0\.9\.0-preview-Windows-x64-Setup\.exe$/);
+   assert.equal(state.downloads[3], windowsAssets + '-Setup.exe');
+   assert.equal(state.windowsPortable, windowsAssets + '-Portable.zip');
    assert.equal(state.downloadLabels.length,4);
    for(const label of state.downloadLabels)assert.ok(label.includes(expectedVersion),'visible download label must match the published version: '+label);
    assert.equal(state.stats,expectedStats,'public counters respect the configured threshold');assert.equal(state.unknownBars,expectedProgress);
