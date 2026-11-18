@@ -1,5 +1,9 @@
 # 0.8.11 preview — 2026-11-07
 
+## 0.8.13 preview
+
+Android handles unavailable audio output and tunes the client buffer around the output burst size. Frame tracking is synchronized across callbacks. On macOS, a held control no longer generates a new navigation action when the controller first becomes active. Bluetooth end-to-end latency and physical gameplay require a separate device session.
+
 - Offer only the configured Ko-fi support page; hide pending and unverified providers across Android, macOS, Linux, the website and funding links.
 - Preserve the existing fallback when a removed provider was saved.
 

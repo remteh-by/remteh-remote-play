@@ -11,15 +11,15 @@
 
 [English](docs/guides/en.md) · [Русский](docs/guides/ru.md) · [Українська](docs/guides/uk.md) · [Polski](docs/guides/pl.md) · [Deutsch](docs/guides/de.md) · [Français](docs/guides/fr.md) · [Español](docs/guides/es.md) · [Italiano](docs/guides/it.md) · [Português](docs/guides/pt.md) · [Türkçe](docs/guides/tr.md) · [简体中文](docs/guides/zh.md) · [日本語](docs/guides/ja.md) · [한국어](docs/guides/ko.md) · [العربية](docs/guides/ar.md) · [हिन्दी](docs/guides/hi.md) · [Bahasa Indonesia](docs/guides/id.md)
 
-**Deckivo 0.8.11 is an experimental preview.** Android ARM64 build 36 and desktop build 27 cover Apple Silicon macOS and prepared Switchroot Ubuntu ARM64. This update keeps the configured Ko-fi page and hides pending or unverified support providers. Payment receipt, Switch installation and PS5 sustained sessions are not certified by these software checks. Mac packages are ad-hoc signed, not notarized.
+**Deckivo 0.8.13 is an experimental preview.** Android ARM64 build 38 adjusts the client audio buffer and handles unavailable audio output. Desktop build 29 improves controller navigation on Apple Silicon macOS. The Switchroot Ubuntu package uses the same desktop version. This release has not been measured on a physical Bluetooth headset or tested in a live PS5 session. The Mac package uses an ad-hoc signature.
 
 ### Choose your screen
 
 | Platform | Delivery | Start here |
 |---|---|---|
-| Android ARM64 | 0.8.11 #36 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-0.8.11-arm64.apk) |
-| macOS Apple Silicon | 0.8.11 b27; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-macos-0.8.11-b27.zip) |
-| Switchroot Ubuntu ARM64 | 0.8.11 b27 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.11 real-device acceptance pending | [Linux 0.8.11 b27](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-Linux-0.8.11-b27-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
+| Android ARM64 | 0.8.13 #38 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.13/Deckivo-0.8.13-arm64.apk) |
+| macOS Apple Silicon | 0.8.13 b29; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.13/Deckivo-macos-0.8.13-b29.zip) |
+| Switchroot Ubuntu ARM64 | 0.8.13 b29 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.13 real-device acceptance pending | [Linux 0.8.13 b29](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.13/Deckivo-Linux-0.8.13-b29-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
 | Windows 11 x64 | 0.9.0.5 preview · installer and portable ZIP | [Windows guide (RU)](docs/guides/windows-ru.md) |
 | Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
@@ -57,7 +57,7 @@ The previously observed PS5 advertised firmware **13.42** (discovery system
 version `13420000`); no other firmware coverage is certified.
 
 See **[the detailed test matrix](docs/TESTED.md)** and
-[0.8.11 validation](docs/releases/0.8.11-validation.json) for the current preview; [0.8.6 validation](docs/releases/0.8.6-validation.json) is historical.
+[0.8.13 validation](docs/releases/0.8.13-validation.json) for the current preview; [0.8.6 validation](docs/releases/0.8.6-validation.json) is historical.
 [0.8.6 public Mac update acceptance](docs/releases/0.8.6-public-channel-validation.json).
 [0.8.5 public Mac update acceptance](docs/releases/0.8.5-public-channel-validation.json).
 [Earlier public update acceptance](docs/releases/0.6.0-public-channel-validation.json)
