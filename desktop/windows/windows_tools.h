@@ -215,7 +215,7 @@ public:
         const auto file = QFileDialog::getSaveFileName(nullptr, tr("Diagnostics"), "Deckivo-report.json", "*.json");
         if (file.isEmpty()) return false;
         const char *audio = SDL_GetCurrentAudioDriver();
-        const QJsonObject report{{"product", "Deckivo"}, {"version", "0.9.0"}, {"build", 4},
+        const QJsonObject report{{"product", "Deckivo"}, {"version", "0.9.0"}, {"build", 5},
             {"engine", "chiaki-ng 1.10.0"}, {"architecture", "x86_64"},
             {"renderer", renderer}, {"audioDriver", audio ? QString::fromLatin1(audio) : QString()},
             {"averageQueueDepth", queue < 0 ? QJsonValue() : QJsonValue(queue)},

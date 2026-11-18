@@ -5,7 +5,7 @@
 
 <p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-Linux-0.8.11-b27-source.zip">Linux 0.8.11 b27</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-0.8.11-arm64.apk">Android 0.8.11</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-macos-0.8.11-b27.zip">macOS 0.8.11 b27</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
 
-**Windows 11 x64 preview** · [Installation, PS5 pairing, controllers and troubleshooting (Русский)](docs/guides/windows-ru.md) · [Windows prerelease](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.9.0-windows-preview.4) · [Support Deckivo on Ko-fi](https://ko-fi.com/pavelzayats)
+**Windows 11 x64 preview** · [Installation, PS5 pairing, controllers and troubleshooting (Русский)](docs/guides/windows-ru.md) · [Windows prerelease](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.9.0-windows-preview.5) · [Support Deckivo on Ko-fi](https://ko-fi.com/pavelzayats)
 
 [Download history and counting method](docs/DOWNLOADS.md).
 
@@ -20,7 +20,7 @@
 | Android ARM64 | 0.8.11 #36 APK; Android 8+ | [Android guide](docs/guides/en.md#android) · [APK](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-0.8.11-arm64.apk) |
 | macOS Apple Silicon | 0.8.11 b27; native Qt preview; separate chiaki-ng engine required | [Mac guide](docs/guides/en.md#macos) · [ZIP](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-macos-0.8.11-b27.zip) |
 | Switchroot Ubuntu ARM64 | 0.8.11 b27 for Ubuntu 24.04.4 / KDE X11 / Switchroot FFmpeg 6.1; follow the first-install guide; 0.8.11 real-device acceptance pending | [Linux 0.8.11 b27](https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-Linux-0.8.11-b27-source.zip) · [Guide](docs/guides/en.md#ubuntu) · [Requirements](docs/LINUX.md) |
-| Windows 11 x64 | 0.9.0.4 preview · installer and portable ZIP | [Windows guide (RU)](docs/guides/windows-ru.md) |
+| Windows 11 x64 | 0.9.0.5 preview · installer and portable ZIP | [Windows guide (RU)](docs/guides/windows-ru.md) |
 | Intel Mac, Linux x64 | Planned; no verified Deckivo build | [Platform scope](docs/PLATFORMS.md) |
 
 ### Made for your own play space

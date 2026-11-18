@@ -78,7 +78,7 @@ jobs:
       github.event_name == 'pull_request' && github.event.action == 'closed' &&
       github.event.pull_request.merged &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.event.pull_request.head.ref == 'release/windows-0.9.0-build4'
+      github.event.pull_request.head.ref == 'release/windows-0.9.0-build5'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -97,9 +97,9 @@ jobs:
         run: |
           set -eu
           (cd packages && sha256sum --check SHA256SUMS.txt)
-          tag=v0.9.0-windows-preview.4
+          tag=v0.9.0-windows-preview.5
           if gh release view "$tag" >/dev/null 2>&1; then
             echo "The prerelease already exists; leaving its assets intact."
             exit 0
           fi
-          gh release create "$tag" packages/*.exe packages/*.zip packages/SHA256SUMS.txt --target "$TARGET" --title "Deckivo 0.9.0.4 — Windows x64 Preview" --notes-file desktop/windows/RELEASE.md --prerelease --latest=false
+          gh release create "$tag" packages/*.exe packages/*.zip packages/SHA256SUMS.txt --target "$TARGET" --title "Deckivo 0.9.0.5 — Windows x64 Preview" --notes-file desktop/windows/RELEASE.md --prerelease --latest=false

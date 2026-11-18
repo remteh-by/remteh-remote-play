@@ -5,10 +5,10 @@
 [Setup]
 AppId={{9A825D7B-1E10-44D0-ABBD-7D2A78A726CB}
 AppName=Deckivo
-AppVersion=0.9.0.4
-VersionInfoVersion=0.9.0.4
+AppVersion=0.9.0.5
+VersionInfoVersion=0.9.0.5
 SetupIconFile=deckivo.ico
-AppVerName=Deckivo 0.9.0 Preview (build 4)
+AppVerName=Deckivo 0.9.0 Preview (build 5)
 DefaultDirName={localappdata}\Programs\Deckivo
 PrivilegesRequired=lowest
 ArchitecturesAllowed=x64compatible
