@@ -1,9 +1,9 @@
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.11-b27-58c1d7613d52.webp" alt="Deckivo — actual desktop interface, development preview 0.8.11 build 27" width="100%"></a></p>
-<p align="center"><sub>Actual Deckivo 0.8.11 desktop interface · desktop build 27 · Android build 36.</sub></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/"><img src="website/assets/github-cover-0.8.13-b29-270524470157.webp" alt="Deckivo — actual desktop interface, development preview 0.8.13 build 29" width="100%"></a></p>
+<p align="center"><sub>Actual Deckivo 0.8.13 desktop interface · desktop build 29 · Android build 38.</sub></p>
 
 <p align="center"><strong>Open-source PS5 Remote Play on Nintendo Switch OLED (Android), Android devices and Apple Silicon Macs. Switchroot Ubuntu preview.</strong><br>Developed by <a href="https://remteh.by/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">RemTeh.by</a> · <a href="https://remteh.by/remont-konsoli?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=deckivo">Game console repair in Minsk</a> · Built on Chiaki / chiaki-ng / Android Extended</p>
 
-<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-Linux-0.8.11-b27-source.zip">Linux 0.8.11 b27</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-0.8.11-arm64.apk">Android 0.8.11</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.11/Deckivo-macos-0.8.11-b27.zip">macOS 0.8.11 b27</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
+<p align="center"><a href="https://remteh-by.github.io/remteh-remote-play/">Explore Deckivo</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.13/Deckivo-Linux-0.8.13-b29-source.zip">Linux 0.8.13 b29</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.13/Deckivo-0.8.13-arm64.apk">Android 0.8.13</a> · <a href="https://github.com/remteh-by/remteh-remote-play/releases/download/v0.8.13/Deckivo-macos-0.8.13-b29.zip">macOS 0.8.13 b29</a> · <a href="docs/TESTED.md">Device tests</a> · <a href="#help-deckivo-grow">♥ Help Deckivo grow</a></p>
 
 **Windows 11 x64 preview** · [Installation, PS5 pairing, controllers and troubleshooting (Русский)](docs/guides/windows-ru.md) · [Windows prerelease](https://github.com/remteh-by/remteh-remote-play/releases/tag/v0.9.0-windows-preview.5) · [Support Deckivo on Ko-fi](https://ko-fi.com/pavelzayats)
 
@@ -44,6 +44,7 @@
 
 | Hardware / OS | Exact build | Confirmed scope |
 |---|---|---|
+| Apple Silicon Mac development environment | 0.8.13 b29 | Built the macOS app, loaded the bundled controller backend and captured the desktop interface with an unpaired local profile. |
 | Apple Silicon Mac development environment | 0.8.11 b27 source | Support catalog and fallback regression checks; isolated real Qt capture. Public updater acceptance is recorded separately after publication |
 | GitHub macOS 15 ARM64 runner | 0.8.7 b23 source | 130 automated tests passed without skips, including native input/window/audio; no physical gameplay or installed-device acceptance |
 | Apple Silicon Mac / owner installation | 0.8.6 b22 | Normal public update from b21; 417/417 package entries match and private state retained. EN/RU layout: 18 geometry cases + 4 Retina 2× cases. Installed-window visual check pending (native capture error -3811); gameplay not tested |

@@ -1,0 +1,94 @@
+{
+  "version": "0.8.13",
+  "status": "experimental-preview",
+  "date": "2026-11-18",
+  "android": {
+    "schema": 1,
+    "packageName": "by.remteh.remoteplay",
+    "versionName": "0.8.13",
+    "versionCode": 38,
+    "minSdk": 26,
+    "abi": "arm64-v8a",
+    "apkFileName": "Deckivo-0.8.13-arm64.apk",
+    "apkBytes": 9498364,
+    "sha256": "d3985469b17c21bc4d22802936fb0b6ce89f765f10f2c1548eb1b775a5c0c100",
+    "releaseBuild": true,
+    "lintPassed": true,
+    "unitTests": 51,
+    "signingCertificateSha256": "adab297e4db86ff60ceb40aa4b2050b3e0235bb5d6be44cfc638d9acdd487bee",
+    "previousPublishedBuild": 36,
+    "sourceReleased": true,
+    "physicalUpdateInstall": "not-tested-this-release"
+  },
+  "desktop": {
+    "version": "0.8.13",
+    "build": 29,
+    "macOS": "Apple Silicon bundle built and ad-hoc signature verified after extracting the signed-feed ZIP. Bundled controller backend loaded during staging.",
+    "linux": "Switchroot ARM64 source update generated. Archive length and SHA-256 verified against signed desktop metadata."
+  },
+  "capture": {
+    "schema": 1,
+    "version": "0.8.13",
+    "build": 29,
+    "source_commit": "d3d123216fb1c1abd45a8121a098a95367891274",
+    "source_dirty": false,
+    "ui_source_sha256": "71c7dc9137722751f507ee5e7ed6e90fedecd81dbeff2c841fa7f47a3ab75f49",
+    "capture_state": "unpaired",
+    "development_preview": true,
+    "captured_at": "2026-11-18T20:12:53Z",
+    "images": {
+      "deckivo-ui.webp": {
+        "sha256": "2a7e5c4b7e69bbc4f46161a801ba39ee99357ce751bd94135ca3e66a0dd20bac",
+        "bytes": 43474,
+        "width": 1600,
+        "height": 900
+      },
+      "deckivo-ui.avif": {
+        "sha256": "58c283be7dc20598fddd630f8a53351288b18e63c6d820ae0e64dbbcb75b14e6",
+        "bytes": 25646,
+        "width": 1600,
+        "height": 900
+      },
+      "github-cover.webp": {
+        "sha256": "270524470157a1e74e8fb86c56564f9f45db69c094e140be8e90748126cb641b",
+        "bytes": 30312,
+        "width": 1200,
+        "height": 630
+      },
+      "github-cover.jpg": {
+        "sha256": "2c11ab654d1c3ecfd0ea0ffb59b419e352cc46ac730a2423bc48d3e70bf0ae76",
+        "bytes": 63533,
+        "width": 1200,
+        "height": 630
+      },
+      "deckivo-hero.webp": {
+        "sha256": "1a24a579014f64ce17210730f76ab1984a792598365ff6a879415287cadcf1de",
+        "bytes": 31728,
+        "width": 1476,
+        "height": 536
+      },
+      "deckivo-hero.avif": {
+        "sha256": "2bda2f3500a588bab6c0a345c6c95cce3f38fb0cf9277a0f5ef97e445ccddd7f",
+        "bytes": 18561,
+        "width": 1476,
+        "height": 536
+      }
+    },
+    "hero_crop": {
+      "source": "deckivo-ui.webp",
+      "rectangle": [
+        104,
+        108,
+        1580,
+        644
+      ],
+      "operation": "crop only, exact real Qt capture"
+    },
+    "readme_cover": "github-cover-0.8.13-b29-270524470157.webp"
+  },
+  "physical": {
+    "switch": "deferred",
+    "ps5_session": "deferred",
+    "bluetooth_latency_ms": null
+  }
+}
